@@ -43,12 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddOn\AddonBase.cs" />
     <Compile Include="Core\Util\DynamicDllLoader.cs" />
     <Compile Include="Core\Util\DynamicModuleLoader.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="UI\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
+    <Compile Include="UI\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="MinecraftServers\BukkitServer.cs" />
@@ -77,7 +78,18 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="AddOn\Backup\" />
+    <Folder Include="AddOn\Editor\" />
+    <Folder Include="AddOn\FlowStart\" />
+    <Folder Include="AddOn\Forwarder\" />
+    <Folder Include="AddOn\Permissions\" />
+    <Folder Include="AddOn\Playerlist\" />
+    <Folder Include="AddOn\Plugins\" />
+    <Folder Include="AddOn\Tasker\" />
+    <Folder Include="AddOn\WebControl\" />
     <Folder Include="Core\Filesystem\" />
+    <Folder Include="Core\Instantiator\" />
+    <Folder Include="Core\JavaInterop\" />
     <Folder Include="Core\Logging\" />
     <Folder Include="MinecraftInterop\OutputHandler\" />
     <Folder Include="MinecraftInterop\ProcessHandler\" />
