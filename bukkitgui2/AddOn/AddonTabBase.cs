@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace bukkitgui2.MinecraftServers
+namespace bukkitgui2.AddOn
 {
-	class VanillaServer
+	interface AddonTabBase
 	{
 	}
 }
