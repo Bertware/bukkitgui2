@@ -7,11 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace bukkitgui2.AddOn.Console.Performance
+namespace bukkitgui2.Controls.MinecraftConsole
 {
-	public partial class Performance : UserControl
+	public partial class MinecraftConsole : UserControl
 	{
-		public Performance()
+		public MinecraftConsole()
 		{
 			InitializeComponent();
 		}

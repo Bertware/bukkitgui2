@@ -1,6 +1,6 @@
-﻿namespace bukkitgui2.AddOn.Console.Performance
+﻿namespace bukkitgui2.AddOn.Plugins.BukgetPlugins
 {
-	partial class Performance
+	partial class BukgetPluginsControl
 	{
 		/// <summary> 
 		/// Required designer variable.
