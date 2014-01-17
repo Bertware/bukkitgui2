@@ -184,6 +184,9 @@
     <Compile Include="Controls\MarkupTextArea\MarkupTextArea.Designer.cs">
       <DependentUpon>MarkupTextArea.cs</DependentUpon>
     </Compile>
+    <Compile Include="Core\Configuration\IConfig.cs" />
+    <Compile Include="Core\Configuration\XmlConfig.cs" />
+    <Compile Include="Core\Filesystem\IFilesystem.cs" />
     <Compile Include="Core\Logging\FileLogger.cs" />
     <Compile Include="Core\Logging\ILogger.cs" />
     <Compile Include="Core\Util\DynamicDllLoader.cs" />
@@ -223,9 +226,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Core\Filesystem\" />
-    <Folder Include="Core\Instantiator\" />
     <Folder Include="Core\JavaInterop\" />
+    <Folder Include="Core\Locale\" />
     <Folder Include="MinecraftInterop\OutputHandler\" />
     <Folder Include="MinecraftInterop\ProcessHandler\" />
     <Folder Include="Resources\Dll\" />
