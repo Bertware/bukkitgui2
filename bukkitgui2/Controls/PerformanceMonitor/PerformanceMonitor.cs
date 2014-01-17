@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace bukkitgui2.AddOn.Console.PerformanceMonitor
+namespace bukkitgui2.Controls.PerformanceMonitor
 {
 	public partial class PerformanceMonitor : UserControl
 	{

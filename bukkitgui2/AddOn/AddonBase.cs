@@ -8,7 +8,7 @@ namespace bukkitgui2.AddOn
 	class AddonBase
 	{
 
-		public static System.Windows.Forms.Control Tabpage;
+		public static System.Windows.Forms.Control Tabpage = null;
 
 		public void Initiate()
 		{

@@ -1,6 +1,6 @@
-﻿namespace bukkitgui2
+﻿namespace bukkitgui2.UI
 {
-	partial class Form1
+	partial class SplashScreen
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -30,10 +30,9 @@
 		{
 			this.components = new System.ComponentModel.Container();
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.Text = "Form1";
+			this.Text = "SplashScreen";
 		}
 
 		#endregion
 	}
 }
-

@@ -7,11 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace bukkitgui2
+namespace bukkitgui2.UI
 {
-	public partial class Form1 : Form
+	public partial class SplashScreen : Form
 	{
-		public Form1()
+		public SplashScreen()
 		{
 			InitializeComponent();
 		}
