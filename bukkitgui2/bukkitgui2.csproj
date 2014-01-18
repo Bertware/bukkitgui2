@@ -190,8 +190,12 @@
     <Compile Include="Core\Configuration\IConfig.cs" />
     <Compile Include="Core\Configuration\XmlConfig.cs" />
     <Compile Include="Core\Filesystem\IFilesystem.cs" />
+    <Compile Include="Core\Filesystem\Local\LocalFileSystem.cs" />
+    <Compile Include="Core\Locale\ILocale.cs" />
+    <Compile Include="Core\Locale\XmlLocale.cs" />
     <Compile Include="Core\Logging\FileLogger.cs" />
     <Compile Include="Core\Logging\ILogger.cs" />
+    <Compile Include="Core\Share.cs" />
     <Compile Include="Core\Util\DynamicDllLoader.cs" />
     <Compile Include="Core\Util\DynamicModuleLoader.cs" />
     <Compile Include="MinecraftServers\Servers\BukkitServer.cs" />
@@ -231,8 +235,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Core\Filesystem\FTP\" />
     <Folder Include="Core\JavaInterop\" />
-    <Folder Include="Core\Locale\" />
     <Folder Include="MinecraftInterop\OutputHandler\" />
     <Folder Include="MinecraftInterop\ProcessHandler\" />
     <Folder Include="Resources\Dll\" />
