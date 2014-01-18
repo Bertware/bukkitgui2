@@ -11,9 +11,12 @@ namespace bukkitgui2.Core
 		static public Core.Configuration.IConfig Config = null;
 		static public Core.Filesystem.IFilesystem ServerFileSystem = null;
 		static public Core.Logging.ILogger Logger = null;
+		static public Core.FileLocation.IFileLocation FileLocation = null;
 
 		public void initialize()
 		{
+			FileLocation = new Core.FileLocation.DefaultFileLocation();
+
 			Logger = new Logging.FileLogger();
 			Locale = new Locale.XmlLocale();
 			Config = new Configuration.XmlConfig();

@@ -189,6 +189,8 @@
     </Compile>
     <Compile Include="Core\Configuration\IConfig.cs" />
     <Compile Include="Core\Configuration\XmlConfig.cs" />
+    <Compile Include="Core\FileLocation\DefaultFileLocation.cs" />
+    <Compile Include="Core\FileLocation\IFileLocation.cs" />
     <Compile Include="Core\Filesystem\IFilesystem.cs" />
     <Compile Include="Core\Filesystem\Local\LocalFileSystem.cs" />
     <Compile Include="Core\Locale\ILocale.cs" />
