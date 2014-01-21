@@ -12,8 +12,9 @@ namespace bukkitgui2.Core
 		static public Core.Filesystem.IFilesystem ServerFileSystem = null;
 		static public Core.Logging.ILogger Logger = null;
 		static public Core.FileLocation.IFileLocation FileLocation = null;
+        static public IntPtr MainFormHandle ;
 
-		public void initialize()
+		static public void initialize()
 		{
 			FileLocation = new Core.FileLocation.DefaultFileLocation();
 
