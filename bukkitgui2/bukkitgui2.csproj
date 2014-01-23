@@ -89,10 +89,7 @@
       <DependentUpon>MultiStringInput.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\MinecraftConsole\MinecraftConsole.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\MinecraftConsole\MinecraftConsole.Designer.cs">
-      <DependentUpon>MinecraftConsole.cs</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\PerformanceMonitor\PerformanceMonitor.cs">
       <SubType>UserControl</SubType>
@@ -220,6 +217,12 @@
     </Compile>
     <EmbeddedResource Include="AddOn\Backup\BackupTab.resx">
       <DependentUpon>BackupTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddOn\Console\ConsoleTab.resx">
+      <DependentUpon>ConsoleTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\PerformanceMonitor\PerformanceMonitor.resx">
+      <DependentUpon>PerformanceMonitor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

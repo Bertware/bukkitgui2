@@ -33,12 +33,12 @@
             this.StatusStripMain = new System.Windows.Forms.StatusStrip();
             this.LblToolsMainServerState = new System.Windows.Forms.ToolStripStatusLabel();
             this.MenuToolsMainServerAction = new System.Windows.Forms.ToolStripDropDownButton();
+            this.reloadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.restartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.startStopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.LblToolsMainServerOutput = new System.Windows.Forms.ToolStripStatusLabel();
             this.LblToolsMainGUIState = new System.Windows.Forms.ToolStripStatusLabel();
             this.ProgBarToolsMain = new System.Windows.Forms.ToolStripProgressBar();
-            this.startStopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.restartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.reloadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.StatusStripMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,7 +48,7 @@
             this.TabCtrlAddons.Location = new System.Drawing.Point(0, 0);
             this.TabCtrlAddons.Name = "TabCtrlAddons";
             this.TabCtrlAddons.SelectedIndex = 0;
-            this.TabCtrlAddons.Size = new System.Drawing.Size(867, 417);
+            this.TabCtrlAddons.Size = new System.Drawing.Size(884, 562);
             this.TabCtrlAddons.TabIndex = 0;
             // 
             // StatusStripMain
@@ -59,9 +59,9 @@
             this.LblToolsMainServerOutput,
             this.LblToolsMainGUIState,
             this.ProgBarToolsMain});
-            this.StatusStripMain.Location = new System.Drawing.Point(0, 395);
+            this.StatusStripMain.Location = new System.Drawing.Point(0, 540);
             this.StatusStripMain.Name = "StatusStripMain";
-            this.StatusStripMain.Size = new System.Drawing.Size(867, 22);
+            this.StatusStripMain.Size = new System.Drawing.Size(884, 22);
             this.StatusStripMain.TabIndex = 1;
             this.StatusStripMain.Text = "statusStrip1";
             // 
@@ -87,6 +87,24 @@
             this.MenuToolsMainServerAction.Text = "toolStripDropDownButton1";
             this.MenuToolsMainServerAction.ToolTipText = "Quick server actions";
             // 
+            // reloadToolStripMenuItem
+            // 
+            this.reloadToolStripMenuItem.Name = "reloadToolStripMenuItem";
+            this.reloadToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.reloadToolStripMenuItem.Text = "Reload";
+            // 
+            // restartToolStripMenuItem
+            // 
+            this.restartToolStripMenuItem.Name = "restartToolStripMenuItem";
+            this.restartToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.restartToolStripMenuItem.Text = "Restart";
+            // 
+            // startStopToolStripMenuItem
+            // 
+            this.startStopToolStripMenuItem.Name = "startStopToolStripMenuItem";
+            this.startStopToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.startStopToolStripMenuItem.Text = "Start/Stop";
+            // 
             // LblToolsMainServerOutput
             // 
             this.LblToolsMainServerOutput.Name = "LblToolsMainServerOutput";
@@ -109,32 +127,14 @@
             this.ProgBarToolsMain.Size = new System.Drawing.Size(100, 16);
             this.ProgBarToolsMain.ToolTipText = "Progress on current action";
             // 
-            // startStopToolStripMenuItem
-            // 
-            this.startStopToolStripMenuItem.Name = "startStopToolStripMenuItem";
-            this.startStopToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.startStopToolStripMenuItem.Text = "Start/Stop";
-            // 
-            // restartToolStripMenuItem
-            // 
-            this.restartToolStripMenuItem.Name = "restartToolStripMenuItem";
-            this.restartToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.restartToolStripMenuItem.Text = "Restart";
-            // 
-            // reloadToolStripMenuItem
-            // 
-            this.reloadToolStripMenuItem.Name = "reloadToolStripMenuItem";
-            this.reloadToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.reloadToolStripMenuItem.Text = "Reload";
-            // 
-            // Mainform
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(867, 417);
+            this.ClientSize = new System.Drawing.Size(884, 562);
             this.Controls.Add(this.StatusStripMain);
             this.Controls.Add(this.TabCtrlAddons);
-            this.Name = "Mainform";
+            this.Name = "MainForm";
             this.Text = "Mainform";
             this.StatusStripMain.ResumeLayout(false);
             this.StatusStripMain.PerformLayout();
