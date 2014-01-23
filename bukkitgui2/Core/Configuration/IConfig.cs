@@ -42,7 +42,7 @@ namespace bukkitgui2.Core.Configuration
 		/// </summary>
 		/// <param name="key">The config key</param>
 		/// <param name="defaultValue">The default value if the element doesn't exist</param>
-		/// <returns></returns>
+         /// <returns>Returns the requested value</returns>
 		 string ReadString(string key, string defaultValue = "");
 
 		/// <summary>
@@ -50,7 +50,7 @@ namespace bukkitgui2.Core.Configuration
 		/// </summary>
 		/// <param name="key">The config key</param>
 		/// <param name="value">The value to write</param>
-		/// <returns></returns>
+         /// <returns>Returns true if operation succeeded</returns>
 		 bool WriteString(string key, string value);
 
 		/// <summary>
@@ -58,7 +58,7 @@ namespace bukkitgui2.Core.Configuration
 		/// </summary>
 		/// <param name="key">The config key</param>
 		/// <param name="defaultValue">The default value if the element doesn't exist</param>
-		/// <returns></returns>
+         /// <returns>Returns the requested value</returns>
 		 Int32 ReadInt(string key, Int32 defaultValue = 0);
 
 		/// <summary>
@@ -66,7 +66,7 @@ namespace bukkitgui2.Core.Configuration
 		/// </summary>
 		/// <param name="key">The config key</param>
 		/// <param name="value">The value to write</param>
-		/// <returns></returns>
+         /// <returns>Returns true if operation succeeded</returns>
 		 bool WriteInt(string key, Int32 value);
 
     }

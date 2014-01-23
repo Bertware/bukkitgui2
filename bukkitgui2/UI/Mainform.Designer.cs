@@ -1,6 +1,6 @@
 ﻿namespace bukkitgui2.UI
 {
-    partial class Mainform
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Mainform));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.TabCtrlAddons = new System.Windows.Forms.TabControl();
             this.StatusStripMain = new System.Windows.Forms.StatusStrip();
             this.LblToolsMainServerState = new System.Windows.Forms.ToolStripStatusLabel();

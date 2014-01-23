@@ -17,7 +17,7 @@ namespace bukkitgui2
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new UI.SplashScreen());
+			Application.Run(new UI.MainForm());
 		}
 
 	}

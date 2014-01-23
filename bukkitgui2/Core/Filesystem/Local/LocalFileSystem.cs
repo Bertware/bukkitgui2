@@ -10,7 +10,7 @@ namespace bukkitgui2.Core.Filesystem.Local
 		/// <summary>
 		/// Private isInitialized variable to store the value that will be returned on the public get request
 		/// </summary>
-		private bool _isInitialized;
+		private bool _isInitialized = false;
 
 		/// <summary>
 		/// True if this component is initialized and can be used

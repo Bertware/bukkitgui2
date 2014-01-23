@@ -37,7 +37,7 @@ namespace bukkitgui2.Core.FileLocation
 		/// </summary>
 		/// <param name="File"></param>
 		/// <returns></returns>
-       public string IFileLocation.Location(RequestFile File)
+       string IFileLocation.Location(RequestFile File)
         { 
             switch (File)
             {
@@ -46,11 +46,10 @@ namespace bukkitgui2.Core.FileLocation
                 case  RequestFile.Local:
                     return AppDomain.CurrentDomain.BaseDirectory + local_subfolder;
                 case RequestFile.StorageRoot:
-                    return ""
+                    return "";
                 default:
                     return "";
             }
-            return "";
         }
 	}
 }

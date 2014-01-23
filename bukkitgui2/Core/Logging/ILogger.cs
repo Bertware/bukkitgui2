@@ -30,14 +30,6 @@ namespace bukkitgui2.Core.Logging
 		/// </summary>
         void Dispose();
 
-         /// <summary>
-         /// Log a message to the logger
-         /// </summary>
-         /// <param name="level">Indicates how severe the message is. </param>
-         /// <param name="origin">The class that called the log() command</param>
-         /// <param name="message">The message to log</param>
-         void Log(LogLevel level, string origin, string message);
-		
 		/// <summary>
 		/// Log a message to the logger
 		/// </summary>

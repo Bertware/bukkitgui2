@@ -23,20 +23,18 @@ namespace bukkitgui2.UI
         {
             Core.Share.initialize();
             Thread.Sleep(3000);
+            CloseForm();
         }
 
-        void Application_ShowMainForm()
+        void CloseForm()
         {
             if (this.InvokeRequired)
             {
-                Invoke(new MethodInvoker(delegate() { Application_ShowMainForm(); }));
+                Invoke(new MethodInvoker(delegate() { CloseForm(); }));
             }
             else
             {
                 Debug.WriteLine("Splashscreen finished work");
-                Mainform Main = new Mainform();
-                Core.Share.MainFormHandle = Main.Handle;
-                Main.Show();
                 this.Close();
             }
 
