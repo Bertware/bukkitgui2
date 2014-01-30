@@ -10,22 +10,28 @@ namespace bukkitgui2.Core.Filesystem.Local
 		/// <summary>
 		/// Private isInitialized variable to store the value that will be returned on the public get request
 		/// </summary>
-		private bool _isInitialized;
+		private bool _isInitialized = false;
 
 		/// <summary>
 		/// True if this component is initialized and can be used
 		/// </summary>
-		public readonly bool isInitialized;
+		public  bool isInitialized
+        {
+            get{return _isInitialized;}
+        }
 
 		/// <summary>
-		/// Create or open needed files, create streams if needed, do everything what's needed before a Log() call can be made
+		/// Create or open needed files, create streams if needed, do everything what's needed before the code can be used
 		/// </summary>
-		public void Initialize();
+        public void Initialize()
+        {
+        }
 
 		/// <summary>
-		/// Stop the logger, dispose used sources
+		/// Stop and clean up
 		/// </summary>
-		public void Dispose();
-
+		public void Dispose()
+        {
+        }
 	}
 }

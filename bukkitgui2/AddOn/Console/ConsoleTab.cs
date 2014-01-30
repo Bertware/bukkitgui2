@@ -15,5 +15,6 @@ namespace bukkitgui2.AddOn.Console
 		{
 			InitializeComponent();
 		}
+
 	}
 }
