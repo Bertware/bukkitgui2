@@ -11,6 +11,11 @@ namespace bukkitgui2.Core.FileLocation
         private bool _isInitialized = false;
         private const string appdata_subfolder = "\\Bertware\\bukkitgui2\\";
         private const string local_subfolder = "\\bukkitgui2\\";
+
+		private const string log_folder = "\\log\\";
+		private const string conf_folder = "\\config\\";
+		private const string tmp_folder = "\\temp\\";
+
         /// <summary>
         /// Indicates wether this component is initialized and can be used
         /// </summary>
@@ -37,7 +42,7 @@ namespace bukkitgui2.Core.FileLocation
 		/// </summary>
 		/// <param name="File"></param>
 		/// <returns></returns>
-       string IFileLocation.Location(RequestFile File)
+        public string Location(RequestFile File)
         { 
             switch (File)
             {
@@ -46,9 +51,15 @@ namespace bukkitgui2.Core.FileLocation
                 case  RequestFile.Local:
                     return AppDomain.CurrentDomain.BaseDirectory + local_subfolder;
                 case RequestFile.StorageRoot:
-                    return "";
+					return Location(RequestFile.Appdata); //Should return appdata or local, right now always appdata
+				case RequestFile.Log:
+					return Location(RequestFile.StorageRoot) + log_folder;
+				case RequestFile.Config:
+					return Location(RequestFile.StorageRoot) + conf_folder;
+				case RequestFile.Temp:
+					return Location(RequestFile.StorageRoot) + tmp_folder;
                 default:
-                    return "";
+                    return Location(RequestFile.StorageRoot);
             }
         }
 	}
