@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace bukkitgui2.AddOn.Forwarder
 {
-	public partial class ForwarderTab : UserControl, AddonTabBase
+	public partial class ForwarderTab : TabPage, IAddonTab
 	{
 		public ForwarderTab()
 		{

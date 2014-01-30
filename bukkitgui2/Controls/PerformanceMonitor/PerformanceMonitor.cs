@@ -9,11 +9,11 @@ using System.Windows.Forms;
 
 namespace bukkitgui2.Controls.PerformanceMonitor
 {
-    public partial class PerformanceMonitor : UserControl
-    {
-        public PerformanceMonitor()
-        {
-            InitializeComponent();
-        }
-    }
+	public partial class PerformanceMonitor : UserControl
+	{
+		public PerformanceMonitor()
+		{
+			InitializeComponent();
+		}
+	}
 }

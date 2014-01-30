@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace bukkitgui2.AddOn.Permissions
 {
-	public partial class PermissionsTab : UserControl, AddonTabBase
+	public partial class PermissionsTab : TabPage, IAddonTab
 	{
 		public PermissionsTab()
 		{

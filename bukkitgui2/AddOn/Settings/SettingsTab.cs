@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace bukkitgui2.AddOn.Settings
 {
-	public partial class SettingsTab : UserControl, AddonTabBase
+	public partial class SettingsTab : TabPage, IAddonTab
 	{
 		public SettingsTab()
 		{

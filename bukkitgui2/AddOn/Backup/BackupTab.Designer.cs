@@ -31,9 +31,7 @@
 			this.SuspendLayout();
 			// 
 			// BackupTab
-			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			// 		
 			this.Name = "BackupTab";
 			this.Size = new System.Drawing.Size(577, 383);
 			this.ResumeLayout(false);

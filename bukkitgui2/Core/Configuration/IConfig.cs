@@ -5,7 +5,7 @@ using System.Text;
 
 namespace bukkitgui2.Core.Configuration
 {
-    interface IConfig
+	public interface IConfig
     {
 		/// <summary>
 		/// Indicates wether this component is initialized and can be used
@@ -40,34 +40,38 @@ namespace bukkitgui2.Core.Configuration
 		/// <summary>
 		/// Read a string value from config
 		/// </summary>
+		/// <param name="parent">The parent of the key, class which uses this key or other identifier</param>
 		/// <param name="key">The config key</param>
 		/// <param name="defaultValue">The default value if the element doesn't exist</param>
-         /// <returns>Returns the requested value</returns>
-		 string ReadString(string key, string defaultValue = "");
+        /// <returns>Returns the requested value</returns>
+		 string ReadString(string parent, string key, string defaultValue = "");
 
 		/// <summary>
 		/// Write a string value to config
 		/// </summary>
+		 /// <param name="parent">The parent of the key, class which uses this key or other identifier</param>
 		/// <param name="key">The config key</param>
 		/// <param name="value">The value to write</param>
          /// <returns>Returns true if operation succeeded</returns>
-		 bool WriteString(string key, string value);
+		 bool WriteString(string parent, string key, string value);
 
 		/// <summary>
 		/// Read an integer value from config
 		/// </summary>
+		 /// <param name="parent">The parent of the key, class which uses this key or other identifier</param>
 		/// <param name="key">The config key</param>
 		/// <param name="defaultValue">The default value if the element doesn't exist</param>
          /// <returns>Returns the requested value</returns>
-		 Int32 ReadInt(string key, Int32 defaultValue = 0);
+		 Int32 ReadInt(string parent, string key, Int32 defaultValue = 0);
 
 		/// <summary>
 		/// Write an integer value to config
 		/// </summary>
+		 /// <param name="parent">The parent of the key, class which uses this key or other identifier</param>
 		/// <param name="key">The config key</param>
 		/// <param name="value">The value to write</param>
          /// <returns>Returns true if operation succeeded</returns>
-		 bool WriteInt(string key, Int32 value);
+		 bool WriteInt(string parent, string key, Int32 value);
 
     }
 }

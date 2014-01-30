@@ -42,7 +42,7 @@ namespace bukkitgui2.Core.Logging
         void ILogger.Log(LogLevel level, string origin, string message, string details)
         {
            ///Always log to console, there are no dependencies for this
-            string debug_line= this.TimeStamp()  + this.FormatLevel(level) + origin + ":" + message + "("+ details +")" + ";";
+            string debug_line= this.TimeStamp() + " " +  this.FormatLevel(level) + " " +  origin + " : " + message + " ("+ details +")" + ";";
             Debug.WriteLine(debug_line);
 
             /// if initialized, also log to file

@@ -22,7 +22,7 @@ namespace bukkitgui2.UI
         void Application_Initialize()
         {
             Core.Share.initialize();
-            Thread.Sleep(3000);
+            Thread.Sleep(1000);
             CloseForm();
         }
 

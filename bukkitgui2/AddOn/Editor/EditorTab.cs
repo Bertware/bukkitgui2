@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace bukkitgui2.AddOn.Editor
 {
-	public partial class EditorTab : UserControl, AddonTabBase
+	public partial class EditorTab : TabPage, IAddonTab
 	{
 		public EditorTab()
 		{

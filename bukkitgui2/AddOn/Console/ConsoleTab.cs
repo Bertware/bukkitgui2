@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace bukkitgui2.AddOn.Console
 {
-	public partial class ConsoleTab : UserControl, AddonTabBase
+	public partial class ConsoleTab : TabPage, IAddonTab
 	{
 		public ConsoleTab()
 		{

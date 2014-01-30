@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace bukkitgui2.AddOn.Playerlist
 {
-	public partial class PlayerListTab : UserControl, AddonTabBase
+	public partial class PlayerListTab : TabPage, IAddonTab
 	{
 		public PlayerListTab()
 		{

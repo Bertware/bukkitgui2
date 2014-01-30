@@ -5,7 +5,7 @@ using System.Text;
 
 namespace bukkitgui2.AddOn
 {
-	interface AddonTabBase
+	interface IAddonTab
 	{
 	}
 }

@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace bukkitgui2.AddOn.Plugins
 {
-	public partial class PluginsTab : UserControl, AddonTabBase
+	public partial class PluginsTab : TabPage, IAddonTab
 	{
 		public PluginsTab()
 		{

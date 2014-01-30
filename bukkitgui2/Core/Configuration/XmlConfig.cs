@@ -54,7 +54,7 @@ namespace bukkitgui2.Core.Configuration
 		/// <param name="key">The config key</param>
 		/// <param name="defaultValue">The default value if the element doesn't exist</param>
         /// <returns>Returns the requested value</returns>
-        string IConfig.ReadString(string key, string defaultValue)
+        string IConfig.ReadString(string parent, string key, string defaultValue)
          {
              return "";
          }
@@ -65,7 +65,7 @@ namespace bukkitgui2.Core.Configuration
 		/// <param name="key">The config key</param>
 		/// <param name="value">The value to write</param>
 		/// <returns>Returns true if operation succeeded</returns>
-        bool IConfig.WriteString(string key, string value)
+        bool IConfig.WriteString(string parent, string key, string value)
          {
              return true;
         }
@@ -76,7 +76,7 @@ namespace bukkitgui2.Core.Configuration
 		/// <param name="key">The config key</param>
 		/// <param name="defaultValue">The default value if the element doesn't exist</param>
         /// <returns>Returns the requested value</returns>
-        Int32 IConfig.ReadInt(string key, Int32 defaultValue )
+        Int32 IConfig.ReadInt(string parent, string key, Int32 defaultValue )
          {
              return 0;
          }
@@ -87,7 +87,7 @@ namespace bukkitgui2.Core.Configuration
 		/// <param name="key">The config key</param>
 		/// <param name="value">The value to write</param>
         /// <returns>Returns true if operation succeeded</returns>
-        bool IConfig.WriteInt(string key, Int32 value)
+        bool IConfig.WriteInt(string parent, string key, Int32 value)
          {
              return true;
          }
