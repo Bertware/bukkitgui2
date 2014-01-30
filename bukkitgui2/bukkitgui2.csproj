@@ -94,12 +94,6 @@
     <Compile Include="Controls\MinecraftConsole\MinecraftConsole.Designer.cs">
       <DependentUpon>MinecraftConsole.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\PerformanceMonitor\PerformanceMonitor.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\PerformanceMonitor\PerformanceMonitor.Designer.cs">
-      <DependentUpon>PerformanceMonitor.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controls\QuickButtons\QuickButtons.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -237,6 +231,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Controls\PerformanceMonitor\" />
     <Folder Include="Core\Filesystem\FTP\" />
     <Folder Include="Core\JavaInterop\" />
     <Folder Include="MinecraftInterop\OutputHandler\" />
