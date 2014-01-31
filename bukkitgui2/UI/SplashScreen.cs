@@ -21,7 +21,9 @@ namespace bukkitgui2.UI
 
         void Application_Initialize()
         {
-            Core.Share.initialize();
+            //Most of the code goes in this routine, as this handles all shared resources
+			Core.Share.initialize();
+
             Thread.Sleep(1000);
             CloseForm();
         }

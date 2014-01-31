@@ -25,10 +25,17 @@ namespace bukkitgui2.Core.Locale
             get { return _isInitialized; }
         }
 
+		/// <summary>
+		/// Initialize everything, create cache
+		/// </summary>
+		public void Initialize()
+		{
+		}
+
         /// <summary>
-        /// Stop the logger, dispose used sources
+        /// Dispose resources and cache
         /// </summary>
-        void ILocale.Dispose()
+        public void Dispose()
         { 
         }
 
@@ -37,7 +44,7 @@ namespace bukkitgui2.Core.Locale
         /// </summary>
         /// <param name="original">The original text</param>
         /// <returns></returns>
-        string ILocale.Tr(string original)
+        public string Tr(string original)
         {
             return original;
         }
@@ -51,7 +58,7 @@ namespace bukkitgui2.Core.Locale
         /// <param name="p3">replacement value of parameter %3</param>
         /// <param name="p4">replacement value of parameter %4</param>
         /// <returns></returns>
-        string ILocale.Tr(string original, string p1, string p2 , string p3 , string p4 )
+		public string Tr(string original, string p1, string p2 = "", string p3 = "", string p4 = "")
         {
             return original;
         }

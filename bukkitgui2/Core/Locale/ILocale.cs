@@ -24,8 +24,13 @@ namespace bukkitgui2.Core.Locale
             get;
         }
 
+		 /// <summary>
+		 /// Initialize everything, create cache
+		 /// </summary>
+		 void Initialize();
+
 		/// <summary>
-		/// Stop the logger, dispose used sources
+		/// Clear cache, dispose resources
 		/// </summary>
 		 void Dispose();
 

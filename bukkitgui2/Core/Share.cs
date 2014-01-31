@@ -19,14 +19,20 @@ namespace bukkitgui2.Core
 			FileLocation = new Core.FileLocation.DefaultFileLocation();
 
 			Logger = new Logging.FileLogger();
-			Locale = new Locale.XmlLocale();
+			Logger.Initialize();
+
 			Config = new Configuration.XmlConfig();
+			Config.Initialize();
+
+			Locale = new Locale.XmlLocale();
+			Locale.Initialize();
+
 
 			//The filesystem to use (Only for server actions! e.g. logging and config are handled through the normal filesystem
 			//This can be changed later on
 			//e.g. when FTP connection settings are read from config or user presses connect button
 			ServerFileSystem = new Filesystem.Local.LocalFileSystem(); 
-
+			
 		}
 
 	}
