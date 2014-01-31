@@ -1,43 +1,34 @@
-﻿using System;
-using System.Text;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace bukkitgui2.AddOn.Playerlist
 {
-	class PlayerList : IAddon
+	internal class PlayerList : IAddon
 	{
-		private TabPage _tab = null;
+		private TabPage _tab;
 
 		/// <summary>
-		/// The addon name, ideally this name is the same as used in the tabpage
+		///     The addon name, ideally this name is the same as used in the tabpage
 		/// </summary>
 		public string name
 		{
-			get
-			{
-				return "Players";
-			}
+			get { return "Players"; }
 		}
 
 		/// <summary>
-		/// Initialize all functions and the tabcontrol
+		///     Initialize all functions and the tabcontrol
 		/// </summary>
 		void IAddon.Initialize()
 		{
-			_tab = new PlayerListTab();
-			_tab.Text = this.name;
+			_tab = new PlayerListTab {Text = name};
 		}
 
 		/// <summary>
-		/// The tab control for this addon
+		///     The tab control for this addon
 		/// </summary>
 		/// <returns>Returns the tabpage</returns>
 		TabPage IAddon.Tabpage
 		{
-			get
-			{
-				return _tab;
-			}
+			get { return _tab; }
 		}
 	}
 }

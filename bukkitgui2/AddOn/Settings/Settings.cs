@@ -1,43 +1,35 @@
-﻿using System;
-using System.Text;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace bukkitgui2.AddOn.Settings
 {
-	class Settings : IAddon
+	internal class Settings : IAddon
 	{
-		private TabPage _tab = null;
+		public Settings()
+		{
+			Tabpage = null;
+		}
+
 
 		/// <summary>
-		/// The addon name, ideally this name is the same as used in the tabpage
+		///     The tab control for this addon
+		/// </summary>
+		/// <returns>Returns the tabpage</returns>
+		public TabPage Tabpage { get; private set; }
+
+		/// <summary>
+		///     The addon name, ideally this name is the same as used in the tabpage
 		/// </summary>
 		public string name
 		{
-			get
-			{
-				return "Settings";
-			}
+			get { return "Settings"; }
 		}
 
 		/// <summary>
-		/// Initialize all functions and the tabcontrol
+		///     Initialize all functions and the tabcontrol
 		/// </summary>
 		void IAddon.Initialize()
 		{
-			_tab = new SettingsTab();
-			_tab.Text = this.name;
-		}
-
-		/// <summary>
-		/// The tab control for this addon
-		/// </summary>
-		/// <returns>Returns the tabpage</returns>
-		TabPage IAddon.Tabpage
-		{
-			get
-			{
-				return _tab;
-			}
+			Tabpage = new SettingsTab {Text = name};
 		}
 	}
 }

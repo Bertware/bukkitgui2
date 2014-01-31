@@ -1,43 +1,34 @@
-﻿using System;
-using System.Text;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace bukkitgui2.AddOn.Backup
 {
-	class Backup : IAddon
+	internal class Backup : IAddon
 	{
-		private TabPage _tab = null;
+		private TabPage _tab;
 
 		/// <summary>
-		/// The addon name, ideally this name is the same as used in the tabpage
+		///     The addon name, ideally this name is the same as used in the tabpage
 		/// </summary>
 		public string name
 		{
-			get
-			{
-				return "Backup";
-			}
+			get { return "Backup"; }
 		}
 
 		/// <summary>
-		/// Initialize all functions and the tabcontrol
+		///     Initialize all functions and the tabcontrol
 		/// </summary>
 		void IAddon.Initialize()
 		{
-			_tab = new BackupTab();
-			_tab.Text = this.name;
+			_tab = new BackupTab {Text = name};
 		}
 
 		/// <summary>
-		/// The tab control for this addon
+		///     The tab control for this addon
 		/// </summary>
 		/// <returns>Returns the tabpage</returns>
 		TabPage IAddon.Tabpage
 		{
-			get
-			{
-				return _tab;
-			}
+			get { return _tab; }
 		}
 	}
 }

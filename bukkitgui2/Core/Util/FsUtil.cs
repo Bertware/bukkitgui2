@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace bukkitgui2.Core.Util
+﻿namespace bukkitgui2.Core.Util
 {
-	static class UtilIO
+	internal static class FsUtil
 	{
-
 		public static void CreateDirectoryIfNotExists(string directory)
 		{
 			if (System.IO.Directory.Exists(directory)) return;

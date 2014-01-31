@@ -11,7 +11,7 @@ namespace bukkitgui2.Core.Locale
 		/// <summary>
 		/// Returns the current language of the translator
 		/// </summary>
-         string currentLanguage
+         string CurrentLanguage
         {
             get;
         }
@@ -19,7 +19,7 @@ namespace bukkitgui2.Core.Locale
         /// <summary>
         /// Indicates wether this component is initialized and can be used
         /// </summary>
-         bool isInitialized
+         bool IsInitialized
         {
             get;
         }

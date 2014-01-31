@@ -31,9 +31,9 @@ namespace bukkitgui2.Core.FileLocation
 		/// <summary>
 		/// Return the location for a Request
 		/// </summary>
-		/// <param name="File"></param>
+		/// <param name="file"></param>
 		/// <returns></returns>
-		 string Location(RequestFile File);
+		 string Location(RequestFile file);
 	}
 
     /// <summary>

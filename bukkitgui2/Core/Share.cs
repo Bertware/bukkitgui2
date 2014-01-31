@@ -1,22 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace bukkitgui2.Core
 {
-	static class Share
+	internal static class Share
 	{
-		static public Core.Locale.ILocale Locale = null;
-		static public Core.Configuration.IConfig Config = null;
-		static public Core.Filesystem.IFilesystem ServerFileSystem = null;
-		static public Core.Logging.ILogger Logger = null;
-		static public Core.FileLocation.IFileLocation FileLocation = null;
-        static public IntPtr MainFormHandle;
+		public static Locale.ILocale Locale = null;
+		public static Configuration.IConfig Config = null;
+		public static Filesystem.IFilesystem ServerFileSystem = null;
+		public static Logging.ILogger Logger = null;
+		public static FileLocation.IFileLocation FileLocation = null;
+		public static IntPtr MainFormHandle;
 
-		static public void initialize()
+		public static void Initialize()
 		{
-			FileLocation = new Core.FileLocation.DefaultFileLocation();
+			FileLocation = new FileLocation.DefaultFileLocation();
 
 			Logger = new Logging.FileLogger();
 			Logger.Initialize();
@@ -31,9 +28,7 @@ namespace bukkitgui2.Core
 			//The filesystem to use (Only for server actions! e.g. logging and config are handled through the normal filesystem
 			//This can be changed later on
 			//e.g. when FTP connection settings are read from config or user presses connect button
-			ServerFileSystem = new Filesystem.Local.LocalFileSystem(); 
-			
+			ServerFileSystem = new Filesystem.Local.LocalFileSystem();
 		}
-
 	}
 }

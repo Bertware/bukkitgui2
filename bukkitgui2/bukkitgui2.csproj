@@ -195,7 +195,7 @@
     <Compile Include="Core\Logging\FileLogger.cs" />
     <Compile Include="Core\Logging\ILogger.cs" />
     <Compile Include="Core\Share.cs" />
-    <Compile Include="Core\Util\UtilIO.cs" />
+    <Compile Include="Core\Util\FsUtil.cs" />
     <Compile Include="Core\Util\DynamicDllLoader.cs" />
     <Compile Include="Core\Util\DynamicModuleLoader.cs" />
     <Compile Include="MinecraftServers\Servers\BukkitServer.cs" />
