@@ -5,7 +5,7 @@ using System.Text;
 
 namespace bukkitgui2.MinecraftInterop.OutputHandler.PlayerActions
 {
-	class PlayerActionLeave : IPlayerAction
+	public class PlayerActionLeave : IPlayerAction
 	{
 		public string PlayerName { get; set; }
 		public string Details { get; set; }

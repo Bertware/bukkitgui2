@@ -9,7 +9,7 @@ namespace bukkitgui2.MinecraftServers
 	{
 		Dictionary<string, IMinecraftServer> GetAvailableServer()
 		{
-			return null;
+			throw new NotImplementedException();
 		} 
 
 	}

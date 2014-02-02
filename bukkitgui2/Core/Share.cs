@@ -11,6 +11,10 @@ namespace bukkitgui2.Core
 		public static FileLocation.IFileLocation FileLocation = null;
 		public static IntPtr MainFormHandle;
 
+		public readonly static string AssemblyName = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
+		public readonly static Version AssemblyVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
+		public readonly static string AssemblyFullName = System.Reflection.Assembly.GetExecutingAssembly().GetName().FullName;
+
 		public static void Initialize()
 		{
 			FileLocation = new FileLocation.DefaultFileLocation();

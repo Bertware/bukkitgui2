@@ -5,7 +5,7 @@ using bukkitgui2.MinecraftInterop.OutputHandler.PlayerActions;
 
 namespace bukkitgui2.MinecraftServers
 {
-	internal interface IMinecraftServer
+	public interface IMinecraftServer
 	{
 		// ========================================== //
 		// Info

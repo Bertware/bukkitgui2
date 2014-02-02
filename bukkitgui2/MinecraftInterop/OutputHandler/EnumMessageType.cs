@@ -5,7 +5,7 @@ using System.Text;
 
 namespace bukkitgui2.MinecraftInterop.OutputHandler
 {
-	enum  MessageType
+	public enum MessageType
 	{
 		Info,
 		Warning,

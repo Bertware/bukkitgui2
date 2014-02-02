@@ -3,7 +3,7 @@ using System;
 
 namespace bukkitgui2.MinecraftInterop.OutputHandler.PlayerActions
 {
-	interface IPlayerAction
+	public interface IPlayerAction
 	{
 		/// <summary>
 		/// The name of the player who was subject to the action
