@@ -110,7 +110,7 @@ namespace bukkitgui2.Core.Locale
 			return SetParam(original, p1, p2, p3, p4);
 		}
 
-		private string SetParam(string original, string p1, string p2 = "", string p3 = "", string p4 = "")
+		private static string SetParam(string original, string p1, string p2 = "", string p3 = "", string p4 = "")
 		{
 			return original.Replace("%1", p1).Replace("%2", p2).Replace("%3", p3).Replace("%4", p4);
 		}

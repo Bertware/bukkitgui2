@@ -198,9 +198,21 @@
     <Compile Include="Core\Util\FsUtil.cs" />
     <Compile Include="Core\Util\DynamicDllLoader.cs" />
     <Compile Include="Core\Util\DynamicModuleLoader.cs" />
+    <Compile Include="MinecraftInterop\OutputHandler\EnumMessageType.cs" />
+    <Compile Include="MinecraftInterop\OutputHandler\MessageParseResult.cs" />
+    <Compile Include="MinecraftInterop\OutputHandler\PlayerActions\IPlayerAction.cs" />
+    <Compile Include="MinecraftInterop\OutputHandler\PlayerActions\PlayerActionBan.cs" />
+    <Compile Include="MinecraftInterop\OutputHandler\PlayerActions\PlayerActionIpBan.cs" />
+    <Compile Include="MinecraftInterop\OutputHandler\PlayerActions\PlayerActionJoin.cs" />
+    <Compile Include="MinecraftInterop\OutputHandler\PlayerActions\PlayerActionKick.cs" />
+    <Compile Include="MinecraftInterop\OutputHandler\PlayerActions\PlayerActionLeave.cs" />
+    <Compile Include="MinecraftServers\IMinecraftServer.cs" />
     <Compile Include="MinecraftServers\Servers\BukkitServer.cs" />
     <Compile Include="MinecraftServers\MinecraftServerBase.cs" />
     <Compile Include="MinecraftServers\MinecraftServerLoader.cs" />
+    <Compile Include="MinecraftServers\Servers\JsonApiServer.cs" />
+    <Compile Include="MinecraftServers\Servers\McpcServer.cs" />
+    <Compile Include="MinecraftServers\Servers\SpigotServer.cs" />
     <Compile Include="MinecraftServers\Servers\VanillaServer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -252,10 +264,19 @@
   <ItemGroup>
     <Folder Include="Core\Filesystem\FTP\" />
     <Folder Include="Core\JavaInterop\" />
-    <Folder Include="MinecraftInterop\OutputHandler\" />
     <Folder Include="MinecraftInterop\ProcessHandler\" />
     <Folder Include="Resources\Dll\" />
-    <Folder Include="Resources\Img\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Img\bukkit_logo.png" />
+    <Content Include="Resources\Img\GUI icon 16.ico" />
+    <Content Include="Resources\Img\GUI icon 32.ico" />
+    <Content Include="Resources\Img\GUI icon 64.ico" />
+    <Content Include="Resources\Img\GUI icon.ico" />
+    <Content Include="Resources\Img\GUI icon.png" />
+    <Content Include="Resources\Img\player_face.png" />
+    <Content Include="Resources\Img\spigot_logo.png" />
+    <Content Include="Resources\Img\vanilla_logo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

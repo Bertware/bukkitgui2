@@ -7,7 +7,10 @@ namespace bukkitgui2.MinecraftServers
 {
 	class MinecraftServerLoader
 	{
-
+		Dictionary<string, IMinecraftServer> GetAvailableServer()
+		{
+			return null;
+		} 
 
 	}
 
