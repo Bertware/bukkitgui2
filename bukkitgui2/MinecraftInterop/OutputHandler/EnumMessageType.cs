@@ -17,6 +17,7 @@ namespace bukkitgui2.MinecraftInterop.OutputHandler
 		PlayerKick,
 		PlayerBan,
 		PlayerIpBan,
+		PlayerList,
 		Unknown=0
 	}
 }

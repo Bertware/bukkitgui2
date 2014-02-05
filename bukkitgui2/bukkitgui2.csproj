@@ -207,12 +207,16 @@
     <Compile Include="Core\Util\Web\WebUtil.cs" />
     <Compile Include="MinecraftInterop\OutputHandler\EnumMessageType.cs" />
     <Compile Include="MinecraftInterop\OutputHandler\MessageParseResult.cs" />
+    <Compile Include="MinecraftInterop\OutputHandler\MinecraftOutputHandler.cs" />
     <Compile Include="MinecraftInterop\OutputHandler\PlayerActions\IPlayerAction.cs" />
     <Compile Include="MinecraftInterop\OutputHandler\PlayerActions\PlayerActionBan.cs" />
     <Compile Include="MinecraftInterop\OutputHandler\PlayerActions\PlayerActionIpBan.cs" />
     <Compile Include="MinecraftInterop\OutputHandler\PlayerActions\PlayerActionJoin.cs" />
     <Compile Include="MinecraftInterop\OutputHandler\PlayerActions\PlayerActionKick.cs" />
     <Compile Include="MinecraftInterop\OutputHandler\PlayerActions\PlayerActionLeave.cs" />
+    <Compile Include="MinecraftInterop\ProcessHandler\IProcessHandler.cs" />
+    <Compile Include="MinecraftInterop\ProcessHandler\LocalProcessHandler.cs" />
+    <Compile Include="MinecraftInterop\ProcessHandler\ProcessHandlerState.cs" />
     <Compile Include="MinecraftServers\IMinecraftServer.cs" />
     <Compile Include="MinecraftServers\Servers\BukkitServer.cs" />
     <Compile Include="MinecraftServers\MinecraftServerBase.cs" />
@@ -274,7 +278,6 @@
   <ItemGroup>
     <Folder Include="Core\Filesystem\FTP\" />
     <Folder Include="Core\JavaInterop\" />
-    <Folder Include="MinecraftInterop\ProcessHandler\" />
     <Folder Include="Resources\Dll\" />
   </ItemGroup>
   <ItemGroup>
