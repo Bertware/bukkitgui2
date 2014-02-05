@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using bukkitgui2.MinecraftServers;
 
 namespace bukkitgui2.MinecraftInterop.OutputHandler
 {
@@ -91,11 +92,12 @@ namespace bukkitgui2.MinecraftInterop.OutputHandler
 		/// Handle server output, raise all events that should be raised
 		/// </summary>
 		/// <param name="text">output text to handle</param>
-		public static void HandleOutput(string text)
+		/// <param name="server">the server that should handle the output</param>
+		public static void HandleOutput(IMinecraftServer server, string text)
 		{
 			MessageReceived(text);
 
-			MessageParseResult result = ProcessHandler.ProcessHandlerState.CurrentServer.ParseOutput(text);
+			MessageParseResult result = server.ParseOutput(text);
 
 			MessageParsed(text, result);
 
