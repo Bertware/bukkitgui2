@@ -278,9 +278,9 @@
   <ItemGroup>
     <Folder Include="Core\Filesystem\FTP\" />
     <Folder Include="Core\JavaInterop\" />
-    <Folder Include="Resources\Dll\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\Dll\Jayrock.Json.dll" />
     <Content Include="Resources\Img\bukkit_logo.png" />
     <Content Include="Resources\Img\GUI icon 16.ico" />
     <Content Include="Resources\Img\GUI icon 32.ico" />

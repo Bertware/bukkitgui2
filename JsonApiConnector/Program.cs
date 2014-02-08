@@ -17,7 +17,7 @@ namespace JsonApiConnector
 			_connector = new JsonApiConnector(args);
 			_connector.OutputReceived += TextReceived;
 
-			if (_connector.Console)
+			if (_connector.ShowConsole)
 			{
 				Thread t = new Thread(ScanInput) {Name = "thd_ScanInput", IsBackground = true};
 				t.Start();
@@ -25,12 +25,17 @@ namespace JsonApiConnector
 				Thread t = new Thread(ScanStdIn) { Name = "thd_ScanStdIn", IsBackground = true };
 				t.Start();
 			}
-			
+			_connector.Connect();
+			while (true)
+			{
+				Thread.Sleep(10);
+			}
 		}
 
 		private static void TextReceived(string text)
 		{
 			Console.Out.WriteLine(text);
+			//Console.WriteLine(text);
 		}
 
 		private static void ScanInput()

@@ -1,23 +1,35 @@
 ﻿using System;
+using System.Diagnostics;
+using System.IO;
+using System.Net;
+using System.Net.Sockets;
+using System.Security.Cryptography;
+using System.Text;
+using System.Threading;
+using Jayrock.Json;
+using Jayrock.Json.Conversion;
 
 namespace JsonApiConnector
 {
-
-
 	internal class JsonApiConnector
 	{
-
 		private String _username;
 		private String _password;
+		private String _salt;
 		private String _host;
 		private UInt16 _port;
-		public Boolean Console=true;
+
+		private Boolean _listening;
+
+		public Boolean ShowConsole = true;
 		private const char Splitter = '=';
+		private const string ErrPrefix = "!!! ERROR: ";
 
 
 		public delegate void OutputReceivedEventHandler(string text);
+
 		/// <summary>
-		/// Raised when any output is received
+		///     Raised when any output is received
 		/// </summary>
 		public event OutputReceivedEventHandler OutputReceived;
 
@@ -30,7 +42,6 @@ namespace JsonApiConnector
 			// -port=20060
 
 			LoadArguments(args);
-
 		}
 
 		private void LoadArguments(string[] args)
@@ -49,6 +60,9 @@ namespace JsonApiConnector
 						case "-p":
 							_password = value;
 							break;
+						case "-s":
+							_salt = value;
+							break;
 						case "-host":
 							_host = value;
 							break;
@@ -56,24 +70,132 @@ namespace JsonApiConnector
 							_port = Convert.ToUInt16(value);
 							break;
 						case "-background":
-							Console =false;
+							ShowConsole = false;
 							break;
-
+						default:
+							throw new ArgumentException();
 					}
-
 				}
-				catch (Exception e)
+				catch (Exception)
 				{
-					Console.WriteLine("!!! Err: can't parse arguments: " + e.Message);
+					const string usage = "Usage: JsonApiConnector.exe -u=[username] -p=[password] -s=[salt] -host=[ip or hostname] -port=[port]";
+					OutputReceived(usage);
 				}
 			}
 		}
 
+		public void Connect()
+		{
+			_listening = true;
+			Thread t = new Thread(ReadConsoleStream) {Name = "ReadConsoleStream", IsBackground = true};
+			t.Start();
+		}
+
+		public void DisConnect()
+		{
+			_listening = false;
+		}
+
+		private void ReadConsoleStream()
+		{
+			Socket sock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+			try
+			{
+				sock.Connect(_host, _port + 1);
+			}
+			catch (Exception connectException)
+			{
+				OutputReceived(ErrPrefix + "Couldn't connect to JsonApi stream:" + connectException.Message);
+			}
+
+			if (sock.Connected)
+			{
+				string key = CreateKey("console");
+				NetworkStream stream = new NetworkStream(sock);
+				StreamWriter sw = new StreamWriter(stream);
+				sw.WriteLine("/api/subscribe?source=console&key=" + key);
+				sw.Flush();
+				StreamReader sr = new StreamReader(stream);
+
+
+				while (_listening && sock.Connected && stream.CanRead)
+				{
+					string l = "";
+					try
+					{
+						while (_listening && sock.Connected && stream.CanRead && sr.EndOfStream)
+						{
+							Thread.Sleep(100);
+						}
+						if (_listening && sock.Connected) l = sr.ReadLine();
+					}
+					catch (Exception readex)
+					{
+						Debug.WriteLine("exception at run_connection_receive, while reading from networkstream " + readex.Message);
+						//don't flag as critical error
+					}
+
+					if (!string.IsNullOrEmpty(l) && l.Contains("{") & l.Contains(":") & l.Contains("}"))
+					{
+						l = new JsonApiStreamResult(l).Line;
+						if (!l.Contains("[API Call]")) OutputReceived(l.TrimEnd( Environment.NewLine.ToCharArray()));
+					}
+
+					Thread.Sleep(10);
+				}
+			}
+			OutputReceived(ErrPrefix + "Disconnected");
+			if (sock.Connected) sock.Close();
+		}
+
 		public void SendConsoleCommand(string command)
 		{
-			OutputReceived("Command issued: " + command);
+			new WebClient().DownloadString("http://" + _host + ":" + _port + "/api/call?method=runConsoleCommand&args=%5B%22" +
+			                               command + "%22%5D&key=" + CreateKey("runConsoleCommand"));
+		}
+
+		internal string CreateKey(string method)
+		{
+			string key = _username + method + _password + _salt;
+
+			SHA256Managed crypt = new SHA256Managed();
+			string hash = String.Empty;
+			byte[] crypto = crypt.ComputeHash(Encoding.ASCII.GetBytes(key), 0, Encoding.ASCII.GetByteCount(key));
+			foreach (byte bit in crypto)
+			{
+				hash += bit.ToString("x2");
+			}
+			return hash;
+		}
+	}
+
+	public class JsonApiStreamResult
+	{
+		public string Result;
+		public string Source;
+		public string Time = "";
+
+		public string Line = "";
+
+		public JsonApiStreamResult(string text)
+		{
+			//JsonObject obj = JsonConvert.Import(text);
+			JsonObject resultJsonObject = JsonConvert.Import(typeof (JsonObject), text) as JsonObject;
+
+			if (resultJsonObject == null) return;
+
+			Result = resultJsonObject["result"].ToString();
+			Source = resultJsonObject["source"].ToString();
+
+			if (Result != "success") return;
+
+			JsonObject outputJsonObject =
+				JsonConvert.Import(typeof (JsonObject), resultJsonObject["success"].ToString()) as JsonObject;
+
+			if (outputJsonObject == null) return;
+
+			Time = outputJsonObject["time"].ToString();
+			Line = outputJsonObject["line"].ToString();
 		}
 	}
 }
-
-
