@@ -154,19 +154,26 @@ namespace JsonApiConnector
 			                               command + "%22%5D&key=" + CreateKey("runConsoleCommand"));
 		}
 
-		internal string CreateKey(string method)
-		{
-			string key = _username + method + _password + _salt;
+       	readonly HashAlgorithm _hashAlgorithm = SHA256.Create();
 
-			SHA256Managed crypt = new SHA256Managed();
-			string hash = String.Empty;
-			byte[] crypto = crypt.ComputeHash(Encoding.ASCII.GetBytes(key), 0, Encoding.ASCII.GetByteCount(key));
-			foreach (byte bit in crypto)
-			{
-				hash += bit.ToString("x2");
-			}
-			return hash;
-		}
+       	internal string CreateKey(string method)
+       	{
+       		var data = Encoding.ASCII.GetBytes(_username + method + _password + _salt);
+       		var hash = _hashAlgorithm.ComputeHash(data);
+
+       		var result = new char[hash.Length * 2];
+
+       		for (int i = 0; i < hash.Length; ++i)
+       		{
+           		byte b = (byte)(hash[i] >> 4);
+           		result[i * 2] = (char)(b > 9 ? b + 0x57 : b + 0x30);
+
+           		b = (byte)(hash[i] & 0xF);
+           		result[i * 2 + 1] = (char)(b > 9 ? b + 0x57 : b + 0x30);
+       		}
+
+       		return new string(result);
+       	}
 	}
 
 	public class JsonApiStreamResult
