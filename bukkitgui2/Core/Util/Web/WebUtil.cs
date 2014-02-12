@@ -1,7 +1,7 @@
 ﻿using System;
-using bukkitgui2.Core;
+using Bukkitgui2.Core;
 
-namespace bukkitgui2.Core.Util.Web
+namespace Bukkitgui2.Core.Util.Web
 {
 	static class WebUtil
 	{

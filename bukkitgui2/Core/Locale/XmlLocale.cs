@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Xml;
-using bukkitgui2.Core.FileLocation;
+using Bukkitgui2.Core.FileLocation;
 
-namespace bukkitgui2.Core.Locale
+namespace Bukkitgui2.Core.Locale
 {
 	internal class XmlLocale : ILocale
 	{

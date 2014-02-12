@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace bukkitgui2.Core.Configuration
+namespace Bukkitgui2.Core.Configuration
 {
 	public interface IConfig
     {

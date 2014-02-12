@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace bukkitgui2.AddOn.Forwarder
+namespace Bukkitgui2.AddOn.Forwarder
 {
 	public partial class ForwarderTab : TabPage, IAddonTab
 	{

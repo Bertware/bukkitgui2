@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace bukkitgui2.AddOn.Permissions
+namespace Bukkitgui2.AddOn.Permissions
 {
 	public partial class PermissionsTab : TabPage, IAddonTab
 	{

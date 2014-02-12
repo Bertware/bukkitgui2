@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace bukkitgui2.AddOn.Tasker.TaskerDialog.TaskerUI
+namespace Bukkitgui2.AddOn.Tasker.TaskerDialog.TaskerUI
 {
 	/// <summary>
 	/// Input for multiple strings, e.g. multiple commands by showing a listbox where each entry can be altered

@@ -1,4 +1,4 @@
-﻿namespace bukkitgui2.AddOn.Tasker.TaskerDialog.TaskerUI
+﻿namespace Bukkitgui2.AddOn.Tasker.TaskerDialog.TaskerUI
 {
 	partial class MultiStringInput
 	{

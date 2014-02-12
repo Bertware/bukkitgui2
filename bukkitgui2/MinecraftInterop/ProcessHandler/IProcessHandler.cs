@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
-using bukkitgui2.MinecraftServers;
+using Bukkitgui2.MinecraftServers;
 
-namespace bukkitgui2.MinecraftInterop.ProcessHandler
+namespace Bukkitgui2.MinecraftInterop.ProcessHandler
 {
 	interface IProcessHandler
 	{

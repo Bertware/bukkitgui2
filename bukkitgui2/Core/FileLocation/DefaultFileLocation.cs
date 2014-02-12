@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace bukkitgui2.Core.FileLocation
+namespace Bukkitgui2.Core.FileLocation
 {
 	class DefaultFileLocation : IFileLocation
 	{
@@ -9,8 +9,8 @@ namespace bukkitgui2.Core.FileLocation
 			isInitialized = false;
 		}
 
-		private const string AppdataSubfolder = "\\Bertware\\bukkitgui2\\";
-        private const string LocalSubfolder = "\\bukkitgui2\\";
+		private const string AppdataSubfolder = "\\Bertware\\Bukkitgui2\\";
+        private const string LocalSubfolder = "\\Bukkitgui2\\";
 
 		private const string LogFolder = "\\log\\";
 		private const string ConfFolder = "\\config\\";

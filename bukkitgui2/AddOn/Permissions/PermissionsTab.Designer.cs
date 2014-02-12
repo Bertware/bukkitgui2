@@ -1,4 +1,4 @@
-﻿namespace bukkitgui2.AddOn.Permissions
+﻿namespace Bukkitgui2.AddOn.Permissions
 {
 	partial class PermissionsTab
 	{

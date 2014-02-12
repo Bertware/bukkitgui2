@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace bukkitgui2.AddOn.Playerlist
+namespace Bukkitgui2.AddOn.Playerlist
 {
 	internal class PlayerList : IAddon
 	{
@@ -9,7 +9,7 @@ namespace bukkitgui2.AddOn.Playerlist
 		/// <summary>
 		///     The addon name, ideally this name is the same as used in the tabpage
 		/// </summary>
-		public string name
+		public string Name
 		{
 			get { return "Players"; }
 		}
@@ -19,7 +19,7 @@ namespace bukkitgui2.AddOn.Playerlist
 		/// </summary>
 		void IAddon.Initialize()
 		{
-			_tab = new PlayerListTab {Text = name};
+			_tab = new PlayerListTab {Text = this.Name};
 		}
 
 		/// <summary>

@@ -1,4 +1,4 @@
-﻿namespace bukkitgui2.AddOn.Plugins.InstalledPlugins
+﻿namespace Bukkitgui2.AddOn.Plugins.InstalledPlugins
 {
 	partial class InstalledPluginsControl
 	{

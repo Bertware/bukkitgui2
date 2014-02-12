@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace bukkitgui2.Core.FileLocation
+namespace Bukkitgui2.Core.FileLocation
 {
 	/// <summary>
 	/// Provide each class the paths to their files

@@ -1,4 +1,4 @@
-﻿namespace bukkitgui2.UI
+﻿namespace Bukkitgui2.UI
 {
 	partial class SplashScreen
 	{

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace bukkitgui2.Core.Logging
+namespace Bukkitgui2.Core.Logging
 {
 	internal class FileLogger : ILogger
 	{

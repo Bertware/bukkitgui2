@@ -1,4 +1,4 @@
-﻿namespace bukkitgui2.Core.Util
+﻿namespace Bukkitgui2.Core.Util
 {
 	internal static class FsUtil
 	{

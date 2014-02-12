@@ -1,8 +1,6 @@
-﻿using System;
-using System.Text;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
-namespace bukkitgui2.AddOn.WebControl
+namespace Bukkitgui2.AddOn.WebControl
 {
 	class WebControl : IAddon
 	{
@@ -11,7 +9,7 @@ namespace bukkitgui2.AddOn.WebControl
 		/// <summary>
 		/// The addon name, ideally this name is the same as used in the tabpage
 		/// </summary>
-		public string name
+		public string Name
 		{
 			get
 			{
@@ -25,7 +23,7 @@ namespace bukkitgui2.AddOn.WebControl
 		void IAddon.Initialize()
 		{
 			_tab = new WebControlTab();
-			_tab.Text = this.name;
+			_tab.Text = this.Name;
 		}
 
 		/// <summary>

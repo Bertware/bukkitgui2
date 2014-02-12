@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace bukkitgui2.AddOn.Console
+namespace Bukkitgui2.AddOn.Console
 {
 	internal class Console : IAddon
 	{
@@ -9,7 +9,7 @@ namespace bukkitgui2.AddOn.Console
 		/// <summary>
 		///     The addon name, ideally this name is the same as used in the tabpage
 		/// </summary>
-		public string name
+		public string Name
 		{
 			get { return "Console"; }
 		}
@@ -19,7 +19,7 @@ namespace bukkitgui2.AddOn.Console
 		/// </summary>
 		void IAddon.Initialize()
 		{
-			_tab = new ConsoleTab {Text = name};
+			_tab = new ConsoleTab {Text = this.Name};
 		}
 
 		/// <summary>

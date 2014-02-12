@@ -1,4 +1,4 @@
-﻿namespace bukkitgui2.Controls.MarkupTextArea
+﻿namespace Bukkitgui2.Controls.MarkupTextArea
 {
 	partial class MarkupTextArea
 	{

@@ -1,8 +1,8 @@
-﻿using bukkitgui2.Core.Logging;
-using bukkitgui2.Core.Configuration;
+﻿using Bukkitgui2.Core.Logging;
+using Bukkitgui2.Core.Configuration;
 using System.Windows.Forms;
 
-namespace bukkitgui2.UI
+namespace Bukkitgui2.UI
 {
     public partial class MainForm : Form
     {
@@ -42,82 +42,82 @@ namespace bukkitgui2.UI
 		{
 			//Create and store a list with the loaded tabs, then load them to the UI.
 
-			_addons=new AddOn.IAddon[16];
+			this._addons=new AddOn.IAddon[16];
 			
 			byte i = 0;
 
 			//This tab can't be disabled
 			//if (cfg.ReadInt(CFG_IDENT, "show_console", 1) == 1)
 			//{
-			_addons[i] = new AddOn.Console.Console();
+			this._addons[i] = new AddOn.Console.Console();
 			i++;
 			//}
 
 			if (_cfg.ReadInt(CfgIdent,"show_players",1) == 1)
 			{
-				_addons[i] = new AddOn.Playerlist.PlayerList();
+				this._addons[i] = new AddOn.Playerlist.PlayerList();
 				i++;
 			}
 
 			//This tab can't be disabled
 			//if (cfg.ReadInt(CFG_IDENT, "show_starter", 1) == 1)
 			//{
-				_addons[i] = new AddOn.Starter.Starter();
+				this._addons[i] = new AddOn.Starter.Starter();
 				i++;
 			//}
 
 			if (_cfg.ReadInt(CfgIdent, "show_tasker", 1) == 1)
 			{
-				_addons[i] = new AddOn.Tasker.Tasker();
+				this._addons[i] = new AddOn.Tasker.Tasker();
 				i++;
 			}
 
 			if (_cfg.ReadInt(CfgIdent, "show_plugins", 1) == 1)
 			{
-				_addons[i] = new AddOn.Plugins.Plugins();
+				this._addons[i] = new AddOn.Plugins.Plugins();
 				i++;
 			}
 
 			if (_cfg.ReadInt(CfgIdent, "show_permissions", 1) == 1)
 			{
-				_addons[i] = new AddOn.Permissions.Permissions();
+				this._addons[i] = new AddOn.Permissions.Permissions();
 				i++;
 			}
 
 			if (_cfg.ReadInt(CfgIdent, "show_editor", 1) == 1)
 			{
-				_addons[i] = new AddOn.Editor.Editor();
+				this._addons[i] = new AddOn.Editor.Editor();
 				i++;
 			}
 
 			if (_cfg.ReadInt(CfgIdent, "show_backup", 1) == 1)
 			{
-				_addons[i] = new AddOn.Backup.Backup();
+				this._addons[i] = new AddOn.Backup.Backup();
 				i++;
 			}
 
 			if (_cfg.ReadInt(CfgIdent, "show_forwarder", 1) == 1)
 			{
-				_addons[i] = new AddOn.Forwarder.Forwarder();
+				this._addons[i] = new AddOn.Forwarder.Forwarder();
 				i++;
 			}
 
 			//This tab can't be disabled
 			//if (cfg.ReadInt(CFG_IDENT, "show_settings", 1) == 1)
 			//{
-				_addons[i] = new AddOn.Settings.Settings();
+				this._addons[i] = new AddOn.Settings.Settings();
 				i++;
 			//}
 
 			for (byte j=0;j<=i;j++)
 			{
-				if ( _addons[j] == null) continue; //if not set
-				_logger.Log(LogLevel.Info, "mainform", "loading addon", _addons[j].name);
-				_addons[j].Initialize(); // initialize
-				_logger.Log(LogLevel.Info, "mainform", "initialized addon", _addons[j].name);
-				if (_addons[j].Tabpage == null) continue; // If no tabpage is available, skip loading
-				TabCtrlAddons.TabPages.Add(_addons[j].Tabpage);
-				_logger.Log(LogLevel.Info, "mainform", "added addon tabpage", _addons[j].name);
+				if ( this._addons[j] == null) continue; //if not set
+				_logger.Log(LogLevel.Info, "mainform", "loading addon", this._addons[j].Name);
+				this._addons[j].Initialize(); // initialize
+				_logger.Log(LogLevel.Info, "mainform", "initialized addon", this._addons[j].Name);
+				if (this._addons[j].Tabpage == null) continue; // If no tabpage is available, skip loading
+				TabCtrlAddons.TabPages.Add(this._addons[j].Tabpage);
+				_logger.Log(LogLevel.Info, "mainform", "added addon tabpage", this._addons[j].Name);
 			}
 		}
 

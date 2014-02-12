@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace bukkitgui2.Controls.MarkupTextArea
+namespace Bukkitgui2.Controls.MarkupTextArea
 {
 	public partial class MarkupTextArea : UserControl
 	{

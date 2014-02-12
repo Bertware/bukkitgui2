@@ -3,10 +3,10 @@ using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Threading;
-using bukkitgui2.Core;
-using bukkitgui2.MinecraftServers;
+using Bukkitgui2.Core;
+using Bukkitgui2.MinecraftServers;
 
-namespace bukkitgui2.MinecraftInterop.ProcessHandler
+namespace Bukkitgui2.MinecraftInterop.ProcessHandler
 {
 	class LocalProcessHandler : IProcessHandler
 	{

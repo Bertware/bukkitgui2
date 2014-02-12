@@ -1,7 +1,7 @@
 ﻿using System;
-using bukkitgui2.MinecraftInterop.OutputHandler.PlayerActions;
+using Bukkitgui2.MinecraftInterop.OutputHandler.PlayerActions;
 
-namespace bukkitgui2.MinecraftInterop.OutputHandler
+namespace Bukkitgui2.MinecraftInterop.OutputHandler
 {
 	public class MessageParseResult
 	{

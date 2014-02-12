@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace bukkitgui2.AddOn.Backup
+namespace Bukkitgui2.AddOn.Backup
 {
 	internal class Backup : IAddon
 	{
@@ -9,7 +9,7 @@ namespace bukkitgui2.AddOn.Backup
 		/// <summary>
 		///     The addon name, ideally this name is the same as used in the tabpage
 		/// </summary>
-		public string name
+		public string Name
 		{
 			get { return "Backup"; }
 		}
@@ -19,7 +19,7 @@ namespace bukkitgui2.AddOn.Backup
 		/// </summary>
 		void IAddon.Initialize()
 		{
-			_tab = new BackupTab {Text = name};
+			_tab = new BackupTab {Text = this.Name};
 		}
 
 		/// <summary>

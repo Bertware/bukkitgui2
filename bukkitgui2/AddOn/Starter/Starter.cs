@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace bukkitgui2.AddOn.Starter
+namespace Bukkitgui2.AddOn.Starter
 {
 	internal class Starter : IAddon
 	{
@@ -9,7 +9,7 @@ namespace bukkitgui2.AddOn.Starter
 		/// <summary>
 		///     The addon name, ideally this name is the same as used in the tabpage
 		/// </summary>
-		public string name
+		public string Name
 		{
 			get { return "Starter"; }
 		}
@@ -19,7 +19,7 @@ namespace bukkitgui2.AddOn.Starter
 		/// </summary>
 		void IAddon.Initialize()
 		{
-			_tab = new StarterTab {Text = name};
+			_tab = new StarterTab {Text = this.Name};
 		}
 
 		/// <summary>

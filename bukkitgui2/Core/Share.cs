@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace bukkitgui2.Core
+namespace Bukkitgui2.Core
 {
 	internal static class Share
 	{

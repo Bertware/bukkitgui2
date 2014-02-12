@@ -1,4 +1,4 @@
-﻿namespace bukkitgui2.AddOn.Settings
+﻿namespace Bukkitgui2.AddOn.Settings
 {
 	partial class SettingsTab 
 	{

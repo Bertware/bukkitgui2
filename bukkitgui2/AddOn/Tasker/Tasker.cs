@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace bukkitgui2.AddOn.Tasker
+namespace Bukkitgui2.AddOn.Tasker
 {
 	internal class Tasker : IAddon
 	{
@@ -9,7 +9,7 @@ namespace bukkitgui2.AddOn.Tasker
 		/// <summary>
 		///     The addon name, ideally this name is the same as used in the tabpage
 		/// </summary>
-		public string name
+		public string Name
 		{
 			get { return "Tasker"; }
 		}
@@ -19,7 +19,7 @@ namespace bukkitgui2.AddOn.Tasker
 		/// </summary>
 		void IAddon.Initialize()
 		{
-			_tab = new TaskerTab {Text = name};
+			_tab = new TaskerTab {Text = this.Name};
 		}
 
 		/// <summary>

@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace bukkitgui2.AddOn.Forwarder
+namespace Bukkitgui2.AddOn.Forwarder
 {
 	internal class Forwarder : IAddon
 	{
@@ -9,7 +9,7 @@ namespace bukkitgui2.AddOn.Forwarder
 		/// <summary>
 		///     The addon name, ideally this name is the same as used in the tabpage
 		/// </summary>
-		public string name
+		public string Name
 		{
 			get { return "Forwarder"; }
 		}
@@ -19,7 +19,7 @@ namespace bukkitgui2.AddOn.Forwarder
 		/// </summary>
 		void IAddon.Initialize()
 		{
-			_tab = new ForwarderTab {Text = name};
+			_tab = new ForwarderTab {Text = this.Name};
 		}
 
 		/// <summary>

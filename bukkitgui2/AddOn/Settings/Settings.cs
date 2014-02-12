@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace bukkitgui2.AddOn.Settings
+namespace Bukkitgui2.AddOn.Settings
 {
 	internal class Settings : IAddon
 	{
@@ -19,7 +19,7 @@ namespace bukkitgui2.AddOn.Settings
 		/// <summary>
 		///     The addon name, ideally this name is the same as used in the tabpage
 		/// </summary>
-		public string name
+		public string Name
 		{
 			get { return "Settings"; }
 		}
@@ -29,7 +29,7 @@ namespace bukkitgui2.AddOn.Settings
 		/// </summary>
 		void IAddon.Initialize()
 		{
-			Tabpage = new SettingsTab {Text = name};
+			Tabpage = new SettingsTab {Text = this.Name};
 		}
 	}
 }

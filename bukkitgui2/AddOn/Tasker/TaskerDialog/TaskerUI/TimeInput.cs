@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace bukkitgui2.AddOn.Tasker.TaskerDialog.TaskerUI
+namespace Bukkitgui2.AddOn.Tasker.TaskerDialog.TaskerUI
 {
 	/// <summary>
 	/// Time input box with validation

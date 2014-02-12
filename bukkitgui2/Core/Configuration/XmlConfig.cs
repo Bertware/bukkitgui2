@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Xml;
 using System.IO;
 
-namespace bukkitgui2.Core.Configuration
+namespace Bukkitgui2.Core.Configuration
 {
     class XmlConfig : IConfig
     {

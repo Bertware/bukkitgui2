@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace bukkitgui2.AddOn.Tasker
+namespace Bukkitgui2.AddOn.Tasker
 {
 	public partial class TaskerTab : TabPage
 	{

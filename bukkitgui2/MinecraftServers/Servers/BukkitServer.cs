@@ -1,4 +1,4 @@
-﻿namespace bukkitgui2.MinecraftServers.Servers
+﻿namespace Bukkitgui2.MinecraftServers.Servers
 {
 	class BukkitServer : MinecraftServerBase
 	{

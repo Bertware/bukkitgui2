@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace bukkitgui2.AddOn.Editor
+namespace Bukkitgui2.AddOn.Editor
 {
 	internal class Editor : IAddon
 	{
@@ -9,7 +9,7 @@ namespace bukkitgui2.AddOn.Editor
 		/// <summary>
 		///     The addon name, ideally this name is the same as used in the tabpage
 		/// </summary>
-		public string name
+		public string Name
 		{
 			get { return "Editor"; }
 		}
@@ -19,7 +19,7 @@ namespace bukkitgui2.AddOn.Editor
 		/// </summary>
 		void IAddon.Initialize()
 		{
-			_tab = new EditorTab {Text = name};
+			_tab = new EditorTab {Text = this.Name};
 		}
 
 		/// <summary>

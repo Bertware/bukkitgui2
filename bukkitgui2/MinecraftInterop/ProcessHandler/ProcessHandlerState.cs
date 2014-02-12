@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace bukkitgui2.MinecraftInterop.ProcessHandler
+namespace Bukkitgui2.MinecraftInterop.ProcessHandler
 {
 	internal static class ProcessHandlerState
 	{

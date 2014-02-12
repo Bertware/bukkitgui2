@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace bukkitgui2.MinecraftInterop.OutputHandler.PlayerActions
+namespace Bukkitgui2.MinecraftInterop.OutputHandler.PlayerActions
 {
 	public class PlayerActionIpBan : IPlayerAction
 	{

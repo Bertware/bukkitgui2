@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
-using bukkitgui2.UI;
+using Bukkitgui2.UI;
 
-namespace bukkitgui2
+namespace Bukkitgui2
 {
 	static class Program
 	{

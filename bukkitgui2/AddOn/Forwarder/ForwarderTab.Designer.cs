@@ -1,4 +1,4 @@
-﻿namespace bukkitgui2.AddOn.Forwarder
+﻿namespace Bukkitgui2.AddOn.Forwarder
 {
 	partial class ForwarderTab
 	{

@@ -1,4 +1,4 @@
-﻿namespace bukkitgui2.Core.Util.Web
+﻿namespace Bukkitgui2.Core.Util.Web
 {
 	partial class FileDownloader
 	{

@@ -1,6 +1,8 @@
-﻿namespace bukkitgui2.AddOn.Editor
+﻿namespace Bukkitgui2.AddOn.Editor
 {
-	partial class EditorTab
+    using System.Windows.Forms;
+
+    partial class EditorTab: TabPage
 	{
 		/// <summary> 
 		/// Required designer variable.

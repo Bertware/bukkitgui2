@@ -1,4 +1,4 @@
-﻿namespace bukkitgui2.AddOn.Backup
+﻿namespace Bukkitgui2.AddOn.Backup
 {
 	partial class BackupTab
 	{

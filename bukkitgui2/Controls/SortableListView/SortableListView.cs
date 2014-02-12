@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace bukkitgui2.Controls.SortableListView
+namespace Bukkitgui2.Controls.SortableListView
 {
 	public partial class SortableListView : UserControl
 	{

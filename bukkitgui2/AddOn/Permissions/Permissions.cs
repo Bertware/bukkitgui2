@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace bukkitgui2.AddOn.Permissions
+namespace Bukkitgui2.AddOn.Permissions
 {
 	internal class Permissions : IAddon
 	{
@@ -9,7 +9,7 @@ namespace bukkitgui2.AddOn.Permissions
 		/// <summary>
 		///     The addon name, ideally this name is the same as used in the tabpage
 		/// </summary>
-		public string name
+		public string Name
 		{
 			get { return "Permissions"; }
 		}
@@ -19,7 +19,7 @@ namespace bukkitgui2.AddOn.Permissions
 		/// </summary>
 		void IAddon.Initialize()
 		{
-			_tab = new PermissionsTab {Text = name};
+			_tab = new PermissionsTab {Text = this.Name};
 		}
 
 		/// <summary>

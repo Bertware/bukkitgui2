@@ -1,4 +1,4 @@
-﻿namespace bukkitgui2.Controls.SortableListView
+﻿namespace Bukkitgui2.Controls.SortableListView
 {
 	partial class SortableListView
 	{

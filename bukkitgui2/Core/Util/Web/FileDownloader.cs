@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace bukkitgui2.Core.Util.Web
+namespace Bukkitgui2.Core.Util.Web
 {
 	public partial class FileDownloader : Form
 	{

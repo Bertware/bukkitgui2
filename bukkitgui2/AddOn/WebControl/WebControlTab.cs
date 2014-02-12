@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace bukkitgui2.AddOn.WebControl
+namespace Bukkitgui2.AddOn.WebControl
 {
-	public partial class WebControlTab : TabPage
+	public partial class WebControlTab : TabPage, IAddonTab
 	{
 		public WebControlTab()
 		{

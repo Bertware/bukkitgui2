@@ -1,4 +1,4 @@
-﻿namespace bukkitgui2.AddOn.SixtySetup
+﻿namespace Bukkitgui2.AddOn.SixtySetup
 {
 	partial class SixtySetup
 	{

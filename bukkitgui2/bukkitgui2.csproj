@@ -7,7 +7,7 @@
     <ProjectGuid>{0AEF421A-A71F-4642-9C9B-621F58FD7735}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>bukkitgui2</RootNamespace>
+    <RootNamespace>Bukkitgui2</RootNamespace>
     <AssemblyName>bukkitgui2</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -244,6 +244,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddOn\Console\ConsoleTab.resx">
       <DependentUpon>ConsoleTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\QuickButtons\QuickButtons.resx">
+      <DependentUpon>QuickButtons.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Core\Util\Web\FileDownloader.resx">
       <DependentUpon>FileDownloader.cs</DependentUpon>

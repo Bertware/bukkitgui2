@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace bukkitgui2.AddOn.Plugins
+namespace Bukkitgui2.AddOn.Plugins
 {
 	internal class Plugins : IAddon
 	{
@@ -9,7 +9,7 @@ namespace bukkitgui2.AddOn.Plugins
 		/// <summary>
 		///     The addon name, ideally this name is the same as used in the tabpage
 		/// </summary>
-		public string name
+		public string Name
 		{
 			get { return "Plugins"; }
 		}
@@ -19,7 +19,7 @@ namespace bukkitgui2.AddOn.Plugins
 		/// </summary>
 		void IAddon.Initialize()
 		{
-			_tab = new PluginsTab {Text = name};
+			_tab = new PluginsTab {Text = this.Name};
 		}
 
 		/// <summary>

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace bukkitgui2.Core.Locale
+namespace Bukkitgui2.Core.Locale
 {
 	interface ILocale
 	{

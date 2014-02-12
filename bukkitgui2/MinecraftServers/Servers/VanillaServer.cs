@@ -1,4 +1,4 @@
-﻿namespace bukkitgui2.MinecraftServers.Servers
+﻿namespace Bukkitgui2.MinecraftServers.Servers
 {
 	/// <summary>
 	/// Default vanilla server. All parsing code is already in the server base

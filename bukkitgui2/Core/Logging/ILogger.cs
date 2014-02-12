@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace bukkitgui2.Core.Logging
+namespace Bukkitgui2.Core.Logging
 {
 	/// <summary>
 	/// Logs debug info from the application

@@ -1,4 +1,4 @@
-﻿namespace bukkitgui2.AddOn.Playerlist
+﻿namespace Bukkitgui2.AddOn.Playerlist
 {
 	partial class PlayerListTab
 	{

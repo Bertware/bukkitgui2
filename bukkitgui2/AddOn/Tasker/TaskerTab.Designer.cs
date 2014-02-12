@@ -1,4 +1,4 @@
-﻿namespace bukkitgui2.AddOn.Tasker
+﻿namespace Bukkitgui2.AddOn.Tasker
 {
 	partial class TaskerTab
 	{

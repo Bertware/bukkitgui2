@@ -1,4 +1,4 @@
-﻿namespace bukkitgui2.AddOn.Starter
+﻿namespace Bukkitgui2.AddOn.Starter
 {
 	partial class StarterTab
 	{

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Drawing;
-using bukkitgui2.MinecraftInterop.OutputHandler;
-using bukkitgui2.MinecraftInterop.OutputHandler.PlayerActions;
+using Bukkitgui2.MinecraftInterop.OutputHandler;
+using Bukkitgui2.MinecraftInterop.OutputHandler.PlayerActions;
 
-namespace bukkitgui2.MinecraftServers
+namespace Bukkitgui2.MinecraftServers
 {
 	/// <summary>
 	/// The base for a minecraft server. This should contain all parsing code for a vanilla server.
