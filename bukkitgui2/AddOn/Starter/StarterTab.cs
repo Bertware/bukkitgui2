@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace Bukkitgui2.AddOn.Starter
 {
-	public partial class StarterTab : TabPage, IAddonTab
+	public partial class StarterTab : UserControl, IAddonTab
 	{
 		public StarterTab()
 		{

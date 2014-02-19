@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace Bukkitgui2.AddOn.Backup
 {
-	public partial class BackupTab : TabPage, IAddonTab
+	public partial class BackupTab : UserControl, IAddonTab
 	{
 		public BackupTab()
 		{

@@ -28,8 +28,14 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			components = new System.ComponentModel.Container();
-			
+            this.SuspendLayout();
+            // 
+            // PermissionsTab
+            // 
+            this.Name = "PermissionsTab";
+            this.Size = new System.Drawing.Size(800, 520);
+            this.ResumeLayout(false);
+
 		}
 
 		#endregion

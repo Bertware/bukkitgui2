@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace Bukkitgui2.AddOn.Tasker
 {
-	public partial class TaskerTab : TabPage
+	public partial class TaskerTab : UserControl, IAddonTab
 	{
 		public TaskerTab()
 		{

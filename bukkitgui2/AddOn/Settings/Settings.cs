@@ -6,7 +6,7 @@ namespace Bukkitgui2.AddOn.Settings
 	{
 		public Settings()
 		{
-			Tabpage = null;
+			this.Tabpage = null;
 		}
 
 
@@ -14,7 +14,7 @@ namespace Bukkitgui2.AddOn.Settings
 		///     The tab control for this addon
 		/// </summary>
 		/// <returns>Returns the tabpage</returns>
-		public TabPage Tabpage { get; private set; }
+		public UserControl Tabpage { get; private set; }
 
 		/// <summary>
 		///     The addon name, ideally this name is the same as used in the tabpage
@@ -29,7 +29,7 @@ namespace Bukkitgui2.AddOn.Settings
 		/// </summary>
 		void IAddon.Initialize()
 		{
-			Tabpage = new SettingsTab {Text = this.Name};
+			this.Tabpage = new SettingsTab {Text = this.Name};
 		}
 	}
 }

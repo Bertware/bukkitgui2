@@ -28,35 +28,45 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.groupBox1 = new System.Windows.Forms.GroupBox();
-			this.SuspendLayout();
-			//
-			// groupBox1
-			//
-			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-			| System.Windows.Forms.AnchorStyles.Left)
-			| System.Windows.Forms.AnchorStyles.Right)));
-			this.groupBox1.Location = new System.Drawing.Point(3, 3);
-			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(594, 144);
-			this.groupBox1.TabIndex = 0;
-			this.groupBox1.TabStop = false;
-			this.groupBox1.Text = "Performance ";
-			//
-			// PerformanceMonitor
-			//
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.Controls.Add(this.groupBox1);
-			this.Name = "PerformanceMonitor";
-			this.Size = new System.Drawing.Size(600, 150);
-			this.ResumeLayout(false);
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.progressBar2 = new System.Windows.Forms.ProgressBar();
+            this.SuspendLayout();
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.progressBar1.Location = new System.Drawing.Point(3, 3);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(494, 23);
+            this.progressBar1.TabIndex = 0;
+            // 
+            // progressBar2
+            // 
+            this.progressBar2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.progressBar2.Location = new System.Drawing.Point(3, 74);
+            this.progressBar2.Name = "progressBar2";
+            this.progressBar2.Size = new System.Drawing.Size(494, 23);
+            this.progressBar2.TabIndex = 1;
+            // 
+            // PerformanceMonitor
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.progressBar2);
+            this.Controls.Add(this.progressBar1);
+            this.Name = "PerformanceMonitor";
+            this.Size = new System.Drawing.Size(500, 100);
+            this.ResumeLayout(false);
 
 		}
 
 		#endregion
 
-		private System.Windows.Forms.GroupBox groupBox1;
-	}
+        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.ProgressBar progressBar2;
+
+    }
 }
 

@@ -4,7 +4,7 @@ namespace Bukkitgui2.AddOn.Tasker
 {
 	internal class Tasker : IAddon
 	{
-		private TabPage _tab;
+		private UserControl _tab;
 
 		/// <summary>
 		///     The addon name, ideally this name is the same as used in the tabpage
@@ -26,7 +26,7 @@ namespace Bukkitgui2.AddOn.Tasker
 		///     The tab control for this addon
 		/// </summary>
 		/// <returns>Returns the tabpage</returns>
-		TabPage IAddon.Tabpage
+		UserControl IAddon.Tabpage
 		{
 			get { return _tab; }
 		}

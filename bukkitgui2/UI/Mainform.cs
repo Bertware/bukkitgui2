@@ -113,11 +113,27 @@ namespace Bukkitgui2.UI
 			{
 				if ( this._addons[j] == null) continue; //if not set
 				_logger.Log(LogLevel.Info, "mainform", "loading addon", this._addons[j].Name);
+
 				this._addons[j].Initialize(); // initialize
 				_logger.Log(LogLevel.Info, "mainform", "initialized addon", this._addons[j].Name);
+
 				if (this._addons[j].Tabpage == null) continue; // If no tabpage is available, skip loading
-				TabCtrlAddons.TabPages.Add(this._addons[j].Tabpage);
-				_logger.Log(LogLevel.Info, "mainform", "added addon tabpage", this._addons[j].Name);
+
+			    TabPage tp = new TabPage(_addons[j].Name)
+			                     {
+			                         Width = this.TabCtrlAddons.Width,
+			                         Height = this.TabCtrlAddons.Height-20
+                                     
+			                     };
+			    
+                tp.Controls.Add(this._addons[j].Tabpage);
+			    
+                tp.Controls[0].Dock = DockStyle.Fill;
+                
+
+				TabCtrlAddons.TabPages.Add(tp);
+			    
+                _logger.Log(LogLevel.Info, "mainform", "added addon tabpage", this._addons[j].Name);
 			}
 		}
 

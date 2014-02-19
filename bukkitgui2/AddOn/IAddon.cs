@@ -18,7 +18,7 @@ namespace Bukkitgui2.AddOn
         /// The tab control for this addon
         /// </summary>
         /// <returns>Returns the tabpage</returns>
-        TabPage Tabpage
+        UserControl Tabpage
         {
             get;
         }

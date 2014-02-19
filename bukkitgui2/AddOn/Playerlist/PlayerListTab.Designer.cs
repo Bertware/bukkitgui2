@@ -28,8 +28,14 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			components = new System.ComponentModel.Container();
-			
+            this.SuspendLayout();
+            // 
+            // PlayerListTab
+            // 
+            this.Name = "PlayerListTab";
+            this.Size = new System.Drawing.Size(800, 520);
+            this.ResumeLayout(false);
+
 		}
 
 		#endregion

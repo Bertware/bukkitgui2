@@ -28,49 +28,140 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.minecraftConsole1 = new Bukkitgui2.Controls.MinecraftConsole.MinecraftConsole();
-            this.performanceMonitor1 = new Bukkitgui2.Controls.PerformanceMonitor.PerformanceMonitor();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.quickButtons1 = new Bukkitgui2.AddOn.Console.QuickButtons.QuickButtons();
+            this.performanceMonitor1 = new Bukkitgui2.Controls.PerformanceMonitor.PerformanceMonitor();
+            this.consoleInput1 = new Bukkitgui2.Controls.ConsoleInput.ConsoleInput();
+            this.MCCOut = new Bukkitgui2.Controls.MinecraftConsole.MinecraftConsole();
+            this.groupBox1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
-            // minecraftConsole1
+            // groupBox1
             // 
-            this.minecraftConsole1.Location = new System.Drawing.Point(469, 206);
-            this.minecraftConsole1.Name = "minecraftConsole1";
-            this.minecraftConsole1.Size = new System.Drawing.Size(328, 148);
-            this.minecraftConsole1.TabIndex = 0;
-            this.minecraftConsole1.Text = "";
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.splitContainer1);
+            this.groupBox1.Location = new System.Drawing.Point(3, 3);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(794, 401);
+            this.groupBox1.TabIndex = 3;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Server management";
             // 
-            // performanceMonitor1
+            // splitContainer1
             // 
-            this.performanceMonitor1.Location = new System.Drawing.Point(297, 480);
-            this.performanceMonitor1.Name = "performanceMonitor1";
-            this.performanceMonitor1.Size = new System.Drawing.Size(600, 117);
-            this.performanceMonitor1.TabIndex = 1;
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(3, 16);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.consoleInput1);
+            this.splitContainer1.Panel2.Controls.Add(this.MCCOut);
+            this.splitContainer1.Size = new System.Drawing.Size(788, 382);
+            this.splitContainer1.SplitterDistance = 203;
+            this.splitContainer1.TabIndex = 1;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.performanceMonitor1);
+            this.groupBox2.Location = new System.Drawing.Point(213, 410);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(584, 117);
+            this.groupBox2.TabIndex = 4;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Performance";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox3.Controls.Add(this.quickButtons1);
+            this.groupBox3.Location = new System.Drawing.Point(3, 410);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(203, 117);
+            this.groupBox3.TabIndex = 5;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Quick Actions";
             // 
             // quickButtons1
             // 
-            this.quickButtons1.Location = new System.Drawing.Point(3, 480);
+            this.quickButtons1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.quickButtons1.Location = new System.Drawing.Point(3, 16);
             this.quickButtons1.Name = "quickButtons1";
-            this.quickButtons1.Size = new System.Drawing.Size(288, 117);
-            this.quickButtons1.TabIndex = 2;
+            this.quickButtons1.Size = new System.Drawing.Size(197, 98);
+            this.quickButtons1.TabIndex = 0;
+            // 
+            // performanceMonitor1
+            // 
+            this.performanceMonitor1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.performanceMonitor1.Location = new System.Drawing.Point(3, 16);
+            this.performanceMonitor1.Name = "performanceMonitor1";
+            this.performanceMonitor1.Size = new System.Drawing.Size(578, 98);
+            this.performanceMonitor1.TabIndex = 0;
+            // 
+            // consoleInput1
+            // 
+            this.consoleInput1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.consoleInput1.Location = new System.Drawing.Point(0, 362);
+            this.consoleInput1.Name = "consoleInput1";
+            this.consoleInput1.Size = new System.Drawing.Size(581, 20);
+            this.consoleInput1.TabIndex = 1;
+            // 
+            // MCCOut
+            // 
+            this.MCCOut.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.MCCOut.Location = new System.Drawing.Point(0, 0);
+            this.MCCOut.MessageColorInfo = System.Drawing.Color.Empty;
+            this.MCCOut.MessageColorPlayerAction = System.Drawing.Color.Empty;
+            this.MCCOut.MessageColorPlayerTag = System.Drawing.Color.Empty;
+            this.MCCOut.MessageColorPluginTag = System.Drawing.Color.Empty;
+            this.MCCOut.MessageColorSevere = System.Drawing.Color.Empty;
+            this.MCCOut.MessageColorUnknown = System.Drawing.Color.Empty;
+            this.MCCOut.MessageColorWarning = System.Drawing.Color.Empty;
+            this.MCCOut.Name = "MCCOut";
+            this.MCCOut.Size = new System.Drawing.Size(581, 356);
+            this.MCCOut.TabIndex = 0;
+            this.MCCOut.Text = "";
             // 
             // ConsoleTab
             // 
-            this.Controls.Add(this.quickButtons1);
-            this.Controls.Add(this.performanceMonitor1);
-            this.Controls.Add(this.minecraftConsole1);
+            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox1);
             this.Name = "ConsoleTab";
-            this.Size = new System.Drawing.Size(900, 600);
+            this.Size = new System.Drawing.Size(800, 520);
+            this.groupBox1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            this.splitContainer1.Panel2.PerformLayout();
+            this.splitContainer1.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private Bukkitgui2.Controls.MinecraftConsole.MinecraftConsole minecraftConsole1;
-        private Bukkitgui2.Controls.PerformanceMonitor.PerformanceMonitor performanceMonitor1;
-        private Bukkitgui2.AddOn.Console.QuickButtons.QuickButtons quickButtons1;
+        private Bukkitgui2.Controls.MinecraftConsole.MinecraftConsole MCCOut;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private Controls.ConsoleInput.ConsoleInput consoleInput1;
+        private QuickButtons.QuickButtons quickButtons1;
+        private Controls.PerformanceMonitor.PerformanceMonitor performanceMonitor1;
 
      }
 }

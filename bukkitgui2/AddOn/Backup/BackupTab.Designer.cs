@@ -28,13 +28,13 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.SuspendLayout();
-			// 
-			// BackupTab
-			// 		
-			this.Name = "BackupTab";
-			this.Size = new System.Drawing.Size(577, 383);
-			this.ResumeLayout(false);
+            this.SuspendLayout();
+            // 
+            // BackupTab
+            // 
+            this.Name = "BackupTab";
+            this.Size = new System.Drawing.Size(800, 520);
+            this.ResumeLayout(false);
 
 		}
 

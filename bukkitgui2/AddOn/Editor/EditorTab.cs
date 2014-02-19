@@ -2,7 +2,7 @@
 
 namespace Bukkitgui2.AddOn.Editor
 {
-	public partial class EditorTab : TabPage, IAddonTab
+	public partial class EditorTab : UserControl, IAddonTab
 	{
 		public EditorTab()
 		{

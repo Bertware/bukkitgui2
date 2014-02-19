@@ -4,7 +4,7 @@ namespace Bukkitgui2.AddOn.WebControl
 {
 	class WebControl : IAddon
 	{
-		private TabPage _tab = null;
+		private UserControl _tab;
 		
 		/// <summary>
 		/// The addon name, ideally this name is the same as used in the tabpage
@@ -22,15 +22,14 @@ namespace Bukkitgui2.AddOn.WebControl
 		/// </summary>
 		void IAddon.Initialize()
 		{
-			_tab = new WebControlTab();
-			_tab.Text = this.Name;
+			_tab = new WebControlTab { Text = this.Name };
 		}
 
 		/// <summary>
 		/// The tab control for this addon
 		/// </summary>
 		/// <returns>Returns the tabpage</returns>
-		TabPage IAddon.Tabpage
+		UserControl IAddon.Tabpage
 		{
 			get
 			{

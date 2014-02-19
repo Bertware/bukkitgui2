@@ -2,7 +2,7 @@
 {
     using System.Windows.Forms;
 
-    partial class EditorTab: TabPage
+    partial class EditorTab: UserControl
 	{
 		/// <summary> 
 		/// Required designer variable.
@@ -30,8 +30,14 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			components = new System.ComponentModel.Container();
-			
+            this.SuspendLayout();
+            // 
+            // EditorTab
+            // 
+            this.Name = "EditorTab";
+            this.Size = new System.Drawing.Size(800, 520);
+            this.ResumeLayout(false);
+
 		}
 
 		#endregion

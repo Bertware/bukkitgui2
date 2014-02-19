@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace Bukkitgui2.AddOn.WebControl
 {
-	public partial class WebControlTab : TabPage, IAddonTab
+	public partial class WebControlTab : UserControl, IAddonTab
 	{
 		public WebControlTab()
 		{
