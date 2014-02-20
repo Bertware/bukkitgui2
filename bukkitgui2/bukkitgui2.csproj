@@ -225,6 +225,7 @@
     <Compile Include="MinecraftServers\Servers\McpcServer.cs" />
     <Compile Include="MinecraftServers\Servers\SpigotServer.cs" />
     <Compile Include="MinecraftServers\Servers\VanillaServer.cs" />
+    <Compile Include="MinecraftServers\Tools\global\JenkinsApi.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UI\MainForm.cs">
@@ -295,6 +296,7 @@
       <DependentUpon>SplashScreen.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
+    <Compile Include="MinecraftServers\Tools\bukkit\dlb.cs" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
