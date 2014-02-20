@@ -22,5 +22,28 @@
             get { return Properties.Resources.bukkit_logo; }
         }
 
+        public override bool CanDownloadRecommendedVersion
+        {
+            get
+            {
+                return true;
+            }
+        }
+
+        public override bool CanDownloadBetaVersion
+        {
+            get
+            {
+                return true;
+            }
+        }
+
+        public override bool CanDownloadDevVersion
+        {
+            get
+            {
+                return true;
+            }
+        }
 	}
 }
