@@ -51,7 +51,7 @@
             this.groupBox1.Controls.Add(this.splitContainer1);
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(794, 401);
+            this.groupBox1.Size = new System.Drawing.Size(794, 371);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Server management";
@@ -66,7 +66,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.consoleInput1);
             this.splitContainer1.Panel2.Controls.Add(this.MCCOut);
-            this.splitContainer1.Size = new System.Drawing.Size(788, 382);
+            this.splitContainer1.Size = new System.Drawing.Size(788, 352);
             this.splitContainer1.SplitterDistance = 203;
             this.splitContainer1.TabIndex = 1;
             // 
@@ -75,9 +75,9 @@
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.performanceMonitor1);
-            this.groupBox2.Location = new System.Drawing.Point(213, 410);
+            this.groupBox2.Location = new System.Drawing.Point(170, 380);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(584, 117);
+            this.groupBox2.Size = new System.Drawing.Size(624, 117);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Performance";
@@ -86,9 +86,9 @@
             // 
             this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox3.Controls.Add(this.quickButtons1);
-            this.groupBox3.Location = new System.Drawing.Point(3, 410);
+            this.groupBox3.Location = new System.Drawing.Point(7, 380);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(203, 117);
+            this.groupBox3.Size = new System.Drawing.Size(157, 117);
             this.groupBox3.TabIndex = 5;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Quick Actions";
@@ -98,7 +98,7 @@
             this.quickButtons1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.quickButtons1.Location = new System.Drawing.Point(3, 16);
             this.quickButtons1.Name = "quickButtons1";
-            this.quickButtons1.Size = new System.Drawing.Size(197, 98);
+            this.quickButtons1.Size = new System.Drawing.Size(151, 98);
             this.quickButtons1.TabIndex = 0;
             // 
             // performanceMonitor1
@@ -106,13 +106,13 @@
             this.performanceMonitor1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.performanceMonitor1.Location = new System.Drawing.Point(3, 16);
             this.performanceMonitor1.Name = "performanceMonitor1";
-            this.performanceMonitor1.Size = new System.Drawing.Size(578, 98);
+            this.performanceMonitor1.Size = new System.Drawing.Size(618, 98);
             this.performanceMonitor1.TabIndex = 0;
             // 
             // consoleInput1
             // 
             this.consoleInput1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.consoleInput1.Location = new System.Drawing.Point(0, 362);
+            this.consoleInput1.Location = new System.Drawing.Point(0, 332);
             this.consoleInput1.Name = "consoleInput1";
             this.consoleInput1.Size = new System.Drawing.Size(581, 20);
             this.consoleInput1.TabIndex = 1;
@@ -131,7 +131,7 @@
             this.MCCOut.MessageColorUnknown = System.Drawing.Color.Empty;
             this.MCCOut.MessageColorWarning = System.Drawing.Color.Empty;
             this.MCCOut.Name = "MCCOut";
-            this.MCCOut.Size = new System.Drawing.Size(581, 356);
+            this.MCCOut.Size = new System.Drawing.Size(581, 326);
             this.MCCOut.TabIndex = 0;
             this.MCCOut.Text = "";
             // 
@@ -141,7 +141,7 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "ConsoleTab";
-            this.Size = new System.Drawing.Size(800, 520);
+            this.Size = new System.Drawing.Size(800, 500);
             this.groupBox1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.Panel2.PerformLayout();

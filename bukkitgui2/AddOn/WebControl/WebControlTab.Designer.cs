@@ -33,7 +33,7 @@
             // WebControlTab
             // 
             this.Name = "WebControlTab";
-            this.Size = new System.Drawing.Size(800, 520);
+            this.Size = new System.Drawing.Size(800, 500);
             this.ResumeLayout(false);
 
 		}

@@ -6,17 +6,40 @@ namespace Bukkitgui2.AddOn.Settings
 	{
 		public Settings()
 		{
-			this.Tabpage = null;
+			this.TabPage = null;
 		}
 
+        /// <summary>
+        /// True if this addon has a tab page
+        /// </summary>
+        public bool HasTab
+        {
+            get
+            {
+                return true;
+            }
+        }
 
+        /// <summary>
+        /// True if this addon has a config field
+        /// </summary>
+        public bool HasConfig
+        {
+            get
+            {
+                return false;
+            }
+        }
+        
 		/// <summary>
 		///     The tab control for this addon
 		/// </summary>
 		/// <returns>Returns the tabpage</returns>
-		public UserControl Tabpage { get; private set; }
+		public UserControl TabPage { get; private set; }
 
-		/// <summary>
+	    public UserControl ConfigPage { get; private set; }
+
+	    /// <summary>
 		///     The addon name, ideally this name is the same as used in the tabpage
 		/// </summary>
 		public string Name
@@ -29,7 +52,7 @@ namespace Bukkitgui2.AddOn.Settings
 		/// </summary>
 		void IAddon.Initialize()
 		{
-			this.Tabpage = new SettingsTab {Text = this.Name};
+			this.TabPage = new SettingsTab {Text = this.Name};
 		}
 	}
 }

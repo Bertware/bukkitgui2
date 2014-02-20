@@ -68,7 +68,7 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Name = "QuickButtons";
-            this.Size = new System.Drawing.Size(150, 100);
+            this.Size = new System.Drawing.Size(150, 89);
             this.ResumeLayout(false);
 
 		}

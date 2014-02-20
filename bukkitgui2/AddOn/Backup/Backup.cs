@@ -14,6 +14,28 @@ namespace Bukkitgui2.AddOn.Backup
 			get { return "Backup"; }
 		}
 
+        /// <summary>
+        /// True if this addon has a tab page
+        /// </summary>
+        public bool HasTab
+        {
+            get
+            {
+                return true;
+            }
+        }
+
+        /// <summary>
+        /// True if this addon has a config field
+        /// </summary>
+        public bool HasConfig
+        {
+            get
+            {
+                return false;
+            }
+        }
+
 		/// <summary>
 		///     Initialize all functions and the tabcontrol
 		/// </summary>
@@ -26,9 +48,11 @@ namespace Bukkitgui2.AddOn.Backup
 		///     The tab control for this addon
 		/// </summary>
 		/// <returns>Returns the tabpage</returns>
-		UserControl IAddon.Tabpage
+		UserControl IAddon.TabPage
 		{
 			get { return _tab; }
 		}
+
+	    public UserControl ConfigPage { get; private set; }
 	}
 }

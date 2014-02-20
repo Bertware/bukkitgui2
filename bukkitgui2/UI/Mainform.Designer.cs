@@ -44,11 +44,13 @@
             // 
             // TabCtrlAddons
             // 
-            this.TabCtrlAddons.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TabCtrlAddons.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TabCtrlAddons.Location = new System.Drawing.Point(0, 0);
             this.TabCtrlAddons.Name = "TabCtrlAddons";
             this.TabCtrlAddons.SelectedIndex = 0;
-            this.TabCtrlAddons.Size = new System.Drawing.Size(884, 562);
+            this.TabCtrlAddons.Size = new System.Drawing.Size(884, 537);
             this.TabCtrlAddons.TabIndex = 0;
             // 
             // StatusStripMain

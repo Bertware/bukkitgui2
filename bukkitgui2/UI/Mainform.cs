@@ -111,26 +111,22 @@ namespace Bukkitgui2.UI
 
 			for (byte j=0;j<=i;j++)
 			{
-				if ( this._addons[j] == null) continue; //if not set
+				if ( this._addons[j] == null) continue; //if addon not set, go on to the next one
 				_logger.Log(LogLevel.Info, "mainform", "loading addon", this._addons[j].Name);
 
-				this._addons[j].Initialize(); // initialize
+				this._addons[j].Initialize(); // initialize the addon
 				_logger.Log(LogLevel.Info, "mainform", "initialized addon", this._addons[j].Name);
 
-				if (this._addons[j].Tabpage == null) continue; // If no tabpage is available, skip loading
+                // If this addon doesn't have a tabpage, or if the tabpage is missing, go to the next addon
+				if (!this._addons[j].HasTab || this._addons[j].TabPage == null) continue; // If no tabpage is available, skip loading
 
-			    TabPage tp = new TabPage(_addons[j].Name)
-			                     {
-			                         Width = this.TabCtrlAddons.Width,
-			                         Height = this.TabCtrlAddons.Height-20
-                                     
-			                     };
+			    TabPage tp = new TabPage(_addons[j].Name);
 			    
-                tp.Controls.Add(this._addons[j].Tabpage);
-			    
-                tp.Controls[0].Dock = DockStyle.Fill;
+                // Add and dock the control
+                tp.Controls.Add(this._addons[j].TabPage);
+			    tp.Controls[0].Dock = DockStyle.Fill;
                 
-
+                // Add the tabpage
 				TabCtrlAddons.TabPages.Add(tp);
 			    
                 _logger.Log(LogLevel.Info, "mainform", "added addon tabpage", this._addons[j].Name);

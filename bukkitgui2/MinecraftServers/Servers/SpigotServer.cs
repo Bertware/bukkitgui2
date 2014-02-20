@@ -7,5 +7,17 @@ namespace Bukkitgui2.MinecraftServers.Servers
 {
 	class SpigotServer : MinecraftServerBase
 	{
+        public override string Name
+        {
+            get { return "Spigot"; }
+        }
+
+        public override string Site
+        {
+            get
+            {
+                return "http://spigot.net";
+            }
+        }
 	}
 }

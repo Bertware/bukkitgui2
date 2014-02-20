@@ -33,7 +33,7 @@
             // PermissionsTab
             // 
             this.Name = "PermissionsTab";
-            this.Size = new System.Drawing.Size(800, 520);
+            this.Size = new System.Drawing.Size(800, 500);
             this.ResumeLayout(false);
 
 		}

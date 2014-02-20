@@ -14,7 +14,28 @@ namespace Bukkitgui2.AddOn.Forwarder
 			get { return "Forwarder"; }
 		}
 
-		/// <summary>
+        /// <summary>
+        /// True if this addon has a tab page
+        /// </summary>
+	    public bool HasTab {
+	        get
+	        {
+	            return true;
+	        }
+	    }
+
+        /// <summary>
+        /// True if this addon has a config field
+        /// </summary>
+        public bool HasConfig
+        {
+            get
+            {
+                return false;
+            }
+        }
+
+	    /// <summary>
 		///     Initialize all functions and the tabcontrol
 		/// </summary>
 		void IAddon.Initialize()
@@ -22,11 +43,15 @@ namespace Bukkitgui2.AddOn.Forwarder
 			_tab = new ForwarderTab {Text = this.Name};
 		}
 
-		/// <summary>
+	    public UserControl TabPage { get; private set; }
+
+	    public UserControl ConfigPage { get; private set; }
+
+	    /// <summary>
 		///     The tab control for this addon
 		/// </summary>
 		/// <returns>Returns the tabpage</returns>
-		UserControl IAddon.Tabpage
+		UserControl IAddon.TabPage
 		{
 			get { return _tab; }
 		}

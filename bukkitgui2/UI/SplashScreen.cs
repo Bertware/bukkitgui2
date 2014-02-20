@@ -4,11 +4,16 @@ using System.Windows.Forms;
 
 namespace Bukkitgui2.UI
 {
-	public partial class SplashScreen : Form
+    using Bukkitgui2.Properties;
+
+    public partial class SplashScreen : Form
 	{
 		public SplashScreen()
 		{
 			InitializeComponent();
+
+		    pictureBox1.Image = Resources.GUI_icon;
+
 			Debug.WriteLine("Loading splashscreen");
 			var thdSplashWork = new Thread(Application_Initialize) {IsBackground = false, Name = "Splashscreen_work_thread"};
 			thdSplashWork.Start();
@@ -19,7 +24,7 @@ namespace Bukkitgui2.UI
 		{
 			//Most of the code goes in this routine, as this handles all shared resources
 			Core.Share.Initialize();
-
+            MinecraftServers.MinecraftServerLoader.GetAvailableServers();
 			Thread.Sleep(1000);
 			CloseForm();
 		}

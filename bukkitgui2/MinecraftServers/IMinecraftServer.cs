@@ -110,7 +110,7 @@ namespace Bukkitgui2.MinecraftServers
 		/// <summary>
 		///     True if the latest available stable version number can be retrieved from the internet
 		/// </summary>
-		Boolean CanFetchLatestVersion { get; }
+		Boolean CanFetchRecommendedVersion { get; }
 
 		/// <summary>
 		///     True if the latest available beta version number can be retrieved from the internet
@@ -125,7 +125,7 @@ namespace Bukkitgui2.MinecraftServers
 		/// <summary>
 		///     True if the latest available stable version can be downloaded from the internet
 		/// </summary>
-		Boolean CanDownloadLatestVersion { get; }
+		Boolean CanDownloadRecommendedVersion { get; }
 
 		/// <summary>
 		///     True if the latest available beta version can be downloaded from the internet
@@ -145,7 +145,7 @@ namespace Bukkitgui2.MinecraftServers
 		/// <summary>
 		///     Get the latest stable version number
 		/// </summary>
-		string FetchLatestVersion { get; }
+		string FetchRecommendedVersion { get; }
 
 		/// <summary>
 		///     Get the latest beta version number
@@ -162,7 +162,7 @@ namespace Bukkitgui2.MinecraftServers
 		/// </summary>
 		/// <param name="targetfile">Location where the file should be saved</param>
 		/// <returns>True if successful</returns>
-		Boolean DownloadLatestVersion(string targetfile);
+		Boolean DownloadRecommendedVersion(string targetfile);
 
 		/// <summary>
 		///     Download the latest beta version

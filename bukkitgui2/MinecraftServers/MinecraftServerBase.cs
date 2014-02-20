@@ -5,7 +5,9 @@ using Bukkitgui2.MinecraftInterop.OutputHandler.PlayerActions;
 
 namespace Bukkitgui2.MinecraftServers
 {
-	/// <summary>
+    using System.Reflection;
+
+    /// <summary>
 	/// The base for a minecraft server. This should contain all parsing code for a vanilla server.
 	/// </summary>
 	internal class MinecraftServerBase : IMinecraftServer
@@ -22,7 +24,7 @@ namespace Bukkitgui2.MinecraftServers
 
 		public virtual Image Logo
 		{
-			get { return null; }
+			get { return Properties.Resources.vanilla_logo; }
 		}
 
 		public virtual bool SupportsPlugins
@@ -80,7 +82,7 @@ namespace Bukkitgui2.MinecraftServers
 			throw new NotImplementedException();
 		}
 
-		public virtual bool CanFetchLatestVersion
+		public virtual bool CanFetchRecommendedVersion
 		{
 			get { return false; }
 		}
@@ -95,7 +97,7 @@ namespace Bukkitgui2.MinecraftServers
 			get { return false; }
 		}
 
-		public virtual bool CanDownloadLatestVersion
+		public virtual bool CanDownloadRecommendedVersion
 		{
 			get { return false; }
 		}
@@ -115,7 +117,7 @@ namespace Bukkitgui2.MinecraftServers
 			get { return false; }
 		}
 
-		public virtual string FetchLatestVersion
+		public virtual string FetchRecommendedVersion
 		{
 			get { return null; }
 		}
@@ -130,7 +132,7 @@ namespace Bukkitgui2.MinecraftServers
 			get { return null; }
 		}
 
-		public virtual bool DownloadLatestVersion(string targetfile)
+		public virtual bool DownloadRecommendedVersion(string targetfile)
 		{
 			throw new NotImplementedException();
 		}
