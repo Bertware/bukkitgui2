@@ -2,6 +2,9 @@
 
 namespace Bukkitgui2.MinecraftInterop.ProcessHandler
 {
+	/// <summary>
+	/// Static class to store the current processHandler
+	/// </summary>
 	internal static class ProcessHandlerState
 	{
 		public static MinecraftServers.IMinecraftServer CurrentServer;

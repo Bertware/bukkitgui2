@@ -98,11 +98,5 @@ namespace Bukkitgui2.AddOn.Starter
 		}
 	}
 
-	internal enum JavaVersion
-	{
-		Jre6X32,
-		Jre6X64,
-		Jre7X32,
-		Jre7X64
-	}
+
 }

@@ -76,6 +76,7 @@
     <Compile Include="AddOn\Plugins\InstalledPlugins\InstalledPluginsControl.Designer.cs">
       <DependentUpon>InstalledPluginsControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddOn\Starter\JavaApi.cs" />
     <Compile Include="AddOn\Tasker\TaskerDialog\TaskerUI\TimeInput.cs">
       <SubType>UserControl</SubType>
     </Compile>
