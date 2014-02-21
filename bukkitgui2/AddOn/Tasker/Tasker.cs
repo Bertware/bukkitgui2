@@ -41,7 +41,7 @@ namespace Bukkitgui2.AddOn.Tasker
 		/// </summary>
 		void IAddon.Initialize()
 		{
-			_tab = new TaskerTab {Text = this.Name};
+			_tab = new TaskerTab { Text = this.Name, ParentAddon = this};
 		}
 
 		/// <summary>

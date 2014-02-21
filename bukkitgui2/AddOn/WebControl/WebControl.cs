@@ -43,7 +43,7 @@ namespace Bukkitgui2.AddOn.WebControl
 		/// </summary>
 		void IAddon.Initialize()
 		{
-			_tab = new WebControlTab { Text = this.Name };
+			_tab = new WebControlTab { Text = this.Name, ParentAddon = this};
 		}
 
 		/// <summary>

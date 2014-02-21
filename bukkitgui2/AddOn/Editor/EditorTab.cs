@@ -8,5 +8,7 @@ namespace Bukkitgui2.AddOn.Editor
 		{
 			InitializeComponent();
 		}
+
+		public IAddon ParentAddon { get; set; }
 	}
 }

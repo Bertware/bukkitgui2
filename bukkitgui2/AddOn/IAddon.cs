@@ -3,7 +3,7 @@
     using System;
     using System.Windows.Forms;
 
-    internal interface IAddon
+    public interface IAddon
     {
         /// <summary>
         ///     The addon name, ideally this name is the same as used in the tabpage

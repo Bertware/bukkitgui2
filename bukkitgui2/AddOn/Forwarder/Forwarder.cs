@@ -40,7 +40,7 @@ namespace Bukkitgui2.AddOn.Forwarder
 		/// </summary>
 		void IAddon.Initialize()
 		{
-			_tab = new ForwarderTab {Text = this.Name};
+			_tab = new ForwarderTab { Text = this.Name, ParentAddon = this};
 		}
 
 	    public UserControl TabPage { get; private set; }

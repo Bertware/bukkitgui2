@@ -4,5 +4,6 @@ namespace Bukkitgui2.Controls.ConsoleInput
 {
     class ConsoleInput : TextBox
     {
+
     }
 }

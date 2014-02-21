@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Data;
 using System.Linq;
+using System.Runtime.Remoting.Channels;
 using System.Text;
 using System.Windows.Forms;
 
@@ -15,6 +16,7 @@ namespace Bukkitgui2.AddOn.Starter
     {
 
         private readonly Dictionary<string, IMinecraftServer> _servers;
+	    private UserControl customControl;
 
         public StarterTab()
         {
@@ -44,9 +46,7 @@ namespace Bukkitgui2.AddOn.Starter
         private void LoadServer()
         {
 
-            string serverName = CBServerType.SelectedItem.ToString();
-
-            IMinecraftServer server = _servers[serverName];
+	        IMinecraftServer server = GetSelectedServer();
 
             PBServerLogo.Image = server.Logo;
             LLblSite.Text = "Site: " + server.Site;
@@ -54,6 +54,15 @@ namespace Bukkitgui2.AddOn.Starter
             BtnDownloadRec.Enabled = server.CanDownloadRecommendedVersion;
             BtnDownloadBeta.Enabled = server.CanDownloadBetaVersion;
             BtnDownloadDev.Enabled = server.CanDownloadDevVersion;
+
+			CBJavaVersion.Enabled = !server.HasCustomAssembly;
+			NumMaxRam.Enabled = !server.HasCustomAssembly;
+			NumMinRam.Enabled = !server.HasCustomAssembly;
+			TBMaxRam.Enabled = !server.HasCustomAssembly;
+			TBMinRam.Enabled = !server.HasCustomAssembly;
+	        TxtOptArg.Enabled = !server.HasCustomAssembly;
+			TxtOptFlag.Enabled = !server.HasCustomAssembly;
+			TxtJarFile.Enabled = !server.HasCustomAssembly;
 
             Boolean notifyRb = server.CanGetCurrentVersion && server.CanFetchRecommendedVersion;
 
@@ -84,13 +93,53 @@ namespace Bukkitgui2.AddOn.Starter
             if (updateBeta) CBUpdateBranch.Items.Add("Beta builds");
             if (updateDev) CBUpdateBranch.Items.Add("Development builds");
 
-
+	        if (server.HasCustomSettingsControl)
+	        {
+		        customControl = server.CustomSettingsControl;
+		        GBCustomSettings.Controls.Clear();
+		        GBCustomSettings.Controls.Add(customControl);
+		        GBCustomSettings.Controls[0].Dock = DockStyle.Fill;
+	        }
+	        else
+	        {
+				customControl = null;
+				GBCustomSettings.Controls.Clear();
+	        }
         }
+
+	    private IMinecraftServer GetSelectedServer()
+	    {
+			string serverName = CBServerType.SelectedItem.ToString();
+			return _servers[serverName];
+	    }
 
         private void CbServerTypeSelectedIndexChanged(object sender, EventArgs e)
         {
             LoadServer();
         }
 
-	}
+		private void BtnLaunch_Click(object sender, EventArgs e)
+		{
+			DoServerLaunch();
+		}
+
+	    private void DoServerLaunch()
+	    {
+			IMinecraftServer server = GetSelectedServer();
+		    Starter starter = ParentAddon as Starter;
+			
+			if (starter == null) return;
+
+		    if (!server.HasCustomAssembly)
+		    {
+				starter.LaunchServer(server,JavaVersion.Jre6X32, TxtJarFile.Text,Convert.ToUInt32(NumMinRam.Value),Convert.ToUInt32(NumMaxRam.Value),TxtOptArg.Text,TxtOptFlag.Text);
+		    }
+		    else
+		    {
+			   starter.LaunchServer(server,server.CustomAssembly,customControl);
+		    }
+	    }
+
+	    public IAddon ParentAddon { get; set; }
+    }
 }

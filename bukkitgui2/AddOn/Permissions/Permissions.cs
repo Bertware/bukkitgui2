@@ -41,7 +41,7 @@ namespace Bukkitgui2.AddOn.Permissions
 		/// </summary>
 		void IAddon.Initialize()
 		{
-			_tab = new PermissionsTab {Text = this.Name};
+			_tab = new PermissionsTab { Text = this.Name, ParentAddon = this};
 		}
 
 		/// <summary>

@@ -41,7 +41,7 @@ namespace Bukkitgui2.AddOn.Console
 		/// </summary>
 		void IAddon.Initialize()
 		{
-			_tab = new ConsoleTab {Text = this.Name};
+			_tab = new ConsoleTab { Text = this.Name, ParentAddon = this};
 		}
 
 		/// <summary>

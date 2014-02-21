@@ -41,7 +41,7 @@ namespace Bukkitgui2.AddOn.Playerlist
 		/// </summary>
 		void IAddon.Initialize()
 		{
-			_tab = new PlayerListTab {Text = this.Name};
+			_tab = new PlayerListTab { Text = this.Name, ParentAddon = this};
 		}
 
 		/// <summary>

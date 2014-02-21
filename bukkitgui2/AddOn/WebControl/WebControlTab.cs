@@ -15,5 +15,7 @@ namespace Bukkitgui2.AddOn.WebControl
 		{
 			InitializeComponent();
 		}
+
+		public IAddon ParentAddon { get; set; }
 	}
 }

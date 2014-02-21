@@ -52,7 +52,7 @@ namespace Bukkitgui2.AddOn.Settings
 		/// </summary>
 		void IAddon.Initialize()
 		{
-			this.TabPage = new SettingsTab {Text = this.Name};
+			this.TabPage = new SettingsTab { Text = this.Name, ParentAddon = this};
 		}
 	}
 }

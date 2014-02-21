@@ -16,5 +16,6 @@ namespace Bukkitgui2.AddOn.Console
             InitializeComponent();
         }
 
+	    public IAddon ParentAddon { get; set; }
     }
 }

@@ -41,7 +41,7 @@ namespace Bukkitgui2.AddOn.Plugins
 		/// </summary>
 		void IAddon.Initialize()
 		{
-			_tab = new PluginsTab {Text = this.Name};
+			_tab = new PluginsTab { Text = this.Name, ParentAddon = this};
 		}
 
 		/// <summary>

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Drawing;
+using System.Reflection;
+using System.Windows.Forms;
 using Bukkitgui2.MinecraftInterop.OutputHandler;
 using Bukkitgui2.MinecraftInterop.OutputHandler.PlayerActions;
 
@@ -35,6 +37,53 @@ namespace Bukkitgui2.MinecraftServers
 		///     True if this server is ran locally (vs. on a remote host)
 		/// </summary>
 		Boolean IsLocal { get; }
+
+
+		// ========================================== //
+		// Process Handling
+		// ========================================== //
+
+		/// <summary>
+		/// Prepare a server launc, e.g. unpack resources, load config, ...
+		/// </summary>
+		/// <returns></returns>
+		void PrepareLaunch();
+
+		/// <summary>
+		/// Returns true if this server needs a custom assembly (No java)
+		/// </summary>
+		Boolean HasCustomAssembly { get; }
+		
+		/// <summary>
+		/// The custom assembly to be used. Can be set in PrepareLaunch()
+		/// </summary>
+		Assembly CustomAssembly { get; }
+
+		/// <summary>
+		/// Get the launch parameters
+		/// </summary>
+		/// <param name="defaultParameters">The user defined parameters in the start tab</param>
+		/// <returns>The complete parameter string</returns>
+		/// <remarks>NOTE: in case of a custom assembly, default parameters aren't available, and this routine should return ALL needed parameters</remarks>
+		string GetLaunchParameters(string defaultParameters = "");
+
+		/// <summary>
+		/// Get the launch flags
+		/// </summary>
+		/// <param name="defaultFlags">The user defined flags in the start tab</param>
+		/// <returns>the complete flag string</returns>
+		/// <remarks>NOTE: in case of a custom assembly, default flags aren't available, and this routine should return ALL needed flags</remarks>
+		string GetLaunchFlags(string defaultFlags = "");
+
+		/// <summary>
+		/// Returns true if this server has custom settings to be entered
+		/// </summary>
+		bool HasCustomSettingsControl { get; }
+
+		/// <summary>
+		/// Custom settings that will be shown in the designated groupbox on the starter tab. e.g. for remote connection settings
+		/// </summary>
+		UserControl CustomSettingsControl { get; }
 
 		// ========================================== //
 		// Output handling

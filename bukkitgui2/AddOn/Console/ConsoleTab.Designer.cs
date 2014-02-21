@@ -28,127 +28,152 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.quickButtons1 = new Bukkitgui2.AddOn.Console.QuickButtons.QuickButtons();
-            this.performanceMonitor1 = new Bukkitgui2.Controls.PerformanceMonitor.PerformanceMonitor();
-            this.consoleInput1 = new Bukkitgui2.Controls.ConsoleInput.ConsoleInput();
-            this.MCCOut = new Bukkitgui2.Controls.MinecraftConsole.MinecraftConsole();
-            this.groupBox1.SuspendLayout();
-            this.splitContainer1.Panel2.SuspendLayout();
-            this.splitContainer1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            this.SuspendLayout();
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+			this.consoleInput1 = new Bukkitgui2.Controls.ConsoleInput.ConsoleInput();
+			this.MCCOut = new Bukkitgui2.Controls.MinecraftConsole.MinecraftConsole();
+			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.performanceMonitor1 = new Bukkitgui2.Controls.PerformanceMonitor.PerformanceMonitor();
+			this.groupBox3 = new System.Windows.Forms.GroupBox();
+			this.quickButtons1 = new Bukkitgui2.AddOn.Console.QuickButtons.QuickButtons();
+			this.sortableListView1 = new Bukkitgui2.Controls.SortableListView.SortableListView();
+			this.ColPlayers = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.groupBox1.SuspendLayout();
+			this.splitContainer1.Panel1.SuspendLayout();
+			this.splitContainer1.Panel2.SuspendLayout();
+			this.splitContainer1.SuspendLayout();
+			this.groupBox2.SuspendLayout();
+			this.groupBox3.SuspendLayout();
+			this.SuspendLayout();
+			// 
+			// groupBox1
+			// 
+			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.splitContainer1);
-            this.groupBox1.Location = new System.Drawing.Point(3, 3);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(794, 371);
-            this.groupBox1.TabIndex = 3;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Server management";
-            // 
-            // splitContainer1
-            // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(3, 16);
-            this.splitContainer1.Name = "splitContainer1";
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.Controls.Add(this.consoleInput1);
-            this.splitContainer1.Panel2.Controls.Add(this.MCCOut);
-            this.splitContainer1.Size = new System.Drawing.Size(788, 352);
-            this.splitContainer1.SplitterDistance = 203;
-            this.splitContainer1.TabIndex = 1;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox2.Controls.Add(this.performanceMonitor1);
-            this.groupBox2.Location = new System.Drawing.Point(170, 380);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(624, 117);
-            this.groupBox2.TabIndex = 4;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Performance";
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.groupBox3.Controls.Add(this.quickButtons1);
-            this.groupBox3.Location = new System.Drawing.Point(7, 380);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(157, 117);
-            this.groupBox3.TabIndex = 5;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Quick Actions";
-            // 
-            // quickButtons1
-            // 
-            this.quickButtons1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.quickButtons1.Location = new System.Drawing.Point(3, 16);
-            this.quickButtons1.Name = "quickButtons1";
-            this.quickButtons1.Size = new System.Drawing.Size(151, 98);
-            this.quickButtons1.TabIndex = 0;
-            // 
-            // performanceMonitor1
-            // 
-            this.performanceMonitor1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.performanceMonitor1.Location = new System.Drawing.Point(3, 16);
-            this.performanceMonitor1.Name = "performanceMonitor1";
-            this.performanceMonitor1.Size = new System.Drawing.Size(618, 98);
-            this.performanceMonitor1.TabIndex = 0;
-            // 
-            // consoleInput1
-            // 
-            this.consoleInput1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.consoleInput1.Location = new System.Drawing.Point(0, 332);
-            this.consoleInput1.Name = "consoleInput1";
-            this.consoleInput1.Size = new System.Drawing.Size(581, 20);
-            this.consoleInput1.TabIndex = 1;
-            // 
-            // MCCOut
-            // 
-            this.MCCOut.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+			this.groupBox1.Controls.Add(this.splitContainer1);
+			this.groupBox1.Location = new System.Drawing.Point(3, 3);
+			this.groupBox1.Name = "groupBox1";
+			this.groupBox1.Size = new System.Drawing.Size(794, 371);
+			this.groupBox1.TabIndex = 3;
+			this.groupBox1.TabStop = false;
+			this.groupBox1.Text = "Server management";
+			// 
+			// splitContainer1
+			// 
+			this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.splitContainer1.Location = new System.Drawing.Point(3, 16);
+			this.splitContainer1.Name = "splitContainer1";
+			// 
+			// splitContainer1.Panel1
+			// 
+			this.splitContainer1.Panel1.Controls.Add(this.sortableListView1);
+			// 
+			// splitContainer1.Panel2
+			// 
+			this.splitContainer1.Panel2.Controls.Add(this.consoleInput1);
+			this.splitContainer1.Panel2.Controls.Add(this.MCCOut);
+			this.splitContainer1.Size = new System.Drawing.Size(788, 352);
+			this.splitContainer1.SplitterDistance = 160;
+			this.splitContainer1.TabIndex = 1;
+			// 
+			// consoleInput1
+			// 
+			this.consoleInput1.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.consoleInput1.Location = new System.Drawing.Point(0, 332);
+			this.consoleInput1.Name = "consoleInput1";
+			this.consoleInput1.Size = new System.Drawing.Size(624, 20);
+			this.consoleInput1.TabIndex = 1;
+			// 
+			// MCCOut
+			// 
+			this.MCCOut.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.MCCOut.Location = new System.Drawing.Point(0, 0);
-            this.MCCOut.MessageColorInfo = System.Drawing.Color.Empty;
-            this.MCCOut.MessageColorPlayerAction = System.Drawing.Color.Empty;
-            this.MCCOut.MessageColorPlayerTag = System.Drawing.Color.Empty;
-            this.MCCOut.MessageColorPluginTag = System.Drawing.Color.Empty;
-            this.MCCOut.MessageColorSevere = System.Drawing.Color.Empty;
-            this.MCCOut.MessageColorUnknown = System.Drawing.Color.Empty;
-            this.MCCOut.MessageColorWarning = System.Drawing.Color.Empty;
-            this.MCCOut.Name = "MCCOut";
-            this.MCCOut.Size = new System.Drawing.Size(581, 326);
-            this.MCCOut.TabIndex = 0;
-            this.MCCOut.Text = "";
-            // 
-            // ConsoleTab
-            // 
-            this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
-            this.Name = "ConsoleTab";
-            this.Size = new System.Drawing.Size(800, 500);
-            this.groupBox1.ResumeLayout(false);
-            this.splitContainer1.Panel2.ResumeLayout(false);
-            this.splitContainer1.Panel2.PerformLayout();
-            this.splitContainer1.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
-            this.ResumeLayout(false);
+			this.MCCOut.Location = new System.Drawing.Point(0, 0);
+			this.MCCOut.MessageColorInfo = System.Drawing.Color.Empty;
+			this.MCCOut.MessageColorPlayerAction = System.Drawing.Color.Empty;
+			this.MCCOut.MessageColorPlayerTag = System.Drawing.Color.Empty;
+			this.MCCOut.MessageColorPluginTag = System.Drawing.Color.Empty;
+			this.MCCOut.MessageColorSevere = System.Drawing.Color.Empty;
+			this.MCCOut.MessageColorUnknown = System.Drawing.Color.Empty;
+			this.MCCOut.MessageColorWarning = System.Drawing.Color.Empty;
+			this.MCCOut.Name = "MCCOut";
+			this.MCCOut.Size = new System.Drawing.Size(624, 326);
+			this.MCCOut.TabIndex = 0;
+			this.MCCOut.Text = "";
+			// 
+			// groupBox2
+			// 
+			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox2.Controls.Add(this.performanceMonitor1);
+			this.groupBox2.Location = new System.Drawing.Point(170, 380);
+			this.groupBox2.Name = "groupBox2";
+			this.groupBox2.Size = new System.Drawing.Size(624, 117);
+			this.groupBox2.TabIndex = 4;
+			this.groupBox2.TabStop = false;
+			this.groupBox2.Text = "Performance";
+			// 
+			// performanceMonitor1
+			// 
+			this.performanceMonitor1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.performanceMonitor1.Location = new System.Drawing.Point(3, 16);
+			this.performanceMonitor1.Name = "performanceMonitor1";
+			this.performanceMonitor1.Size = new System.Drawing.Size(618, 98);
+			this.performanceMonitor1.TabIndex = 0;
+			// 
+			// groupBox3
+			// 
+			this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.groupBox3.Controls.Add(this.quickButtons1);
+			this.groupBox3.Location = new System.Drawing.Point(7, 380);
+			this.groupBox3.Name = "groupBox3";
+			this.groupBox3.Size = new System.Drawing.Size(157, 117);
+			this.groupBox3.TabIndex = 5;
+			this.groupBox3.TabStop = false;
+			this.groupBox3.Text = "Quick Actions";
+			// 
+			// quickButtons1
+			// 
+			this.quickButtons1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.quickButtons1.Location = new System.Drawing.Point(3, 16);
+			this.quickButtons1.Name = "quickButtons1";
+			this.quickButtons1.Size = new System.Drawing.Size(151, 98);
+			this.quickButtons1.TabIndex = 0;
+			// 
+			// sortableListView1
+			// 
+			this.sortableListView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.ColPlayers});
+			this.sortableListView1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.sortableListView1.Location = new System.Drawing.Point(0, 0);
+			this.sortableListView1.Name = "sortableListView1";
+			this.sortableListView1.Size = new System.Drawing.Size(160, 352);
+			this.sortableListView1.TabIndex = 0;
+			this.sortableListView1.UseCompatibleStateImageBehavior = false;
+			this.sortableListView1.View = System.Windows.Forms.View.Details;
+			// 
+			// ColPlayers
+			// 
+			this.ColPlayers.Text = "Players";
+			this.ColPlayers.Width = 146;
+			// 
+			// ConsoleTab
+			// 
+			this.Controls.Add(this.groupBox3);
+			this.Controls.Add(this.groupBox2);
+			this.Controls.Add(this.groupBox1);
+			this.Name = "ConsoleTab";
+			this.Size = new System.Drawing.Size(800, 500);
+			this.groupBox1.ResumeLayout(false);
+			this.splitContainer1.Panel1.ResumeLayout(false);
+			this.splitContainer1.Panel2.ResumeLayout(false);
+			this.splitContainer1.Panel2.PerformLayout();
+			this.splitContainer1.ResumeLayout(false);
+			this.groupBox2.ResumeLayout(false);
+			this.groupBox3.ResumeLayout(false);
+			this.ResumeLayout(false);
 
         }
 
@@ -162,6 +187,8 @@
         private Controls.ConsoleInput.ConsoleInput consoleInput1;
         private QuickButtons.QuickButtons quickButtons1;
         private Controls.PerformanceMonitor.PerformanceMonitor performanceMonitor1;
+		private Controls.SortableListView.SortableListView sortableListView1;
+		private System.Windows.Forms.ColumnHeader ColPlayers;
 
      }
 }

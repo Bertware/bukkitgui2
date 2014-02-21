@@ -8,6 +8,10 @@ using Bukkitgui2.MinecraftServers;
 
 namespace Bukkitgui2.MinecraftInterop.ProcessHandler
 {
+	/// <summary>
+	/// The server handler for a local server. As soon as the StartServer() routine is called, this class will take over and run the server + send output.
+	/// Events will trigger all further required actions
+	/// </summary>
 	class LocalProcessHandler : IProcessHandler
 	{
 		public Process ServerProcess { get; private set; }
@@ -24,12 +28,13 @@ namespace Bukkitgui2.MinecraftInterop.ProcessHandler
 		private Thread _thdReadStdOut;
 		private Thread _thdReadStdErr;
 
-		public LocalProcessHandler(Thread thdReadStdErr)
-		{
-			_thdReadStdErr = thdReadStdErr;
-		}
-
-
+		/// <summary>
+		/// Start a process, start the threads to read the output and send the output to the correct outputhandler
+		/// </summary>
+		/// <param name="executable">The executable to run</param>
+		/// <param name="parameters">The parameters for the executable</param>
+		/// <param name="server">The server that is being ran</param>
+		/// <returns></returns>
 		public Boolean StartServer(string executable, string parameters, IMinecraftServer server )
 		{
 			if (string.IsNullOrEmpty(executable)) return false;

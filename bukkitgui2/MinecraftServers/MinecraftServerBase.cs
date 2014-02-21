@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Drawing;
+using System.Reflection;
+using System.Windows.Forms;
 using Bukkitgui2.MinecraftInterop.OutputHandler;
 using Bukkitgui2.MinecraftInterop.OutputHandler.PlayerActions;
 
 namespace Bukkitgui2.MinecraftServers
 {
-    using System.Reflection;
-
-    /// <summary>
-	/// The base for a minecraft server. This should contain all parsing code for a vanilla server.
+	/// <summary>
+	///     The base for a minecraft server. This should contain all parsing code for a vanilla server.
 	/// </summary>
 	internal class MinecraftServerBase : IMinecraftServer
 	{
@@ -19,7 +19,7 @@ namespace Bukkitgui2.MinecraftServers
 
 		public virtual string Site
 		{
-			get { return ""; }
+			get { return "http://www.minecraft.net"; }
 		}
 
 		public virtual Image Logo
@@ -35,6 +35,40 @@ namespace Bukkitgui2.MinecraftServers
 		public virtual bool IsLocal
 		{
 			get { return true; }
+		}
+
+		public void PrepareLaunch()
+		{
+		}
+
+		public bool HasCustomAssembly
+		{
+			get { return false; }
+		}
+
+		public Assembly CustomAssembly
+		{
+			get { return null; }
+		}
+
+		public string GetLaunchParameters(string defaultParameters = "")
+		{
+			return defaultParameters;
+		}
+
+		public string GetLaunchFlags(string defaultFlags = "")
+		{
+			return defaultFlags;
+		}
+
+		public bool HasCustomSettingsControl
+		{
+			get { return false; }
+		}
+
+		public UserControl CustomSettingsControl
+		{
+			get { return null; }
 		}
 
 		public virtual MessageParseResult ParseOutput(string text)

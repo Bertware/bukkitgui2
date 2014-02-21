@@ -41,7 +41,7 @@ namespace Bukkitgui2.AddOn.Backup
 		/// </summary>
 		void IAddon.Initialize()
 		{
-			_tab = new BackupTab {Text = this.Name};
+			_tab = new BackupTab { Text = this.Name, ParentAddon = this};
 		}
 
 		/// <summary>

@@ -15,5 +15,7 @@ namespace Bukkitgui2.AddOn.Backup
 		{
 			InitializeComponent();
 		}
+
+		public IAddon ParentAddon { get; set; }
 	}
 }
