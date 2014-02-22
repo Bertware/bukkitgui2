@@ -23,7 +23,8 @@ namespace Bukkitgui2.MinecraftInterop.ProcessHandler
 		/// <param name="executable">The executable file to run</param>
 		/// <param name="parameters">The parameters for the executable file</param>
 		/// <param name="server">The server object</param>
-		Boolean StartServer(string executable, string parameters, IMinecraftServer server);
+		/// <param name="serverDir">The directory where the server will store its files. Optional.</param>
+		Boolean StartServer(string executable, string parameters, IMinecraftServer server,string serverDir="" );
 
 		void StopServer();
 

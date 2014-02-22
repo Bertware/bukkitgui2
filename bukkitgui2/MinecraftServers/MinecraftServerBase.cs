@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Reflection;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Bukkitgui2.MinecraftInterop.OutputHandler;
 using Bukkitgui2.MinecraftInterop.OutputHandler.PlayerActions;
@@ -12,6 +13,17 @@ namespace Bukkitgui2.MinecraftServers
 	/// </summary>
 	internal class MinecraftServerBase : IMinecraftServer
 	{
+		private const string Outputprefix172 = "((.*)thread(.*)/|)";
+
+		private const string InfoTagRegex = "^\\[" + Outputprefix172 + "info\\]";
+		private const string WarningTagRegex = "^\\[" + Outputprefix172 + "(warning|warn)\\]";
+		private const string SevereTagRegex = "^\\[" + Outputprefix172 + "(severe|error)\\]";
+
+		private const string IpRegex = "\\[\\d{1,3}:\\d{1,3}:\\d{1,3}:\\d{1,3}(:\\d{2,5}|)\\]";
+		private const string PlayerRegex = "\\w{2,16}";
+		private const string SpaceRegex = "\\{0,1}";
+		private const string ForcedSpaceRegex = "\\s";
+
 		public virtual string Name
 		{
 			get { return "Default Minecraft Server"; }
@@ -73,12 +85,52 @@ namespace Bukkitgui2.MinecraftServers
 
 		public virtual MessageParseResult ParseOutput(string text)
 		{
-			throw new NotImplementedException();
+			string originalText = text;
+			MessageType type = ParseMessageType(text);
+
+			return new MessageParseResult(originalText, text, type);
 		}
 
 		public virtual MessageType ParseMessageType(string text)
 		{
-			throw new NotImplementedException();
+			text = RemoveTimeStamp(text); // We need to know the type, so we'll continue without the timestamp
+
+			text = FilterText(text);
+
+			MessageType type = MessageType.Unknown;
+
+
+			//[WARNING]...
+			if (Regex.IsMatch(text, WarningTagRegex))
+			{
+				type = MessageType.Warning;
+			}
+				//[SEVERE] ...
+			else if (Regex.IsMatch(text, SevereTagRegex))
+			{
+				type = MessageType.Severe;
+			}
+				//[INFO] Bertware[/127.0.0.1:58189] logged in with entity id 27 at ([world] -1001.0479985318618, 2.0, 1409.300000011921)
+				//[INFO] Bertware[/127.0.0.1:58260] logged in with entity id 0 at (-1001.0479985318618, 2.0, 1409.300000011921)
+			else if (Regex.IsMatch(text,
+				InfoTagRegex + SpaceRegex + PlayerRegex + IpRegex + ForcedSpaceRegex + "logged in with entity id"))
+			{
+			}
+
+			return type;
+		}
+
+		public virtual string RemoveTimeStamp(string text)
+		{
+			return text;
+		}
+
+		public virtual string FilterText(string text)
+		{
+			text = Regex.Replace(text, "\\[minecraft(-server|)\\]", "", RegexOptions.IgnoreCase);
+				// remove [minecraft] or [minecraft-server] tags, for better parsing
+
+			return text;
 		}
 
 		public virtual PlayerActionJoin ParsePlayerJoin(string text)
@@ -102,16 +154,6 @@ namespace Bukkitgui2.MinecraftServers
 		}
 
 		public virtual PlayerActionIpBan ParsePlayerActionIpBan(string text)
-		{
-			throw new NotImplementedException();
-		}
-
-		public virtual string RemoveTimeStamp(string text)
-		{
-			throw new NotImplementedException();
-		}
-
-		public virtual string FilterText(string text)
 		{
 			throw new NotImplementedException();
 		}

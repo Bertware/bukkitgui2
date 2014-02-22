@@ -106,6 +106,19 @@ namespace Bukkitgui2.MinecraftServers
 		/// <summary>
 		///     Parse a player join action string into an object
 		/// </summary>
+		/// <param name="text">The string to alter</param>
+		/// <returns>The string without the timestamp</returns>
+		string RemoveTimeStamp(string text);
+
+		/// <summary>
+		///     Filter the text from faulty characters etc
+		/// </summary>
+		/// <param name="text">The text to filter</param>
+		/// <returns>The filtered text</returns>
+		string FilterText(string text);
+		/// <summary>
+		///     Parse a player join action string into an object
+		/// </summary>
 		/// <param name="text">The output string to parse</param>
 		/// <returns>The player action object for this action</returns>
 		PlayerActionJoin ParsePlayerJoin(string text);
@@ -138,19 +151,6 @@ namespace Bukkitgui2.MinecraftServers
 		/// <returns>The player action object for this action</returns>
 		PlayerActionIpBan ParsePlayerActionIpBan(string text);
 
-		/// <summary>
-		///     Parse a player join action string into an object
-		/// </summary>
-		/// <param name="text">The string to alter</param>
-		/// <returns>The string without the timestamp</returns>
-		string RemoveTimeStamp(string text);
-
-		/// <summary>
-		///     Filter the text from faulty characters etc
-		/// </summary>
-		/// <param name="text">The text to filter</param>
-		/// <returns>The filtered text</returns>
-		string FilterText(string text);
 
 		// ========================================== //
 		// Download & Update

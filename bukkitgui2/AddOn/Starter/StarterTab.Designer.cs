@@ -163,6 +163,11 @@
 			// 
 			this.NumMaxRam.Location = new System.Drawing.Point(152, 160);
 			this.NumMaxRam.Margin = new System.Windows.Forms.Padding(3, 12, 3, 12);
+			this.NumMaxRam.Maximum = new decimal(new int[] {
+            8192,
+            0,
+            0,
+            0});
 			this.NumMaxRam.Name = "NumMaxRam";
 			this.NumMaxRam.Size = new System.Drawing.Size(73, 20);
 			this.NumMaxRam.TabIndex = 10;
@@ -189,6 +194,11 @@
 			// 
 			this.NumMinRam.Location = new System.Drawing.Point(152, 109);
 			this.NumMinRam.Margin = new System.Windows.Forms.Padding(3, 12, 3, 12);
+			this.NumMinRam.Maximum = new decimal(new int[] {
+            8192,
+            0,
+            0,
+            0});
 			this.NumMinRam.Name = "NumMinRam";
 			this.NumMinRam.Size = new System.Drawing.Size(73, 20);
 			this.NumMinRam.TabIndex = 7;

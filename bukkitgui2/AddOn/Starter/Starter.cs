@@ -73,8 +73,8 @@ namespace Bukkitgui2.AddOn.Starter
 			server.PrepareLaunch();
 			string parameters = server.GetLaunchParameters(defaultParameters);
 			string flags = server.GetLaunchFlags(defaultFlags);
-			string argument = parameters + jarFile + flags;
-			string executable = GetJavaExecuteable(javaVersion);
+			string argument = parameters + " -xms " + minMem + " -xmx" + maxMem + " -jar \"" + jarFile + "\"" + flags;
+			string executable = JavaApi.GetJavaPath(javaVersion);
 
 			IProcessHandler processHandler = new LocalProcessHandler();
 			processHandler.StartServer(executable, argument, server);
@@ -90,11 +90,7 @@ namespace Bukkitgui2.AddOn.Starter
 		/// <param name="customSettingsControl">The custom settings control that is filled out</param>
 		public void LaunchServer(IMinecraftServer server, Assembly customAssembly, UserControl customSettingsControl)
 		{
-		}
 
-		public string GetJavaExecuteable(JavaVersion jreVersion)
-		{
-			return "";
 		}
 	}
 

@@ -4,6 +4,7 @@ using System.IO;
 using System.Text;
 using System.Threading;
 using Bukkitgui2.Core;
+using Bukkitgui2.Core.Logging;
 using Bukkitgui2.MinecraftServers;
 
 namespace Bukkitgui2.MinecraftInterop.ProcessHandler
@@ -14,12 +15,31 @@ namespace Bukkitgui2.MinecraftInterop.ProcessHandler
 	/// </summary>
 	class LocalProcessHandler : IProcessHandler
 	{
+		private readonly ILogger _logger = Share.Logger;
+		
 		public Process ServerProcess { get; private set; }
 		public IMinecraftServer Server { get; private set; }
 
-
 		public event EventHandler ServerStarting;
+		protected virtual void RaiseServerStarting(EventArgs e)
+		{
+			EventHandler handler = ServerStarting;
+			if (handler != null)
+			{
+				handler(this, e);
+			}
+		}
+
 		public event EventHandler ServerStarted;
+		protected virtual void RaiseServerStarted(EventArgs e)
+		{
+			EventHandler handler = ServerStarted;
+			if (handler != null)
+			{
+				handler(this, e);
+			}
+		}
+
 		public event EventHandler ServerStopping;
 		public event EventHandler ServerStopped;
 		public event EventHandler UnexpectedServerStop;
@@ -35,25 +55,28 @@ namespace Bukkitgui2.MinecraftInterop.ProcessHandler
 		/// <param name="parameters">The parameters for the executable</param>
 		/// <param name="server">The server that is being ran</param>
 		/// <returns></returns>
-		public Boolean StartServer(string executable, string parameters, IMinecraftServer server )
+		public Boolean StartServer(string executable, string parameters, IMinecraftServer server, string serverDir="" )
 		{
 			if (string.IsNullOrEmpty(executable)) return false;
 
 			Server = server;
+			FileInfo exeFileInfo = new FileInfo(executable);
 
-			ServerStarting(this, EventArgs.Empty);
+			RaiseServerStarting(new EventArgs());
 
-			FileInfo fileInfo = new FileInfo(executable);
-
-			string serverDir = Share.AssemblyFullName;
-			if (fileInfo.Directory != null)	serverDir = fileInfo.Directory.FullName;
+			if (string.IsNullOrEmpty(serverDir))
+			{
+				serverDir = Environment.CurrentDirectory;
+				FileInfo guiFileInfo = new FileInfo(Share.AssemblyFullName);
+				if (guiFileInfo.Directory != null)	serverDir = guiFileInfo.Directory.FullName;
+			}
 
 			ServerProcess = new Process
 			{
 				StartInfo =
 					new ProcessStartInfo
 					{
-						FileName = fileInfo.FullName,
+						FileName = exeFileInfo.FullName,
 						Arguments = parameters,
 						CreateNoWindow = true,
 						WindowStyle = ProcessWindowStyle.Hidden,
@@ -67,20 +90,22 @@ namespace Bukkitgui2.MinecraftInterop.ProcessHandler
 						RedirectStandardError = true
 					}
 			};
+
+			ServerProcess.Start();
 			
 			StartThreads();
 
-			ServerStarted(this, EventArgs.Empty);
+			RaiseServerStarted(new EventArgs());
 			return true;
 		}
 
 		public void StopServer()
 		{
-			ServerStopping(this, EventArgs.Empty);
+			ServerStopping(this, new EventArgs());
 		
 			StopThreads();
 
-			ServerStopped(this, EventArgs.Empty);
+			ServerStopped(this, new EventArgs());
 		}
 
 		private void StartThreads()
@@ -105,7 +130,10 @@ namespace Bukkitgui2.MinecraftInterop.ProcessHandler
 				while (_runThreads)
 				{
 					string output = streamReader.ReadLine();
-					if (!string.IsNullOrEmpty(output)) OutputHandler.MinecraftOutputHandler.HandleOutput(Server,output);
+					if (string.IsNullOrEmpty(output)) continue;
+
+					_logger.Log(LogLevel.Debug, "LocalProcessHandler", "StdOut output: " + output);
+					OutputHandler.MinecraftOutputHandler.HandleOutput(Server,output);
 				}
 			}
 		}
@@ -117,7 +145,10 @@ namespace Bukkitgui2.MinecraftInterop.ProcessHandler
 				while (_runThreads)
 				{
 					string output = streamReader.ReadLine();
-					if (!string.IsNullOrEmpty(output)) OutputHandler.MinecraftOutputHandler.HandleOutput(Server, output);
+					if (string.IsNullOrEmpty(output)) continue;
+
+					_logger.Log(LogLevel.Debug,"LocalProcessHandler","StdErr output: " + output);
+					OutputHandler.MinecraftOutputHandler.HandleOutput(Server, output);
 				}
 			}
 		}

@@ -45,6 +45,12 @@ namespace Bukkitgui2.AddOn.Starter
         /// </summary>
         private void LoadServer()
         {
+			CBJavaVersion.Items.Clear();
+	        if (JavaApi.IsInstalled(JavaVersion.Jre6X32)) CBJavaVersion.Items.Add("Java 6 - 32 bit");
+			if (JavaApi.IsInstalled(JavaVersion.Jre6X64)) CBJavaVersion.Items.Add("Java 6 - 64 bit");
+			if (JavaApi.IsInstalled(JavaVersion.Jre7X32)) CBJavaVersion.Items.Add("Java 7 - 32 bit");
+			if (JavaApi.IsInstalled(JavaVersion.Jre7X64)) CBJavaVersion.Items.Add("Java 7 - 64 bit");
+	        CBJavaVersion.SelectedIndex = 0;
 
 	        IMinecraftServer server = GetSelectedServer();
 
@@ -132,7 +138,7 @@ namespace Bukkitgui2.AddOn.Starter
 
 		    if (!server.HasCustomAssembly)
 		    {
-				starter.LaunchServer(server,JavaVersion.Jre6X32, TxtJarFile.Text,Convert.ToUInt32(NumMinRam.Value),Convert.ToUInt32(NumMaxRam.Value),TxtOptArg.Text,TxtOptFlag.Text);
+				starter.LaunchServer(server,JavaVersion.Jre7X32, TxtJarFile.Text,Convert.ToUInt32(NumMinRam.Value),Convert.ToUInt32(NumMaxRam.Value),TxtOptArg.Text,TxtOptFlag.Text);
 		    }
 		    else
 		    {

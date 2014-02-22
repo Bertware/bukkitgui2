@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Bukkitgui2.MinecraftServers;
 
 namespace Bukkitgui2.MinecraftInterop.OutputHandler
@@ -9,53 +10,118 @@ namespace Bukkitgui2.MinecraftInterop.OutputHandler
 	internal static class MinecraftOutputHandler
 	{
 
-		public delegate void MessageReceivedEventHandler(string text);
+		public delegate void OutputReceivedEventHandler(string text);
 		/// <summary>
 		/// Raised when any output is received
 		/// </summary>
-		public static event MessageReceivedEventHandler MessageReceived;
+		public static event OutputReceivedEventHandler OutputReceived;
+		private static void RaiseOutputReceivedEvent(string text)
+		{
+			OutputReceivedEventHandler handler = OutputReceived;
+			if (handler != null)
+			{
+				handler(text);
+			}
+		}
+
 
 		public delegate void MessageParsedEventHandler(string text, MessageParseResult messageParseResult);
 		/// <summary>
 		/// Raised when any output is parsed
 		/// </summary>
 		public static event MessageParsedEventHandler MessageParsed;
+		private static void RaiseMessageParsedEvent(string text, MessageParseResult messageParseResult)
+		{
+			MessageParsedEventHandler handler = MessageParsed;
+			if (handler != null)
+			{
+				handler(text,messageParseResult);
+			}
+		}
 
-		public delegate void InfoMessageReceivedEventHandler(string text, MessageParseResult messageParseResult);
+		public delegate void MessageReceivedEventHandler(string text, MessageParseResult messageParseResult);
 		/// <summary>
 		/// Raised when an info message is received
 		/// </summary>
-		public static event InfoMessageReceivedEventHandler InfoMessageReceived;
+		public static event MessageReceivedEventHandler InfoMessageReceived;
+		private static void RaiseInfoMessageReceivedEvent(string text, MessageParseResult messageParseResult)
+		{
+			MessageReceivedEventHandler handler = InfoMessageReceived;
+			if (handler != null)
+			{
+				handler(text,messageParseResult);
+			}
+		}
 
-		public delegate void WarningMessageReceivedEventHandler(string text, MessageParseResult messageParseResult);
+		
 		/// <summary>
 		/// Raised when a warning message is received
 		/// </summary>
-		public static event WarningMessageReceivedEventHandler WarningMessageReceived;
+		public static event MessageReceivedEventHandler WarningMessageReceived;
+		private static void RaiseWarningMessageReceivedEvent(string text, MessageParseResult messageParseResult)
+		{
+			MessageReceivedEventHandler handler = WarningMessageReceived;
+			if (handler != null)
+			{
+				handler(text, messageParseResult);
+			}
+		}
 
-		public delegate void SevereMessageReceivedEventHandler(string text, MessageParseResult messageParseResult);
+		
 		/// <summary>
 		/// Raised when a severe message is received
 		/// </summary>
-		public static event SevereMessageReceivedEventHandler SevereMessageReceived;
+		public static event MessageReceivedEventHandler SevereMessageReceived;
+		private static void RaiseSevereMessageReceivedEvent(string text, MessageParseResult messageParseResult)
+		{
+			MessageReceivedEventHandler handler = SevereMessageReceived;
+			if (handler != null)
+			{
+				handler(text, messageParseResult);
+			}
+		}
 
-		public delegate void JavaStatusMessageReceivedEventHandler(string text, MessageParseResult messageParseResult);
+		
 		/// <summary>
 		/// Raised when a Java status/error message is received
 		/// </summary>
-		public static event JavaStatusMessageReceivedEventHandler JavaStatusMessageReceived;
+		public static event MessageReceivedEventHandler JavaStatusMessageReceived;
+		private static void RaiseJavaStatusMessageReceivedEvent(string text, MessageParseResult messageParseResult)
+		{
+			MessageReceivedEventHandler handler = JavaStatusMessageReceived;
+			if (handler != null)
+			{
+				handler(text, messageParseResult);
+			}
+		}
 
-		public delegate void JavaStackStraceMessageReceivedEventHandler(string text, MessageParseResult messageParseResult);
+		
 		/// <summary>
 		/// Raised when a Java stacktrace message is received
 		/// </summary>
-		public static event JavaStackStraceMessageReceivedEventHandler JavaStackStraceMessageReceived;
+		public static event MessageReceivedEventHandler JavaStackStraceMessageReceived;
+		private static void RaiseJavaStackStraceMessageReceivedEvent(string text, MessageParseResult messageParseResult)
+		{
+			MessageReceivedEventHandler handler = JavaStackStraceMessageReceived;
+			if (handler != null)
+			{
+				handler(text, messageParseResult);
+			}
+		}
 
-		public delegate void UnknownMessageReceivedEventHandler(string text, MessageParseResult messageParseResult);
+		
 		/// <summary>
 		/// Raised when an unknown message is received
 		/// </summary>
-		public static event UnknownMessageReceivedEventHandler UnknownMessageReceived;
+		public static event MessageReceivedEventHandler UnknownMessageReceived;
+		private static void RaiseUnknownMessageReceivedEvent(string text, MessageParseResult messageParseResult)
+		{
+			MessageReceivedEventHandler handler = UnknownMessageReceived;
+			if (handler != null)
+			{
+				handler(text, messageParseResult);
+			}
+		}
 
 		public delegate void PlayerJoinEventHandler(
 			string text, PlayerActions.IPlayerAction playerAction, MessageParseResult messageParseResult);
@@ -95,7 +161,7 @@ namespace Bukkitgui2.MinecraftInterop.OutputHandler
 		/// <param name="server">the server that should handle the output</param>
 		public static void HandleOutput(IMinecraftServer server, string text)
 		{
-			MessageReceived(text);
+			RaiseOutputReceivedEvent(text);
 
 			MessageParseResult result = server.ParseOutput(text);
 
@@ -104,22 +170,22 @@ namespace Bukkitgui2.MinecraftInterop.OutputHandler
 			switch (result.Type)
 			{
 				case MessageType.Info:
-					InfoMessageReceived(text, result);
+					RaiseInfoMessageReceivedEvent(text, result);
 					break;
 
 				case MessageType.Warning:
-					WarningMessageReceived(text, result);
+					RaiseWarningMessageReceivedEvent(text, result);
 					break;
 
 				case MessageType.Severe:
-					SevereMessageReceived(text, result);
+					RaiseSevereMessageReceivedEvent(text, result);
 					break;
 
 				case MessageType.JavaStackTrace:
-					JavaStackStraceMessageReceived(text, result);
+					RaiseJavaStackStraceMessageReceivedEvent(text, result);
 					break;
 				case MessageType.JavaStatus:
-					JavaStatusMessageReceived(text, result);
+					RaiseJavaStatusMessageReceivedEvent(text, result);
 					break;
 				case MessageType.PlayerJoin:
 					PlayerJoin(text, result.Action, result);
@@ -140,7 +206,7 @@ namespace Bukkitgui2.MinecraftInterop.OutputHandler
 					PlayerListReceived(text, result, new Dictionary<string, string>());
 					break;
 				default:
-					UnknownMessageReceived(text, result);
+					RaiseUnknownMessageReceivedEvent(text, result);
 					break;
 			}
 		}
