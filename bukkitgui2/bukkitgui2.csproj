@@ -34,6 +34,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Design" />
@@ -196,6 +197,7 @@
     <Compile Include="Core\Logging\FileLogger.cs" />
     <Compile Include="Core\Logging\ILogger.cs" />
     <Compile Include="Core\Share.cs" />
+    <Compile Include="Core\Util\Performance\MemoryInfo.cs" />
     <Compile Include="Core\Util\Web\FileDownloader.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -310,7 +312,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Core\Filesystem\FTP\" />
-    <Folder Include="Core\JavaInterop\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\Dll\Jayrock.Json.dll" />

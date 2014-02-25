@@ -48,18 +48,21 @@ namespace Bukkitgui2.MinecraftInterop.ProcessHandler
 		private Thread _thdReadStdOut;
 		private Thread _thdReadStdErr;
 
-		/// <summary>
-		/// Start a process, start the threads to read the output and send the output to the correct outputhandler
-		/// </summary>
-		/// <param name="executable">The executable to run</param>
-		/// <param name="parameters">The parameters for the executable</param>
-		/// <param name="server">The server that is being ran</param>
-		/// <returns></returns>
-		public Boolean StartServer(string executable, string parameters, IMinecraftServer server, string serverDir="" )
+	    /// <summary>
+	    /// Start a process, start the threads to read the output and send the output to the correct outputhandler
+	    /// </summary>
+	    /// <param name="executable">The executable to run</param>
+	    /// <param name="parameters">The parameters for the executable</param>
+	    /// <param name="server">The server that is being ran</param>
+	    /// <param name="serverDir">The directory that should be used as root for the minecraft server</param>
+	    /// <returns></returns>
+	    public Boolean StartServer(string executable, string parameters, IMinecraftServer server, string serverDir="" )
 		{
 			if (string.IsNullOrEmpty(executable)) return false;
 
 			Server = server;
+		    ProcessHandlerState.CurrentServer = server;
+
 			FileInfo exeFileInfo = new FileInfo(executable);
 
 			RaiseServerStarting(new EventArgs());

@@ -2,7 +2,9 @@
 
 namespace Bukkitgui2.Core
 {
-	internal static class Share
+    using System.IO;
+
+    internal static class Share
 	{
 		public static Locale.ILocale Locale = null;
 		public static Configuration.IConfig Config = null;
@@ -14,6 +16,7 @@ namespace Bukkitgui2.Core
 		public readonly static string AssemblyName = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
 		public readonly static Version AssemblyVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
 		public readonly static string AssemblyFullName = System.Reflection.Assembly.GetExecutingAssembly().GetName().FullName;
+        public static readonly string AssemblyLocation = new FileInfo(AssemblyFullName).DirectoryName;
 
 		public static void Initialize()
 		{

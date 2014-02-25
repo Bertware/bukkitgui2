@@ -8,7 +8,7 @@ namespace Bukkitgui2.UI
     {
 		private const string CfgIdent = "mainform";
 
-		private readonly IConfig _cfg;
+		private readonly IConfig cfg;
 		private readonly ILogger _logger;
 
         public MainForm()
@@ -21,7 +21,7 @@ namespace Bukkitgui2.UI
             var splash = new SplashScreen(); // Create splashscreen
             splash.ShowDialog(); // Call ShowDialog(). This will show the splashscreen on foreground until it closes.
 
-			_cfg = Core.Share.Config;
+			cfg = Core.Share.Config;
 			_logger = Core.Share.Logger;
 
             // Start loading everything to the UI
@@ -53,7 +53,7 @@ namespace Bukkitgui2.UI
 			i++;
 			//}
 
-			if (_cfg.ReadInt(CfgIdent,"show_players",1) == 1)
+			if (cfg.ReadInt(CfgIdent,"show_players",1) == 1)
 			{
 				this._addons[i] = new AddOn.Playerlist.PlayerList();
 				i++;
@@ -66,37 +66,37 @@ namespace Bukkitgui2.UI
 				i++;
 			//}
 
-			if (_cfg.ReadInt(CfgIdent, "show_tasker", 1) == 1)
+			if (cfg.ReadInt(CfgIdent, "show_tasker", 1) == 1)
 			{
 				this._addons[i] = new AddOn.Tasker.Tasker();
 				i++;
 			}
 
-			if (_cfg.ReadInt(CfgIdent, "show_plugins", 1) == 1)
+			if (cfg.ReadInt(CfgIdent, "show_plugins", 1) == 1)
 			{
 				this._addons[i] = new AddOn.Plugins.Plugins();
 				i++;
 			}
 
-			if (_cfg.ReadInt(CfgIdent, "show_permissions", 1) == 1)
+			if (cfg.ReadInt(CfgIdent, "show_permissions", 1) == 1)
 			{
 				this._addons[i] = new AddOn.Permissions.Permissions();
 				i++;
 			}
 
-			if (_cfg.ReadInt(CfgIdent, "show_editor", 1) == 1)
+			if (cfg.ReadInt(CfgIdent, "show_editor", 1) == 1)
 			{
 				this._addons[i] = new AddOn.Editor.Editor();
 				i++;
 			}
 
-			if (_cfg.ReadInt(CfgIdent, "show_backup", 1) == 1)
+			if (cfg.ReadInt(CfgIdent, "show_backup", 1) == 1)
 			{
 				this._addons[i] = new AddOn.Backup.Backup();
 				i++;
 			}
 
-			if (_cfg.ReadInt(CfgIdent, "show_forwarder", 1) == 1)
+			if (cfg.ReadInt(CfgIdent, "show_forwarder", 1) == 1)
 			{
 				this._addons[i] = new AddOn.Forwarder.Forwarder();
 				i++;
