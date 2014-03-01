@@ -86,8 +86,8 @@ namespace Bukkitgui2.MinecraftInterop.ProcessHandler
 						ErrorDialog = false,
 						UseShellExecute = false,
 						WorkingDirectory = serverDir ,
-						StandardErrorEncoding = Encoding.UTF8,
-						StandardOutputEncoding = Encoding.UTF8,
+						StandardErrorEncoding = Encoding.Unicode,
+						StandardOutputEncoding = Encoding.Unicode,
 						RedirectStandardInput = true,
 						RedirectStandardOutput = true,
 						RedirectStandardError = true

@@ -105,16 +105,17 @@ namespace Bukkitgui2.MinecraftServers
 			{
 				type = MessageType.Warning;
 			}
-				//[SEVERE] ...
+			//[SEVERE] ...
 			else if (Regex.IsMatch(text, SevereTagRegex))
 			{
 				type = MessageType.Severe;
 			}
-				//[INFO] Bertware[/127.0.0.1:58189] logged in with entity id 27 at ([world] -1001.0479985318618, 2.0, 1409.300000011921)
-				//[INFO] Bertware[/127.0.0.1:58260] logged in with entity id 0 at (-1001.0479985318618, 2.0, 1409.300000011921)
+			//[INFO] Bertware[/127.0.0.1:58189] logged in with entity id 27 at ([world] -1001.0479985318618, 2.0, 1409.300000011921)
+			//[INFO] Bertware[/127.0.0.1:58260] logged in with entity id 0 at (-1001.0479985318618, 2.0, 1409.300000011921)
 			else if (Regex.IsMatch(text,
 				InfoTagRegex + SpaceRegex + PlayerRegex + IpRegex + ForcedSpaceRegex + "logged in with entity id"))
 			{
+				type = MessageType.PlayerJoin;
 			}
 
 			return type;
@@ -135,27 +136,27 @@ namespace Bukkitgui2.MinecraftServers
 
 		public virtual PlayerActionJoin ParsePlayerJoin(string text)
 		{
-			throw new NotImplementedException();
+			return new PlayerActionJoin();
 		}
 
 		public virtual PlayerActionLeave ParsePlayerLeave(string text)
 		{
-			throw new NotImplementedException();
+			return new PlayerActionLeave();
 		}
 
 		public virtual PlayerActionKick ParsePlayerActionKick(string text)
 		{
-			throw new NotImplementedException();
+			return new PlayerActionKick();
 		}
 
 		public virtual PlayerActionBan ParsePlayerActionBan(string text)
 		{
-			throw new NotImplementedException();
+			return new PlayerActionBan();
 		}
 
 		public virtual PlayerActionIpBan ParsePlayerActionIpBan(string text)
 		{
-			throw new NotImplementedException();
+			return new PlayerActionIpBan();
 		}
 
 		public virtual bool CanFetchRecommendedVersion

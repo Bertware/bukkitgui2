@@ -11,10 +11,7 @@
 
         public override string Site
         {
-            get
-            {
-                return "http://bukkit.org";
-            }
+            get{return "http://bukkit.org";}
         }
 
         public override Image Logo
@@ -22,28 +19,46 @@
             get { return Properties.Resources.bukkit_logo; }
         }
 
-        public override bool CanDownloadRecommendedVersion
+	    public override bool CanFetchRecommendedVersion
+	    {
+		    get { return true; }
+	    }
+
+		public override bool CanFetchBetaVersion
+		{
+			get { return true; }
+		}
+
+		public override bool CanFetchDevVersion
+		{
+			get { return true; }
+		}
+
+	    public override bool CanDownloadRecommendedVersion
         {
-            get
-            {
-                return true;
-            }
+            get{return true;}
         }
 
         public override bool CanDownloadBetaVersion
         {
-            get
-            {
-                return true;
-            }
+            get{return true;}
         }
 
         public override bool CanDownloadDevVersion
         {
-            get
-            {
-                return true;
-            }
+            get{return true;}
         }
+
+	    public override bool CanGetCurrentVersion
+	    {
+		    get { return true; }
+	    }
+
+	    public override bool SupportsPlugins
+	    {
+		    get { return true; }
+	    }
+
+
 	}
 }

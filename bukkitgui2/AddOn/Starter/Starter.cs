@@ -73,7 +73,7 @@ namespace Bukkitgui2.AddOn.Starter
 			server.PrepareLaunch();
 			string parameters = server.GetLaunchParameters(defaultParameters);
 			string flags = server.GetLaunchFlags(defaultFlags);
-			string argument = parameters + " -xms " + minMem + " -xmx" + maxMem + " -jar \"" + jarFile + "\"" + flags;
+			string argument = parameters + " -Xms" + minMem + "M -Xmx" + maxMem + "M -jar \"" + jarFile + "\" " + flags;
 			string executable = JavaApi.GetJavaPath(javaVersion);
 
 			IProcessHandler processHandler = new LocalProcessHandler();

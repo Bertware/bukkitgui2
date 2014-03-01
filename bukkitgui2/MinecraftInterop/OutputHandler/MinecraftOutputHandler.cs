@@ -165,7 +165,7 @@ namespace Bukkitgui2.MinecraftInterop.OutputHandler
 
 			MessageParseResult result = server.ParseOutput(text);
 
-			MessageParsed(text, result);
+			RaiseMessageParsedEvent(text, result);
 
 			switch (result.Type)
 			{
