@@ -24,8 +24,7 @@ namespace Bukkitgui2.UI
 		{
 			//Most of the code goes in this routine, as this handles all shared resources
 			Core.Share.Initialize();
-            MinecraftServers.MinecraftServerLoader.GetAvailableServers();
-			Thread.Sleep(1000);
+            
 			CloseForm();
 		}
 

@@ -6,7 +6,6 @@ namespace Bukkitgui2.Core
 
     internal static class Share
 	{
-		public static Locale.ILocale Locale = null;
 		public static Configuration.IConfig Config = null;
 		public static Filesystem.IFilesystem ServerFileSystem = null;
 		public static Logging.ILogger Logger = null;
@@ -28,7 +27,6 @@ namespace Bukkitgui2.Core
 			Config = new Configuration.XmlConfig();
 			Config.Initialize();
 
-			Locale = new Locale.XmlLocale();
 			Locale.Initialize();
 
 

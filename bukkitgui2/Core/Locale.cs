@@ -4,21 +4,21 @@ using System.IO;
 using System.Xml;
 using Bukkitgui2.Core.FileLocation;
 
-namespace Bukkitgui2.Core.Locale
+namespace Bukkitgui2.Core
 {
-	internal class XmlLocale : ILocale
+	internal static class Locale
 	{
 		private const string XmlHead="<xml type=\"locale\" lang=\"en-US\">";
 		private const string XmlTail = "</xml>";
 
-		private string _filepath;
-		private XmlDocument _xmldoc;
-		private Dictionary<string, string> _cache;
+		private static string _filepath;
+		private static XmlDocument _xmldoc;
+		private static Dictionary<string, string> _cache;
 
 		/// <summary>
 		///     Returns the current language of the translator
 		/// </summary>
-		string ILocale.CurrentLanguage
+		public static string CurrentLanguage
 		{
 			get { return "en-US"; }
 		}
@@ -26,12 +26,12 @@ namespace Bukkitgui2.Core.Locale
 		/// <summary>
 		///     Indicates wether this component is initialized and can be used
 		/// </summary>
-		public bool IsInitialized { get; private set; }
+		public static bool IsInitialized { get; private set; }
 
 		/// <summary>
 		///     Initialize everything, create cache
 		/// </summary>
-		public void Initialize()
+		public static void Initialize()
 		{
 			string location = Share.Config.ReadString("Locale", "File",Share.FileLocation.Location(RequestFile.Config) + "/default.xml");
 
@@ -63,9 +63,9 @@ namespace Bukkitgui2.Core.Locale
 		/// <summary>
 		///     Dispose resources and cache
 		/// </summary>
-		public void Dispose()
+		public static void Dispose()
 		{
-			this.SaveCache();
+			SaveCache();
 		}
 
 		/// <summary>
@@ -73,7 +73,7 @@ namespace Bukkitgui2.Core.Locale
 		/// </summary>
 		/// <param name="original">The original text</param>
 		/// <returns></returns>
-		public string Tr(string original)
+		public static string Tr(string original)
 		{
 			if (!IsInitialized) return original;
 			if (_cache == null) return original;
@@ -96,7 +96,7 @@ namespace Bukkitgui2.Core.Locale
 		/// <param name="p3">replacement value of parameter %3</param>
 		/// <param name="p4">replacement value of parameter %4</param>
 		/// <returns></returns>
-		public string Tr(string original, string p1, string p2 = "", string p3 = "", string p4 = "")
+		public static string Tr(string original, string p1, string p2 = "", string p3 = "", string p4 = "")
 		{
 			if (!IsInitialized) return SetParam(original,p1,p2,p3,p4);
 			if (_cache == null) return SetParam(original, p1, p2, p3, p4);
@@ -118,7 +118,7 @@ namespace Bukkitgui2.Core.Locale
 		/// <summary>
 		/// Load the XMLDocument to the cache dictionary
 		/// </summary>
-		private void LoadCache()
+		private static void LoadCache()
 		{
 
 			if (_xmldoc == null) return;
@@ -135,7 +135,7 @@ namespace Bukkitgui2.Core.Locale
 
 		}
 
-		private void SaveCache()
+		static private void SaveCache()
 		{
 			if (_cache == null) return;
 
