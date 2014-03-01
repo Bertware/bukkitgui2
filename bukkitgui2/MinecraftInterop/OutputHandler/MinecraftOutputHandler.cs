@@ -29,10 +29,10 @@ namespace Bukkitgui2.MinecraftInterop.OutputHandler
 		/// <summary>
 		/// Raised when any output is parsed
 		/// </summary>
-		public static event OutputParsedEventHandler MessageParsed;
+		public static event OutputParsedEventHandler OutputParsed;
 		private static void RaiseOutputParsedEvent(string text, OutputParseResult outputParseResult)
 		{
-			OutputParsedEventHandler handler = MessageParsed;
+			OutputParsedEventHandler handler = OutputParsed;
 			if (handler != null)
 			{
 				handler(text,outputParseResult);
