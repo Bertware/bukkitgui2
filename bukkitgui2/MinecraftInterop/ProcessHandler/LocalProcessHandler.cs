@@ -20,6 +20,9 @@ namespace Bukkitgui2.MinecraftInterop.ProcessHandler
 		public Process ServerProcess { get; private set; }
 		public IMinecraftServer Server { get; private set; }
 
+		/// <summary>
+		/// This event is raised before the server is going to start
+		/// </summary>
 		public event EventHandler ServerStarting;
 		protected virtual void RaiseServerStarting(EventArgs e)
 		{
@@ -30,6 +33,9 @@ namespace Bukkitgui2.MinecraftInterop.ProcessHandler
 			}
 		}
 
+		/// <summary>
+		/// This event is raised after the server has been started
+		/// </summary>
 		public event EventHandler ServerStarted;
 		protected virtual void RaiseServerStarted(EventArgs e)
 		{
@@ -40,8 +46,19 @@ namespace Bukkitgui2.MinecraftInterop.ProcessHandler
 			}
 		}
 
+		/// <summary>
+		/// This event is raised when the server starts to shutdown
+		/// </summary>
 		public event EventHandler ServerStopping;
+
+		/// <summary>
+		/// This event is raised after the server has stopped
+		/// </summary>
 		public event EventHandler ServerStopped;
+
+		/// <summary>
+		/// This event is raised if the server stopped, while the usual output ("stopping the server") wasn't detected. Could be a crash!
+		/// </summary>
 		public event EventHandler UnexpectedServerStop;
 
 		private Boolean _runThreads;
@@ -102,6 +119,9 @@ namespace Bukkitgui2.MinecraftInterop.ProcessHandler
 			return true;
 		}
 
+		/// <summary>
+		/// Stop the server
+		/// </summary>
 		public void StopServer()
 		{
 			ServerStopping(this, new EventArgs());
@@ -111,6 +131,9 @@ namespace Bukkitgui2.MinecraftInterop.ProcessHandler
 			ServerStopped(this, new EventArgs());
 		}
 
+		/// <summary>
+		/// Start the output reading threads
+		/// </summary>
 		private void StartThreads()
 		{
 			_thdReadStdOut = new Thread(ReadStdOut){IsBackground = true,Name = "_thdReadStdOut"};
@@ -121,11 +144,17 @@ namespace Bukkitgui2.MinecraftInterop.ProcessHandler
 
 		}
 
+		/// <summary>
+		/// Stop the output reading threads
+		/// </summary>
 		private void StopThreads()
 		{
 			_runThreads = false;
 		}
 
+		/// <summary>
+		/// Read output from the standard output stream. Call this method async!
+		/// </summary>
 		private void ReadStdOut()
 		{
 			using (StreamReader streamReader = new StreamReader(ServerProcess.StandardOutput.BaseStream))
@@ -141,6 +170,9 @@ namespace Bukkitgui2.MinecraftInterop.ProcessHandler
 			}
 		}
 
+		/// <summary>
+		/// Read output from the standard error stream. Call this method async!
+		/// </summary>
 		private void ReadStdErr()
 		{
 			using (StreamReader streamReader = new StreamReader(ServerProcess.StandardError.BaseStream))
