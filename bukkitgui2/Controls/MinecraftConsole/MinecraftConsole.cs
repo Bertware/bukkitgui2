@@ -52,7 +52,7 @@
         }
 
         /// <summary>
-        ///     The write output.
+		///      Writes text to the Console Control
         /// </summary>
         /// <param name="type"> The message type. </param>
         /// <param name="text"> The message text. </param>
@@ -70,26 +70,18 @@
                 case MessageType.Severe:
                     messageColor = this.MessageColorSevere;
                     break;
-                case MessageType.PlayerJoin:
-                    messageColor = this.MessageColorPlayerAction;
-                    break;
-                case MessageType.PlayerLeave:
-                    messageColor = this.MessageColorPlayerAction;
-                    break;
-                case MessageType.PlayerKick:
-                    messageColor = this.MessageColorPlayerAction;
-                    break;
-                case MessageType.PlayerBan:
-                    messageColor = this.MessageColorPlayerAction;
-                    break;
-                case MessageType.PlayerIpBan:
-                    messageColor = this.MessageColorPlayerAction;
-                    break;
+				case MessageType.PlayerJoin:
+				case MessageType.PlayerLeave:
+				case MessageType.PlayerKick:
+				case MessageType.PlayerBan:
+				case MessageType.PlayerIpBan:
+					messageColor = this.MessageColorPlayerAction;
+					break;
             }
 
             this.SelectionStart = this.TextLength;
             this.SelectionColor = messageColor;
-            this.SelectedText = text;
+            this.AppendText(text + "\n");
         }
     }
 }
