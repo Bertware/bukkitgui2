@@ -20,7 +20,7 @@ namespace Bukkitgui2.MinecraftInterop.ProcessHandler
 
 		public static Process ServerProcess { get; private set; }
 		public static IMinecraftServer Server { get; private set; }
-
+		public static Boolean IsRunning { get; private set; }
 
 		public delegate void ServerStatusEvent();
 
@@ -159,6 +159,7 @@ namespace Bukkitgui2.MinecraftInterop.ProcessHandler
 
 			StartThreads();
 
+			IsRunning = true;
 			RaiseServerStarted();
 			return true;
 		}
@@ -173,6 +174,7 @@ namespace Bukkitgui2.MinecraftInterop.ProcessHandler
 			SendInput("stop");
 			StopThreads();
 
+			IsRunning = false;
 			RaiseServerStopped();
 		}
 

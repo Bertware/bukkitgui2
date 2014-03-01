@@ -59,6 +59,11 @@
 		    get { return true; }
 	    }
 
+		public override string GetLaunchFlags(string defaultFlags = "")
+		{
+			return "-nojline" + defaultFlags;
+		}
+
 
 	}
 }

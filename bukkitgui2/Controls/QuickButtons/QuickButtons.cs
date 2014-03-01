@@ -43,7 +43,14 @@ namespace Bukkitgui2.Controls.QuickButtons
 
 		private void btnStartStop_Click(object sender, EventArgs e)
 		{
-
+			if (ProcessHandler.IsRunning)
+			{
+				ProcessHandler.StopServer();
+			}
+			else
+			{
+				// TODO: code to start server
+			}
 		}
 	}
 }
