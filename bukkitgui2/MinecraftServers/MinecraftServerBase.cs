@@ -83,12 +83,12 @@ namespace Bukkitgui2.MinecraftServers
 			get { return null; }
 		}
 
-		public virtual MessageParseResult ParseOutput(string text)
+		public virtual OutputParseResult ParseOutput(string text)
 		{
 			string originalText = text;
 			MessageType type = ParseMessageType(text);
 
-			return new MessageParseResult(originalText, text, type);
+			return new OutputParseResult(originalText, text, type);
 		}
 
 		public virtual MessageType ParseMessageType(string text)

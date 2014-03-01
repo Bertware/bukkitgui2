@@ -209,7 +209,7 @@
     <Compile Include="Core\Util\DynamicModuleLoader.cs" />
     <Compile Include="Core\Util\Web\WebUtil.cs" />
     <Compile Include="MinecraftInterop\OutputHandler\EnumMessageType.cs" />
-    <Compile Include="MinecraftInterop\OutputHandler\MessageParseResult.cs" />
+    <Compile Include="MinecraftInterop\OutputHandler\OutputParseResult.cs" />
     <Compile Include="MinecraftInterop\OutputHandler\MinecraftOutputHandler.cs" />
     <Compile Include="MinecraftInterop\OutputHandler\PlayerActions\IPlayerAction.cs" />
     <Compile Include="MinecraftInterop\OutputHandler\PlayerActions\PlayerActionBan.cs" />

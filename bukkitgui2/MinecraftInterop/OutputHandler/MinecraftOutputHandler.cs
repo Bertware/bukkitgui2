@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Bukkitgui2.MinecraftServers;
 
 namespace Bukkitgui2.MinecraftInterop.OutputHandler
@@ -25,31 +24,31 @@ namespace Bukkitgui2.MinecraftInterop.OutputHandler
 		}
 
 
-		public delegate void MessageParsedEventHandler(string text, MessageParseResult messageParseResult);
+		public delegate void OutputParsedEventHandler(string text, OutputParseResult outputParseResult);
 		/// <summary>
 		/// Raised when any output is parsed
 		/// </summary>
-		public static event MessageParsedEventHandler MessageParsed;
-		private static void RaiseMessageParsedEvent(string text, MessageParseResult messageParseResult)
+		public static event OutputParsedEventHandler MessageParsed;
+		private static void RaiseOutputParsedEvent(string text, OutputParseResult outputParseResult)
 		{
-			MessageParsedEventHandler handler = MessageParsed;
+			OutputParsedEventHandler handler = MessageParsed;
 			if (handler != null)
 			{
-				handler(text,messageParseResult);
+				handler(text,outputParseResult);
 			}
 		}
 
-		public delegate void MessageReceivedEventHandler(string text, MessageParseResult messageParseResult);
+		public delegate void MessageReceivedEventHandler(string text, OutputParseResult outputParseResult);
 		/// <summary>
 		/// Raised when an info message is received
 		/// </summary>
 		public static event MessageReceivedEventHandler InfoMessageReceived;
-		private static void RaiseInfoMessageReceivedEvent(string text, MessageParseResult messageParseResult)
+		private static void RaiseInfoMessageReceivedEvent(string text, OutputParseResult outputParseResult)
 		{
 			MessageReceivedEventHandler handler = InfoMessageReceived;
 			if (handler != null)
 			{
-				handler(text,messageParseResult);
+				handler(text,outputParseResult);
 			}
 		}
 
@@ -58,12 +57,12 @@ namespace Bukkitgui2.MinecraftInterop.OutputHandler
 		/// Raised when a warning message is received
 		/// </summary>
 		public static event MessageReceivedEventHandler WarningMessageReceived;
-		private static void RaiseWarningMessageReceivedEvent(string text, MessageParseResult messageParseResult)
+		private static void RaiseWarningMessageReceivedEvent(string text, OutputParseResult outputParseResult)
 		{
 			MessageReceivedEventHandler handler = WarningMessageReceived;
 			if (handler != null)
 			{
-				handler(text, messageParseResult);
+				handler(text, outputParseResult);
 			}
 		}
 
@@ -72,12 +71,12 @@ namespace Bukkitgui2.MinecraftInterop.OutputHandler
 		/// Raised when a severe message is received
 		/// </summary>
 		public static event MessageReceivedEventHandler SevereMessageReceived;
-		private static void RaiseSevereMessageReceivedEvent(string text, MessageParseResult messageParseResult)
+		private static void RaiseSevereMessageReceivedEvent(string text, OutputParseResult outputParseResult)
 		{
 			MessageReceivedEventHandler handler = SevereMessageReceived;
 			if (handler != null)
 			{
-				handler(text, messageParseResult);
+				handler(text, outputParseResult);
 			}
 		}
 
@@ -86,12 +85,12 @@ namespace Bukkitgui2.MinecraftInterop.OutputHandler
 		/// Raised when a Java status/error message is received
 		/// </summary>
 		public static event MessageReceivedEventHandler JavaStatusMessageReceived;
-		private static void RaiseJavaStatusMessageReceivedEvent(string text, MessageParseResult messageParseResult)
+		private static void RaiseJavaStatusMessageReceivedEvent(string text, OutputParseResult outputParseResult)
 		{
 			MessageReceivedEventHandler handler = JavaStatusMessageReceived;
 			if (handler != null)
 			{
-				handler(text, messageParseResult);
+				handler(text, outputParseResult);
 			}
 		}
 
@@ -100,12 +99,12 @@ namespace Bukkitgui2.MinecraftInterop.OutputHandler
 		/// Raised when a Java stacktrace message is received
 		/// </summary>
 		public static event MessageReceivedEventHandler JavaStackStraceMessageReceived;
-		private static void RaiseJavaStackStraceMessageReceivedEvent(string text, MessageParseResult messageParseResult)
+		private static void RaiseJavaStackStraceMessageReceivedEvent(string text, OutputParseResult outputParseResult)
 		{
 			MessageReceivedEventHandler handler = JavaStackStraceMessageReceived;
 			if (handler != null)
 			{
-				handler(text, messageParseResult);
+				handler(text, outputParseResult);
 			}
 		}
 
@@ -114,43 +113,43 @@ namespace Bukkitgui2.MinecraftInterop.OutputHandler
 		/// Raised when an unknown message is received
 		/// </summary>
 		public static event MessageReceivedEventHandler UnknownMessageReceived;
-		private static void RaiseUnknownMessageReceivedEvent(string text, MessageParseResult messageParseResult)
+		private static void RaiseUnknownMessageReceivedEvent(string text, OutputParseResult outputParseResult)
 		{
 			MessageReceivedEventHandler handler = UnknownMessageReceived;
 			if (handler != null)
 			{
-				handler(text, messageParseResult);
+				handler(text, outputParseResult);
 			}
 		}
 
 		public delegate void PlayerJoinEventHandler(
-			string text, PlayerActions.IPlayerAction playerAction, MessageParseResult messageParseResult);
+			string text, PlayerActions.IPlayerAction playerAction, OutputParseResult outputParseResult);
 
 		public static event PlayerJoinEventHandler PlayerJoin;
 
 		public delegate void PlayerLeaveEventHandler(
-			string text, PlayerActions.IPlayerAction playerAction, MessageParseResult messageParseResult);
+			string text, PlayerActions.IPlayerAction playerAction, OutputParseResult outputParseResult);
 
 		public static event PlayerLeaveEventHandler PlayerLeave;
 
 		public delegate void PlayerKickEventHandler(
-			string text, PlayerActions.IPlayerAction playerAction, MessageParseResult messageParseResult);
+			string text, PlayerActions.IPlayerAction playerAction, OutputParseResult outputParseResult);
 
 		public static event PlayerKickEventHandler PlayerKick;
 
 		public delegate void PlayerBanEventHandler(
-			string text, PlayerActions.IPlayerAction playerAction, MessageParseResult messageParseResult);
+			string text, PlayerActions.IPlayerAction playerAction, OutputParseResult outputParseResult);
 
 		public static event PlayerBanEventHandler PlayerBan;
 
 		public delegate void PlayerIpBanEventHandler(
-			string text, PlayerActions.IPlayerAction playerAction, MessageParseResult messageParseResult);
+			string text, PlayerActions.IPlayerAction playerAction, OutputParseResult outputParseResult);
 
 		public static event PlayerIpBanEventHandler PlayerIpBan;
 
 
 		public delegate void PlayerListReceivedEventHandler(
-			string text, MessageParseResult messageParseResult, Dictionary<string, string> onlinePlayerList);
+			string text, OutputParseResult outputParseResult, Dictionary<string, string> onlinePlayerList);
 
 		public static event PlayerListReceivedEventHandler PlayerListReceived;
 
@@ -163,9 +162,9 @@ namespace Bukkitgui2.MinecraftInterop.OutputHandler
 		{
 			RaiseOutputReceivedEvent(text);
 
-			MessageParseResult result = server.ParseOutput(text);
+			OutputParseResult result = server.ParseOutput(text);
 
-			RaiseMessageParsedEvent(text, result);
+			RaiseOutputParsedEvent(text, result);
 
 			switch (result.Type)
 			{
