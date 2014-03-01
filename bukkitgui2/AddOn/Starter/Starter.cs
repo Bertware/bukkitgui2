@@ -76,10 +76,7 @@ namespace Bukkitgui2.AddOn.Starter
 			string argument = parameters + " -Xms" + minMem + "M -Xmx" + maxMem + "M -jar \"" + jarFile + "\" " + flags;
 			string executable = JavaApi.GetJavaPath(javaVersion);
 
-			IProcessHandler processHandler = new LocalProcessHandler();
-			processHandler.StartServer(executable, argument, server);
-			ProcessHandlerState.ProcessHandler = processHandler;
-
+			ProcessHandler.StartServer(executable, argument, server);
 		}
 
 		/// <summary>

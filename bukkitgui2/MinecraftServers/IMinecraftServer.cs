@@ -93,8 +93,8 @@ namespace Bukkitgui2.MinecraftServers
 		///     Parse the provided text
 		/// </summary>
 		/// <param name="text">The text to parse</param>
-		/// <returns>MessageParseResult containing all info about this text</returns>
-		MessageParseResult ParseOutput(string text);
+		/// <returns>OutputParseResult containing all info about this text</returns>
+		OutputParseResult ParseOutput(string text);
 
 		/// <summary>
 		///     Get the type of the provided text

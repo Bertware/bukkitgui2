@@ -3,7 +3,7 @@ using Bukkitgui2.MinecraftInterop.OutputHandler.PlayerActions;
 
 namespace Bukkitgui2.MinecraftInterop.OutputHandler
 {
-	public class MessageParseResult
+	public class OutputParseResult
 	{
 		/// <summary>
 		/// The time the message was received
@@ -37,7 +37,7 @@ namespace Bukkitgui2.MinecraftInterop.OutputHandler
 		/// <param name="message">the output message, text without timestamp or tags</param>
 		/// <param name="type">the message type</param>
 		/// <param name="action">if any player action was described, the player action object</param>
-		public MessageParseResult(string text, string message, MessageType type, IPlayerAction action = null )
+		public OutputParseResult(string text, string message, MessageType type, IPlayerAction action = null )
 		{
 			Time = DateTime.Now;
 			Text = text;

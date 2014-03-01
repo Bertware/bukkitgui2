@@ -1,4 +1,6 @@
-﻿namespace Bukkitgui2.AddOn.Console
+﻿using Bukkitgui2.Controls.QuickButtons;
+
+namespace Bukkitgui2.AddOn.Console
 {
     partial class ConsoleTab 
     {
@@ -35,7 +37,7 @@
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.performanceMonitor1 = new Bukkitgui2.Controls.PerformanceMonitor.PerformanceMonitor();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
-			this.quickButtons1 = new Bukkitgui2.AddOn.Console.QuickButtons.QuickButtons();
+			this.quickButtons1 = new QuickButtons();
 			this.sortableListView1 = new Bukkitgui2.Controls.SortableListView.SortableListView();
 			this.ColPlayers = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.groupBox1.SuspendLayout();
@@ -185,7 +187,7 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
         private Controls.ConsoleInput.ConsoleInput consoleInput1;
-        private QuickButtons.QuickButtons quickButtons1;
+        private QuickButtons quickButtons1;
         private Controls.PerformanceMonitor.PerformanceMonitor performanceMonitor1;
 		private Controls.SortableListView.SortableListView sortableListView1;
 		private System.Windows.Forms.ColumnHeader ColPlayers;

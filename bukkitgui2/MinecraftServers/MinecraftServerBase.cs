@@ -49,46 +49,46 @@ namespace Bukkitgui2.MinecraftServers
 			get { return true; }
 		}
 
-		public void PrepareLaunch()
+		public virtual void PrepareLaunch()
 		{
 		}
 
-		public bool HasCustomAssembly
+		public virtual bool HasCustomAssembly
 		{
 			get { return false; }
 		}
 
-		public Assembly CustomAssembly
+		public virtual  Assembly CustomAssembly
 		{
 			get { return null; }
 		}
 
-		public string GetLaunchParameters(string defaultParameters = "")
+		public virtual string GetLaunchParameters(string defaultParameters = "")
 		{
 			return defaultParameters;
 		}
 
-		public string GetLaunchFlags(string defaultFlags = "")
+		public virtual string GetLaunchFlags(string defaultFlags = "")
 		{
 			return defaultFlags;
 		}
 
-		public bool HasCustomSettingsControl
+		public virtual bool HasCustomSettingsControl
 		{
 			get { return false; }
 		}
 
-		public UserControl CustomSettingsControl
+		public virtual UserControl CustomSettingsControl
 		{
 			get { return null; }
 		}
 
-		public virtual MessageParseResult ParseOutput(string text)
+		public virtual OutputParseResult ParseOutput(string text)
 		{
 			string originalText = text;
 			MessageType type = ParseMessageType(text);
 
-			return new MessageParseResult(originalText, text, type);
+			return new OutputParseResult(originalText, text, type);
 		}
 
 		public virtual MessageType ParseMessageType(string text)
