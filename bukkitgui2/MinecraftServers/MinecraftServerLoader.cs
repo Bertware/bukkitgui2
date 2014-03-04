@@ -5,6 +5,10 @@
     using System.Linq;
     using System.Reflection;
 
+    using Bukkitgui2.Core.Logging;
+
+    using Microsoft.VisualBasic.Logging;
+
     internal static class MinecraftServerLoader
     {
         /// <summary>
