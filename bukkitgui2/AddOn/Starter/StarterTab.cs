@@ -15,7 +15,6 @@ namespace Bukkitgui2.AddOn.Starter
         private readonly Dictionary<string, IMinecraftServer> _servers;
 
         private UserControl _customControl;
-	    private readonly ILogger _logger = Share.Logger;
 
         public StarterTab()
         {
@@ -30,7 +29,7 @@ namespace Bukkitgui2.AddOn.Starter
         /// </summary>
         private void LoadUi()
         {
-			_logger.Log(LogLevel.Info, "StarterTab","Loading UI");
+			Logger.Log(LogLevel.Info, "StarterTab","Loading UI");
             // Add all servers to the list
             this.CBServerType.Items.Clear();
             foreach (string servername in this._servers.Keys)
@@ -75,7 +74,7 @@ namespace Bukkitgui2.AddOn.Starter
 				this.CBJavaVersion.Items.Add("Java 7 - 64 bit");
 			}
 			this.CBJavaVersion.SelectedIndex = 0;
-			_logger.Log(LogLevel.Info, "StarterTab", "UI Loaded");
+			Logger.Log(LogLevel.Info, "StarterTab", "UI Loaded");
         }
 
         /// <summary>
@@ -85,7 +84,7 @@ namespace Bukkitgui2.AddOn.Starter
         {
 
             IMinecraftServer server = this.GetSelectedServer();
-			_logger.Log(LogLevel.Info, "StarterTab", "Loading server: " + server.Name);
+			Logger.Log(LogLevel.Info, "StarterTab", "Loading server: " + server.Name);
 
             this.PBServerLogo.Image = server.Logo;
             this.LLblSite.Text = "Site: " + server.Site;
@@ -164,14 +163,14 @@ namespace Bukkitgui2.AddOn.Starter
                 this.GBCustomSettings.Controls.Clear();
             }
 
-			_logger.Log(LogLevel.Info, "StarterTab", "Loaded server: " + server.Name);
+			Logger.Log(LogLevel.Info, "StarterTab", "Loaded server: " + server.Name);
         }
 
 		/// <summary>
 		/// Get the IMinecraftServer object for the selected item
 		/// </summary>
 		/// <returns>The selected server (object)</returns>
-        private IMinecraftServer GetSelectedServer()
+        public IMinecraftServer GetSelectedServer()
         {
             string serverName = this.CBServerType.SelectedItem.ToString();
             return this._servers[serverName];
@@ -181,7 +180,7 @@ namespace Bukkitgui2.AddOn.Starter
 		/// Get the selected java version
 		/// </summary>
 		/// <returns>The selected java version as enum</returns>
-	    private JavaVersion GetSelectedJavaVersion()
+	    public JavaVersion GetSelectedJavaVersion()
 	    {
 		    string selectedText = CBJavaVersion.SelectedItem.ToString();
 		    if (Regex.IsMatch(selectedText,"(.*)6(.*)32")) return JavaVersion.Jre6X32;
@@ -194,17 +193,17 @@ namespace Bukkitgui2.AddOn.Starter
 		/// <summary>
 		/// Launch the server, get all settings from 
 		/// </summary>
-        private void DoServerLaunch()
+        public void DoServerLaunch()
         {
             IMinecraftServer server = this.GetSelectedServer();
             Starter starter = this.ParentAddon as Starter;
 
-			_logger.Log(LogLevel.Info, "StarterTab", "starting server: " + server.Name);
+			Logger.Log(LogLevel.Info, "StarterTab", "starting server: " + server.Name);
 
 			// We need access to a starter object (the parent)
             if (starter == null)
             {
-				_logger.Log(LogLevel.Severe, "StarterTab", "Failed to start server","No starter object found");
+				Logger.Log(LogLevel.Severe, "StarterTab", "Failed to start server","No starter object found");
                 return;
             }
 

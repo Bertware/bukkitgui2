@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Xml;
+using Bukkitgui2.Core.Configuration;
 using Bukkitgui2.Core.FileLocation;
 
 namespace Bukkitgui2.Core
@@ -33,7 +34,7 @@ namespace Bukkitgui2.Core
 		/// </summary>
 		public static void Initialize()
 		{
-			string location = Share.Config.ReadString("Locale", "File",Share.FileLocation.Location(RequestFile.Config) + "/default.xml");
+			string location = Config.ReadString("Locale", "File",DefaultFileLocation.Location(RequestFile.Config) + "/default.xml");
 
 			_filepath = location;
 

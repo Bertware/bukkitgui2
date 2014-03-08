@@ -1,8 +1,11 @@
 ﻿using System;
 
 using System.Windows.Forms;
+using Bukkitgui2.AddOn;
+using Bukkitgui2.AddOn.Starter;
 using Bukkitgui2.Core;
 using Bukkitgui2.MinecraftInterop.ProcessHandler;
+using Bukkitgui2.UI;
 
 namespace Bukkitgui2.Controls.QuickButtons
 {
@@ -49,7 +52,10 @@ namespace Bukkitgui2.Controls.QuickButtons
 			}
 			else
 			{
-				// TODO: code to start server
+				if (!(this.ParentForm is MainForm)) return; //check if the parent form is a mainform
+				MainForm parentForm = (MainForm) this.ParentForm; 
+				Starter starter = (Starter) parentForm.GetRequiredAddon(RequiredAddon.Starter); // Get the starter addon
+				starter.LaunchServerFromTab(); // Launch with tab settings
 			}
 		}
 	}

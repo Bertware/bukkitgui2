@@ -1,4 +1,6 @@
-﻿namespace Bukkitgui2.AddOn
+﻿using System.Security.Cryptography.X509Certificates;
+
+namespace Bukkitgui2.AddOn
 {
     using System;
     using System.Windows.Forms;
@@ -37,4 +39,12 @@
         /// <returns>Returns the tabpage</returns>
         UserControl ConfigPage { get; }
     }
+
+	public enum RequiredAddon
+	{
+		Console,
+		Starter,
+		PlayerList,
+		Settings
+	}
 }

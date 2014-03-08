@@ -1,137 +1,164 @@
-﻿using Bukkitgui2.Core.Logging;
-using Bukkitgui2.Core.Configuration;
+﻿using System.Collections.Generic;
 using System.Windows.Forms;
+using Bukkitgui2.AddOn;
+using Bukkitgui2.Core.Configuration;
+using Bukkitgui2.Core.Logging;
 
 namespace Bukkitgui2.UI
 {
-    public partial class MainForm : Form
-    {
+	public partial class MainForm : Form
+	{
 		private const string CfgIdent = "mainform";
 
-		private readonly IConfig cfg;
-		private readonly ILogger _logger;
+		public MainForm()
+		{
+			Core.Share.MainFormHandle = Handle; //Immediatly set the handle for form operations, tray issues, etc..
 
-        public MainForm()
-        {
-			Core.Share.MainFormHandle = Handle; //Immediatly set the handle for form operations, tray issues, etc...
+			// We need to load all the background stuff before we can start running the application
+			// This can take a couple of seconds, so show a splashscreen
+			// We have a splashscreen class that loads everything multithreaded, we just need it to show and wait until it's finished.
+			var splash = new SplashScreen(); // Create splashscreen
+			splash.ShowDialog(); // Call ShowDialog(). This will show the splashscreen on foreground until it closes.
 
-            // We need to load all the background stuff before we can start running the application
-            // This can take a couple of seconds, so show a splashscreen
-            // We have a splashscreen class that loads everything multithreaded, we just need it to show and wait until it's finished.
-            var splash = new SplashScreen(); // Create splashscreen
-            splash.ShowDialog(); // Call ShowDialog(). This will show the splashscreen on foreground until it closes.
+			// Start loading everything to the UI
+			InitializeComponent();
 
-			cfg = Core.Share.Config;
-			_logger = Core.Share.Logger;
-
-            // Start loading everything to the UI
-            InitializeComponent();
-
-			_logger.Log(LogLevel.Info, "mainform", "starting to load mainform UI");
+			Logger.Log(LogLevel.Info, "mainform", "starting to load mainform UI");
 
 			LoadTabs();
-        }
+		}
 
-		
-		private AddOn.IAddon[] _addons ;
-		
 		/// <summary>
-		/// Load all tabpages to the mainform
+		/// Dictionary to store all loaded addons, by [Name, IAddon]
+		/// </summary>
+		private Dictionary<string, IAddon> _addonsDictionary;
+
+		/// <summary>
+		///     Load all tabpages to the mainform
 		/// </summary>
 		private void LoadTabs()
 		{
-			//Create and store a list with the loaded tabs, then load them to the UI.
+			// construct the dictionary that we'll use to store addons during runtime
+			_addonsDictionary = new Dictionary<string, IAddon>();
 
-			this._addons=new AddOn.IAddon[16];
-			
+			//Create and store a list with the loaded tabs, then load them to the UI.
+			IAddon[] addonsToLoad = new AddOn.IAddon[16];
+
 			byte i = 0;
 
 			//This tab can't be disabled
 			//if (cfg.ReadInt(CFG_IDENT, "show_console", 1) == 1)
 			//{
-			this._addons[i] = new AddOn.Console.Console();
+			addonsToLoad[i] = new AddOn.Console.Console();
 			i++;
 			//}
 
-			if (cfg.ReadInt(CfgIdent,"show_players",1) == 1)
+			if (Config.ReadInt(CfgIdent, "show_playerlist", 1) == 1)
 			{
-				this._addons[i] = new AddOn.Playerlist.PlayerList();
+				addonsToLoad[i] = new AddOn.PlayerList.PlayerList();
 				i++;
 			}
 
 			//This tab can't be disabled
 			//if (cfg.ReadInt(CFG_IDENT, "show_starter", 1) == 1)
 			//{
-				this._addons[i] = new AddOn.Starter.Starter();
-				i++;
+			addonsToLoad[i] = new AddOn.Starter.Starter();
+			i++;
 			//}
 
-			if (cfg.ReadInt(CfgIdent, "show_tasker", 1) == 1)
+			if (Config.ReadInt(CfgIdent, "show_tasker", 1) == 1)
 			{
-				this._addons[i] = new AddOn.Tasker.Tasker();
+				addonsToLoad[i] = new AddOn.Tasker.Tasker();
 				i++;
 			}
 
-			if (cfg.ReadInt(CfgIdent, "show_plugins", 1) == 1)
+			if (Config.ReadInt(CfgIdent, "show_plugins", 1) == 1)
 			{
-				this._addons[i] = new AddOn.Plugins.Plugins();
+				addonsToLoad[i] = new AddOn.Plugins.Plugins();
 				i++;
 			}
 
-			if (cfg.ReadInt(CfgIdent, "show_permissions", 1) == 1)
+			if (Config.ReadInt(CfgIdent, "show_permissions", 1) == 1)
 			{
-				this._addons[i] = new AddOn.Permissions.Permissions();
+				addonsToLoad[i] = new AddOn.Permissions.Permissions();
 				i++;
 			}
 
-			if (cfg.ReadInt(CfgIdent, "show_editor", 1) == 1)
+			if (Config.ReadInt(CfgIdent, "show_editor", 1) == 1)
 			{
-				this._addons[i] = new AddOn.Editor.Editor();
+				addonsToLoad[i] = new AddOn.Editor.Editor();
 				i++;
 			}
 
-			if (cfg.ReadInt(CfgIdent, "show_backup", 1) == 1)
+			if (Config.ReadInt(CfgIdent, "show_backup", 1) == 1)
 			{
-				this._addons[i] = new AddOn.Backup.Backup();
+				addonsToLoad[i] = new AddOn.Backup.Backup();
 				i++;
 			}
 
-			if (cfg.ReadInt(CfgIdent, "show_forwarder", 1) == 1)
+			if (Config.ReadInt(CfgIdent, "show_forwarder", 1) == 1)
 			{
-				this._addons[i] = new AddOn.Forwarder.Forwarder();
+				addonsToLoad[i] = new AddOn.Forwarder.Forwarder();
 				i++;
 			}
 
 			//This tab can't be disabled
 			//if (cfg.ReadInt(CFG_IDENT, "show_settings", 1) == 1)
 			//{
-				this._addons[i] = new AddOn.Settings.Settings();
-				i++;
+			addonsToLoad[i] = new AddOn.Settings.Settings();
+			i++;
 			//}
 
-			for (byte j=0;j<=i;j++)
+
+			// Loop through all addons in the array
+			for (byte j = 0; j <= i; j++)
 			{
-				if ( this._addons[j] == null) continue; //if addon not set, go on to the next one
-				_logger.Log(LogLevel.Info, "mainform", "loading addon", this._addons[j].Name);
+				if (addonsToLoad[j] == null) continue; //if addon not set, go on to the next one
 
-				this._addons[j].Initialize(); // initialize the addon
-				_logger.Log(LogLevel.Info, "mainform", "initialized addon", this._addons[j].Name);
+				Logger.Log(LogLevel.Info, "mainform", "loading addon", addonsToLoad[j].Name);
 
-                // If this addon doesn't have a tabpage, or if the tabpage is missing, go to the next addon
-				if (!this._addons[j].HasTab || this._addons[j].TabPage == null) continue; // If no tabpage is available, skip loading
+				addonsToLoad[j].Initialize(); // initialize the addon
+				Logger.Log(LogLevel.Info, "mainform", "initialized addon", addonsToLoad[j].Name);
 
-			    TabPage tp = new TabPage(_addons[j].Name);
-			    
-                // Add and dock the control
-                tp.Controls.Add(this._addons[j].TabPage);
-			    tp.Controls[0].Dock = DockStyle.Fill;
-                
-                // Add the tabpage
+				// The addon has initialized without problems. Add it to the dictionary so it can be used by other components too
+				_addonsDictionary.Add(addonsToLoad[j].Name, addonsToLoad[j]);
+
+				// If this addon doesn't have a tabpage, or if the tabpage is missing, go to the next addon
+				if (!addonsToLoad[j].HasTab || addonsToLoad[j].TabPage == null)
+					continue; // If no tabpage is available, skip loading
+
+				// Create a new tabpage. We'll dock the control to fill the tabpage
+				TabPage tp = new TabPage(addonsToLoad[j].Name);
+
+				// Add and dock the control
+				tp.Controls.Add(addonsToLoad[j].TabPage);
+				tp.Controls[0].Dock = DockStyle.Fill;
+
+				// Add the tabpage
 				TabCtrlAddons.TabPages.Add(tp);
-			    
-                _logger.Log(LogLevel.Info, "mainform", "added addon tabpage", this._addons[j].Name);
+
+				Logger.Log(LogLevel.Info, "mainform", "added addon tabpage", addonsToLoad[j].Name);
 			}
 		}
 
-    }
+		/// <summary>
+		/// Get the instance of a loaded addon
+		/// </summary>
+		/// <param name="name">The name of the addon</param>
+		/// <returns>Returns the addon if possible, null if the addon isn't loaded</returns>
+		public IAddon GetAddon(string name)
+		{
+			return _addonsDictionary.ContainsKey(name) ? _addonsDictionary[name] : null;
+		}
+
+		/// <summary>
+		/// Get the instance of a loaded core addon
+		/// </summary>
+		/// <param name="addon">The addon to load</param>
+		/// <returns>Returns the addon if possible, null if the addon isn't loaded</returns>
+		internal IAddon GetRequiredAddon(RequiredAddon addon)
+		{
+			return _addonsDictionary.ContainsKey(addon.ToString()) ? _addonsDictionary[addon.ToString()] : null;
+		}
+	}
 }

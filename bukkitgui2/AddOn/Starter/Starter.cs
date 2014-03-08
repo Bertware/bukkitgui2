@@ -38,7 +38,7 @@ namespace Bukkitgui2.AddOn.Starter
 		/// <summary>
 		///     Initialize all functions and the tabcontrol
 		/// </summary>
-		void IAddon.Initialize()
+		public void Initialize()
 		{
 			_tab = new StarterTab {Text = Name, ParentAddon = this};
 		}
@@ -47,7 +47,7 @@ namespace Bukkitgui2.AddOn.Starter
 		///     The tab control for this addon
 		/// </summary>
 		/// <returns>Returns the tabpage</returns>
-		UserControl IAddon.TabPage
+		public UserControl TabPage
 		{
 			get { return _tab; }
 		}
@@ -55,6 +55,14 @@ namespace Bukkitgui2.AddOn.Starter
 		public UserControl ConfigPage
 		{
 			get { return null; }
+		}
+
+		/// <summary>
+		///     Launch a new server using the settings in the tabpage. Will validate, shows popup if errors occur.
+		/// </summary>
+		public void LaunchServerFromTab()
+		{
+			((StarterTab) TabPage).DoServerLaunch();
 		}
 
 		/// <summary>
@@ -87,9 +95,6 @@ namespace Bukkitgui2.AddOn.Starter
 		/// <param name="customSettingsControl">The custom settings control that is filled out</param>
 		public void LaunchServer(IMinecraftServer server, Assembly customAssembly, UserControl customSettingsControl)
 		{
-
 		}
 	}
-
-
 }

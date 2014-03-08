@@ -1,4 +1,6 @@
-﻿namespace Bukkitgui2.Core.Configuration
+﻿using Bukkitgui2.Core.FileLocation;
+
+namespace Bukkitgui2.Core.Configuration
 {
     using System;
     using System.Collections.Generic;
@@ -9,103 +11,99 @@
     /// <summary>
     ///     XML config support, config is cached during runtime
     /// </summary>
-    internal class XmlConfig : IConfig
+    static internal class Config
     {
         private const string CteFileName = "config.xml";
 
-        private string _filepath;
+        private static string _filepath;
 
-        private XmlDocument _xmldoc;
+        private static XmlDocument _xmldoc;
 
-        private Dictionary<string, string> _cache;
+        private static Dictionary<string, string> _cache;
 
-        public XmlConfig()
-        {
-            this.isInitialized = false;
-        }
 
         /// <summary>
         ///     Indicates wether this component is initialized and can be used
         /// </summary>
-        public bool isInitialized { get; private set; }
+		public static bool IsInitialized { get; private set; }
 
         /// <summary>
         ///     Create or open needed files, create streams if needed, do everything what's needed before a Log() call can be made
         /// </summary>
-        public void Initialize()
+		public static void Initialize()
         {
-            this.LoadFile();
-            this.isInitialized = true;
+            LoadFile();
+            IsInitialized = true;
 
-            System.Windows.Forms.Application.ApplicationExit += this.HandleExit;
+            System.Windows.Forms.Application.ApplicationExit += HandleExit;
         }
 
         /// <summary>
         ///     Stop the logger, dispose used sources
         /// </summary>
-        public void Dispose()
+        public static void Dispose()
         {
-            this.SaveCache();
+            SaveCache();
         }
 
-        private void HandleExit(object sender, EventArgs e)
+        private static void HandleExit(object sender, EventArgs e)
         {
-            this.Dispose(); //Will cause a save
+            Dispose(); //Will cause a save
         }
 
         /// <summary>
         ///     Load a config file
         /// </summary>
         /// <param name="location"></param>
-        public void LoadFile(string location = "")
+		public static void LoadFile(string location = "")
         {
             if (string.IsNullOrEmpty(location))
             {
-                location = Share.FileLocation.Location(FileLocation.RequestFile.Config) + CteFileName;
+                location = DefaultFileLocation.Location(FileLocation.RequestFile.Config) + CteFileName;
             }
 
-            this._filepath = location;
+            _filepath = location;
 
-            if (!File.Exists(this._filepath))
+            if (!File.Exists(_filepath))
             {
-                DirectoryInfo dirInfo = new FileInfo(this._filepath).Directory;
+                DirectoryInfo dirInfo = new FileInfo(_filepath).Directory;
                 if (dirInfo != null)
                 {
                     string parent = dirInfo.ToString();
                     Util.FsUtil.CreateDirectoryIfNotExists(parent);
                 }
 
-                FileStream fs = File.Create(this._filepath);
+                FileStream fs = File.Create(_filepath);
                 StreamWriter sw = new StreamWriter(fs);
                 sw.WriteLine("<xml></xml>");
                 sw.Close();
                 fs.Close();
             }
 
-            this._xmldoc = new XmlDocument();
-            this._xmldoc.Load(this._filepath);
+            _xmldoc = new XmlDocument();
+            _xmldoc.Load(_filepath);
 
-            this.LoadCache(); //everything's cached, we're ready to go
+            LoadCache(); //everything's cached, we're ready to go
         }
 
         /// <summary>
         ///     Save a config file
         /// </summary>
         /// <param name="location"></param>
-        public void SaveFile(string location = "")
+		public static void SaveFile(string location = "")
         {
             if (string.IsNullOrEmpty(location))
             {
-                location = Share.FileLocation.Location(FileLocation.RequestFile.Config) + CteFileName;
+				location = DefaultFileLocation.Location(FileLocation.RequestFile.Config) + CteFileName;
             }
 
-            if (this._cache.Count == 0)
+            if (_cache.Count == 0)
             {
                 return;
             }
 
-            this._filepath = location;
-            this.SaveCache();
+            _filepath = location;
+            SaveCache();
         }
 
         /// <summary>
@@ -115,21 +113,21 @@
         /// <param name="key">The config key</param>
         /// <param name="defaultValue">The default value if the element doesn't exist</param>
         /// <returns>Returns the requested value</returns>
-        string IConfig.ReadString(string parent, string key, string defaultValue)
+		public static string ReadString(string parent, string key, string defaultValue)
         {
-            if (!this.isInitialized)
+            if (!IsInitialized)
             {
                 return defaultValue;
             }
 
             string id = parent + "_" + key;
 
-            if (this._cache.ContainsKey(id))
+            if (_cache.ContainsKey(id))
             {
-                return this._cache[id];
+                return _cache[id];
             }
 
-            this._cache.Add(id, defaultValue);
+            _cache.Add(id, defaultValue);
             return defaultValue;
         }
 
@@ -140,22 +138,22 @@
         /// <param name="key">The config key</param>
         /// <param name="value">The value to write</param>
         /// <returns>Returns true if operation succeeded</returns>
-        bool IConfig.WriteString(string parent, string key, string value)
+		public static bool WriteString(string parent, string key, string value)
         {
-            if (!this.isInitialized)
+            if (!IsInitialized)
             {
                 return false;
             }
 
             string id = parent + "_" + key;
 
-            if (this._cache.ContainsKey(id))
+            if (_cache.ContainsKey(id))
             {
-                this._cache[id] = value;
+                _cache[id] = value;
             }
             else
             {
-                this._cache.Add(id, value);
+                _cache.Add(id, value);
             }
 
             return true;
@@ -168,21 +166,21 @@
         /// <param name="key">The config key</param>
         /// <param name="defaultValue">The default value if the element doesn't exist</param>
         /// <returns>Returns the requested value</returns>
-        Int32 IConfig.ReadInt(string parent, string key, Int32 defaultValue)
+		public static Int32 ReadInt(string parent, string key, Int32 defaultValue)
         {
-            if (!this.isInitialized)
+            if (!IsInitialized)
             {
                 return defaultValue;
             }
 
             string id = parent + "_" + key;
 
-            if (this._cache.ContainsKey(id))
+            if (_cache.ContainsKey(id))
             {
-                return int.Parse(this._cache[id]);
+                return int.Parse(_cache[id]);
             }
 
-            this._cache.Add(id, defaultValue.ToString(CultureInfo.InvariantCulture));
+            _cache.Add(id, defaultValue.ToString(CultureInfo.InvariantCulture));
             return defaultValue;
         }
 
@@ -193,21 +191,21 @@
         /// <param name="key">The config key</param>
         /// <param name="value">The value to write</param>
         /// <returns>Returns true if operation succeeded</returns>
-        bool IConfig.WriteInt(string parent, string key, Int32 value)
+        public static bool WriteInt(string parent, string key, Int32 value)
         {
-            if (!this.isInitialized)
+            if (!IsInitialized)
             {
                 return false;
             }
             string id = parent + "_" + key;
 
-            if (this._cache.ContainsKey(id))
+            if (_cache.ContainsKey(id))
             {
-                this._cache[id] = value.ToString(CultureInfo.InvariantCulture);
+                _cache[id] = value.ToString(CultureInfo.InvariantCulture);
             }
             else
             {
-                this._cache.Add(id, value.ToString(CultureInfo.InvariantCulture));
+                _cache.Add(id, value.ToString(CultureInfo.InvariantCulture));
             }
 
             return true;
@@ -216,16 +214,16 @@
         /// <summary>
         ///     Load the XMLDocument to the cache dictionary
         /// </summary>
-        private void LoadCache()
+		private static void LoadCache()
         {
-            if (this._xmldoc == null)
+            if (_xmldoc == null)
             {
                 return;
             }
 
             Dictionary<string, string> newcache = new Dictionary<string, string>();
 
-            foreach (XmlElement entry in this._xmldoc.ChildNodes) //for each element, 
+            foreach (XmlElement entry in _xmldoc.ChildNodes) //for each element, 
             {
                 if (!(entry.Name == "xml" || entry.Name == "root"))
                 {
@@ -233,25 +231,25 @@
                 }
             }
 
-            this._cache = newcache;
+            _cache = newcache;
         }
 
-        private void SaveCache()
+		private static void SaveCache()
         {
-            if (this._cache == null)
+            if (_cache == null)
             {
                 return;
             }
 
             string newxml = "<xml>" + Environment.NewLine;
 
-            foreach (var entry in this._cache) //for each element, 
+            foreach (var entry in _cache) //for each element, 
             {
                 newxml += "<" + entry.Key + ">" + entry.Value + "</" + entry.Key + ">" + Environment.NewLine;
             }
             newxml += "</xml>";
-            this._xmldoc.LoadXml(newxml);
-            this._xmldoc.Save(this._filepath);
+            _xmldoc.LoadXml(newxml);
+            _xmldoc.Save(_filepath);
         }
     }
 }

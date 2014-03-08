@@ -16,8 +16,6 @@ namespace Bukkitgui2.MinecraftInterop.ProcessHandler
 	/// </summary>
 	internal static class ProcessHandler
 	{
-		private static readonly ILogger Logger = Share.Logger;
-
 		public static Process ServerProcess { get; private set; }
 		public static IMinecraftServer Server { get; private set; }
 		public static Boolean IsRunning { get; private set; }

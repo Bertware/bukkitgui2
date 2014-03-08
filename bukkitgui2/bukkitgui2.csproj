@@ -129,11 +129,11 @@
     <Compile Include="AddOn\Permissions\PermissionsTab.Designer.cs">
       <DependentUpon>PermissionsTab.cs</DependentUpon>
     </Compile>
-    <Compile Include="AddOn\Playerlist\PlayerList.cs" />
-    <Compile Include="AddOn\Playerlist\PlayerListTab.cs">
+    <Compile Include="AddOn\PlayerList\PlayerList.cs" />
+    <Compile Include="AddOn\PlayerList\PlayerListTab.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="AddOn\Playerlist\PlayerListTab.Designer.cs">
+    <Compile Include="AddOn\PlayerList\PlayerListTab.Designer.cs">
       <DependentUpon>PlayerListTab.cs</DependentUpon>
     </Compile>
     <Compile Include="AddOn\Plugins\Plugins.cs" />
@@ -186,15 +186,12 @@
     <Compile Include="Controls\SortableListView\SortableListView.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Core\Configuration\IConfig.cs" />
-    <Compile Include="Core\Configuration\XmlConfig.cs" />
+    <Compile Include="Core\Configuration\Config.cs" />
     <Compile Include="Core\FileLocation\DefaultFileLocation.cs" />
-    <Compile Include="Core\FileLocation\IFileLocation.cs" />
     <Compile Include="Core\Filesystem\IFilesystem.cs" />
     <Compile Include="Core\Filesystem\Local\LocalFileSystem.cs" />
     <Compile Include="Core\Locale.cs" />
-    <Compile Include="Core\Logging\FileLogger.cs" />
-    <Compile Include="Core\Logging\ILogger.cs" />
+    <Compile Include="Core\Logging\Logger.cs" />
     <Compile Include="Core\Share.cs" />
     <Compile Include="Core\Util\Performance\MemoryInfo.cs" />
     <Compile Include="Core\Util\Web\FileDownloader.cs">
@@ -255,7 +252,7 @@
     <EmbeddedResource Include="AddOn\Permissions\PermissionsTab.resx">
       <DependentUpon>PermissionsTab.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AddOn\Playerlist\PlayerListTab.resx">
+    <EmbeddedResource Include="AddOn\PlayerList\PlayerListTab.resx">
       <DependentUpon>PlayerListTab.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddOn\Plugins\PluginsTab.resx">

@@ -109,7 +109,7 @@
         }
     }
 
-    internal enum JavaVersion
+    public enum JavaVersion
     {
         Jre6X32,
 

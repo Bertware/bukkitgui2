@@ -1,4 +1,7 @@
 ﻿using System;
+using Bukkitgui2.Core.Configuration;
+using Bukkitgui2.Core.FileLocation;
+using Bukkitgui2.Core.Logging;
 
 namespace Bukkitgui2.Core
 {
@@ -6,10 +9,7 @@ namespace Bukkitgui2.Core
 
     internal static class Share
 	{
-		public static Configuration.IConfig Config = null;
 		public static Filesystem.IFilesystem ServerFileSystem = null;
-		public static Logging.ILogger Logger = null;
-		public static FileLocation.IFileLocation FileLocation = null;
 		public static IntPtr MainFormHandle;
 
 		public readonly static string AssemblyName = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
@@ -19,12 +19,9 @@ namespace Bukkitgui2.Core
 
 		public static void Initialize()
 		{
-			FileLocation = new FileLocation.DefaultFileLocation();
-
-			Logger = new Logging.FileLogger();
+			DefaultFileLocation.Initialize();
 			Logger.Initialize();
 
-			Config = new Configuration.XmlConfig();
 			Config.Initialize();
 
 			Locale.Initialize();

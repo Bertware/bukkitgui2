@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace Bukkitgui2.AddOn.Playerlist
+namespace Bukkitgui2.AddOn.PlayerList
 {
 	internal class PlayerList : IAddon
 	{
