@@ -97,6 +97,13 @@ namespace Bukkitgui2.MinecraftServers
 		OutputParseResult ParseOutput(string text);
 
 		/// <summary>
+		/// Substract the real message from output text, without the timestamps etc. This method should remove the timestamp and fix formatting
+		/// </summary>
+		/// <param name="text">The text to parse</param>
+		/// <returns>Message of the provided text</returns>
+		string ParseMessage(string text);
+
+		/// <summary>
 		///     Get the type of the provided text
 		/// </summary>
 		/// <param name="text">The text to parse</param>

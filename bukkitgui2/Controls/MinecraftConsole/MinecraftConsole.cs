@@ -58,30 +58,39 @@
         /// <param name="text"> The message text. </param>
         public void WriteOutput(MessageType type, string text)
         {
-            Color messageColor = this.MessageColorUnknown;
-            switch (type)
-            {
-                case MessageType.Info:
-                    messageColor = this.MessageColorInfo;
-                    break;
-                case MessageType.Warning:
-                    messageColor = this.MessageColorWarning;
-                    break;
-                case MessageType.Severe:
-                    messageColor = this.MessageColorSevere;
-                    break;
-				case MessageType.PlayerJoin:
-				case MessageType.PlayerLeave:
-				case MessageType.PlayerKick:
-				case MessageType.PlayerBan:
-				case MessageType.PlayerIpBan:
-					messageColor = this.MessageColorPlayerAction;
-					break;
-            }
+			//suport for calls from other threads
+	        if (this.InvokeRequired)
+	        {
+		        this.Invoke((MethodInvoker) (() => WriteOutput(type, text)));
+	        }
+	        else
+	        {
 
-            this.SelectionStart = this.TextLength;
-            this.SelectionColor = messageColor;
-            this.AppendText(text + "\n");
+		        Color messageColor = this.MessageColorUnknown;
+		        switch (type)
+		        {
+			        case MessageType.Info:
+				        messageColor = this.MessageColorInfo;
+				        break;
+			        case MessageType.Warning:
+				        messageColor = this.MessageColorWarning;
+				        break;
+			        case MessageType.Severe:
+				        messageColor = this.MessageColorSevere;
+				        break;
+			        case MessageType.PlayerJoin:
+			        case MessageType.PlayerLeave:
+			        case MessageType.PlayerKick:
+			        case MessageType.PlayerBan:
+			        case MessageType.PlayerIpBan:
+				        messageColor = this.MessageColorPlayerAction;
+				        break;
+		        }
+
+		        this.SelectionStart = this.TextLength;
+		        this.SelectionColor = messageColor;
+		        this.AppendText(text + "\n");
+	        }
         }
     }
 }

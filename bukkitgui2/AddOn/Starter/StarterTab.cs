@@ -73,6 +73,14 @@ namespace Bukkitgui2.AddOn.Starter
 			{
 				this.CBJavaVersion.Items.Add("Java 7 - 64 bit");
 			}
+			if (JavaApi.IsInstalled(JavaVersion.Jre8X32))
+			{
+				this.CBJavaVersion.Items.Add("Java 8 - 32 bit");
+			}
+			if (JavaApi.IsInstalled(JavaVersion.Jre8X64))
+			{
+				this.CBJavaVersion.Items.Add("Java 8 - 64 bit");
+			}
 			this.CBJavaVersion.SelectedIndex = 0;
 			Logger.Log(LogLevel.Info, "StarterTab", "UI Loaded");
         }
@@ -187,6 +195,8 @@ namespace Bukkitgui2.AddOn.Starter
 			if (Regex.IsMatch(selectedText, "(.*)6(.*)64")) return JavaVersion.Jre6X64;
 			if (Regex.IsMatch(selectedText, "(.*)7(.*)32")) return JavaVersion.Jre7X32;
 			if (Regex.IsMatch(selectedText, "(.*)7(.*)64")) return JavaVersion.Jre7X64;
+			if (Regex.IsMatch(selectedText, "(.*)8(.*)32")) return JavaVersion.Jre8X32;
+			if (Regex.IsMatch(selectedText, "(.*)8(.*)64")) return JavaVersion.Jre8X64;
 		    return JavaVersion.Jre7X32;
 	    }
 

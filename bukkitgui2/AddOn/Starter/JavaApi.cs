@@ -15,6 +15,10 @@
 
         private static string _jre7X64 = "";
 
+		private static string _jre8X32 = "";
+
+		private static string _jre8X64 = "";
+
         /// <summary>
         ///     Initialize the class, check available versions and paths
         /// </summary>
@@ -38,6 +42,14 @@
             {
                 _jre7X64 = ProgramFiles() + "\\Java\\jre7\\bin\\java.exe";
             }
+			if (File.Exists(ProgramFilesx86() + "\\Java\\jre8\\bin\\java.exe"))
+			{
+				_jre8X32 = ProgramFilesx86() + "\\Java\\jre8\\bin\\java.exe";
+			}
+			if (File.Exists(ProgramFiles() + "\\Java\\jre8\\bin\\java.exe"))
+			{
+				_jre8X64 = ProgramFiles() + "\\Java\\jre8\\bin\\java.exe";
+			}
         }
 
         /// <summary>
@@ -61,6 +73,10 @@
                     return !string.IsNullOrEmpty(_jre7X32);
                 case JavaVersion.Jre7X64:
                     return !string.IsNullOrEmpty(_jre7X64);
+				case JavaVersion.Jre8X32:
+					return !string.IsNullOrEmpty(_jre8X32);
+				case JavaVersion.Jre8X64:
+					return !string.IsNullOrEmpty(_jre8X64);
                 default:
                     return false;
             }
@@ -87,6 +103,10 @@
                     return _jre7X32;
                 case JavaVersion.Jre7X64:
                     return _jre7X64;
+				case JavaVersion.Jre8X32:
+					return _jre8X32;
+				case JavaVersion.Jre8X64:
+					return _jre8X64;
                 default:
                     return null;
             }
@@ -117,6 +137,10 @@
 
         Jre7X32,
 
-        Jre7X64
+        Jre7X64,
+
+		Jre8X32,
+
+		Jre8X64
     }
 }
