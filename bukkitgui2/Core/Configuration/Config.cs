@@ -1,4 +1,5 @@
 ﻿using Bukkitgui2.Core.FileLocation;
+using Bukkitgui2.Core.Logging;
 
 namespace Bukkitgui2.Core.Configuration
 {
@@ -59,13 +60,17 @@ namespace Bukkitgui2.Core.Configuration
         {
             if (string.IsNullOrEmpty(location))
             {
-                location = DefaultFileLocation.Location(FileLocation.RequestFile.Config) + CteFileName;
+                location = DefaultFileLocation.Location(RequestFile.Config) + CteFileName;
             }
 
             _filepath = location;
 
+
+			Logger.Log(LogLevel.Info,"Config","Loading file",_filepath);
+
             if (!File.Exists(_filepath))
             {
+				Logger.Log(LogLevel.Info, "Config", "Creating config file");
                 DirectoryInfo dirInfo = new FileInfo(_filepath).Directory;
                 if (dirInfo != null)
                 {
@@ -94,15 +99,19 @@ namespace Bukkitgui2.Core.Configuration
         {
             if (string.IsNullOrEmpty(location))
             {
-				location = DefaultFileLocation.Location(FileLocation.RequestFile.Config) + CteFileName;
+				location = DefaultFileLocation.Location(RequestFile.Config) + CteFileName;
             }
 
             if (_cache.Count == 0)
             {
+				Logger.Log(LogLevel.Debug, "Config", "Didn't save file: nothing to save");
                 return;
             }
 
-            _filepath = location;
+			_filepath = location;
+
+			Logger.Log(LogLevel.Info, "Config", "Saving file", _filepath);
+
             SaveCache();
         }
 
@@ -122,12 +131,15 @@ namespace Bukkitgui2.Core.Configuration
 
             string id = parent + "_" + key;
 
-            if (_cache.ContainsKey(id))
+			if (_cache.ContainsKey(id))
             {
-                return _cache[id];
+				string value = _cache[id];
+				Logger.Log(LogLevel.Info, "Config", "Read value", id + ":" + value);
+	            return value;
             }
 
             _cache.Add(id, defaultValue);
+			Logger.Log(LogLevel.Info, "Config", "Read value", id + ":" + defaultValue + " (default)");
             return defaultValue;
         }
 
@@ -168,19 +180,24 @@ namespace Bukkitgui2.Core.Configuration
         /// <returns>Returns the requested value</returns>
 		public static Int32 ReadInt(string parent, string key, Int32 defaultValue)
         {
+			
             if (!IsInitialized)
             {
                 return defaultValue;
-            }
-
-            string id = parent + "_" + key;
-
-            if (_cache.ContainsKey(id))
+            } 
+			
+			string id = parent + "_" + key;
+			Logger.Log(LogLevel.Info, "Config", "Reading value", id );
+           
+			if (_cache.ContainsKey(id))
             {
-                return int.Parse(_cache[id]);
+				int value = int.Parse(_cache[id]);
+				Logger.Log(LogLevel.Info, "Config", "Read value", id + ":" + value);
+	            return value;
             }
 
             _cache.Add(id, defaultValue.ToString(CultureInfo.InvariantCulture));
+			Logger.Log(LogLevel.Info, "Config", "Read value", id + ":" + defaultValue + " (default)");
             return defaultValue;
         }
 
@@ -193,11 +210,13 @@ namespace Bukkitgui2.Core.Configuration
         /// <returns>Returns true if operation succeeded</returns>
         public static bool WriteInt(string parent, string key, Int32 value)
         {
-            if (!IsInitialized)
+			if (!IsInitialized)
             {
                 return false;
             }
             string id = parent + "_" + key;
+
+			Logger.Log(LogLevel.Info, "Config", "Saving value", id + ":" + value );
 
             if (_cache.ContainsKey(id))
             {
@@ -207,7 +226,7 @@ namespace Bukkitgui2.Core.Configuration
             {
                 _cache.Add(id, value.ToString(CultureInfo.InvariantCulture));
             }
-
+			Logger.Log(LogLevel.Info, "Config", "Saved value", id + ":" + value);
             return true;
         }
 
@@ -223,6 +242,9 @@ namespace Bukkitgui2.Core.Configuration
 
             Dictionary<string, string> newcache = new Dictionary<string, string>();
 
+			Logger.Log(LogLevel.Info, "Config", "Loading cache");
+
+
             foreach (XmlElement entry in _xmldoc.ChildNodes) //for each element, 
             {
                 if (!(entry.Name == "xml" || entry.Name == "root"))
@@ -230,6 +252,8 @@ namespace Bukkitgui2.Core.Configuration
                     newcache.Add(entry.Name, entry.Value);
                 }
             }
+
+			Logger.Log(LogLevel.Info, "Config", "Loaded cache: " + newcache.Count + " entries loaded");
 
             _cache = newcache;
         }
@@ -241,6 +265,9 @@ namespace Bukkitgui2.Core.Configuration
                 return;
             }
 
+
+			Logger.Log(LogLevel.Info, "Config", "Saving cache");
+
             string newxml = "<xml>" + Environment.NewLine;
 
             foreach (var entry in _cache) //for each element, 
@@ -250,6 +277,7 @@ namespace Bukkitgui2.Core.Configuration
             newxml += "</xml>";
             _xmldoc.LoadXml(newxml);
             _xmldoc.Save(_filepath);
+			Logger.Log(LogLevel.Info, "Config", "Saved cache");
         }
     }
 }

@@ -3,7 +3,7 @@
     using System.Drawing;
     using System.Windows.Forms;
 
-    using Bukkitgui2.MinecraftInterop.OutputHandler;
+    using MinecraftInterop.OutputHandler;
 
     /// <summary>
     ///     RichTextBox which has markup for Minecraft server output
@@ -44,6 +44,14 @@
         ///     Gets or sets the message color for text containing warnings.
         /// </summary>
         public Color MessageColorWarning { get; set; }
+
+	    public MinecraftConsole()
+	    {
+		    MessageColorInfo = Color.Blue;
+		    MessageColorPlayerAction = Color.DarkGreen;
+		    MessageColorSevere = Color.DarkRed;
+		    MessageColorWarning = Color.DarkOrange;
+	    }
 
         public void ScrollDown()
         {

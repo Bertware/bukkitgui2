@@ -59,7 +59,7 @@ namespace Bukkitgui2.MinecraftServers
 			get { return false; }
 		}
 
-		public virtual  Assembly CustomAssembly
+		public virtual Assembly CustomAssembly
 		{
 			get { return null; }
 		}
@@ -105,29 +105,30 @@ namespace Bukkitgui2.MinecraftServers
 
 		public virtual MessageType ParseMessageType(string text)
 		{
-
 			MessageType type = MessageType.Unknown;
 
 
 			//[WARNING]...
-			if (Regex.IsMatch(text, WarningTagRegex))
+			if (Regex.IsMatch(text, WarningTagRegex + ".*", RegexOptions.IgnoreCase))
 			{
 				type = MessageType.Warning;
 			}
-			//[SEVERE] ...
-			else if (Regex.IsMatch(text, SevereTagRegex))
+				//[SEVERE] ...
+			else if (Regex.IsMatch(text, SevereTagRegex + ".*", RegexOptions.IgnoreCase))
 			{
 				type = MessageType.Severe;
 			}
-			//[INFO] Bertware[/127.0.0.1:58189] logged in with entity id 27 at ([world] -1001.0479985318618, 2.0, 1409.300000011921)
-			//[INFO] Bertware[/127.0.0.1:58260] logged in with entity id 0 at (-1001.0479985318618, 2.0, 1409.300000011921)
+				//[INFO] Bertware[/127.0.0.1:58189] logged in with entity id 27 at ([world] -1001.0479985318618, 2.0, 1409.300000011921)
+				//[INFO] Bertware[/127.0.0.1:58260] logged in with entity id 0 at (-1001.0479985318618, 2.0, 1409.300000011921)
 			else if (Regex.IsMatch(text,
-				InfoTagRegex + SpaceRegex + PlayerRegex + IpRegex + ForcedSpaceRegex + "logged in with entity id"))
+				InfoTagRegex + SpaceRegex + PlayerRegex + IpRegex + ForcedSpaceRegex + "logged in with entity id",
+				RegexOptions.IgnoreCase))
 			{
 				type = MessageType.PlayerJoin;
-			} else if (Regex.IsMatch(text, InfoTagRegex))
+			}
+			else if (Regex.IsMatch(text, InfoTagRegex + ".*", RegexOptions.IgnoreCase))
 			{
-				type=MessageType.Info;
+				type = MessageType.Info;
 			}
 
 			return type;
@@ -138,7 +139,7 @@ namespace Bukkitgui2.MinecraftServers
 			//2014-01-01 00:00:00,000
 			text = Regex.Replace(text, "\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}(,\\d{3}|)\\s*", "");
 			//[11:36:21]
-			text = Regex.Replace(text, "\\[\\d\\d:\\d\\d:\\d\\d\\]","");
+			text = Regex.Replace(text, "\\[\\d\\d:\\d\\d:\\d\\d\\]", "");
 			//[11:36:21 INFO]
 			text = Regex.Replace(text, "\\[\\d\\d:\\d\\d:\\d\\d ", "[");
 			return text;
@@ -147,7 +148,7 @@ namespace Bukkitgui2.MinecraftServers
 		public virtual string FilterText(string text)
 		{
 			text = Regex.Replace(text, "\\[minecraft(-server|)\\]", "", RegexOptions.IgnoreCase);
-				// remove [minecraft] or [minecraft-server] tags, for better parsing
+			// remove [minecraft] or [minecraft-server] tags, for better parsing
 			text = Regex.Replace(text, "\\]:", "] ");
 			return text;
 		}
