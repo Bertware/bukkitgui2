@@ -13,7 +13,15 @@ namespace Bukkitgui2.AddOn.Starter
 	{
 		private readonly Dictionary<string, IMinecraftServer> _servers;
 
+		/// <summary>
+		///     The reference to the custom control used by some servers
+		/// </summary>
 		private UserControl _customControl;
+
+		/// <summary>
+		///     True if initialization is finished and everything can handle user input
+		/// </summary>
+		private Boolean _ready;
 
 		public StarterTab()
 		{
@@ -67,7 +75,7 @@ namespace Bukkitgui2.AddOn.Starter
 			// value should be less than maximum value
 			if (maxRamValue < NumMaxRam.Maximum)
 			{
-				NumMaxRam.Value = maxRamValue; 
+				NumMaxRam.Value = maxRamValue;
 			}
 			else
 			{
@@ -75,7 +83,7 @@ namespace Bukkitgui2.AddOn.Starter
 			}
 			if (minRamValue < NumMinRam.Maximum)
 			{
-				NumMinRam.Value = minRamValue; 
+				NumMinRam.Value = minRamValue;
 			}
 			else
 			{
@@ -109,7 +117,7 @@ namespace Bukkitgui2.AddOn.Starter
 				CBJavaVersion.Items.Add("Java 8 - 64 bit");
 			}
 
-			int javaType = Config.ReadInt("Starter", "JavaVersion",0);
+			int javaType = Config.ReadInt("Starter", "JavaVersion", 0);
 			if (javaType < CBJavaVersion.Items.Count)
 			{
 				CBJavaVersion.SelectedIndex = javaType;
@@ -119,7 +127,12 @@ namespace Bukkitgui2.AddOn.Starter
 				CBJavaVersion.SelectedIndex = 0;
 			}
 
+			TxtJarFile.Text = Config.ReadString("Starter", "JarFile", "");
+			TxtOptArg.Text = Config.ReadString("Starter", "OptionalArguments", "");
+			TxtOptFlag.Text = Config.ReadString("Starter", "OptionalFlags", "");
+
 			Logger.Log(LogLevel.Info, "StarterTab", "UI Loaded");
+			_ready = true;
 		}
 
 		/// <summary>
@@ -283,43 +296,73 @@ namespace Bukkitgui2.AddOn.Starter
 			return true;
 		}
 
+
 		public IAddon ParentAddon { get; set; }
 
 		// UI events
 
+		/// <summary>
+		///     Handle SelectedIndexChanged event for server type combobox, and load the new server type
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void CbServerTypeSelectedIndexChanged(object sender, EventArgs e)
 		{
+			if (!_ready) return; //if not initialized, don't detect changes
 			Config.WriteInt("Starter", "ServerType", CBServerType.SelectedIndex);
 			LoadServer();
 		}
 
+		/// <summary>
+		///     Launch a new server
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void BtnLaunch_Click(object sender, EventArgs e)
 		{
 			DoServerLaunch();
 		}
 
+		/// <summary>
+		///     Trackbar scrolled, also adjust numeric value
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void TbMinRamScroll(object sender, EventArgs e)
 		{
+			if (!_ready) return; //if not initialized, don't detect changes
 			Config.WriteInt("Starter", "MinRam", TBMinRam.Value);
 			NumMinRam.Value = TBMinRam.Value;
 		}
 
+		/// <summary>
+		///     Trackbar scrolled, also adjust numeric value
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void TbMaxRamScroll(object sender, EventArgs e)
 		{
+			if (!_ready) return; //if not initialized, don't detect changes
 			Config.WriteInt("Starter", "MaxRam", TBMaxRam.Value);
 			NumMaxRam.Value = TBMaxRam.Value;
 		}
 
-
+		/// <summary>
+		///     Numeric value changed, adjust trackbar and check if minimum value is smaller than the maximum value
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void NumMinRam_ValueChanged(object sender, EventArgs e)
 		{
-			Config.WriteInt("Starter", "MinRam", Convert.ToInt16(NumMinRam.Value));
-
 			// If trackbar doesn't show the same amount, adjust trackbar
 			if (TBMinRam.Value != NumMinRam.Value)
 			{
 				TBMinRam.Value = Convert.ToInt16(NumMinRam.Value);
 			}
+
+			if (!_ready) return; //if not initialized, don't detect changes
+			Config.WriteInt("Starter", "MinRam", Convert.ToInt16(NumMinRam.Value));
+
 			// if minram goes higer than maxram, adjust maxram
 			if (NumMinRam.Value > NumMaxRam.Value)
 			{
@@ -327,20 +370,32 @@ namespace Bukkitgui2.AddOn.Starter
 			}
 		}
 
+		/// <summary>
+		///     Numeric value changed, adjust trackbar and check if minimum value is smaller than the maximum value
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void NumMaxRam_ValueChanged(object sender, EventArgs e)
 		{
-			Config.WriteInt("Starter", "MaxRam", Convert.ToInt16(NumMaxRam.Value));
-
 			if (TBMaxRam.Value != NumMaxRam.Value)
 			{
 				TBMaxRam.Value = Convert.ToInt16(NumMaxRam.Value);
 			}
+
+			if (!_ready) return; //if not initialized, don't detect changes
+			Config.WriteInt("Starter", "MaxRam", Convert.ToInt16(NumMaxRam.Value));
+
 			if (NumMinRam.Value > NumMaxRam.Value)
 			{
 				NumMinRam.Value = NumMaxRam.Value; // keep the value of the item we're changing
 			}
 		}
 
+		/// <summary>
+		///     Browse for a jar server file
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void BtnBrowseJarFile_Click(object sender, EventArgs e)
 		{
 			OpenFileDialog dialog = new OpenFileDialog
@@ -352,26 +407,50 @@ namespace Bukkitgui2.AddOn.Starter
 				Multiselect = false
 			};
 			dialog.ShowDialog();
-			TxtJarFile.Text = dialog.FileName;
+			TxtJarFile.Text = dialog.FileName; //this will also trigger the save of this value
 		}
 
+		/// <summary>
+		///     Handle changed text for the jar file path. Save the new value.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void TxtJarFile_TextChanged(object sender, EventArgs e)
 		{
+			if (!_ready) return; //if not initialized, don't detect changes
 			Config.WriteString("Starter", "JarFile", TxtJarFile.Text);
 		}
 
+		/// <summary>
+		///     Handle changed text for the custom arguments. Save the new value.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void TxtOptArg_TextChanged(object sender, EventArgs e)
 		{
+			if (!_ready) return; //if not initialized, don't detect changes
 			Config.WriteString("Starter", "OptionalArguments", TxtOptArg.Text);
 		}
 
+		/// <summary>
+		///     Handle changed text for the custom flags. Save the new value.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void TxtOptFlag_TextChanged(object sender, EventArgs e)
 		{
+			if (!_ready) return; //if not initialized, don't detect changes
 			Config.WriteString("Starter", "OptionalFlags", TxtOptFlag.Text);
 		}
 
+		/// <summary>
+		///     Handle a change in the selected java version. Save the new value.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void CBJavaVersion_SelectedIndexChanged(object sender, EventArgs e)
 		{
+			if (!_ready) return; //if not initialized, don't detect changes
 			Config.WriteInt("Starter", "JavaVersion", CBJavaVersion.SelectedIndex);
 		}
 	}

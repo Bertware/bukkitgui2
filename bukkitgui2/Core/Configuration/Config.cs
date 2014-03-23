@@ -1,5 +1,7 @@
-﻿using Bukkitgui2.Core.FileLocation;
+﻿using System.Windows.Forms;
+using Bukkitgui2.Core.FileLocation;
 using Bukkitgui2.Core.Logging;
+using Bukkitgui2.UI;
 
 namespace Bukkitgui2.Core.Configuration
 {
@@ -36,7 +38,8 @@ namespace Bukkitgui2.Core.Configuration
             LoadFile();
             IsInitialized = true;
 
-            System.Windows.Forms.Application.ApplicationExit += HandleExit;
+			MainForm form = (MainForm) Control.FromHandle(Share.MainFormHandle);
+            form.Closing += HandleExit;
         }
 
         /// <summary>
@@ -129,7 +132,8 @@ namespace Bukkitgui2.Core.Configuration
                 return defaultValue;
             }
 
-            string id = parent + "_" + key;
+			string id = parent + "_" + key;
+			id = id.ToLower();
 
 			if (_cache.ContainsKey(id))
             {
@@ -158,17 +162,20 @@ namespace Bukkitgui2.Core.Configuration
             }
 
             string id = parent + "_" + key;
+	        id = id.ToLower();
 
-            if (_cache.ContainsKey(id))
-            {
-                _cache[id] = value;
-            }
-            else
-            {
-                _cache.Add(id, value);
-            }
+			Logger.Log(LogLevel.Info, "Config", "Saving value", id + ":" + value);
 
-            return true;
+			if (_cache.ContainsKey(id))
+			{
+				_cache[id] = value;
+			}
+			else
+			{
+				_cache.Add(id, value);
+			}
+			Logger.Log(LogLevel.Info, "Config", "Saved value", id + ":" + value);
+			return true;
         }
 
         /// <summary>
@@ -184,9 +191,10 @@ namespace Bukkitgui2.Core.Configuration
             if (!IsInitialized)
             {
                 return defaultValue;
-            } 
-			
+            }
+
 			string id = parent + "_" + key;
+			id = id.ToLower();
 			Logger.Log(LogLevel.Info, "Config", "Reading value", id );
            
 			if (_cache.ContainsKey(id))
@@ -214,7 +222,8 @@ namespace Bukkitgui2.Core.Configuration
             {
                 return false;
             }
-            string id = parent + "_" + key;
+			string id = parent + "_" + key;
+			id = id.ToLower();
 
 			Logger.Log(LogLevel.Info, "Config", "Saving value", id + ":" + value );
 
@@ -243,13 +252,13 @@ namespace Bukkitgui2.Core.Configuration
             Dictionary<string, string> newcache = new Dictionary<string, string>();
 
 			Logger.Log(LogLevel.Info, "Config", "Loading cache");
+	        XmlElement xmle = _xmldoc.DocumentElement;
 
-
-            foreach (XmlElement entry in _xmldoc.ChildNodes) //for each element, 
+            foreach (XmlElement entry in xmle.ChildNodes) //for each element, 
             {
                 if (!(entry.Name == "xml" || entry.Name == "root"))
                 {
-                    newcache.Add(entry.Name, entry.Value);
+                    newcache.Add(entry.Name, entry.InnerText);
                 }
             }
 

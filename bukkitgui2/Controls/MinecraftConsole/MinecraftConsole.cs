@@ -97,7 +97,7 @@
 
 		        this.SelectionStart = this.TextLength;
 		        this.SelectionColor = messageColor;
-		        this.AppendText(text + "\n");
+		        this.SelectedText = text + '\r' + '\n';
 	        }
         }
     }
