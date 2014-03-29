@@ -10,6 +10,7 @@
     /// </summary>
     public class MinecraftConsole : RichTextBox
     {
+
         /// <summary>
         ///     Gets or sets the message color for informative text.
         /// </summary>

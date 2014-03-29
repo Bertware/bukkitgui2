@@ -14,14 +14,19 @@ namespace Bukkitgui2.MinecraftServers
 	/// </summary>
 	internal class MinecraftServerBase : IMinecraftServer
 	{
+		//new prefixes in output tags since 1.7.2
 		private const string Outputprefix172 = "((.*)thread(.*)/|)";
 
+		// message tags
 		private const string InfoTagRegex = "^\\[" + Outputprefix172 + "info\\]";
 		private const string WarningTagRegex = "^\\[" + Outputprefix172 + "(warning|warn)\\]";
 		private const string SevereTagRegex = "^\\[" + Outputprefix172 + "(severe|error)\\]";
 
+		// ip's and player names
 		private const string IpRegex = "\\[\\d{1,3}:\\d{1,3}:\\d{1,3}:\\d{1,3}(:\\d{2,5}|)\\]";
 		private const string PlayerRegex = "\\w{2,16}";
+		
+		// other regexes
 		private const string SpaceRegex = "\\{0,1}";
 		private const string ForcedSpaceRegex = "\\s";
 

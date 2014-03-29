@@ -152,8 +152,9 @@ namespace Bukkitgui2.MinecraftInterop.ProcessHandler
 						RedirectStandardError = true
 					}
 			};
-
+			ServerProcess.EnableRaisingEvents = true;
 			ServerProcess.Start();
+			ServerProcess.Exited += HandleStop;
 
 			StartThreads();
 
@@ -168,10 +169,13 @@ namespace Bukkitgui2.MinecraftInterop.ProcessHandler
 		public static void StopServer()
 		{
 			RaiseServerStopping();
-
 			SendInput("stop");
-			StopThreads();
+		}
 
+		private static void HandleStop(object sender, EventArgs e)
+		{
+			ServerProcess.Exited -= HandleStop;
+			StopThreads();
 			IsRunning = false;
 			RaiseServerStopped();
 		}

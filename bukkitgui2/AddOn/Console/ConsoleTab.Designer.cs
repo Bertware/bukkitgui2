@@ -32,14 +32,14 @@ namespace Bukkitgui2.AddOn.Console
         {
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-			this.consoleInput1 = new Bukkitgui2.Controls.ConsoleInput.ConsoleInput();
+			this.SLVPlayers = new Bukkitgui2.Controls.SortableListView.SortableListView();
+			this.ColPlayers = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.CIConsoleInput = new Bukkitgui2.Controls.ConsoleInput.ConsoleInput();
 			this.MCCOut = new Bukkitgui2.Controls.MinecraftConsole.MinecraftConsole();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.performanceMonitor1 = new Bukkitgui2.Controls.PerformanceMonitor.PerformanceMonitor();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
-			this.quickButtons1 = new QuickButtons();
-			this.sortableListView1 = new Bukkitgui2.Controls.SortableListView.SortableListView();
-			this.ColPlayers = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.quickButtons1 = new Bukkitgui2.Controls.QuickButtons.QuickButtons();
 			this.groupBox1.SuspendLayout();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
@@ -69,23 +69,42 @@ namespace Bukkitgui2.AddOn.Console
 			// 
 			// splitContainer1.Panel1
 			// 
-			this.splitContainer1.Panel1.Controls.Add(this.sortableListView1);
+			this.splitContainer1.Panel1.Controls.Add(this.SLVPlayers);
 			// 
 			// splitContainer1.Panel2
 			// 
-			this.splitContainer1.Panel2.Controls.Add(this.consoleInput1);
+			this.splitContainer1.Panel2.Controls.Add(this.CIConsoleInput);
 			this.splitContainer1.Panel2.Controls.Add(this.MCCOut);
 			this.splitContainer1.Size = new System.Drawing.Size(788, 352);
 			this.splitContainer1.SplitterDistance = 160;
 			this.splitContainer1.TabIndex = 1;
 			// 
-			// consoleInput1
+			// SLVPlayers
 			// 
-			this.consoleInput1.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.consoleInput1.Location = new System.Drawing.Point(0, 332);
-			this.consoleInput1.Name = "consoleInput1";
-			this.consoleInput1.Size = new System.Drawing.Size(624, 20);
-			this.consoleInput1.TabIndex = 1;
+			this.SLVPlayers.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.ColPlayers});
+			this.SLVPlayers.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.SLVPlayers.Location = new System.Drawing.Point(0, 0);
+			this.SLVPlayers.Name = "SLVPlayers";
+			this.SLVPlayers.Size = new System.Drawing.Size(160, 352);
+			this.SLVPlayers.TabIndex = 0;
+			this.SLVPlayers.UseCompatibleStateImageBehavior = false;
+			this.SLVPlayers.View = System.Windows.Forms.View.Details;
+			// 
+			// ColPlayers
+			// 
+			this.ColPlayers.Text = "Players";
+			this.ColPlayers.Width = 146;
+			// 
+			// CIConsoleInput
+			// 
+			this.CIConsoleInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.CIConsoleInput.AutoCompletion = false;
+			this.CIConsoleInput.Location = new System.Drawing.Point(0, 332);
+			this.CIConsoleInput.Name = "CIConsoleInput";
+			this.CIConsoleInput.Size = new System.Drawing.Size(624, 20);
+			this.CIConsoleInput.TabIndex = 1;
 			// 
 			// MCCOut
 			// 
@@ -93,13 +112,13 @@ namespace Bukkitgui2.AddOn.Console
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.MCCOut.Location = new System.Drawing.Point(0, 0);
-			this.MCCOut.MessageColorInfo = System.Drawing.Color.Empty;
-			this.MCCOut.MessageColorPlayerAction = System.Drawing.Color.Empty;
-			this.MCCOut.MessageColorPlayerTag = System.Drawing.Color.Empty;
-			this.MCCOut.MessageColorPluginTag = System.Drawing.Color.Empty;
-			this.MCCOut.MessageColorSevere = System.Drawing.Color.Empty;
-			this.MCCOut.MessageColorUnknown = System.Drawing.Color.Empty;
-			this.MCCOut.MessageColorWarning = System.Drawing.Color.Empty;
+			this.MCCOut.MessageColorInfo = System.Drawing.Color.Blue;
+			this.MCCOut.MessageColorPlayerAction = System.Drawing.Color.DarkGreen;
+			this.MCCOut.MessageColorPlayerTag = System.Drawing.Color.DarkGreen;
+			this.MCCOut.MessageColorPluginTag = System.Drawing.Color.Black;
+			this.MCCOut.MessageColorSevere = System.Drawing.Color.DarkRed;
+			this.MCCOut.MessageColorUnknown = System.Drawing.Color.Black;
+			this.MCCOut.MessageColorWarning = System.Drawing.Color.DarkOrange;
 			this.MCCOut.Name = "MCCOut";
 			this.MCCOut.Size = new System.Drawing.Size(624, 326);
 			this.MCCOut.TabIndex = 0;
@@ -144,23 +163,6 @@ namespace Bukkitgui2.AddOn.Console
 			this.quickButtons1.Size = new System.Drawing.Size(151, 98);
 			this.quickButtons1.TabIndex = 0;
 			// 
-			// sortableListView1
-			// 
-			this.sortableListView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.ColPlayers});
-			this.sortableListView1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.sortableListView1.Location = new System.Drawing.Point(0, 0);
-			this.sortableListView1.Name = "sortableListView1";
-			this.sortableListView1.Size = new System.Drawing.Size(160, 352);
-			this.sortableListView1.TabIndex = 0;
-			this.sortableListView1.UseCompatibleStateImageBehavior = false;
-			this.sortableListView1.View = System.Windows.Forms.View.Details;
-			// 
-			// ColPlayers
-			// 
-			this.ColPlayers.Text = "Players";
-			this.ColPlayers.Width = 146;
-			// 
 			// ConsoleTab
 			// 
 			this.Controls.Add(this.groupBox3);
@@ -186,10 +188,10 @@ namespace Bukkitgui2.AddOn.Console
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
-        private Controls.ConsoleInput.ConsoleInput consoleInput1;
+        private Controls.ConsoleInput.ConsoleInput CIConsoleInput;
         private QuickButtons quickButtons1;
         private Controls.PerformanceMonitor.PerformanceMonitor performanceMonitor1;
-		private Controls.SortableListView.SortableListView sortableListView1;
+		private Controls.SortableListView.SortableListView SLVPlayers;
 		private System.Windows.Forms.ColumnHeader ColPlayers;
 
      }

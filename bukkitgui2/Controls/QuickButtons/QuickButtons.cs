@@ -1,5 +1,4 @@
 ﻿using System;
-
 using System.Windows.Forms;
 using Bukkitgui2.AddOn;
 using Bukkitgui2.AddOn.Starter;
@@ -22,40 +21,80 @@ namespace Bukkitgui2.Controls.QuickButtons
 
 		private void HandleServerStarting()
 		{
-			btnStartStop.Enabled = false;
-			btnStartStop.Text = Locale.Tr("Starting...");
+			//suport for calls from other threads
+			if (InvokeRequired)
+			{
+				Invoke((MethodInvoker) (HandleServerStarting));
+			}
+			else
+			{
+				btnStartStop.Enabled = false;
+				btnStartStop.Text = Locale.Tr("Starting...");
+			}
 		}
 
 		private void HandleServerStarted()
 		{
-			btnStartStop.Enabled = true;
-			btnStartStop.Text = Locale.Tr("Stop");
+			//suport for calls from other threads
+			if (InvokeRequired)
+			{
+				Invoke((MethodInvoker) (HandleServerStarted));
+			}
+			else
+			{
+				btnStartStop.Enabled = true;
+				btnStartStop.Text = Locale.Tr("Stop");
+			}
 		}
 
 		private void HandleServerStopping()
 		{
-			btnStartStop.Enabled = false;
-			btnStartStop.Text = Locale.Tr("Stopping...");
+			//suport for calls from other threads
+			if (InvokeRequired)
+			{
+				Invoke((MethodInvoker) (HandleServerStopping));
+			}
+			else
+			{
+				btnStartStop.Enabled = false;
+				btnStartStop.Text = Locale.Tr("Stopping...");
+			}
 		}
 
 		private void HandleServerStopped()
 		{
-			btnStartStop.Enabled = true;
-			btnStartStop.Text = Locale.Tr("Start");
+			//suport for calls from other threads
+			if (InvokeRequired)
+			{
+				Invoke((MethodInvoker) (HandleServerStopped));
+			}
+			else
+			{
+				btnStartStop.Enabled = true;
+				btnStartStop.Text = Locale.Tr("Start");
+			}
 		}
 
 		private void btnStartStop_Click(object sender, EventArgs e)
 		{
-			if (ProcessHandler.IsRunning)
+			//suport for calls from other threads
+			if (InvokeRequired)
 			{
-				ProcessHandler.StopServer();
+				Invoke((MethodInvoker) (() => btnStartStop_Click(sender, e)));
 			}
 			else
 			{
-				if (!(this.ParentForm is MainForm)) return; //check if the parent form is a mainform
-				MainForm parentForm = (MainForm) this.ParentForm; 
-				Starter starter = (Starter) parentForm.GetRequiredAddon(RequiredAddon.Starter); // Get the starter addon
-				starter.LaunchServerFromTab(); // Launch with tab settings
+				if (ProcessHandler.IsRunning)
+				{
+					ProcessHandler.StopServer();
+				}
+				else
+				{
+					if (!(ParentForm is MainForm)) return; //check if the parent form is a mainform
+					MainForm parentForm = (MainForm) ParentForm;
+					Starter starter = (Starter) parentForm.GetRequiredAddon(RequiredAddon.Starter); // Get the starter addon
+					starter.LaunchServerFromTab(); // Launch with tab settings
+				}
 			}
 		}
 	}
