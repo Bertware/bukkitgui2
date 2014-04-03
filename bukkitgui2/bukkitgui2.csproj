@@ -203,6 +203,12 @@
     <Compile Include="Core\Util\FsUtil.cs" />
     <Compile Include="Core\Util\DynamicDllLoader.cs" />
     <Compile Include="Core\Util\DynamicModuleLoader.cs" />
+    <Compile Include="Core\Util\Web\FileDownloadProgressBar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Core\Util\Web\FileDownloadProgressBar.Designer.cs">
+      <DependentUpon>FileDownloadProgressBar.cs</DependentUpon>
+    </Compile>
     <Compile Include="Core\Util\Web\WebUtil.cs" />
     <Compile Include="MinecraftInterop\OutputHandler\EnumMessageType.cs" />
     <Compile Include="MinecraftInterop\OutputHandler\OutputParseResult.cs" />
@@ -275,6 +281,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Core\Util\Web\FileDownloader.resx">
       <DependentUpon>FileDownloader.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Util\Web\FileDownloadProgressBar.resx">
+      <DependentUpon>FileDownloadProgressBar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

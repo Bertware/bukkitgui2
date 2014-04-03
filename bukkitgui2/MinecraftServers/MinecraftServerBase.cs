@@ -9,7 +9,9 @@ using Bukkitgui2.MinecraftInterop.OutputHandler.PlayerActions;
 
 namespace Bukkitgui2.MinecraftServers
 {
-	/// <summary>
+    using Bukkitgui2.Core.Util.Web;
+
+    /// <summary>
 	///     The base for a minecraft server. This should contain all parsing code for a vanilla server.
 	/// </summary>
 	internal class MinecraftServerBase : IMinecraftServer
@@ -200,7 +202,7 @@ namespace Bukkitgui2.MinecraftServers
 
 		public virtual bool CanDownloadRecommendedVersion
 		{
-			get { return false; }
+			get { return true; }
 		}
 
 		public virtual bool CanDownloadBetaVersion
@@ -235,17 +237,23 @@ namespace Bukkitgui2.MinecraftServers
 
 		public virtual bool DownloadRecommendedVersion(string targetfile)
 		{
-			throw new NotImplementedException();
+			FileDownloader fileDownloadDialog = new FileDownloader();
+		    fileDownloadDialog.AddFile(
+		        "https://s3.amazonaws.com/Minecraft.Download/versions/1.7.5/minecraft_server.1.7.5.jar",
+		        targetfile);
+		    fileDownloadDialog.Show();
+            fileDownloadDialog.StartDownload();
+            return true;
 		}
 
 		public virtual bool DownloadBetaVersion(string targetfile)
 		{
-			throw new NotImplementedException();
+		    return false;
 		}
 
 		public virtual bool DownloadDevVersion(string targetfile)
 		{
-			throw new NotImplementedException();
+            return false;
 		}
 
 		public virtual string GetCurrentVersion(string file)
