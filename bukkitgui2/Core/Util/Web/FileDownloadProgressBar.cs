@@ -1,210 +1,206 @@
-﻿namespace Bukkitgui2.Core.Util.Web
+﻿using System;
+using System.IO;
+using System.Net;
+using System.Text.RegularExpressions;
+using System.Threading;
+using System.Windows.Forms;
+using Bukkitgui2.Core.FileLocation;
+using Bukkitgui2.Core.Logging;
+using Timer = System.Windows.Forms.Timer;
+
+namespace Bukkitgui2.Core.Util.Web
 {
-    using System;
-    using System.IO;
-    using System.Net;
-    using System.Text.RegularExpressions;
-    using System.Threading;
-    using System.Windows.Forms;
+	/// <summary>
+	///     control to download a file async, while showing a progressbar with details
+	/// </summary>
+	public partial class FileDownloadProgressBar
+	{
+		private readonly string _tmp = DefaultFileLocation.Location(RequestFile.Temp) + "download\\";
 
-    using Bukkitgui2.Core.FileLocation;
-    using Bukkitgui2.Core.Logging;
+		private const int TmrInterval = 250;
 
-    using Timer = System.Windows.Forms.Timer;
+		private WebClient _webc;
 
-    /// <summary>
-    ///     control to download a file async, while showing a progressbar with details
-    /// </summary>
-    public partial class FileDownloadProgressBar : UserControl
-    {
-        private readonly string _tmp = DefaultFileLocation.Location(RequestFile.Temp)  + "download\\";
+		private string _filename;
 
-        private const int TmrInterval = 250;
-        
-        private WebClient _webc;
+		private int _percent;
 
-        private string _filename;
+		private int _totalKb;
 
-        private int _percent;
+		private string _url;
 
-        private int _totalKb;
+		private string _targetlocation;
 
-        private string _url;
+		private string _tmplocation;
 
-        private string _targetlocation;
+		public event DownloadDataCompletedEventHandler DownloadCompleted;
 
-        private string _tmplocation;
+		private Timer _tmrUpdateUi;
 
-        public event DownloadDataCompletedEventHandler DownloadCompleted;
+		/// <summary>
+		///     Create a new instance
+		/// </summary>
+		public FileDownloadProgressBar()
+		{
+			InitializeComponent();
+			if (!Directory.Exists(_tmp)) Directory.CreateDirectory(_tmp);
+		}
 
-        private Timer _tmrUpdateUi;
+		/// <summary>
+		///     Create a new download
+		/// </summary>
+		/// <param name="url">Url to download from</param>
+		/// <param name="targetlocation">targetlocation to save the file</param>
+		public void CreateDownload(string url, string targetlocation)
+		{
+			_webc = new WebClient();
+			_url = url;
 
-        /// <summary>
-        ///     Create a new instance
-        /// </summary>
-        public FileDownloadProgressBar()
-        {
-            this.InitializeComponent();
-            if (!Directory.Exists(_tmp)) Directory.CreateDirectory(_tmp);
-        }
+			_filename = Regex.Match(_url, "\\/[^\\\\\\/]+$").Value.Substring(1);
 
-        /// <summary>
-        ///     Create a new download
-        /// </summary>
-        /// <param name="url">Url to download from</param>
-        /// <param name="targetlocation">targetlocation to save the file</param>
-        public void CreateDownload(string url, string targetlocation)
-        {
-            this._webc = new WebClient();
-            this._url = url;
+			//if not ending on extension, add file name
+			if (!Regex.IsMatch(targetlocation, "\\w\\.\\{2,5}$")) targetlocation += "\\" + _filename;
 
-            this._filename = Regex.Match(this._url, "\\/[^\\\\\\/]+$").Value.Substring(1);
+			_targetlocation = targetlocation;
 
-            //if not ending on extension, add file name
-            if (!Regex.IsMatch(targetlocation, "\\w\\.\\{2,5}$")) targetlocation += "\\" + _filename; 
+			_tmplocation = _tmp + _filename;
+		}
 
-            this._targetlocation = targetlocation;
-            
-            this._tmplocation = this._tmp + this._filename;
-        }
+		/// <summary>
+		///     Start the download
+		/// </summary>
+		public void StartDownload()
+		{
+			_webc.Headers.Add(HttpRequestHeader.UserAgent, WebUtil.UserAgent);
+			_webc.DownloadProgressChanged += UpdateStats;
+			_webc.DownloadDataCompleted += Finished;
+			Logger.Log(LogLevel.Info, "FileDownloadProgressBar", "Starting download", _url);
 
-        /// <summary>
-        ///     Start the download
-        /// </summary>
-        public void StartDownload()
-        {
+			Thread t = new Thread(() => _webc.DownloadFileAsync(new Uri(_url), _tmplocation));
+			t.Start();
+			Logger.Log(LogLevel.Info, "FileDownloadProgressBar", "Started download", _url);
+			_tmrUpdateUi = new Timer {Interval = TmrInterval};
+			_tmrUpdateUi.Tick += UpdateUi;
+			_tmrUpdateUi.Start();
+		}
 
-            this._webc.Headers.Add(HttpRequestHeader.UserAgent,WebUtil.UserAgent);
-            this._webc.DownloadProgressChanged += this.UpdateStats;
-            this._webc.DownloadDataCompleted += this.Finished;
-            Logger.Log(LogLevel.Info, "FileDownloadProgressBar", "Starting download", _url);
+		/// <summary>
+		///     Cancel the download
+		/// </summary>
+		public void Cancel()
+		{
+			_webc.CancelAsync();
+			File.Delete(_tmplocation);
+			DownloadDataCompletedEventHandler handler = DownloadCompleted;
+			if (handler != null)
+			{
+				handler(null, null);
+			}
+		}
 
-            Thread t = new Thread(() => _webc.DownloadFileAsync(new Uri(this._url), this._tmplocation));
-            t.Start();
-            Logger.Log(LogLevel.Info, "FileDownloadProgressBar", "Started download", _url);
-            this._tmrUpdateUi = new Timer { Interval = TmrInterval };
-            this._tmrUpdateUi.Tick += this.UpdateUi;
-            this._tmrUpdateUi.Start();
-        }
+		/// <summary>
+		///     Handle finished download, move file from temporary to target location
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void Finished(object sender, DownloadDataCompletedEventArgs e)
+		{
+			Logger.Log(LogLevel.Info, "FileDownloadProgressBar", "Download finished!", _url);
+			// Move to the correct location
+			if (File.Exists(_targetlocation))
+			{
+				File.Delete(_targetlocation);
+			}
+			File.Move(_tmplocation, _targetlocation);
 
-        /// <summary>
-        ///     Cancel the download
-        /// </summary>
-        public void Cancel()
-        {
-            this._webc.CancelAsync();
-            File.Delete(this._tmplocation);
-            DownloadDataCompletedEventHandler handler = this.DownloadCompleted;
-            if (handler != null)
-            {
-                handler(null, null);
-            }
-        }
+			DownloadDataCompletedEventHandler handler = DownloadCompleted;
+			if (handler != null)
+			{
+				handler(sender, e);
+			}
+		}
 
-        /// <summary>
-        ///     Handle finished download, move file from temporary to target location
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Finished(object sender, DownloadDataCompletedEventArgs e)
-        {
-            Logger.Log(LogLevel.Info,"FileDownloadProgressBar","Download finished!",_url);
-            // Move to the correct location
-            if (File.Exists(this._targetlocation))
-            {
-                File.Delete(this._targetlocation);
-            }
-            File.Move(this._tmplocation, this._targetlocation);
+		/// <summary>
+		///     For calculating the speed, 500ms ago
+		/// </summary>
+		private int _receivedKbHist1;
 
-            DownloadDataCompletedEventHandler handler = this.DownloadCompleted;
-            if (handler != null)
-            {
-                handler(sender, e);
-            }
-        }
+		/// <summary>
+		///     For calculating the speed, received kb 1 second ago
+		/// </summary>
+		private int _receivedKbHist2;
 
-        /// <summary>
-        ///     For calculating the speed, 500ms ago
-        /// </summary>
-        private int _receivedKbHist1;
+		private DownloadProgressChangedEventArgs _e;
 
-        /// <summary>
-        ///     For calculating the speed, received kb 1 second ago
-        /// </summary>
-        private int _receivedKbHist2;
+		/// <summary>
+		///     Handle DownloadProgressChanged, and save the eventargs
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void UpdateStats(object sender, DownloadProgressChangedEventArgs e)
+		{
+			_e = e;
+		}
 
-        private DownloadProgressChangedEventArgs _e;
+		/// <summary>
+		///     Update the UI every 500ms using a timer
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="timerElapsedEventArgs"></param>
+		private void UpdateUi(object sender, EventArgs timerElapsedEventArgs)
+		{
+			if (_e == null)
+			{
+				SetInfoText("Initiating download: " + _filename);
+				return; // no data yet
+			}
 
-        /// <summary>
-        ///     Handle DownloadProgressChanged, and save the eventargs
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void UpdateStats(object sender, DownloadProgressChangedEventArgs e)
-        {
-            this._e = e;
-        }
+			_totalKb = (int) (_e.TotalBytesToReceive/1024);
 
-        /// <summary>
-        ///     Update the UI every 500ms using a timer
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="timerElapsedEventArgs"></param>
-        private void UpdateUi(object sender, EventArgs timerElapsedEventArgs)
-        {
-            if (_e == null) {
+			int downloadedKb = (int) (_e.BytesReceived/1024);
+			_percent = _e.ProgressPercentage;
 
-                this.SetInfoText("Initiating download: " + this._filename);
-                return; // no data yet
-            }
+			// this is updated every 500ms. Therefore, deltaKb is half the download speed per second
+			int deltaKb1 = _receivedKbHist1 - _receivedKbHist2;
+			int deltaKb2 = downloadedKb - _receivedKbHist1;
 
-            this._totalKb = (int)(this._e.TotalBytesToReceive / 1024);
+			// calculate the average. We would have to divide by 2, but since we need to 
+			// mulitply both values by 2 to get the speed per second, we can simplify this.
+			int downloadSpeed = ((deltaKb1 + deltaKb2)/2)*(1000/TmrInterval);
 
-            int downloadedKb = (int)(this._e.BytesReceived / 1024);
-            this._percent = _e.ProgressPercentage;
+			_receivedKbHist2 = _receivedKbHist1;
+			_receivedKbHist1 = downloadedKb;
 
-            // this is updated every 500ms. Therefore, deltaKb is half the download speed per second
-            int deltaKb1 = this._receivedKbHist1 - this._receivedKbHist2;
-            int deltaKb2 = downloadedKb - this._receivedKbHist1;
+			SetInfoText("Downloading: " + _filename + " : " + downloadedKb + "/" + _totalKb + "Kb @ "
+			            + downloadSpeed + "kbps");
 
-            // calculate the average. We would have to divide by 2, but since we need to 
-            // mulitply both values by 2 to get the speed per second, we can simplify this.
-            int downloadSpeed = ((deltaKb1 + deltaKb2) / 2) * ( 1000 / TmrInterval);
+			SetPercentage(_percent);
+		}
 
-            this._receivedKbHist2 = this._receivedKbHist1;
-            this._receivedKbHist1 = downloadedKb;
+		private void SetInfoText(String text)
+		{
+			if (InvokeRequired)
+			{
+				Invoke((MethodInvoker) (() => SetInfoText(text)));
+			}
+			else
+			{
+				lblInfo.Text = text;
+			}
+		}
 
-            this.SetInfoText("Downloading: " + this._filename + " : " + downloadedKb + "/" + this._totalKb + "Kb @ "
-                                + downloadSpeed + "kbps");
-
-            this.SetPercentage(this._percent);
-        }
-
-        private void SetInfoText(String text)
-        {
-            if (this.InvokeRequired)
-            {
-                this.Invoke((MethodInvoker)(() => this.SetInfoText(text)));
-            }
-            else
-            {
-                this.lblInfo.Text = text;
-            }
-        }
-
-        private void SetPercentage(int percentage)
-        {
-            if (this.InvokeRequired)
-            {
-                this.Invoke((MethodInvoker)(() => this.SetPercentage(percentage)));
-            }
-            else
-            {
-                this.lblPercent.Text = percentage + "%";
-                this.PbProgress.Style = ProgressBarStyle.Continuous;
-                this.PbProgress.Value = percentage;
-            }
-        }
-
-    }
+		private void SetPercentage(int percentage)
+		{
+			if (InvokeRequired)
+			{
+				Invoke((MethodInvoker) (() => SetPercentage(percentage)));
+			}
+			else
+			{
+				lblPercent.Text = percentage + "%";
+				PbProgress.Style = ProgressBarStyle.Continuous;
+				PbProgress.Value = percentage;
+			}
+		}
+	}
 }

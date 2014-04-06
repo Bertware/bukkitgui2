@@ -1,9 +1,11 @@
-﻿namespace Bukkitgui2.MinecraftServers.Servers
+﻿using Bukkitgui2.Core.Util.Web;
+
+namespace Bukkitgui2.MinecraftServers.Servers
 {
 	/// <summary>
 	/// Default vanilla server. All parsing code is already in the server base
 	/// </summary>
-	class VanillaServer : MinecraftServerBase
+	internal class VanillaServer : MinecraftServerBase
 	{
 		public override string Name
 		{
@@ -12,10 +14,23 @@
 
 		public override string Site
 		{
-			get
-			{
-				return "http://minecraft.net";
-			}
+			get { return "http://minecraft.net"; }
+		}
+
+		public override bool CanDownloadRecommendedVersion
+		{
+			get { return true; }
+		}
+
+		public override bool DownloadRecommendedVersion(string targetfile)
+		{
+			FileDownloader fileDownloadDialog = new FileDownloader();
+			fileDownloadDialog.AddFile(
+				"https://s3.amazonaws.com/Minecraft.Download/versions/1.7.5/minecraft_server.1.7.5.jar",
+				targetfile);
+			fileDownloadDialog.Show();
+			fileDownloadDialog.StartDownload();
+			return true;
 		}
 	}
 }

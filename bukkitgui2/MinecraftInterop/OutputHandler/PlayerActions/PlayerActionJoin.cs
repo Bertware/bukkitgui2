@@ -9,6 +9,7 @@ namespace Bukkitgui2.MinecraftInterop.OutputHandler.PlayerActions
 	{
 		public string PlayerName { get; set; }
 		public string Details { get; set; }
+		public string Ip { get; set; }
 		public DateTime Time { get; set; }
 	}
 }
