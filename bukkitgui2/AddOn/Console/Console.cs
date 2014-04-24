@@ -2,7 +2,9 @@
 
 namespace Bukkitgui2.AddOn.Console
 {
-	internal class Console : IAddon
+    using Bukkitgui2.MinecraftInterop.OutputHandler;
+
+    internal class Console : IAddon
 	{
 		private UserControl _tab;
 
@@ -54,5 +56,7 @@ namespace Bukkitgui2.AddOn.Console
 		}
 
 	    public UserControl ConfigPage { get; private set; }
+
+
 	}
 }

@@ -219,6 +219,8 @@
     <Compile Include="MinecraftInterop\OutputHandler\PlayerActions\PlayerActionJoin.cs" />
     <Compile Include="MinecraftInterop\OutputHandler\PlayerActions\PlayerActionKick.cs" />
     <Compile Include="MinecraftInterop\OutputHandler\PlayerActions\PlayerActionLeave.cs" />
+    <Compile Include="MinecraftInterop\PlayerHandler\Player.cs" />
+    <Compile Include="MinecraftInterop\PlayerHandler\PlayerHandler.cs" />
     <Compile Include="MinecraftInterop\ProcessHandler\ProcessHandler.cs" />
     <Compile Include="MinecraftServers\IMinecraftServer.cs" />
     <Compile Include="MinecraftServers\Servers\BukkitServer.cs" />

@@ -28,23 +28,23 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-            this.sortableListView1 = new Bukkitgui2.Controls.SortableListView.SortableListView();
+            this.slvPlayers = new Bukkitgui2.Controls.SortableListView.SortableListView();
             this.colName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colIP = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
-            // sortableListView1
+            // slvPlayers
             // 
-            this.sortableListView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.slvPlayers.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.colName,
             this.colIP});
-            this.sortableListView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.sortableListView1.Location = new System.Drawing.Point(0, 0);
-            this.sortableListView1.Name = "sortableListView1";
-            this.sortableListView1.Size = new System.Drawing.Size(800, 500);
-            this.sortableListView1.TabIndex = 0;
-            this.sortableListView1.UseCompatibleStateImageBehavior = false;
-            this.sortableListView1.View = System.Windows.Forms.View.Details;
+            this.slvPlayers.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.slvPlayers.Location = new System.Drawing.Point(0, 0);
+            this.slvPlayers.Name = "slvPlayers";
+            this.slvPlayers.Size = new System.Drawing.Size(800, 500);
+            this.slvPlayers.TabIndex = 0;
+            this.slvPlayers.UseCompatibleStateImageBehavior = false;
+            this.slvPlayers.View = System.Windows.Forms.View.Details;
             // 
             // colName
             // 
@@ -56,7 +56,7 @@
             // 
             // PlayerListTab
             // 
-            this.Controls.Add(this.sortableListView1);
+            this.Controls.Add(this.slvPlayers);
             this.Name = "PlayerListTab";
             this.Size = new System.Drawing.Size(800, 500);
             this.ResumeLayout(false);
@@ -65,7 +65,7 @@
 
 		#endregion
 
-        private Controls.SortableListView.SortableListView sortableListView1;
+        private Controls.SortableListView.SortableListView slvPlayers;
         private System.Windows.Forms.ColumnHeader colName;
         private System.Windows.Forms.ColumnHeader colIP;
 	}

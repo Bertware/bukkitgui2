@@ -59,8 +59,8 @@
             this.LblToolsMainServerState,
             this.MenuToolsMainServerAction,
             this.LblToolsMainServerOutput,
-            this.LblToolsMainGUIState,
-            this.ProgBarToolsMain});
+            this.ProgBarToolsMain,
+            this.LblToolsMainGUIState});
             this.StatusStripMain.Location = new System.Drawing.Point(0, 540);
             this.StatusStripMain.Name = "StatusStripMain";
             this.StatusStripMain.Size = new System.Drawing.Size(884, 22);
@@ -73,6 +73,7 @@
             this.LblToolsMainServerState.Name = "LblToolsMainServerState";
             this.LblToolsMainServerState.Size = new System.Drawing.Size(105, 17);
             this.LblToolsMainServerState.Text = "Server not running";
+            this.LblToolsMainServerState.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.LblToolsMainServerState.ToolTipText = "Server state (starting/stopping/running/error)";
             // 
             // MenuToolsMainServerAction
@@ -109,9 +110,11 @@
             // 
             // LblToolsMainServerOutput
             // 
+            this.LblToolsMainServerOutput.AutoSize = false;
             this.LblToolsMainServerOutput.Name = "LblToolsMainServerOutput";
-            this.LblToolsMainServerOutput.Size = new System.Drawing.Size(67, 17);
+            this.LblToolsMainServerOutput.Size = new System.Drawing.Size(550, 17);
             this.LblToolsMainServerOutput.Text = "Last output";
+            this.LblToolsMainServerOutput.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.LblToolsMainServerOutput.ToolTipText = "Last server output";
             // 
             // LblToolsMainGUIState
@@ -127,7 +130,7 @@
             this.ProgBarToolsMain.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.ProgBarToolsMain.Name = "ProgBarToolsMain";
             this.ProgBarToolsMain.Size = new System.Drawing.Size(100, 16);
-            this.ProgBarToolsMain.ToolTipText = "Progress on current action";
+            this.ProgBarToolsMain.ToolTipText = "Progress on current operation";
             // 
             // MainForm
             // 

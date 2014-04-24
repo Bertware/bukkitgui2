@@ -2,7 +2,9 @@
 
 namespace Bukkitgui2.AddOn.PlayerList
 {
-	internal class PlayerList : IAddon
+    using Bukkitgui2.MinecraftInterop.PlayerHandler;
+
+    internal class PlayerList : IAddon
 	{
 		private UserControl _tab;
 
@@ -41,6 +43,7 @@ namespace Bukkitgui2.AddOn.PlayerList
 		/// </summary>
 		void IAddon.Initialize()
 		{
+            PlayerHandler.Initialize();
 			_tab = new PlayerListTab { Text = this.Name, ParentAddon = this};
 		}
 
