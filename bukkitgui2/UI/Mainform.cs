@@ -1,4 +1,6 @@
-﻿namespace Bukkitgui2.UI
+﻿using Bukkitgui2.MinecraftInterop.PlayerHandler;
+
+namespace Bukkitgui2.UI
 {
     using System.Collections.Generic;
     using System.Windows.Forms;
@@ -40,7 +42,9 @@
             ProcessHandler.ServerStarted += HandleServerStarted;
             ProcessHandler.ServerStopped += HandleServerStopped;
             ProcessHandler.ServerStopping += HandleServerStopping;
-        }
+
+		}
+
 
         private void HandleServerStarting()
         {

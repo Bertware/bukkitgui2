@@ -1,5 +1,7 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 using Bukkitgui2.MinecraftInterop.OutputHandler;
+using Bukkitgui2.MinecraftInterop.PlayerHandler;
 using Bukkitgui2.MinecraftInterop.ProcessHandler;
 
 namespace Bukkitgui2.AddOn.Console
@@ -13,10 +15,35 @@ namespace Bukkitgui2.AddOn.Console
 			ProcessHandler.ServerStarting += HandleServerStart;
 			ProcessHandler.ServerStopped += HandleServerStop;
 			CIConsoleInput.CommandSent += HandleCommandSent;
+			PlayerHandler.PlayerListAddition += HandlePlayerAddition;
+			PlayerHandler.PlayerListDeletion += HandlePlayerDeletion;
+		}
+
+		/// <summary>
+		///     Remove a player from the listview
+		/// </summary>
+		/// <param name="player"></param>
+		private void HandlePlayerDeletion(Player player)
+		{
+			SLVPlayers.Items.RemoveByKey(player.Name);
+		}
+
+		/// <summary>
+		///     Add a player to the listview
+		/// </summary>
+		/// <param name="player"></param>
+		private void HandlePlayerAddition(Player player)
+		{
+			String[] text = {player.Name, player.Ip};
+			ListViewItem lvi = new ListViewItem(text) {Tag = player.Name, Name = player.Name};
+			SLVPlayers.Items.Add(lvi);
 		}
 
 		public IAddon ParentAddon { get; set; }
 
+		/// <summary>
+		///     Handle starting server, prepare UI and display text
+		/// </summary>
 		private void HandleServerStart()
 		{
 			SLVPlayers.Items.Clear();
@@ -25,6 +52,9 @@ namespace Bukkitgui2.AddOn.Console
 			MCCOut.WriteOutput(MessageType.Info, "[GUI] Starting a new server");
 		}
 
+		/// <summary>
+		///     Handle stopped server, clear UI.
+		/// </summary>
 		private void HandleServerStop()
 		{
 			SLVPlayers.Items.Clear();
@@ -32,11 +62,20 @@ namespace Bukkitgui2.AddOn.Console
 			MCCOut.WriteOutput(MessageType.Info, "[GUI] The server has stopped");
 		}
 
+		/// <summary>
+		///     Print output to the console
+		/// </summary>
+		/// <param name="text"></param>
+		/// <param name="outputParseResult"></param>
 		private void PrintOutput(string text, OutputParseResult outputParseResult)
 		{
 			MCCOut.WriteOutput(outputParseResult.Type, outputParseResult.Message);
 		}
 
+		/// <summary>
+		///     Handle a commandsent event from the textbox and redirect it to the server
+		/// </summary>
+		/// <param name="text"></param>
 		private void HandleCommandSent(string text)
 		{
 			if (ProcessHandler.IsRunning)
