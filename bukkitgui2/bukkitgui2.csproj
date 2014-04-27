@@ -7,7 +7,7 @@
     <ProjectGuid>{0AEF421A-A71F-4642-9C9B-621F58FD7735}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Bukkitgui2</RootNamespace>
+    <RootNamespace>Net.Bertware.Bukkitgui2</RootNamespace>
     <AssemblyName>bukkitgui2</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Jayrock.Json">
+      <HintPath>Resources\Dll\Jayrock.Json.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -63,14 +66,17 @@
     </Compile>
     <Compile Include="AddOn\IAddon.cs" />
     <Compile Include="AddOn\IAddonTab.cs" />
+    <Compile Include="AddOn\Plugins\BukgetPlugins\BukgetPlugin.cs" />
     <Compile Include="AddOn\Plugins\BukgetPlugins\BukgetPluginsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="AddOn\Plugins\BukgetPlugins\BukgetPluginsControl.Designer.cs">
       <DependentUpon>BukgetPluginsControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddOn\Plugins\BukgetPlugins\BukgetPluginVersion.cs" />
     <Compile Include="AddOn\Plugins\BukgetPlugins\BukgetV3.cs" />
     <Compile Include="AddOn\Plugins\BukgetPlugins\BukkitDevApiSupport.cs" />
+    <Compile Include="AddOn\Plugins\BukgetPlugins\BukgetPluginListItem.cs" />
     <Compile Include="AddOn\Plugins\InstalledPlugins\InstalledPluginsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -319,7 +325,7 @@
     <Folder Include="Core\Filesystem\FTP\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\Dll\Jayrock.Json.dll" />
+    <EmbeddedResource Include="Resources\Dll\Jayrock.Json.dll" />
     <Content Include="Resources\Img\bukkit_logo.png" />
     <Content Include="Resources\Img\GUI icon 16.ico" />
     <Content Include="Resources\Img\GUI icon 32.ico" />

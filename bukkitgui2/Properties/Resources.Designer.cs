@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Bukkitgui2.Properties {
+namespace Net.Bertware.Bukkitgui2.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Bukkitgui2.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Bukkitgui2.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Net.Bertware.Bukkitgui2.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -87,6 +87,16 @@ namespace Bukkitgui2.Properties {
             get {
                 object obj = ResourceManager.GetObject("GUI_icon1", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Jayrock_Json {
+            get {
+                object obj = ResourceManager.GetObject("Jayrock_Json", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         

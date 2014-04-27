@@ -37,8 +37,8 @@
             this.restartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.startStopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.LblToolsMainServerOutput = new System.Windows.Forms.ToolStripStatusLabel();
-            this.LblToolsMainGUIState = new System.Windows.Forms.ToolStripStatusLabel();
             this.ProgBarToolsMain = new System.Windows.Forms.ToolStripProgressBar();
+            this.LblToolsMainGUIState = new System.Windows.Forms.ToolStripStatusLabel();
             this.StatusStripMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -117,6 +117,13 @@
             this.LblToolsMainServerOutput.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.LblToolsMainServerOutput.ToolTipText = "Last server output";
             // 
+            // ProgBarToolsMain
+            // 
+            this.ProgBarToolsMain.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.ProgBarToolsMain.Name = "ProgBarToolsMain";
+            this.ProgBarToolsMain.Size = new System.Drawing.Size(100, 16);
+            this.ProgBarToolsMain.ToolTipText = "Progress on current operation";
+            // 
             // LblToolsMainGUIState
             // 
             this.LblToolsMainGUIState.AutoSize = false;
@@ -124,13 +131,6 @@
             this.LblToolsMainGUIState.Size = new System.Drawing.Size(26, 17);
             this.LblToolsMainGUIState.Text = "Idle";
             this.LblToolsMainGUIState.ToolTipText = "GUI state (idle/action)";
-            // 
-            // ProgBarToolsMain
-            // 
-            this.ProgBarToolsMain.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.ProgBarToolsMain.Name = "ProgBarToolsMain";
-            this.ProgBarToolsMain.Size = new System.Drawing.Size(100, 16);
-            this.ProgBarToolsMain.ToolTipText = "Progress on current operation";
             // 
             // MainForm
             // 
