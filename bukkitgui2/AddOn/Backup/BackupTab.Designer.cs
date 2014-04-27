@@ -1,4 +1,4 @@
-﻿namespace Bukkitgui2.AddOn.Backup
+﻿namespace Net.Bertware.Bukkitgui2.AddOn.Backup
 {
 	partial class BackupTab
 	{

@@ -1,4 +1,4 @@
-﻿namespace Bukkitgui2.MinecraftInterop.OutputHandler
+﻿namespace Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler
 {
     /// <summary>
     /// The type of output from a minecraft server

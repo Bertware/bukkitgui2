@@ -2,9 +2,9 @@
 using System.Threading;
 using System.Windows.Forms;
 
-namespace Bukkitgui2.UI
+namespace Net.Bertware.Bukkitgui2.UI
 {
-    using Bukkitgui2.Properties;
+    using  Net.Bertware.Bukkitgui2.Properties;
 
     public partial class SplashScreen : Form
 	{

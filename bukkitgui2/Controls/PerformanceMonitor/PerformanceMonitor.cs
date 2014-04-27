@@ -2,7 +2,7 @@
 using System.Timers;
 using System.Windows.Forms;
 
-namespace Bukkitgui2.Controls.PerformanceMonitor
+namespace Net.Bertware.Bukkitgui2.Controls.PerformanceMonitor
 {
 	public partial class PerformanceMonitor : UserControl
 	{

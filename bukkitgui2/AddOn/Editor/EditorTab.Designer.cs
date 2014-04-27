@@ -1,4 +1,4 @@
-﻿namespace Bukkitgui2.AddOn.Editor
+﻿namespace Net.Bertware.Bukkitgui2.AddOn.Editor
 {
     using System.Windows.Forms;
 

@@ -1,6 +1,6 @@
 ﻿using System.Security.Cryptography.X509Certificates;
 
-namespace Bukkitgui2.AddOn
+namespace Net.Bertware.Bukkitgui2.AddOn
 {
     using System;
     using System.Windows.Forms;

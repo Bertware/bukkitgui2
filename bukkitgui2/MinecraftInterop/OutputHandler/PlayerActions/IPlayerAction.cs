@@ -1,7 +1,7 @@
 ﻿
 using System;
 
-namespace Bukkitgui2.MinecraftInterop.OutputHandler.PlayerActions
+namespace Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler.PlayerActions
 {
 	public interface IPlayerAction
 	{

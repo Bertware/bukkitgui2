@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using Bukkitgui2.MinecraftInterop.OutputHandler;
-using Bukkitgui2.MinecraftInterop.OutputHandler.PlayerActions;
+using  Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler;
+using  Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler.PlayerActions;
 
-namespace Bukkitgui2.MinecraftInterop.PlayerHandler
+namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 {
 	/// <summary>
 	/// Handles player connects and disconnects and keep a dictionary of all logged in players. Raises events when a player is added or removed from the list, and can sync with ingame player lists.

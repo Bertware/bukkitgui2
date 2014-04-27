@@ -1,4 +1,4 @@
-﻿namespace Bukkitgui2.Controls.PerformanceMonitor
+﻿namespace Net.Bertware.Bukkitgui2.Controls.PerformanceMonitor
 {
 	partial class PerformanceMonitor
 	{

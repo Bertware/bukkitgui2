@@ -1,9 +1,9 @@
 ﻿using System;
-using Bukkitgui2.Core.Configuration;
-using Bukkitgui2.Core.FileLocation;
-using Bukkitgui2.Core.Logging;
+using  Net.Bertware.Bukkitgui2.Core.Configuration;
+using  Net.Bertware.Bukkitgui2.Core.FileLocation;
+using  Net.Bertware.Bukkitgui2.Core.Logging;
 
-namespace Bukkitgui2.Core
+namespace Net.Bertware.Bukkitgui2.Core
 {
     using System.IO;
 

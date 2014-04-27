@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Xml;
-using Bukkitgui2.Core.Configuration;
-using Bukkitgui2.Core.FileLocation;
+using  Net.Bertware.Bukkitgui2.Core.Configuration;
+using  Net.Bertware.Bukkitgui2.Core.FileLocation;
 
-namespace Bukkitgui2.Core
+namespace Net.Bertware.Bukkitgui2.Core
 {
 	internal static class Locale
 	{

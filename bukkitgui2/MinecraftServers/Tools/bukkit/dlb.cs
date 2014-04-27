@@ -36,13 +36,13 @@
 //</channel>
 //</root>
 
-namespace Bukkitgui2.MinecraftServers.Tools.bukkit
+namespace Net.Bertware.Bukkitgui2.MinecraftServers.Tools.bukkit
 {
     using System;
     using System.Net;
     using System.Xml;
 
-    using Bukkitgui2.Core.Logging;
+    using  Net.Bertware.Bukkitgui2.Core.Logging;
 
     internal static class Dlb
     {

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Net;
 using System.Windows.Forms;
-using Bukkitgui2.Core.Logging;
+using  Net.Bertware.Bukkitgui2.Core.Logging;
 
-namespace Bukkitgui2.Core.Util.Web
+namespace Net.Bertware.Bukkitgui2.Core.Util.Web
 {
 	public partial class FileDownloader : Form
 	{

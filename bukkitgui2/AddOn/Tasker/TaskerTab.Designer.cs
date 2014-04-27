@@ -1,4 +1,4 @@
-﻿namespace Bukkitgui2.AddOn.Tasker
+﻿namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 {
 	partial class TaskerTab
 	{

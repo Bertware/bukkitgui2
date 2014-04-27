@@ -1,8 +1,8 @@
 ﻿using System.Windows.Forms;
 
-namespace Bukkitgui2.AddOn.Console
+namespace Net.Bertware.Bukkitgui2.AddOn.Console
 {
-    using Bukkitgui2.MinecraftInterop.OutputHandler;
+    using  Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler;
 
     internal class Console : IAddon
 	{

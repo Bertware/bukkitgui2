@@ -1,9 +1,9 @@
 ﻿using System.Windows.Forms;
-using Bukkitgui2.Core.FileLocation;
-using Bukkitgui2.Core.Logging;
-using Bukkitgui2.UI;
+using  Net.Bertware.Bukkitgui2.Core.FileLocation;
+using  Net.Bertware.Bukkitgui2.Core.Logging;
+using  Net.Bertware.Bukkitgui2.UI;
 
-namespace Bukkitgui2.Core.Configuration
+namespace Net.Bertware.Bukkitgui2.Core.Configuration
 {
     using System;
     using System.Collections.Generic;

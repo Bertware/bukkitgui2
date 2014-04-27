@@ -1,7 +1,7 @@
 ﻿using System;
-using Bukkitgui2.MinecraftInterop.OutputHandler.PlayerActions;
+using  Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler.PlayerActions;
 
-namespace Bukkitgui2.MinecraftInterop.OutputHandler
+namespace Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler
 {
 	public class OutputParseResult
 	{

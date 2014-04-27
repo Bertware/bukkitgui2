@@ -1,4 +1,4 @@
-﻿namespace Bukkitgui2.AddOn.Starter
+﻿namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 {
     using System;
     using System.IO;

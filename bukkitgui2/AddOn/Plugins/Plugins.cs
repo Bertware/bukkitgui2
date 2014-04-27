@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace Bukkitgui2.AddOn.Plugins
+namespace Net.Bertware.Bukkitgui2.AddOn.Plugins
 {
 	internal class Plugins : IAddon
 	{

@@ -1,4 +1,4 @@
-﻿namespace Bukkitgui2.AddOn
+﻿namespace Net.Bertware.Bukkitgui2.AddOn
 {
 	public interface IAddonTab
 	{

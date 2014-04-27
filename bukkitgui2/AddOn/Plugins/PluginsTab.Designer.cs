@@ -1,4 +1,4 @@
-﻿namespace Bukkitgui2.AddOn.Plugins
+﻿namespace Net.Bertware.Bukkitgui2.AddOn.Plugins
 {
 	partial class PluginsTab
 	{

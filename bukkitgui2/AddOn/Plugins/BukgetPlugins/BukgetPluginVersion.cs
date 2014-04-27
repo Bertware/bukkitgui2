@@ -1,7 +1,9 @@
-﻿namespace Bukkitgui2.AddOn.Plugins.BukgetPlugins
+﻿namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.BukgetPlugins
 {
     using System;
     using System.Collections.Generic;
+
+    using global::Bukkitgui2.AddOn.Plugins.BukgetPlugins;
 
     /// <summary>
     ///     Contains details of a plugin version, including all data needed to update or install a plugin

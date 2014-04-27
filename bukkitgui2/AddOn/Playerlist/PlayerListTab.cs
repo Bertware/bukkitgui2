@@ -1,8 +1,8 @@
-﻿namespace Bukkitgui2.AddOn.PlayerList
+﻿namespace Net.Bertware.Bukkitgui2.AddOn.PlayerList
 {
     using System.Windows.Forms;
 
-    using Bukkitgui2.MinecraftInterop.PlayerHandler;
+    using  Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler;
 
     public partial class PlayerListTab : UserControl, IAddonTab
     {

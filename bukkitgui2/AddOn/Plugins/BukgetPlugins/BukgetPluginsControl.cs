@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Bukkitgui2.AddOn.Plugins.BukgetPlugins
+namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.BukgetPlugins
 {
 	public partial class BukgetPluginsControl : UserControl
 	{

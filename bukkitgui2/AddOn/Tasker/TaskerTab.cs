@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Bukkitgui2.AddOn.Tasker
+namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 {
 	public partial class TaskerTab : UserControl, IAddonTab
 	{

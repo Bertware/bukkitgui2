@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualBasic.Devices;
 
-namespace Bukkitgui2.Core.Util.Performance
+namespace Net.Bertware.Bukkitgui2.Core.Util.Performance
 {
     using System;
 

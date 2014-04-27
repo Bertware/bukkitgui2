@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace Bukkitgui2.Controls.ConsoleInput
+namespace Net.Bertware.Bukkitgui2.Controls.ConsoleInput
 {
 	internal class ConsoleInput : TextBox
 	{

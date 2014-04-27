@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Bukkitgui2.AddOn.Backup
+namespace Net.Bertware.Bukkitgui2.AddOn.Backup
 {
 	public partial class BackupTab : UserControl, IAddonTab
 	{

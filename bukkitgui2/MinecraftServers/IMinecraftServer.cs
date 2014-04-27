@@ -2,10 +2,10 @@
 using System.Drawing;
 using System.Reflection;
 using System.Windows.Forms;
-using Bukkitgui2.MinecraftInterop.OutputHandler;
-using Bukkitgui2.MinecraftInterop.OutputHandler.PlayerActions;
+using  Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler;
+using  Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler.PlayerActions;
 
-namespace Bukkitgui2.MinecraftServers
+namespace Net.Bertware.Bukkitgui2.MinecraftServers
 {
 	public interface IMinecraftServer
 	{

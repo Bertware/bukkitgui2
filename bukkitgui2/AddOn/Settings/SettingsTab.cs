@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Bukkitgui2.AddOn.Settings
+namespace Net.Bertware.Bukkitgui2.AddOn.Settings
 {
 	public partial class SettingsTab : UserControl, IAddonTab
 	{

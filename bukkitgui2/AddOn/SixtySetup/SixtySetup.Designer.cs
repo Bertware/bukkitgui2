@@ -1,4 +1,4 @@
-﻿namespace Bukkitgui2.AddOn.SixtySetup
+﻿namespace Net.Bertware.Bukkitgui2.AddOn.SixtySetup
 {
 	partial class SixtySetup
 	{

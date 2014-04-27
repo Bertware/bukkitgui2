@@ -1,4 +1,4 @@
-﻿namespace Bukkitgui2.Core.Util
+﻿namespace Net.Bertware.Bukkitgui2.Core.Util
 {
     using System.Collections.Generic;
     using System.Linq;

@@ -1,4 +1,4 @@
-﻿namespace Bukkitgui2.MinecraftServers.Servers
+﻿namespace Net.Bertware.Bukkitgui2.MinecraftServers.Servers
 {
     using System.Drawing;
 

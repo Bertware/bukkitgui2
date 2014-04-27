@@ -1,8 +1,8 @@
 ﻿using System.Windows.Forms;
 
-namespace Bukkitgui2.AddOn.PlayerList
+namespace Net.Bertware.Bukkitgui2.AddOn.PlayerList
 {
-    using Bukkitgui2.MinecraftInterop.PlayerHandler;
+    using  Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler;
 
     internal class PlayerList : IAddon
 	{

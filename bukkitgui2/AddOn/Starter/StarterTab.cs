@@ -1,14 +1,14 @@
-﻿namespace Bukkitgui2.AddOn.Starter
+﻿namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 {
     using System;
     using System.Collections.Generic;
     using System.Text.RegularExpressions;
     using System.Windows.Forms;
 
-    using Bukkitgui2.Core;
-    using Bukkitgui2.Core.Configuration;
-    using Bukkitgui2.Core.Logging;
-    using Bukkitgui2.MinecraftServers;
+    using  Net.Bertware.Bukkitgui2.Core;
+    using  Net.Bertware.Bukkitgui2.Core.Configuration;
+    using  Net.Bertware.Bukkitgui2.Core.Logging;
+    using  Net.Bertware.Bukkitgui2.MinecraftServers;
 
     public partial class StarterTab : UserControl, IAddonTab
     {

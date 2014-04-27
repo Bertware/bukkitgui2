@@ -1,4 +1,4 @@
-﻿namespace Bukkitgui2.UI
+﻿namespace Net.Bertware.Bukkitgui2.UI
 {
     partial class MainForm
     {

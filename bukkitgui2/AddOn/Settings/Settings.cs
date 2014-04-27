@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace Bukkitgui2.AddOn.Settings
+namespace Net.Bertware.Bukkitgui2.AddOn.Settings
 {
 	internal class Settings : IAddon
 	{

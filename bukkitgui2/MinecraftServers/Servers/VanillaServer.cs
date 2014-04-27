@@ -1,6 +1,6 @@
-﻿namespace Bukkitgui2.MinecraftServers.Servers
+﻿namespace Net.Bertware.Bukkitgui2.MinecraftServers.Servers
 {
-    using Bukkitgui2.Core.Util.Web;
+    using  Net.Bertware.Bukkitgui2.Core.Util.Web;
 
     /// <summary>
     ///     Default vanilla server. All parsing code is already in the server base

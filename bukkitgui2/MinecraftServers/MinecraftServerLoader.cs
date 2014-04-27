@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Bukkitgui2.Core.Logging;
+using  Net.Bertware.Bukkitgui2.Core.Logging;
 
-namespace Bukkitgui2.MinecraftServers
+namespace Net.Bertware.Bukkitgui2.MinecraftServers
 {
 	internal static class MinecraftServerLoader
 	{

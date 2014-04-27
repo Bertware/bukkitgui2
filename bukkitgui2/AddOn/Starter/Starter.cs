@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Reflection;
 using System.Windows.Forms;
-using Bukkitgui2.MinecraftInterop.ProcessHandler;
-using Bukkitgui2.MinecraftServers;
+using  Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler;
+using  Net.Bertware.Bukkitgui2.MinecraftServers;
 
-namespace Bukkitgui2.AddOn.Starter
+namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 {
 	internal class Starter : IAddon
 	{

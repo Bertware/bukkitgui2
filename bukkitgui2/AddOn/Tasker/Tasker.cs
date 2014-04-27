@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace Bukkitgui2.AddOn.Tasker
+namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 {
 	internal class Tasker : IAddon
 	{

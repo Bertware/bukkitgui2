@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace Bukkitgui2.AddOn.Backup
+namespace Net.Bertware.Bukkitgui2.AddOn.Backup
 {
 	internal class Backup : IAddon
 	{

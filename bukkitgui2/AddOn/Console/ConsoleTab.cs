@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Windows.Forms;
-using Bukkitgui2.MinecraftInterop.OutputHandler;
-using Bukkitgui2.MinecraftInterop.PlayerHandler;
-using Bukkitgui2.MinecraftInterop.ProcessHandler;
+using  Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler;
+using  Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler;
+using  Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler;
 
-namespace Bukkitgui2.AddOn.Console
+namespace Net.Bertware.Bukkitgui2.AddOn.Console
 {
 	public partial class ConsoleTab : UserControl, IAddonTab
 	{

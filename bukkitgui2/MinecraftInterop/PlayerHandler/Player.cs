@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Bukkitgui2.MinecraftInterop.PlayerHandler
+namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 {
     public class Player
     {

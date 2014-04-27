@@ -1,6 +1,6 @@
-﻿using Bukkitgui2.Controls.QuickButtons;
+﻿using  Net.Bertware.Bukkitgui2.Controls.QuickButtons;
 
-namespace Bukkitgui2.AddOn.Console
+namespace Net.Bertware.Bukkitgui2.AddOn.Console
 {
     partial class ConsoleTab 
     {

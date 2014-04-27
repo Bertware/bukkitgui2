@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace Bukkitgui2.AddOn.Editor
+namespace Net.Bertware.Bukkitgui2.AddOn.Editor
 {
 	public partial class EditorTab : UserControl, IAddonTab
 	{

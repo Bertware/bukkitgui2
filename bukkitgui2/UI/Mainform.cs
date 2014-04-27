@@ -1,16 +1,14 @@
-﻿using Bukkitgui2.MinecraftInterop.PlayerHandler;
-
-namespace Bukkitgui2.UI
+﻿namespace Net.Bertware.Bukkitgui2.UI
 {
     using System.Collections.Generic;
     using System.Windows.Forms;
 
-    using Bukkitgui2.AddOn;
-    using Bukkitgui2.Core;
-    using Bukkitgui2.Core.Configuration;
-    using Bukkitgui2.Core.Logging;
-    using Bukkitgui2.MinecraftInterop.OutputHandler;
-    using Bukkitgui2.MinecraftInterop.ProcessHandler;
+    using Net.Bertware.Bukkitgui2.AddOn;
+    using Net.Bertware.Bukkitgui2.Core;
+    using Net.Bertware.Bukkitgui2.Core.Configuration;
+    using Net.Bertware.Bukkitgui2.Core.Logging;
+    using Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler;
+    using Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler;
 
     public partial class MainForm : Form
     {
@@ -18,7 +16,7 @@ namespace Bukkitgui2.UI
 
         public MainForm()
         {
-            Core.Share.MainFormHandle = this.Handle; //Immediatly set the handle for form operations, tray issues, etc..
+            Share.MainFormHandle = this.Handle; //Immediatly set the handle for form operations, tray issues, etc..
 
             // We need to load all the background stuff before we can start running the application
             // This can take a couple of seconds, so show a splashscreen
@@ -38,79 +36,80 @@ namespace Bukkitgui2.UI
         private void Initialize()
         {
             MinecraftOutputHandler.OutputParsed += this.HandleOutput;
-            ProcessHandler.ServerStarting += HandleServerStarting;
-            ProcessHandler.ServerStarted += HandleServerStarted;
-            ProcessHandler.ServerStopped += HandleServerStopped;
-            ProcessHandler.ServerStopping += HandleServerStopping;
-
-		}
-
+            ProcessHandler.ServerStarting += this.HandleServerStarting;
+            ProcessHandler.ServerStarted += this.HandleServerStarted;
+            ProcessHandler.ServerStopped += this.HandleServerStopped;
+            ProcessHandler.ServerStopping += this.HandleServerStopping;
+        }
 
         private void HandleServerStarting()
         {
             //suport for calls from other threads
-            if (InvokeRequired)
+            if (this.InvokeRequired)
             {
-                Invoke((MethodInvoker)(HandleServerStarting));
+                this.Invoke((MethodInvoker)(this.HandleServerStarting));
             }
             else
             {
-                LblToolsMainServerState.Text = Locale.Tr("Starting...");
+                this.LblToolsMainServerState.Text = Locale.Tr("Starting...");
             }
         }
 
         private void HandleServerStarted()
         {
             //suport for calls from other threads
-            if (InvokeRequired)
+            if (this.InvokeRequired)
             {
-                Invoke((MethodInvoker)(HandleServerStarted));
+                this.Invoke((MethodInvoker)(this.HandleServerStarted));
             }
             else
             {
-                LblToolsMainServerState.Text = Locale.Tr("Server running");
+                this.LblToolsMainServerState.Text = Locale.Tr("Server running");
             }
         }
 
         private void HandleServerStopping()
         {
             //suport for calls from other threads
-            if (InvokeRequired)
+            if (this.InvokeRequired)
             {
-                Invoke((MethodInvoker)(HandleServerStopping));
+                this.Invoke((MethodInvoker)(this.HandleServerStopping));
             }
             else
             {
-                LblToolsMainServerState.Text = Locale.Tr("Stopping...");
+                this.LblToolsMainServerState.Text = Locale.Tr("Stopping...");
             }
         }
 
         private void HandleServerStopped()
         {
             //suport for calls from other threads
-            if (InvokeRequired)
+            if (this.InvokeRequired)
             {
-                Invoke((MethodInvoker)(HandleServerStopped));
+                this.Invoke((MethodInvoker)(this.HandleServerStopped));
             }
             else
             {
-                LblToolsMainServerState.Text = Locale.Tr("Stopped");
+                this.LblToolsMainServerState.Text = Locale.Tr("Stopped");
             }
         }
 
         /// <summary>
         ///     Handle output from the server and print it to the bottom of the screen
         /// </summary>
-        /// <param name="text"></param>
+        /// <param name="text"> The text that was parsed</param>
+        /// <param name="result">Result of the parse operation</param>
         private void HandleOutput(string text, OutputParseResult result)
         {
             //suport for calls from other threads
-            if (InvokeRequired)
+            if (this.InvokeRequired)
             {
-                Invoke((MethodInvoker)(()=>HandleOutput(text,result)));
+                this.Invoke((MethodInvoker)(() => this.HandleOutput(text, result)));
             }
-            else { this.LblToolsMainServerOutput.Text = result.Message;}
-           
+            else
+            {
+                this.LblToolsMainServerOutput.Text = result.Message;
+            }
         }
 
         /// <summary>

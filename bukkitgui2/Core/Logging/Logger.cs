@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace Bukkitgui2.Core.Logging
+namespace Net.Bertware.Bukkitgui2.Core.Logging
 {
 	public static class Logger
 	{

@@ -3,11 +3,11 @@ using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Threading;
-using Bukkitgui2.Core;
-using Bukkitgui2.Core.Logging;
-using Bukkitgui2.MinecraftServers;
+using  Net.Bertware.Bukkitgui2.Core;
+using  Net.Bertware.Bukkitgui2.Core.Logging;
+using  Net.Bertware.Bukkitgui2.MinecraftServers;
 
-namespace Bukkitgui2.MinecraftInterop.ProcessHandler
+namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler
 {
 	/// <summary>
 	///     The server handler for a local server. As soon as the StartServer() routine is called, this class will take over

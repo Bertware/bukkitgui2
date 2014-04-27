@@ -1,4 +1,4 @@
-﻿namespace Bukkitgui2.AddOn.Plugins.BukgetPlugins
+﻿namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.BukgetPlugins
 {
     /// <summary>
     ///     A plugin list item is a simplified plugin that only contains crucial data for the user.

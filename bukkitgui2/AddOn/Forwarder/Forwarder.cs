@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace Bukkitgui2.AddOn.Forwarder
+namespace Net.Bertware.Bukkitgui2.AddOn.Forwarder
 {
 	internal class Forwarder : IAddon
 	{

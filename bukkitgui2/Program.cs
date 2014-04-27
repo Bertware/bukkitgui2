@@ -1,11 +1,11 @@
-﻿namespace Bukkitgui2
+﻿namespace Net.Bertware.Bukkitgui2
 {
     using System;
     using System.IO;
     using System.Reflection;
     using System.Windows.Forms;
 
-    using Bukkitgui2.UI;
+    using Net.Bertware.Bukkitgui2.UI;
 
     internal static class Program
     {

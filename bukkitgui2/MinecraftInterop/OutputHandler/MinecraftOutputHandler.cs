@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using Bukkitgui2.MinecraftInterop.OutputHandler.PlayerActions;
-using Bukkitgui2.MinecraftServers;
+using  Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler.PlayerActions;
+using  Net.Bertware.Bukkitgui2.MinecraftServers;
 
-namespace Bukkitgui2.MinecraftInterop.OutputHandler
+namespace Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler
 {
 	/// <summary>
 	/// All output is handled through here. Even during server restarts event subscriptions are remembered, this class will handle the output through the correct server

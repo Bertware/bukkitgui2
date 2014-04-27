@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Bukkitgui2.Core.FileLocation
+namespace Net.Bertware.Bukkitgui2.Core.FileLocation
 {
 	internal static class DefaultFileLocation
 	{

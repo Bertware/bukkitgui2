@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Bukkitgui2.AddOn.WebControl
+namespace Net.Bertware.Bukkitgui2.AddOn.WebControl
 {
 	public partial class WebControlTab : UserControl, IAddonTab
 	{

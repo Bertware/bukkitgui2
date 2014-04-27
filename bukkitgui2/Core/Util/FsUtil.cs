@@ -1,4 +1,4 @@
-﻿namespace Bukkitgui2.Core.Util
+﻿namespace Net.Bertware.Bukkitgui2.Core.Util
 {
 	internal static class FsUtil
 	{

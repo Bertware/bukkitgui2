@@ -1,4 +1,4 @@
-﻿namespace Bukkitgui2.Controls.MinecraftConsole
+﻿namespace Net.Bertware.Bukkitgui2.Controls.MinecraftConsole
 {
     using System.Drawing;
     using System.Windows.Forms;

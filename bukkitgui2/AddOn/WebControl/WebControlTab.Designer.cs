@@ -1,4 +1,4 @@
-﻿namespace Bukkitgui2.AddOn.WebControl
+﻿namespace Net.Bertware.Bukkitgui2.AddOn.WebControl
 {
 	partial class WebControlTab
 	{

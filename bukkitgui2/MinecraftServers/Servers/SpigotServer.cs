@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Bukkitgui2.MinecraftServers.Servers
+namespace Net.Bertware.Bukkitgui2.MinecraftServers.Servers
 {
 	class SpigotServer : MinecraftServerBase
 	{

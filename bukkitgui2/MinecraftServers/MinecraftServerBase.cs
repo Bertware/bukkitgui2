@@ -3,11 +3,11 @@ using System.Drawing;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using Bukkitgui2.Core.Logging;
-using Bukkitgui2.MinecraftInterop.OutputHandler;
-using Bukkitgui2.MinecraftInterop.OutputHandler.PlayerActions;
+using  Net.Bertware.Bukkitgui2.Core.Logging;
+using  Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler;
+using  Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler.PlayerActions;
 
-namespace Bukkitgui2.MinecraftServers
+namespace Net.Bertware.Bukkitgui2.MinecraftServers
 {
 	/// <summary>
 	///     The base for a minecraft server. This should contain all parsing code for a vanilla server.
