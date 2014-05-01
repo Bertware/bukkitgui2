@@ -15,7 +15,7 @@
         private void HandlePlayerListChange()
         {
             this.slvPlayers.Items.Clear();
-            foreach (Player player in PlayerHandler.OnlinePlayers.Values)
+            foreach (Player player in PlayerHandler.GetOnlinePlayers())
             {
                 string[] contents = { player.Name, player.DisplayName, player.Ip, player.JoinTime.ToLongTimeString() };
                 ListViewItem item = new ListViewItem(contents) { Tag = player.Name };

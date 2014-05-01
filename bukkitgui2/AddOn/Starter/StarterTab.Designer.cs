@@ -476,9 +476,9 @@
             // 
             // PBServerLogo
             // 
-            this.PBServerLogo.ErrorImage = global::Bukkitgui2.Properties.Resources.vanilla_logo;
-            this.PBServerLogo.Image = global::Bukkitgui2.Properties.Resources.vanilla_logo;
-            this.PBServerLogo.InitialImage = global::Bukkitgui2.Properties.Resources.vanilla_logo;
+            this.PBServerLogo.ErrorImage = Net.Bertware.Bukkitgui2.Properties.Resources.vanilla_logo;
+            this.PBServerLogo.Image = Net.Bertware.Bukkitgui2.Properties.Resources.vanilla_logo;
+            this.PBServerLogo.InitialImage = Net.Bertware.Bukkitgui2.Properties.Resources.vanilla_logo;
             this.PBServerLogo.Location = new System.Drawing.Point(6, 18);
             this.PBServerLogo.Name = "PBServerLogo";
             this.PBServerLogo.Size = new System.Drawing.Size(128, 128);

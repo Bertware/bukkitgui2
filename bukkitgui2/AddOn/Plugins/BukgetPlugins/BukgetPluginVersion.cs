@@ -47,7 +47,6 @@
             this.Plugin = plugin;
             this.VersionNumber = versionNumber;
             this.Filename = "";
-            this.PluginName = "";
             this.DownloadLink = "";
             this.VersionNumber = versionNumber;
 

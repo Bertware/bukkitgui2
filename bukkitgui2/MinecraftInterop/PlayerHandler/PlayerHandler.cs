@@ -123,6 +123,13 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 			RaisePlayerListDeletionEvent(player);
 		}
 
+	    public static IEnumerable<Player> GetOnlinePlayers()
+	    {
+	        Player[] result = new Player[OnlinePlayers.Count];
+	        OnlinePlayers.Values.CopyTo(result,0);
+	        return result;
+	    } 
+
 		/// <summary>
 		///     Get an online player by their name
 		/// </summary>
