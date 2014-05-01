@@ -19,7 +19,7 @@
         /// <summary>
         ///     The description of this plugin
         /// </summary>
-        public string Description { get; private set; }
+        public string Description { get; set; }
 
         /// <summary>
         ///     The main namespace this plugin
@@ -27,14 +27,19 @@
         public string Main { get; private set; }
 
         /// <summary>
+        ///     The slug of this plugin
+        /// </summary>
+        public string Slug { get; set; }
+
+        /// <summary>
         ///     The authors of the plugin
         /// </summary>
-        public List<string> AuthorsList { get; private set; }
+        public List<string> AuthorsList { get; set; }
 
         /// <summary>
         ///     The versions of the plugin
         /// </summary>
-        public List<Category> CategoryList { get; set; }
+        public List<PluginCategory> CategoryList { get; set; }
 
         /// <summary>
         ///     The status of the plugin
@@ -49,12 +54,12 @@
         /// <summary>
         ///     The bukkitdev link of the plugin
         /// </summary>
-        public string BukkitDevLink { get; private set; }
+        public string BukkitDevLink { get; set; }
 
         /// <summary>
         ///     The website of the plugin
         /// </summary>
-        public string Website { get; private set; }
+        public string Website { get; set; }
 
         public BukgetPlugin(string main, string name)
         {
@@ -109,7 +114,7 @@
                 this.VersionsList = versions;
             }
 
-            CategoryList = new List<Category>();
+            CategoryList = new List<PluginCategory>();
 
             this.Status = status;
             this.BukkitDevLink = dboLink;

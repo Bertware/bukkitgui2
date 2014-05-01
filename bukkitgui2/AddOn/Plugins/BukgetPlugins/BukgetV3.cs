@@ -3,8 +3,18 @@
     using System;
     using System.Collections.Generic;
 
-    internal class BukgetV3
+    using Jayrock.Json;
+    using Jayrock.Json.Conversion;
+
+    using Net.Bertware.Bukkitgui2.Core.Logging;
+
+    public class BukgetV3
     {
+        /// <summary>
+        ///     Construction of the URL's required to make API calls
+        /// </summary>
+
+        #region Url construction
         private const int DefaultLimit = 20;
 
         /// <summary>
@@ -31,66 +41,146 @@
                 Field.Vf_Soft_Dependencies, Field.Vf_Hard_Dependencies
             };
 
+        /// <summary>
+        ///     Construct the url to make an API call to get a list of all plugins
+        /// </summary>
+        /// <returns>The URL to make the api call to, as a string</returns>
         public static string ConstructUrl()
         {
             return ConstructBaseUrl(BukgetVersion.V3) + "/plugins";
         }
 
+        /// <summary>
+        ///     Construct the url to make an API call to get a list of all plugins
+        /// </summary>
+        /// <param name="field">the fields to retrieve</param>
+        /// <returns>The URL to make the api call to, as a string</returns>
         public static string ConstructUrl(Field[] field)
         {
             return ConstructUrl() + GetFieldArrayUrlValue(field);
         }
 
+        /// <summary>
+        ///     Construct the url to make an API call to get a list of all plugins
+        /// </summary>
+        /// <param name="field">the fields to retrieve</param>
+        /// <param name="limit">the maximum amount or results</param>
+        /// <returns>The URL to make the api call to, as a string</returns>
         public static string ConstructUrl(Field[] field, int limit)
         {
             return ConstructUrl(field) + GetLimitUrlValue(limit);
         }
 
+        /// <summary>
+        ///     Construct the url to make an API call to get a list of all plugins
+        /// </summary>
+        /// <param name="field">the fields to retrieve</param>
+        /// <param name="sortField">the field to sort the results</param>
+        /// <param name="limit">the maximum amount or results</param>
+        /// <returns>The URL to make the api call to, as a string</returns>
         public static string ConstructUrl(Field[] field, Field sortField, int limit)
         {
             return ConstructUrl(field, sortField, false, limit);
         }
 
+        /// <summary>
+        ///     Construct the url to make an API call to get a list of all plugins
+        /// </summary>
+        /// <param name="field">the fields to retrieve</param>
+        /// <param name="sortField">the field to sort the results</param>
+        /// <param name="negateSort">should the results list be reversed?</param>
+        /// <param name="limit">the maximum amount or results</param>
+        /// <returns>The URL to make the api call to, as a string</returns>
         public static string ConstructUrl(Field[] field, Field sortField, Boolean negateSort, int limit)
         {
             return ConstructUrl(field, limit) + GetSortUrlValue(sortField, negateSort);
         }
 
-        public static string ConstructUrl(Category category)
+        /// <summary>
+        ///     Construct the url to make an API call get a list of plugins in the requested category
+        /// </summary>
+        /// <param name="pluginCategory">The category to list</param>
+        /// <returns>The URL to make the api call to, as a string</returns>
+        public static string ConstructUrl(PluginCategory pluginCategory)
         {
-            return ConstructBaseUrl(BukgetVersion.V3) + "/categories/" + GetCategoryUrlValue(category);
+            return ConstructBaseUrl(BukgetVersion.V3) + "/categories/" + GetCategoryUrlValue(pluginCategory);
         }
 
-        public static string ConstructUrl(Category category, Field[] field)
+        /// <summary>
+        ///     Construct the url to make an API call get a list of plugins in the requested category
+        /// </summary>
+        /// <param name="pluginCategory">The category to list</param>
+        /// <param name="field">the fields to retrieve</param>
+        /// <returns>The URL to make the api call to, as a string</returns>
+        public static string ConstructUrl(PluginCategory pluginCategory, Field[] field)
         {
-            return ConstructUrl(category) + GetFieldArrayUrlValue(field);
+            return ConstructUrl(pluginCategory) + GetFieldArrayUrlValue(field);
         }
 
-        public static string ConstructUrl(Category category, Field[] field, int limit)
+        /// <summary>
+        ///     Construct the url to make an API call get a list of plugins in the requested category
+        /// </summary>
+        /// <param name="pluginCategory">The category to list</param>
+        /// <param name="field">the fields to retrieve</param>
+        /// <param name="limit">the maximum amount or results</param>
+        /// <returns>The URL to make the api call to, as a string</returns>
+        public static string ConstructUrl(PluginCategory pluginCategory, Field[] field, int limit)
         {
-            return ConstructUrl(category, field) + GetLimitUrlValue(limit);
+            return ConstructUrl(pluginCategory, field) + GetLimitUrlValue(limit);
         }
 
-        public static string ConstructUrl(Category category, Field[] field, Field sortField, int limit)
+        /// <summary>
+        ///     Construct the url to make an API call get a list of plugins in the requested category
+        /// </summary>
+        /// <param name="pluginCategory">The category to list</param>
+        /// <param name="field">the fields to retrieve</param>
+        /// <param name="sortField">the field to sort the results</param>
+        /// <param name="limit">the maximum amount or results</param>
+        /// <returns>The URL to make the api call to, as a string</returns>
+        public static string ConstructUrl(PluginCategory pluginCategory, Field[] field, Field sortField, int limit)
         {
-            return ConstructUrl(category, field, sortField, false, limit);
+            return ConstructUrl(pluginCategory, field, sortField, false, limit);
         }
 
+        /// <summary>
+        ///     Construct the url to make an API call get a list of plugins in the requested category
+        /// </summary>
+        /// <param name="pluginCategory">The category to list</param>
+        /// <param name="field">the fields to retrieve</param>
+        /// <param name="sortField">the field to sort the results</param>
+        /// <param name="negateSort">should the results list be reversed?</param>
+        /// <param name="limit">the maximum amount or results</param>
+        /// <returns>The URL to make the api call to, as a string</returns>
         public static string ConstructUrl(
-            Category category,
+            PluginCategory pluginCategory,
             Field[] field,
             Field sortField,
             Boolean negateSort,
             int limit)
         {
-            return ConstructUrl(category, field, limit) + GetSortUrlValue(sortField, negateSort);
+            return ConstructUrl(pluginCategory, field, limit) + GetSortUrlValue(sortField, negateSort);
         }
 
+        /// <summary>
+        ///     Construct the url to make an API call to search for a given value in the selected field
+        /// </summary>
+        /// <param name="searchField">The field to search</param>
+        /// <param name="action">The relation between the given value and the result</param>
+        /// <param name="value">the value to search for</param>
+        /// <returns>The URL to make the api call to, as a string</returns>
         public static string ConstructUrl(Field searchField, SearchAction action, String value)
         {
             return ConstructUrl(searchField, action, value, DefaultLimit);
         }
 
+        /// <summary>
+        ///     Construct the url to make an API call to search for a given value in the selected field
+        /// </summary>
+        /// <param name="searchField">The field to search</param>
+        /// <param name="action">The relation between the given value and the result</param>
+        /// <param name="value">the value to search for</param>
+        /// <param name="limit">the maximum amount of results</param>
+        /// <returns>The URL to make the api call to, as a string</returns>
         public static string ConstructUrl(Field searchField, SearchAction action, String value, int limit)
         {
             return ConstructBaseUrl(BukgetVersion.V3) + "/" + GetFieldUrlValue(searchField) + "/"
@@ -125,9 +215,9 @@
             return action.ToString().ToLower().Replace('_', '-');
         }
 
-        private static string GetCategoryUrlValue(Category category)
+        private static string GetCategoryUrlValue(PluginCategory pluginCategory)
         {
-            return category.ToString().Replace("__", "-").Replace('_', '-');
+            return pluginCategory.ToString().Replace("__", "-").Replace('_', '-');
         }
 
         private static string GetFieldArrayUrlValue(IEnumerable<Field> fieldArray)
@@ -146,6 +236,12 @@
             return "&start=0&size=" + limit;
         }
 
+        /// <summary>
+        ///     Get the URL value for a sort command
+        /// </summary>
+        /// <param name="sortfield">the field to sort</param>
+        /// <param name="negate">should the sort direction be reversed?</param>
+        /// <returns>the url value for the sort command</returns>
         private static string GetSortUrlValue(Field sortfield, Boolean negate)
         {
             String result = "&sort=";
@@ -156,8 +252,265 @@
             result += GetFieldUrlValue(sortfield);
             return result;
         }
+
+        #endregion
+
+        #region parsing
+
+        /// <summary>
+        ///     Parse a bukget plugin from the json result
+        /// </summary>
+        /// <param name="jsonCode"></param>
+        /// <returns></returns>
+        public BukgetPlugin ParsePlugin(string jsonCode)
+        {
+            // Load the string into a json object
+            JsonObject json;
+            // In case of an array, load the first entry
+            if (jsonCode.StartsWith("["))
+            {
+                json = (JsonObject)JsonConvert.Import<JsonArray>(jsonCode)[0];
+            }
+            else
+            {
+                json = JsonConvert.Import<JsonObject>(jsonCode);
+            }
+
+            string main = "namespace.unknown";
+            if (json["main"] != null)
+            {
+                main = (string)json["main"];
+            }
+
+            string pluginName = "unnamed";
+            if (json["plugin_name"] != null)
+            {
+                pluginName = (string)json["plugin_name"];
+            }
+
+            Logger.Log(LogLevel.Info, "BukGetAPI", "parsing plugin:" + pluginName, main);
+            BukgetPlugin plugin = new BukgetPlugin(main, pluginName);
+
+            if (json["slug"] != null)
+            {
+                plugin.Slug = (String)json["slug"];
+            }
+            else
+            {
+                plugin.Slug = "unkown name";
+            }
+
+            if (json["description"] != null)
+            {
+                plugin.Description = (String)json["description"];
+            }
+            else
+            {
+                plugin.Description = "";
+            }
+            if (json["dbo_page"] != null)
+            {
+                plugin.BukkitDevLink = (String)json["dbo_page"];
+            }
+            else
+            {
+                plugin.BukkitDevLink = "http://dev.bukkit.org";
+            }
+            if (json["link"] != null)
+            {
+                plugin.Website = (String)json["link"];
+            }
+            else
+            {
+                plugin.Website = "";
+            }
+
+            if (json["stage"] != null)
+            {
+                try
+                {
+                    plugin.Status = (PluginStatus)Enum.Parse(typeof(PluginStatus), json["stage"].ToString());
+                }
+                catch (Exception e)
+                {
+                    Logger.Log(LogLevel.Warning, "BukgetV3", "Couldn't parse plugin status", e.Message);
+                }
+            }
+
+            plugin.AuthorsList = this.ParseJsonStringList(json["authors"]);
+
+            // load strings
+            List<String> categories = this.ParseJsonStringList(json["categories"]);
+            // convert to enum values
+            foreach (string category in categories)
+            {
+                plugin.CategoryList.Add((PluginCategory)Enum.Parse(typeof(PluginCategory), category));
+            }
+
+            IEnumerable<JsonObject> versions = this.ParseJsonObjectList(json["versions"]);
+            foreach (JsonObject jsonObject in versions)
+            {
+                BukgetPluginVersion v = this.ParsePluginVersion(plugin, jsonObject.ToString());
+                plugin.VersionsList.Add(v);
+            }
+            return plugin;
+        }
+
+        private BukgetPluginVersion ParsePluginVersion(BukgetPlugin plugin, String jsonCode)
+        {
+
+            {
+                JsonObject json = (JsonObject)JsonConvert.Import(jsonCode);
+                //create JSON object
+
+                if (json["version"] == null)
+                {
+                    return null;
+                }
+
+                string version = json["version"].ToString();
+
+                BukgetPluginVersion v = new BukgetPluginVersion(plugin, version)
+                                            {
+                                                CompatibleBuilds =
+                                                    this.ParseJsonStringList(
+                                                        json["game_versions"])
+                                            };
+
+                //add all versions
+
+                //name of this version
+                if (json["download"] != null)
+                {
+                    v.DownloadLink = json["download"].ToString();
+                }
+                //download link
+                if (json["link"] != null)
+                {
+                    v.PageLink = json["link"].ToString();
+                }
+                //download link
+                if (json["date"] != null)
+                {
+                    v.ReleaseDate = new DateTime(1970, 1, 1).AddSeconds(
+                        Convert.ToDouble(json["date"].ToString()));
+                }
+                //date, in UNIX formart (seconds elapsed since 1/1/1970)
+                if (json["filename"] != null)
+                {
+                    v.Filename = json["filename"].ToString();
+                }
+                //filename
+                if (json["status"] != null)
+                {
+                    v.Type = (PluginStatus)Enum.Parse(typeof(PluginStatus), json["status"].ToString().Replace("-", "_"));
+                }
+                return v;
+            }
+        }
+
+        /// <summary>
+        ///     Parse a JsonArray to a list of strings
+        /// </summary>
+        /// <param name="jsonArray">the Json to convert</param>
+        /// <returns> The strings contained in the Json array</returns>
+        /// <remarks>
+        ///     This code should always be able to handle any unexpected input or value, since the input will be coming from
+        ///     a web resource that might change over time
+        /// </remarks>
+        private List<String> ParseJsonStringList(object jsonArray)
+        {
+            // list with result
+            List<String> result = new List<string>();
+
+            if (jsonArray == null)
+            {
+                return result;
+            }
+
+            // convert the object
+            JsonArray array = (JsonArray)jsonArray;
+
+            // If no entries, return
+            if (array.Length < 1)
+            {
+                return result;
+            }
+
+            for (byte i = 0; i <= array.Length - 1; i++)
+            {
+                String value = array.GetString(i);
+                // make sure there is a value in the string
+                if (String.IsNullOrEmpty(value))
+                {
+                    continue;
+                }
+                // check if it's already added
+                if (result.Contains(value))
+                {
+                    continue;
+                }
+                // if not, add
+                result.Add(value);
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        ///     Parse a JsonArray to a list of Json objects
+        /// </summary>
+        /// <param name="jsonArray">the Json to convert</param>
+        /// <returns> The Json objects contained in the Json array</returns>
+        /// <remarks>
+        ///     This code should always be able to handle any unexpected input or value, since the input will be coming from
+        ///     a web resource that might change over time
+        /// </remarks>
+        private IEnumerable<JsonObject> ParseJsonObjectList(object jsonArray)
+        {
+            // list with result
+            List<JsonObject> result = new List<JsonObject>();
+
+            if (jsonArray == null)
+            {
+                return result;
+            }
+
+            // convert the object
+            JsonArray array = (JsonArray)jsonArray;
+
+            // If no entries, return
+            if (array.Length < 1)
+            {
+                return result;
+            }
+
+            for (byte i = 0; i <= array.Length - 1; i++)
+            {
+                JsonObject value = array.GetObject(i);
+                // make sure there is a value in the string
+                if (value == null)
+                {
+                    continue;
+                }
+                // check if it's already added
+                if (result.Contains(value))
+                {
+                    continue;
+                }
+                // if not, add
+                result.Add(value);
+            }
+
+            return result;
+        }
+
+        #endregion
     }
 
+    /// <summary>
+    ///     A field describing a plugin property. Fields starting with vf_ describe info about the versions.
+    /// </summary>
     public enum Field
     {
         /// <summary>
@@ -226,36 +579,88 @@
         /// </summary>
         Versions,
 
+        /// <summary>
+        ///     The version number.
+        /// </summary>
         Vf_Version,
 
+        /// <summary>
+        ///     The MD5Sum of the version download.
+        /// </summary>
         Vf_Md5,
 
+        /// <summary>
+        ///     Version download filename.
+        /// </summary>
         Vf_Filename,
 
+        /// <summary>
+        ///     URL for version specific page.
+        /// </summary>
         Vf_Link,
 
+        /// <summary>
+        ///     The version type.
+        /// </summary>
         Vf_Type,
 
+        /// <summary>
+        ///     The download URL for this version.
+        /// </summary>
         Vf_Download,
 
+        /// <summary>
+        ///     The BukkitDev version status (Bukkit Only).
+        /// </summary>
         Vf_Status,
 
+        /// <summary>
+        ///     List of server versions that this specific plug-in version supports.
+        /// </summary>
         Vf_Game_Versions,
 
+        /// <summary>
+        ///     Date released
+        /// </summary>
         Vf_Date,
 
+        /// <summary>
+        ///     The canonical name of this version (example, BukkitDev version slug). This is exclusive to a plugin and cannot be
+        ///     changed.
+        /// </summary>
         Vf_Slug,
 
+        /// <summary>
+        ///     List of plugins that this plugins can optionally depend on.
+        /// </summary>
         Vf_Soft_Dependencies,
 
+        /// <summary>
+        ///     List of plugins that are required for this plugin to run.
+        /// </summary>
         Vf_Hard_Dependencies,
+
+        /// <summary>
+        ///     List of permission dictionaries details what permissions this plugin has (if parseable).
+        /// </summary>
+        Vf_Permissions,
+
+        /// <summary>
+        ///     List of command objects detailing what commands this plugins has (if parsable).
+        /// </summary>
+        Vf_Commands,
+
+        /// <summary>
+        ///     Base64 Encoded string of the version changelog.
+        /// </summary>
+        Vf_Changelog
     }
 
     /// <summary>
     ///     The available categories
     /// </summary>
     /// <remarks>Case sensitive. _ replaces space, __ replaces -</remarks>
-    public enum Category
+    public enum PluginCategory
     {
         Admin_Tools,
         //double underscore to replace -, as underscore already replaces space
@@ -295,50 +700,6 @@
 
         World_Generators,
     }
-
-    //	{
-
-    //	"versions": [ // A list of version objects.
-    //		{
-    //			"status": "Semi-normal", // The BukkitDev version status (Bukkit Only).
-    //			"commands": [ // List of command objects detailing what commands this plugins has (if parsable).
-    //				{
-    //					"usage": "", // Usage Description to be displayed to the user.
-    //					"aliases": [], // List of aliases for this command.
-    //					"command": "abacus", // The command name.
-    //					"permission-message": "§cYou do not have access to that command.", // The message displayed if a user tried to run the command without permissions to.
-    //					"permission": "abacus.abacus" // The permission this command relies on.
-    //				}
-    //			],
-    //			"changelog": "LONG STRING OF STUFF!!!!!", // Base64 Encoded string of the version changelog.
-    //			"game_versions": [ // List of server versions that this specific plug-in version supports.
-    //				"CB 1.4.5-R0.2"
-    //			],
-    //			"filename": "Abacus.jar", // Version download filename.
-    //			"hard_dependencies": [], // List of plugins that are required for this plugin to run.
-    //			"date": 1353964798, // Date Released
-    //			"version": "0.9.3", // The version number.
-    //			"link": "http://dev.bukkit.org/server-mods/abacus/files/4-abacus-v0-9-2-cb-1-4-5-r0-2-compatible-w-1-3-2/", // URL for version specific page.
-    //			"download": "http://dev.bukkit.org/media/files/650/288/Abacus.jar", // The download URL for this version.
-    //			"md5": "1e1b6b6e131c617248f98c53bf650874", // The MD5Sum of the version download.
-    //			"type": "Beta", // The version type. 
-    //			"slug": "4-abacus-v0-9-2-cb-1-4-5-r0-2-compatible-w-1-3-2", // The canonical name of this version (example, BukkitDev version slug). This is exclusive to a plugin and cannot be changed.
-    //			"soft_dependencies": [], // List of plugins that this plugins can optionally depend on.
-    //			"permissions": [ // List of permission dictionaries details what permissions this plugin has (if parseable).
-    //				{
-    //					"default": "op", // Default permission for this role. Example, in Bukkit, there are 4 possibilities (“op”, “not op”, true, false).
-    //					"role": "abacus.*" // Role name.
-    //				},
-    //				{
-    //					"default": true,
-    //					"role": "abacus.abacus"
-    //				}
-    //			]
-    //		},
-
-    //	],
-
-    //}
 
     public enum SearchAction
     {

@@ -3,8 +3,6 @@
     using System;
     using System.Collections.Generic;
 
-    using global::Bukkitgui2.AddOn.Plugins.BukgetPlugins;
-
     /// <summary>
     ///     Contains details of a plugin version, including all data needed to update or install a plugin
     /// </summary>
@@ -19,9 +17,12 @@
         // "md5": "8184a10ef2657024ca0ceb38f9b681eb",
         // "name": "v0.7",
         // "soft_dependencies": []
+
+        public BukgetPlugin Plugin { get; set; }
+
         public DateTime ReleaseDate { get; set; }
 
-        public string DownloadLink { get; private set; }
+        public string DownloadLink { get; set; }
 
         public string PageLink { get; set; }
 
@@ -33,13 +34,21 @@
 
         public PluginStatus Type { get; set; }
 
-        public string PluginName { get; private set; }
-
-        public BukgetPluginVersion(string versionNumber, string downloadLink, string pluginName, string fileName = "")
+        public string PluginName
         {
-            this.Filename = fileName;
-            this.PluginName = pluginName;
-            this.DownloadLink = downloadLink;
+            get
+            {
+                return this.Plugin.Name;
+            }
+        }
+
+        public BukgetPluginVersion(BukgetPlugin plugin, string versionNumber)
+        {
+            this.Plugin = plugin;
+            this.VersionNumber = versionNumber;
+            this.Filename = "";
+            this.PluginName = "";
+            this.DownloadLink = "";
             this.VersionNumber = versionNumber;
 
             this.CompatibleBuilds = new List<string>();
