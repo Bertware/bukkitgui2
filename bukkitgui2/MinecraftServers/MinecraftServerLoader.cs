@@ -48,7 +48,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers
 		/// <returns></returns>
 		internal static List<string> ListClasses()
 		{
-			const string @Namespace = "Bukkitgui2.MinecraftServers.Servers";
+			const string @Namespace = "Net.Bertware.Bukkitgui2.MinecraftServers.Servers";
 			List<string> classes = new List<string>();
 
 			var q = from t in Assembly.GetExecutingAssembly().GetTypes()

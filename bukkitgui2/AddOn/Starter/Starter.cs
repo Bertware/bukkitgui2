@@ -8,8 +8,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 {
 	internal class Starter : IAddon
 	{
-		private UserControl _tab;
-
+		private StarterTab _tab;
 
 		/// <summary>
 		///     The addon name, ideally this name is the same as used in the tabpage
@@ -40,7 +39,10 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 		/// </summary>
 		public void Initialize()
 		{
-			_tab = new StarterTab {Text = Name, ParentAddon = this};
+			_tab = new StarterTab();
+			_tab.Text = Name;
+			_tab.ParentAddon = this;
+
 		}
 
 		/// <summary>

@@ -66,17 +66,18 @@
     </Compile>
     <Compile Include="AddOn\IAddon.cs" />
     <Compile Include="AddOn\IAddonTab.cs" />
-    <Compile Include="AddOn\Plugins\BukgetPlugins\BukgetPlugin.cs" />
-    <Compile Include="AddOn\Plugins\BukgetPlugins\BukgetPluginsControl.cs">
+    <Compile Include="AddOn\Plugins\Bukget\api3\BukgetPlugin.cs" />
+    <Compile Include="AddOn\Plugins\Bukget\api3\BukgetUrlBuilder.cs" />
+    <Compile Include="AddOn\Plugins\Bukget\api3\Parser.cs" />
+    <Compile Include="AddOn\Plugins\Bukget\BukgetPluginsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="AddOn\Plugins\BukgetPlugins\BukgetPluginsControl.Designer.cs">
+    <Compile Include="AddOn\Plugins\Bukget\BukgetPluginsControl.Designer.cs">
       <DependentUpon>BukgetPluginsControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="AddOn\Plugins\BukgetPlugins\BukgetPluginVersion.cs" />
-    <Compile Include="AddOn\Plugins\BukgetPlugins\BukgetV3.cs" />
-    <Compile Include="AddOn\Plugins\BukgetPlugins\BukkitDevApiSupport.cs" />
-    <Compile Include="AddOn\Plugins\BukgetPlugins\BukgetPluginListItem.cs" />
+    <Compile Include="AddOn\Plugins\Bukget\api3\BukgetPluginVersion.cs" />
+    <Compile Include="AddOn\Plugins\Bukget\api3\Bukget.cs" />
+    <Compile Include="AddOn\Plugins\Bukget\api3\BukkitDevApiSupport.cs" />
     <Compile Include="AddOn\Plugins\InstalledPlugins\InstalledPluginsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

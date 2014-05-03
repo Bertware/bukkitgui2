@@ -13,7 +13,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Web
 	/// <summary>
 	///     control to download a file async, while showing a progressbar with details
 	/// </summary>
-	public partial class FileDownloadProgressBar
+	public partial class FileDownloadProgressBar : UserControl
 	{
 		private readonly string _tmp = DefaultFileLocation.Location(RequestFile.Temp) + "download\\";
 

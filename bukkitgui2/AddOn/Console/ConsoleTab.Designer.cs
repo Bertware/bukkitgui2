@@ -32,14 +32,14 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
         {
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-			this.SLVPlayers = new Bukkitgui2.Controls.SortableListView.SortableListView();
+			this.SLVPlayers = new Net.Bertware.Bukkitgui2.Controls.SortableListView.SortableListView();
 			this.ColPlayers = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.CIConsoleInput = new Bukkitgui2.Controls.ConsoleInput.ConsoleInput();
-			this.MCCOut = new Bukkitgui2.Controls.MinecraftConsole.MinecraftConsole();
+			this.CIConsoleInput = new Net.Bertware.Bukkitgui2.Controls.ConsoleInput.ConsoleInput();
+			this.MCCOut = new Net.Bertware.Bukkitgui2.Controls.MinecraftConsole.MinecraftConsole();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
-			this.performanceMonitor1 = new Bukkitgui2.Controls.PerformanceMonitor.PerformanceMonitor();
+			this.performanceMonitor1 = new Net.Bertware.Bukkitgui2.Controls.PerformanceMonitor.PerformanceMonitor();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
-			this.quickButtons1 = new Bukkitgui2.Controls.QuickButtons.QuickButtons();
+			this.quickButtons1 = new Net.Bertware.Bukkitgui2.Controls.QuickButtons.QuickButtons();
 			this.groupBox1.SuspendLayout();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
@@ -183,7 +183,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 
         #endregion
 
-        private Bukkitgui2.Controls.MinecraftConsole.MinecraftConsole MCCOut;
+        private Net.Bertware.Bukkitgui2.Controls.MinecraftConsole.MinecraftConsole MCCOut;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.GroupBox groupBox2;

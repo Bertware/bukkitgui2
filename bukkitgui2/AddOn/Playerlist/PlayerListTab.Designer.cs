@@ -28,7 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-            this.slvPlayers = new Bukkitgui2.Controls.SortableListView.SortableListView();
+            this.slvPlayers = new Net.Bertware.Bukkitgui2.Controls.SortableListView.SortableListView();
             this.colName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colIP = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
