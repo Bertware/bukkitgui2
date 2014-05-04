@@ -40,6 +40,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			this.performanceMonitor1 = new Net.Bertware.Bukkitgui2.Controls.PerformanceMonitor.PerformanceMonitor();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
 			this.quickButtons1 = new Net.Bertware.Bukkitgui2.Controls.QuickButtons.QuickButtons();
+
 			this.groupBox1.SuspendLayout();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
@@ -193,6 +194,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
         private Controls.PerformanceMonitor.PerformanceMonitor performanceMonitor1;
 		private Controls.SortableListView.SortableListView SLVPlayers;
 		private System.Windows.Forms.ColumnHeader ColPlayers;
+
 
      }
 }

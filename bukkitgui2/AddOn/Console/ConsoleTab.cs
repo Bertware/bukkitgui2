@@ -36,7 +36,24 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 		{
 			String[] text = {player.Name, player.Ip};
 			ListViewItem lvi = new ListViewItem(text) {Tag = player.Name, Name = player.Name};
-			SLVPlayers.Items.Add(lvi);
+			AddListViewItem(lvi);
+		}
+
+		/// <summary>
+		/// Add an item to the listview, thread-safe
+		/// </summary>
+		/// <param name="item">the item to add</param>
+		private void AddListViewItem(ListViewItem item)
+		{
+			if (this.InvokeRequired)
+			{
+				this.Invoke((MethodInvoker)(() => this.AddListViewItem(item)));
+			}
+			else
+			{
+				SLVPlayers.Items.Add(item);
+			}
+
 		}
 
 		public IAddon ParentAddon { get; set; }

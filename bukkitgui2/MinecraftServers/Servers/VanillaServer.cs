@@ -45,7 +45,7 @@
 
         public override string GetLaunchFlags(string defaultFlags = "")
         {
-            return "--nogui " + defaultFlags;
+            return " nogui " + defaultFlags;
         }
 
     }

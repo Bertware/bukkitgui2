@@ -147,13 +147,13 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers
 			switch (type)
 			{
 				case MessageType.PlayerJoin:
-					return new OutputParseResult(text, message, type, ParsePlayerJoin(text));
+					return new OutputParseResult(text, message, type, ParsePlayerJoin(message));
 				case MessageType.PlayerLeave:
-					return new OutputParseResult(text, message, type, ParsePlayerLeave(text));
+					return new OutputParseResult(text, message, type, ParsePlayerLeave(message));
 				case MessageType.PlayerKick:
-					return new OutputParseResult(text, message, type, ParsePlayerActionKick(text));
+					return new OutputParseResult(text, message, type, ParsePlayerActionKick(message));
 				case MessageType.PlayerBan:
-					return new OutputParseResult(text, message, type, ParsePlayerActionBan(text));
+					return new OutputParseResult(text, message, type, ParsePlayerActionBan(message));
 				default:
 					return new OutputParseResult(text, message, type);
 			}
@@ -290,7 +290,8 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers
 			//[INFO]  UUID of player Bertware is f0b27a3369394b25ab897aa4e4db83c1
 			//[INFO]  Bertware[/127.0.0.1:51815] logged in with entity id 184 at ([world] 98.5, 64.0, 230.5)
 			PlayerActionJoin join = new PlayerActionJoin();
-			join.PlayerName = Regex.Match(text, RG_FSPACE + RG_PLAYER).Value.Trim();
+			text = Regex.Replace(text, RG_INFO,"", RegexOptions.IgnoreCase);
+			join.PlayerName = Regex.Match(text, RG_PLAYER).Value.Trim();
 			join.Ip = Regex.Match(text, RG_IP_NOPORT).Value;
 
 			return join;

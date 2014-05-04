@@ -61,7 +61,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			//Selecting a server will enable/disable the available/unavailable features
 
 			// Cache total amount of ram, set maximum values
-			int totalMb = Convert.ToInt32(Core.Util.Performance.MemoryInfo.TotalMemoryMb());
+			int totalMb = Convert.ToInt32(Core.Util.Performance.MemoryCounter.TotalMemoryMb());
 			TBMaxRam.Maximum = totalMb;
 			TBMinRam.Maximum = totalMb;
 			NumMaxRam.Maximum = totalMb;
