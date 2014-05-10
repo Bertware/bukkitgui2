@@ -1,21 +1,21 @@
 ﻿using System.Diagnostics;
 using System.Threading;
 using System.Windows.Forms;
+using Net.Bertware.Bukkitgui2.Core;
+using Net.Bertware.Bukkitgui2.Properties;
 
 namespace Net.Bertware.Bukkitgui2.UI
 {
-    using  Net.Bertware.Bukkitgui2.Properties;
-
-    public partial class SplashScreen : Form
+	public partial class SplashScreen : Form
 	{
 		public SplashScreen()
 		{
 			InitializeComponent();
 
-		    pictureBox1.Image = Resources.GUI_icon;
+			pictureBox1.Image = Resources.GUI_icon;
 
 			Debug.WriteLine("Loading splashscreen");
-			var thdSplashWork = new Thread(Application_Initialize) {IsBackground = false, Name = "Splashscreen_work_thread"};
+			Thread thdSplashWork = new Thread(Application_Initialize) {IsBackground = false, Name = "Splashscreen_work_thread"};
 			thdSplashWork.Start();
 			Debug.WriteLine("Splashscreen worker thread started");
 		}
@@ -23,8 +23,8 @@ namespace Net.Bertware.Bukkitgui2.UI
 		private void Application_Initialize()
 		{
 			//Most of the code goes in this routine, as this handles all shared resources
-			Core.Share.Initialize();
-            
+			Share.Initialize();
+
 			CloseForm();
 		}
 

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Reflection;
 using System.Windows.Forms;
-using  Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler;
-using  Net.Bertware.Bukkitgui2.MinecraftServers;
+using Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler;
+using Net.Bertware.Bukkitgui2.MinecraftServers;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 {
@@ -42,7 +42,6 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			_tab = new StarterTab();
 			_tab.Text = Name;
 			_tab.ParentAddon = this;
-
 		}
 
 		/// <summary>

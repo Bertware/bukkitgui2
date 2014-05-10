@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Management;
 using System.Net;
+using Net.Bertware.Bukkitgui2.Core.Logging;
 
 namespace Net.Bertware.Bukkitgui2.Core.Util.Performance
 {
@@ -371,7 +372,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Performance
 				new ManagementObjectSearcher("Select " + Property + " From " + @class + " Where " + SelectProp + " = '" + value +
 				                             "'");
 			ManagementObjectCollection managementObjectCollection = managementObjectSearcher.Get();
-			dynamic result = null;
+			string result = null;
 			foreach (ManagementObject managementObject in managementObjectCollection.Cast<ManagementObject>())
 			{
 				result = managementObject[Property].ToString();
@@ -384,7 +385,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Performance
 			ManagementObjectSearcher managementObjectSearcher =
 				new ManagementObjectSearcher("Select " + Property + " From " + @class + " Where Name = '" + name + "'");
 			ManagementObjectCollection managementObjectCollection = managementObjectSearcher.Get();
-			dynamic result = null;
+			string result = null;
 			foreach (ManagementObject managementObject in managementObjectCollection.Cast<ManagementObject>())
 			{
 				result = managementObject[Property].ToString();
@@ -397,7 +398,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Performance
 			ManagementObjectSearcher managementObjectSearcher =
 				new ManagementObjectSearcher("Select " + Property + " From " + @class + " Where Name = '" + name + "'");
 			ManagementObjectCollection managementObjectCollection = managementObjectSearcher.Get();
-			dynamic result = null;
+			String result = null;
 			foreach (ManagementObject managementObject in managementObjectCollection.Cast<ManagementObject>())
 			{
 				result = managementObject[Property].ToString();
@@ -410,7 +411,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Performance
 			ManagementObjectSearcher managementObjectSearcher =
 				new ManagementObjectSearcher("Select " + Property + " From " + @class);
 			ManagementObjectCollection managementObjectCollection = managementObjectSearcher.Get();
-			dynamic result = null;
+			string result = null;
 			foreach (ManagementObject managementObject in managementObjectCollection.Cast<ManagementObject>())
 			{
 				result = managementObject[Property].ToString();
@@ -422,7 +423,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Performance
 		{
 			ManagementObjectSearcher managementObjectSearcher = new ManagementObjectSearcher("Select " + Prop + " From " + @class);
 			ManagementObjectCollection managementObjectCollection = managementObjectSearcher.Get();
-			dynamic result = null;
+			string result = null;
 			foreach (ManagementObject managementObject in managementObjectCollection.Cast<ManagementObject>())
 			{
 				result = managementObject[Prop].ToString();
@@ -489,7 +490,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Performance
 				ManagementObjectSearcher managementObjectSearcher =
 					new ManagementObjectSearcher("Select " + type + " from Win32_Processor Where Name = '" + name + "'");
 				ManagementObjectCollection managementObjectCollection = managementObjectSearcher.Get();
-				dynamic result = null;
+				string result = null;
 				foreach (ManagementObject managementObject in managementObjectCollection.Cast<ManagementObject>())
 				{
 					result = managementObject[type.ToString()].ToString();
@@ -498,6 +499,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Performance
 			}
 			catch (Exception ex)
 			{
+				Logger.Log(LogLevel.Warning, "Wmi", "WMI access failed!", ex.Message);
 				return null;
 			}
 		}
@@ -509,7 +511,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Performance
 				ManagementObjectSearcher managementObjectSearcher =
 					new ManagementObjectSearcher("Select " + type + " From Win32_Processor");
 				ManagementObjectCollection managementObjectCollection = managementObjectSearcher.Get();
-				dynamic result = null;
+				string result = null;
 				foreach (ManagementObject managementObject in managementObjectCollection.Cast<ManagementObject>())
 				{
 					result = managementObject[type.ToString()].ToString();
@@ -518,6 +520,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Performance
 			}
 			catch (Exception ex)
 			{
+				Logger.Log(LogLevel.Warning, "Wmi", "WMI access failed!", ex.Message);
 				return null;
 			}
 		}
@@ -579,7 +582,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Performance
 				ManagementObjectSearcher managementObjectSearcher =
 					new ManagementObjectSearcher("Select " + type + " from Win32_Process Where Name = '" + name + "'");
 				ManagementObjectCollection managementObjectCollection = managementObjectSearcher.Get();
-				dynamic result = null;
+				string result = null;
 				foreach (ManagementObject managementObject in managementObjectCollection.Cast<ManagementObject>())
 				{
 					result = managementObject[type.ToString()].ToString();
@@ -589,6 +592,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Performance
 			}
 			catch (Exception ex)
 			{
+				Logger.Log(LogLevel.Warning, "Wmi", "WMI access failed!", ex.Message);
 				return null;
 			}
 		}
@@ -600,7 +604,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Performance
 				ManagementObjectSearcher managementObjectSearcher =
 					new ManagementObjectSearcher("Select " + type + " from Win32_Process Where ProcessId = '" + id + "'");
 				ManagementObjectCollection managementObjectCollection = managementObjectSearcher.Get();
-				dynamic result = null;
+				string result = null;
 				foreach (ManagementObject managementObject in managementObjectCollection.Cast<ManagementObject>())
 				{
 					result = managementObject[type.ToString()].ToString();
@@ -609,6 +613,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Performance
 			}
 			catch (Exception ex)
 			{
+				Logger.Log(LogLevel.Warning, "Wmi", "WMI access failed!", ex.Message);
 				return null;
 			}
 		}
@@ -620,7 +625,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Performance
 				ManagementObjectSearcher managementObjectSearcher =
 					new ManagementObjectSearcher("Select " + type + " From Win32_Process");
 				ManagementObjectCollection managementObjectCollection = managementObjectSearcher.Get();
-				dynamic result = null;
+				string result = null;
 				foreach (ManagementObject managementObject in managementObjectCollection.Cast<ManagementObject>())
 				{
 					result = managementObject[type.ToString()].ToString();
@@ -629,6 +634,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Performance
 			}
 			catch (Exception ex)
 			{
+				Logger.Log(LogLevel.Warning, "Wmi", "WMI access failed!", ex.Message);
 				return null;
 			}
 		}
@@ -664,7 +670,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Performance
 			ManagementObjectSearcher managementObjectSearcher =
 				new ManagementObjectSearcher("Select " + type + " from Win32_MotherBoardDevice Where Name = '" + name + "'");
 			ManagementObjectCollection managementObjectCollection = managementObjectSearcher.Get();
-			dynamic result = null;
+			string result = null;
 			foreach (ManagementObject managementObject in managementObjectCollection.Cast<ManagementObject>())
 			{
 				result = managementObject[type.ToString()].ToString();
@@ -677,7 +683,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Performance
 			ManagementObjectSearcher managementObjectSearcher =
 				new ManagementObjectSearcher("Select " + type + " From Win32_MotherBoardDevice");
 			ManagementObjectCollection managementObjectCollection = managementObjectSearcher.Get();
-			dynamic result = null;
+			string result = null;
 			foreach (ManagementObject managementObject in managementObjectCollection.Cast<ManagementObject>())
 			{
 				result = managementObject[type.ToString()].ToString();
@@ -716,7 +722,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Performance
 			ManagementObjectSearcher managementObjectSearcher =
 				new ManagementObjectSearcher("Select " + type + " from Win32_Fan Where Name = '" + name + "'");
 			ManagementObjectCollection managementObjectCollection = managementObjectSearcher.Get();
-			dynamic result = null;
+			string result = null;
 			foreach (ManagementObject managementObject in managementObjectCollection.Cast<ManagementObject>())
 			{
 				result = managementObject[type.ToString()].ToString();
@@ -728,7 +734,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Performance
 		{
 			ManagementObjectSearcher managementObjectSearcher = new ManagementObjectSearcher("Select " + type + " From Win32_Fan");
 			ManagementObjectCollection managementObjectCollection = managementObjectSearcher.Get();
-			dynamic result = null;
+			string result = null;
 			foreach (ManagementObject managementObject in managementObjectCollection.Cast<ManagementObject>())
 			{
 				result = managementObject[type.ToString()].ToString();
@@ -771,7 +777,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Performance
 			ManagementObjectSearcher managementObjectSearcher =
 				new ManagementObjectSearcher("Select " + type + " from Win32_Service Where Name = '" + name + "'");
 			ManagementObjectCollection managementObjectCollection = managementObjectSearcher.Get();
-			dynamic result = null;
+			string result = null;
 			foreach (ManagementObject managementObject in managementObjectCollection.Cast<ManagementObject>())
 			{
 				result = managementObject[type.ToString()].ToString();
@@ -784,7 +790,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Performance
 			ManagementObjectSearcher managementObjectSearcher =
 				new ManagementObjectSearcher("Select " + type + " From Win32_Service");
 			ManagementObjectCollection managementObjectCollection = managementObjectSearcher.Get();
-			dynamic result = null;
+			string result = null;
 			foreach (ManagementObject managementObject in managementObjectCollection.Cast<ManagementObject>())
 			{
 				result = managementObject[type.ToString()].ToString();
@@ -826,7 +832,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Performance
 			ManagementObjectSearcher managementObjectSearcher =
 				new ManagementObjectSearcher("Select " + type + " from Win32_BIOS Where Name = '" + name + "'");
 			ManagementObjectCollection managementObjectCollection = managementObjectSearcher.Get();
-			dynamic result = null;
+			string result = null;
 			foreach (ManagementObject managementObject in managementObjectCollection.Cast<ManagementObject>())
 			{
 				result = managementObject[type.ToString()].ToString();
@@ -839,7 +845,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Performance
 			ManagementObjectSearcher managementObjectSearcher =
 				new ManagementObjectSearcher("Select " + type + " From Win32_BIOS");
 			ManagementObjectCollection managementObjectCollection = managementObjectSearcher.Get();
-			dynamic result = null;
+			string result = null;
 			foreach (ManagementObject managementObject in managementObjectCollection.Cast<ManagementObject>())
 			{
 				result = managementObject[type.ToString()].ToString();
@@ -894,7 +900,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Performance
 				new ManagementObjectSearcher("Select " + type + " from Win32_PerfRawData_PerfProc_Process Where Name = '" + name +
 				                             "'");
 			ManagementObjectCollection managementObjectCollection = managementObjectSearcher.Get();
-			dynamic result = null;
+			string result = null;
 			foreach (ManagementObject managementObject in managementObjectCollection.Cast<ManagementObject>())
 			{
 				result = managementObject[type.ToString()].ToString();
@@ -907,7 +913,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Performance
 			ManagementObjectSearcher managementObjectSearcher =
 				new ManagementObjectSearcher("Select " + type + " From Win32_PerfRawData_PerfProc_Process");
 			ManagementObjectCollection managementObjectCollection = managementObjectSearcher.Get();
-			dynamic result = null;
+			string result = null;
 			foreach (ManagementObject managementObject in managementObjectCollection.Cast<ManagementObject>())
 			{
 				result = managementObject[type.ToString()].ToString();
@@ -950,7 +956,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Performance
 				new ManagementObjectSearcher("Select " + type + " from Win32_PerfRawData_PerfOS_Processor Where Name = '" + name +
 				                             "'");
 			ManagementObjectCollection managementObjectCollection = managementObjectSearcher.Get();
-			dynamic result = null;
+			string result = null;
 			foreach (ManagementObject managementObject in managementObjectCollection.Cast<ManagementObject>())
 			{
 				result = managementObject[type.ToString()].ToString();
@@ -963,7 +969,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Performance
 			ManagementObjectSearcher managementObjectSearcher =
 				new ManagementObjectSearcher("Select " + type + " From Win32_PerfRawData_PerfOS_Processor");
 			ManagementObjectCollection managementObjectCollection = managementObjectSearcher.Get();
-			dynamic result = null;
+			string result = null;
 			foreach (ManagementObject managementObject in managementObjectCollection.Cast<ManagementObject>())
 			{
 				result = managementObject[type.ToString()].ToString();
@@ -1020,7 +1026,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Performance
 			ManagementObjectSearcher managementObjectSearcher =
 				new ManagementObjectSearcher("Select " + type + " from Win32_PerfRawData_PerfOS_Memory Where Name = '" + name + "'");
 			ManagementObjectCollection managementObjectCollection = managementObjectSearcher.Get();
-			dynamic result = null;
+			string result = null;
 			foreach (ManagementObject managementObject in managementObjectCollection.Cast<ManagementObject>())
 			{
 				result = managementObject[type.ToString()].ToString();
@@ -1033,7 +1039,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Performance
 			ManagementObjectSearcher managementObjectSearcher =
 				new ManagementObjectSearcher("Select " + type + " From Win32_PerfRawData_PerfOS_Memory");
 			ManagementObjectCollection managementObjectCollection = managementObjectSearcher.Get();
-			dynamic result = null;
+			string result = null;
 			foreach (ManagementObject managementObject in managementObjectCollection.Cast<ManagementObject>())
 			{
 				result = managementObject[type.ToString()].ToString();
@@ -1078,7 +1084,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Performance
 			ManagementObjectSearcher managementObjectSearcher =
 				new ManagementObjectSearcher("Select " + type + " from Win32_PerfRawData_PerfOS_System Where Name = '" + name + "'");
 			ManagementObjectCollection managementObjectCollection = managementObjectSearcher.Get();
-			dynamic result = null;
+			string result = null;
 			foreach (ManagementObject managementObject in managementObjectCollection.Cast<ManagementObject>())
 			{
 				result = managementObject[type.ToString()].ToString();
@@ -1091,7 +1097,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Performance
 			ManagementObjectSearcher managementObjectSearcher =
 				new ManagementObjectSearcher("Select " + type + " From Win32_PerfRawData_PerfOS_System");
 			ManagementObjectCollection managementObjectCollection = managementObjectSearcher.Get();
-			dynamic result = null;
+			string result = null;
 			foreach (ManagementObject managementObject in managementObjectCollection.Cast<ManagementObject>())
 			{
 				result = managementObject[type.ToString()].ToString();
@@ -1119,7 +1125,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Performance
 			ManagementObjectSearcher managementObjectSearcher =
 				new ManagementObjectSearcher("Select " + type + " from Win32_PerfRawData_TCPIP_UDP Where Name = '" + name + "'");
 			ManagementObjectCollection managementObjectCollection = managementObjectSearcher.Get();
-			dynamic result = null;
+			string result = null;
 			foreach (ManagementObject managementObject in managementObjectCollection.Cast<ManagementObject>())
 			{
 				result = managementObject[type.ToString()].ToString();
@@ -1132,7 +1138,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Performance
 			ManagementObjectSearcher managementObjectSearcher =
 				new ManagementObjectSearcher("Select " + type + " From Win32_PerfRawData_Tcpip_UDP");
 			ManagementObjectCollection managementObjectCollection = managementObjectSearcher.Get();
-			dynamic result = null;
+			string result = null;
 			foreach (ManagementObject managementObject in managementObjectCollection.Cast<ManagementObject>())
 			{
 				result = managementObject[type.ToString()].ToString();
@@ -1168,7 +1174,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Performance
 			ManagementObjectSearcher managementObjectSearcher =
 				new ManagementObjectSearcher("Select " + type + " from Win32_PerfRawData_TCPIP_TCP Where Name = '" + name + "'");
 			ManagementObjectCollection managementObjectCollection = managementObjectSearcher.Get();
-			dynamic result = null;
+			string result = null;
 			foreach (ManagementObject managementObject in managementObjectCollection.Cast<ManagementObject>())
 			{
 				result = managementObject[type.ToString()].ToString();
@@ -1181,7 +1187,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Performance
 			ManagementObjectSearcher managementObjectSearcher =
 				new ManagementObjectSearcher("Select " + type + " From Win32_PerfRawData_Tcpip_TCP");
 			ManagementObjectCollection managementObjectCollection = managementObjectSearcher.Get();
-			dynamic result = null;
+			string result = null;
 			foreach (ManagementObject managementObject in managementObjectCollection.Cast<ManagementObject>())
 			{
 				result = managementObject[type.ToString()].ToString();
@@ -1229,7 +1235,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Performance
 			ManagementObjectSearcher managementObjectSearcher =
 				new ManagementObjectSearcher("Select " + type + " from Win32_PhysicalMemory Where Name = '" + name + "'");
 			ManagementObjectCollection managementObjectCollection = managementObjectSearcher.Get();
-			dynamic result = null;
+			string result = null;
 			foreach (ManagementObject managementObject in managementObjectCollection.Cast<ManagementObject>())
 			{
 				result = managementObject[type.ToString()].ToString();
@@ -1242,7 +1248,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Performance
 			ManagementObjectSearcher managementObjectSearcher =
 				new ManagementObjectSearcher("Select " + type + " From Win32_PhysicalMemory");
 			ManagementObjectCollection managementObjectCollection = managementObjectSearcher.Get();
-			dynamic result = null;
+			string result = null;
 			foreach (ManagementObject managementObject in managementObjectCollection.Cast<ManagementObject>())
 			{
 				result = managementObject[type.ToString()].ToString();
@@ -1268,7 +1274,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Performance
 			ManagementObjectSearcher managementObjectSearcher =
 				new ManagementObjectSearcher("Select " + type + " from Win32_Registry Where Name = '" + name + "'");
 			ManagementObjectCollection managementObjectCollection = managementObjectSearcher.Get();
-			dynamic result = null;
+			string result = null;
 			foreach (ManagementObject managementObject in managementObjectCollection.Cast<ManagementObject>())
 			{
 				result = managementObject[type.ToString()].ToString();
@@ -1281,7 +1287,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Performance
 			ManagementObjectSearcher managementObjectSearcher =
 				new ManagementObjectSearcher("Select " + type + " From Win32_Registry");
 			ManagementObjectCollection managementObjectCollection = managementObjectSearcher.Get();
-			dynamic result = null;
+			string result = null;
 			foreach (ManagementObject managementObject in managementObjectCollection.Cast<ManagementObject>())
 			{
 				result = managementObject[type.ToString()].ToString();
@@ -1352,7 +1358,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Performance
 			ManagementObjectSearcher managementObjectSearcher =
 				new ManagementObjectSearcher("Select " + type + " from Win32_NetworkAdapter Where Name = '" + name + "'");
 			ManagementObjectCollection managementObjectCollection = managementObjectSearcher.Get();
-			dynamic result = null;
+			string result = null;
 			foreach (ManagementObject managementObject in managementObjectCollection.Cast<ManagementObject>())
 			{
 				result = managementObject[type.ToString()].ToString();
@@ -1365,7 +1371,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Performance
 			ManagementObjectSearcher managementObjectSearcher =
 				new ManagementObjectSearcher("Select " + type + " From Win32_NetworkAdapter");
 			ManagementObjectCollection managementObjectCollection = managementObjectSearcher.Get();
-			dynamic result = null;
+			string result = null;
 			foreach (ManagementObject managementObject in managementObjectCollection.Cast<ManagementObject>())
 			{
 				result = managementObject[type.ToString()].ToString();
@@ -1461,7 +1467,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Performance
 			ManagementObjectSearcher managementObjectSearcher =
 				new ManagementObjectSearcher("Select " + type + " from Win32_OperatingSystem Where Name = '" + name + "'");
 			ManagementObjectCollection managementObjectCollection = managementObjectSearcher.Get();
-			dynamic result = null;
+			string result = null;
 			foreach (ManagementObject managementObject in managementObjectCollection.Cast<ManagementObject>())
 			{
 				result = managementObject[type.ToString()].ToString();
@@ -1474,7 +1480,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Performance
 			ManagementObjectSearcher managementObjectSearcher =
 				new ManagementObjectSearcher("Select " + type + " From Win32_OperatingSystem");
 			ManagementObjectCollection managementObjectCollection = managementObjectSearcher.Get();
-			dynamic result = null;
+			string result = null;
 			foreach (ManagementObject managementObject in managementObjectCollection.Cast<ManagementObject>())
 			{
 				result = managementObject[type.ToString()].ToString();
@@ -1515,7 +1521,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Performance
 				{
 					result = GetOsInfo(OSProp.OSArchitecture);
 				}
-				catch (Exception ex)
+				catch (Exception)
 				{
 					result = "32-bit";
 				}

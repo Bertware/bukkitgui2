@@ -1,5 +1,5 @@
 ﻿using System;
-using  Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler.PlayerActions;
+using Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler.PlayerActions;
 
 namespace Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler
 {
@@ -19,17 +19,17 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler
 		/// The text in the message, without the timestamp and prefixes
 		/// </summary>
 		public string Message { get; private set; }
-		
+
 		/// <summary>
 		/// The type of message
 		/// </summary>
 		public MessageType Type { get; private set; }
-		
+
 		/// <summary>
 		/// If the message type was a player action, the action object
 		/// </summary>
 		public IPlayerAction Action { get; private set; }
-		
+
 		/// <summary>
 		/// Create a new instance
 		/// </summary>
@@ -37,7 +37,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler
 		/// <param name="message">the output message, text without timestamp or tags</param>
 		/// <param name="type">the message type</param>
 		/// <param name="action">if any player action was described, the player action object</param>
-		public OutputParseResult(string text, string message, MessageType type, IPlayerAction action = null )
+		public OutputParseResult(string text, string message, MessageType type, IPlayerAction action = null)
 		{
 			Time = DateTime.Now;
 			Text = text;

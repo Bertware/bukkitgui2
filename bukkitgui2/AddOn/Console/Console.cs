@@ -2,9 +2,7 @@
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Console
 {
-    using  Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler;
-
-    internal class Console : IAddon
+	internal class Console : IAddon
 	{
 		private UserControl _tab;
 
@@ -16,34 +14,28 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			get { return "Console"; }
 		}
 
-        /// <summary>
-        /// True if this addon has a tab page
-        /// </summary>
-        public bool HasTab
-        {
-            get
-            {
-                return true;
-            }
-        }
+		/// <summary>
+		/// True if this addon has a tab page
+		/// </summary>
+		public bool HasTab
+		{
+			get { return true; }
+		}
 
-        /// <summary>
-        /// True if this addon has a config field
-        /// </summary>
-        public bool HasConfig
-        {
-            get
-            {
-                return true;
-            }
-        }
+		/// <summary>
+		/// True if this addon has a config field
+		/// </summary>
+		public bool HasConfig
+		{
+			get { return true; }
+		}
 
 		/// <summary>
 		///     Initialize all functions and the tabcontrol
 		/// </summary>
 		void IAddon.Initialize()
 		{
-			_tab = new ConsoleTab { Text = this.Name, ParentAddon = this};
+			_tab = new ConsoleTab {Text = Name, ParentAddon = this};
 		}
 
 		/// <summary>
@@ -55,8 +47,6 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			get { return _tab; }
 		}
 
-	    public UserControl ConfigPage { get; private set; }
-
-
+		public UserControl ConfigPage { get; private set; }
 	}
 }

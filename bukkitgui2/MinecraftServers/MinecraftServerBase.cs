@@ -3,9 +3,10 @@ using System.Drawing;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using  Net.Bertware.Bukkitgui2.Core.Logging;
-using  Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler;
-using  Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler.PlayerActions;
+using Net.Bertware.Bukkitgui2.Core.Logging;
+using Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler;
+using Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler.PlayerActions;
+using Net.Bertware.Bukkitgui2.Properties;
 
 namespace Net.Bertware.Bukkitgui2.MinecraftServers
 {
@@ -90,7 +91,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers
 
 		public virtual Image Logo
 		{
-			get { return Properties.Resources.vanilla_logo; }
+			get { return Resources.vanilla_logo; }
 		}
 
 		public virtual bool SupportsPlugins
@@ -290,7 +291,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers
 			//[INFO]  UUID of player Bertware is f0b27a3369394b25ab897aa4e4db83c1
 			//[INFO]  Bertware[/127.0.0.1:51815] logged in with entity id 184 at ([world] 98.5, 64.0, 230.5)
 			PlayerActionJoin join = new PlayerActionJoin();
-			text = Regex.Replace(text, RG_INFO,"", RegexOptions.IgnoreCase);
+			text = Regex.Replace(text, RG_INFO, "", RegexOptions.IgnoreCase);
 			join.PlayerName = Regex.Match(text, RG_PLAYER).Value.Trim();
 			join.Ip = Regex.Match(text, RG_IP_NOPORT).Value;
 

@@ -14,34 +14,28 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins
 			get { return "Plugins"; }
 		}
 
-        /// <summary>
-        /// True if this addon has a tab page
-        /// </summary>
-        public bool HasTab
-        {
-            get
-            {
-                return true;
-            }
-        }
+		/// <summary>
+		/// True if this addon has a tab page
+		/// </summary>
+		public bool HasTab
+		{
+			get { return true; }
+		}
 
-        /// <summary>
-        /// True if this addon has a config field
-        /// </summary>
-        public bool HasConfig
-        {
-            get
-            {
-                return false;
-            }
-        }
+		/// <summary>
+		/// True if this addon has a config field
+		/// </summary>
+		public bool HasConfig
+		{
+			get { return false; }
+		}
 
 		/// <summary>
 		///     Initialize all functions and the tabcontrol
 		/// </summary>
 		void IAddon.Initialize()
 		{
-			_tab = new PluginsTab { Text = this.Name, ParentAddon = this};
+			_tab = new PluginsTab {Text = Name, ParentAddon = this};
 		}
 
 		/// <summary>
@@ -53,6 +47,6 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins
 			get { return _tab; }
 		}
 
-	    public UserControl ConfigPage { get; private set; }
+		public UserControl ConfigPage { get; private set; }
 	}
 }

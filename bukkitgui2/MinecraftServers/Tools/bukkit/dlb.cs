@@ -36,170 +36,171 @@
 //</channel>
 //</root>
 
+using System;
+using System.Net;
+using System.Text.RegularExpressions;
+using System.Xml;
+using Net.Bertware.Bukkitgui2.Core.Logging;
+using Net.Bertware.Bukkitgui2.Core.Util.Web;
+
 namespace Net.Bertware.Bukkitgui2.MinecraftServers.Tools.bukkit
 {
-    using System;
-    using System.Net;
-    using System.Xml;
+	internal static class Dlb
+	{
+		public enum BukkitVersionType
+		{
+			Dev,
+			//development build
+			Rb,
+			//recommended build
+			Beta
+			//beta build
+		}
 
-    using  Net.Bertware.Bukkitgui2.Core.Logging;
+		/// <summary>
+		///     Get the file info about the latest version.
+		/// </summary>
+		/// <param name="version">The version to get info about (recommended/beta/dev)</param>
+		/// <returns>Returns a dlb_download item, based upon the received XML</returns>
+		public static DlbDownload GetlatestVersionInfo(BukkitVersionType version)
+		{
+			string xml = GetWebContents(ConstructUrl(version));
+			//get xml
+			DlbDownload dlbd = new DlbDownload(xml);
+			//create dlb_download from xml
+			return dlbd;
+			//return result
+		}
 
-    internal static class Dlb
-    {
-        public enum BukkitVersionType
-        {
-            Dev,
-            //development build
-            Rb,
-            //recommended build
-            Beta
-            //beta build
-        }
+		/// <summary>
+		///     Get the file info about a specified bukkit build
+		/// </summary>
+		/// <param name="build">The build number. Between 1325 and the current build</param>
+		/// <returns>a dlb_download item, containing all the info</returns>
+		/// <remarks></remarks>
+		public static DlbDownload GetBuildInfo(UInt16 build)
+		{
+			if (build < 1325)
+			{
+				build = 1325;
+			}
+			return new DlbDownload(GetWebContents(ConstructUrl(build)));
+		}
 
-        /// <summary>
-        ///     Get the file info about the latest version.
-        /// </summary>
-        /// <param name="version">The version to get info about (recommended/beta/dev)</param>
-        /// <returns>Returns a dlb_download item, based upon the received XML</returns>
-        public static DlbDownload GetlatestVersionInfo(BukkitVersionType version)
-        {
-            string xml = GetWebContents(ConstructUrl(version));
-            //get xml
-            DlbDownload dlbd = new DlbDownload(xml);
-            //create dlb_download from xml
-            return dlbd;
-            //return result
-        }
+		private static string ConstructUrl(BukkitVersionType version)
+		{
+			return "http://dl.bukkit.org/api/1.0/downloads/projects/craftbukkit/view/latest-" + version + "/";
+			//build URL for dlb api - http://dl.bukkit.org/about/
+		}
 
-        /// <summary>
-        ///     Get the file info about a specified bukkit build
-        /// </summary>
-        /// <param name="build">The build number. Between 1325 and the current build</param>
-        /// <returns>a dlb_download item, containing all the info</returns>
-        /// <remarks></remarks>
-        public static DlbDownload GetBuildInfo(UInt16 build)
-        {
-            if (build < 1325)
-            {
-                build = 1325;
-            }
-            return new DlbDownload(GetWebContents(ConstructUrl(build)));
-        }
+		private static string ConstructUrl(UInt16 build)
+		{
+			return "http://dl.bukkit.org/api/1.0/downloads/projects/craftbukkit/view/build-" + build + "/";
+			//build URL for dlb api - http://dl.bukkit.org/about/
+		}
 
-        private static string ConstructUrl(BukkitVersionType version)
-        {
-            return "http://dl.bukkit.org/api/1.0/downloads/projects/craftbukkit/view/latest-" + version + "/";
-            //build URL for dlb api - http://dl.bukkit.org/about/
-        }
+		private static string GetWebContents(string url)
+		{
+			try
+			{
+				WebClient webc = new WebClient();
+				//new webclient
+				webc.Headers.Add(HttpRequestHeader.UserAgent, WebUtil.UserAgent);
+				//get header collection from serverinteraction module
+				webc.Headers.Add(HttpRequestHeader.Accept, "application/xml");
+				//make sure received data is in XML format
+				return webc.DownloadString(url);
+				//return result
+			}
+			catch (Exception ex)
+			{
+				Logger.Log(LogLevel.Severe, "dlb", "Could not download data from " + url, ex.Message);
+				return null;
+			}
+		}
+	}
 
-        private static string ConstructUrl(UInt16 build)
-        {
-            return "http://dl.bukkit.org/api/1.0/downloads/projects/craftbukkit/view/build-" + build + "/";
-            //build URL for dlb api - http://dl.bukkit.org/about/
-        }
+	public class DlbDownload
+	{
+		public string Name;
 
-        private static string GetWebContents(string url)
-        {
-            try
-            {
-                WebClient webc = new WebClient();
-                //new webclient
-                webc.Headers.Add(HttpRequestHeader.UserAgent, Core.Util.Web.WebUtil.UserAgent);
-                //get header collection from serverinteraction module
-                webc.Headers.Add(HttpRequestHeader.Accept, "application/xml");
-                //make sure received data is in XML format
-                return webc.DownloadString(url);
-                //return result
-            }
-            catch (Exception ex)
-            {
-                Logger.Log(LogLevel.Severe, "dlb", "Could not download data from " + url, ex.Message);
-                return null;
-            }
-        }
-    }
+		public UInt64 FileSize;
 
-    public class DlbDownload
-    {
-        public string Name;
+		public UInt16 Build;
 
-        public UInt64 FileSize;
+		public DateTime Created;
 
-        public UInt16 Build;
+		public string HtmlUrl;
 
-        public DateTime Created;
+		public string TargetFilename;
 
-        public string HtmlUrl;
+		public string FileUrl;
 
-        public string TargetFilename;
+		public string Version;
 
-        public string FileUrl;
+		public DlbDownload(string xmlString)
+		{
+			try
+			{
+				if (xmlString == null || string.IsNullOrEmpty(xmlString) || xmlString.Contains("<") == false
+				    || xmlString.Contains(">") == false)
+				{
+					Logger.Log(
+						LogLevel.Warning,
+						"dlb",
+						"Could not create dlb_download object, xml invalid. Xml:" + xmlString);
+					return;
+				}
 
-        public string Version;
+				XmlDocument xml = new XmlDocument();
+				//use fxml to parse the xml quickly
+				xml.Load(xmlString.ToLower());
+				//for logging purposes
+				Name = xml.GetElementsByTagName("Name")[0].InnerText;
+				Build = Convert.ToUInt16(xml.GetElementsByTagName("build_number")[0].InnerText);
+				FileSize = Convert.ToUInt64(xml.GetElementsByTagName("size")[0].InnerText);
+				HtmlUrl = xml.GetElementsByTagName("html_url")[0].InnerText;
+				TargetFilename = xml.GetElementsByTagName("target_filename")[0].InnerText;
+				FileUrl = xml.GetElementsByTagName("url")[0].InnerText;
+				Version = xml.GetElementsByTagName("version")[0].InnerText.ToUpper();
 
-        public DlbDownload(string xmlString)
-        {
-            try
-            {
-                if (xmlString == null || string.IsNullOrEmpty(xmlString) || xmlString.Contains("<") == false
-                    || xmlString.Contains(">") == false)
-                {
-                    Logger.Log(
-                        LogLevel.Warning,
-                        "dlb",
-                        "Could not create dlb_download object, xml invalid. Xml:" + xmlString);
-                    return;
-                }
+				if (FileUrl.StartsWith("http") == false)
+				{
+					FileUrl = "http://dl.bukkit.org/" + FileUrl.Trim('/');
+				}
 
-                XmlDocument xml = new XmlDocument();
-                //use fxml to parse the xml quickly
-                xml.Load(xmlString.ToLower());
-                //for logging purposes
-                this.Name = xml.GetElementsByTagName("Name")[0].InnerText;
-                this.Build = Convert.ToUInt16(xml.GetElementsByTagName("build_number")[0].InnerText);
-                this.FileSize = Convert.ToUInt64(xml.GetElementsByTagName("size")[0].InnerText);
-                this.HtmlUrl = xml.GetElementsByTagName("html_url")[0].InnerText;
-                this.TargetFilename = xml.GetElementsByTagName("target_filename")[0].InnerText;
-                this.FileUrl = xml.GetElementsByTagName("url")[0].InnerText;
-                this.Version = xml.GetElementsByTagName("version")[0].InnerText.ToUpper();
+				string strCreated = xml.GetElementsByTagName("created")[0].InnerText;
+				//e.g. 2012-04-05 11:14:24
+				string dtstring =
+					Regex.Match(
+						strCreated,
+						"\\d{4}-\\d{2}-\\d{2}\\s\\d{2}:\\d{2}:\\d{2}").ToString();
 
-                if (this.FileUrl.StartsWith("http") == false)
-                {
-                    this.FileUrl = "http://dl.bukkit.org/" + this.FileUrl.Trim('/');
-                }
+				Created = DateTime.Parse(dtstring);
+			}
+			catch (Exception ex)
+			{
+				Logger.Log(LogLevel.Severe, "dlb", "Severe error while trying to create dlb object!", ex.Message);
+			}
+		}
 
-                string strCreated = xml.GetElementsByTagName("created")[0].InnerText;
-                //e.g. 2012-04-05 11:14:24
-                string dtstring =
-                    System.Text.RegularExpressions.Regex.Match(
-                        strCreated,
-                        "\\d{4}-\\d{2}-\\d{2}\\s\\d{2}:\\d{2}:\\d{2}").ToString();
+		public DlbDownload()
+		{
+			Name = "Craftbukkit";
+			Build = 0;
+			FileSize = 0;
+			HtmlUrl = "";
+			TargetFilename = "craftbukkit.jar";
+			FileUrl = "";
+			Version = "";
+			Created = new DateTime(0);
+		}
 
-                this.Created = DateTime.Parse(dtstring);
-            }
-            catch (Exception ex)
-            {
-                Logger.Log(LogLevel.Severe, "dlb", "Severe error while trying to create dlb object!", ex.Message);
-            }
-        }
-
-        public DlbDownload()
-        {
-            this.Name = "Craftbukkit";
-            this.Build = 0;
-            this.FileSize = 0;
-            this.HtmlUrl = "";
-            this.TargetFilename = "craftbukkit.jar";
-            this.FileUrl = "";
-            this.Version = "";
-            this.Created = new DateTime(0);
-        }
-
-        public DlbDownload(string name, string build)
-        {
-            this.Name = name;
-            this.Build = Convert.ToUInt16(build);
-            this.Version = "";
-        }
-    }
+		public DlbDownload(string name, string build)
+		{
+			Name = name;
+			Build = Convert.ToUInt16(build);
+			Version = "";
+		}
+	}
 }

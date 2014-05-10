@@ -2,24 +2,28 @@
 
 namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 {
-    public class Player
-    {
+	public class Player
+	{
 		/// <summary>
 		/// The name of this player
 		/// </summary>
-        public string Name { get; set; }
+		public string Name { get; set; }
+
 		/// <summary>
 		/// the IP address of this player
 		/// </summary>
-        public string Ip { get; set; }
+		public string Ip { get; set; }
+
 		/// <summary>
 		/// The in-game display name of this player
 		/// </summary>
-        public string DisplayName { get; set; }
+		public string DisplayName { get; set; }
+
 		/// <summary>
 		/// Time of join
 		/// </summary>
-        public DateTime JoinTime { get; set; }
+		public DateTime JoinTime { get; set; }
+
 		/// <summary>
 		/// The geographical location of this player (based on IP)
 		/// </summary>
@@ -28,16 +32,16 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 		/// </remarks>
 		public string Location { get; set; }
 
-        public Player(string name)
-        {
-            this.Name = name;
-        }
+		public Player(string name)
+		{
+			Name = name;
+		}
 
-        public Player(string name, string ip, string displayName)
-        {
-            this.Name = name;
-            this.Ip = ip;
-            this.DisplayName = displayName;
-        }
-    }
+		public Player(string name, string ip, string displayName)
+		{
+			Name = name;
+			Ip = ip;
+			DisplayName = displayName;
+		}
+	}
 }

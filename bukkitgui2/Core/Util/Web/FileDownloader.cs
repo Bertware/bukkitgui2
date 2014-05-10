@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Net;
 using System.Windows.Forms;
-using  Net.Bertware.Bukkitgui2.Core.Logging;
+using Net.Bertware.Bukkitgui2.Core.Logging;
 
 namespace Net.Bertware.Bukkitgui2.Core.Util.Web
 {

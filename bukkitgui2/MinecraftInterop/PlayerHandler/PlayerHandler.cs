@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using  Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler;
-using  Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler.PlayerActions;
+using Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler;
+using Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler.PlayerActions;
 
 namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 {
@@ -123,12 +123,12 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 			RaisePlayerListDeletionEvent(player);
 		}
 
-	    public static IEnumerable<Player> GetOnlinePlayers()
-	    {
-	        Player[] result = new Player[OnlinePlayers.Count];
-	        OnlinePlayers.Values.CopyTo(result,0);
-	        return result;
-	    } 
+		public static IEnumerable<Player> GetOnlinePlayers()
+		{
+			Player[] result = new Player[OnlinePlayers.Count];
+			OnlinePlayers.Values.CopyTo(result, 0);
+			return result;
+		}
 
 		/// <summary>
 		///     Get an online player by their name
@@ -140,6 +140,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 			if (IsPlayerListed(name)) return OnlinePlayers[name];
 			return null;
 		}
+
 		/// <summary>
 		/// Check if a player is listed in the dictionarry of online players
 		/// </summary>

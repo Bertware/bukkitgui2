@@ -50,7 +50,6 @@ namespace Net.Bertware.Bukkitgui2.Controls.ConsoleInput
 				Text = "";
 				e.Handled = true;
 			}
-
 		}
 
 		/// <summary>

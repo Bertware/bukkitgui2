@@ -1,16 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using Jayrock.Json;
-using Jayrock.Json.Conversion;
-using Net.Bertware.Bukkitgui2.Core.Logging;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
 {
 	public static class JsonParser
 	{
-
-
-		
 		/// <summary>
 		///     Parse a JsonArray to a list of strings
 		/// </summary>
@@ -31,7 +26,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
 			}
 
 			// convert the object
-			JsonArray array = (JsonArray)jsonArray;
+			JsonArray array = (JsonArray) jsonArray;
 
 			// If no entries, return
 			if (array.Length < 1)
@@ -79,7 +74,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
 			}
 
 			// convert the object
-			JsonArray array = (JsonArray)jsonArray;
+			JsonArray array = (JsonArray) jsonArray;
 
 			// If no entries, return
 			if (array.Length < 1)
@@ -106,6 +101,5 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
 
 			return result;
 		}
-
 	}
 }

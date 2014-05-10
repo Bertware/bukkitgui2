@@ -1,10 +1,9 @@
 ﻿using System.Windows.Forms;
+using Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.PlayerList
 {
-    using  Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler;
-
-    internal class PlayerList : IAddon
+	internal class PlayerList : IAddon
 	{
 		private UserControl _tab;
 
@@ -16,35 +15,29 @@ namespace Net.Bertware.Bukkitgui2.AddOn.PlayerList
 			get { return "Players"; }
 		}
 
-        /// <summary>
-        /// True if this addon has a tab page
-        /// </summary>
-        public bool HasTab
-        {
-            get
-            {
-                return true;
-            }
-        }
+		/// <summary>
+		/// True if this addon has a tab page
+		/// </summary>
+		public bool HasTab
+		{
+			get { return true; }
+		}
 
-        /// <summary>
-        /// True if this addon has a config field
-        /// </summary>
-        public bool HasConfig
-        {
-            get
-            {
-                return false;
-            }
-        }
+		/// <summary>
+		/// True if this addon has a config field
+		/// </summary>
+		public bool HasConfig
+		{
+			get { return false; }
+		}
 
 		/// <summary>
 		///     Initialize all functions and the tabcontrol
 		/// </summary>
 		void IAddon.Initialize()
 		{
-            PlayerHandler.Initialize();
-			_tab = new PlayerListTab { Text = this.Name, ParentAddon = this};
+			PlayerHandler.Initialize();
+			_tab = new PlayerListTab {Text = Name, ParentAddon = this};
 		}
 
 		/// <summary>
@@ -56,6 +49,6 @@ namespace Net.Bertware.Bukkitgui2.AddOn.PlayerList
 			get { return _tab; }
 		}
 
-	    public UserControl ConfigPage { get; private set; }
+		public UserControl ConfigPage { get; private set; }
 	}
 }

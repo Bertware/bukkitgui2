@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 
 namespace Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler.PlayerActions
 {

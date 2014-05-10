@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using  Net.Bertware.Bukkitgui2.Core.Logging;
+using Net.Bertware.Bukkitgui2.Core.Logging;
 
 namespace Net.Bertware.Bukkitgui2.MinecraftServers
 {
@@ -51,7 +51,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers
 			const string @Namespace = "Net.Bertware.Bukkitgui2.MinecraftServers.Servers";
 			List<string> classes = new List<string>();
 
-			var q = from t in Assembly.GetExecutingAssembly().GetTypes()
+			IEnumerable<Type> q = from t in Assembly.GetExecutingAssembly().GetTypes()
 				where t.IsClass && t.Namespace == @Namespace
 				select t;
 			q.ToList().ForEach(t => classes.Add(t.FullName));

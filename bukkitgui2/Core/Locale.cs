@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Xml;
-using  Net.Bertware.Bukkitgui2.Core.Configuration;
-using  Net.Bertware.Bukkitgui2.Core.FileLocation;
+using Net.Bertware.Bukkitgui2.Core.Configuration;
+using Net.Bertware.Bukkitgui2.Core.FileLocation;
+using Net.Bertware.Bukkitgui2.Core.Util;
 
 namespace Net.Bertware.Bukkitgui2.Core
 {
 	internal static class Locale
 	{
-		private const string XmlHead="<xml type=\"locale\" lang=\"en-US\">";
+		private const string XmlHead = "<xml type=\"locale\" lang=\"en-US\">";
 		private const string XmlTail = "</xml>";
 
 		private static string _filepath;
@@ -34,7 +35,8 @@ namespace Net.Bertware.Bukkitgui2.Core
 		/// </summary>
 		public static void Initialize()
 		{
-			string location = Config.ReadString("Locale", "File",DefaultFileLocation.Location(RequestFile.Config) + "/default.xml");
+			string location = Config.ReadString("Locale", "File",
+				DefaultFileLocation.Location(RequestFile.Config) + "/default.xml");
 
 			_filepath = location;
 
@@ -44,12 +46,12 @@ namespace Net.Bertware.Bukkitgui2.Core
 				if (dirInfo != null)
 				{
 					string parent = dirInfo.ToString();
-					Util.FsUtil.CreateDirectoryIfNotExists(parent);
+					FsUtil.CreateDirectoryIfNotExists(parent);
 				}
 
 				FileStream fs = File.Create(_filepath);
 				StreamWriter sw = new StreamWriter(fs);
-				sw.WriteLine(XmlHead+XmlTail);
+				sw.WriteLine(XmlHead + XmlTail);
 				sw.Close();
 				fs.Close();
 			}
@@ -84,7 +86,7 @@ namespace Net.Bertware.Bukkitgui2.Core
 				return _cache[original];
 			}
 
-			_cache.Add(original,original);
+			_cache.Add(original, original);
 			return original;
 		}
 
@@ -99,7 +101,7 @@ namespace Net.Bertware.Bukkitgui2.Core
 		/// <returns></returns>
 		public static string Tr(string original, string p1, string p2 = "", string p3 = "", string p4 = "")
 		{
-			if (!IsInitialized) return SetParam(original,p1,p2,p3,p4);
+			if (!IsInitialized) return SetParam(original, p1, p2, p3, p4);
 			if (_cache == null) return SetParam(original, p1, p2, p3, p4);
 
 			if (_cache.ContainsKey(original))
@@ -121,7 +123,6 @@ namespace Net.Bertware.Bukkitgui2.Core
 		/// </summary>
 		private static void LoadCache()
 		{
-
 			if (_xmldoc == null) return;
 
 			Dictionary<string, string> newcache = new Dictionary<string, string>();
@@ -133,16 +134,15 @@ namespace Net.Bertware.Bukkitgui2.Core
 			}
 
 			_cache = newcache;
-
 		}
 
-		static private void SaveCache()
+		private static void SaveCache()
 		{
 			if (_cache == null) return;
 
 			string newxml = XmlHead + Environment.NewLine;
 
-			foreach (var entry in _cache) //for each element, 
+			foreach (KeyValuePair<string, string> entry in _cache) //for each element, 
 			{
 				newxml += "<text original=\"" + entry.Key + "\">" + entry.Value + "</text>" + Environment.NewLine;
 			}

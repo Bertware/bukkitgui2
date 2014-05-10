@@ -4,8 +4,8 @@ using System.Net;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
-using  Net.Bertware.Bukkitgui2.Core.FileLocation;
-using  Net.Bertware.Bukkitgui2.Core.Logging;
+using Net.Bertware.Bukkitgui2.Core.FileLocation;
+using Net.Bertware.Bukkitgui2.Core.Logging;
 using Timer = System.Windows.Forms.Timer;
 
 namespace Net.Bertware.Bukkitgui2.Core.Util.Web

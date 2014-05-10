@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
-using  Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler;
-using  Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler;
-using  Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler;
+using Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler;
+using Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler;
+using Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Console
 {
@@ -45,15 +45,14 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 		/// <param name="item">the item to add</param>
 		private void AddListViewItem(ListViewItem item)
 		{
-			if (this.InvokeRequired)
+			if (InvokeRequired)
 			{
-				this.Invoke((MethodInvoker)(() => this.AddListViewItem(item)));
+				Invoke((MethodInvoker) (() => AddListViewItem(item)));
 			}
 			else
 			{
 				SLVPlayers.Items.Add(item);
 			}
-
 		}
 
 		public IAddon ParentAddon { get; set; }

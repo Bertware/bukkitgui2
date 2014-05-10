@@ -3,9 +3,10 @@ using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Threading;
-using  Net.Bertware.Bukkitgui2.Core;
-using  Net.Bertware.Bukkitgui2.Core.Logging;
-using  Net.Bertware.Bukkitgui2.MinecraftServers;
+using Net.Bertware.Bukkitgui2.Core;
+using Net.Bertware.Bukkitgui2.Core.Logging;
+using Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler;
+using Net.Bertware.Bukkitgui2.MinecraftServers;
 
 namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler
 {
@@ -213,7 +214,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler
 					if (string.IsNullOrEmpty(output)) continue;
 
 					Logger.Log(LogLevel.Debug, "LocalProcessHandler", "StdOut output: " + output);
-					OutputHandler.MinecraftOutputHandler.HandleOutput(Server, output);
+					MinecraftOutputHandler.HandleOutput(Server, output);
 				}
 
 				//This should be false if we're stopping the server, so this is strange
@@ -234,7 +235,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler
 					if (string.IsNullOrEmpty(output)) continue;
 
 					Logger.Log(LogLevel.Debug, "LocalProcessHandler", "StdErr output: " + output);
-					OutputHandler.MinecraftOutputHandler.HandleOutput(Server, output);
+					MinecraftOutputHandler.HandleOutput(Server, output);
 				}
 			}
 		}

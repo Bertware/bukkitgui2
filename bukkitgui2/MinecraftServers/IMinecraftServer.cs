@@ -2,8 +2,8 @@
 using System.Drawing;
 using System.Reflection;
 using System.Windows.Forms;
-using  Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler;
-using  Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler.PlayerActions;
+using Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler;
+using Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler.PlayerActions;
 
 namespace Net.Bertware.Bukkitgui2.MinecraftServers
 {
@@ -53,7 +53,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers
 		/// Returns true if this server needs a custom assembly (No java)
 		/// </summary>
 		Boolean HasCustomAssembly { get; }
-		
+
 		/// <summary>
 		/// The custom assembly to be used. Can be set in PrepareLaunch()
 		/// </summary>
@@ -123,6 +123,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers
 		/// <param name="text">The text to filter</param>
 		/// <returns>The filtered text</returns>
 		string FilterText(string text);
+
 		/// <summary>
 		///     Parse a player join action string into an object
 		/// </summary>

@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using Net.Bertware.Bukkitgui2.Core;
 using Net.Bertware.Bukkitgui2.Core.Configuration;
 using Net.Bertware.Bukkitgui2.Core.Logging;
+using Net.Bertware.Bukkitgui2.Core.Util.Performance;
 using Net.Bertware.Bukkitgui2.MinecraftServers;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Starter
@@ -61,7 +62,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			//Selecting a server will enable/disable the available/unavailable features
 
 			// Cache total amount of ram, set maximum values
-			int totalMb = Convert.ToInt32(Core.Util.Performance.MemoryCounter.TotalMemoryMb());
+			int totalMb = Convert.ToInt32(MemoryCounter.TotalMemoryMb());
 			TBMaxRam.Maximum = totalMb;
 			TBMinRam.Maximum = totalMb;
 			NumMaxRam.Maximum = totalMb;

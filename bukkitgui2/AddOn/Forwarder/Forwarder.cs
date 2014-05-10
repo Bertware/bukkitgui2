@@ -14,40 +14,35 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Forwarder
 			get { return "Forwarder"; }
 		}
 
-        /// <summary>
-        /// True if this addon has a tab page
-        /// </summary>
-	    public bool HasTab {
-	        get
-	        {
-	            return true;
-	        }
-	    }
+		/// <summary>
+		/// True if this addon has a tab page
+		/// </summary>
+		public bool HasTab
+		{
+			get { return true; }
+		}
 
-        /// <summary>
-        /// True if this addon has a config field
-        /// </summary>
-        public bool HasConfig
-        {
-            get
-            {
-                return false;
-            }
-        }
+		/// <summary>
+		/// True if this addon has a config field
+		/// </summary>
+		public bool HasConfig
+		{
+			get { return false; }
+		}
 
-	    /// <summary>
+		/// <summary>
 		///     Initialize all functions and the tabcontrol
 		/// </summary>
 		void IAddon.Initialize()
 		{
-			_tab = new ForwarderTab { Text = this.Name, ParentAddon = this};
+			_tab = new ForwarderTab {Text = Name, ParentAddon = this};
 		}
 
-	    public UserControl TabPage { get; private set; }
+		public UserControl TabPage { get; private set; }
 
-	    public UserControl ConfigPage { get; private set; }
+		public UserControl ConfigPage { get; private set; }
 
-	    /// <summary>
+		/// <summary>
 		///     The tab control for this addon
 		/// </summary>
 		/// <returns>Returns the tabpage</returns>
