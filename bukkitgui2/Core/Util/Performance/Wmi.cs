@@ -586,7 +586,6 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Performance
 				foreach (ManagementObject managementObject in managementObjectCollection.Cast<ManagementObject>())
 				{
 					result = managementObject[type.ToString()].ToString();
-					result = managementObject[type.ToString()].ToString();
 				}
 				return result;
 			}

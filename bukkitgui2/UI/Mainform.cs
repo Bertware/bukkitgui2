@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using Net.Bertware.Bukkitgui2.AddOn;
 using Net.Bertware.Bukkitgui2.AddOn.Backup;
-using Net.Bertware.Bukkitgui2.AddOn.Console;
 using Net.Bertware.Bukkitgui2.AddOn.Editor;
 using Net.Bertware.Bukkitgui2.AddOn.Forwarder;
 using Net.Bertware.Bukkitgui2.AddOn.Permissions;
@@ -16,6 +16,7 @@ using Net.Bertware.Bukkitgui2.Core.Configuration;
 using Net.Bertware.Bukkitgui2.Core.Logging;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler;
+using Console = Net.Bertware.Bukkitgui2.AddOn.Console.Console;
 
 namespace Net.Bertware.Bukkitgui2.UI
 {
@@ -61,6 +62,8 @@ namespace Net.Bertware.Bukkitgui2.UI
 			else
 			{
 				LblToolsMainServerState.Text = Locale.Tr("Starting...");
+				ToolStripBtnStartStop.Enabled = false;
+				ToolStripBtnStartStop.Text = Locale.Tr("Starting...");
 			}
 		}
 
@@ -74,6 +77,8 @@ namespace Net.Bertware.Bukkitgui2.UI
 			else
 			{
 				LblToolsMainServerState.Text = Locale.Tr("Server running");
+				ToolStripBtnStartStop.Enabled = true;
+				ToolStripBtnStartStop.Text = Locale.Tr("Stop");
 			}
 		}
 
@@ -87,6 +92,8 @@ namespace Net.Bertware.Bukkitgui2.UI
 			else
 			{
 				LblToolsMainServerState.Text = Locale.Tr("Stopping...");
+				ToolStripBtnStartStop.Enabled = false;
+				ToolStripBtnStartStop.Text = Locale.Tr("Stopping...");
 			}
 		}
 
@@ -100,6 +107,9 @@ namespace Net.Bertware.Bukkitgui2.UI
 			else
 			{
 				LblToolsMainServerState.Text = Locale.Tr("Stopped");
+
+				ToolStripBtnStartStop.Enabled = true;
+				ToolStripBtnStartStop.Text = Locale.Tr("Start");
 			}
 		}
 
@@ -259,6 +269,29 @@ namespace Net.Bertware.Bukkitgui2.UI
 			return _addonsDictionary.ContainsKey(addon.ToString())
 				? _addonsDictionary[addon.ToString()]
 				: null;
+		}
+
+
+		private void ToolStripBtnStartStop_Click(object sender, EventArgs e)
+		{
+			//suport for calls from other threads
+			if (InvokeRequired)
+			{
+				Invoke((MethodInvoker)(() => ToolStripBtnStartStop_Click(sender, e)));
+			}
+			else
+			{
+				if (ProcessHandler.IsRunning)
+				{
+					ProcessHandler.StopServer();
+				}
+				else
+				{
+					Starter starter = (Starter) this.GetRequiredAddon(RequiredAddon.Starter);
+					// Get the starter addon
+					starter.LaunchServerFromTab(); // Launch with tab settings
+				}
+			}
 		}
 	}
 }
