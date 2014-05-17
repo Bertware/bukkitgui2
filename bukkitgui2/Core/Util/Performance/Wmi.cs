@@ -1,11 +1,7 @@
-﻿//
-//HardwareAPI v1.0 - .NET v3.5
-//(c) 2011-2012 Bertware
-//All rights reserved
-//
-//
-//This API allows fast access to certain peripherals and hardware devices, using WMI
-//Use sparingly, as it can cause CPU leaks
+﻿// Wmi.cs in bukkitgui2/bukkitgui2
+// Created 2014/05/04
+// Last edited at 2014/05/17 19:43
+// ©Bertware, visit http://bertware.net
 
 using System;
 using System.Collections.Generic;

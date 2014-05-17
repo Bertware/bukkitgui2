@@ -1,4 +1,9 @@
-﻿using System;
+﻿// PlayerHandler.cs in bukkitgui2/bukkitgui2
+// Created 2014/04/27
+// Last edited at 2014/05/17 19:43
+// ©Bertware, visit http://bertware.net
+
+using System;
 using System.Collections.Generic;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler.PlayerActions;

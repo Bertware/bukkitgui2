@@ -1,4 +1,9 @@
-﻿using System.Windows.Forms;
+﻿// SixtySetup.cs in bukkitgui2/bukkitgui2
+// Created 2014/01/17
+// Last edited at 2014/05/17 19:43
+// ©Bertware, visit http://bertware.net
+
+using System.Windows.Forms;
 
 /// SixtySetup should install any minecraft server easily.
 /// Create folder, download selected server

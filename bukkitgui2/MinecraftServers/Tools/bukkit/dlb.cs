@@ -1,40 +1,7 @@
-﻿//dlb- dl.bukkit.org
-//provides functionality to download bukkit, get latest versions and so on
-
-//example output from http://dl.bukkit.org/api/1.0/downloads/projects/craftbukkit/view/build-2150/
-//<root>
-//<broken_reason/>
-//<build_number>2150</build_number>
-//<created>2012-04-05 11:14:24</created>
-//<url>http://dl.bukkit.org/api/1.0/downloads/projects/craftbukkit/view/01028_1.2.5-R1.1/</url>
-//<is_broken>False</is_broken>
-//<html_url>http://dl.bukkit.org/downloads/craftbukkit/view/01028_1.2.5-R1.1/</html_url>
-//<project>
-// <name>CraftBukkit</name>
-// <github_project_url>https://github.com/Bukkit/CraftBukkit</github_project_url>
-// <url>http://dl.bukkit.org/api/1.0/downloads/projects/craftbukkit/</url>
-// <html_url>http://dl.bukkit.org/downloads/craftbukkit/</html_url>
-// <download_count>3215933</download_count><slug>craftbukkit</slug>
-//</project>
-//<version>1.2.5-R1.1</version>
-//<file>
-// <url>http://dl.bukkit.org/downloads/craftbukkit/get/01028_1.2.5-R1.1/craftbukkit-dev.jar</url>
-// <checksum_md5>5ce4ab8b0bc31e6547eb47cef2507eeb</checksum_md5>
-// <size>11102004</size>
-//</file>
-//<commit>
-// <ref>caee2402f59d12df6338c3d95ce2ec411a8c55db</ref>
-// <html_url>https://github.com/Bukkit/CraftBukkit/commit/caee2402f59d12df6338c3d95ce2ec411a8c55db</html_url>
-//</commit>
-//<target_filename>craftbukkit-dev.jar</target_filename>
-//<download_count>16800</download_count>
-//<channel>
-//<filename_format>%(project_slug)s-dev.jar</filename_format>
-//<url>http://dl.bukkit.org/api/1.0/downloads/channels/dev/</url>
-//<priority>1000</priority><name>Development Build</name>
-//<slug>dev</slug>
-//</channel>
-//</root>
+﻿// dlb.cs in bukkitgui2/bukkitgui2
+// Created 2014/02/21
+// Last edited at 2014/05/17 19:43
+// ©Bertware, visit http://bertware.net
 
 using System;
 using System.Net;

@@ -1,4 +1,9 @@
-﻿using System;
+﻿// Program.cs in bukkitgui2/JsonApiConnector
+// Created 2014/02/05
+// Last edited at 2014/05/17 19:43
+// ©Bertware, visit http://bertware.net
+
+using System;
 using System.Threading;
 
 namespace JsonApiConnector
@@ -8,7 +13,6 @@ namespace JsonApiConnector
 	/// </summary>
 	internal class Program
 	{
-
 		private static JsonApiConnector _connector;
 		public static Boolean ThreadsRunning = true;
 
@@ -16,17 +20,19 @@ namespace JsonApiConnector
 		{
 			_connector = new JsonApiConnector(args);
 			_connector.OutputReceived += TextReceived;
-
+			Thread t;
 			if (_connector.ShowConsole)
 			{
-				Thread t = new Thread(ScanInput) {Name = "thd_ScanInput", IsBackground = true};
+				t = new Thread(ScanInput) {Name = "thd_ScanInput", IsBackground = true};
 				t.Start();
-			} else {
-				Thread t = new Thread(ScanStdIn) { Name = "thd_ScanStdIn", IsBackground = true };
+			}
+			else
+			{
+				t = new Thread(ScanStdIn) {Name = "thd_ScanStdIn", IsBackground = true};
 				t.Start();
 			}
 			_connector.Connect();
-			while (true)
+			while (_connector.IsListening())
 			{
 				Thread.Sleep(10);
 			}
@@ -54,9 +60,6 @@ namespace JsonApiConnector
 				string input = Console.In.ReadLine();
 				_connector.SendConsoleCommand(input);
 			}
-
 		}
-
 	}
-
 }

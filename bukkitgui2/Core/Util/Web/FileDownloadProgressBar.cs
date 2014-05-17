@@ -1,4 +1,9 @@
-﻿using System;
+﻿// FileDownloadProgressBar.cs in bukkitgui2/bukkitgui2
+// Created 2014/04/06
+// Last edited at 2014/05/17 19:43
+// ©Bertware, visit http://bertware.net
+
+using System;
 using System.IO;
 using System.Net;
 using System.Text.RegularExpressions;

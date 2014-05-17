@@ -1,4 +1,9 @@
-﻿using System;
+﻿// JsonApiConnector.cs in bukkitgui2/JsonApiConnector
+// Created 2014/02/05
+// Last edited at 2014/05/17 19:43
+// ©Bertware, visit http://bertware.net
+
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Net;
@@ -78,7 +83,8 @@ namespace JsonApiConnector
 				}
 				catch (Exception)
 				{
-					const string usage = "Usage: JsonApiConnector.exe -u=[username] -p=[password] -s=[salt] -host=[ip or hostname] -port=[port]";
+					const string usage =
+						"Usage: JsonApiConnector.exe -u=[username] -p=[password] -s=[salt] -host=[ip or hostname] -port=[port]";
 					OutputReceived(usage);
 				}
 			}
@@ -138,7 +144,7 @@ namespace JsonApiConnector
 					if (!string.IsNullOrEmpty(l) && l.Contains("{") & l.Contains(":") & l.Contains("}"))
 					{
 						l = new JsonApiStreamResult(l).Line;
-						if (!l.Contains("[API Call]")) OutputReceived(l.TrimEnd( Environment.NewLine.ToCharArray()));
+						if (!l.Contains("[API Call]")) OutputReceived(l.TrimEnd(Environment.NewLine.ToCharArray()));
 					}
 
 					Thread.Sleep(10);
@@ -146,6 +152,7 @@ namespace JsonApiConnector
 			}
 			OutputReceived(ErrPrefix + "Disconnected");
 			if (sock.Connected) sock.Close();
+			_listening = false;
 		}
 
 		public void SendConsoleCommand(string command)
@@ -154,26 +161,31 @@ namespace JsonApiConnector
 			                               command + "%22%5D&key=" + CreateKey("runConsoleCommand"));
 		}
 
-       	readonly HashAlgorithm _hashAlgorithm = SHA256.Create();
+		private readonly HashAlgorithm _hashAlgorithm = SHA256.Create();
 
-       	internal string CreateKey(string method)
-       	{
-       		var data = Encoding.ASCII.GetBytes(_username + method + _password + _salt);
-       		var hash = _hashAlgorithm.ComputeHash(data);
+		internal string CreateKey(string method)
+		{
+			var data = Encoding.ASCII.GetBytes(_username + method + _password + _salt);
+			var hash = _hashAlgorithm.ComputeHash(data);
 
-       		var result = new char[hash.Length * 2];
+			var result = new char[hash.Length*2];
 
-       		for (int i = 0; i < hash.Length; ++i)
-       		{
-           		byte b = (byte)(hash[i] >> 4);
-           		result[i * 2] = (char)(b > 9 ? b + 0x57 : b + 0x30);
+			for (int i = 0; i < hash.Length; ++i)
+			{
+				byte b = (byte) (hash[i] >> 4);
+				result[i*2] = (char) (b > 9 ? b + 0x57 : b + 0x30);
 
-           		b = (byte)(hash[i] & 0xF);
-           		result[i * 2 + 1] = (char)(b > 9 ? b + 0x57 : b + 0x30);
-       		}
+				b = (byte) (hash[i] & 0xF);
+				result[i*2 + 1] = (char) (b > 9 ? b + 0x57 : b + 0x30);
+			}
 
-       		return new string(result);
-       	}
+			return new string(result);
+		}
+
+		public Boolean IsListening()
+		{
+			return _listening;
+		}
 	}
 
 	public class JsonApiStreamResult

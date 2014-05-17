@@ -1,4 +1,9 @@
-﻿using System.Drawing;
+﻿// BukkitServer.cs in bukkitgui2/bukkitgui2
+// Created 2014/01/17
+// Last edited at 2014/05/17 19:43
+// ©Bertware, visit http://bertware.net
+
+using System.Drawing;
 using Net.Bertware.Bukkitgui2.Properties;
 
 namespace Net.Bertware.Bukkitgui2.MinecraftServers.Servers
