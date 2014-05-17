@@ -53,7 +53,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 		}
 
 		/// <summary>
-		/// Returns true if a given version if installed
+		///     Returns true if a given version if installed
 		/// </summary>
 		/// <param name="jreVersion">The java version to check</param>
 		/// <returns></returns>
@@ -83,7 +83,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 		}
 
 		/// <summary>
-		/// Get the absolute location of an installed java version
+		///     Get the absolute location of an installed java version
 		/// </summary>
 		/// <param name="jreVersion">The java version to retrieve</param>
 		/// <returns>Returns the absolute path to java.exe</returns>

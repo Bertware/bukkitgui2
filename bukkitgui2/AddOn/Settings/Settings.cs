@@ -10,7 +10,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Settings
 		}
 
 		/// <summary>
-		/// True if this addon has a tab page
+		///     True if this addon has a tab page
 		/// </summary>
 		public bool HasTab
 		{
@@ -18,7 +18,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Settings
 		}
 
 		/// <summary>
-		/// True if this addon has a config field
+		///     True if this addon has a config field
 		/// </summary>
 		public bool HasConfig
 		{
@@ -32,6 +32,11 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Settings
 		public UserControl TabPage { get; private set; }
 
 		public UserControl ConfigPage { get; private set; }
+
+		public bool CanDisable
+		{
+			get { return false; }
+		}
 
 		/// <summary>
 		///     The addon name, ideally this name is the same as used in the tabpage

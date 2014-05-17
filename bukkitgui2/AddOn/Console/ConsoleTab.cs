@@ -40,7 +40,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 		}
 
 		/// <summary>
-		/// Add an item to the listview, thread-safe
+		///     Add an item to the listview, thread-safe
 		/// </summary>
 		/// <param name="item">the item to add</param>
 		private void AddListViewItem(ListViewItem item)

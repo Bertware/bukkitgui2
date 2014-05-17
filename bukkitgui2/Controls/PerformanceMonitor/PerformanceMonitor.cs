@@ -39,9 +39,9 @@ namespace Net.Bertware.Bukkitgui2.Controls.PerformanceMonitor
 
 		private void RefreshData(object sender, ElapsedEventArgs e)
 		{
-			if (this.InvokeRequired)
+			if (InvokeRequired)
 			{
-				this.Invoke(new MethodInvoker(() => RefreshData(sender, e)));
+				Invoke(new MethodInvoker(() => RefreshData(sender, e)));
 			}
 			else
 			{
@@ -56,7 +56,8 @@ namespace Net.Bertware.Bukkitgui2.Controls.PerformanceMonitor
 
 		private string constructRamLabelText(MemoryCounter counter)
 		{
-			return counter.MemoryUsageMb + "Mb (" + counter.MemoryUsagePct.ToString(CultureInfo.InvariantCulture).PadLeft(2,'0') + "%)";
+			return counter.MemoryUsageMb + "Mb (" + counter.MemoryUsagePct.ToString(CultureInfo.InvariantCulture).PadLeft(2, '0') +
+			       "%)";
 		}
 	}
 }

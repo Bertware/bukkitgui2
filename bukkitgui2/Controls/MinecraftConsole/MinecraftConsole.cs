@@ -59,7 +59,7 @@ namespace Net.Bertware.Bukkitgui2.Controls.MinecraftConsole
 		}
 
 		/// <summary>
-		///      Writes text to the Console Control
+		///     Writes text to the Console Control
 		/// </summary>
 		/// <param name="type"> The message type. </param>
 		/// <param name="text"> The message text. </param>

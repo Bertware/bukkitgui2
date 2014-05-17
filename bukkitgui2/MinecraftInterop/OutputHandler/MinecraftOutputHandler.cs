@@ -5,14 +5,15 @@ using Net.Bertware.Bukkitgui2.MinecraftServers;
 namespace Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler
 {
 	/// <summary>
-	/// All output is handled through here. Even during server restarts event subscriptions are remembered, this class will handle the output through the correct server
+	///     All output is handled through here. Even during server restarts event subscriptions are remembered, this class will
+	///     handle the output through the correct server
 	/// </summary>
 	internal static class MinecraftOutputHandler
 	{
 		public delegate void OutputReceivedEventHandler(string text);
 
 		/// <summary>
-		/// Raised when any output is received
+		///     Raised when any output is received
 		/// </summary>
 		public static event OutputReceivedEventHandler OutputReceived;
 
@@ -29,7 +30,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler
 		public delegate void OutputParsedEventHandler(string text, OutputParseResult outputParseResult);
 
 		/// <summary>
-		/// Raised when any output is parsed
+		///     Raised when any output is parsed
 		/// </summary>
 		public static event OutputParsedEventHandler OutputParsed;
 
@@ -43,7 +44,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler
 		}
 
 		/// <summary>
-		/// Raised when an info message is received
+		///     Raised when an info message is received
 		/// </summary>
 		public static event OutputParsedEventHandler InfoMessageReceived;
 
@@ -58,7 +59,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler
 
 
 		/// <summary>
-		/// Raised when a warning message is received
+		///     Raised when a warning message is received
 		/// </summary>
 		public static event OutputParsedEventHandler WarningMessageReceived;
 
@@ -73,7 +74,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler
 
 
 		/// <summary>
-		/// Raised when a severe message is received
+		///     Raised when a severe message is received
 		/// </summary>
 		public static event OutputParsedEventHandler SevereMessageReceived;
 
@@ -88,7 +89,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler
 
 
 		/// <summary>
-		/// Raised when a Java status/error message is received
+		///     Raised when a Java status/error message is received
 		/// </summary>
 		public static event OutputParsedEventHandler JavaStatusMessageReceived;
 
@@ -103,7 +104,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler
 
 
 		/// <summary>
-		/// Raised when a Java stacktrace message is received
+		///     Raised when a Java stacktrace message is received
 		/// </summary>
 		public static event OutputParsedEventHandler JavaStackStraceMessageReceived;
 
@@ -118,7 +119,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler
 
 
 		/// <summary>
-		/// Raised when an unknown message is received
+		///     Raised when an unknown message is received
 		/// </summary>
 		public static event OutputParsedEventHandler UnknownMessageReceived;
 
@@ -134,7 +135,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler
 		public delegate void PlayerEventHandler(string text, OutputParseResult outputParseResult, IPlayerAction playerAction);
 
 		/// <summary>
-		/// Raised when a player joins
+		///     Raised when a player joins
 		/// </summary>
 		public static event PlayerEventHandler PlayerJoin;
 
@@ -148,7 +149,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler
 		}
 
 		/// <summary>
-		/// Raised when a player leaves or disconnects
+		///     Raised when a player leaves or disconnects
 		/// </summary>
 		public static event PlayerEventHandler PlayerLeave;
 
@@ -162,7 +163,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler
 		}
 
 		/// <summary>
-		/// Raised when a player is kicked
+		///     Raised when a player is kicked
 		/// </summary>
 		public static event PlayerEventHandler PlayerKick;
 
@@ -176,7 +177,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler
 		}
 
 		/// <summary>
-		/// Raised when a player is banned
+		///     Raised when a player is banned
 		/// </summary>
 		public static event PlayerEventHandler PlayerBan;
 
@@ -190,7 +191,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler
 		}
 
 		/// <summary>
-		/// Raised when an ip is banned
+		///     Raised when an ip is banned
 		/// </summary>
 		public static event PlayerEventHandler PlayerIpBan;
 
@@ -204,7 +205,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler
 		}
 
 		/// <summary>
-		/// Handle the output from a /list command
+		///     Handle the output from a /list command
 		/// </summary>
 		/// <param name="text">The text that was received</param>
 		/// <param name="outputParseResult">The parse result</param>
@@ -215,7 +216,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler
 		public static event PlayerListReceivedEventHandler PlayerListReceived;
 
 		/// <summary>
-		/// Handle server output, raise all events that should be raised
+		///     Handle server output, raise all events that should be raised
 		/// </summary>
 		/// <param name="text">output text to handle</param>
 		/// <param name="server">the server that should handle the output</param>

@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
+﻿using System.Collections.Generic;
 using Net.Bertware.Bukkitgui2.Core.Logging;
+using Net.Bertware.Bukkitgui2.Core.Util;
 
 namespace Net.Bertware.Bukkitgui2.MinecraftServers
 {
@@ -16,16 +14,10 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers
 		{
 			Dictionary<string, IMinecraftServer> servers = new Dictionary<string, IMinecraftServer>();
 
-			foreach (string entry in ListClasses())
+			foreach (
+				IMinecraftServer server in
+					DynamicModuleLoader.GetClassesOfType<IMinecraftServer>("Net.Bertware.Bukkitgui2.MinecraftServers.Servers"))
 			{
-				IMinecraftServer server =
-					Activator.CreateInstance(Assembly.GetExecutingAssembly().GetType(entry)) as IMinecraftServer;
-
-				if (server == null)
-				{
-					continue; //if not loaded, go on
-				}
-
 				if (!servers.ContainsKey(server.Name))
 				{
 					servers.Add(server.Name, server);
@@ -40,22 +32,6 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers
 				}
 			}
 			return servers;
-		}
-
-		/// <summary>
-		///     Get a list of all available server classes, full name
-		/// </summary>
-		/// <returns></returns>
-		internal static List<string> ListClasses()
-		{
-			const string @Namespace = "Net.Bertware.Bukkitgui2.MinecraftServers.Servers";
-			List<string> classes = new List<string>();
-
-			IEnumerable<Type> q = from t in Assembly.GetExecutingAssembly().GetTypes()
-				where t.IsClass && t.Namespace == @Namespace
-				select t;
-			q.ToList().ForEach(t => classes.Add(t.FullName));
-			return classes;
 		}
 	}
 }

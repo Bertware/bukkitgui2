@@ -7,7 +7,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.WebControl
 		private UserControl _tab;
 
 		/// <summary>
-		/// The addon name, ideally this name is the same as used in the tabpage
+		///     The addon name, ideally this name is the same as used in the tabpage
 		/// </summary>
 		public string Name
 		{
@@ -15,7 +15,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.WebControl
 		}
 
 		/// <summary>
-		/// True if this addon has a tab page
+		///     True if this addon has a tab page
 		/// </summary>
 		public bool HasTab
 		{
@@ -23,7 +23,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.WebControl
 		}
 
 		/// <summary>
-		/// True if this addon has a config field
+		///     True if this addon has a config field
 		/// </summary>
 		public bool HasConfig
 		{
@@ -31,15 +31,15 @@ namespace Net.Bertware.Bukkitgui2.AddOn.WebControl
 		}
 
 		/// <summary>
-		/// Initialize all functions and the tabcontrol
+		///     Initialize all functions and the tabcontrol
 		/// </summary>
-		void IAddon.Initialize()
+		public void Initialize()
 		{
 			_tab = new WebControlTab {Text = Name, ParentAddon = this};
 		}
 
 		/// <summary>
-		/// The tab control for this addon
+		///     The tab control for this addon
 		/// </summary>
 		/// <returns>Returns the tabpage</returns>
 		UserControl IAddon.TabPage
@@ -48,5 +48,10 @@ namespace Net.Bertware.Bukkitgui2.AddOn.WebControl
 		}
 
 		public UserControl ConfigPage { get; private set; }
+
+		public bool CanDisable
+		{
+			get { return true; }
+		}
 	}
 }

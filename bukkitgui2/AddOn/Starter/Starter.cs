@@ -58,6 +58,11 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			get { return null; }
 		}
 
+		public bool CanDisable
+		{
+			get { return false; }
+		}
+
 		/// <summary>
 		///     Launch a new server using the settings in the tabpage. Will validate, shows popup if errors occur.
 		/// </summary>

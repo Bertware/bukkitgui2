@@ -6,7 +6,8 @@ using Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler.PlayerActions;
 namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 {
 	/// <summary>
-	/// Handles player connects and disconnects and keep a dictionary of all logged in players. Raises events when a player is added or removed from the list, and can sync with ingame player lists.
+	///     Handles player connects and disconnects and keep a dictionary of all logged in players. Raises events when a player
+	///     is added or removed from the list, and can sync with ingame player lists.
 	/// </summary>
 	public static class PlayerHandler
 	{
@@ -98,7 +99,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 		}
 
 		/// <summary>
-		/// Add a player to the online players list and raise the according events
+		///     Add a player to the online players list and raise the according events
 		/// </summary>
 		/// <param name="player">The player to add</param>
 		public static void AddPlayer(Player player)
@@ -111,7 +112,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 		}
 
 		/// <summary>
-		/// Remove a player from the online players list and raise the according events
+		///     Remove a player from the online players list and raise the according events
 		/// </summary>
 		/// <param name="player">The player to remove</param>
 		public static void RemovePlayer(Player player)
@@ -142,7 +143,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 		}
 
 		/// <summary>
-		/// Check if a player is listed in the dictionarry of online players
+		///     Check if a player is listed in the dictionarry of online players
 		/// </summary>
 		/// <param name="name">The name of the player to check</param>
 		/// <returns>Returns true if the player is listed, false if the player isn't found</returns>

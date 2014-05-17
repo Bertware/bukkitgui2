@@ -1,29 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using Net.Bertware.Bukkitgui2.AddOn;
-using Net.Bertware.Bukkitgui2.AddOn.Backup;
-using Net.Bertware.Bukkitgui2.AddOn.Editor;
-using Net.Bertware.Bukkitgui2.AddOn.Forwarder;
-using Net.Bertware.Bukkitgui2.AddOn.Permissions;
-using Net.Bertware.Bukkitgui2.AddOn.PlayerList;
-using Net.Bertware.Bukkitgui2.AddOn.Plugins;
-using Net.Bertware.Bukkitgui2.AddOn.Settings;
 using Net.Bertware.Bukkitgui2.AddOn.Starter;
-using Net.Bertware.Bukkitgui2.AddOn.Tasker;
 using Net.Bertware.Bukkitgui2.Core;
-using Net.Bertware.Bukkitgui2.Core.Configuration;
 using Net.Bertware.Bukkitgui2.Core.Logging;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler;
-using Console = Net.Bertware.Bukkitgui2.AddOn.Console.Console;
 
 namespace Net.Bertware.Bukkitgui2.UI
 {
 	public partial class MainForm : Form
 	{
-		private const string CfgIdent = "mainform";
-
 		public MainForm()
 		{
 			Share.MainFormHandle = Handle; //Immediatly set the handle for form operations, tray issues, etc..
@@ -132,143 +121,61 @@ namespace Net.Bertware.Bukkitgui2.UI
 		}
 
 		/// <summary>
-		///     Dictionary to store all loaded addons, by [Name, IAddon]
-		/// </summary>
-		private Dictionary<string, IAddon> _addonsDictionary;
-
-		/// <summary>
 		///     Load all tabpages to the mainform
 		/// </summary>
 		private void LoadTabs()
 		{
-			// construct the dictionary that we'll use to store addons during runtime
-			_addonsDictionary = new Dictionary<string, IAddon>();
+			if (! AddonManager.AddonsLoaded) AddonManager.LoadAddons();
 
-			//Create and store a list with the loaded tabs, then load them to the UI.
-			// max 16 addons for now
-			IAddon[] addonsToLoad = new IAddon[16];
-
-			byte i = 0;
-
-			//This tab can't be disabled
-			//if (cfg.ReadInt(CFG_IDENT, "show_console", 1) == 1)
-			//{
-			addonsToLoad[i] = new Console();
-			i++;
-			//}
-
-			if (Config.ReadInt(CfgIdent, "show_playerlist", 1) == 1)
+			foreach (
+				KeyValuePair<IAddon, UserControl> pair in AddonManager.TabsDictionary.OrderBy(i => getTabDisplayId(i.Key.Name)))
 			{
-				addonsToLoad[i] = new PlayerList();
-				i++;
-			}
-
-			//This tab can't be disabled
-			//if (cfg.ReadInt(CFG_IDENT, "show_starter", 1) == 1)
-			//{
-			addonsToLoad[i] = new Starter();
-			i++;
-			//}
-
-			if (Config.ReadInt(CfgIdent, "show_tasker", 1) == 1)
-			{
-				addonsToLoad[i] = new Tasker();
-				i++;
-			}
-
-			if (Config.ReadInt(CfgIdent, "show_plugins", 1) == 1)
-			{
-				addonsToLoad[i] = new Plugins();
-				i++;
-			}
-
-			if (Config.ReadInt(CfgIdent, "show_permissions", 1) == 1)
-			{
-				addonsToLoad[i] = new Permissions();
-				i++;
-			}
-
-			if (Config.ReadInt(CfgIdent, "show_editor", 1) == 1)
-			{
-				addonsToLoad[i] = new Editor();
-				i++;
-			}
-
-			if (Config.ReadInt(CfgIdent, "show_backup", 1) == 1)
-			{
-				addonsToLoad[i] = new Backup();
-				i++;
-			}
-
-			if (Config.ReadInt(CfgIdent, "show_forwarder", 1) == 1)
-			{
-				addonsToLoad[i] = new Forwarder();
-				i++;
-			}
-
-			//This tab can't be disabled
-			//if (cfg.ReadInt(CFG_IDENT, "show_settings", 1) == 1)
-			//{
-			addonsToLoad[i] = new Settings();
-			i++;
-			//}
-
-			// Loop through all addons in the array
-			for (byte j = 0; j <= i; j++)
-			{
-				if (addonsToLoad[j] == null)
-				{
-					continue; //if addon not set, go on to the next one
-				}
-
-				Logger.Log(LogLevel.Info, "mainform", "loading addon", addonsToLoad[j].Name);
-
-				addonsToLoad[j].Initialize(); // initialize the addon
-				Logger.Log(LogLevel.Info, "mainform", "initialized addon", addonsToLoad[j].Name);
-
-				// The addon has initialized without problems. Add it to the dictionary so it can be used by other components too
-				_addonsDictionary.Add(addonsToLoad[j].Name, addonsToLoad[j]);
-
-				// If this addon doesn't have a tabpage, or if the tabpage is missing, go to the next addon
-				if (!addonsToLoad[j].HasTab || addonsToLoad[j].TabPage == null)
-				{
-					continue; // If no tabpage is available, skip loading
-				}
-
 				// Create a new tabpage. We'll dock the control to fill the tabpage
-				TabPage tp = new TabPage(addonsToLoad[j].Name);
+				TabPage tp = new TabPage(pair.Key.Name);
 
 				// Add and dock the control
-				tp.Controls.Add(addonsToLoad[j].TabPage);
+				tp.Controls.Add(pair.Value);
 				tp.Controls[0].Dock = DockStyle.Fill;
 
 				// Add the tabpage
 				TabCtrlAddons.TabPages.Add(tp);
 
-				Logger.Log(LogLevel.Info, "mainform", "added addon tabpage", addonsToLoad[j].Name);
+				Logger.Log(LogLevel.Info, "mainform", "added addon tabpage", pair.Key.Name);
 			}
 		}
 
 		/// <summary>
-		///     Get the instance of a loaded addon
+		///     Get the priority of each tab, lower values will show first
 		/// </summary>
-		/// <param name="name">The name of the addon</param>
-		/// <returns>Returns the addon if possible, null if the addon isn't loaded</returns>
-		public IAddon GetAddon(string name)
+		/// <param name="tab">name of the addon showing this tab</param>
+		/// <returns></returns>
+		private int getTabDisplayId(string tab)
 		{
-			return _addonsDictionary.ContainsKey(name) ? _addonsDictionary[name] : null;
-		}
-
-		/// <summary>
-		///     Get the instance of a loaded core addon
-		/// </summary>
-		/// <param name="addon">The addon to load</param>
-		/// <returns>Returns the addon if possible, null if the addon isn't loaded</returns>
-		internal IAddon GetRequiredAddon(RequiredAddon addon)
-		{
-			return _addonsDictionary.ContainsKey(addon.ToString())
-				? _addonsDictionary[addon.ToString()]
-				: null;
+			switch (tab.ToLower())
+			{
+				case "console":
+					return 0;
+				case "playerlist":
+					return 1;
+				case "starter":
+					return 2;
+				case "tasker":
+					return 3;
+				case "plugins":
+					return 4;
+				case "editor":
+					return 5;
+				case "permissions":
+					return 6;
+				case "forwarder":
+					return 7;
+				case "backup":
+					return 8;
+				case "settings":
+					return 128;
+				default:
+					return 64;
+			}
 		}
 
 
@@ -277,7 +184,7 @@ namespace Net.Bertware.Bukkitgui2.UI
 			//suport for calls from other threads
 			if (InvokeRequired)
 			{
-				Invoke((MethodInvoker)(() => ToolStripBtnStartStop_Click(sender, e)));
+				Invoke((MethodInvoker) (() => ToolStripBtnStartStop_Click(sender, e)));
 			}
 			else
 			{
@@ -287,7 +194,7 @@ namespace Net.Bertware.Bukkitgui2.UI
 				}
 				else
 				{
-					Starter starter = (Starter) this.GetRequiredAddon(RequiredAddon.Starter);
+					Starter starter = (Starter) AddonManager.GetRequiredAddon(RequiredAddon.Starter);
 					// Get the starter addon
 					starter.LaunchServerFromTab(); // Launch with tab settings
 				}

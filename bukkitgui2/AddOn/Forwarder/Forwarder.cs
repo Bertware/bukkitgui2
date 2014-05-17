@@ -15,7 +15,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Forwarder
 		}
 
 		/// <summary>
-		/// True if this addon has a tab page
+		///     True if this addon has a tab page
 		/// </summary>
 		public bool HasTab
 		{
@@ -23,7 +23,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Forwarder
 		}
 
 		/// <summary>
-		/// True if this addon has a config field
+		///     True if this addon has a config field
 		/// </summary>
 		public bool HasConfig
 		{
@@ -33,7 +33,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Forwarder
 		/// <summary>
 		///     Initialize all functions and the tabcontrol
 		/// </summary>
-		void IAddon.Initialize()
+		public void Initialize()
 		{
 			_tab = new ForwarderTab {Text = Name, ParentAddon = this};
 		}
@@ -41,6 +41,11 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Forwarder
 		public UserControl TabPage { get; private set; }
 
 		public UserControl ConfigPage { get; private set; }
+
+		public bool CanDisable
+		{
+			get { return true; }
+		}
 
 		/// <summary>
 		///     The tab control for this addon

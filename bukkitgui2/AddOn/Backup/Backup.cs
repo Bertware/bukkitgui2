@@ -15,7 +15,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Backup
 		}
 
 		/// <summary>
-		/// True if this addon has a tab page
+		///     True if this addon has a tab page
 		/// </summary>
 		public bool HasTab
 		{
@@ -23,7 +23,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Backup
 		}
 
 		/// <summary>
-		/// True if this addon has a config field
+		///     True if this addon has a config field
 		/// </summary>
 		public bool HasConfig
 		{

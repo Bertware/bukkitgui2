@@ -44,44 +44,51 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers
 		// ========================================== //
 
 		/// <summary>
-		/// Prepare a server launc, e.g. unpack resources, load config, ...
+		///     Prepare a server launc, e.g. unpack resources, load config, ...
 		/// </summary>
 		/// <returns></returns>
 		void PrepareLaunch();
 
 		/// <summary>
-		/// Returns true if this server needs a custom assembly (No java)
+		///     Returns true if this server needs a custom assembly (No java)
 		/// </summary>
 		Boolean HasCustomAssembly { get; }
 
 		/// <summary>
-		/// The custom assembly to be used. Can be set in PrepareLaunch()
+		///     The custom assembly to be used. Can be set in PrepareLaunch()
 		/// </summary>
 		Assembly CustomAssembly { get; }
 
 		/// <summary>
-		/// Get the launch parameters
+		///     Get the launch parameters
 		/// </summary>
 		/// <param name="defaultParameters">The user defined parameters in the start tab</param>
 		/// <returns>The complete parameter string</returns>
-		/// <remarks>NOTE: in case of a custom assembly, default parameters aren't available, and this routine should return ALL needed parameters</remarks>
+		/// <remarks>
+		///     NOTE: in case of a custom assembly, default parameters aren't available, and this routine should return ALL
+		///     needed parameters
+		/// </remarks>
 		string GetLaunchParameters(string defaultParameters = "");
 
 		/// <summary>
-		/// Get the launch flags
+		///     Get the launch flags
 		/// </summary>
 		/// <param name="defaultFlags">The user defined flags in the start tab</param>
 		/// <returns>the complete flag string</returns>
-		/// <remarks>NOTE: in case of a custom assembly, default flags aren't available, and this routine should return ALL needed flags</remarks>
+		/// <remarks>
+		///     NOTE: in case of a custom assembly, default flags aren't available, and this routine should return ALL needed
+		///     flags
+		/// </remarks>
 		string GetLaunchFlags(string defaultFlags = "");
 
 		/// <summary>
-		/// Returns true if this server has custom settings to be entered
+		///     Returns true if this server has custom settings to be entered
 		/// </summary>
 		bool HasCustomSettingsControl { get; }
 
 		/// <summary>
-		/// Custom settings that will be shown in the designated groupbox on the starter tab. e.g. for remote connection settings
+		///     Custom settings that will be shown in the designated groupbox on the starter tab. e.g. for remote connection
+		///     settings
 		/// </summary>
 		UserControl CustomSettingsControl { get; }
 
@@ -97,7 +104,8 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers
 		OutputParseResult ParseOutput(string text);
 
 		/// <summary>
-		/// Substract the real message from output text, without the timestamps etc. This method should remove the timestamp and fix formatting
+		///     Substract the real message from output text, without the timestamps etc. This method should remove the timestamp
+		///     and fix formatting
 		/// </summary>
 		/// <param name="text">The text to parse</param>
 		/// <returns>Message of the provided text</returns>

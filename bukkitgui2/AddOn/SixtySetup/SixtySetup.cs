@@ -9,7 +9,8 @@
 namespace Net.Bertware.Bukkitgui2.AddOn.SixtySetup
 {
 	/// <summary>
-	/// A user friendly installer for any minecraft server which should get the minimalist job done under 60 seconds (download time not included)
+	///     A user friendly installer for any minecraft server which should get the minimalist job done under 60 seconds
+	///     (download time not included)
 	/// </summary>
 	public partial class SixtySetup : Form
 	{

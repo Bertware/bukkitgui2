@@ -42,7 +42,6 @@ namespace Net.Bertware.Bukkitgui2.AddOn
 	{
 		Console,
 		Starter,
-		PlayerList,
 		Settings
 	}
 }
