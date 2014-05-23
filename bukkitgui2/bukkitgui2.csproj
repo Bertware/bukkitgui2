@@ -271,6 +271,9 @@
     <EmbeddedResource Include="AddOn\Plugins\PluginsTab.resx">
       <DependentUpon>PluginsTab.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AddOn\Settings\SettingsTab.resx">
+      <DependentUpon>SettingsTab.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddOn\Starter\StarterTab.resx">
       <DependentUpon>StarterTab.cs</DependentUpon>
     </EmbeddedResource>

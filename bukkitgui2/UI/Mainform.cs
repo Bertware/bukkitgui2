@@ -147,6 +147,7 @@ namespace Net.Bertware.Bukkitgui2.UI
 
 				Logger.Log(LogLevel.Info, "mainform", "added addon tabpage", pair.Key.Name);
 			}
+            AddonManager.GetRequiredAddon(RequiredAddon.Settings).Initialize();
 		}
 
 		/// <summary>

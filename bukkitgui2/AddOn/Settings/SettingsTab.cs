@@ -7,13 +7,32 @@ using System.Windows.Forms;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Settings
 {
-	public partial class SettingsTab : UserControl, IAddonTab
+    using System.Collections.Generic;
+
+    public partial class SettingsTab : UserControl, IAddonTab
 	{
+        public bool IsInitialized { get; private set; }
+
+        public IAddon ParentAddon { get; set; }
+
+        private Dictionary<string, UserControl> settings; 
+
 		public SettingsTab()
 		{
 			InitializeComponent();
+		    if (AddonManager.AddonsLoaded) Initialize();
 		}
 
-		public IAddon ParentAddon { get; set; }
-	}
+        private void Initialize()
+        {
+            if (this.IsInitialized) return;
+            settings = new Dictionary<string, UserControl>();
+            foreach (KeyValuePair<IAddon,UserControl> settingsEntry in AddonManager.SettingsDictionary)
+            {
+                settings.Add(settingsEntry.Key.Name,settingsEntry.Value);
+                TVSettings.Nodes.Add(settingsEntry.Key.Name);
+            }
+        }
+
+    }
 }
