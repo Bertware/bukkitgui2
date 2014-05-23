@@ -40,6 +40,7 @@
             this.TVSettings.Name = "TVSettings";
             this.TVSettings.Size = new System.Drawing.Size(221, 494);
             this.TVSettings.TabIndex = 0;
+            this.TVSettings.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.TvSettingsAfterSelect);
             // 
             // PSettingsControl
             // 
