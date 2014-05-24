@@ -156,9 +156,9 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler
 						RedirectStandardInput = true,
 						RedirectStandardOutput = true,
 						RedirectStandardError = true
-					}
+					},
+				EnableRaisingEvents = true
 			};
-			ServerProcess.EnableRaisingEvents = true;
 			ServerProcess.Start();
 			ServerProcess.Exited += HandleStop;
 

@@ -99,7 +99,6 @@ namespace Net.Bertware.Bukkitgui2.Controls.QuickButtons
 					{
 						return; //check if the parent form is a mainform
 					}
-					MainForm parentForm = (MainForm) ParentForm;
 					Starter starter = (Starter) AddonManager.GetRequiredAddon(RequiredAddon.Starter);
 					// Get the starter addon
 					starter.LaunchServerFromTab(); // Launch with tab settings

@@ -25,6 +25,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Filesystem.Local
 		/// </summary>
 		public void Initialize()
 		{
+			_isInitialized = true;
 		}
 
 		/// <summary>

@@ -1510,7 +1510,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Performance
 		{
 			get
 			{
-				string result = "32-bit";
+				string result;
 				// Default to 32-bit for OSes which don't support the OSArchitecture Property of the Win32_OperatingSystem WMI class.
 				try
 				{

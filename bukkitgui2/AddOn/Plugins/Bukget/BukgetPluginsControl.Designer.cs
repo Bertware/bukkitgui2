@@ -1,4 +1,4 @@
-﻿namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.BukgetPlugins
+﻿namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget
 {
 	partial class BukgetPluginsControl
 	{

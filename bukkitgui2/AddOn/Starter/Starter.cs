@@ -44,9 +44,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 		/// </summary>
 		public void Initialize()
 		{
-			_tab = new StarterTab();
-			_tab.Text = Name;
-			_tab.ParentAddon = this;
+			_tab = new StarterTab {Text = Name, ParentAddon = this};
 		}
 
 		/// <summary>

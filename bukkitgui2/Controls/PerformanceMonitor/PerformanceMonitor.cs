@@ -51,15 +51,15 @@ namespace Net.Bertware.Bukkitgui2.Controls.PerformanceMonitor
 			else
 			{
 				ProgBarGuiRam.Value = _guiRamCounter.MemoryUsagePct;
-				LblGuiRamUsageValue.Text = constructRamLabelText(_guiRamCounter);
+				LblGuiRamUsageValue.Text = ConstructRamLabelText(_guiRamCounter);
 				ProgBarTotalRam.Value = _totalRamCounter.MemoryUsagePct;
-				LblTotalRamUsageValue.Text = constructRamLabelText(_totalRamCounter);
+				LblTotalRamUsageValue.Text = ConstructRamLabelText(_totalRamCounter);
 				ProgBarServerRam.Value = _serverRamCounter.MemoryUsagePct;
-				LblServerRamUsageValue.Text = constructRamLabelText(_serverRamCounter);
+				LblServerRamUsageValue.Text = ConstructRamLabelText(_serverRamCounter);
 			}
 		}
 
-		private string constructRamLabelText(MemoryCounter counter)
+		private static string ConstructRamLabelText(MemoryCounter counter)
 		{
 			return counter.MemoryUsageMb + "Mb (" + counter.MemoryUsagePct.ToString(CultureInfo.InvariantCulture).PadLeft(2, '0') +
 			       "%)";

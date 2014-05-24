@@ -14,7 +14,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Settings
 
 		public IAddon ParentAddon { get; set; }
 
-		private Dictionary<string, UserControl> settings;
+		private Dictionary<string, UserControl> _settings;
 
 		public SettingsTab()
 		{
@@ -31,10 +31,10 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Settings
 			{
 				return;
 			}
-			settings = new Dictionary<string, UserControl>();
+			_settings = new Dictionary<string, UserControl>();
 			foreach (KeyValuePair<IAddon, UserControl> settingsEntry in AddonManager.SettingsDictionary)
 			{
-				settings.Add(settingsEntry.Key.Name, settingsEntry.Value);
+				_settings.Add(settingsEntry.Key.Name, settingsEntry.Value);
 				TVSettings.Nodes.Add(settingsEntry.Key.Name);
 			}
 		}
@@ -46,13 +46,13 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Settings
 
 		private void LoadControl(string name)
 		{
-			if (!settings.ContainsKey(name))
+			if (!_settings.ContainsKey(name))
 			{
 				return;
 			}
 
 			PSettingsControl.Controls.Clear();
-			PSettingsControl.Controls.Add(settings[name]);
+			PSettingsControl.Controls.Add(_settings[name]);
 			PSettingsControl.Controls[0].Dock = DockStyle.Fill;
 		}
 	}

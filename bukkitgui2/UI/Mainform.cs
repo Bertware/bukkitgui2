@@ -133,7 +133,7 @@ namespace Net.Bertware.Bukkitgui2.UI
 			if (! AddonManager.AddonsLoaded) AddonManager.LoadAddons();
 
 			foreach (
-				KeyValuePair<IAddon, UserControl> pair in AddonManager.TabsDictionary.OrderBy(i => getTabDisplayId(i.Key.Name)))
+				KeyValuePair<IAddon, UserControl> pair in AddonManager.TabsDictionary.OrderBy(i => GetTabDisplayId(i.Key.Name)))
 			{
 				// Create a new tabpage. We'll dock the control to fill the tabpage
 				TabPage tp = new TabPage(pair.Key.Name);
@@ -155,7 +155,7 @@ namespace Net.Bertware.Bukkitgui2.UI
 		/// </summary>
 		/// <param name="tab">name of the addon showing this tab</param>
 		/// <returns></returns>
-		private int getTabDisplayId(string tab)
+		private static int GetTabDisplayId(string tab)
 		{
 			switch (tab.ToLower())
 			{

@@ -307,9 +307,11 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers
 		{
 			//[INFO]  Bertware lost connection: Disconnected
 			//[INFO]  Bertware left the game.
-			PlayerActionLeave leave = new PlayerActionLeave();
-			leave.PlayerName = Regex.Match(text, RG_FSPACE + RG_PLAYER).Value.Trim();
-			leave.Details = Regex.Match(text, ":" + RG_WILDCARD + RG_EOL).Value.TrimStart(':').Trim();
+			PlayerActionLeave leave = new PlayerActionLeave
+			{
+				PlayerName = Regex.Match(text, RG_FSPACE + RG_PLAYER).Value.Trim(),
+				Details = Regex.Match(text, ":" + RG_WILDCARD + RG_EOL).Value.TrimStart(':').Trim()
+			};
 			return leave;
 		}
 
@@ -319,9 +321,11 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers
 			//[INFO]  Bertware left the game.
 			//[INFO]  CONSOLE: Kicked player Bertware. With reason:
 			//test
-			PlayerActionKick leave = new PlayerActionKick();
-			leave.PlayerName = Regex.Match(text, RG_FSPACE + RG_PLAYER).Value.Trim();
-			leave.Details = Regex.Match(text, ":" + RG_WILDCARD + RG_EOL).Value.TrimStart(':').Trim();
+			PlayerActionKick leave = new PlayerActionKick
+			{
+				PlayerName = Regex.Match(text, RG_FSPACE + RG_PLAYER).Value.Trim(),
+				Details = Regex.Match(text, ":" + RG_WILDCARD + RG_EOL).Value.TrimStart(':').Trim()
+			};
 			return leave;
 		}
 
@@ -330,9 +334,11 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers
 			//[INFO]  Bertware lost connection: Banned by admin.
 			//[INFO]  Bertware left the game.
 			//[INFO]  CONSOLE: Banned player bertware
-			PlayerActionBan leave = new PlayerActionBan();
-			leave.PlayerName = Regex.Match(text, RG_FSPACE + RG_PLAYER).Value.Trim();
-			leave.Details = Regex.Match(text, ":" + RG_WILDCARD + RG_EOL).Value.TrimStart(':').Trim();
+			PlayerActionBan leave = new PlayerActionBan
+			{
+				PlayerName = Regex.Match(text, RG_FSPACE + RG_PLAYER).Value.Trim(),
+				Details = Regex.Match(text, ":" + RG_WILDCARD + RG_EOL).Value.TrimStart(':').Trim()
+			};
 			return leave;
 		}
 

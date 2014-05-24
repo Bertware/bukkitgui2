@@ -34,8 +34,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Performance
 
 		private void Initialize()
 		{
-			_updateTimer = new Timer(Interval);
-			_updateTimer.AutoReset = true;
+			_updateTimer = new Timer(Interval) {AutoReset = true};
 			_updateTimer.Elapsed += OnTimerElapsed;
 			_updateTimer.Start();
 		}
