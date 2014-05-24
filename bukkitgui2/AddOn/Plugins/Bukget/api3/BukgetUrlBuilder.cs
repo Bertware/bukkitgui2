@@ -191,14 +191,28 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
 		/// </summary>
 		/// <returns>the base path for the Bukget API</returns>
 		/// <remarks>For future-proofing the code</remarks>
-		private static string ConstructBaseUrl()
+		public static string ConstructBaseUrl()
 		{
 			return "http://api.bukget.org/3";
 		}
 
+		/// <summary>
+		/// Get the URL for today's trends: number of plugins and versions
+		/// </summary>
+		/// <returns></returns>
+		public static string ConstructStatsUrl()
+		{
+			return "http://api.bukget.org/stats/todays_trends";
+		}
+
+		/// <summary>
+		/// Convert enum to string for API usage
+		/// </summary>
+		/// <param name="field"></param>
+		/// <returns></returns>
 		private static string GetFieldUrlValue(PluginInfoField field)
 		{
-			return field.ToString().ToLower().Replace("vf_", "versions.");
+			return field.ToString().ToLower().Replace("vf_", "versions.").Replace("pop_","popularity.");
 		}
 
 		private static string GetSearchActionUrlValue(SearchAction action)
@@ -452,7 +466,28 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
 		/// <summary>
 		///     Base64 Encoded string of the version changelog.
 		/// </summary>
-		Vf_Changelog
+		Vf_Changelog,
+		/// <summary>
+		///		The array of pupularity data for this plugin
+		/// </summary>
+		Popularity,
+		/// <summary>
+		/// Popularity score this week
+		/// </summary>
+		Pop_weekly,
+		/// <summary>
+		/// Popularity score this month
+		/// </summary>
+	Pop_Monthly,
+	/// <summary>
+	/// Popularity score today
+	/// </summary>
+	Pop_Daily,
+	/// <summary>
+	/// Popularity score since creation
+	/// </summary>
+	Pop_Total
+
 	}
 
 	/// <summary>

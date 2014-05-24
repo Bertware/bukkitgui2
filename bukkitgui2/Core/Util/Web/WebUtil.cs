@@ -1,9 +1,11 @@
 ﻿// WebUtil.cs in bukkitgui2/bukkitgui2
 // Created 2014/02/02
-// Last edited at 2014/05/24 12:16
+// Last edited at 2014/05/24 16:51
 // ©Bertware, visit http://bertware.net
 
 using System;
+using System.Net;
+using Net.Bertware.Bukkitgui2.Core.Logging;
 
 namespace Net.Bertware.Bukkitgui2.Core.Util.Web
 {
@@ -14,12 +16,25 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Web
 		public static readonly string UserAgent = "Bertware 1.3/" + Share.AssemblyName + " " + Share.AssemblyVersion + "/" +
 		                                          Mail;
 
-		private static string RetrieveString(string url)
+		public static string RetrieveString(string url)
 		{
-			throw new NotImplementedException();
+			using (WebClient webc = new WebClient())
+			{
+				try
+				{
+					Logger.Log(LogLevel.Info, "WebUtil", "Retrieving data from " + url);
+					webc.Headers.Set(HttpRequestHeader.UserAgent, UserAgent);
+					return webc.DownloadString(url);
+				}
+				catch (WebException webException)
+				{
+					Logger.Log(LogLevel.Warning,"WebUtil", "Couldn't retrieve data from " + url, webException.Message);
+					return "";
+				}
+			}
 		}
 
-		private static void DownloadFile(string url, string targetlocation, Boolean showUi)
+		public static void DownloadFile(string url, string targetlocation, Boolean showUi)
 		{
 			FileDownloader fileDownloadDialog = new FileDownloader();
 			fileDownloadDialog.AddFile(url, targetlocation);

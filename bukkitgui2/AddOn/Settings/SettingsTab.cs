@@ -35,7 +35,8 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Settings
 			foreach (KeyValuePair<IAddon, UserControl> settingsEntry in AddonManager.SettingsDictionary)
 			{
 				_settings.Add(settingsEntry.Key.Name, settingsEntry.Value);
-				TVSettings.Nodes.Add(settingsEntry.Key.Name);
+				TreeNode node = new TreeNode(settingsEntry.Key.Name) {Name = settingsEntry.Key.Name};
+				TVSettings.Nodes.Add(node);
 			}
 		}
 
@@ -51,9 +52,9 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Settings
 				return;
 			}
 
-			PSettingsControl.Controls.Clear();
-			PSettingsControl.Controls.Add(_settings[name]);
-			PSettingsControl.Controls[0].Dock = DockStyle.Fill;
+			gbSettings.Controls.Clear();
+			gbSettings.Controls.Add(_settings[name]);
+			gbSettings.Controls[0].Dock = DockStyle.Fill;
 		}
 	}
 }

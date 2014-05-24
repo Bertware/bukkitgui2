@@ -40,8 +40,9 @@ namespace Net.Bertware.Bukkitgui2.Core.Logging
 		public static void Log(LogLevel level, string origin, string message, string details = "")
 		{
 			//Always log to console, there are no dependencies for this
-			string debugLine = TimeStamp() + " " + FormatLevel(level) + " " + origin + " : " + message + " (" + details + ")" +
-			                   ";";
+			string debugLine = TimeStamp() + " " + FormatLevel(level) + " " + origin + " : " + message;
+			if (!String.IsNullOrEmpty(details)) debugLine += " (" + details + ")";
+			debugLine += ";";
 			Debug.WriteLine(debugLine);
 
 			//if initialized, also log to file

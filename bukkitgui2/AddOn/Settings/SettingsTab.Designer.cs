@@ -28,43 +28,42 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-            this.TVSettings = new System.Windows.Forms.TreeView();
-            this.PSettingsControl = new System.Windows.Forms.Panel();
-            this.SuspendLayout();
-            // 
-            // TVSettings
-            // 
-            this.TVSettings.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+			this.TVSettings = new System.Windows.Forms.TreeView();
+			this.gbSettings = new System.Windows.Forms.GroupBox();
+			this.SuspendLayout();
+			// 
+			// TVSettings
+			// 
+			this.TVSettings.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.TVSettings.Location = new System.Drawing.Point(3, 3);
-            this.TVSettings.Name = "TVSettings";
-            this.TVSettings.Size = new System.Drawing.Size(221, 494);
-            this.TVSettings.TabIndex = 0;
-            this.TVSettings.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.TvSettingsAfterSelect);
-            // 
-            // PSettingsControl
-            // 
-            this.PSettingsControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.PSettingsControl.Location = new System.Drawing.Point(230, 3);
-            this.PSettingsControl.Name = "PSettingsControl";
-            this.PSettingsControl.Size = new System.Drawing.Size(567, 494);
-            this.PSettingsControl.TabIndex = 1;
-            // 
-            // SettingsTab
-            // 
-            this.Controls.Add(this.PSettingsControl);
-            this.Controls.Add(this.TVSettings);
-            this.Name = "SettingsTab";
-            this.Size = new System.Drawing.Size(800, 500);
-            this.ResumeLayout(false);
+			this.TVSettings.Location = new System.Drawing.Point(3, 3);
+			this.TVSettings.Name = "TVSettings";
+			this.TVSettings.Size = new System.Drawing.Size(221, 494);
+			this.TVSettings.TabIndex = 0;
+			this.TVSettings.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.TvSettingsAfterSelect);
+			// 
+			// gbSettings
+			// 
+			this.gbSettings.Location = new System.Drawing.Point(230, 3);
+			this.gbSettings.Name = "gbSettings";
+			this.gbSettings.Size = new System.Drawing.Size(567, 494);
+			this.gbSettings.TabIndex = 1;
+			this.gbSettings.TabStop = false;
+			this.gbSettings.Text = "Settings";
+			// 
+			// SettingsTab
+			// 
+			this.Controls.Add(this.gbSettings);
+			this.Controls.Add(this.TVSettings);
+			this.Name = "SettingsTab";
+			this.Size = new System.Drawing.Size(800, 500);
+			this.ResumeLayout(false);
 
 		}
 
 		#endregion
 
-        private System.Windows.Forms.TreeView TVSettings;
-        private System.Windows.Forms.Panel PSettingsControl;
+		private System.Windows.Forms.TreeView TVSettings;
+		private System.Windows.Forms.GroupBox gbSettings;
 	}
 }

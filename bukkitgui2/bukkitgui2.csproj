@@ -40,6 +40,7 @@
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Management" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
@@ -55,6 +56,12 @@
       <DependentUpon>BackupTab.cs</DependentUpon>
     </Compile>
     <Compile Include="AddOn\Console\Console.cs" />
+    <Compile Include="AddOn\Console\ConsoleSettings.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AddOn\Console\ConsoleSettings.Designer.cs">
+      <DependentUpon>ConsoleSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddOn\Console\ConsoleTab.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -65,7 +72,7 @@
     <Compile Include="AddOn\IAddonTab.cs" />
     <Compile Include="AddOn\Plugins\Bukget\api3\BukgetPlugin.cs" />
     <Compile Include="AddOn\Plugins\Bukget\api3\BukgetUrlBuilder.cs" />
-    <Compile Include="AddOn\Plugins\Bukget\api3\Parser.cs" />
+    <Compile Include="AddOn\Plugins\Bukget\api3\JsonParser.cs" />
     <Compile Include="AddOn\Plugins\Bukget\BukgetPluginsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -253,6 +260,9 @@
     <EmbeddedResource Include="AddOn\Backup\BackupTab.resx">
       <DependentUpon>BackupTab.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AddOn\Console\ConsoleSettings.resx">
+      <DependentUpon>ConsoleSettings.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddOn\Console\ConsoleTab.resx">
       <DependentUpon>ConsoleTab.cs</DependentUpon>
     </EmbeddedResource>
@@ -267,6 +277,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddOn\PlayerList\PlayerListTab.resx">
       <DependentUpon>PlayerListTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddOn\Plugins\Bukget\BukgetPluginsControl.resx">
+      <DependentUpon>BukgetPluginsControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddOn\Plugins\PluginsTab.resx">
       <DependentUpon>PluginsTab.cs</DependentUpon>

@@ -40,17 +40,15 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 		/// </summary>
 		public void Initialize()
 		{
-			_tab = new ConsoleTab {Text = Name, ParentAddon = this};
+			TabPage = new ConsoleTab {Text = Name, ParentAddon = this};
+			ConfigPage = new ConsoleSettings();
 		}
 
 		/// <summary>
 		///     The tab control for this addon
 		/// </summary>
 		/// <returns>Returns the tabpage</returns>
-		UserControl IAddon.TabPage
-		{
-			get { return _tab; }
-		}
+		public UserControl TabPage { get;private set;}
 
 		public UserControl ConfigPage { get; private set; }
 

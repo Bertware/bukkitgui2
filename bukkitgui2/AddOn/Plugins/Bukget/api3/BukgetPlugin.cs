@@ -1,6 +1,6 @@
 ﻿// BukgetPlugin.cs in bukkitgui2/bukkitgui2
 // Created 2014/05/03
-// Last edited at 2014/05/24 12:16
+// Last edited at 2014/05/24 17:33
 // ©Bertware, visit http://bertware.net
 
 using System;
@@ -133,16 +133,15 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
 				json = JsonConvert.Import<JsonObject>(jsonCode);
 			}
 
-			string main = null;
-			if (json["main"] != null) main = (string) json["main"];
+			if (json["main"] != null) Main = (string) json["main"];
 
-			string pluginName = null;
-			if (json["plugin_name"] != null) pluginName = (string) json["plugin_name"];
+
+			if (json["plugin_name"] != null) Name = (string) json["plugin_name"];
 
 			// If no name or mainspace, return
-			if (string.IsNullOrEmpty(main) || string.IsNullOrEmpty(pluginName)) return;
+			if (string.IsNullOrEmpty(Main) || string.IsNullOrEmpty(Name)) return;
 
-			Logger.Log(LogLevel.Info, "BukGetAPI", "parsing plugin:" + pluginName, main);
+			Logger.Log(LogLevel.Info, "BukGetAPI", "parsing plugin:" + Name, Main);
 
 			// Slug
 			if (json["slug"] != null) Slug = (String) json["slug"];
@@ -183,6 +182,33 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
 				BukgetPluginVersion v = new BukgetPluginVersion(this, jsonObject.ToString());
 				if (v.VersionNumber != null) VersionsList.Add(v);
 			}
+		}
+
+		public static List<BukgetPlugin> ParsePluginList(string json)
+		{
+			List<BukgetPlugin> result = new List<BukgetPlugin>();
+
+			if (json.StartsWith("["))
+			{
+				JsonArray jsonArray = JsonConvert.Import<JsonArray>(json);
+				foreach (JsonObject jsonObject in jsonArray)
+				{
+					result.Add(new BukgetPlugin(jsonObject.ToString()));
+				}
+			}
+			else
+			{
+				result.Add(new BukgetPlugin(json));
+			}
+
+
+			return result;
+		}
+
+		public override string ToString()
+		{
+			if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(Main)) return "Invalid plugin!";
+			return "BukgetPlugin." + this.Name + "@" + this.Main;
 		}
 
 		/// <summary>

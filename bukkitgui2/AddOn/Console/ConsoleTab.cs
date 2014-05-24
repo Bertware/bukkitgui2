@@ -12,7 +12,9 @@ using Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler;
 namespace Net.Bertware.Bukkitgui2.AddOn.Console
 {
 	public partial class ConsoleTab : UserControl, IAddonTab
-	{
+	{	
+		public IAddon ParentAddon { get; set; }
+
 		public ConsoleTab()
 		{
 			InitializeComponent();
@@ -60,8 +62,6 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			}
 		}
 
-		public IAddon ParentAddon { get; set; }
-
 		/// <summary>
 		///     Handle starting server, prepare UI and display text
 		/// </summary>
@@ -97,7 +97,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 		///     Handle a commandsent event from the textbox and redirect it to the server
 		/// </summary>
 		/// <param name="text"></param>
-		private void HandleCommandSent(string text)
+		private static void HandleCommandSent(string text)
 		{
 			if (ProcessHandler.IsRunning)
 			{

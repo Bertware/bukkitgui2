@@ -1,8 +1,9 @@
 ﻿// MinecraftConsole.cs in bukkitgui2/bukkitgui2
 // Created 2014/01/17
-// Last edited at 2014/05/24 12:16
+// Last edited at 2014/05/24 17:07
 // ©Bertware, visit http://bertware.net
 
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler;
@@ -48,6 +49,16 @@ namespace Net.Bertware.Bukkitgui2.Controls.MinecraftConsole
 		///     Gets or sets the message color for text containing warnings.
 		/// </summary>
 		public Color MessageColorWarning { get; set; }
+
+		/// <summary>
+		///     Wether or not the date should be shown before each message
+		/// </summary>
+		public Boolean ShowDate { get; set; }
+
+		/// <summary>
+		///     Wether or not the time should be shown before each message
+		/// </summary>
+		public Boolean ShowTime { get; set; }
 
 		public MinecraftConsole()
 		{
@@ -98,10 +109,24 @@ namespace Net.Bertware.Bukkitgui2.Controls.MinecraftConsole
 						break;
 				}
 
+				text = AddTimeStamp(text);
+
 				SelectionStart = TextLength;
 				SelectionColor = messageColor;
 				SelectedText = text + '\r' + '\n';
 			}
+		}
+
+		/// <summary>
+		///     Add a timestamp before a text message
+		/// </summary>
+		/// <param name="text">the text to alter</param>
+		/// <returns></returns>
+		private string AddTimeStamp(string text)
+		{
+			if (ShowTime) text = DateTime.Now.ToLongTimeString() + ' ' + text;
+			if (ShowDate) text = DateTime.Now.ToShortDateString() + ' ' + text;
+			return text;
 		}
 	}
 }
