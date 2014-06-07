@@ -1,6 +1,6 @@
 ﻿// dlb.cs in bukkitgui2/bukkitgui2
 // Created 2014/02/21
-// Last edited at 2014/05/24 12:16
+// Last edited at 2014/06/07 21:07
 // ©Bertware, visit http://bertware.net
 
 using System;
@@ -121,14 +121,14 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers.Tools.bukkit
 
 				XmlDocument xml = new XmlDocument();
 				//use fxml to parse the xml quickly
-				xml.Load(xmlString.ToLower());
+				xml.LoadXml(xmlString.ToLower());
 				//for logging purposes
-				Name = xml.GetElementsByTagName("Name")[0].InnerText;
+				Name = xml.GetElementsByTagName("name")[0].InnerText;
 				Build = Convert.ToUInt16(xml.GetElementsByTagName("build_number")[0].InnerText);
 				FileSize = Convert.ToUInt64(xml.GetElementsByTagName("size")[0].InnerText);
 				HtmlUrl = xml.GetElementsByTagName("html_url")[0].InnerText;
 				TargetFilename = xml.GetElementsByTagName("target_filename")[0].InnerText;
-				FileUrl = xml.GetElementsByTagName("url")[0].InnerText;
+				FileUrl = ((XmlElement) (xml.GetElementsByTagName("file")[0])).GetElementsByTagName("url")[0].InnerText;
 				Version = xml.GetElementsByTagName("version")[0].InnerText.ToUpper();
 
 				if (FileUrl.StartsWith("http") == false)

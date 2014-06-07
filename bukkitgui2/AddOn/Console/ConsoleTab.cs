@@ -1,6 +1,6 @@
 ﻿// ConsoleTab.cs in bukkitgui2/bukkitgui2
 // Created 2014/01/17
-// Last edited at 2014/05/24 12:16
+// Last edited at 2014/06/07 20:24
 // ©Bertware, visit http://bertware.net
 
 using System;
@@ -12,7 +12,7 @@ using Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler;
 namespace Net.Bertware.Bukkitgui2.AddOn.Console
 {
 	public partial class ConsoleTab : UserControl, IAddonTab
-	{	
+	{
 		public IAddon ParentAddon { get; set; }
 
 		public ConsoleTab()

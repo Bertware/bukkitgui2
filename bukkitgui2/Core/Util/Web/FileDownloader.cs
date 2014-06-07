@@ -1,12 +1,12 @@
 ﻿// FileDownloader.cs in bukkitgui2/bukkitgui2
 // Created 2014/02/02
-// Last edited at 2014/05/24 12:16
+// Last edited at 2014/06/07 21:18
 // ©Bertware, visit http://bertware.net
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
-using System.Net;
 using System.Windows.Forms;
 using Net.Bertware.Bukkitgui2.Core.Logging;
 
@@ -67,12 +67,13 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Web
 				control.DownloadCompleted += HandleDownloadFinished;
 				control.StartDownload();
 			}
+			Show();
 		}
 
 
 		private int _finishedDownloads;
 
-		private void HandleDownloadFinished(object sender, DownloadDataCompletedEventArgs e)
+		private void HandleDownloadFinished(object sender, AsyncCompletedEventArgs e)
 		{
 			if (InvokeRequired)
 			{
@@ -83,6 +84,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Web
 				_finishedDownloads++;
 				if (_finishedDownloads == _files.Count)
 				{
+					Hide();
 					Close();
 				}
 			}

@@ -1,6 +1,6 @@
 ﻿// BukgetUrlBuilder.cs in bukkitgui2/bukkitgui2
 // Created 2014/05/03
-// Last edited at 2014/05/24 12:16
+// Last edited at 2014/06/07 20:24
 // ©Bertware, visit http://bertware.net
 
 using System;
@@ -197,7 +197,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
 		}
 
 		/// <summary>
-		/// Get the URL for today's trends: number of plugins and versions
+		///     Get the URL for today's trends: number of plugins and versions
 		/// </summary>
 		/// <returns></returns>
 		public static string ConstructStatsUrl()
@@ -206,13 +206,13 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
 		}
 
 		/// <summary>
-		/// Convert enum to string for API usage
+		///     Convert enum to string for API usage
 		/// </summary>
 		/// <param name="field"></param>
 		/// <returns></returns>
 		private static string GetFieldUrlValue(PluginInfoField field)
 		{
-			return field.ToString().ToLower().Replace("vf_", "versions.").Replace("pop_","popularity.");
+			return field.ToString().ToLower().Replace("vf_", "versions.").Replace("pop_", "popularity.");
 		}
 
 		private static string GetSearchActionUrlValue(SearchAction action)
@@ -467,27 +467,31 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
 		///     Base64 Encoded string of the version changelog.
 		/// </summary>
 		Vf_Changelog,
+
 		/// <summary>
-		///		The array of pupularity data for this plugin
+		///     The array of pupularity data for this plugin
 		/// </summary>
 		Popularity,
+
 		/// <summary>
-		/// Popularity score this week
+		///     Popularity score this week
 		/// </summary>
 		Pop_weekly,
-		/// <summary>
-		/// Popularity score this month
-		/// </summary>
-	Pop_Monthly,
-	/// <summary>
-	/// Popularity score today
-	/// </summary>
-	Pop_Daily,
-	/// <summary>
-	/// Popularity score since creation
-	/// </summary>
-	Pop_Total
 
+		/// <summary>
+		///     Popularity score this month
+		/// </summary>
+		Pop_Monthly,
+
+		/// <summary>
+		///     Popularity score today
+		/// </summary>
+		Pop_Daily,
+
+		/// <summary>
+		///     Popularity score since creation
+		/// </summary>
+		Pop_Total
 	}
 
 	/// <summary>

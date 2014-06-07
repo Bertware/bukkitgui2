@@ -1,6 +1,6 @@
 ﻿// WebUtil.cs in bukkitgui2/bukkitgui2
 // Created 2014/02/02
-// Last edited at 2014/05/24 16:51
+// Last edited at 2014/06/07 20:24
 // ©Bertware, visit http://bertware.net
 
 using System;
@@ -28,7 +28,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Web
 				}
 				catch (WebException webException)
 				{
-					Logger.Log(LogLevel.Warning,"WebUtil", "Couldn't retrieve data from " + url, webException.Message);
+					Logger.Log(LogLevel.Warning, "WebUtil", "Couldn't retrieve data from " + url, webException.Message);
 					return "";
 				}
 			}

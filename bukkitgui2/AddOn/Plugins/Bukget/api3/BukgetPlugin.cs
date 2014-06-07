@@ -1,6 +1,6 @@
 ﻿// BukgetPlugin.cs in bukkitgui2/bukkitgui2
 // Created 2014/05/03
-// Last edited at 2014/05/24 17:33
+// Last edited at 2014/06/07 20:24
 // ©Bertware, visit http://bertware.net
 
 using System;
@@ -208,7 +208,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
 		public override string ToString()
 		{
 			if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(Main)) return "Invalid plugin!";
-			return "BukgetPlugin." + this.Name + "@" + this.Main;
+			return "BukgetPlugin." + Name + "@" + Main;
 		}
 
 		/// <summary>

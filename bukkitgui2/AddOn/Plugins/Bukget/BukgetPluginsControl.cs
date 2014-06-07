@@ -1,6 +1,6 @@
 ﻿// BukgetPluginsControl.cs in bukkitgui2/bukkitgui2
 // Created 2014/01/17
-// Last edited at 2014/05/24 12:16
+// Last edited at 2014/06/07 20:24
 // ©Bertware, visit http://bertware.net
 
 using System.Collections.Generic;
@@ -11,8 +11,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget
 {
 	public partial class BukgetPluginsControl : UserControl
 	{
-
-		private List<BukgetPlugin> _plugins; 
+		private List<BukgetPlugin> _plugins;
 
 		public BukgetPluginsControl()
 		{
@@ -21,16 +20,14 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget
 
 		private void BukgetPluginsControl_VisibleChanged(object sender, System.EventArgs e)
 		{
-			if (Visible && (_plugins == null || _plugins.Count < 1))
-			{
-				_plugins = api3.Bukget.GetMostPopularPlugins(20);
-				ShowPlugins();
-			}
+			if (!Visible || (_plugins != null && _plugins.Count >= 1)) return;
+			_plugins = api3.Bukget.GetMostPopularPlugins(20);
+			ShowPlugins();
 		}
 
 		private void ShowPlugins()
 		{
-			this.slvPlugins.Items.Clear();
+			slvPlugins.Items.Clear();
 			foreach (BukgetPlugin p in _plugins)
 			{
 				string[] contents = {p.Name, p.Description, p.LastVersionNumber, p.LastGameVersion};

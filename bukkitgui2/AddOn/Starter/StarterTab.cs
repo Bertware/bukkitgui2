@@ -1,6 +1,6 @@
 ﻿// StarterTab.cs in bukkitgui2/bukkitgui2
 // Created 2014/01/17
-// Last edited at 2014/05/24 12:16
+// Last edited at 2014/06/07 20:24
 // ©Bertware, visit http://bertware.net
 
 using System;
@@ -542,6 +542,24 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 				TxtJarFile.Text = Share.AssemblyLocation; // set GUI location as server folder
 			}
 			GetSelectedServer().DownloadDevVersion(TxtJarFile.Text);
+		}
+
+		/// <summary>
+		///     Get the path of the selected java instance
+		/// </summary>
+		/// <returns></returns>
+		public string GetSelectedJavaPath()
+		{
+			return JavaApi.GetJavaPath(GetSelectedJavaVersion());
+		}
+
+		/// <summary>
+		///     Get the path of the jar file
+		/// </summary>
+		/// <returns></returns>
+		public string GetSelectedServerPath()
+		{
+			return TxtJarFile.Text;
 		}
 	}
 }

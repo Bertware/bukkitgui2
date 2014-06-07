@@ -1,9 +1,10 @@
 ﻿// FileDownloadProgressBar.cs in bukkitgui2/bukkitgui2
 // Created 2014/04/06
-// Last edited at 2014/05/24 12:16
+// Last edited at 2014/06/07 20:24
 // ©Bertware, visit http://bertware.net
 
 using System;
+using System.ComponentModel;
 using System.IO;
 using System.Net;
 using System.Text.RegularExpressions;
@@ -38,7 +39,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Web
 
 		private string _tmplocation;
 
-		public event DownloadDataCompletedEventHandler DownloadCompleted;
+		public event AsyncCompletedEventHandler DownloadCompleted;
 
 		private Timer _tmrUpdateUi;
 
@@ -63,8 +64,12 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Web
 
 			_filename = Regex.Match(_url, "\\/[^\\\\\\/]+$").Value.Substring(1);
 
-			//if not ending on extension, add file name
-			if (!Regex.IsMatch(targetlocation, "\\w\\.\\{2,5}$")) targetlocation += "\\" + _filename;
+			if (Regex.IsMatch(targetlocation, "\\w\\.\\{2,5}$"))
+			{
+						_filename = Regex.Match(targetlocation, "\\/[^\\\\\\/]+$").Value.Substring(1);
+						targetlocation = Regex.Replace(targetlocation, "[^\\\\/]\\.\\{2,5}$", "");
+			}
+			
 
 			_targetlocation = targetlocation;
 
@@ -78,7 +83,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Web
 		{
 			_webc.Headers.Add(HttpRequestHeader.UserAgent, WebUtil.UserAgent);
 			_webc.DownloadProgressChanged += UpdateStats;
-			_webc.DownloadDataCompleted += Finished;
+			_webc.DownloadFileCompleted += Finished;
 			Logger.Log(LogLevel.Info, "FileDownloadProgressBar", "Starting download", _url);
 
 			Thread t = new Thread(() => _webc.DownloadFileAsync(new Uri(_url), _tmplocation));
@@ -96,7 +101,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Web
 		{
 			_webc.CancelAsync();
 			File.Delete(_tmplocation);
-			DownloadDataCompletedEventHandler handler = DownloadCompleted;
+			AsyncCompletedEventHandler handler = DownloadCompleted;
 			if (handler != null)
 			{
 				handler(null, null);
@@ -108,7 +113,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Web
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
-		private void Finished(object sender, DownloadDataCompletedEventArgs e)
+		private void Finished(object sender, AsyncCompletedEventArgs e)
 		{
 			Logger.Log(LogLevel.Info, "FileDownloadProgressBar", "Download finished!", _url);
 			// Move to the correct location
@@ -118,7 +123,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Web
 			}
 			File.Move(_tmplocation, _targetlocation);
 
-			DownloadDataCompletedEventHandler handler = DownloadCompleted;
+			AsyncCompletedEventHandler handler = DownloadCompleted;
 			if (handler != null)
 			{
 				handler(sender, e);

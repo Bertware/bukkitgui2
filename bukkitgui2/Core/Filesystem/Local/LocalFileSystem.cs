@@ -1,6 +1,6 @@
 ﻿// LocalFileSystem.cs in bukkitgui2/bukkitgui2
 // Created 2014/01/18
-// Last edited at 2014/05/24 12:16
+// Last edited at 2014/06/07 20:24
 // ©Bertware, visit http://bertware.net
 
 namespace Net.Bertware.Bukkitgui2.Core.Filesystem.Local
@@ -10,7 +10,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Filesystem.Local
 		/// <summary>
 		///     Private isInitialized variable to store the value that will be returned on the public get request
 		/// </summary>
-		private bool _isInitialized = false;
+		private bool _isInitialized;
 
 		/// <summary>
 		///     True if this component is initialized and can be used
