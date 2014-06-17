@@ -78,6 +78,10 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers
 		///     Anything
 		/// </summary>
 		public const string RG_WILDCARD = "(.*)";
+		/// <summary>
+		/// Stacktrace, like "at net.minecraft.server ...
+		/// </summary>
+		public const string RG_STACKTRACE = "at (\\w+\\.){2}\\w+\\s";
 
 		/// <summary>
 		///     End of line
@@ -179,11 +183,6 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers
 		{
 			MessageType type = MessageType.Unknown;
 
-			Logger.Log(
-				LogLevel.Debug,
-				"MinecraftServerBase",
-				"login regex",
-				RG_INFO + RG_SPACE + RG_PLAYER + RG_IP_BRACKET + " logged in with entity id");
 			//[WARNING]...
 			if (Regex.IsMatch(text, RG_WARN + RG_WILDCARD, RegexOptions.IgnoreCase))
 			{
@@ -254,9 +253,16 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers
 			{
 				type = MessageType.PlayerLeave;
 			}
+			// stacktraces
+			else if (Regex.IsMatch(
+				text,
+				"^" + RG_SPACE + RG_STACKTRACE,
+				RegexOptions.IgnoreCase))
+			{
+				type = MessageType.JavaStackTrace;
+			}
 
-
-				//TODO: Stacktraces and java errors
+				//TODO: Stacktraces (other formats) and java errors
 
 				// all other text is info text
 			else if (Regex.IsMatch(text, RG_INFO + ".*", RegexOptions.IgnoreCase))

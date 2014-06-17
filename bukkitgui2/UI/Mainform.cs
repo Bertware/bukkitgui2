@@ -1,6 +1,6 @@
 ﻿// MainForm.cs in bukkitgui2/bukkitgui2
 // Created 2014/01/30
-// Last edited at 2014/06/07 20:24
+// Last edited at 2014/06/17 12:52
 // ©Bertware, visit http://bertware.net
 
 using System;
@@ -11,6 +11,7 @@ using Net.Bertware.Bukkitgui2.AddOn;
 using Net.Bertware.Bukkitgui2.AddOn.Starter;
 using Net.Bertware.Bukkitgui2.Core;
 using Net.Bertware.Bukkitgui2.Core.Logging;
+using Net.Bertware.Bukkitgui2.Core.Translation;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler;
 
@@ -200,10 +201,58 @@ namespace Net.Bertware.Bukkitgui2.UI
 				}
 				else
 				{
-					Starter starter = (Starter) AddonManager.GetRequiredAddon(RequiredAddon.Starter);
-					// Get the starter addon
-					starter.LaunchServerFromTab(); // Launch with tab settings
+					Starter.StartServer(); // Launch with tab settings
 				}
+			}
+		}
+
+		private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+		{
+			if (ProcessHandler.IsRunning)
+			{
+				if (ProcessHandler.CurrentState == ServerState.Starting || ProcessHandler.CurrentState == ServerState.Running)
+				{
+					DialogResult result = MessageBox.Show(
+						Translator.Tr(
+							"The server is still running. Closing it without a proper stop might result in data loss. Send stop command first?"),
+						Translator.Tr("Server still running"), MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+					switch (result)
+					{
+						case DialogResult.Yes:
+							ProcessHandler.ServerStopped += SafeFormClose;
+							Starter.StopServer();
+							e.Cancel = true;
+							break;
+						case DialogResult.No:
+							// close form
+							break;
+						case DialogResult.Cancel:
+							e.Cancel = true;
+							break;
+					}
+				}
+				else
+				{
+					// wait for server to stop
+					ServerStopDialog serverStopDialog = new ServerStopDialog();
+					DialogResult result = serverStopDialog.ShowDialog();
+					// if waiting cancelled, don't shutdown
+					if (result == DialogResult.Cancel) e.Cancel = true;
+				}
+			}
+		}
+		/// <summary>
+		/// Close this form thread-safe
+		/// </summary>
+		private void SafeFormClose()
+		{
+			if (InvokeRequired)
+			{
+				this.Invoke(new MethodInvoker(SafeFormClose));
+			}
+			else
+			{
+				this.Close();
 			}
 		}
 	}

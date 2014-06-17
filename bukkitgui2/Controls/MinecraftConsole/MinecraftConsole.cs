@@ -94,10 +94,13 @@ namespace Net.Bertware.Bukkitgui2.Controls.MinecraftConsole
 					case MessageType.Info:
 						messageColor = MessageColorInfo;
 						break;
+					case MessageType.JavaStatus:
 					case MessageType.Warning:
 						messageColor = MessageColorWarning;
 						break;
 					case MessageType.Severe:
+					case MessageType.JavaStackTrace:
+
 						messageColor = MessageColorSevere;
 						break;
 					case MessageType.PlayerJoin:

@@ -41,6 +41,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Web
 		public Boolean AddFile(string url, string targetlocation)
 		{
 			_files.Add(url, targetlocation);
+
 			Size = new Size(Size.Width, Size.Height + 50); // make room for new control
 
 			// create new control
@@ -52,7 +53,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Web
 			control.CreateDownload(url, targetlocation);
 			_downloads.Add(url, control);
 			Controls.Add(control);
-
+			Logger.Log(LogLevel.Info, "FileDownloader", "Added download: " + control.Filename + " from " + control.Url);
 			return true;
 		}
 

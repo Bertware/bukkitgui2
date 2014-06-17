@@ -135,7 +135,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers.Servers
 		public MinecraftServerVersion GetCurrentVersionObject(string file)
 		{
 			string versionString;
-			string java = ((Starter) AddonManager.GetRequiredAddon(RequiredAddon.Starter)).GetSelectedJavaPath();
+			string java = Starter.GetSelectedJavaPath();
 			Process p = new Process
 			{
 				StartInfo = new ProcessStartInfo(java)

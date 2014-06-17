@@ -68,7 +68,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Configuration
 		{
 			if (string.IsNullOrEmpty(location))
 			{
-				location = DefaultFileLocation.Location(RequestFile.Config) + CteFileName;
+				location = DefaultFileLocation.SafeLocation(RequestFile.Config) + CteFileName;
 			}
 
 			_filepath = location;

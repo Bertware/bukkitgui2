@@ -4,6 +4,7 @@
 // ©Bertware, visit http://bertware.net
 
 using System;
+using System.IO;
 
 namespace Net.Bertware.Bukkitgui2.Core.FileLocation
 {
@@ -14,6 +15,7 @@ namespace Net.Bertware.Bukkitgui2.Core.FileLocation
 
 		private const string LogFolder = "\\log\\";
 		private const string ConfFolder = "\\config\\";
+		private const string LangFolder = "\\lang\\";
 		private const string TmpFolder = "\\temp\\";
 
 		/// <summary>
@@ -55,11 +57,25 @@ namespace Net.Bertware.Bukkitgui2.Core.FileLocation
 					return Location(RequestFile.StorageRoot) + LogFolder;
 				case RequestFile.Config:
 					return Location(RequestFile.StorageRoot) + ConfFolder;
+				case RequestFile.Language:
+					return Location(RequestFile.StorageRoot) + LangFolder;
 				case RequestFile.Temp:
 					return Location(RequestFile.StorageRoot) + TmpFolder;
 				default:
 					return Location(RequestFile.StorageRoot);
 			}
+		}
+
+		/// <summary>
+		///     Return the location for a certain file type. Create the folder if it doesn't exist.
+		/// </summary>
+		/// <param name="file">the file type you want the parent directory for</param>
+		/// <returns></returns>
+		public static string SafeLocation(RequestFile file)
+		{
+			string location = Location(file);
+			if (!Directory.Exists(location)) Directory.CreateDirectory(location);
+			return location;
 		}
 	}
 
@@ -78,6 +94,7 @@ namespace Net.Bertware.Bukkitgui2.Core.FileLocation
 		Log,
 		Appdata,
 		Local,
+		Language,
 		Temp
 	}
 }

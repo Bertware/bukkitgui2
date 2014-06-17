@@ -27,15 +27,15 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Web
 
 		private WebClient _webc;
 
-		private string _filename;
+		public string Filename { get; private set; }
 
 		private int _percent;
 
 		private int _totalKb;
 
-		private string _url;
+		public string Url { get; private set; }
 
-		private string _targetlocation;
+		public string Targetlocation { get; private set; }
 
 		private string _tmplocation;
 
@@ -60,20 +60,20 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Web
 		public void CreateDownload(string url, string targetlocation)
 		{
 			_webc = new WebClient();
-			_url = url;
+			Url = url;
 
-			_filename = Regex.Match(_url, "\\/[^\\\\\\/]+$").Value.Substring(1);
+			Filename = Regex.Match(Url, "\\/[^\\\\\\/]+$").Value.Substring(1);
 
 			if (Regex.IsMatch(targetlocation, "\\w\\.\\{2,5}$"))
 			{
-						_filename = Regex.Match(targetlocation, "\\/[^\\\\\\/]+$").Value.Substring(1);
+						Filename = Regex.Match(targetlocation, "\\/[^\\\\\\/]+$").Value.Substring(1);
 						targetlocation = Regex.Replace(targetlocation, "[^\\\\/]\\.\\{2,5}$", "");
 			}
 			
 
-			_targetlocation = targetlocation;
+			Targetlocation = targetlocation;
 
-			_tmplocation = _tmp + _filename;
+			_tmplocation = _tmp + Filename;
 		}
 
 		/// <summary>
@@ -84,11 +84,11 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Web
 			_webc.Headers.Add(HttpRequestHeader.UserAgent, WebUtil.UserAgent);
 			_webc.DownloadProgressChanged += UpdateStats;
 			_webc.DownloadFileCompleted += Finished;
-			Logger.Log(LogLevel.Info, "FileDownloadProgressBar", "Starting download", _url);
+			Logger.Log(LogLevel.Info, "FileDownloadProgressBar", "Starting download", Url);
 
-			Thread t = new Thread(() => _webc.DownloadFileAsync(new Uri(_url), _tmplocation));
+			Thread t = new Thread(() => _webc.DownloadFileAsync(new Uri(Url), _tmplocation));
 			t.Start();
-			Logger.Log(LogLevel.Info, "FileDownloadProgressBar", "Started download", _url);
+			Logger.Log(LogLevel.Info, "FileDownloadProgressBar", "Started download", Url);
 			_tmrUpdateUi = new Timer {Interval = TmrInterval};
 			_tmrUpdateUi.Tick += UpdateUi;
 			_tmrUpdateUi.Start();
@@ -115,13 +115,13 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Web
 		/// <param name="e"></param>
 		private void Finished(object sender, AsyncCompletedEventArgs e)
 		{
-			Logger.Log(LogLevel.Info, "FileDownloadProgressBar", "Download finished!", _url);
+			Logger.Log(LogLevel.Info, "FileDownloadProgressBar", "Download finished!", Url);
 			// Move to the correct location
-			if (File.Exists(_targetlocation))
+			if (File.Exists(Targetlocation))
 			{
-				File.Delete(_targetlocation);
+				File.Delete(Targetlocation);
 			}
-			File.Move(_tmplocation, _targetlocation);
+			File.Move(_tmplocation, Targetlocation);
 
 			AsyncCompletedEventHandler handler = DownloadCompleted;
 			if (handler != null)
@@ -161,7 +161,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Web
 		{
 			if (_e == null)
 			{
-				SetInfoText("Initiating download: " + _filename);
+				SetInfoText("Initiating download: " + Filename);
 				return; // no data yet
 			}
 
@@ -181,7 +181,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Web
 			_receivedKbHist2 = _receivedKbHist1;
 			_receivedKbHist1 = downloadedKb;
 
-			SetInfoText("Downloading: " + _filename + " : " + downloadedKb + "/" + _totalKb + "Kb @ "
+			SetInfoText("Downloading: " + Filename + " : " + downloadedKb + "/" + _totalKb + "Kb @ "
 			            + downloadSpeed + "kbps");
 
 			SetPercentage(_percent);

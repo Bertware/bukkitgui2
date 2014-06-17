@@ -142,6 +142,7 @@
 			this.Controls.Add(this.TabCtrlAddons);
 			this.Name = "MainForm";
 			this.Text = "Mainform";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
 			this.StatusStripMain.ResumeLayout(false);
 			this.StatusStripMain.PerformLayout();
 			this.ResumeLayout(false);

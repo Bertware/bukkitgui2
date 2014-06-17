@@ -66,22 +66,44 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			get { return false; }
 		}
 
+		private static Starter GetInstance()
+		{
+			return (Starter)AddonManager.GetRequiredAddon(RequiredAddon.Starter);
+		}
+
 		/// <summary>
 		///     Launch a new server using the settings in the tabpage. Will validate, shows popup if errors occur.
 		/// </summary>
-		public void LaunchServerFromTab()
+		public static void StartServer()
 		{
-			((StarterTab) TabPage).DoServerLaunch();
+			ProcessHandler.ServerStopped -= StartServer;
+			((StarterTab) GetInstance().TabPage).DoServerLaunch();
 		}
 
-		public string GetSelectedJavaPath()
+		public static void RestartServer()
 		{
-			return ((StarterTab) TabPage).GetSelectedJavaPath();
+			StopServer();
+			ProcessHandler.ServerStopped += StartServer;
 		}
 
-		public string GetSelectedServerPath()
+		public static void ReloadServer()
 		{
-			return ((StarterTab) TabPage).GetSelectedServerPath();
+			ProcessHandler.SendInput("reload");
+		}
+
+		public static void StopServer()
+		{
+			ProcessHandler.StopServer();
+		}
+
+		public static string GetSelectedJavaPath()
+		{
+			return ((StarterTab)GetInstance().TabPage).GetSelectedJavaPath();
+		}
+
+		public static string GetSelectedServerPath()
+		{
+			return ((StarterTab)GetInstance().TabPage).GetSelectedServerPath();
 		}
 
 		/// <summary>

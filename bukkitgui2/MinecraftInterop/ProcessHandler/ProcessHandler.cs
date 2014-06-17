@@ -24,7 +24,8 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler
 	{
 		public static Process ServerProcess { get; private set; }
 		public static IMinecraftServer Server { get; private set; }
-		public static Boolean IsRunning { get; private set; }
+		public static Boolean IsRunning { get { return (CurrentState != ServerState.Stopped); } }
+		public static ServerState CurrentState { get; private set; }
 
 		public delegate void ServerStatusEvent();
 
@@ -35,6 +36,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler
 
 		private static void RaiseServerStarting()
 		{
+			CurrentState = ServerState.Starting;
 			ServerStatusEvent handler = ServerStarting;
 			if (handler != null)
 			{
@@ -49,6 +51,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler
 
 		private static void RaiseServerStarted()
 		{
+			CurrentState = ServerState.Running;
 			ServerStatusEvent handler = ServerStarted;
 			if (handler != null)
 			{
@@ -63,6 +66,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler
 
 		private static void RaiseServerStopping()
 		{
+			CurrentState = ServerState.Stopping;
 			ServerStatusEvent handler = ServerStopping;
 			if (handler != null)
 			{
@@ -77,6 +81,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler
 
 		private static void RaiseServerStopped()
 		{
+			CurrentState = ServerState.Stopped;
 			ServerStatusEvent handler = ServerStopped;
 			if (handler != null)
 			{
@@ -164,7 +169,6 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler
 
 			StartThreads();
 
-			IsRunning = true;
 			RaiseServerStarted();
 			return true;
 		}
@@ -182,7 +186,6 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler
 		{
 			ServerProcess.Exited -= HandleStop;
 			StopThreads();
-			IsRunning = false;
 			RaiseServerStopped();
 		}
 
@@ -251,4 +254,29 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler
 			return true;
 		}
 	}
+
+	/// <summary>
+	/// State of the server (stopped, running, stopping or starting)
+	/// </summary>
+	public enum ServerState
+	{
+		/// <summary>
+		/// The server is stopped
+		/// </summary>
+		Stopped,
+		/// <summary>
+		/// The server is starting
+		/// </summary>
+		Starting,
+		/// <summary>
+		/// The server is running
+		/// </summary>
+		Running,
+		
+		/// <summary>
+		/// The server is shutting down
+		/// </summary>
+		Stopping
+	}
+
 }

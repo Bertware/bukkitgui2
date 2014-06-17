@@ -9,7 +9,6 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 {
 	internal class Console : IAddon
 	{
-		private UserControl _tab;
 
 		/// <summary>
 		///     The addon name, ideally this name is the same as used in the tabpage
