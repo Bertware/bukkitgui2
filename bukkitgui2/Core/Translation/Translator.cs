@@ -1,11 +1,10 @@
 ﻿// Translator.cs in bukkitgui2/bukkitgui2
-// Created 2014/01/17
-// Last edited at 2014/06/07 20:24
+// Created 2014/06/17
+// Last edited at 2014/06/17 13:06
 // ©Bertware, visit http://bertware.net
 
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Windows.Forms;
 using System.Xml;
@@ -43,7 +42,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Translation
 			LoadFile();
 			IsInitialized = true;
 
-			MainForm form = (MainForm)Control.FromHandle(Share.MainFormHandle);
+			MainForm form = (MainForm) Control.FromHandle(Share.MainFormHandle);
 			form.Closing += HandleExit;
 		}
 
@@ -147,7 +146,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Translation
 			return text;
 		}
 
-		
+
 		/// <summary>
 		///     Load the XMLDocument to the cache dictionary
 		/// </summary>
@@ -162,6 +161,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Translation
 
 			Logger.Log(LogLevel.Info, "Translator", "Loading cache");
 			XmlElement xmle = _xmldoc.DocumentElement;
+			if (xmle == null) return;
 
 			foreach (XmlElement entry in xmle.ChildNodes) //for each element, 
 			{
@@ -175,8 +175,9 @@ namespace Net.Bertware.Bukkitgui2.Core.Translation
 
 			_cache = newcache;
 		}
+
 		/// <summary>
-		/// Save the cache to file
+		///     Save the cache to file
 		/// </summary>
 		private static void SaveCache()
 		{
