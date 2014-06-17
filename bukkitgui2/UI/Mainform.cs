@@ -208,39 +208,49 @@ namespace Net.Bertware.Bukkitgui2.UI
 
 		private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
 		{
-			if (ProcessHandler.IsRunning)
+			if (!ProcessHandler.IsRunning) return;
+
+			if (ProcessHandler.CurrentState == ServerState.Starting || ProcessHandler.CurrentState == ServerState.Running)
 			{
-				if (ProcessHandler.CurrentState == ServerState.Starting || ProcessHandler.CurrentState == ServerState.Running)
+				// if windows is shutting down or app is killed from task manager
+				if (e.CloseReason == CloseReason.TaskManagerClosing || e.CloseReason == CloseReason.WindowsShutDown)
 				{
-					DialogResult result = MessageBox.Show(
-						Translator.Tr(
-							"The server is still running. Closing it without a proper stop might result in data loss. Send stop command first?"),
-						Translator.Tr("Server still running"), MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
-					switch (result)
-					{
-						case DialogResult.Yes:
-							ProcessHandler.ServerStopped += SafeFormClose;
-							Starter.StopServer();
-							e.Cancel = true;
-							break;
-						case DialogResult.No:
-							// close form
-							break;
-						case DialogResult.Cancel:
-							e.Cancel = true;
-							break;
-					}
+					// make sure to stop server to prevent data loss
+					Starter.StopServer();
+					return;
 				}
-				else
+
+				DialogResult result = MessageBox.Show(
+					Translator.Tr(
+						"The server is still running. Closing it without a proper stop might result in data loss. Send stop command first?"),
+					Translator.Tr("Server still running"), MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+				
+				// execute a correct action based upon user input
+				switch (result)
 				{
-					// wait for server to stop
-					ServerStopDialog serverStopDialog = new ServerStopDialog();
-					DialogResult result = serverStopDialog.ShowDialog();
-					// if waiting cancelled, don't shutdown
-					if (result == DialogResult.Cancel) e.Cancel = true;
+					case DialogResult.Yes:
+						ProcessHandler.ServerStopped += SafeFormClose;
+						Starter.StopServer();
+						e.Cancel = true;
+						break;
+					case DialogResult.No:
+						// close form
+						break;
+					case DialogResult.Cancel:
+						e.Cancel = true;
+						break;
 				}
 			}
+			else
+			{
+				// wait for server to stop
+				ServerStopDialog serverStopDialog = new ServerStopDialog();
+				DialogResult result = serverStopDialog.ShowDialog();
+				// if waiting cancelled, don't shutdown
+				if (result == DialogResult.Cancel) e.Cancel = true;
+			}
 		}
+
 		/// <summary>
 		/// Close this form thread-safe
 		/// </summary>
