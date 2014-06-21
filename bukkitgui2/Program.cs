@@ -13,6 +13,8 @@ namespace Net.Bertware.Bukkitgui2
 {
 	internal static class Program
 	{
+
+		public static MainForm MainFormReference;
 		/// <summary>
 		///     The main entry point for the application.
 		/// </summary>
@@ -24,7 +26,8 @@ namespace Net.Bertware.Bukkitgui2
 			// Load app
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new MainForm());
+			MainFormReference = new MainForm();
+			Application.Run(MainFormReference);
 		}
 
 		public static Assembly LoadDll(object sender, ResolveEventArgs args)

@@ -242,6 +242,69 @@ namespace Net.Bertware.Bukkitgui2.Core.Configuration
 			Logger.Log(LogLevel.Info, "Config", "Saved value", id + ":" + value);
 			return true;
 		}
+		/// <summary>
+		///     Read a boolean value from config
+		/// </summary>
+		/// <param name="parent">The parent of the config key, to distinguish the origin of a config key</param>
+		/// <param name="key">The config key</param>
+		/// <param name="defaultValue">The default value if the element doesn't exist</param>
+		/// <returns>Returns the requested value</returns>
+		public static Boolean ReadBool(string parent, string key, Boolean defaultValue)
+		{
+			if (!IsInitialized)
+			{
+				return defaultValue;
+			}
+
+			string id = parent + "_" + key;
+			id = id.ToLower();
+			Logger.Log(LogLevel.Info, "Config", "Reading value", id);
+
+			if (_cache.ContainsKey(id))
+			{
+				int value = int.Parse(_cache[id]);
+				Logger.Log(LogLevel.Info, "Config", "Read value", id + ":" + value);
+				return (value==1);
+			}
+
+			_cache.Add(id, defaultValue.ToString(CultureInfo.InvariantCulture));
+			Logger.Log(LogLevel.Info, "Config", "Read value", id + ":" + defaultValue + " (default)");
+			return defaultValue;
+		}
+
+		/// <summary>
+		///     Write a boolean value to config
+		/// </summary>
+		/// <param name="parent">The parent of the config key, to distinguish the origin of a config key</param>
+		/// <param name="key">The config key</param>
+		/// <param name="b">The boolean value to write</param>
+		/// <returns>Returns true if operation succeeded</returns>
+		public static bool WriteBool(string parent, string key, Boolean b)
+		{
+			int value = 0;
+			if (b) value = 1;
+
+			if (!IsInitialized)
+			{
+				return false;
+			}
+			string id = parent + "_" + key;
+			id = id.ToLower();
+
+			Logger.Log(LogLevel.Info, "Config", "Saving value", id + ":" + value);
+
+			if (_cache.ContainsKey(id))
+			{
+				_cache[id] = value.ToString(CultureInfo.InvariantCulture);
+			}
+			else
+			{
+				_cache.Add(id, value.ToString(CultureInfo.InvariantCulture));
+			}
+			Logger.Log(LogLevel.Info, "Config", "Saved value", id + ":" + value);
+			return true;
+		}
+
 
 		/// <summary>
 		///     Load the XMLDocument to the cache dictionary

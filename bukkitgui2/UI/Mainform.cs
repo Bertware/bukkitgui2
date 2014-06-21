@@ -38,6 +38,18 @@ namespace Net.Bertware.Bukkitgui2.UI
 			Initialize();
 		}
 
+		public void ShowForm()
+		{
+			if (InvokeRequired)
+			{
+				this.Invoke(new MethodInvoker(ShowForm));
+			}
+			else
+			{
+				this.Show();
+			}
+		}
+
 		private void Initialize()
 		{
 			MinecraftOutputHandler.OutputParsed += HandleOutput;

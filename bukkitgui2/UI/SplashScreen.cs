@@ -17,7 +17,7 @@ namespace Net.Bertware.Bukkitgui2.UI
 		{
 			InitializeComponent();
 
-			pictureBox1.Image = Resources.GUI_icon;
+			pictureBox1.Image = Resources.GUI_logo;
 
 			Debug.WriteLine("Loading splashscreen");
 			Thread thdSplashWork = new Thread(Application_Initialize) {IsBackground = false, Name = "Splashscreen_work_thread"};
