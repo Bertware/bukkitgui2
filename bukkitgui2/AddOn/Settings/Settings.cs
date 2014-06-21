@@ -38,11 +38,6 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Settings
 
 		public UserControl ConfigPage { get; private set; }
 
-		public bool CanDisable
-		{
-			get { return false; }
-		}
-
 		/// <summary>
 		///     The addon name, ideally this name is the same as used in the tabpage
 		/// </summary>
@@ -54,10 +49,29 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Settings
 		/// <summary>
 		///     Initialize all functions and the tabcontrol
 		/// </summary>
-		void IAddon.Initialize()
+		public void Initialize()
 		{
 			if (TabPage == null) TabPage = new SettingsTab {Text = Name, ParentAddon = this};
 			((SettingsTab) TabPage).Initialize();
+		}
+
+		/// <summary>
+		/// Remove the settings control for a given addon
+		/// </summary>
+		/// <param name="addon"></param>
+		/// <remarks>Reloading addons is highly discouraged! Only use if no other way is possible</remarks>
+		public void RemoveAddonSettings(IAddon addon)
+		{
+			
+		}
+		/// <summary>
+		/// Add the settings control for a given addon
+		/// </summary>
+		/// <param name="addon"></param>
+		/// <remarks>Reloading addons is highly discouraged! Only use if no other way is possible</remarks>
+		public void AddAddonSettings(IAddon addon)
+		{
+
 		}
 	}
 }

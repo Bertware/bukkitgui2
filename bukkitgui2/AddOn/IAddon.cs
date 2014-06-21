@@ -29,6 +29,11 @@ namespace Net.Bertware.Bukkitgui2.AddOn
 		///     Initialize all functions and the tabcontrol
 		/// </summary>
 		void Initialize();
+		
+		/// <summary>
+		///		Dispose all resources
+		/// </summary>
+		void Dispose();
 
 		/// <summary>
 		///     The tab control for this addon, if any

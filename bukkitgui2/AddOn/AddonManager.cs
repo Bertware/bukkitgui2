@@ -1,6 +1,6 @@
 ﻿// AddonManager.cs in bukkitgui2/bukkitgui2
 // Created 2014/05/17
-// Last edited at 2014/06/07 20:24
+// Last edited at 2014/06/22 0:16
 // ©Bertware, visit http://bertware.net
 
 using System;
@@ -81,26 +81,85 @@ namespace Net.Bertware.Bukkitgui2.AddOn
 				if ((T.Name != "Console" && T.Name != "Settings" && T.Name != "Starter") &&
 				    Config.ReadInt(CfgIdent, "enable_" + T.Name, 1) == 0) continue;
 
-				IAddon addon = (IAddon) Activator.CreateInstance(Assembly.GetExecutingAssembly().GetType(T.FullName));
-				// initialize
-				addon.Initialize();
-
-				// add
-				AddonsDictionary.Add(addon.Name, addon);
-
-				// if this addon has a tab, add it 
-				if (addon.HasTab)
-				{
-					TabsDictionary.Add(addon, addon.TabPage);
-				}
-				// if this addon has a settings page, add it 
-				if (addon.HasConfig)
-				{
-					SettingsDictionary.Add(addon, addon.ConfigPage);
-				}
+				CreateAddon(T.FullName);
 			}
 
 			AddonsLoaded = true;
+		}
+
+		/// <summary>
+		///     Dynamicly load an addon
+		/// </summary>
+		/// <param name="name"></param>
+		private static IAddon CreateAddon(string name)
+		{
+			IAddon addon = (IAddon) Activator.CreateInstance(Assembly.GetExecutingAssembly().GetType(name));
+			// initialize
+			addon.Initialize();
+
+			// add
+			AddonsDictionary.Add(addon.Name, addon);
+
+			// if this addon has a tab, add it 
+			if (addon.HasTab)
+			{
+				TabsDictionary.Add(addon, addon.TabPage);
+			}
+			// if this addon has a settings page, add it 
+			if (addon.HasConfig)
+			{
+				SettingsDictionary.Add(addon, addon.ConfigPage);
+			}
+			return addon;
+		}
+
+		/// <summary>
+		///     Dynamicly load an addon
+		/// </summary>
+		/// <param name="addonType"></param>
+		private static IAddon CreateAddon(IAddon addonType)
+		{
+			IAddon addon = (IAddon) Activator.CreateInstance(addonType.GetType());
+			// initialize
+			addon.Initialize();
+
+			// add
+			AddonsDictionary.Add(addon.Name, addon);
+
+			// if this addon has a tab, add it 
+			if (addon.HasTab)
+			{
+				TabsDictionary.Add(addon, addon.TabPage);
+			}
+			// if this addon has a settings page, add it 
+			if (addon.HasConfig)
+			{
+				SettingsDictionary.Add(addon, addon.ConfigPage);
+			}
+			return addon;
+		}
+
+
+		/// <summary>
+		///     Reload an addon
+		/// </summary>
+		/// <param name="name"></param>
+		/// <remarks>Reloading addons is highly discouraged! Only use if no other way is possible</remarks>
+		public static void ReloadAddon(string name)
+		{
+			IAddon addon = GetAddon(name);
+			if (addon == null) return;
+			if (addon.HasTab) return; // we can't reload these yet!
+
+			if (addon.HasTab && TabsDictionary.ContainsKey(addon)) TabsDictionary.Remove(addon);
+			if (addon.HasConfig && SettingsDictionary.ContainsKey(addon)) SettingsDictionary.Remove(addon);
+
+			Settings.Settings settingsmanager = ((Settings.Settings) GetRequiredAddon(RequiredAddon.Settings));
+
+			settingsmanager.RemoveAddonSettings(addon); //unload settings
+			addon.Dispose(); //dispose old addon
+			addon = CreateAddon(addon); // create new one + initialize
+			settingsmanager.AddAddonSettings(addon); // load settings
 		}
 
 		/// <summary>

@@ -101,12 +101,12 @@
     <Compile Include="AddOn\Tasker\TaskerDialog\TaskerUI\MultiStringInput.Designer.cs">
       <DependentUpon>MultiStringInput.cs</DependentUpon>
     </Compile>
-    <Compile Include="AddOn\TrayNotifications\TrayNotifications.cs" />
-    <Compile Include="AddOn\TrayNotifications\TrayNotificationSettings.cs">
+    <Compile Include="AddOn\Notifications\Notifications.cs" />
+    <Compile Include="AddOn\Notifications\NotificationsSettings.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="AddOn\TrayNotifications\TrayNotificationSettings.Designer.cs">
-      <DependentUpon>TrayNotificationSettings.cs</DependentUpon>
+    <Compile Include="AddOn\Notifications\NotificationsSettings.Designer.cs">
+      <DependentUpon>NotificationsSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\ConsoleInput\ConsoleInput.cs">
       <SubType>Component</SubType>
@@ -310,8 +310,8 @@
     <EmbeddedResource Include="AddOn\Tasker\TaskerTab.resx">
       <DependentUpon>TaskerTab.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AddOn\TrayNotifications\TrayNotificationSettings.resx">
-      <DependentUpon>TrayNotificationSettings.cs</DependentUpon>
+    <EmbeddedResource Include="AddOn\Notifications\NotificationsSettings.resx">
+      <DependentUpon>NotificationsSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddOn\WebControl\WebControlTab.resx">
       <DependentUpon>WebControlTab.cs</DependentUpon>

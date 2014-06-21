@@ -11,16 +11,16 @@ using Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler;
 using Net.Bertware.Bukkitgui2.Properties;
 
-namespace Net.Bertware.Bukkitgui2.AddOn.TrayNotifications
+namespace Net.Bertware.Bukkitgui2.AddOn.Notifications
 {
-	internal class TrayNotifications : IAddon
+	internal class Notifications : IAddon
 	{
-		private const string CfgIdent = "tray";
+		public const string CfgIdent = "notifications";
 		private NotifyIcon _icon;
 
 		public string Name
 		{
-			get { return "Tray Notifications"; }
+			get { return "Notifications"; }
 		}
 
 		public bool HasTab
@@ -53,7 +53,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.TrayNotifications
 
 			BalloonDuration = Config.ReadInt(CfgIdent, "duration", 500);
 
-			ConfigPage = new TrayNotificationSettings();
+			ConfigPage = new NotificationSettings();
 
 
 			if (Config.ReadBool(CfgIdent, "status", false)) ProcessHandler.ServerStatusChanged += ShowStatusTray;
