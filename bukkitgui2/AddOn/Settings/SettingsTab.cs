@@ -5,6 +5,7 @@
 
 using System.Collections.Generic;
 using System.Windows.Forms;
+using Microsoft.VisualBasic.ApplicationServices;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Settings
 {
@@ -38,6 +39,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Settings
 				TreeNode node = new TreeNode(settingsEntry.Key.Name) {Name = settingsEntry.Key.Name};
 				TVSettings.Nodes.Add(node);
 			}
+			IsInitialized = true;
 		}
 
 		private void TvSettingsAfterSelect(object sender, TreeViewEventArgs e)
@@ -53,7 +55,12 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Settings
 			}
 
 			gbSettings.Controls.Clear();
-			gbSettings.Controls.Add(_settings[name]);
+			UserControl control = _settings[name];
+
+			// safety check
+			if (control == null) return;
+
+			gbSettings.Controls.Add(control);
 			gbSettings.Controls[0].Dock = DockStyle.Fill;
 		}
 	}

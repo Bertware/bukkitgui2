@@ -101,6 +101,13 @@
     <Compile Include="AddOn\Tasker\TaskerDialog\TaskerUI\MultiStringInput.Designer.cs">
       <DependentUpon>MultiStringInput.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddOn\TrayNotifications\TrayNotifications.cs" />
+    <Compile Include="AddOn\TrayNotifications\TrayNotificationSettings.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AddOn\TrayNotifications\TrayNotificationSettings.Designer.cs">
+      <DependentUpon>TrayNotificationSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ConsoleInput\ConsoleInput.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -288,6 +295,9 @@
     <EmbeddedResource Include="AddOn\Plugins\Bukget\BukgetPluginsControl.resx">
       <DependentUpon>BukgetPluginsControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AddOn\Plugins\InstalledPlugins\InstalledPluginsControl.resx">
+      <DependentUpon>InstalledPluginsControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddOn\Plugins\PluginsTab.resx">
       <DependentUpon>PluginsTab.cs</DependentUpon>
     </EmbeddedResource>
@@ -299,6 +309,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddOn\Tasker\TaskerTab.resx">
       <DependentUpon>TaskerTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddOn\TrayNotifications\TrayNotificationSettings.resx">
+      <DependentUpon>TrayNotificationSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddOn\WebControl\WebControlTab.resx">
       <DependentUpon>WebControlTab.cs</DependentUpon>

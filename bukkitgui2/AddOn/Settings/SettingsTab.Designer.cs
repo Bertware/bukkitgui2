@@ -44,6 +44,9 @@
 			// 
 			// gbSettings
 			// 
+			this.gbSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.gbSettings.Location = new System.Drawing.Point(230, 3);
 			this.gbSettings.Name = "gbSettings";
 			this.gbSettings.Size = new System.Drawing.Size(567, 494);

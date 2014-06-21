@@ -104,6 +104,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Filesystem.Local
 		public bool RenameFile(string file, string newname)
 		{
 			File.Move(file, newname);
+			return true;
 		}
 
 		public string GetFileContents(string file)
