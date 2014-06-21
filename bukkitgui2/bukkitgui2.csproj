@@ -219,7 +219,7 @@
     <Compile Include="Core\Util\Web\FileDownloadProgressBar.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Core\Util\Web\FileDownloadProgressBar.Designer.cs">
+    <Compile Include="Core\Util\Web\FileDownloadProgressBar.designer.cs">
       <DependentUpon>FileDownloadProgressBar.cs</DependentUpon>
     </Compile>
     <Compile Include="Core\Util\Web\WebUtil.cs" />
