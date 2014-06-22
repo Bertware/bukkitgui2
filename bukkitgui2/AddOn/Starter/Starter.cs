@@ -1,6 +1,6 @@
 ﻿// Starter.cs in bukkitgui2/bukkitgui2
 // Created 2014/01/17
-// Last edited at 2014/06/07 20:24
+// Last edited at 2014/06/22 12:34
 // ©Bertware, visit http://bertware.net
 
 using System;
@@ -47,6 +47,11 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			_tab = new StarterTab {Text = Name, ParentAddon = this};
 		}
 
+		public void Dispose()
+		{
+			throw new NotImplementedException();
+		}
+
 		/// <summary>
 		///     The tab control for this addon
 		/// </summary>
@@ -68,7 +73,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 
 		private static Starter GetInstance()
 		{
-			return (Starter)AddonManager.GetRequiredAddon(RequiredAddon.Starter);
+			return (Starter) AddonManager.GetRequiredAddon(RequiredAddon.Starter);
 		}
 
 		/// <summary>
@@ -82,8 +87,12 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 
 		public static void RestartServer()
 		{
-			StopServer();
-			ProcessHandler.ServerStopped += StartServer;
+			if (ProcessHandler.IsRunning)
+			{
+				StopServer();
+				ProcessHandler.ServerStopped += StartServer;
+			}
+		
 		}
 
 		public static void ReloadServer()
@@ -98,12 +107,12 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 
 		public static string GetSelectedJavaPath()
 		{
-			return ((StarterTab)GetInstance().TabPage).GetSelectedJavaPath();
+			return ((StarterTab) GetInstance().TabPage).GetSelectedJavaPath();
 		}
 
 		public static string GetSelectedServerPath()
 		{
-			return ((StarterTab)GetInstance().TabPage).GetSelectedServerPath();
+			return ((StarterTab) GetInstance().TabPage).GetSelectedServerPath();
 		}
 
 		/// <summary>

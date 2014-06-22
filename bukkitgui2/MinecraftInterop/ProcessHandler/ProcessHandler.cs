@@ -1,6 +1,6 @@
 ﻿// ProcessHandler.cs in bukkitgui2/bukkitgui2
 // Created 2014/02/05
-// Last edited at 2014/06/21 22:27
+// Last edited at 2014/06/22 12:34
 // ©Bertware, visit http://bertware.net
 
 using System;
@@ -23,26 +23,30 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler
 	internal static class ProcessHandler
 	{
 		/// <summary>
-		/// The Process object for the current server process
+		///     The Process object for the current server process
 		/// </summary>
 		public static Process ServerProcess { get; private set; }
+
 		/// <summary>
-		/// The IMinecraftserver object for the current running server. Used for parsing output.
+		///     The IMinecraftserver object for the current running server. Used for parsing output.
 		/// </summary>
 		public static IMinecraftServer Server { get; private set; }
+
 		/// <summary>
-		/// Is the current running right now?
+		///     Is the current running right now?
 		/// </summary>
 		public static Boolean IsRunning
 		{
 			get { return (CurrentState != ServerState.Stopped); }
 		}
+
 		/// <summary>
-		/// The current state of the server, private object
+		///     The current state of the server, private object
 		/// </summary>
 		private static ServerState _currentState;
+
 		/// <summary>
-		/// The current state of the server, raises event when changed
+		///     The current state of the server, raises event when changed
 		/// </summary>
 		public static ServerState CurrentState
 		{
@@ -53,10 +57,17 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler
 				RaiseServerStatusChanged();
 			}
 		}
+
 		/// <summary>
-		///		Delegate for status changes (running/starting/stopping/..)
+		///     Delegate for status changes (running/starting/stopping/..) with a global event which passes on the current state
 		/// </summary>
 		public delegate void ServerStatusEvent(ServerState currentState);
+
+		/// <summary>
+		///     Delegate for status changes (running/starting/stopping/..) with their own event without need for parameters
+		/// </summary>
+		public delegate void SpecificServerStatusEvent();
+
 
 		/// <summary>
 		///     This event is raised before the server is going to start
@@ -75,60 +86,60 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler
 		/// <summary>
 		///     This event is raised before the server is going to start
 		/// </summary>
-		public static event ServerStatusEvent ServerStarting;
+		public static event SpecificServerStatusEvent ServerStarting;
 
 		private static void RaiseServerStarting()
 		{
 			CurrentState = ServerState.Starting;
-			ServerStatusEvent handler = ServerStarting;
+			SpecificServerStatusEvent handler = ServerStarting;
 			if (handler != null)
 			{
-				handler(CurrentState);
+				handler();
 			}
 		}
 
 		/// <summary>
 		///     This event is raised after the server has been started
 		/// </summary>
-		public static event ServerStatusEvent ServerStarted;
+		public static event SpecificServerStatusEvent ServerStarted;
 
 		private static void RaiseServerStarted()
 		{
 			CurrentState = ServerState.Running;
-			ServerStatusEvent handler = ServerStarted;
+			SpecificServerStatusEvent handler = ServerStarted;
 			if (handler != null)
 			{
-				handler(CurrentState);
+				handler();
 			}
 		}
 
 		/// <summary>
 		///     This event is raised when the server starts to shutdown
 		/// </summary>
-		public static event ServerStatusEvent ServerStopping;
+		public static event SpecificServerStatusEvent ServerStopping;
 
 		private static void RaiseServerStopping()
 		{
 			CurrentState = ServerState.Stopping;
-			ServerStatusEvent handler = ServerStopping;
+			SpecificServerStatusEvent handler = ServerStopping;
 			if (handler != null)
 			{
-				handler(CurrentState);
+				handler();
 			}
 		}
 
 		/// <summary>
 		///     This event is raised after the server has stopped
 		/// </summary>
-		public static event ServerStatusEvent ServerStopped;
+		public static event SpecificServerStatusEvent ServerStopped;
 
 		private static void RaiseServerStopped()
 		{
 			CurrentState = ServerState.Stopped;
-			ServerStatusEvent handler = ServerStopped;
+			SpecificServerStatusEvent handler = ServerStopped;
 			if (handler != null)
 			{
-				handler(CurrentState);
+				handler();
 			}
 		}
 
@@ -136,15 +147,15 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler
 		///     This event is raised if the server stopped, while the usual output ("stopping the server") wasn't detected. Could
 		///     be a crash!
 		/// </summary>
-		public static event ServerStatusEvent UnexpectedServerStop;
+		public static event SpecificServerStatusEvent UnexpectedServerStop;
 
 		private static void RaiseUnexpectedServerStop()
 		{
-			ServerStatusEvent handler = UnexpectedServerStop;
+			SpecificServerStatusEvent handler = UnexpectedServerStop;
 			CurrentState = ServerState.Stopped;
 			if (handler != null)
 			{
-				handler(CurrentState);
+				handler();
 			}
 		}
 

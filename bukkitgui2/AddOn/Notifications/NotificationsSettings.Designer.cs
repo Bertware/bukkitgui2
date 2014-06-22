@@ -38,6 +38,8 @@
 			this.chkOnPlayerKick = new System.Windows.Forms.CheckBox();
 			this.toolTip = new System.Windows.Forms.ToolTip(this.components);
 			this.gbBalloons = new System.Windows.Forms.GroupBox();
+			this.gbSound = new System.Windows.Forms.GroupBox();
+			this.label1 = new System.Windows.Forms.Label();
 			this.gbBalloons.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -137,10 +139,33 @@
 			this.gbBalloons.TabStop = false;
 			this.gbBalloons.Text = "Balloon settings";
 			// 
+			// gbSound
+			// 
+			this.gbSound.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.gbSound.Location = new System.Drawing.Point(3, 198);
+			this.gbSound.Name = "gbSound";
+			this.gbSound.Size = new System.Drawing.Size(554, 173);
+			this.gbSound.TabIndex = 8;
+			this.gbSound.TabStop = false;
+			this.gbSound.Text = "Sounds";
+			// 
+			// label1
+			// 
+			this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point(310, 7);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(247, 13);
+			this.label1.TabIndex = 9;
+			this.label1.Text = "All settings will take effect after the next GUI restart";
+			// 
 			// NotificationSettings
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.Controls.Add(this.label1);
+			this.Controls.Add(this.gbSound);
 			this.Controls.Add(this.gbBalloons);
 			this.Controls.Add(this.chkEnable);
 			this.Name = "NotificationSettings";
@@ -163,5 +188,7 @@
 		private System.Windows.Forms.CheckBox chkOnPlayerBan;
 		private System.Windows.Forms.CheckBox chkOnPlayerKick;
 		private System.Windows.Forms.GroupBox gbBalloons;
+		private System.Windows.Forms.GroupBox gbSound;
+		private System.Windows.Forms.Label label1;
 	}
 }

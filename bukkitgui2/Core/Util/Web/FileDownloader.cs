@@ -1,6 +1,6 @@
 ﻿// FileDownloader.cs in bukkitgui2/bukkitgui2
 // Created 2014/02/02
-// Last edited at 2014/06/07 21:18
+// Last edited at 2014/06/22 12:34
 // ©Bertware, visit http://bertware.net
 
 using System;

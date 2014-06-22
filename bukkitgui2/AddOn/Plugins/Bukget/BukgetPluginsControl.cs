@@ -1,8 +1,9 @@
 ﻿// BukgetPluginsControl.cs in bukkitgui2/bukkitgui2
 // Created 2014/01/17
-// Last edited at 2014/06/07 20:24
+// Last edited at 2014/06/22 12:34
 // ©Bertware, visit http://bertware.net
 
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3;
@@ -18,7 +19,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget
 			InitializeComponent();
 		}
 
-		private void BukgetPluginsControl_VisibleChanged(object sender, System.EventArgs e)
+		private void BukgetPluginsControl_VisibleChanged(object sender, EventArgs e)
 		{
 			if (!Visible || (_plugins != null && _plugins.Count >= 1)) return;
 			_plugins = api3.Bukget.GetMostPopularPlugins(20);

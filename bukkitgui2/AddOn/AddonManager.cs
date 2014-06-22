@@ -1,6 +1,6 @@
 ﻿// AddonManager.cs in bukkitgui2/bukkitgui2
 // Created 2014/05/17
-// Last edited at 2014/06/22 0:16
+// Last edited at 2014/06/22 12:34
 // ©Bertware, visit http://bertware.net
 
 using System;
@@ -79,7 +79,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn
 			{
 				if (String.IsNullOrEmpty(T.Name)) continue;
 				if ((T.Name != "Console" && T.Name != "Settings" && T.Name != "Starter") &&
-				    Config.ReadInt(CfgIdent, "enable_" + T.Name, 1) == 0) continue;
+				    Config.ReadBool(CfgIdent, "enable_" + T.Name, true) == false) continue;
 
 				CreateAddon(T.FullName);
 			}

@@ -1,6 +1,6 @@
 ﻿// Logger.cs in bukkitgui2/bukkitgui2
 // Created 2014/01/17
-// Last edited at 2014/06/07 20:24
+// Last edited at 2014/06/22 12:34
 // ©Bertware, visit http://bertware.net
 
 using System;
@@ -28,6 +28,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Logging
 		/// </summary>
 		internal static void Dispose()
 		{
+
 		}
 
 		/// <summary>
@@ -40,7 +41,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Logging
 		public static void Log(LogLevel level, string origin, string message, string details = "")
 		{
 			//Always log to console, there are no dependencies for this
-			string debugLine = TimeStamp() + " " + FormatLevel(level) + " " + origin + " : " + message;
+			string debugLine = TimeStamp() + " " + FormatLevel(level) + " " + origin.ToLower() + " : " + message;
 			if (!String.IsNullOrEmpty(details)) debugLine += " (" + details + ")";
 			debugLine += ";";
 			Debug.WriteLine(debugLine);
@@ -48,6 +49,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Logging
 			//if initialized, also log to file
 			if (IsInitialized)
 			{
+				// TODO: write to file
 			}
 		}
 
@@ -57,6 +59,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Logging
 		/// <param name="savelocation">The location to save the log file. If empty default location will be used</param>
 		internal static void SaveFile(string savelocation)
 		{
+			// TODO: write to file
 		}
 
 		private static string TimeStamp()

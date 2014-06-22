@@ -1,15 +1,13 @@
 ﻿// QuickButtons.cs in bukkitgui2/bukkitgui2
 // Created 2014/01/17
-// Last edited at 2014/06/07 20:24
+// Last edited at 2014/06/22 12:44
 // ©Bertware, visit http://bertware.net
 
 using System;
 using System.Windows.Forms;
-using Net.Bertware.Bukkitgui2.AddOn;
 using Net.Bertware.Bukkitgui2.AddOn.Starter;
 using Net.Bertware.Bukkitgui2.Core;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler;
-using Net.Bertware.Bukkitgui2.UI;
 
 namespace Net.Bertware.Bukkitgui2.Controls.QuickButtons
 {
@@ -18,65 +16,37 @@ namespace Net.Bertware.Bukkitgui2.Controls.QuickButtons
 		public QuickButtons()
 		{
 			InitializeComponent();
-			ProcessHandler.ServerStarting += HandleServerStarting;
-			ProcessHandler.ServerStarted += HandleServerStarted;
-			ProcessHandler.ServerStopped += HandleServerStopped;
-			ProcessHandler.ServerStopping += HandleServerStopping;
+			ProcessHandler.ServerStatusChanged += HandleServerStatusChange;
 		}
 
-		private void HandleServerStarting()
+		private void HandleServerStatusChange(ServerState currentState)
 		{
 			//suport for calls from other threads
 			if (InvokeRequired)
 			{
-				Invoke((MethodInvoker) (HandleServerStarting));
+				Invoke((MethodInvoker)(() => HandleServerStatusChange(currentState)));
 			}
 			else
 			{
-				btnStartStop.Enabled = false;
-				btnStartStop.Text = Locale.Tr("Starting...");
-			}
-		}
-
-		private void HandleServerStarted()
-		{
-			//suport for calls from other threads
-			if (InvokeRequired)
-			{
-				Invoke((MethodInvoker) (HandleServerStarted));
-			}
-			else
-			{
-				btnStartStop.Enabled = true;
-				btnStartStop.Text = Locale.Tr("Stop");
-			}
-		}
-
-		private void HandleServerStopping()
-		{
-			//suport for calls from other threads
-			if (InvokeRequired)
-			{
-				Invoke((MethodInvoker) (HandleServerStopping));
-			}
-			else
-			{
-				btnStartStop.Enabled = false;
-				btnStartStop.Text = Locale.Tr("Stopping...");
-			}
-		}
-
-		private void HandleServerStopped()
-		{
-			//suport for calls from other threads
-			if (InvokeRequired)
-			{
-				Invoke((MethodInvoker) (HandleServerStopped));
-			}
-			else
-			{
-				btnStartStop.Enabled = true;
-				btnStartStop.Text = Locale.Tr("Start");
+				switch (currentState)
+				{
+					case ServerState.Starting:
+						btnStartStop.Enabled = false;
+						btnStartStop.Text = Locale.Tr("Starting...");
+						break;
+					case ServerState.Running:
+						btnStartStop.Enabled = true;
+						btnStartStop.Text = Locale.Tr("Stop");
+						break;
+					case ServerState.Stopping:
+						btnStartStop.Enabled = false;
+						btnStartStop.Text = Locale.Tr("Stopping...");
+						break;
+					case ServerState.Stopped:
+						btnStartStop.Enabled = true;
+						btnStartStop.Text = Locale.Tr("Start");
+						break;
+				}
 			}
 		}
 
@@ -95,10 +65,6 @@ namespace Net.Bertware.Bukkitgui2.Controls.QuickButtons
 				}
 				else
 				{
-					if (!(ParentForm is MainForm))
-					{
-						return; //check if the parent form is a mainform
-					}
 					Starter.StartServer(); // Launch with tab settings
 				}
 			}

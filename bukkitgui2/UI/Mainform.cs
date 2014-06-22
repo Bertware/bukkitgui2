@@ -1,6 +1,6 @@
 ﻿// MainForm.cs in bukkitgui2/bukkitgui2
 // Created 2014/01/30
-// Last edited at 2014/06/17 12:52
+// Last edited at 2014/06/22 12:50
 // ©Bertware, visit http://bertware.net
 
 using System;
@@ -42,83 +42,57 @@ namespace Net.Bertware.Bukkitgui2.UI
 		{
 			if (InvokeRequired)
 			{
-				this.Invoke(new MethodInvoker(ShowForm));
+				Invoke(new MethodInvoker(ShowForm));
 			}
 			else
 			{
-				this.Show();
+				Show();
 			}
 		}
 
 		private void Initialize()
 		{
 			MinecraftOutputHandler.OutputParsed += HandleOutput;
-			ProcessHandler.ServerStarting += HandleServerStarting;
-			ProcessHandler.ServerStarted += HandleServerStarted;
-			ProcessHandler.ServerStopped += HandleServerStopped;
-			ProcessHandler.ServerStopping += HandleServerStopping;
+			ProcessHandler.ServerStatusChanged += HandleServerStatusChange;
 		}
 
-		private void HandleServerStarting()
+		private void HandleServerStatusChange(ServerState currentState)
 		{
 			//suport for calls from other threads
 			if (InvokeRequired)
 			{
-				Invoke((MethodInvoker) (HandleServerStarting));
+				Invoke((MethodInvoker) (() => HandleServerStatusChange(currentState)));
 			}
 			else
 			{
-				LblToolsMainServerState.Text = Locale.Tr("Starting...");
-				ToolStripBtnStartStop.Enabled = false;
-				ToolStripBtnStartStop.Text = Locale.Tr("Starting...");
+				switch (currentState)
+				{
+					case ServerState.Starting:
+						LblToolsMainServerState.Text = Locale.Tr("Starting...");
+						ToolStripBtnStartStop.Enabled = false;
+						ToolStripBtnStartStop.Text = Locale.Tr("Starting...");
+						break;
+					case ServerState.Running:
+						LblToolsMainServerState.Text = Locale.Tr("Server running");
+						ToolStripBtnStartStop.Enabled = true;
+						ToolStripBtnStartStop.Text = Locale.Tr("Stop");
+						break;
+
+					case ServerState.Stopping:
+						LblToolsMainServerState.Text = Locale.Tr("Stopping...");
+						ToolStripBtnStartStop.Enabled = false;
+						ToolStripBtnStartStop.Text = Locale.Tr("Stopping...");
+						break;
+					case ServerState.Stopped:
+						LblToolsMainServerState.Text = Locale.Tr("Stopped");
+
+						ToolStripBtnStartStop.Enabled = true;
+						ToolStripBtnStartStop.Text = Locale.Tr("Start");
+						break;
+				}
 			}
 		}
 
-		private void HandleServerStarted()
-		{
-			//suport for calls from other threads
-			if (InvokeRequired)
-			{
-				Invoke((MethodInvoker) (HandleServerStarted));
-			}
-			else
-			{
-				LblToolsMainServerState.Text = Locale.Tr("Server running");
-				ToolStripBtnStartStop.Enabled = true;
-				ToolStripBtnStartStop.Text = Locale.Tr("Stop");
-			}
-		}
-
-		private void HandleServerStopping()
-		{
-			//suport for calls from other threads
-			if (InvokeRequired)
-			{
-				Invoke((MethodInvoker) (HandleServerStopping));
-			}
-			else
-			{
-				LblToolsMainServerState.Text = Locale.Tr("Stopping...");
-				ToolStripBtnStartStop.Enabled = false;
-				ToolStripBtnStartStop.Text = Locale.Tr("Stopping...");
-			}
-		}
-
-		private void HandleServerStopped()
-		{
-			//suport for calls from other threads
-			if (InvokeRequired)
-			{
-				Invoke((MethodInvoker) (HandleServerStopped));
-			}
-			else
-			{
-				LblToolsMainServerState.Text = Locale.Tr("Stopped");
-
-				ToolStripBtnStartStop.Enabled = true;
-				ToolStripBtnStartStop.Text = Locale.Tr("Start");
-			}
-		}
 
 		/// <summary>
 		///     Handle output from the server and print it to the bottom of the screen
@@ -174,7 +148,7 @@ namespace Net.Bertware.Bukkitgui2.UI
 			{
 				case "console":
 					return 0;
-				case "playerlist":
+				case "players":
 					return 1;
 				case "starter":
 					return 2;
@@ -218,6 +192,25 @@ namespace Net.Bertware.Bukkitgui2.UI
 			}
 		}
 
+
+		private void ToolStripBtnRestart_Click(object sender, EventArgs e)
+		{
+			//suport for calls from other threads
+			if (InvokeRequired)
+			{
+				Invoke((MethodInvoker) (() => ToolStripBtnStartStop_Click(sender, e)));
+			}
+			else
+			{
+				Starter.RestartServer(); // Launch with tab settings
+			}
+		}
+
+		/// <summary>
+		///     Check if a server is still running before closing the GUI
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
 		{
 			if (!ProcessHandler.IsRunning) return;
@@ -231,12 +224,12 @@ namespace Net.Bertware.Bukkitgui2.UI
 					Starter.StopServer();
 					return;
 				}
-
+				// ask what to do
 				DialogResult result = MessageBox.Show(
 					Translator.Tr(
 						"The server is still running. Closing it without a proper stop might result in data loss. Send stop command first?"),
 					Translator.Tr("Server still running"), MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
-				
+
 				// execute a correct action based upon user input
 				switch (result)
 				{
@@ -264,17 +257,17 @@ namespace Net.Bertware.Bukkitgui2.UI
 		}
 
 		/// <summary>
-		/// Close this form thread-safe
+		///     Close this form thread-safe
 		/// </summary>
 		private void SafeFormClose()
 		{
 			if (InvokeRequired)
 			{
-				this.Invoke(new MethodInvoker(SafeFormClose));
+				Invoke(new MethodInvoker(SafeFormClose));
 			}
 			else
 			{
-				this.Close();
+				Close();
 			}
 		}
 	}

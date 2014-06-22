@@ -1,15 +1,15 @@
 ﻿// Console.cs in bukkitgui2/bukkitgui2
 // Created 2014/01/17
-// Last edited at 2014/06/07 20:24
+// Last edited at 2014/06/22 12:34
 // ©Bertware, visit http://bertware.net
 
+using System;
 using System.Windows.Forms;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Console
 {
 	internal class Console : IAddon
 	{
-
 		/// <summary>
 		///     The addon name, ideally this name is the same as used in the tabpage
 		/// </summary>
@@ -41,6 +41,11 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 		{
 			TabPage = new ConsoleTab {Text = Name, ParentAddon = this};
 			ConfigPage = new ConsoleSettings();
+		}
+
+		public void Dispose()
+		{
+			throw new NotImplementedException();
 		}
 
 		/// <summary>

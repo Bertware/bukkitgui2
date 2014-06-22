@@ -1,6 +1,6 @@
 ﻿// MinecraftServerBase.cs in bukkitgui2/bukkitgui2
 // Created 2014/01/17
-// Last edited at 2014/06/07 20:24
+// Last edited at 2014/06/22 12:34
 // ©Bertware, visit http://bertware.net
 
 using System;
@@ -78,8 +78,9 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers
 		///     Anything
 		/// </summary>
 		public const string RG_WILDCARD = "(.*)";
+
 		/// <summary>
-		/// Stacktrace, like "at net.minecraft.server ...
+		///     Stacktrace, like "at net.minecraft.server ...
 		/// </summary>
 		public const string RG_STACKTRACE = "at (\\w+\\.){2}\\w+\\s";
 
@@ -253,7 +254,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers
 			{
 				type = MessageType.PlayerLeave;
 			}
-			// stacktraces
+				// stacktraces
 			else if (Regex.IsMatch(
 				text,
 				"^" + RG_SPACE + RG_STACKTRACE,

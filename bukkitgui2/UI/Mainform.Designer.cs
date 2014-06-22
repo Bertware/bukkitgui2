@@ -93,19 +93,20 @@
 			// ToolStripBtnReload
 			// 
 			this.ToolStripBtnReload.Name = "ToolStripBtnReload";
-			this.ToolStripBtnReload.Size = new System.Drawing.Size(110, 22);
+			this.ToolStripBtnReload.Size = new System.Drawing.Size(152, 22);
 			this.ToolStripBtnReload.Text = "Reload";
 			// 
 			// ToolStripBtnRestart
 			// 
 			this.ToolStripBtnRestart.Name = "ToolStripBtnRestart";
-			this.ToolStripBtnRestart.Size = new System.Drawing.Size(110, 22);
+			this.ToolStripBtnRestart.Size = new System.Drawing.Size(152, 22);
 			this.ToolStripBtnRestart.Text = "Restart";
+			this.ToolStripBtnRestart.Click += new System.EventHandler(this.ToolStripBtnRestart_Click);
 			// 
 			// ToolStripBtnStartStop
 			// 
 			this.ToolStripBtnStartStop.Name = "ToolStripBtnStartStop";
-			this.ToolStripBtnStartStop.Size = new System.Drawing.Size(110, 22);
+			this.ToolStripBtnStartStop.Size = new System.Drawing.Size(152, 22);
 			this.ToolStripBtnStartStop.Text = "Start";
 			this.ToolStripBtnStartStop.Click += new System.EventHandler(this.ToolStripBtnStartStop_Click);
 			// 

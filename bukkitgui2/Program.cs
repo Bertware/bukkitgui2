@@ -1,6 +1,6 @@
 ﻿// Program.cs in bukkitgui2/bukkitgui2
 // Created 2014/01/17
-// Last edited at 2014/06/07 20:25
+// Last edited at 2014/06/22 12:34
 // ©Bertware, visit http://bertware.net
 
 using System;
@@ -13,8 +13,8 @@ namespace Net.Bertware.Bukkitgui2
 {
 	internal static class Program
 	{
-
 		public static MainForm MainFormReference;
+
 		/// <summary>
 		///     The main entry point for the application.
 		/// </summary>

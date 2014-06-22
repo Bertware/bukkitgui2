@@ -1,4 +1,9 @@
-﻿using System;
+﻿// ServerStopDialog.cs in bukkitgui2/bukkitgui2
+// Created 2014/06/17
+// Last edited at 2014/06/22 12:34
+// ©Bertware, visit http://bertware.net
+
+using System;
 using System.Windows.Forms;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler;
 
@@ -14,30 +19,29 @@ namespace Net.Bertware.Bukkitgui2.UI
 
 		private void btnCancel_Click(object sender, EventArgs e)
 		{
-			this.DialogResult = DialogResult.Cancel;
-
+			DialogResult = DialogResult.Cancel;
 		}
 
 		private void ServerStopDialog_Load(object sender, EventArgs e)
 		{
 			if (ProcessHandler.CurrentState == ServerState.Stopped)
 			{
-				this.DialogResult = DialogResult.OK;
-				this.Close();
+				DialogResult = DialogResult.OK;
+				Close();
 			}
 			ProcessHandler.ServerStopped += Return;
 		}
 
 		private void Return()
 		{
-			if (this.InvokeRequired)
+			if (InvokeRequired)
 			{
-				this.Invoke(new MethodInvoker(Return));
+				Invoke(new MethodInvoker(Return));
 			}
 			else
 			{
-				this.DialogResult = DialogResult.OK;
-				this.Close();
+				DialogResult = DialogResult.OK;
+				Close();
 			}
 		}
 	}

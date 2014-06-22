@@ -1,6 +1,6 @@
 ﻿// BukkitServer.cs in bukkitgui2/bukkitgui2
 // Created 2014/01/17
-// Last edited at 2014/06/07 20:24
+// Last edited at 2014/06/22 12:34
 // ©Bertware, visit http://bertware.net
 
 using System;
@@ -8,8 +8,8 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Text.RegularExpressions;
-using Net.Bertware.Bukkitgui2.AddOn;
 using Net.Bertware.Bukkitgui2.AddOn.Starter;
+using Net.Bertware.Bukkitgui2.Core.Util.Web;
 using Net.Bertware.Bukkitgui2.MinecraftServers.Tools.bukkit;
 using Net.Bertware.Bukkitgui2.Properties;
 
@@ -80,21 +80,21 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers.Servers
 		public override bool DownloadDevVersion(string targetfile)
 		{
 			string source = Dlb.GetlatestVersionInfo(Dlb.BukkitVersionType.Dev).FileUrl;
-			Core.Util.Web.WebUtil.DownloadFile(source, targetfile, true);
+			WebUtil.DownloadFile(source, targetfile, true);
 			return true;
 		}
 
 		public override bool DownloadBetaVersion(string targetfile)
 		{
 			string source = Dlb.GetlatestVersionInfo(Dlb.BukkitVersionType.Beta).FileUrl;
-			Core.Util.Web.WebUtil.DownloadFile(source, targetfile, true);
+			WebUtil.DownloadFile(source, targetfile, true);
 			return true;
 		}
 
 		public override bool DownloadRecommendedVersion(string targetfile)
 		{
 			string source = Dlb.GetlatestVersionInfo(Dlb.BukkitVersionType.Rb).FileUrl;
-			Core.Util.Web.WebUtil.DownloadFile(source, targetfile, true);
+			WebUtil.DownloadFile(source, targetfile, true);
 			return true;
 		}
 

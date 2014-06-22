@@ -1,8 +1,9 @@
 ﻿// Forwarder.cs in bukkitgui2/bukkitgui2
 // Created 2014/01/17
-// Last edited at 2014/06/07 20:24
+// Last edited at 2014/06/22 12:34
 // ©Bertware, visit http://bertware.net
 
+using System;
 using System.Windows.Forms;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Forwarder
@@ -41,6 +42,11 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Forwarder
 		public void Initialize()
 		{
 			_tab = new ForwarderTab {Text = Name, ParentAddon = this};
+		}
+
+		public void Dispose()
+		{
+			throw new NotImplementedException();
 		}
 
 		public UserControl TabPage { get; private set; }

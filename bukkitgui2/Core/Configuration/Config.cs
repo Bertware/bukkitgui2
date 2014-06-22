@@ -1,6 +1,6 @@
 ﻿// Config.cs in bukkitgui2/bukkitgui2
 // Created 2014/01/17
-// Last edited at 2014/06/07 20:24
+// Last edited at 2014/06/22 12:34
 // ©Bertware, visit http://bertware.net
 
 using System;
@@ -242,6 +242,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Configuration
 			Logger.Log(LogLevel.Info, "Config", "Saved value", id + ":" + value);
 			return true;
 		}
+
 		/// <summary>
 		///     Read a boolean value from config
 		/// </summary>
@@ -249,11 +250,14 @@ namespace Net.Bertware.Bukkitgui2.Core.Configuration
 		/// <param name="key">The config key</param>
 		/// <param name="defaultValue">The default value if the element doesn't exist</param>
 		/// <returns>Returns the requested value</returns>
-		public static Boolean ReadBool(string parent, string key, Boolean defaultValue)
+		public static Boolean ReadBool(string parent, string key, Boolean defaultBooleanValue)
 		{
+			int defaultValue = 0;
+			if (defaultBooleanValue) defaultValue = 1;
+
 			if (!IsInitialized)
 			{
-				return defaultValue;
+				return defaultBooleanValue;
 			}
 
 			string id = parent + "_" + key;
@@ -264,12 +268,12 @@ namespace Net.Bertware.Bukkitgui2.Core.Configuration
 			{
 				int value = int.Parse(_cache[id]);
 				Logger.Log(LogLevel.Info, "Config", "Read value", id + ":" + value);
-				return (value==1);
+				return (value == 1);
 			}
 
 			_cache.Add(id, defaultValue.ToString(CultureInfo.InvariantCulture));
 			Logger.Log(LogLevel.Info, "Config", "Read value", id + ":" + defaultValue + " (default)");
-			return defaultValue;
+			return defaultBooleanValue;
 		}
 
 		/// <summary>

@@ -1,6 +1,6 @@
 ﻿// FileDownloadProgressBar.cs in bukkitgui2/bukkitgui2
 // Created 2014/04/06
-// Last edited at 2014/06/07 20:24
+// Last edited at 2014/06/22 12:34
 // ©Bertware, visit http://bertware.net
 
 using System;
@@ -66,10 +66,10 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Web
 
 			if (Regex.IsMatch(targetlocation, "\\w\\.\\{2,5}$"))
 			{
-						Filename = Regex.Match(targetlocation, "\\/[^\\\\\\/]+$").Value.Substring(1);
-						targetlocation = Regex.Replace(targetlocation, "[^\\\\/]\\.\\{2,5}$", "");
+				Filename = Regex.Match(targetlocation, "\\/[^\\\\\\/]+$").Value.Substring(1);
+				targetlocation = Regex.Replace(targetlocation, "[^\\\\/]\\.\\{2,5}$", "");
 			}
-			
+
 
 			Targetlocation = targetlocation;
 

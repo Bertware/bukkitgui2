@@ -1,8 +1,9 @@
 ﻿// Settings.cs in bukkitgui2/bukkitgui2
 // Created 2014/01/17
-// Last edited at 2014/06/07 20:24
+// Last edited at 2014/06/22 12:34
 // ©Bertware, visit http://bertware.net
 
+using System;
 using System.Windows.Forms;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Settings
@@ -28,6 +29,11 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Settings
 		public bool HasConfig
 		{
 			get { return false; }
+		}
+
+		public void Dispose()
+		{
+			throw new NotImplementedException();
 		}
 
 		/// <summary>
@@ -56,22 +62,21 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Settings
 		}
 
 		/// <summary>
-		/// Remove the settings control for a given addon
+		///     Remove the settings control for a given addon
 		/// </summary>
 		/// <param name="addon"></param>
 		/// <remarks>Reloading addons is highly discouraged! Only use if no other way is possible</remarks>
 		public void RemoveAddonSettings(IAddon addon)
 		{
-			
 		}
+
 		/// <summary>
-		/// Add the settings control for a given addon
+		///     Add the settings control for a given addon
 		/// </summary>
 		/// <param name="addon"></param>
 		/// <remarks>Reloading addons is highly discouraged! Only use if no other way is possible</remarks>
 		public void AddAddonSettings(IAddon addon)
 		{
-
 		}
 	}
 }
