@@ -3,7 +3,6 @@
 // Last edited at 2014/06/22 12:34
 // ©Bertware, visit http://bertware.net
 
-using System;
 using System.Windows.Forms;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Console
@@ -45,7 +44,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 
 		public void Dispose()
 		{
-			throw new NotImplementedException();
+			// nothing to do
 		}
 
 		/// <summary>

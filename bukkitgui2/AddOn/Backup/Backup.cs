@@ -46,7 +46,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Backup
 
 		public void Dispose()
 		{
-			throw new NotImplementedException();
+			// nothing to do
 		}
 
 		/// <summary>

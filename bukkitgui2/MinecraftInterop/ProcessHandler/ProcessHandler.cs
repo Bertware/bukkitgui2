@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Threading;
+using System.Windows.Forms;
 using Net.Bertware.Bukkitgui2.Core;
 using Net.Bertware.Bukkitgui2.Core.Logging;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler;
@@ -55,6 +56,32 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler
 			{
 				_currentState = value;
 				RaiseServerStatusChanged();
+			}
+		}
+
+		/// <summary>
+		/// Mark the server as stopping, in case this has been detected by an addon
+		/// </summary>
+		public  static void MarkServerAsStopping()
+		{
+			if (CurrentState == ServerState.Running ||CurrentState == ServerState.Starting) CurrentState = ServerState.Stopping;
+		}
+		/// <summary>
+		///     Delegate for status changes (running/starting/stopping/..) with their own event without need for parameters
+		/// </summary>
+		public delegate void ErrorOutputReceivedHandler(String output);
+
+		/// <summary>
+		///     This event is raised before the server is going to start
+		/// </summary>
+		public static event ErrorOutputReceivedHandler ErrorOutputReceived;
+
+		private static void RaiseErrorOutputReceived(string output)
+		{
+			ErrorOutputReceivedHandler handler = ErrorOutputReceived;
+			if (handler != null)
+			{
+				handler(output);
 			}
 		}
 
@@ -239,6 +266,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler
 
 		private static void HandleStop(object sender, EventArgs e)
 		{
+			if (CurrentState != ServerState.Stopping) RaiseUnexpectedServerStop();
 			ServerProcess.Exited -= HandleStop;
 			StopThreads();
 			RaiseServerStopped();
@@ -277,7 +305,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler
 					if (string.IsNullOrEmpty(output)) continue;
 
 					Logger.Log(LogLevel.Debug, "LocalProcessHandler", "StdOut output: " + output);
-					MinecraftOutputHandler.HandleOutput(Server, output);
+					MinecraftOutputHandler.HandleOutput(Server, output,false);
 				}
 
 				//This should be false if we're stopping the server, so this is strange
@@ -298,7 +326,8 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler
 					if (string.IsNullOrEmpty(output)) continue;
 
 					Logger.Log(LogLevel.Debug, "LocalProcessHandler", "StdErr output: " + output);
-					MinecraftOutputHandler.HandleOutput(Server, output);
+					RaiseErrorOutputReceived(output);
+					MinecraftOutputHandler.HandleOutput(Server, output,true);
 				}
 			}
 		}

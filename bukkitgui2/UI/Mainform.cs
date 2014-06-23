@@ -5,6 +5,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
 using Net.Bertware.Bukkitgui2.AddOn;
@@ -19,20 +20,27 @@ namespace Net.Bertware.Bukkitgui2.UI
 {
 	public partial class MainForm : Form
 	{
+		public static MainForm Reference;
+		
 		public MainForm()
 		{
+			Reference = this;
 			Share.MainFormHandle = Handle; //Immediatly set the handle for form operations, tray issues, etc..
-
-			// We need to load all the background stuff before we can start running the application
-			// This can take a couple of seconds, so show a splashscreen
-			// We have a splashscreen class that loads everything multithreaded, we just need it to show and wait until it's finished.
-			SplashScreen splash = new SplashScreen(); // Create splashscreen
-			splash.ShowDialog(); // Call ShowDialog(). This will show the splashscreen on foreground until it closes.
-
 			// Start loading everything to the UI
 			InitializeComponent();
 
+
+
+			// ____________ initializations here ____________ //
+			// no splash screen due to the limited initializing that should be performed
+
+			Share.Initialize();
+
+			// ____________ end  initializations ____________ //
+
 			Logger.Log(LogLevel.Info, "mainform", "starting to load mainform UI");
+
+		
 
 			LoadTabs();
 			Initialize();

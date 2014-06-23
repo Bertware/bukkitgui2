@@ -46,7 +46,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Forwarder
 
 		public void Dispose()
 		{
-			throw new NotImplementedException();
+			// nothing to do
 		}
 
 		public UserControl TabPage { get; private set; }

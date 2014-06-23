@@ -1,9 +1,13 @@
 ﻿// MinecraftOutputHandler.cs in bukkitgui2/bukkitgui2
 // Created 2014/02/05
-// Last edited at 2014/06/22 12:34
+// Last edited at 2014/06/23 13:06
 // ©Bertware, visit http://bertware.net
 
+using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
+using Net.Bertware.Bukkitgui2.AddOn.Starter;
+using Net.Bertware.Bukkitgui2.Core.Translation;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler.PlayerActions;
 using Net.Bertware.Bukkitgui2.MinecraftServers;
 
@@ -225,7 +229,8 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler
 		/// </summary>
 		/// <param name="text">output text to handle</param>
 		/// <param name="server">the server that should handle the output</param>
-		public static void HandleOutput(IMinecraftServer server, string text)
+		/// <param name="fromStandardErrorOut">Is this message received on the error stream?</param>
+		public static void HandleOutput(IMinecraftServer server, string text, Boolean fromStandardErrorOut = false)
 		{
 			RaiseOutputReceivedEvent(text);
 
@@ -237,21 +242,30 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler
 			{
 				case MessageType.Info:
 					RaiseInfoMessageReceivedEvent(text, result);
+
+					// detect an issued stop command (so the GUI knows this isn't a crash)
+					if (result.Message == "[INFO] Stopping server" || result.Message == "[INFO] Stopping the server")
+						ProcessHandler.ProcessHandler.MarkServerAsStopping();
+
 					break;
 
 				case MessageType.Warning:
 					RaiseWarningMessageReceivedEvent(text, result);
+					CheckErrorCause(result.Message); //failed to bind to port comes on standardout, so we need to check anyway
 					break;
 
 				case MessageType.Severe:
 					RaiseSevereMessageReceivedEvent(text, result);
+					CheckErrorCause(result.Message);
 					break;
 
 				case MessageType.JavaStackTrace:
 					RaiseJavaStackStraceMessageReceivedEvent(text, result);
+					if (fromStandardErrorOut) CheckErrorCause(result.Message);
 					break;
 				case MessageType.JavaStatus:
 					RaiseJavaStatusMessageReceivedEvent(text, result);
+					if (fromStandardErrorOut) CheckErrorCause(result.Message);
 					break;
 				case MessageType.PlayerJoin:
 					RaisePlayerJoinEvent(text, result, result.Action);
@@ -273,7 +287,38 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler
 					break;
 				default:
 					RaiseUnknownMessageReceivedEvent(text, result);
+					if (fromStandardErrorOut) CheckErrorCause(result.Message);
 					break;
+			}
+		}
+
+		/// <summary>
+		///     Check for a bunch of common errors, like port already in use or failiure to start java
+		/// </summary>
+		/// <param name="text"></param>
+		private static void CheckErrorCause(string text)
+		{
+			if (text == "Error: Unable to access jarfile")
+			{
+				MessageBox.Show(
+					Translator.Tr(
+						"Java couldn't open the .jar file you provided in the superstart tab. Make sure the path is correct and the file is valid. Try downloading the file again, and make sure the file is accessible."),
+					Translator.Tr("Unable to access .jar file"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return;
+			}
+
+			if (!ProcessHandler.ProcessHandler.ServerProcess.HasExited &&
+			    (text == "[WARN] Perhaps a server is already running on that port?" ||
+			     text == "[WARN] The exception was: java.net.BindException: Address already in use: bind"))
+			{
+				MessageBox.Show(
+					Translator.Tr(
+						"The server could not be started, because the port is already in use. Make sure there are no other servers running on this port." +
+						" An incorrectly stopped server could cause this. Make sure you have your server-ip= blank (in server.properties)." +
+						" Otherwise rebooting or logging out will resolve this issue. ") +
+					Environment.NewLine + "The exception was: java.net.BindException: Address already in use: bind",
+					Translator.Tr("Cannot bind to port"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+				Starter.KillServer();
 			}
 		}
 	}

@@ -111,7 +111,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 		{
 			if (OnlinePlayers.ContainsKey(player.Name)) return;
 
-			OnlinePlayers.Add(player.Name.ToLower(), player);
+			OnlinePlayers.Add(player.Name, player);
 			RaisePlayerListAdditionEvent(player);
 			RaisePlayerListChangedEvent();
 		}
@@ -121,9 +121,8 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 		/// </summary>
 		/// <param name="player">The player to remove</param>
 		public static void RemovePlayer(Player player)
-
 		{
-			if (!OnlinePlayers.ContainsKey(player.Name)) return;
+			if (player==null || !OnlinePlayers.ContainsKey(player.Name)) return;
 			OnlinePlayers.Remove(player.Name);
 			RaisePlayerListChangedEvent();
 			RaisePlayerListDeletionEvent(player);
@@ -143,7 +142,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 		/// <returns>Returns the player object if the player is found. Returns null if the player isn't found</returns>
 		public static Player GetOnlinePlayerByName(String name)
 		{
-			if (IsPlayerListed(name)) return OnlinePlayers[name];
+			if (OnlinePlayers.ContainsKey(name)) return OnlinePlayers[name];
 			return null;
 		}
 
@@ -154,13 +153,13 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 		/// <returns>Returns true if the player is listed, false if the player isn't found</returns>
 		public static Boolean IsPlayerListed(String name)
 		{
-			return OnlinePlayers.ContainsKey(name.ToLower());
+			return OnlinePlayers.ContainsKey(name);
 		}
 
 		/// <summary>
 		///     Handle a player disconnect event
 		/// </summary>
-		private static void HandlePlayerDisconnect(string text, OutputParseResult outputparseresult,
+		private static void HandlePlayerDisconnect(string text, OutputParseResult outputParseResult,
 			IPlayerAction playeraction)
 		{
 			RemovePlayer(GetOnlinePlayerByName(playeraction.PlayerName));
@@ -176,7 +175,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 		{
 			PlayerActionJoin join = (PlayerActionJoin) playeraction;
 
-			Player player = new Player(join.PlayerName, join.Ip, join.PlayerName) {JoinTime = @join.Time};
+			Player player = new Player(join.PlayerName, join.Ip, join.PlayerName) {JoinTime = join.Time};
 
 			AddPlayer(player);
 		}

@@ -48,7 +48,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.PlayerList
 
 		public void Dispose()
 		{
-			throw new NotImplementedException();
+			// nothing to do
 		}
 
 		/// <summary>

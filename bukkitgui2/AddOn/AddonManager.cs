@@ -7,9 +7,11 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Windows.Forms;
+using Net.Bertware.Bukkitgui2.Core;
 using Net.Bertware.Bukkitgui2.Core.Configuration;
 using Net.Bertware.Bukkitgui2.Core.Logging;
 using Net.Bertware.Bukkitgui2.Core.Util;
+using Net.Bertware.Bukkitgui2.UI;
 
 namespace Net.Bertware.Bukkitgui2.AddOn
 {
@@ -70,6 +72,11 @@ namespace Net.Bertware.Bukkitgui2.AddOn
 			AddonsDictionary = new Dictionary<string, IAddon>();
 			TabsDictionary = new Dictionary<IAddon, UserControl>();
 			SettingsDictionary = new Dictionary<IAddon, UserControl>();
+
+			// auto unload on exit
+			MainForm form = (MainForm)Control.FromHandle(Share.MainFormHandle);
+			form.Closing += HandleFormClose;
+
 			// Create and store a list with the loaded tabs, then load them to the UI.
 			// max 16 addons for now
 
@@ -85,6 +92,22 @@ namespace Net.Bertware.Bukkitgui2.AddOn
 			}
 
 			AddonsLoaded = true;
+		}
+
+		private static void HandleFormClose(object sender, System.ComponentModel.CancelEventArgs e)
+		{
+			UnloadAddons();
+		}
+
+		/// <summary>
+		/// Dispose all addons
+		/// </summary>
+		public static void UnloadAddons()
+		{
+			foreach (IAddon addon in AddonsDictionary.Values)
+			{
+				addon.Dispose();
+			}
 		}
 
 		/// <summary>

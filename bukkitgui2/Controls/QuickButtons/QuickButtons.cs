@@ -69,5 +69,10 @@ namespace Net.Bertware.Bukkitgui2.Controls.QuickButtons
 				}
 			}
 		}
+
+		private void btnCustom_Click(object sender, EventArgs e)
+		{
+			Starter.KillServer();
+		}
 	}
 }

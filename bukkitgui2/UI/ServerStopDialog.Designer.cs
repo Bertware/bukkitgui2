@@ -30,7 +30,8 @@
 		{
 			this.lblInfo = new System.Windows.Forms.Label();
 			this.btnCancel = new System.Windows.Forms.Button();
-			this.progressBar1 = new System.Windows.Forms.ProgressBar();
+			this.progBar = new System.Windows.Forms.ProgressBar();
+			this.btnKill = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// lblInfo
@@ -52,19 +53,31 @@
 			this.btnCancel.UseVisualStyleBackColor = true;
 			this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
 			// 
-			// progressBar1
+			// progBar
 			// 
-			this.progressBar1.Location = new System.Drawing.Point(12, 25);
-			this.progressBar1.Name = "progressBar1";
-			this.progressBar1.Size = new System.Drawing.Size(314, 23);
-			this.progressBar1.TabIndex = 2;
+			this.progBar.Location = new System.Drawing.Point(12, 25);
+			this.progBar.Name = "progBar";
+			this.progBar.Size = new System.Drawing.Size(314, 23);
+			this.progBar.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+			this.progBar.TabIndex = 2;
+			// 
+			// btnKill
+			// 
+			this.btnKill.Location = new System.Drawing.Point(170, 54);
+			this.btnKill.Name = "btnKill";
+			this.btnKill.Size = new System.Drawing.Size(75, 23);
+			this.btnKill.TabIndex = 3;
+			this.btnKill.Text = "&Kill";
+			this.btnKill.UseVisualStyleBackColor = true;
+			this.btnKill.Click += new System.EventHandler(this.btnKill_Click);
 			// 
 			// ServerStopDialog
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(338, 87);
-			this.Controls.Add(this.progressBar1);
+			this.Controls.Add(this.btnKill);
+			this.Controls.Add(this.progBar);
 			this.Controls.Add(this.btnCancel);
 			this.Controls.Add(this.lblInfo);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -81,6 +94,7 @@
 
 		private System.Windows.Forms.Label lblInfo;
 		private System.Windows.Forms.Button btnCancel;
-		private System.Windows.Forms.ProgressBar progressBar1;
+		private System.Windows.Forms.ProgressBar progBar;
+		private System.Windows.Forms.Button btnKill;
 	}
 }

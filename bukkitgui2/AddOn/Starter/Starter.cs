@@ -49,7 +49,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 
 		public void Dispose()
 		{
-			throw new NotImplementedException();
+			// nothing to do
 		}
 
 		/// <summary>
@@ -103,6 +103,11 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 		public static void StopServer()
 		{
 			ProcessHandler.StopServer();
+		}
+
+		public static void KillServer()
+		{
+			if (!ProcessHandler.ServerProcess.HasExited) ProcessHandler.ServerProcess.Kill();
 		}
 
 		public static string GetSelectedJavaPath()

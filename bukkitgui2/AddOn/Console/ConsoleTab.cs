@@ -1,6 +1,6 @@
 ﻿// ConsoleTab.cs in bukkitgui2/bukkitgui2
 // Created 2014/01/17
-// Last edited at 2014/06/22 12:34
+// Last edited at 2014/06/23 11:53
 // ©Bertware, visit http://bertware.net
 
 using System;
@@ -32,7 +32,14 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 		/// <param name="player"></param>
 		private void HandlePlayerDeletion(Player player)
 		{
-			SLVPlayers.Items.RemoveByKey(player.Name);
+			if (InvokeRequired)
+			{
+				Invoke((MethodInvoker)(() => HandlePlayerDeletion(player)));
+			}
+			else
+			{
+				SLVPlayers.Items.RemoveByKey(player.Name);
+			}
 		}
 
 		/// <summary>
@@ -41,9 +48,16 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 		/// <param name="player"></param>
 		private void HandlePlayerAddition(Player player)
 		{
-			String[] text = {player.Name, player.Ip};
-			ListViewItem lvi = new ListViewItem(text) {Tag = player.Name, Name = player.Name};
-			AddListViewItem(lvi);
+			if (InvokeRequired)
+			{
+				Invoke((MethodInvoker)(() => HandlePlayerAddition(player)));
+			}
+			else
+			{
+				String[] text = {player.Name, player.Ip};
+				ListViewItem lvi = new ListViewItem(text) {Tag = player.Name, Name = player.Name};
+				AddListViewItem(lvi);
+			}
 		}
 
 		/// <summary>
@@ -78,9 +92,16 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 		/// </summary>
 		private void HandleServerStop()
 		{
-			SLVPlayers.Items.Clear();
-			CIConsoleInput.ClearAutoCompletionHistory();
-			MCCOut.WriteOutput(MessageType.Info, "[GUI] The server has stopped");
+			if (InvokeRequired)
+			{
+				Invoke((MethodInvoker) HandleServerStop);
+			}
+			else
+			{
+				SLVPlayers.Items.Clear();
+				CIConsoleInput.ClearAutoCompletionHistory();
+				MCCOut.WriteOutput(MessageType.Info, "[GUI] The server has stopped");
+			}
 		}
 
 		/// <summary>

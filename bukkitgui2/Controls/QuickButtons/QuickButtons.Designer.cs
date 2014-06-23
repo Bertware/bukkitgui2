@@ -60,6 +60,7 @@
 			this.btnCustom.TabIndex = 2;
 			this.btnCustom.Text = "Custom";
 			this.btnCustom.UseVisualStyleBackColor = true;
+			this.btnCustom.Click += new System.EventHandler(this.btnCustom_Click);
 			// 
 			// QuickButtons
 			// 

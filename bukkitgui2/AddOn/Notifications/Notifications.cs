@@ -12,6 +12,7 @@ using Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler.PlayerActions;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler;
 using Net.Bertware.Bukkitgui2.Properties;
+using Net.Bertware.Bukkitgui2.UI;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Notifications
 {
@@ -45,16 +46,9 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Notifications
 
 			if (!Config.ReadBool(CfgIdent, "enable", false)) return;
 
-			if (Program.MainFormReference.Container != null)
-			{
-				_icon = new NotifyIcon(Program.MainFormReference.Container);
-			}
-			else
-			{
-				_icon = new NotifyIcon();
-			}
 
-			_icon.Icon = Resources.GUI_icon;
+			_icon = new NotifyIcon {Icon = Resources.GUI_icon, Visible = true};
+
 			_icon.DoubleClick += ShowMainForm;
 
 			BalloonDuration = Config.ReadInt(CfgIdent, "duration", 500);
@@ -73,7 +67,8 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Notifications
 		{
 			try
 			{
-				_icon.DoubleClick -= ShowMainForm;
+				_icon.Visible = false;
+				_icon.Dispose();
 				ProcessHandler.ServerStatusChanged -= ShowStatusTray;
 				MinecraftOutputHandler.PlayerJoin -= ShowJoinTray;
 				MinecraftOutputHandler.PlayerLeave -= ShowLeaveTray;
@@ -88,15 +83,15 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Notifications
 
 		private void ShowMainForm(object sender, EventArgs e)
 		{
-			Program.MainFormReference.ShowForm();
+			MainForm.Reference.ShowForm();
 		}
 
 		private void ShowStatusTray(ServerState state)
 		{
-			if (!_alwaysShowBalloons && Program.MainFormReference.Visible)
+			if (!_alwaysShowBalloons && MainForm.Reference.Visible)
 				return; // if visible and balloons shouldn't be shown always, don't show.
 
-			_icon.ShowBalloonTip(BalloonDuration, Translator.Tr("Server") + " " + state, Translator.Tr("The server is") + state,
+			_icon.ShowBalloonTip(BalloonDuration, Translator.Tr("Server") + " " + state, Translator.Tr("The server is") + " " + state.ToString().ToLower(),
 				ToolTipIcon.Info);
 		}
 
@@ -104,41 +99,41 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Notifications
 		private void ShowJoinTray(string text, OutputParseResult outputParseResult,
 			IPlayerAction playerAction)
 		{
-			if (!_alwaysShowBalloons && Program.MainFormReference.Visible)
+			if (!_alwaysShowBalloons && MainForm.Reference.Visible)
 				return; // if visible and balloons shouldn't be shown always, don't show.
 
-			_icon.ShowBalloonTip(BalloonDuration, playerAction.PlayerName + " " + Translator.Tr("joined the server"), text,
+			_icon.ShowBalloonTip(BalloonDuration, playerAction.PlayerName + " " + Translator.Tr("joined the server"), outputParseResult.Message,
 				ToolTipIcon.Info);
 		}
 
 		private void ShowLeaveTray(string text, OutputParseResult outputParseResult,
 			IPlayerAction playerAction)
 		{
-			if (!_alwaysShowBalloons && Program.MainFormReference.Visible)
+			if (!_alwaysShowBalloons && MainForm.Reference.Visible)
 				return; // if visible and balloons shouldn't be shown always, don't show.
 
-			_icon.ShowBalloonTip(BalloonDuration, playerAction.PlayerName + " " + Translator.Tr("left the server"), text,
+			_icon.ShowBalloonTip(BalloonDuration, playerAction.PlayerName + " " + Translator.Tr("left the server"), outputParseResult.Message,
 				ToolTipIcon.Info);
 		}
 
 		private void ShowKickTray(string text, OutputParseResult outputParseResult,
 			IPlayerAction playerAction)
 		{
-			if (!_alwaysShowBalloons && Program.MainFormReference.Visible)
+			if (!_alwaysShowBalloons && MainForm.Reference.Visible)
 				return; // if visible and balloons shouldn't be shown always, don't show.
 
 			_icon.ShowBalloonTip(BalloonDuration, playerAction.PlayerName + " " + Translator.Tr("was kicked from the server"),
-				text, ToolTipIcon.Warning);
+				outputParseResult.Message, ToolTipIcon.Warning);
 		}
 
 		private void ShowBanTray(string text, OutputParseResult outputParseResult,
 			IPlayerAction playerAction)
 		{
-			if (!_alwaysShowBalloons && Program.MainFormReference.Visible)
+			if (!_alwaysShowBalloons && MainForm.Reference.Visible)
 				return; // if visible and balloons shouldn't be shown always, don't show.
 
 			_icon.ShowBalloonTip(BalloonDuration, playerAction.PlayerName + " " + Translator.Tr("was banned from the server"),
-				text, ToolTipIcon.Warning);
+				outputParseResult.Message, ToolTipIcon.Warning);
 		}
 
 
