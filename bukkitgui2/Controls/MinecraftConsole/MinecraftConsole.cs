@@ -1,6 +1,6 @@
 ﻿// MinecraftConsole.cs in bukkitgui2/bukkitgui2
 // Created 2014/01/17
-// Last edited at 2014/06/22 12:34
+// Last edited at 2014/06/24 19:10
 // ©Bertware, visit http://bertware.net
 
 using System;
@@ -60,12 +60,19 @@ namespace Net.Bertware.Bukkitgui2.Controls.MinecraftConsole
 		/// </summary>
 		public Boolean ShowTime { get; set; }
 
+		/// <summary>
+		///     Autoscroll down or not
+		/// </summary>
+		public Boolean Autoscroll { get; set; }
+
 		public MinecraftConsole()
 		{
 			MessageColorInfo = Color.Blue;
 			MessageColorPlayerAction = Color.DarkGreen;
 			MessageColorSevere = Color.DarkRed;
 			MessageColorWarning = Color.DarkOrange;
+			CreateContextMenu();
+			Autoscroll = true;
 		}
 
 		public void ScrollDown()
@@ -117,6 +124,7 @@ namespace Net.Bertware.Bukkitgui2.Controls.MinecraftConsole
 				SelectionStart = TextLength;
 				SelectionColor = messageColor;
 				SelectedText = text + '\r' + '\n';
+				if (Autoscroll) Scrolldown();
 			}
 		}
 
@@ -130,6 +138,30 @@ namespace Net.Bertware.Bukkitgui2.Controls.MinecraftConsole
 			if (ShowTime) text = DateTime.Now.ToLongTimeString() + ' ' + text;
 			if (ShowDate) text = DateTime.Now.ToShortDateString() + ' ' + text;
 			return text;
+		}
+
+		/// <summary>
+		///     Scroll to the bottom of the text
+		/// </summary>
+		private void Scrolldown()
+		{
+			SelectionStart = TextLength;
+			ScrollToCaret();
+		}
+
+
+		private void CreateContextMenu()
+		{
+			MenuItem[] menuItem = new MenuItem[1];
+			menuItem[0] = new MenuItem("Autoscroll", ToggleAutoScroll) {Checked = Autoscroll, Enabled = true};
+			ContextMenu cm = new ContextMenu(menuItem);
+			ContextMenu = cm;
+		}
+
+		private void ToggleAutoScroll(object sender, EventArgs e)
+		{
+			Autoscroll = !Autoscroll;
+			ContextMenu.MenuItems[0].Checked = Autoscroll;
 		}
 	}
 }

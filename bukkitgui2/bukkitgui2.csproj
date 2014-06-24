@@ -89,6 +89,18 @@
       <DependentUpon>InstalledPluginsControl.cs</DependentUpon>
     </Compile>
     <Compile Include="AddOn\Starter\JavaApi.cs" />
+    <Compile Include="AddOn\Tasker\TaskerDialog\TaskerUI\ActionPicker.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AddOn\Tasker\TaskerDialog\TaskerUI\ActionPicker.Designer.cs">
+      <DependentUpon>ActionPicker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddOn\Tasker\TaskerDialog\TaskEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddOn\Tasker\TaskerDialog\TaskEditor.Designer.cs">
+      <DependentUpon>TaskEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddOn\Tasker\TaskerDialog\TaskerUI\TimeInput.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -107,6 +119,12 @@
     </Compile>
     <Compile Include="AddOn\Notifications\NotificationsSettings.Designer.cs">
       <DependentUpon>NotificationsSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddOn\Tasker\TaskerDialog\TaskerUI\TriggerPicker.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AddOn\Tasker\TaskerDialog\TaskerUI\TriggerPicker.Designer.cs">
+      <DependentUpon>TriggerPicker.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\ConsoleInput\ConsoleInput.cs">
       <SubType>Component</SubType>
@@ -301,6 +319,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddOn\Starter\StarterTab.resx">
       <DependentUpon>StarterTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddOn\Tasker\TaskerDialog\TaskerUI\ActionPicker.resx">
+      <DependentUpon>ActionPicker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddOn\Tasker\TaskerDialog\TaskerUI\MultiStringInput.resx">
+      <DependentUpon>MultiStringInput.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddOn\Tasker\TaskerDialog\TaskEditor.resx">
+      <DependentUpon>TaskEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddOn\Tasker\TaskerDialog\TaskerUI\TriggerPicker.resx">
+      <DependentUpon>TriggerPicker.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddOn\Tasker\TaskerTab.resx">
       <DependentUpon>TaskerTab.cs</DependentUpon>

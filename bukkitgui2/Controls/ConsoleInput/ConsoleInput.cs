@@ -29,6 +29,7 @@ namespace Net.Bertware.Bukkitgui2.Controls.ConsoleInput
 		public ConsoleInput()
 		{
 			KeyPress += HandleKeyPress;
+			CreateContextMenu();
 		}
 
 		/// <summary>
@@ -66,6 +67,20 @@ namespace Net.Bertware.Bukkitgui2.Controls.ConsoleInput
 			{
 				AutoCompleteCustomSource.Clear();
 			}
+		}
+
+		private void CreateContextMenu()
+		{
+			MenuItem[] menuItem = new MenuItem[1];
+			menuItem[0] = new MenuItem("Autocompletion", ToggleAutoCompletion) { Checked = this.AutoCompletion, Enabled = true };
+			System.Windows.Forms.ContextMenu cm = new ContextMenu(menuItem);
+			ContextMenu = cm;
+		}
+
+		private void ToggleAutoCompletion(object sender, EventArgs e)
+		{
+			this.AutoCompletion = !this.AutoCompletion;
+			ContextMenu.MenuItems[0].Checked = this.AutoCompletion;
 		}
 	}
 }

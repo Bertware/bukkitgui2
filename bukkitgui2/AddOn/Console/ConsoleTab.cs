@@ -4,7 +4,9 @@
 // ©Bertware, visit http://bertware.net
 
 using System;
+using System.Drawing;
 using System.Windows.Forms;
+using Net.Bertware.Bukkitgui2.Core.Configuration;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler;
@@ -24,6 +26,13 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			CIConsoleInput.CommandSent += HandleCommandSent;
 			PlayerHandler.PlayerListAddition += HandlePlayerAddition;
 			PlayerHandler.PlayerListDeletion += HandlePlayerDeletion;
+
+			CIConsoleInput.AutoCompletion = Config.ReadBool("console", "autocompletion", true);
+			MCCOut.MessageColorInfo = Color.FromArgb(Config.ReadInt("console", "color_info", Color.Blue.ToArgb()));
+			MCCOut.MessageColorPlayerAction = Color.FromArgb(Config.ReadInt("console", "color_info", Color.DarkGreen.ToArgb()));
+			MCCOut.MessageColorSevere = Color.FromArgb(Config.ReadInt("console", "color_info", Color.DarkRed.ToArgb()));
+			MCCOut.MessageColorWarning = Color.FromArgb(Config.ReadInt("console", "color_info", Color.DarkOrange.ToArgb()));
+				
 		}
 
 		/// <summary>
