@@ -13,5 +13,6 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 		{
 			InitializeComponent();
 		}
+
 	}
 }

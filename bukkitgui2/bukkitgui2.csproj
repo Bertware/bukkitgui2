@@ -126,6 +126,12 @@
     <Compile Include="AddOn\Tasker\TaskerDialog\TaskerUI\TriggerPicker.Designer.cs">
       <DependentUpon>TriggerPicker.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ColorPicker\ColorPicker.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ColorPicker\ColorPicker.Designer.cs">
+      <DependentUpon>ColorPicker.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ConsoleInput\ConsoleInput.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -340,6 +346,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddOn\WebControl\WebControlTab.resx">
       <DependentUpon>WebControlTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ColorPicker\ColorPicker.resx">
+      <DependentUpon>ColorPicker.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\PerformanceMonitor\PerformanceMonitor.resx">
       <DependentUpon>PerformanceMonitor.cs</DependentUpon>
