@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>Resources\Dll\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
     <Reference Include="Jayrock.Json">
       <HintPath>Resources\Dll\Jayrock.Json.dll</HintPath>
     </Reference>
@@ -71,6 +74,7 @@
     <Compile Include="AddOn\IAddon.cs" />
     <Compile Include="AddOn\IAddonTab.cs" />
     <Compile Include="AddOn\Plugins\Bukget\api3\BukgetPlugin.cs" />
+    <Compile Include="AddOn\Plugins\Bukget\api3\BukgetPluginInstaller.cs" />
     <Compile Include="AddOn\Plugins\Bukget\api3\BukgetUrlBuilder.cs" />
     <Compile Include="AddOn\Plugins\Bukget\api3\JsonParser.cs" />
     <Compile Include="AddOn\Plugins\Bukget\BukgetPluginsControl.cs">
@@ -114,9 +118,7 @@
       <DependentUpon>MultiStringInput.cs</DependentUpon>
     </Compile>
     <Compile Include="AddOn\Notifications\Notifications.cs" />
-    <Compile Include="AddOn\Notifications\NotificationsSettings.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="AddOn\Notifications\NotificationsSettings.cs" />
     <Compile Include="AddOn\Notifications\NotificationsSettings.Designer.cs">
       <DependentUpon>NotificationsSettings.cs</DependentUpon>
     </Compile>
@@ -230,6 +232,8 @@
     <Compile Include="Core\Logging\Logger.cs" />
     <Compile Include="Core\Share.cs" />
     <Compile Include="Core\Translation\Translator.cs" />
+    <Compile Include="Core\Util\Compression.cs" />
+    <Compile Include="Core\Util\Performance\CpuCounter.cs" />
     <Compile Include="Core\Util\Performance\MemoryCounter.cs" />
     <Compile Include="Core\Util\Performance\Wmi.cs" />
     <Compile Include="Core\Util\Web\FileDownloader.cs">
@@ -386,6 +390,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\Dll\Jayrock.Json.dll" />
+    <EmbeddedResource Include="Resources\Dll\ICSharpCode.SharpZipLib.dll" />
     <Content Include="Resources\Img\bukkit_logo.png" />
     <Content Include="Resources\Img\GUI icon 16.ico" />
     <Content Include="Resources\Img\GUI icon 32.ico" />

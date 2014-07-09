@@ -8,13 +8,14 @@ using Net.Bertware.Bukkitgui2.Core.Util.Web;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
 {
-	public class Bukget
-	{
-		public static List<BukgetPlugin> GetMostPopularPlugins(int amount)
-		{
-			string url = BukgetUrlBuilder.ConstructUrl(BukgetUrlBuilder.FieldsSimple, PluginInfoField.Pop_Daily, true, amount);
-			string data = WebUtil.RetrieveString(url);
-			return BukgetPlugin.ParsePluginList(data);
-		}
-	}
+    public class Bukget
+    {
+        public static List<BukgetPlugin> GetMostPopularPlugins(int amount)
+        {
+            string url = BukgetUrlBuilder.ConstructUrl(BukgetUrlBuilder.FieldsSimple, PluginInfoField.Pop_Daily, true,
+                amount);
+            string data = WebUtil.RetrieveString(url);
+            return BukgetPlugin.ParsePluginList(data);
+        }
+    }
 }

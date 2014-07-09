@@ -8,59 +8,59 @@ using System.Windows.Forms;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Settings
 {
-	public partial class SettingsTab : UserControl, IAddonTab
-	{
-		public bool IsInitialized { get; private set; }
+    public partial class SettingsTab : UserControl, IAddonTab
+    {
+        public bool IsInitialized { get; private set; }
 
-		public IAddon ParentAddon { get; set; }
+        public IAddon ParentAddon { get; set; }
 
-		private Dictionary<string, UserControl> _settings;
+        private Dictionary<string, UserControl> _settings;
 
-		public SettingsTab()
-		{
-			InitializeComponent();
-			if (AddonManager.AddonsLoaded)
-			{
-				Initialize();
-			}
-		}
+        public SettingsTab()
+        {
+            InitializeComponent();
+            if (AddonManager.AddonsLoaded)
+            {
+                Initialize();
+            }
+        }
 
-		public void Initialize()
-		{
-			if (IsInitialized)
-			{
-				return;
-			}
-			_settings = new Dictionary<string, UserControl>();
-			foreach (KeyValuePair<IAddon, UserControl> settingsEntry in AddonManager.SettingsDictionary)
-			{
-				_settings.Add(settingsEntry.Key.Name, settingsEntry.Value);
-				TreeNode node = new TreeNode(settingsEntry.Key.Name) {Name = settingsEntry.Key.Name};
-				TVSettings.Nodes.Add(node);
-			}
-			IsInitialized = true;
-		}
+        public void Initialize()
+        {
+            if (IsInitialized)
+            {
+                return;
+            }
+            _settings = new Dictionary<string, UserControl>();
+            foreach (KeyValuePair<IAddon, UserControl> settingsEntry in AddonManager.SettingsDictionary)
+            {
+                _settings.Add(settingsEntry.Key.Name, settingsEntry.Value);
+                TreeNode node = new TreeNode(settingsEntry.Key.Name) {Name = settingsEntry.Key.Name};
+                TVSettings.Nodes.Add(node);
+            }
+            IsInitialized = true;
+        }
 
-		private void TvSettingsAfterSelect(object sender, TreeViewEventArgs e)
-		{
-			LoadControl(e.Node.Name);
-		}
+        private void TvSettingsAfterSelect(object sender, TreeViewEventArgs e)
+        {
+            LoadControl(e.Node.Name);
+        }
 
-		private void LoadControl(string name)
-		{
-			if (!_settings.ContainsKey(name))
-			{
-				return;
-			}
+        private void LoadControl(string name)
+        {
+            if (!_settings.ContainsKey(name))
+            {
+                return;
+            }
 
-			gbSettings.Controls.Clear();
-			UserControl control = _settings[name];
+            gbSettings.Controls.Clear();
+            UserControl control = _settings[name];
 
-			// safety check
-			if (control == null) return;
+            // safety check
+            if (control == null) return;
 
-			gbSettings.Controls.Add(control);
-			gbSettings.Controls[0].Dock = DockStyle.Fill;
-		}
-	}
+            gbSettings.Controls.Add(control);
+            gbSettings.Controls[0].Dock = DockStyle.Fill;
+        }
+    }
 }

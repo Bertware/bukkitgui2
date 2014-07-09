@@ -7,11 +7,11 @@ using System.Windows.Forms;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Console
 {
-	public partial class ConsoleSettings : UserControl
-	{
-		public ConsoleSettings()
-		{
-			InitializeComponent();
-		}
-	}
+    public partial class ConsoleSettings : UserControl
+    {
+        public ConsoleSettings()
+        {
+            InitializeComponent();
+        }
+    }
 }

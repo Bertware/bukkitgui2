@@ -10,31 +10,31 @@ using Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget
 {
-	public partial class BukgetPluginsControl : UserControl
-	{
-		private List<BukgetPlugin> _plugins;
+    public partial class BukgetPluginsControl : UserControl
+    {
+        private List<BukgetPlugin> _plugins;
 
-		public BukgetPluginsControl()
-		{
-			InitializeComponent();
-		}
+        public BukgetPluginsControl()
+        {
+            InitializeComponent();
+        }
 
-		private void BukgetPluginsControl_VisibleChanged(object sender, EventArgs e)
-		{
-			if (!Visible || (_plugins != null && _plugins.Count >= 1)) return;
-			_plugins = api3.Bukget.GetMostPopularPlugins(20);
-			ShowPlugins();
-		}
+        private void BukgetPluginsControl_VisibleChanged(object sender, EventArgs e)
+        {
+            if (!Visible || (_plugins != null && _plugins.Count >= 1)) return;
+            _plugins = api3.Bukget.GetMostPopularPlugins(20);
+            ShowPlugins();
+        }
 
-		private void ShowPlugins()
-		{
-			slvPlugins.Items.Clear();
-			foreach (BukgetPlugin p in _plugins)
-			{
-				string[] contents = {p.Name, p.Description, p.LastVersionNumber, p.LastGameVersion};
-				ListViewItem i = new ListViewItem(contents) {Tag = p.Name};
-				slvPlugins.Items.Add(i);
-			}
-		}
-	}
+        private void ShowPlugins()
+        {
+            slvPlugins.Items.Clear();
+            foreach (BukgetPlugin p in _plugins)
+            {
+                string[] contents = {p.Name, p.Description, p.LastVersionNumber, p.LastGameVersion};
+                ListViewItem i = new ListViewItem(contents) {Tag = p.Name};
+                slvPlugins.Items.Add(i);
+            }
+        }
+    }
 }
