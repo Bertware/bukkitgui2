@@ -67,7 +67,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Translation
         {
             if (string.IsNullOrEmpty(location))
             {
-                location = DefaultFileLocation.SafeLocation(RequestFile.Language) + CteFileName;
+                location = Fl.SafeLocation(RequestFile.Language) + CteFileName;
             }
 
             _filepath = location;
@@ -106,7 +106,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Translation
         {
             if (string.IsNullOrEmpty(location))
             {
-                location = DefaultFileLocation.Location(RequestFile.Language) + CteFileName;
+                location = Fl.Location(RequestFile.Language) + CteFileName;
             }
 
             if (_cache.Count == 0)

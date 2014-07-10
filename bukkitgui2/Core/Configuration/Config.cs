@@ -68,7 +68,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Configuration
         {
             if (string.IsNullOrEmpty(location))
             {
-                location = DefaultFileLocation.SafeLocation(RequestFile.Config) + CteFileName;
+                location = Fl.SafeLocation(RequestFile.Config) + CteFileName;
             }
 
             _filepath = location;
@@ -107,7 +107,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Configuration
         {
             if (string.IsNullOrEmpty(location))
             {
-                location = DefaultFileLocation.Location(RequestFile.Config) + CteFileName;
+                location = Fl.Location(RequestFile.Config) + CteFileName;
             }
 
             if (_cache.Count == 0)

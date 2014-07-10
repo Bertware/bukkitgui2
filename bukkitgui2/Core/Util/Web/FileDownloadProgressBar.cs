@@ -21,7 +21,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Web
     /// </summary>
     public partial class FileDownloadProgressBar
     {
-        private readonly string _tmp = DefaultFileLocation.Location(RequestFile.Temp) + "download\\";
+        private readonly string _tmp = Fl.Location(RequestFile.Temp) + "download\\";
 
         private const int TmrInterval = 250;
 

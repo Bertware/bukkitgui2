@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 using Microsoft.VisualBasic;
+using Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins;
 using Net.Bertware.Bukkitgui2.Core.FileLocation;
 using Net.Bertware.Bukkitgui2.Core.Logging;
 using Net.Bertware.Bukkitgui2.Core.Translation;
@@ -31,7 +32,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
         {
             if (string.IsNullOrEmpty(targetlocation) && version.Filename != null)
             {
-                targetlocation = DefaultFileLocation.Location(RequestFile.Plugdir) + "/" + version.Filename;
+                targetlocation = Fl.Location(RequestFile.Plugindir) + "/" + version.Filename;
             }
 
             if (version == null || version.Filename == null) return false;
@@ -70,13 +71,13 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
                         Translator.Tr("You are about to install") + " " + version.Filename.Replace(".jar", "") + " (" +
                         version.VersionNumber + ")" + Constants.vbCrLf + Translator.Tr("Do you wish to continue?"),
                         Translator.Tr("Continue?"), MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
-                    return;
+                    return false;
             }
 
             Logger.Log(LogLevel.Info, "BukGetAPI", "Installing plugin:" + version.Filename + ", packed as jar file");
 
             if (string.IsNullOrEmpty(targetlocation))
-                targetlocation = DefaultFileLocation.Location(RequestFile.Plugdir) + "/" + version.Filename;
+                targetlocation = Fl.Location(RequestFile.Plugindir) + "/" + version.Filename;
 
             string name = version.VersionNumber;
             if (version.PluginName != null && !string.IsNullOrEmpty(version.PluginName))
@@ -125,10 +126,10 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
             Logger.Log(LogLevel.Info, "BukGetAPI", "Installing plugin:" + version.Filename + ", packed as zip file");
 
             if (string.IsNullOrEmpty(targetlocation))
-                targetlocation = DefaultFileLocation.SafeLocation(RequestFile.Plugdir) + "/" + version.Filename;
+                targetlocation = Fl.SafeLocation(RequestFile.Plugindir) + "/" + version.Filename;
 
-            string zipfile = DefaultFileLocation.SafeLocation(RequestFile.Temp) + "install.zip";
-            string extraction = DefaultFileLocation.SafeLocation(RequestFile.Temp) + "/install/";
+            string zipfile = Fl.SafeLocation(RequestFile.Temp) + "install.zip";
+            string extraction = Fl.SafeLocation(RequestFile.Temp) + "/install/";
 
 
             FileDownloader fdd = new FileDownloader();
@@ -155,7 +156,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
                 if (fileInfo.Extension == ".jar")
                 {
                     File.Copy(fileInfo.FullName,
-                        DefaultFileLocation.Location(RequestFile.Plugdir) + "/" + fileInfo.Name, true);
+                        Fl.Location(RequestFile.Plugindir) + "/" + fileInfo.Name, true);
                     extractedFileNamesList.Add(fileInfo.Name);
                     hasFileBeenMoved = true;
                     Logger.Log(LogLevel.Info, "BukGetAPI", "Jar file found in .zip (L1), copied:" + fileInfo.Name);
@@ -192,7 +193,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
                 if (folderShouldBeMoved)
                 {
                     Directory.Move(directoryInZipInfo.FullName,
-                        DefaultFileLocation.Location(RequestFile.Plugdir) + "/" + directoryInZipInfo.Name);
+                        Fl.Location(RequestFile.Plugindir) + "/" + directoryInZipInfo.Name);
                     hasFileBeenMoved = false;
                     hasFolderBeenMoved = true;
                 }
@@ -204,7 +205,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
                     foreach (FileInfo fileInfo in directoryInZipInfo.GetFiles())
                     {
                         if (fileInfo.Extension != ".jar") continue;
-                        fileInfo.MoveTo(DefaultFileLocation.Location(RequestFile.Plugdir) + "/" + fileInfo.Name);
+                        fileInfo.MoveTo(Fl.Location(RequestFile.Plugindir) + "/" + fileInfo.Name);
                         hasFileBeenMoved = true;
                         Logger.Log(LogLevel.Info, "BukgetAPI", "Jar file found in .zip (L2), copied:" + fileInfo.Name);
                     }
@@ -235,7 +236,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
                     if (copy_2)
                     {
                         Directory.Move(directoryInZipInfo.FullName,
-                            DefaultFileLocation.Location(RequestFile.Plugdir) + "/" + Dir_2.Name);
+                            Fl.Location(RequestFile.Plugindir) + "/" + Dir_2.Name);
                         hasFileBeenMoved = false;
                         hasFolderBeenMoved = true;
                     }

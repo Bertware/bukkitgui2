@@ -48,6 +48,9 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="YamlUtility">
+      <HintPath>Resources\Dll\YamlUtility.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddOn\AddonManager.cs" />
@@ -86,6 +89,8 @@
     <Compile Include="AddOn\Plugins\Bukget\api3\BukgetPluginVersion.cs" />
     <Compile Include="AddOn\Plugins\Bukget\api3\Bukget.cs" />
     <Compile Include="AddOn\Plugins\Bukget\api3\BukkitDevApiSupport.cs" />
+    <Compile Include="AddOn\Plugins\InstalledPlugins\InstalledPlugin.cs" />
+    <Compile Include="AddOn\Plugins\InstalledPlugins\InstalledPluginManager.cs" />
     <Compile Include="AddOn\Plugins\InstalledPlugins\InstalledPluginsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -389,6 +394,7 @@
     <Folder Include="Core\Filesystem\FTP\" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\Dll\YamlUtility.dll" />
     <EmbeddedResource Include="Resources\Dll\Jayrock.Json.dll" />
     <EmbeddedResource Include="Resources\Dll\ICSharpCode.SharpZipLib.dll" />
     <Content Include="Resources\Img\bukkit_logo.png" />

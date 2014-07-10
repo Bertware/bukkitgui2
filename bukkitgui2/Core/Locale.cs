@@ -41,7 +41,7 @@ namespace Net.Bertware.Bukkitgui2.Core
         public static void Initialize()
         {
             string location = Config.ReadString("Locale", "File",
-                DefaultFileLocation.Location(RequestFile.Config) + "\\default.xml");
+                Fl.Location(RequestFile.Config) + "\\default.xml");
 
             _filepath = location;
 

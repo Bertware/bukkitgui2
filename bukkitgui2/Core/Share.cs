@@ -26,7 +26,7 @@ namespace Net.Bertware.Bukkitgui2.Core
 
         public static void Initialize()
         {
-            DefaultFileLocation.Initialize();
+            Fl.Initialize();
             Logger.Initialize();
             Config.Initialize();
             Locale.Initialize();

@@ -8,7 +8,10 @@ using System.IO;
 
 namespace Net.Bertware.Bukkitgui2.Core.FileLocation
 {
-    internal static class DefaultFileLocation
+    /// <summary>
+    /// FileLocation: Provides paths to all commonly used folders for consistent use of the same folders
+    /// </summary>
+    internal static class Fl
     {
         private const string AppdataSubfolder = "\\Bertware\\Bukkitgui2\\";
         private const string LocalSubfolder = "\\Bukkitgui2\\";
@@ -17,6 +20,7 @@ namespace Net.Bertware.Bukkitgui2.Core.FileLocation
         private const string ConfFolder = "\\config\\";
         private const string LangFolder = "\\lang\\";
         private const string TmpFolder = "\\temp\\";
+        private const string CacheFolder = "\\cache\\";
 
         /// <summary>
         ///     Indicates wether this component is initialized and can be used
@@ -61,6 +65,8 @@ namespace Net.Bertware.Bukkitgui2.Core.FileLocation
                     return Location(RequestFile.StorageRoot) + LangFolder;
                 case RequestFile.Temp:
                     return Location(RequestFile.StorageRoot) + TmpFolder;
+                case RequestFile.Cache:
+                    return Location(RequestFile.StorageRoot) + CacheFolder;
                 default:
                     return Location(RequestFile.StorageRoot);
             }
@@ -96,6 +102,7 @@ namespace Net.Bertware.Bukkitgui2.Core.FileLocation
         Local,
         Language,
         Temp,
-        Plugdir
+        Plugindir,
+        Cache
     }
 }
