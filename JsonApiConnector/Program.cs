@@ -25,6 +25,7 @@ namespace JsonApiConnector
 
 			_connector = new JsonApiConnector(args);
 			_connector.OutputReceived += TextReceived;
+
 			Thread t;
 			if (_connector.ShowConsole)
 			{
