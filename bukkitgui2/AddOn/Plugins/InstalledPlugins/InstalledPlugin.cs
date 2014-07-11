@@ -13,20 +13,50 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
     {
         public Boolean OnlySimpleFields { get; private set; }
 
+        /// <summary>
+        ///     The name of the plugin
+        /// </summary>
         public string Name { get; private set; }
 
+        /// <summary>
+        ///     The description of the plugin
+        /// </summary>
         public string Description { get; private set; }
 
+        /// <summary>
+        ///     The authors of the plugin
+        /// </summary>
         public string[] Authors { get; private set; }
 
+        /// <summary>
+        ///     The mainspace of the plugin
+        /// </summary>
         public string Mainspace { get; private set; }
 
+        /// <summary>
+        ///     The version of the plugin
+        /// </summary>
         public string Version { get; private set; }
 
+        /// <summary>
+        ///     The creation date of the plugin
+        /// </summary>
         public DateTime FileCreationDate { get; private set; }
 
+        /// <summary>
+        ///     The last write date of the plugin, date it was last edited
+        /// </summary>
+        public DateTime FileLastWriteDate { get; private set; }
+
+        /// <summary>
+        ///     The filename of the plugin
+        /// </summary>
         public string FileName { get; private set; }
 
+        /// <summary>
+        ///     The full path of the plugin
+        /// </summary>
+        public string Path { get; private set; }
 
         /// <summary>
         ///     Commands registered by this plugin
@@ -58,17 +88,34 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
             }
         }
 
-
-        public InstalledPlugin ParseSimpleFields(string fileName)
+        /// <summary>
+        ///     Quickly parse the basic fields for a plugin
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public InstalledPlugin ParseSimpleFields(string path)
         {
             OnlySimpleFields = true;
+            FileInfo fi = new FileInfo(path);
+            FileName = fi.Name;
+            Name = FileName.Split('.')[0];
+            FileLastWriteDate = fi.LastWriteTime;
+            FileCreationDate = fi.CreationTime;
+            Path = fi.FullName;
             return this;
         }
 
-        public InstalledPlugin ParseAllFields(string fileName, Boolean useCache = true)
+        /// <summary>
+        ///     Parse all info for a plugin, using the plugin.yml field
+        /// </summary>
+        /// <param name="path">the plugin location</param>
+        /// <param name="useCache">is use of cached info allowed?</param>
+        /// <returns></returns>
+        public InstalledPlugin ParseAllFields(string path, Boolean useCache = true)
         {
             OnlySimpleFields = false;
-            Loadplugin(fileName, useCache);
+            ParseSimpleFields(path); // load the simple fields first
+            Loadplugin(path, useCache);
             return this;
         }
 
@@ -84,56 +131,62 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
         {
             try
             {
-                //to reduce load times and CPU usage, plugin.yml files are cached
-                //location: cache/plugins/plugin_name/plugin.yml
+                // to reduce load times and CPU usage, plugin.yml files are cached
+                // location: cache/plugins/plugin_name/plugin.yml
+
+                // Detect reletive locations and prepend thise with the plugin dir
+
                 if (path.Contains(":\\") == false)
                     path = Fl.Location(RequestFile.Plugindir) + "\\" + path;
-                //relative directory detection
 
-                FileInfo fi = new FileInfo(path);
-                FileInfo nfi = new FileInfo(Fl.Location(RequestFile.Cache) + "/plugins/" + fi.Name + "/plugin.yml");
+                // get a fileinfo object for the plugin
+                FileInfo plugFileInfo = new FileInfo(path);
+
+                // get a fileinfo object for the cache
+                FileInfo cacheFileInfo =
+                    new FileInfo(Fl.Location(RequestFile.Cache) + "/plugins/" + plugFileInfo.Name + "/plugin.yml");
 
                 Logger.Log(LogLevel.Info, "InstalledPlugin",
-                    "loading plugin (step 1/2): " + fi.Name + " - cache allowed:" + readCache);
+                    "loading plugin (step 1/2): " + plugFileInfo.Name + " - cache allowed:" + readCache);
 
                 //check if the cache exists, if not, create cache (we need this cache file, it will be read later on)
-                if (nfi.Exists & readCache)
+                if (cacheFileInfo.Exists & readCache)
                 {
+                    // cache exists, ok
                     Logger.Log(LogLevel.Info, "InstalledPlugin", "Reading plugin data from cache...");
-                    //create cache
                 }
                 else
                 {
-                    if (string.IsNullOrEmpty(path) || fi.Exists == false)
+                    // cache doesn't exist or is forcefully invalidated by parameter, create
+
+                    //safety check
+                    if (string.IsNullOrEmpty(path) || plugFileInfo.Exists == false)
                     {
                         return null;
                     }
+
                     Logger.Log(LogLevel.Info, "InstalledPlugin",
                         "Plugin data not available in cache or cache not allowed. Building cache for plugin...");
                     Compression.Decompress(Fl.Location(RequestFile.Temp) + "/plugin", path);
+
+                    // check if the plugin.yml file was decompressed
                     if (!File.Exists(Fl.Location(RequestFile.Temp) + "/plugin/plugin.yml"))
                     {
                         return null;
                     }
-                    File.Copy(Fl.Location(RequestFile.Temp) + "/plugin/plugin.yml", nfi.FullName, true);
+
+                    //copy the yml to cache
+                    File.Copy(Fl.Location(RequestFile.Temp) + "/plugin/plugin.yml", cacheFileInfo.FullName, true);
                     if (Directory.Exists(Fl.Location(RequestFile.Temp) + "/plugin"))
                         Directory.Delete(Fl.Location(RequestFile.Temp) + "/plugin", true);
                 }
-
+                // either way is cache now okay, it already existed or was created just now
                 Logger.Log(LogLevel.Info, "InstalledPlugin",
-                    "loading plugin (step 2/2): " + fi.Name + " - cache allowed:" + readCache);
+                    "loading plugin (step 2/2): " + plugFileInfo.Name + " - cache allowed:" + readCache);
 
-                if (File.Exists(nfi.FullName) == false)
-                {
-                    FileName = new FileInfo(path).Name;
-                    if (FileName.Contains("."))
-                        Name = FileName.Split('.')[0];
-                }
-
-
-                if (File.Exists(nfi.FullName))
-                    Loadymlfile(nfi.FullName);
-                //Load the cache
+                // load the yml file
+                if (File.Exists(cacheFileInfo.FullName))
+                    Loadymlfile(cacheFileInfo.FullName);
 
                 FileCreationDate = File.GetLastWriteTime(path);
                 FileName = new FileInfo(path).Name;
@@ -143,7 +196,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
                 //if name couldn't be read from yml, parse FileName
 
                 Logger.Log(LogLevel.Info, "InstalledPlugin",
-                    "loaded plugin: " + fi.Name + " - cache allowed:" + readCache);
+                    "loaded plugin: " + plugFileInfo.Name + " - cache allowed:" + readCache);
 
                 return this;
                 //return this item
@@ -166,15 +219,13 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
         {
             try
             {
-                if (path == null || string.IsNullOrEmpty(path) || File.Exists(path) == false)
+                if (path == null || string.IsNullOrEmpty(path) || !File.Exists(path)) return null;
+
+                using (StreamReader sr = new StreamReader(path))
                 {
-                    return null;
+                    string content = sr.ReadToEnd();
+                    LoadPluginYml(content);
                 }
-                StreamReader sr = new StreamReader(path);
-                string content = sr.ReadToEnd();
-                sr.Close();
-                sr.Dispose();
-                LoadPluginYml(content);
                 return this;
             }
             catch (Exception ex)

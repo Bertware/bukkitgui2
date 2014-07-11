@@ -3,7 +3,6 @@
 // Last edited at 2014/06/22 12:34
 // ©Bertware, visit http://bertware.net
 
-using System;
 using System.Drawing;
 using System.Reflection;
 using System.Text.RegularExpressions;
@@ -11,7 +10,6 @@ using System.Windows.Forms;
 using Net.Bertware.Bukkitgui2.Core.Logging;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler.PlayerActions;
-using Net.Bertware.Bukkitgui2.Properties;
 
 namespace Net.Bertware.Bukkitgui2.MinecraftServers
 {
@@ -89,44 +87,24 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers
         /// </summary>
         public const string RG_EOL = "$";
 
-        public virtual string Name
-        {
-            get { return "Default Minecraft Server"; }
-        }
+        public string Name { get; protected set; }
 
-        public virtual string Site
-        {
-            get { return "http://www.minecraft.net"; }
-        }
+        public string Site { get; protected set; }
 
-        public virtual Image Logo
-        {
-            get { return Resources.vanilla_logo; }
-        }
+        public Image Logo { get; protected set; }
 
-        public virtual bool SupportsPlugins
-        {
-            get { return false; }
-        }
+        public bool SupportsPlugins { get; protected set; }
 
-        public virtual bool IsLocal
-        {
-            get { return true; }
-        }
+        public bool IsLocal { get; protected set; }
+
 
         public virtual void PrepareLaunch()
         {
         }
 
-        public virtual bool HasCustomAssembly
-        {
-            get { return false; }
-        }
+        public bool HasCustomAssembly { get; protected set; }
 
-        public virtual Assembly CustomAssembly
-        {
-            get { return null; }
-        }
+        public Assembly CustomAssembly { get; protected set; }
 
         public virtual string GetLaunchParameters(string defaultParameters = "")
         {
@@ -138,15 +116,9 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers
             return defaultFlags;
         }
 
-        public virtual bool HasCustomSettingsControl
-        {
-            get { return false; }
-        }
+        public bool HasCustomSettingsControl { get; protected set; }
 
-        public virtual UserControl CustomSettingsControl
-        {
-            get { return null; }
-        }
+        public UserControl CustomSettingsControl { get; protected set; }
 
         public virtual OutputParseResult ParseOutput(string text)
         {
@@ -354,55 +326,22 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers
             return new PlayerActionIpBan();
         }
 
-        public virtual bool CanFetchRecommendedVersion
-        {
-            get { return false; }
-        }
+        public bool CanFetchRecommendedVersion { get; protected set; }
 
-        public virtual bool CanFetchBetaVersion
-        {
-            get { return false; }
-        }
+        public bool CanFetchBetaVersion { get; protected set; }
+        public bool CanFetchDevVersion { get; protected set; }
 
-        public virtual bool CanFetchDevVersion
-        {
-            get { return false; }
-        }
+        public bool CanDownloadRecommendedVersion { get; protected set; }
 
-        public virtual bool CanDownloadRecommendedVersion
-        {
-            get { return false; }
-        }
+        public bool CanDownloadBetaVersion { get; protected set; }
+        public bool CanDownloadDevVersion { get; protected set; }
+        public bool CanGetCurrentVersion { get; protected set; }
 
-        public virtual bool CanDownloadBetaVersion
-        {
-            get { return false; }
-        }
+        public virtual string FetchRecommendedVersion { get; protected set; }
 
-        public virtual bool CanDownloadDevVersion
-        {
-            get { return false; }
-        }
+        public virtual string FetchBetaVersion { get; protected set; }
 
-        public virtual bool CanGetCurrentVersion
-        {
-            get { return false; }
-        }
-
-        public virtual string FetchRecommendedVersion
-        {
-            get { return null; }
-        }
-
-        public virtual string FetchBetaVersion
-        {
-            get { return null; }
-        }
-
-        public virtual string FetchDevVersion
-        {
-            get { return null; }
-        }
+        public virtual string FetchDevVersion { get; protected set; }
 
         public virtual bool DownloadRecommendedVersion(string targetfile)
         {
@@ -421,7 +360,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers
 
         public virtual string GetCurrentVersion(string file)
         {
-            throw new NotImplementedException();
+            return "";
         }
     }
 }

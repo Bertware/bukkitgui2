@@ -13,7 +13,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
     public static class Bukget
     {
         /// <summary>
-        /// Dictionary with currently loaded plugins, key: namespace, value: plugin
+        ///     Dictionary with currently loaded plugins, key: namespace, value: plugin
         /// </summary>
         public static Dictionary<String, BukgetPlugin> CurrentlyLoadedPlugins;
 
@@ -27,19 +27,20 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
 
         public static Dictionary<String, BukgetPlugin> GetPluginsByCategory(PluginCategory category, int amount)
         {
-            string url = BukgetUrlBuilder.ConstructUrl(category,BukgetUrlBuilder.FieldsSimple,amount);
+            string url = BukgetUrlBuilder.ConstructUrl(category, BukgetUrlBuilder.FieldsSimple, amount);
             return RetrieveParseStore(url);
         }
 
         public static Dictionary<String, BukgetPlugin> GetPluginsByCategory(string category, int amount)
         {
-            PluginCategory cat =(PluginCategory) Enum.Parse(typeof (PluginCategory), category.Replace(" ", "_").Replace("-","__"));
+            PluginCategory cat =
+                (PluginCategory) Enum.Parse(typeof (PluginCategory), category.Replace(" ", "_").Replace("-", "__"));
             string url = BukgetUrlBuilder.ConstructUrl(cat, BukgetUrlBuilder.FieldsSimple, amount);
             return RetrieveParseStore(url);
         }
 
         /// <summary>
-        /// Retrieve a list of plugins, parse it, store it in the currentlyLoadedPlugins variable and return it
+        ///     Retrieve a list of plugins, parse it, store it in the currentlyLoadedPlugins variable and return it
         /// </summary>
         /// <param name="url"></param>
         /// <returns></returns>
@@ -51,7 +52,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
         }
 
         /// <summary>
-        /// Convert a list to a dictionary
+        ///     Convert a list to a dictionary
         /// </summary>
         /// <param name="pluginList">List of plugins to convert</param>
         /// <returns></returns>

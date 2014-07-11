@@ -101,7 +101,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn
         }
 
         /// <summary>
-        /// Dispose all addons
+        ///     Dispose all addons
         /// </summary>
         public static void UnloadAddons()
         {

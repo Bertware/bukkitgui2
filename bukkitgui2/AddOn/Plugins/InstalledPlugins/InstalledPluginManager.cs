@@ -9,14 +9,31 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 {
     public static class InstalledPluginManager
     {
+        public delegate void PluginListEventHandler();
+
+        public static event PluginListEventHandler InstalledPluginListLoadedSimpleList;
+        public static event PluginListEventHandler InstalledPluginListLoadedFullList;
+
+        private static void RaiseInstalledPluginListLoadedSimpleList()
+        {
+            PluginListEventHandler handler = InstalledPluginListLoadedSimpleList;
+            if (handler != null) handler.Invoke();
+        }
+
+        private static void RaiseInstalledPluginListLoadedFullList()
+        {
+            PluginListEventHandler handler = InstalledPluginListLoadedFullList;
+            if (handler != null) handler.Invoke();
+        }
+
         /// <summary>
-        /// List of the currently parsed plugins in a Filename, Installedplugin dictionary
+        ///     List of the currently parsed plugins in a Filename, Installedplugin dictionary
         /// </summary>
         public static Dictionary<string, InstalledPlugin> Plugins;
 
         public static void Initialize()
         {
-            LoadPlugins();
+            RefreshAllInstalledPluginsAsync();
         }
 
         public static void LoadPlugins()
@@ -43,7 +60,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 
 
         /// <summary>
-        /// Create a simple list of the plugin in the plugin folder. Fast, but lacks details.
+        ///     Create a simple list of the plugin in the plugin folder. Fast, but lacks details.
         /// </summary>
         /// <remarks></remarks>
         private static void CreateSimpleList()
@@ -81,10 +98,11 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
             }
 
             //we got the first list now
+            RaiseInstalledPluginListLoadedSimpleList();
         }
 
         /// <summary>
-        /// Create a plugin list based upon the plugin.yml files, might take a while. Recommended to run async.
+        ///     Create a plugin list based upon the plugin.yml files, might take a while. Recommended to run async.
         /// </summary>
         /// <remarks></remarks>
         private static void CreateDetailledList()
@@ -104,7 +122,6 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
                         Logger.Log(LogLevel.Info, "InstalledPlugins",
                             "Loading plugin " + i + 1 + " of " + Plugins.Count + " : " + e.Current);
                         InstalledPlugin plugin = new InstalledPlugin().ParseAllFields(e.Current);
-
 
 // ReSharper disable once AssignNullToNotNullAttribute
                         if (plugin != null) Plugins[e.Current] = plugin;
@@ -129,10 +146,14 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
             {
                 Logger.Log(LogLevel.Severe, "InstalledPlugins", "Couldn't create detailled list", ex.Message);
             }
+            finally
+            {
+                RaiseInstalledPluginListLoadedFullList();
+            }
         }
 
         /// <summary>
-        /// Clear the cache of plugin.yml files
+        ///     Clear the cache of plugin.yml files
         /// </summary>
         /// <remarks></remarks>
         //see InstalledPlugin for more cache code

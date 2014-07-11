@@ -4,7 +4,6 @@
 // ©Bertware, visit http://bertware.net
 
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
 using Net.Bertware.Bukkitgui2.AddOn.Starter;
 using Net.Bertware.Bukkitgui2.Core.Util.Web;
@@ -14,62 +13,24 @@ using Net.Bertware.Bukkitgui2.Properties;
 
 namespace Net.Bertware.Bukkitgui2.MinecraftServers.Servers
 {
-    internal class BukkitServer : MinecraftServerBase
+    internal sealed class BukkitServer : MinecraftServerBase
     {
-        public override string Name
+        public BukkitServer()
         {
-            get { return "Bukkit"; }
+            Name = "Bukkit";
+            Site = "http://bukkit.org";
+            Logo = Resources.bukkit_logo;
+
+            CanFetchBetaVersion = true;
+            CanFetchDevVersion = true;
+            CanFetchRecommendedVersion = true;
+            CanDownloadBetaVersion = true;
+            CanDownloadDevVersion = true;
+            CanDownloadRecommendedVersion = true;
+
+            SupportsPlugins = true;
         }
 
-        public override string Site
-        {
-            get { return "http://bukkit.org"; }
-        }
-
-        public override Image Logo
-        {
-            get { return Resources.bukkit_logo; }
-        }
-
-        public override bool CanFetchRecommendedVersion
-        {
-            get { return true; }
-        }
-
-        public override bool CanFetchBetaVersion
-        {
-            get { return true; }
-        }
-
-        public override bool CanFetchDevVersion
-        {
-            get { return true; }
-        }
-
-        public override bool CanDownloadRecommendedVersion
-        {
-            get { return true; }
-        }
-
-        public override bool CanDownloadBetaVersion
-        {
-            get { return true; }
-        }
-
-        public override bool CanDownloadDevVersion
-        {
-            get { return true; }
-        }
-
-        public override bool CanGetCurrentVersion
-        {
-            get { return true; }
-        }
-
-        public override bool SupportsPlugins
-        {
-            get { return true; }
-        }
 
         public override string GetLaunchFlags(string defaultFlags = "")
         {

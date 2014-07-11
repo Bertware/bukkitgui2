@@ -277,6 +277,12 @@
     <Compile Include="MinecraftServers\Servers\McpcServer.cs" />
     <Compile Include="MinecraftServers\Servers\SpigotServer.cs" />
     <Compile Include="MinecraftServers\Servers\VanillaServer.cs" />
+    <Compile Include="MinecraftServers\Tools\JsonApiCredentialsSettingsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MinecraftServers\Tools\JsonApiCredentialsSettingsControl.Designer.cs">
+      <DependentUpon>JsonApiCredentialsSettingsControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="MinecraftServers\Tools\global\JenkinsApi.cs" />
     <Compile Include="MinecraftServers\Tools\MinecraftServerVersion.cs" />
     <Compile Include="Program.cs" />
@@ -394,6 +400,7 @@
     <Folder Include="Core\Filesystem\FTP\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\JsonApiConnector.exe" />
     <EmbeddedResource Include="Resources\Dll\YamlUtility.dll" />
     <EmbeddedResource Include="Resources\Dll\Jayrock.Json.dll" />
     <EmbeddedResource Include="Resources\Dll\ICSharpCode.SharpZipLib.dll" />

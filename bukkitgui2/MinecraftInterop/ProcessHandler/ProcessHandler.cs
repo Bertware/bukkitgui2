@@ -59,7 +59,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler
         }
 
         /// <summary>
-        /// Mark the server as stopping, in case this has been detected by an addon
+        ///     Mark the server as stopping, in case this has been detected by an addon
         /// </summary>
         public static void MarkServerAsStopping()
         {

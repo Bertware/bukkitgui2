@@ -258,7 +258,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler
                 case MessageType.Warning:
                     RaiseWarningMessageReceivedEvent(text, result);
                     CheckErrorCause(result.Message);
-                        //failed to bind to port comes on standardout, so we need to check anyway
+                    //failed to bind to port comes on standardout, so we need to check anyway
                     break;
 
                 case MessageType.Severe:

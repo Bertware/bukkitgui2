@@ -18,9 +18,8 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
     /// <remarks></remarks>
     public class BukgetPlugin
     {
-
         /// <summary>
-        /// The last parsed plugin, cache
+        ///     The last parsed plugin, cache
         /// </summary>
         public static BukgetPlugin LastParsedPlugin { get; private set; }
 
@@ -212,8 +211,9 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
 
             return result;
         }
+
         /// <summary>
-        /// Create a plugin object based upon it's name and web data
+        ///     Create a plugin object based upon it's name and web data
         /// </summary>
         /// <param name="name">the name of the plugin to search/create</param>
         /// <returns></returns>
@@ -225,14 +225,14 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
         }
 
         /// <summary>
-        /// Create a plugin object based upon it's main namespace and web data
+        ///     Create a plugin object based upon it's main namespace and web data
         /// </summary>
         /// <param name="main">the main namespace of the plugin to search/create</param>
         /// <returns></returns>
         public static BukgetPlugin CreateFromNamespace(string main)
         {
             string url = BukgetUrlBuilder.ConstructUrl(PluginInfoField.Main, SearchAction.Equals, main, 1);
-            string data = WebUtil.RetrieveString(url);  
+            string data = WebUtil.RetrieveString(url);
             return new BukgetPlugin(data);
         }
 

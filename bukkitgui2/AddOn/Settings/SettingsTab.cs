@@ -5,6 +5,7 @@
 
 using System.Collections.Generic;
 using System.Windows.Forms;
+using Net.Bertware.Bukkitgui2.Core.Configuration;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Settings
 {
@@ -14,6 +15,9 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Settings
 
         public IAddon ParentAddon { get; set; }
 
+        /// <summary>
+        ///     Dictionary of addon names and their settings controls
+        /// </summary>
         private Dictionary<string, UserControl> _settings;
 
         public SettingsTab()
@@ -41,11 +45,21 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Settings
             IsInitialized = true;
         }
 
+        /// <summary>
+        ///     Handle the selection of a different node in the treeview
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TvSettingsAfterSelect(object sender, TreeViewEventArgs e)
         {
+            Config.SaveFile(); //autosave the file while editing different settings groups
             LoadControl(e.Node.Name);
         }
 
+        /// <summary>
+        ///     Load a new settings control
+        /// </summary>
+        /// <param name="name"></param>
         private void LoadControl(string name)
         {
             if (!_settings.ContainsKey(name))

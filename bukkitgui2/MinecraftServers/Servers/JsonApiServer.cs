@@ -3,18 +3,21 @@
 // Last edited at 2014/06/22 12:34
 // ©Bertware, visit http://bertware.net
 
+using System.Reflection;
+using Net.Bertware.Bukkitgui2.MinecraftServers.Tools.global;
+using Net.Bertware.Bukkitgui2.Properties;
+
 namespace Net.Bertware.Bukkitgui2.MinecraftServers.Servers
 {
     internal class JsonApiServer : MinecraftServerBase
     {
-        public override string Name
+        public JsonApiServer()
         {
-            get { return "JsonApi"; }
-        }
+            Name = "JsonApi";
 
-        public override string Site
-        {
-            get { return "http://minecraft.net"; }
+            CustomAssembly = Assembly.Load(Resources.JsonApiConnector);
+            SupportsPlugins = false; //disable plugin manager on this one
+            CustomSettingsControl = new JsonApiCredentialsSettingsControl();
         }
     }
 }

@@ -9,7 +9,7 @@ using System.IO;
 namespace Net.Bertware.Bukkitgui2.Core.FileLocation
 {
     /// <summary>
-    /// FileLocation: Provides paths to all commonly used folders for consistent use of the same folders
+    ///     FileLocation: Provides paths to all commonly used folders for consistent use of the same folders
     /// </summary>
     internal static class Fl
     {

@@ -4,6 +4,7 @@
 // ©Bertware, visit http://bertware.net
 
 using Net.Bertware.Bukkitgui2.Core.Util.Web;
+using Net.Bertware.Bukkitgui2.Properties;
 
 namespace Net.Bertware.Bukkitgui2.MinecraftServers.Servers
 {
@@ -12,19 +13,14 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers.Servers
     /// </summary>
     internal class VanillaServer : MinecraftServerBase
     {
-        public override string Name
+        public VanillaServer()
         {
-            get { return "Vanilla"; }
-        }
+            Name = "Vanilla";
+            Site = "http://minecraft.net";
+            Logo = Resources.vanilla_logo;
 
-        public override string Site
-        {
-            get { return "http://minecraft.net"; }
-        }
-
-        public override bool CanDownloadRecommendedVersion
-        {
-            get { return true; }
+            CanDownloadRecommendedVersion = true;
+            //default value for boolean is false, so all other features are disabled by default
         }
 
         public override bool DownloadRecommendedVersion(string targetfile)
