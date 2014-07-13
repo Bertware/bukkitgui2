@@ -7,63 +7,63 @@ using System.Windows.Forms;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 {
-	internal class Tasker : IAddon
-	{
-		private UserControl _tab;
+    internal class Tasker : IAddon
+    {
+        private UserControl _tab;
 
 
-		/// <summary>
-		///     The addon name, ideally this name is the same as used in the tabpage
-		/// </summary>
-		public string Name
-		{
-			get { return "Tasker"; }
-		}
+        /// <summary>
+        ///     The addon name, ideally this name is the same as used in the tabpage
+        /// </summary>
+        public string Name
+        {
+            get { return "Tasker"; }
+        }
 
-		/// <summary>
-		///     True if this addon has a tab page
-		/// </summary>
-		public bool HasTab
-		{
-			get { return true; }
-		}
+        /// <summary>
+        ///     True if this addon has a tab page
+        /// </summary>
+        public bool HasTab
+        {
+            get { return true; }
+        }
 
-		/// <summary>
-		///     True if this addon has a config field
-		/// </summary>
-		public bool HasConfig
-		{
-			get { return false; }
-		}
+        /// <summary>
+        ///     True if this addon has a config field
+        /// </summary>
+        public bool HasConfig
+        {
+            get { return false; }
+        }
 
-		/// <summary>
-		///     Initialize all functions and the tabcontrol
-		/// </summary>
-		public void Initialize()
-		{
-			_tab = new TaskerTab {Text = Name, ParentAddon = this};
-			ConfigPage = null;
-		}
+        /// <summary>
+        ///     Initialize all functions and the tabcontrol
+        /// </summary>
+        public void Initialize()
+        {
+            _tab = new TaskerTab {Text = Name, ParentAddon = this};
+            ConfigPage = null;
+        }
 
-		public void Dispose()
-		{
-			// nothing to do
-		}
+        public void Dispose()
+        {
+            // nothing to do
+        }
 
-		/// <summary>
-		///     The tab control for this addon
-		/// </summary>
-		/// <returns>Returns the tabpage</returns>
-		UserControl IAddon.TabPage
-		{
-			get { return _tab; }
-		}
+        /// <summary>
+        ///     The tab control for this addon
+        /// </summary>
+        /// <returns>Returns the tabpage</returns>
+        UserControl IAddon.TabPage
+        {
+            get { return _tab; }
+        }
 
-		public UserControl ConfigPage { get; private set; }
+        public UserControl ConfigPage { get; private set; }
 
-		public bool CanDisable
-		{
-			get { return true; }
-		}
-	}
+        public bool CanDisable
+        {
+            get { return true; }
+        }
+    }
 }

@@ -6,8 +6,10 @@
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
@@ -51,6 +53,14 @@ namespace JsonApiConnector
 
 		private void LoadArguments(string[] args)
 		{
+		    if (args.Length < 1 || args.Contains("-help") || args.Contains("/help") || args.Contains("-?") || args.Contains("/?"))
+		    {
+		        PrintUsage();
+		        return;
+		    }
+
+
+
 			for (byte i = 0; i < args.Length; i++)
 			{
 				try
@@ -83,12 +93,31 @@ namespace JsonApiConnector
 				}
 				catch (Exception)
 				{
-					const string usage =
-						"Usage: JsonApiConnector.exe -u=[username] -p=[password] -s=[salt] -host=[ip or hostname] -port=[port]";
-					OutputReceived(usage);
+				    PrintUsage();
 				}
 			}
 		}
+
+	    public static void PrintUsage()
+	    {
+	        Console.WriteLine();
+            Console.WriteLine("JsonApi Connector " + Assembly.GetExecutingAssembly().GetName().Version);
+	        Console.WriteLine("Built for JsonApi Api v1");
+            Console.WriteLine();
+            Console.WriteLine("Usage:");
+            Console.WriteLine(Assembly.GetExecutingAssembly().GetName().Name + " -u=[username] -p=[password] -s=[salt] -host=[ip or hostname] -port=[port]");
+            Console.WriteLine();
+            Console.WriteLine("Username: JsonApi username as set in the jsonapi config");
+            Console.WriteLine("Password: JsonApi password as set in the jsonapi config");
+            Console.WriteLine("Salt: JsonApi salt as set in the jsonapi config");
+            Console.WriteLine("Ip/Hostname: Ip or hostname to the server running the jsonapi plugin");
+            Console.WriteLine("Port: The port used by JsonApi, as set in the JsonApi config.");
+            Console.WriteLine();
+            Console.WriteLine("Note: You need to forward the port, port+1 and port+2 for all functions to work (due to JsonApi requirements)");
+            Console.WriteLine();
+            Console.WriteLine("Press a key...");
+	        Console.ReadLine();
+	    }
 
 		public void Connect()
 		{

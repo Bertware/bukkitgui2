@@ -8,25 +8,25 @@ using Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.PlayerList
 {
-	public partial class PlayerListTab : UserControl, IAddonTab
-	{
-		public PlayerListTab()
-		{
-			InitializeComponent();
-			PlayerHandler.PlayerListChanged += HandlePlayerListChange;
-		}
+    public partial class PlayerListTab : UserControl, IAddonTab
+    {
+        public PlayerListTab()
+        {
+            InitializeComponent();
+            PlayerHandler.PlayerListChanged += HandlePlayerListChange;
+        }
 
-		private void HandlePlayerListChange()
-		{
-			slvPlayers.Items.Clear();
-			foreach (Player player in PlayerHandler.GetOnlinePlayers())
-			{
-				string[] contents = {player.Name, player.DisplayName, player.Ip, player.JoinTime.ToLongTimeString()};
-				ListViewItem item = new ListViewItem(contents) {Tag = player.Name};
-				slvPlayers.Items.Add(item);
-			}
-		}
+        private void HandlePlayerListChange()
+        {
+            slvPlayers.Items.Clear();
+            foreach (Player player in PlayerHandler.GetOnlinePlayers())
+            {
+                string[] contents = {player.Name, player.DisplayName, player.Ip, player.JoinTime.ToLongTimeString()};
+                ListViewItem item = new ListViewItem(contents) {Tag = player.Name};
+                slvPlayers.Items.Add(item);
+            }
+        }
 
-		public IAddon ParentAddon { get; set; }
-	}
+        public IAddon ParentAddon { get; set; }
+    }
 }

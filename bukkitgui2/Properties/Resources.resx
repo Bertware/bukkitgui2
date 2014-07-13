@@ -139,4 +139,7 @@
   <data name="Jayrock_Json" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\dll\jayrock.json.dll;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="JsonApiConnector" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\JsonApiConnector.exe;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

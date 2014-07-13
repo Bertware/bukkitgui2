@@ -3,18 +3,20 @@
 // Last edited at 2014/06/22 12:34
 // ©Bertware, visit http://bertware.net
 
+using Net.Bertware.Bukkitgui2.Properties;
+
 namespace Net.Bertware.Bukkitgui2.MinecraftServers.Servers
 {
-	internal class SpigotServer : MinecraftServerBase
-	{
-		public override string Name
-		{
-			get { return "Spigot"; }
-		}
+    internal class SpigotServer : MinecraftServerBase
+    {
+        public SpigotServer()
+        {
+            Name = "Spigot";
+            Site = "http://minecraft.net";
+            Logo = Resources.spigot_logo;
 
-		public override string Site
-		{
-			get { return "http://spigot.net"; }
-		}
-	}
+            CanDownloadRecommendedVersion = true;
+            //default value for boolean is false, so all other features are disabled by default
+        }
+    }
 }
