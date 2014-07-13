@@ -1,13 +1,15 @@
 ﻿// Program.cs in bukkitgui2/bukkitgui2
 // Created 2014/01/17
-// Last edited at 2014/07/13 14:01
+// Last edited at 2014/07/13 15:53
 // ©Bertware, visit http://bertware.net
 
 using System;
 using System.IO;
 using System.Reflection;
+using System.Threading;
 using System.Windows.Forms;
 using Net.Bertware.Bukkitgui2.UI;
+using Net.Bertware.Get;
 
 namespace Net.Bertware.Bukkitgui2
 {
@@ -21,6 +23,10 @@ namespace Net.Bertware.Bukkitgui2
 		{
 			// Load embedded DLLs
 			AppDomain.CurrentDomain.AssemblyResolve += LoadDll;
+
+			Thread t = new Thread(CheckForUpdates) {IsBackground = true, Name = "update_check"};
+			t.Start();
+
 			// Load app
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
@@ -42,6 +48,11 @@ namespace Net.Bertware.Bukkitgui2
 				stream.Read(assemblyData, 0, assemblyData.Length);
 				return Assembly.Load(assemblyData);
 			}
+		}
+
+		public static void CheckForUpdates()
+		{
+			api.RunUpdateCheck(true);
 		}
 	}
 }

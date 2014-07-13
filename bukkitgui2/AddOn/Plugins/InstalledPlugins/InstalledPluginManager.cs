@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading;
+using System.Windows.Forms.VisualStyles;
 using Net.Bertware.Bukkitgui2.Core.FileLocation;
 using Net.Bertware.Bukkitgui2.Core.Logging;
 
@@ -70,7 +71,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 		/// <remarks></remarks>
 		private static void CreateSimpleList()
 		{
-			FileInfo[] pluginfiles = new DirectoryInfo(Fl.Location(RequestFile.Plugindir)).GetFiles();
+			FileInfo[] pluginfiles = new DirectoryInfo(Fl.SafeLocation(RequestFile.Plugindir)).GetFiles();
 
 			if (pluginfiles.Length < 1)
 			{

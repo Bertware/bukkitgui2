@@ -41,6 +41,9 @@
       <HintPath>Resources\Dll\Jayrock.Json.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Net.Bertware.Get">
+      <HintPath>Resources\Dll\Net.Bertware.Get.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
@@ -414,10 +417,12 @@
     <Folder Include="Core\Filesystem\FTP\" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\Dll\Net.Bertware.Get.dll" />
     <None Include="Resources\JsonApiConnector.exe" />
     <EmbeddedResource Include="Resources\Dll\YamlUtility.dll" />
     <EmbeddedResource Include="Resources\Dll\Jayrock.Json.dll" />
     <EmbeddedResource Include="Resources\Dll\ICSharpCode.SharpZipLib.dll" />
+    <Content Include="Resources\Dll\Net.Bertware.Get.pdb" />
     <Content Include="Resources\Img\bukkit_logo.png" />
     <Content Include="Resources\Img\GUI icon 16.ico" />
     <Content Include="Resources\Img\GUI icon 32.ico" />
