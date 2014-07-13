@@ -27,13 +27,17 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
             PlayerHandler.PlayerListAddition += HandlePlayerAddition;
             PlayerHandler.PlayerListDeletion += HandlePlayerDeletion;
 
+			
             CIConsoleInput.AutoCompletion = Config.ReadBool("console", "autocompletion", true);
             MCCOut.MessageColorInfo = Color.FromArgb(Config.ReadInt("console", "color_info", Color.Blue.ToArgb()));
             MCCOut.MessageColorPlayerAction =
-                Color.FromArgb(Config.ReadInt("console", "color_info", Color.DarkGreen.ToArgb()));
-            MCCOut.MessageColorSevere = Color.FromArgb(Config.ReadInt("console", "color_info", Color.DarkRed.ToArgb()));
+                Color.FromArgb(Config.ReadInt("console", "color_playeraction", Color.DarkGreen.ToArgb()));
+            MCCOut.MessageColorSevere = Color.FromArgb(Config.ReadInt("console", "color_severe", Color.DarkRed.ToArgb()));
             MCCOut.MessageColorWarning =
-                Color.FromArgb(Config.ReadInt("console", "color_info", Color.DarkOrange.ToArgb()));
+                Color.FromArgb(Config.ReadInt("console", "color_warning", Color.DarkOrange.ToArgb()));
+
+	        MCCOut.ShowDate = Config.ReadBool("console", "date", false);
+			MCCOut.ShowTime = Config.ReadBool("console", "time", true);
         }
 
         /// <summary>

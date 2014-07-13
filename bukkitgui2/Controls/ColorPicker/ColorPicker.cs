@@ -17,7 +17,9 @@ namespace Net.Bertware.Bukkitgui2.Controls.ColorPicker
 		}
 
 		public delegate void ColorChangedEventHandler(Color color);
-
+		/// <summary>
+		/// Raised when the color is changed
+		/// </summary>
 		public event ColorChangedEventHandler ColorChanged;
 
 		private void RaiseColorChangedEvent()
@@ -27,7 +29,9 @@ namespace Net.Bertware.Bukkitgui2.Controls.ColorPicker
 		}
 
 		private Color _color;
-
+		/// <summary>
+		/// The selected color
+		/// </summary>
 		public Color Color
 		{
 			get { return _color; }

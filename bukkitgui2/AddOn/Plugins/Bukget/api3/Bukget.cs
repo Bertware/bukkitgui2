@@ -16,9 +16,8 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
         ///     Dictionary with currently loaded plugins, key: namespace, value: plugin
         /// </summary>
         public static Dictionary<String, BukgetPlugin> CurrentlyLoadedPlugins;
-
-
-        public static Dictionary<String, BukgetPlugin> GetMostPopularPlugins(int amount)
+		
+		public static Dictionary<String, BukgetPlugin> GetMostPopularPlugins(int amount)
         {
             string url = BukgetUrlBuilder.ConstructUrl(BukgetUrlBuilder.FieldsSimple, PluginInfoField.Pop_Daily, true,
                 amount);
@@ -60,5 +59,15 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
         {
             return pluginList.ToDictionary(bukgetPlugin => bukgetPlugin.Main);
         }
+
+		/// <summary>
+		///     Convert a dictionary to a list
+		/// </summary>
+		/// <param name="pluginDict">List of plugins to convert</param>
+		/// <returns></returns>
+		public static List<BukgetPlugin> DictionaryToList(Dictionary<String, BukgetPlugin> pluginDict)
+		{
+			return pluginDict.Values.ToList();
+		}
     }
 }

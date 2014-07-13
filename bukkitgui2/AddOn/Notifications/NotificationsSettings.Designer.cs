@@ -1,4 +1,6 @@
-﻿namespace Net.Bertware.Bukkitgui2.AddOn.Notifications
+﻿using Net.Bertware.Bukkitgui2.Controls;
+
+namespace Net.Bertware.Bukkitgui2.AddOn.Notifications
 {
 	partial class NotificationSettings
 	{
@@ -29,13 +31,13 @@
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
-			this.chkEnable = new System.Windows.Forms.CheckBox();
-			this.chkAlways = new System.Windows.Forms.CheckBox();
-			this.chkOnStatusChange = new System.Windows.Forms.CheckBox();
-			this.chkOnPlayerJoin = new System.Windows.Forms.CheckBox();
-			this.chkOnPlayerLeave = new System.Windows.Forms.CheckBox();
-			this.chkOnPlayerBan = new System.Windows.Forms.CheckBox();
-			this.chkOnPlayerKick = new System.Windows.Forms.CheckBox();
+			this.chkEnable = new SettingsCheckbox();
+			this.chkAlways = new SettingsCheckbox();
+			this.chkOnStatusChange = new SettingsCheckbox();
+			this.chkOnPlayerJoin = new SettingsCheckbox();
+			this.chkOnPlayerLeave = new SettingsCheckbox();
+			this.chkOnPlayerBan = new SettingsCheckbox();
+			this.chkOnPlayerKick = new SettingsCheckbox();
 			this.toolTip = new System.Windows.Forms.ToolTip(this.components);
 			this.gbBalloons = new System.Windows.Forms.GroupBox();
 			this.gbSound = new System.Windows.Forms.GroupBox();
@@ -64,7 +66,7 @@
 			this.chkAlways.Text = "Always show balloons";
 			this.toolTip.SetToolTip(this.chkAlways, "Show balloons, even if the GUI isn\'t minimized\r\n");
 			this.chkAlways.UseVisualStyleBackColor = true;
-			this.chkAlways.CheckedChanged += new System.EventHandler(this.chkAlways_CheckedChanged);
+			
 			// 
 			// chkOnStatusChange
 			// 
@@ -76,7 +78,7 @@
 			this.chkOnStatusChange.Text = "Show balloon on server status change";
 			this.toolTip.SetToolTip(this.chkOnStatusChange, "Show a balloon when the server starts, is started, is stopping or stopped");
 			this.chkOnStatusChange.UseVisualStyleBackColor = true;
-			this.chkOnStatusChange.CheckedChanged += new System.EventHandler(this.chkOnStatusChange_CheckedChanged);
+		
 			// 
 			// chkOnPlayerJoin
 			// 
@@ -87,7 +89,6 @@
 			this.chkOnPlayerJoin.TabIndex = 3;
 			this.chkOnPlayerJoin.Text = "Show balloon on player join";
 			this.chkOnPlayerJoin.UseVisualStyleBackColor = true;
-			this.chkOnPlayerJoin.CheckedChanged += new System.EventHandler(this.chkOnPlayerJoin_CheckedChanged);
 			// 
 			// chkOnPlayerLeave
 			// 
@@ -98,7 +99,6 @@
 			this.chkOnPlayerLeave.TabIndex = 4;
 			this.chkOnPlayerLeave.Text = "Show balloon on player leave";
 			this.chkOnPlayerLeave.UseVisualStyleBackColor = true;
-			this.chkOnPlayerLeave.CheckedChanged += new System.EventHandler(this.chkOnPlayerLeave_CheckedChanged);
 			// 
 			// chkOnPlayerBan
 			// 
@@ -109,7 +109,6 @@
 			this.chkOnPlayerBan.TabIndex = 6;
 			this.chkOnPlayerBan.Text = "Show balloon on player ban";
 			this.chkOnPlayerBan.UseVisualStyleBackColor = true;
-			this.chkOnPlayerBan.CheckedChanged += new System.EventHandler(this.chkOnPlayerBan_CheckedChanged);
 			// 
 			// chkOnPlayerKick
 			// 
@@ -120,7 +119,7 @@
 			this.chkOnPlayerKick.TabIndex = 5;
 			this.chkOnPlayerKick.Text = "Show balloon on player kick";
 			this.chkOnPlayerKick.UseVisualStyleBackColor = true;
-			this.chkOnPlayerKick.CheckedChanged += new System.EventHandler(this.chkOnPlayerKick_CheckedChanged);
+
 			// 
 			// gbBalloons
 			// 
@@ -179,14 +178,14 @@
 
 		#endregion
 
-		private System.Windows.Forms.CheckBox chkEnable;
-		private System.Windows.Forms.CheckBox chkAlways;
-		private System.Windows.Forms.CheckBox chkOnStatusChange;
-		private System.Windows.Forms.CheckBox chkOnPlayerJoin;
-		private System.Windows.Forms.CheckBox chkOnPlayerLeave;
+		private SettingsCheckbox chkEnable;
+		private SettingsCheckbox chkAlways;
+		private SettingsCheckbox chkOnStatusChange;
+		private SettingsCheckbox chkOnPlayerJoin;
+		private SettingsCheckbox chkOnPlayerLeave;
 		private System.Windows.Forms.ToolTip toolTip;
-		private System.Windows.Forms.CheckBox chkOnPlayerBan;
-		private System.Windows.Forms.CheckBox chkOnPlayerKick;
+		private SettingsCheckbox chkOnPlayerBan;
+		private SettingsCheckbox chkOnPlayerKick;
 		private System.Windows.Forms.GroupBox gbBalloons;
 		private System.Windows.Forms.GroupBox gbSound;
 		private System.Windows.Forms.Label label1;

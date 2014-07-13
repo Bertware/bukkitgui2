@@ -12,7 +12,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget
 {
     public partial class BukgetPluginsControl : UserControl
     {
-        private List<BukgetPlugin> _plugins;
+        private Dictionary<string, BukgetPlugin> _plugins;
 
         public BukgetPluginsControl()
         {
@@ -29,7 +29,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget
         private void ShowPlugins()
         {
             slvPlugins.Items.Clear();
-            foreach (BukgetPlugin p in _plugins)
+            foreach (BukgetPlugin p in _plugins.Values)
             {
                 string[] contents = {p.Name, p.Description, p.LastVersionNumber, p.LastGameVersion};
                 ListViewItem i = new ListViewItem(contents) {Tag = p.Name};

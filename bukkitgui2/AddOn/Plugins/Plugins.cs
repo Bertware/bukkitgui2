@@ -41,6 +41,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins
         public void Initialize()
         {
             _tab = new PluginsTab {Text = Name, ParentAddon = this};
+			InstalledPlugins.InstalledPluginManager.Initialize();
         }
 
         public void Dispose()

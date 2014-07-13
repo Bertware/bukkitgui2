@@ -76,10 +76,6 @@
     </Compile>
     <Compile Include="AddOn\IAddon.cs" />
     <Compile Include="AddOn\IAddonTab.cs" />
-    <Compile Include="AddOn\Notifications\NotificationsSettings.cs" />
-    <Compile Include="AddOn\Notifications\NotificationsSettings.designer.cs">
-      <DependentUpon>NotificationsSettings.cs</DependentUpon>
-    </Compile>
     <Compile Include="AddOn\Plugins\Bukget\api3\BukgetPlugin.cs" />
     <Compile Include="AddOn\Plugins\Bukget\api3\BukgetPluginInstaller.cs" />
     <Compile Include="AddOn\Plugins\Bukget\api3\BukgetUrlBuilder.cs" />
@@ -127,7 +123,9 @@
       <DependentUpon>MultiStringInput.cs</DependentUpon>
     </Compile>
     <Compile Include="AddOn\Notifications\Notifications.cs" />
-    <Compile Include="AddOn\Notifications\NotificationsSettings.cs" />
+    <Compile Include="AddOn\Notifications\NotificationsSettings.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="AddOn\Notifications\NotificationsSettings.Designer.cs">
       <DependentUpon>NotificationsSettings.cs</DependentUpon>
     </Compile>
@@ -236,6 +234,9 @@
     <Compile Include="Controls\MarkupTextArea\MarkupTextArea.Designer.cs">
       <DependentUpon>MarkupTextArea.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\SettingsCheckbox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\SortableListView\SortableListView.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -324,9 +325,6 @@
     <EmbeddedResource Include="AddOn\Forwarder\ForwarderTab.resx">
       <DependentUpon>ForwarderTab.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AddOn\Notifications\NotificationsSettings.resx">
-      <DependentUpon>NotificationsSettings.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="AddOn\Permissions\PermissionsTab.resx">
       <DependentUpon>PermissionsTab.cs</DependentUpon>
     </EmbeddedResource>
@@ -362,6 +360,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddOn\Tasker\TaskerTab.resx">
       <DependentUpon>TaskerTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddOn\Notifications\NotificationsSettings.resx">
+      <DependentUpon>NotificationsSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddOn\WebControl\WebControlTab.resx">
       <DependentUpon>WebControlTab.cs</DependentUpon>
@@ -428,11 +429,11 @@
     <Content Include="Resources\Img\vanilla_logo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+Other similar extension points exist, see Microsoft.Common.targets.
+<Target Name="BeforeBuild">
+</Target>
+<Target Name="AfterBuild">
+</Target>
+-->
 </Project>

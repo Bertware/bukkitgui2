@@ -87,7 +87,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
             fdd.AddFile(version.DownloadLink, targetlocation);
             fdd.ShowDialog();
 
-            ReloadSingleInstalledPluginAsync(targetlocation);
+            InstalledPluginManager.ReloadInstalledPluginFile(targetlocation);
             if (showUi)
             {
                 MessageBox.Show(

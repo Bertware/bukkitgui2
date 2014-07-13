@@ -1,4 +1,6 @@
-﻿namespace Net.Bertware.Bukkitgui2.AddOn.Console
+﻿using Net.Bertware.Bukkitgui2.Controls;
+
+namespace Net.Bertware.Bukkitgui2.AddOn.Console
 {
 	partial class ConsoleSettings
 	{
@@ -28,40 +30,40 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.checkBox1 = new System.Windows.Forms.CheckBox();
-			this.checkBox2 = new System.Windows.Forms.CheckBox();
+			this.chkTime = new SettingsCheckbox();
+			this.chkDate = new SettingsCheckbox();
 			this.button1 = new System.Windows.Forms.Button();
 			this.CpInfo = new Net.Bertware.Bukkitgui2.Controls.ColorPicker.ColorPicker();
 			this.gbColors = new System.Windows.Forms.GroupBox();
+			this.label4 = new System.Windows.Forms.Label();
+			this.cpPlayer = new Net.Bertware.Bukkitgui2.Controls.ColorPicker.ColorPicker();
+			this.label3 = new System.Windows.Forms.Label();
+			this.cpSevere = new Net.Bertware.Bukkitgui2.Controls.ColorPicker.ColorPicker();
 			this.label2 = new System.Windows.Forms.Label();
 			this.cpWarn = new Net.Bertware.Bukkitgui2.Controls.ColorPicker.ColorPicker();
 			this.label1 = new System.Windows.Forms.Label();
-			this.label3 = new System.Windows.Forms.Label();
-			this.cpSevere = new Net.Bertware.Bukkitgui2.Controls.ColorPicker.ColorPicker();
-			this.label4 = new System.Windows.Forms.Label();
-			this.cpPlayer = new Net.Bertware.Bukkitgui2.Controls.ColorPicker.ColorPicker();
 			this.gbColors.SuspendLayout();
 			this.SuspendLayout();
 			// 
-			// checkBox1
+			// chkTime
 			// 
-			this.checkBox1.AutoSize = true;
-			this.checkBox1.Location = new System.Drawing.Point(3, 3);
-			this.checkBox1.Name = "checkBox1";
-			this.checkBox1.Size = new System.Drawing.Size(79, 17);
-			this.checkBox1.TabIndex = 0;
-			this.checkBox1.Text = "Show &Time";
-			this.checkBox1.UseVisualStyleBackColor = true;
+			this.chkTime.AutoSize = true;
+			this.chkTime.Location = new System.Drawing.Point(3, 3);
+			this.chkTime.Name = "chkTime";
+			this.chkTime.Size = new System.Drawing.Size(79, 17);
+			this.chkTime.TabIndex = 0;
+			this.chkTime.Text = "Show &Time";
+			this.chkTime.UseVisualStyleBackColor = true;
 			// 
-			// checkBox2
+			// chkDate
 			// 
-			this.checkBox2.AutoSize = true;
-			this.checkBox2.Location = new System.Drawing.Point(3, 26);
-			this.checkBox2.Name = "checkBox2";
-			this.checkBox2.Size = new System.Drawing.Size(79, 17);
-			this.checkBox2.TabIndex = 1;
-			this.checkBox2.Text = "Show &Date";
-			this.checkBox2.UseVisualStyleBackColor = true;
+			this.chkDate.AutoSize = true;
+			this.chkDate.Location = new System.Drawing.Point(3, 26);
+			this.chkDate.Name = "chkDate";
+			this.chkDate.Size = new System.Drawing.Size(79, 17);
+			this.chkDate.TabIndex = 1;
+			this.chkDate.Text = "Show &Date";
+			this.chkDate.UseVisualStyleBackColor = true;
 			// 
 			// button1
 			// 
@@ -81,6 +83,7 @@
 			this.CpInfo.Name = "CpInfo";
 			this.CpInfo.Size = new System.Drawing.Size(76, 20);
 			this.CpInfo.TabIndex = 3;
+			this.CpInfo.ColorChanged += new Net.Bertware.Bukkitgui2.Controls.ColorPicker.ColorPicker.ColorChangedEventHandler(this.CpInfo_ColorChanged);
 			// 
 			// gbColors
 			// 
@@ -101,32 +104,24 @@
 			this.gbColors.TabStop = false;
 			this.gbColors.Text = "Colors";
 			// 
-			// label2
+			// label4
 			// 
-			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(6, 47);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(94, 13);
-			this.label2.TabIndex = 6;
-			this.label2.Text = "warning messages";
+			this.label4.AutoSize = true;
+			this.label4.Location = new System.Drawing.Point(6, 99);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(85, 13);
+			this.label4.TabIndex = 10;
+			this.label4.Text = "player messages";
 			// 
-			// cpWarn
+			// cpPlayer
 			// 
-			this.cpWarn.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.cpWarn.Color = System.Drawing.Color.Empty;
-			this.cpWarn.Location = new System.Drawing.Point(109, 40);
-			this.cpWarn.Name = "cpWarn";
-			this.cpWarn.Size = new System.Drawing.Size(76, 20);
-			this.cpWarn.TabIndex = 5;
-			// 
-			// label1
-			// 
-			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(6, 19);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(74, 13);
-			this.label1.TabIndex = 4;
-			this.label1.Text = "info messages";
+			this.cpPlayer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.cpPlayer.Color = System.Drawing.Color.Empty;
+			this.cpPlayer.Location = new System.Drawing.Point(109, 92);
+			this.cpPlayer.Name = "cpPlayer";
+			this.cpPlayer.Size = new System.Drawing.Size(76, 20);
+			this.cpPlayer.TabIndex = 9;
+			this.cpPlayer.ColorChanged += new Net.Bertware.Bukkitgui2.Controls.ColorPicker.ColorPicker.ColorChangedEventHandler(this.cpPlayer_ColorChanged);
 			// 
 			// label3
 			// 
@@ -145,24 +140,35 @@
 			this.cpSevere.Name = "cpSevere";
 			this.cpSevere.Size = new System.Drawing.Size(76, 20);
 			this.cpSevere.TabIndex = 7;
+			this.cpSevere.ColorChanged += new Net.Bertware.Bukkitgui2.Controls.ColorPicker.ColorPicker.ColorChangedEventHandler(this.cpSevere_ColorChanged);
 			// 
-			// label4
+			// label2
 			// 
-			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(6, 99);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(85, 13);
-			this.label4.TabIndex = 10;
-			this.label4.Text = "player messages";
+			this.label2.AutoSize = true;
+			this.label2.Location = new System.Drawing.Point(6, 47);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(94, 13);
+			this.label2.TabIndex = 6;
+			this.label2.Text = "warning messages";
 			// 
-			// cpPlayer
+			// cpWarn
 			// 
-			this.cpPlayer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.cpPlayer.Color = System.Drawing.Color.Empty;
-			this.cpPlayer.Location = new System.Drawing.Point(109, 92);
-			this.cpPlayer.Name = "cpPlayer";
-			this.cpPlayer.Size = new System.Drawing.Size(76, 20);
-			this.cpPlayer.TabIndex = 9;
+			this.cpWarn.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.cpWarn.Color = System.Drawing.Color.Empty;
+			this.cpWarn.Location = new System.Drawing.Point(109, 40);
+			this.cpWarn.Name = "cpWarn";
+			this.cpWarn.Size = new System.Drawing.Size(76, 20);
+			this.cpWarn.TabIndex = 5;
+			this.cpWarn.ColorChanged += new Net.Bertware.Bukkitgui2.Controls.ColorPicker.ColorPicker.ColorChangedEventHandler(this.cpWarn_ColorChanged);
+			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point(6, 19);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(74, 13);
+			this.label1.TabIndex = 4;
+			this.label1.Text = "info messages";
 			// 
 			// ConsoleSettings
 			// 
@@ -170,8 +176,8 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.Controls.Add(this.gbColors);
 			this.Controls.Add(this.button1);
-			this.Controls.Add(this.checkBox2);
-			this.Controls.Add(this.checkBox1);
+			this.Controls.Add(this.chkDate);
+			this.Controls.Add(this.chkTime);
 			this.Name = "ConsoleSettings";
 			this.Size = new System.Drawing.Size(560, 490);
 			this.gbColors.ResumeLayout(false);
@@ -183,8 +189,8 @@
 
 		#endregion
 
-		private System.Windows.Forms.CheckBox checkBox1;
-		private System.Windows.Forms.CheckBox checkBox2;
+		private SettingsCheckbox chkTime;
+		private SettingsCheckbox chkDate;
 		private System.Windows.Forms.Button button1;
 		private Controls.ColorPicker.ColorPicker CpInfo;
 		private System.Windows.Forms.GroupBox gbColors;
