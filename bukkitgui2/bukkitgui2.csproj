@@ -70,6 +70,10 @@
     </Compile>
     <Compile Include="AddOn\IAddon.cs" />
     <Compile Include="AddOn\IAddonTab.cs" />
+    <Compile Include="AddOn\Notifications\NotificationsSettings.cs" />
+    <Compile Include="AddOn\Notifications\NotificationsSettings.designer.cs">
+      <DependentUpon>NotificationsSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddOn\Plugins\Bukget\api3\BukgetPlugin.cs" />
     <Compile Include="AddOn\Plugins\Bukget\api3\BukgetUrlBuilder.cs" />
     <Compile Include="AddOn\Plugins\Bukget\api3\JsonParser.cs" />
@@ -114,12 +118,6 @@
       <DependentUpon>MultiStringInput.cs</DependentUpon>
     </Compile>
     <Compile Include="AddOn\Notifications\Notifications.cs" />
-    <Compile Include="AddOn\Notifications\NotificationsSettings.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="AddOn\Notifications\NotificationsSettings.Designer.cs">
-      <DependentUpon>NotificationsSettings.cs</DependentUpon>
-    </Compile>
     <Compile Include="AddOn\Tasker\TaskerDialog\TaskerUI\TriggerPicker.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -305,6 +303,9 @@
     <EmbeddedResource Include="AddOn\Forwarder\ForwarderTab.resx">
       <DependentUpon>ForwarderTab.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AddOn\Notifications\NotificationsSettings.resx">
+      <DependentUpon>NotificationsSettings.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddOn\Permissions\PermissionsTab.resx">
       <DependentUpon>PermissionsTab.cs</DependentUpon>
     </EmbeddedResource>
@@ -340,9 +341,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddOn\Tasker\TaskerTab.resx">
       <DependentUpon>TaskerTab.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AddOn\Notifications\NotificationsSettings.resx">
-      <DependentUpon>NotificationsSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddOn\WebControl\WebControlTab.resx">
       <DependentUpon>WebControlTab.cs</DependentUpon>
