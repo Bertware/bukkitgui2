@@ -1,6 +1,6 @@
 ﻿// InstalledPluginManager.cs in bukkitgui2/bukkitgui2
 // Created 2014/07/13
-// Last edited at 2014/07/13 12:16
+// Last edited at 2014/07/13 14:01
 // ©Bertware, visit http://bertware.net
 
 using System;

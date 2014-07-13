@@ -1,6 +1,6 @@
 ﻿// ConsoleSettings.cs in bukkitgui2/bukkitgui2
 // Created 2014/05/24
-// Last edited at 2014/06/22 12:34
+// Last edited at 2014/07/13 14:01
 // ©Bertware, visit http://bertware.net
 
 using System.Drawing;
@@ -9,7 +9,6 @@ using Net.Bertware.Bukkitgui2.Core.Configuration;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Console
 {
-
 	public partial class ConsoleSettings : UserControl
 	{
 		public ConsoleSettings()
@@ -17,12 +16,11 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			InitializeComponent();
 
 			CpInfo.Color = Color.FromArgb(Config.ReadInt("console", "color_info", Color.Blue.ToArgb()));
-			cpPlayer.Color  =Color.FromArgb(Config.ReadInt("console", "color_playeraction", Color.DarkGreen.ToArgb()));
-			cpSevere.Color  = Color.FromArgb(Config.ReadInt("console", "color_severe", Color.DarkRed.ToArgb()));
+			cpPlayer.Color = Color.FromArgb(Config.ReadInt("console", "color_playeraction", Color.DarkGreen.ToArgb()));
+			cpSevere.Color = Color.FromArgb(Config.ReadInt("console", "color_severe", Color.DarkRed.ToArgb()));
 			cpWarn.Color = Color.FromArgb(Config.ReadInt("console", "color_warning", Color.DarkOrange.ToArgb()));
 			chkDate.Link("console", "date", false);
 			chkTime.Link("console", "time", true);
-
 		}
 
 		private void CpInfo_ColorChanged(Color color)
@@ -44,7 +42,5 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 		{
 			Config.WriteInt("console", "color_playeraction", cpPlayer.Color.ToArgb());
 		}
-
 	}
-
 }

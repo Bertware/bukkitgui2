@@ -1,6 +1,6 @@
 ﻿// VanillaServer.cs in bukkitgui2/bukkitgui2
 // Created 2014/01/17
-// Last edited at 2014/06/22 12:34
+// Last edited at 2014/07/13 14:01
 // ©Bertware, visit http://bertware.net
 
 using Net.Bertware.Bukkitgui2.Core.Util.Web;
@@ -8,35 +8,35 @@ using Net.Bertware.Bukkitgui2.Properties;
 
 namespace Net.Bertware.Bukkitgui2.MinecraftServers.Servers
 {
-    /// <summary>
-    ///     Default vanilla server. All parsing code is already in the server base
-    /// </summary>
-    internal class VanillaServer : MinecraftServerBase
-    {
-        public VanillaServer()
-        {
-            Name = "Vanilla";
-            Site = "http://minecraft.net";
-            Logo = Resources.vanilla_logo;
+	/// <summary>
+	///     Default vanilla server. All parsing code is already in the server base
+	/// </summary>
+	internal class VanillaServer : MinecraftServerBase
+	{
+		public VanillaServer()
+		{
+			Name = "Vanilla";
+			Site = "http://minecraft.net";
+			Logo = Resources.vanilla_logo;
 
-            CanDownloadRecommendedVersion = true;
-            //default value for boolean is false, so all other features are disabled by default
-        }
+			CanDownloadRecommendedVersion = true;
+			//default value for boolean is false, so all other features are disabled by default
+		}
 
-        public override bool DownloadRecommendedVersion(string targetfile)
-        {
-            FileDownloader fileDownloadDialog = new FileDownloader();
-            fileDownloadDialog.AddFile(
-                "https://s3.amazonaws.com/Minecraft.Download/versions/1.7.5/minecraft_server.1.7.5.jar",
-                targetfile);
-            fileDownloadDialog.Show();
-            fileDownloadDialog.StartDownload();
-            return true;
-        }
+		public override bool DownloadRecommendedVersion(string targetfile)
+		{
+			FileDownloader fileDownloadDialog = new FileDownloader();
+			fileDownloadDialog.AddFile(
+				"https://s3.amazonaws.com/Minecraft.Download/versions/1.7.5/minecraft_server.1.7.5.jar",
+				targetfile);
+			fileDownloadDialog.Show();
+			fileDownloadDialog.StartDownload();
+			return true;
+		}
 
-        public override string GetLaunchFlags(string defaultFlags = "")
-        {
-            return " nogui " + defaultFlags;
-        }
-    }
+		public override string GetLaunchFlags(string defaultFlags = "")
+		{
+			return " nogui " + defaultFlags;
+		}
+	}
 }

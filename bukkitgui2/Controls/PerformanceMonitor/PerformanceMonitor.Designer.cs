@@ -38,16 +38,16 @@
 			this.ProgBarGuiRam = new System.Windows.Forms.ProgressBar();
 			this.LblTotalRamUsageValue = new System.Windows.Forms.Label();
 			this.ProgBarTotalRam = new System.Windows.Forms.ProgressBar();
-			this.label8 = new System.Windows.Forms.Label();
-			this.progressBar4 = new System.Windows.Forms.ProgressBar();
-			this.label9 = new System.Windows.Forms.Label();
-			this.progressBar5 = new System.Windows.Forms.ProgressBar();
-			this.label10 = new System.Windows.Forms.Label();
+			this.lblTotalCpuUsageValue = new System.Windows.Forms.Label();
+			this.ProgBarTotalCpu = new System.Windows.Forms.ProgressBar();
+			this.lblGuiCpuUsageValue = new System.Windows.Forms.Label();
+			this.ProgBarGuiCpu = new System.Windows.Forms.ProgressBar();
+			this.lblServerCpuUsageValue = new System.Windows.Forms.Label();
 			this.label11 = new System.Windows.Forms.Label();
 			this.label12 = new System.Windows.Forms.Label();
 			this.label13 = new System.Windows.Forms.Label();
 			this.label14 = new System.Windows.Forms.Label();
-			this.progressBar6 = new System.Windows.Forms.ProgressBar();
+			this.ProgBarServerCpu = new System.Windows.Forms.ProgressBar();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.panel1.SuspendLayout();
@@ -148,54 +148,54 @@
 			this.ProgBarTotalRam.Size = new System.Drawing.Size(97, 15);
 			this.ProgBarTotalRam.TabIndex = 9;
 			// 
-			// label8
+			// lblTotalCpuUsageValue
 			// 
-			this.label8.Location = new System.Drawing.Point(87, 48);
-			this.label8.Name = "label8";
-			this.label8.Size = new System.Drawing.Size(39, 15);
-			this.label8.TabIndex = 20;
-			this.label8.Text = "100%";
-			this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.lblTotalCpuUsageValue.Location = new System.Drawing.Point(87, 48);
+			this.lblTotalCpuUsageValue.Name = "lblTotalCpuUsageValue";
+			this.lblTotalCpuUsageValue.Size = new System.Drawing.Size(39, 15);
+			this.lblTotalCpuUsageValue.TabIndex = 20;
+			this.lblTotalCpuUsageValue.Text = "100%";
+			this.lblTotalCpuUsageValue.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
-			// progressBar4
+			// ProgBarTotalCpu
 			// 
-			this.progressBar4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.ProgBarTotalCpu.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.progressBar4.Location = new System.Drawing.Point(132, 48);
-			this.progressBar4.MarqueeAnimationSpeed = 0;
-			this.progressBar4.Name = "progressBar4";
-			this.progressBar4.Size = new System.Drawing.Size(148, 15);
-			this.progressBar4.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
-			this.progressBar4.TabIndex = 19;
+			this.ProgBarTotalCpu.Location = new System.Drawing.Point(132, 48);
+			this.ProgBarTotalCpu.MarqueeAnimationSpeed = 0;
+			this.ProgBarTotalCpu.Name = "ProgBarTotalCpu";
+			this.ProgBarTotalCpu.Size = new System.Drawing.Size(148, 15);
+			this.ProgBarTotalCpu.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+			this.ProgBarTotalCpu.TabIndex = 19;
 			// 
-			// label9
+			// lblGuiCpuUsageValue
 			// 
-			this.label9.Location = new System.Drawing.Point(87, 33);
-			this.label9.Name = "label9";
-			this.label9.Size = new System.Drawing.Size(39, 15);
-			this.label9.TabIndex = 18;
-			this.label9.Text = "100%";
-			this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.lblGuiCpuUsageValue.Location = new System.Drawing.Point(87, 33);
+			this.lblGuiCpuUsageValue.Name = "lblGuiCpuUsageValue";
+			this.lblGuiCpuUsageValue.Size = new System.Drawing.Size(39, 15);
+			this.lblGuiCpuUsageValue.TabIndex = 18;
+			this.lblGuiCpuUsageValue.Text = "100%";
+			this.lblGuiCpuUsageValue.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
-			// progressBar5
+			// ProgBarGuiCpu
 			// 
-			this.progressBar5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.ProgBarGuiCpu.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.progressBar5.Location = new System.Drawing.Point(132, 33);
-			this.progressBar5.MarqueeAnimationSpeed = 0;
-			this.progressBar5.Name = "progressBar5";
-			this.progressBar5.Size = new System.Drawing.Size(148, 15);
-			this.progressBar5.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
-			this.progressBar5.TabIndex = 17;
+			this.ProgBarGuiCpu.Location = new System.Drawing.Point(132, 33);
+			this.ProgBarGuiCpu.MarqueeAnimationSpeed = 0;
+			this.ProgBarGuiCpu.Name = "ProgBarGuiCpu";
+			this.ProgBarGuiCpu.Size = new System.Drawing.Size(148, 15);
+			this.ProgBarGuiCpu.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+			this.ProgBarGuiCpu.TabIndex = 17;
 			// 
-			// label10
+			// lblServerCpuUsageValue
 			// 
-			this.label10.Location = new System.Drawing.Point(87, 18);
-			this.label10.Name = "label10";
-			this.label10.Size = new System.Drawing.Size(39, 15);
-			this.label10.TabIndex = 16;
-			this.label10.Text = "100%";
-			this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.lblServerCpuUsageValue.Location = new System.Drawing.Point(87, 18);
+			this.lblServerCpuUsageValue.Name = "lblServerCpuUsageValue";
+			this.lblServerCpuUsageValue.Size = new System.Drawing.Size(39, 15);
+			this.lblServerCpuUsageValue.TabIndex = 16;
+			this.lblServerCpuUsageValue.Text = "100%";
+			this.lblServerCpuUsageValue.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// label11
 			// 
@@ -212,7 +212,7 @@
 			this.label12.Name = "label12";
 			this.label12.Size = new System.Drawing.Size(75, 15);
 			this.label12.TabIndex = 14;
-			this.label12.Text = "Total;";
+			this.label12.Text = "Total:";
 			this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// label13
@@ -233,16 +233,16 @@
 			this.label14.Text = "CPU Usage";
 			this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
-			// progressBar6
+			// ProgBarServerCpu
 			// 
-			this.progressBar6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.ProgBarServerCpu.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.progressBar6.Location = new System.Drawing.Point(132, 18);
-			this.progressBar6.MarqueeAnimationSpeed = 0;
-			this.progressBar6.Name = "progressBar6";
-			this.progressBar6.Size = new System.Drawing.Size(148, 15);
-			this.progressBar6.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
-			this.progressBar6.TabIndex = 11;
+			this.ProgBarServerCpu.Location = new System.Drawing.Point(132, 18);
+			this.ProgBarServerCpu.MarqueeAnimationSpeed = 0;
+			this.ProgBarServerCpu.Name = "ProgBarServerCpu";
+			this.ProgBarServerCpu.Size = new System.Drawing.Size(148, 15);
+			this.ProgBarServerCpu.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+			this.ProgBarServerCpu.TabIndex = 11;
 			// 
 			// panel1
 			// 
@@ -264,15 +264,15 @@
 			// panel2
 			// 
 			this.panel2.Controls.Add(this.label14);
-			this.panel2.Controls.Add(this.label8);
-			this.panel2.Controls.Add(this.progressBar6);
-			this.panel2.Controls.Add(this.progressBar4);
+			this.panel2.Controls.Add(this.lblTotalCpuUsageValue);
+			this.panel2.Controls.Add(this.ProgBarServerCpu);
+			this.panel2.Controls.Add(this.ProgBarTotalCpu);
 			this.panel2.Controls.Add(this.label13);
-			this.panel2.Controls.Add(this.label9);
+			this.panel2.Controls.Add(this.lblGuiCpuUsageValue);
 			this.panel2.Controls.Add(this.label12);
-			this.panel2.Controls.Add(this.progressBar5);
+			this.panel2.Controls.Add(this.ProgBarGuiCpu);
 			this.panel2.Controls.Add(this.label11);
-			this.panel2.Controls.Add(this.label10);
+			this.panel2.Controls.Add(this.lblServerCpuUsageValue);
 			this.panel2.Location = new System.Drawing.Point(277, 0);
 			this.panel2.Name = "panel2";
 			this.panel2.Size = new System.Drawing.Size(283, 100);
@@ -306,16 +306,16 @@
         private System.Windows.Forms.ProgressBar ProgBarGuiRam;
         private System.Windows.Forms.Label LblTotalRamUsageValue;
         private System.Windows.Forms.ProgressBar ProgBarTotalRam;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ProgressBar progressBar4;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.ProgressBar progressBar5;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label lblTotalCpuUsageValue;
+        private System.Windows.Forms.ProgressBar ProgBarTotalCpu;
+        private System.Windows.Forms.Label lblGuiCpuUsageValue;
+        private System.Windows.Forms.ProgressBar ProgBarGuiCpu;
+        private System.Windows.Forms.Label lblServerCpuUsageValue;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.ProgressBar progressBar6;
+        private System.Windows.Forms.ProgressBar ProgBarServerCpu;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
 

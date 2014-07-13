@@ -1,6 +1,6 @@
 ﻿// SettingsCheckbox.cs in bukkitgui2/bukkitgui2
 // Created 2014/07/13
-// Last edited at 2014/07/13 12:34
+// Last edited at 2014/07/13 14:01
 // ©Bertware, visit http://bertware.net
 
 using System;
@@ -15,7 +15,7 @@ namespace Net.Bertware.Bukkitgui2.Controls
 		private Boolean _defaultvalue;
 
 		/// <summary>
-		/// Link this checkbox to a settings value to automaticly load and save settings
+		///     Link this checkbox to a settings value to automaticly load and save settings
 		/// </summary>
 		/// <param name="ident"></param>
 		/// <param name="key"></param>

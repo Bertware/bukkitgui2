@@ -1,6 +1,6 @@
 ﻿// ColorPicker.cs in bukkitgui2/bukkitgui2
 // Created 2014/06/26
-// Last edited at 2014/06/26 17:36
+// Last edited at 2014/07/13 14:01
 // ©Bertware, visit http://bertware.net
 
 using System;
@@ -17,8 +17,9 @@ namespace Net.Bertware.Bukkitgui2.Controls.ColorPicker
 		}
 
 		public delegate void ColorChangedEventHandler(Color color);
+
 		/// <summary>
-		/// Raised when the color is changed
+		///     Raised when the color is changed
 		/// </summary>
 		public event ColorChangedEventHandler ColorChanged;
 
@@ -29,8 +30,9 @@ namespace Net.Bertware.Bukkitgui2.Controls.ColorPicker
 		}
 
 		private Color _color;
+
 		/// <summary>
-		/// The selected color
+		///     The selected color
 		/// </summary>
 		public Color Color
 		{
