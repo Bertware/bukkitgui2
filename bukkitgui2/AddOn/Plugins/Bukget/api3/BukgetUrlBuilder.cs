@@ -184,7 +184,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
 		/// <returns>The URL to make the api call to, as a string</returns>
 		public static string ConstructUrl(PluginInfoField searchField, SearchAction action, String value, int limit)
 		{
-			return ConstructBaseUrl() + "/" + GetFieldUrlValue(searchField) + "/"
+			return ConstructBaseUrl() + "/search/" + GetFieldUrlValue(searchField) + "/"
 			       + GetSearchActionUrlValue(action) + "/" + value;
 		}
 
@@ -224,7 +224,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
 
 		private static string GetCategoryUrlValue(PluginCategory pluginCategory)
 		{
-			return pluginCategory.ToString().Replace("__", "-").Replace('_', '-');
+			return pluginCategory.ToString().Replace("__", "-").Replace('_', ' ');
 		}
 
 		private static string GetFieldArrayUrlValue(IEnumerable<PluginInfoField> fieldArray)

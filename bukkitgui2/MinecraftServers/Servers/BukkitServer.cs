@@ -5,7 +5,10 @@
 
 using System.Diagnostics;
 using System.IO;
+using System.Threading;
+using Microsoft.VisualBasic;
 using Net.Bertware.Bukkitgui2.AddOn.Starter;
+using Net.Bertware.Bukkitgui2.Core.Logging;
 using Net.Bertware.Bukkitgui2.Core.Util.Web;
 using Net.Bertware.Bukkitgui2.MinecraftServers.Tools;
 using Net.Bertware.Bukkitgui2.MinecraftServers.Tools.bukkit;
@@ -13,7 +16,7 @@ using Net.Bertware.Bukkitgui2.Properties;
 
 namespace Net.Bertware.Bukkitgui2.MinecraftServers.Servers
 {
-	internal sealed class BukkitServer : MinecraftServerBase
+	public class BukkitServer : MinecraftServerBase
 	{
 		public BukkitServer()
 		{
@@ -27,6 +30,8 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers.Servers
 			CanDownloadBetaVersion = true;
 			CanDownloadDevVersion = true;
 			CanDownloadRecommendedVersion = true;
+
+			CanGetCurrentVersion = true;
 
 			SupportsPlugins = true;
 		}
@@ -58,40 +63,71 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers.Servers
 			return true;
 		}
 
-		private DlbDownload _lastDevDownload;
-
 		public override string FetchDevVersion
 		{
 			get
 			{
-				if (_lastDevDownload == null) _lastDevDownload = Dlb.GetlatestVersionInfo(Dlb.BukkitVersionType.Dev);
-				return _lastDevDownload.Version;
+				// results are cached in dlb class
+				return Dlb.GetlatestVersionInfo(Dlb.BukkitVersionType.Dev).Version;
 			}
 		}
 
-		private DlbDownload _lastBetaDownload;
 
 		public override string FetchBetaVersion
 		{
 			get
 			{
-				if (_lastBetaDownload == null) _lastBetaDownload = Dlb.GetlatestVersionInfo(Dlb.BukkitVersionType.Beta);
-				return _lastBetaDownload.Version;
+				// results are cached in dlb class
+				return Dlb.GetlatestVersionInfo(Dlb.BukkitVersionType.Beta).Version;
 			}
 		}
-
-		private DlbDownload _lastRecommendedDownload;
 
 		public override string FetchRecommendedVersion
 		{
 			get
 			{
-				if (_lastRecommendedDownload == null)
-					_lastRecommendedDownload = Dlb.GetlatestVersionInfo(Dlb.BukkitVersionType.Rb);
-				return _lastRecommendedDownload.Version;
+				// results are cached in dlb class
+				return Dlb.GetlatestVersionInfo(Dlb.BukkitVersionType.Rb).Version;
 			}
 		}
 
+
+		public override string FetchBetaVersionUiString
+		{
+			get
+			{
+				return "#" + Dlb.GetlatestVersionInfo(Dlb.BukkitVersionType.Beta).Build + " (" + Dlb.GetlatestVersionInfo(Dlb.BukkitVersionType.Beta).Version + ")";
+			}
+		}
+
+		public override string FetchDevVersionUiString
+		{
+			get
+			{
+				return "#" + Dlb.GetlatestVersionInfo(Dlb.BukkitVersionType.Dev).Build + " (" + Dlb.GetlatestVersionInfo(Dlb.BukkitVersionType.Dev).Version + ")";
+			}
+		}
+
+		public override string FetchRecommendedVersionUiString
+		{
+			get
+			{
+				// #0000 (1.0.0-R1.0)
+				return "#" + Dlb.GetlatestVersionInfo(Dlb.BukkitVersionType.Rb).Build + " (" + Dlb.GetlatestVersionInfo(Dlb.BukkitVersionType.Rb).Version + ")";
+			}
+		}
+
+		public override string GetCurrentVersion(string file)
+		{
+			MinecraftServerVersion version = GetCurrentVersionObject(file);
+			return version.Build.ToString();
+		}
+
+		public override string GetCurrentVersionUiString(string file)
+		{
+			MinecraftServerVersion version = GetCurrentVersionObject(file);
+			return "#" + version.Build + " (" + version.ServerVersion + ")";
+		}
 
 		public MinecraftServerVersion GetCurrentVersionObject(string file)
 		{
@@ -102,14 +138,25 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers.Servers
 				StartInfo = new ProcessStartInfo(java)
 				{
 					RedirectStandardOutput = true,
-					Arguments = " -Xincgc -XmX32M -jar " + file + " -v",
-					CreateNoWindow = true
+					Arguments = " -Xmx32M -jar \"" + file + "\" -v",
+					CreateNoWindow = true,
+					UseShellExecute = false
 				}
 			};
-			p.Start();
 
+			Logger.Log(LogLevel.Info, "BukkitServer","Starting process for version check", "\"" + p.StartInfo.FileName + "\"" + p.StartInfo.Arguments);
+			
+			p.Start();
+			
 			using (StreamReader sr = new StreamReader(p.StandardOutput.BaseStream))
 			{
+				for (int i = 0; i < 8; i++)
+				{
+					int peek = sr.Peek();
+					if (peek > 0) continue;
+					Thread.Sleep(250);
+				}
+
 				versionString = sr.ReadToEnd();
 			}
 

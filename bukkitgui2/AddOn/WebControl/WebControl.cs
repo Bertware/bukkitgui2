@@ -24,7 +24,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.WebControl
 		/// </summary>
 		public bool HasTab
 		{
-			get { return true; }
+			get { return false; }
 		}
 
 		/// <summary>
@@ -32,7 +32,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.WebControl
 		/// </summary>
 		public bool HasConfig
 		{
-			get { return true; }
+			get { return false; }
 		}
 
 		/// <summary>

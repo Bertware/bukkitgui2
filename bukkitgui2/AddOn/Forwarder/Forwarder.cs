@@ -24,7 +24,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Forwarder
 		/// </summary>
 		public bool HasTab
 		{
-			get { return true; }
+			get { return false; }
 		}
 
 		/// <summary>

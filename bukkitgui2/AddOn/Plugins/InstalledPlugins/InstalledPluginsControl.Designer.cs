@@ -34,10 +34,10 @@
 			this.slvPlugins = new Net.Bertware.Bukkitgui2.Controls.SortableListView.SortableListView();
 			this.colName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.colDescription = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.ColAuthor = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.colVersion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.colLatestVersion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.colInstalled = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.ColAuthor = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.SuspendLayout();
 			// 
 			// button3
@@ -100,6 +100,11 @@
 			this.colDescription.Text = "Description";
 			this.colDescription.Width = 220;
 			// 
+			// ColAuthor
+			// 
+			this.ColAuthor.Text = "Author(s)";
+			this.ColAuthor.Width = 100;
+			// 
 			// colVersion
 			// 
 			this.colVersion.Text = "Version";
@@ -114,11 +119,6 @@
 			// 
 			this.colInstalled.Text = "Installed";
 			this.colInstalled.Width = 90;
-			// 
-			// ColAuthor
-			// 
-			this.ColAuthor.Text = "Author(s)";
-			this.ColAuthor.Width = 100;
 			// 
 			// InstalledPluginsControl
 			// 

@@ -25,18 +25,61 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers.Tools.bukkit
 		}
 
 		/// <summary>
+		/// Cache for latest dev version info
+		/// </summary>
+		private static DlbDownload _latestDevVersion;
+		/// <summary>
+		/// Cache for latest beta version info
+		/// </summary>
+		private static DlbDownload _latestBetaVersion;
+		/// <summary>
+		/// Cache for latest recommended version info
+		/// </summary>
+		private static DlbDownload _latestRecommendedVersion;
+
+		/// <summary>
 		///     Get the file info about the latest version.
 		/// </summary>
 		/// <param name="version">The version to get info about (recommended/beta/dev)</param>
 		/// <returns>Returns a dlb_download item, based upon the received XML</returns>
 		public static DlbDownload GetlatestVersionInfo(BukkitVersionType version)
 		{
+			// check cache
+			switch (version)
+			{
+					case BukkitVersionType.Rb:
+						if (_latestRecommendedVersion != null) return _latestRecommendedVersion;
+						break;
+					case BukkitVersionType.Beta:
+						if (_latestBetaVersion != null) return _latestBetaVersion;
+						break;
+					case BukkitVersionType.Dev:
+						if (_latestDevVersion != null) return _latestDevVersion;
+						break;
+			}
+
+			// get xml
 			string xml = GetWebContents(ConstructUrl(version));
-			//get xml
+			
+			// create dlb_download from xml
 			DlbDownload dlbd = new DlbDownload(xml);
-			//create dlb_download from xml
+	
+
+			switch (version)
+			{
+				case BukkitVersionType.Rb:
+					_latestRecommendedVersion = dlbd;
+					break;
+				case BukkitVersionType.Beta:
+					_latestBetaVersion = dlbd;
+					break;
+				case BukkitVersionType.Dev:
+					_latestDevVersion = dlbd;
+					break;
+			}
+			// return result
 			return dlbd;
-			//return result
+		
 		}
 
 		/// <summary>

@@ -102,7 +102,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
 			{
 				BukgetPluginVersion version = LastVersion;
 				if (version == null || string.IsNullOrEmpty(version.VersionNumber)) return "";
-				return version.CompatibleBuilds[0];
+				return version.VersionNumber;
 			}
 		}
 
@@ -126,6 +126,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
 		public BukgetPlugin(string jsonCode)
 		{
 			InitFields();
+			if (string.IsNullOrEmpty(jsonCode)) return;
 
 			// Load the string into a json object
 			JsonObject json;
@@ -200,7 +201,9 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
 				JsonArray jsonArray = JsonConvert.Import<JsonArray>(json);
 				foreach (JsonObject jsonObject in jsonArray)
 				{
-					result.Add(new BukgetPlugin(jsonObject.ToString()));
+					BukgetPlugin plugin = new BukgetPlugin(jsonObject.ToString());
+					if (string.IsNullOrEmpty(plugin.Main) || string.IsNullOrEmpty(plugin.Name)) continue;
+					result.Add(plugin);
 				}
 			}
 			else

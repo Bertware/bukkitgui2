@@ -16,7 +16,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers
 	/// <summary>
 	///     The base for a minecraft server. This should contain all parsing code for a vanilla server.
 	/// </summary>
-	internal class MinecraftServerBase : IMinecraftServer
+	public class MinecraftServerBase : IMinecraftServer
 	{
 		//new prefixes in output tags since 1.7.2
 		/// <summary>
@@ -343,6 +343,22 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers
 
 		public virtual string FetchDevVersion { get; protected set; }
 
+		public virtual string FetchRecommendedVersionUiString
+		{
+			get { return FetchRecommendedVersion; }
+		}
+
+		public virtual string FetchBetaVersionUiString
+		{
+			get { return FetchBetaVersion; }
+		}
+
+		public virtual string FetchDevVersionUiString
+		{
+			get { return FetchDevVersion; }
+		}
+
+
 		public virtual bool DownloadRecommendedVersion(string targetfile)
 		{
 			return false;
@@ -360,7 +376,12 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers
 
 		public virtual string GetCurrentVersion(string file)
 		{
-			return "";
+			return "unknown";
+		}
+
+		public virtual string GetCurrentVersionUiString(string file)
+		{
+			return GetCurrentVersion(file);
 		}
 	}
 }

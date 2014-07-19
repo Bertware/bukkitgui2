@@ -116,6 +116,15 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 					return null;
 			}
 		}
+		/// <summary>
+		/// Check if a java version is 32 bit
+		/// </summary>
+		/// <param name="version">the version to check</param>
+		/// <returns></returns>
+		public static bool Is32Bitversion(JavaVersion version)
+		{
+			return (version.ToString().ToLower().Contains("x32"));
+		}
 
 		private static string ProgramFilesx86()
 		{

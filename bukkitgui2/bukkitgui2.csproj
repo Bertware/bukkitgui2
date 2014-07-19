@@ -33,6 +33,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Net.Bertware.Bukkitgui2.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>GUI icon 32.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="ICSharpCode.SharpZipLib">
       <HintPath>Resources\Dll\ICSharpCode.SharpZipLib.dll</HintPath>
@@ -422,6 +428,7 @@
     <EmbeddedResource Include="Resources\Dll\YamlUtility.dll" />
     <EmbeddedResource Include="Resources\Dll\Jayrock.Json.dll" />
     <EmbeddedResource Include="Resources\Dll\ICSharpCode.SharpZipLib.dll" />
+    <Content Include="GUI icon 32.ico" />
     <Content Include="Resources\Dll\Net.Bertware.Get.pdb" />
     <Content Include="Resources\Img\bukkit_logo.png" />
     <Content Include="Resources\Img\GUI icon 16.ico" />

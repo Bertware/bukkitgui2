@@ -12,6 +12,18 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
 {
 	public static class Bukget
 	{
+		public delegate void PluginsLoadedEventArgs(Dictionary<String, BukgetPlugin> currentlyLoadedPlugins);
+		public static event PluginsLoadedEventArgs NewPluginsLoaded;
+
+		private static void RaiseNewPluginsLoaded()
+		{
+			PluginsLoadedEventArgs handler = NewPluginsLoaded;
+			if (handler != null)
+			{
+				handler.Invoke(CurrentlyLoadedPlugins);
+			}
+		}
+
 		/// <summary>
 		///     Dictionary with currently loaded plugins, key: namespace, value: plugin
 		/// </summary>
@@ -30,6 +42,13 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
 			return RetrieveParseStore(url);
 		}
 
+		public static Dictionary<String, BukgetPlugin> SearchPlugins(string searchtext, int amount)
+		{
+			string url = BukgetUrlBuilder.ConstructUrl(PluginInfoField.Plugin_Name,SearchAction.Like, searchtext, amount);
+			return RetrieveParseStore(url);
+		}
+
+
 		public static Dictionary<String, BukgetPlugin> GetPluginsByCategory(string category, int amount)
 		{
 			PluginCategory cat =
@@ -47,6 +66,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
 		{
 			string data = WebUtil.RetrieveString(url);
 			CurrentlyLoadedPlugins = ListToDictionary(BukgetPlugin.ParsePluginList(data));
+			RaiseNewPluginsLoaded();
 			return CurrentlyLoadedPlugins;
 		}
 
@@ -57,7 +77,13 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
 		/// <returns></returns>
 		public static Dictionary<String, BukgetPlugin> ListToDictionary(List<BukgetPlugin> pluginList)
 		{
-			return pluginList.ToDictionary(bukgetPlugin => bukgetPlugin.Main);
+			Dictionary<string, BukgetPlugin> dictionary = new Dictionary<string, BukgetPlugin>();
+			foreach (BukgetPlugin plugin in pluginList)
+			{
+				if (plugin == null || string.IsNullOrEmpty(plugin.Main)) continue;
+				if (!dictionary.ContainsKey(plugin.Main)) dictionary.Add(plugin.Main, plugin);
+			}
+			return dictionary;
 		}
 
 		/// <summary>

@@ -45,5 +45,6 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 			result = result.Substring(0, result.Length - 2); //remove the last ", "
 			return result;
 		}
+
 	}
 }

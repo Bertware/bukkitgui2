@@ -1,6 +1,6 @@
 ﻿// BukgetPluginsControl.cs in bukkitgui2/bukkitgui2
 // Created 2014/01/17
-// Last edited at 2014/07/13 14:01
+// Last edited at 2014/07/19 19:13
 // ©Bertware, visit http://bertware.net
 
 using System;
@@ -17,13 +17,23 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget
 		public BukgetPluginsControl()
 		{
 			InitializeComponent();
+			foreach (string category in Enum.GetNames(typeof (PluginCategory)))
+			{
+				cbCategories.Items.Add(category.Replace("__", "-").Replace("_", " "));
+			}
+			api3.Bukget.NewPluginsLoaded += updatePluginsDictionary;
+		}
+
+		private void updatePluginsDictionary(Dictionary<string, BukgetPlugin> currentlyLoadedPlugins)
+		{
+			_plugins = currentlyLoadedPlugins;
+			ShowPlugins();
 		}
 
 		private void BukgetPluginsControl_VisibleChanged(object sender, EventArgs e)
 		{
 			if (!Visible || (_plugins != null && _plugins.Count >= 1)) return;
-			_plugins = api3.Bukget.GetMostPopularPlugins(20);
-			ShowPlugins();
+			api3.Bukget.GetMostPopularPlugins(20);
 		}
 
 		private void ShowPlugins()
@@ -35,6 +45,17 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget
 				ListViewItem i = new ListViewItem(contents) {Tag = p.Name};
 				slvPlugins.Items.Add(i);
 			}
+		}
+
+
+		private void cbCategories_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			api3.Bukget.GetPluginsByCategory(cbCategories.SelectedItem.ToString(), 50000);
+		}
+
+		private void btnSearch_Click(object sender, EventArgs e)
+		{
+			api3.Bukget.SearchPlugins(txtSearchText.Text, 50);
 		}
 	}
 }

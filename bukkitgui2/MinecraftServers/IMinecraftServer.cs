@@ -213,19 +213,35 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers
 		Boolean CanGetCurrentVersion { get; }
 
 		/// <summary>
-		///     Get the latest stable version number
+		///     Get the latest stable version number, either build number or version. Used for auto-update
 		/// </summary>
 		string FetchRecommendedVersion { get; }
 
 		/// <summary>
-		///     Get the latest beta version number
+		///     Get the latest beta version number, either build number or version. Used for auto-update
 		/// </summary>
 		string FetchBetaVersion { get; }
 
 		/// <summary>
-		///     Get the latest development version number
+		///     Get the latest development version number, either build number or version. Used for auto-update
 		/// </summary>
 		string FetchDevVersion { get; }
+
+
+		/// <summary>
+		///     Get the latest stable version string for UI purpose
+		/// </summary>
+		string FetchRecommendedVersionUiString { get; }
+
+		/// <summary>
+		///     Get the latest beta version string for UI purpose
+		/// </summary>
+		string FetchBetaVersionUiString { get; }
+
+		/// <summary>
+		///     Get the latest development version string for UI purpose
+		/// </summary>
+		string FetchDevVersionUiString { get; }
 
 		/// <summary>
 		///     Download the latest stable version
@@ -254,5 +270,12 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers
 		/// <param name="file">The path to the server file to check</param>
 		/// <returns></returns>
 		string GetCurrentVersion(string file);
+
+		/// <summary>
+		///     Get the version of this server file
+		/// </summary>
+		/// <param name="file">The path to the server file to check</param>
+		/// <returns></returns>
+		string GetCurrentVersionUiString(string file);
 	}
 }

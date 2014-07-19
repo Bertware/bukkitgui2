@@ -1,12 +1,15 @@
 ﻿// StarterTab.cs in bukkitgui2/bukkitgui2
 // Created 2014/01/17
-// Last edited at 2014/07/13 14:01
+// Last edited at 2014/07/19 17:53
 // ©Bertware, visit http://bertware.net
 
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Remoting.Channels;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using Microsoft.VisualBasic;
 using Net.Bertware.Bukkitgui2.Core;
 using Net.Bertware.Bukkitgui2.Core.Configuration;
 using Net.Bertware.Bukkitgui2.Core.Logging;
@@ -186,18 +189,19 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			Boolean notifyDev = server.CanGetCurrentVersion && server.CanFetchDevVersion;
 
 			// Updating also needs the possibility to download
-			Boolean updateRb = server.CanGetCurrentVersion && server.CanDownloadRecommendedVersion
-			                   && server.CanFetchRecommendedVersion;
+			Boolean updateRb = notifyRb && server.CanDownloadRecommendedVersion;
 
-			Boolean updateBeta = server.CanGetCurrentVersion && server.CanDownloadBetaVersion
-			                     && server.CanFetchBetaVersion;
+			Boolean updateBeta = notifyBeta && server.CanDownloadBetaVersion;
 
-			Boolean updateDev = server.CanGetCurrentVersion && server.CanDownloadDevVersion && server.CanFetchDevVersion;
+			Boolean updateDev = notifyDev && server.CanDownloadDevVersion;
+
+
+			if (server.CanFetchDevVersion) LblLatestDevValue.Text = server.FetchDevVersionUiString;
+			if (server.CanFetchBetaVersion) LblLatestBetaValue.Text = server.FetchBetaVersionUiString;
+			if (server.CanFetchRecommendedVersion) LblLatestRecommendedValue.Text = server.FetchRecommendedVersionUiString;
 
 			CBUpdateBehaviour.Items.Clear();
 			CBUpdateBehaviour.Items.Add("Don't check for updates");
-			CBUpdateBehaviour.SelectedIndex = 0;
-
 			if (notifyRb || notifyBeta || notifyDev)
 			{
 				CBUpdateBehaviour.Items.Add("Check for updates and notify me");
@@ -206,6 +210,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			{
 				CBUpdateBehaviour.Items.Add("Check for updates and auto update");
 			}
+			CBUpdateBehaviour.SelectedIndex = Config.ReadInt("Starter", "updatebehaviour", 0);
 
 			CBUpdateBranch.Items.Clear();
 
@@ -222,6 +227,8 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 				CBUpdateBranch.Items.Add("Development builds");
 			}
 
+			if (CBUpdateBranch.Items.Count > 0) CBUpdateBehaviour.SelectedIndex = Config.ReadInt("Starter", "updatebranch", 0);
+
 			// If there is a custom settings control, load it
 			if (server.HasCustomSettingsControl)
 			{
@@ -235,6 +242,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 				_customControl = null;
 				GBCustomSettings.Controls.Clear();
 			}
+
 
 			Logger.Log(LogLevel.Info, "StarterTab", "Loaded server: " + server.Name);
 		}
@@ -289,6 +297,14 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 		/// </summary>
 		public void DoServerLaunch()
 		{
+			if (!ValidateInput())
+			{
+				MessageBox.Show(
+					"The server could not be started: one or more settings are incorrect. See the starter tab for more details",
+					"Server could not be started", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return;
+			}
+				
 			IMinecraftServer server = GetSelectedServer();
 			Starter starter = ParentAddon as Starter;
 
@@ -298,12 +314,6 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			if (starter == null)
 			{
 				Logger.Log(LogLevel.Severe, "StarterTab", "Failed to start server", "No starter object found");
-				return;
-			}
-
-			// If invalid input, stop
-			if (!ValidateInput())
-			{
 				return;
 			}
 
@@ -331,6 +341,56 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 		/// <remarks>Important checks: RAM less than 1024Mb on 32bit, java installed, valid .jar file</remarks>
 		public Boolean ValidateInput()
 		{
+			BtnLaunch.Enabled = false;
+			errorProvider.SetError(BtnLaunch, "The provided settings are invalid");
+			
+			if (!File.Exists(TxtJarFile.Text))
+			{
+				errorProvider.SetError(TxtJarFile, "File does not exist. Press the download button or change the file path to an existing file.");
+				return false;
+			}
+			if (!TxtJarFile.Text.EndsWith(".jar"))
+			{
+				errorProvider.SetError(TxtJarFile, "File should be a *.jar file. This file is not a .jar file, or the extension is incorrect.");
+				return false;
+			}
+			if (new FileInfo(TxtJarFile.Text).Length < 1024)
+			{
+				errorProvider.SetError(TxtJarFile, "File is corrupt. Download again.");
+				return false;
+			}
+
+			if (JavaApi.Is32Bitversion(GetSelectedJavaVersion()))
+			{
+				if (NumMaxRam.Value > 1024)
+				{
+					NumMaxRam.Value = 1025;
+					errorProvider.SetError(NumMaxRam,
+						"You are using a 32bit version of java. In this case, RAM is limited to 1024mb due to java limitations.");
+				}
+				else
+				{
+					errorProvider.SetError(NumMaxRam, "");
+				}
+				if (NumMinRam.Value > 1024)
+				{
+					NumMinRam.Value = 1025;
+					errorProvider.SetError(NumMinRam, "You are using a 32bit version of java. In this case, RAM is limited to 1024mb due to java limitations.");
+				}
+				if (NumMinRam.Value > 768)
+				{
+					errorProvider.SetError(NumMinRam,
+						"To prevent issues, a value below 768mb is recommended here. Recommended value: 128mb");
+				}
+				else
+				{
+					errorProvider.SetError(NumMinRam, "");
+				}
+			}
+
+			BtnLaunch.Enabled = true;
+			errorProvider.SetError(BtnLaunch,"");
+			errorProvider.SetError(TxtJarFile, "");
 			return true;
 		}
 
@@ -416,6 +476,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			{
 				NumMaxRam.Value = NumMinRam.Value; // keep the value of the item we're changing
 			}
+			ValidateInput();
 		}
 
 		/// <summary>
@@ -440,6 +501,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			{
 				NumMinRam.Value = NumMaxRam.Value; // keep the value of the item we're changing
 			}
+			ValidateInput();
 		}
 
 		/// <summary>
@@ -472,6 +534,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			{
 				return; //if not initialized, don't detect changes
 			}
+			ValidateInput();
 			Config.WriteString("Starter", "JarFile", TxtJarFile.Text);
 		}
 
@@ -514,6 +577,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			{
 				return; //if not initialized, don't detect changes
 			}
+			ValidateInput();
 			Config.WriteInt("Starter", "JavaVersion", CBJavaVersion.SelectedIndex);
 		}
 
@@ -561,5 +625,13 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 		{
 			return TxtJarFile.Text;
 		}
+
+		private void btnGetCurrentBuild_Click(object sender, EventArgs e)
+		{
+			if (!GetSelectedServer().CanGetCurrentVersion) return;
+			LblCurrentVer.Text = "Version: " + GetSelectedServer().GetCurrentVersionUiString(GetSelectedServerPath());
+		}
+
+
 	}
 }

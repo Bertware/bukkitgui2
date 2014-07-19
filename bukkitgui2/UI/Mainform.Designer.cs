@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
 			this.TabCtrlAddons = new System.Windows.Forms.TabControl();
 			this.StatusStripMain = new System.Windows.Forms.StatusStrip();
 			this.LblToolsMainServerState = new System.Windows.Forms.ToolStripStatusLabel();
@@ -93,20 +94,20 @@
 			// ToolStripBtnReload
 			// 
 			this.ToolStripBtnReload.Name = "ToolStripBtnReload";
-			this.ToolStripBtnReload.Size = new System.Drawing.Size(152, 22);
+			this.ToolStripBtnReload.Size = new System.Drawing.Size(110, 22);
 			this.ToolStripBtnReload.Text = "Reload";
 			// 
 			// ToolStripBtnRestart
 			// 
 			this.ToolStripBtnRestart.Name = "ToolStripBtnRestart";
-			this.ToolStripBtnRestart.Size = new System.Drawing.Size(152, 22);
+			this.ToolStripBtnRestart.Size = new System.Drawing.Size(110, 22);
 			this.ToolStripBtnRestart.Text = "Restart";
 			this.ToolStripBtnRestart.Click += new System.EventHandler(this.ToolStripBtnRestart_Click);
 			// 
 			// ToolStripBtnStartStop
 			// 
 			this.ToolStripBtnStartStop.Name = "ToolStripBtnStartStop";
-			this.ToolStripBtnStartStop.Size = new System.Drawing.Size(152, 22);
+			this.ToolStripBtnStartStop.Size = new System.Drawing.Size(110, 22);
 			this.ToolStripBtnStartStop.Text = "Start";
 			this.ToolStripBtnStartStop.Click += new System.EventHandler(this.ToolStripBtnStartStop_Click);
 			// 
@@ -141,6 +142,7 @@
 			this.ClientSize = new System.Drawing.Size(884, 562);
 			this.Controls.Add(this.StatusStripMain);
 			this.Controls.Add(this.TabCtrlAddons);
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "MainForm";
 			this.Text = "Mainform";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);

@@ -25,7 +25,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 		/// </summary>
 		public bool HasTab
 		{
-			get { return true; }
+			get { return false; }
 		}
 
 		/// <summary>

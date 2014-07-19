@@ -7,6 +7,7 @@ using System;
 using System.Diagnostics;
 using System.Timers;
 using Microsoft.VisualBasic.Devices;
+using Net.Bertware.Bukkitgui2.Core.Logging;
 
 namespace Net.Bertware.Bukkitgui2.Core.Util.Performance
 {
@@ -46,14 +47,20 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Performance
 
 		public void UpdateStats()
 		{
-			if (Pid == 0)
+			try
 			{
-				_value = _totalMemoryMb - ToMb(new Computer().Info.AvailablePhysicalMemory);
+				if (Pid == 0)
+				{
+					_value = _totalMemoryMb - ToMb(new Computer().Info.AvailablePhysicalMemory);
+				}
+				else
+				{
+					_value = ToMb(Process.GetProcessById(Pid).WorkingSet64);
+				}
 			}
-			else
+			catch (Exception exception)
 			{
-				// _value = ToMb(Wmi.GetprocessInfo(Wmi.ProcessProp.WorkingSetSize, _pid));
-				_value = ToMb(Process.GetProcessById(Pid).WorkingSet64);
+				Logger.Log(LogLevel.Warning, "MemoryCounter", "Error while measuring RAM usage", exception.Message);
 			}
 		}
 

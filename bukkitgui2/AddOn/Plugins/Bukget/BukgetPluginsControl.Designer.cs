@@ -36,6 +36,11 @@
 			this.btnInstall = new System.Windows.Forms.Button();
 			this.button2 = new System.Windows.Forms.Button();
 			this.button3 = new System.Windows.Forms.Button();
+			this.lblBrowse = new System.Windows.Forms.Label();
+			this.cbCategories = new System.Windows.Forms.ComboBox();
+			this.btnSearch = new System.Windows.Forms.Button();
+			this.lblSearch = new System.Windows.Forms.Label();
+			this.txtSearchText = new System.Windows.Forms.TextBox();
 			this.SuspendLayout();
 			// 
 			// slvPlugins
@@ -49,9 +54,9 @@
             this.colVersion,
             this.colGameVersion});
 			this.slvPlugins.FullRowSelect = true;
-			this.slvPlugins.Location = new System.Drawing.Point(3, 3);
+			this.slvPlugins.Location = new System.Drawing.Point(3, 32);
 			this.slvPlugins.Name = "slvPlugins";
-			this.slvPlugins.Size = new System.Drawing.Size(774, 405);
+			this.slvPlugins.Size = new System.Drawing.Size(774, 376);
 			this.slvPlugins.TabIndex = 0;
 			this.slvPlugins.UseCompatibleStateImageBehavior = false;
 			this.slvPlugins.View = System.Windows.Forms.View.Details;
@@ -106,8 +111,58 @@
 			this.button3.Text = "Info";
 			this.button3.UseVisualStyleBackColor = true;
 			// 
+			// lblBrowse
+			// 
+			this.lblBrowse.AutoSize = true;
+			this.lblBrowse.Location = new System.Drawing.Point(445, 8);
+			this.lblBrowse.Name = "lblBrowse";
+			this.lblBrowse.Size = new System.Drawing.Size(89, 13);
+			this.lblBrowse.TabIndex = 17;
+			this.lblBrowse.Text = "Browse category:";
+			// 
+			// cbCategories
+			// 
+			this.cbCategories.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbCategories.FormattingEnabled = true;
+			this.cbCategories.Location = new System.Drawing.Point(540, 5);
+			this.cbCategories.Name = "cbCategories";
+			this.cbCategories.Size = new System.Drawing.Size(237, 21);
+			this.cbCategories.TabIndex = 16;
+			this.cbCategories.SelectedIndexChanged += new System.EventHandler(this.cbCategories_SelectedIndexChanged);
+			// 
+			// btnSearch
+			// 
+			this.btnSearch.Location = new System.Drawing.Point(263, 3);
+			this.btnSearch.Name = "btnSearch";
+			this.btnSearch.Size = new System.Drawing.Size(75, 23);
+			this.btnSearch.TabIndex = 15;
+			this.btnSearch.Text = "Search";
+			this.btnSearch.UseVisualStyleBackColor = true;
+			this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+			// 
+			// lblSearch
+			// 
+			this.lblSearch.AutoSize = true;
+			this.lblSearch.Location = new System.Drawing.Point(3, 9);
+			this.lblSearch.Name = "lblSearch";
+			this.lblSearch.Size = new System.Drawing.Size(80, 13);
+			this.lblSearch.TabIndex = 14;
+			this.lblSearch.Text = "Search plugins:";
+			// 
+			// txtSearchText
+			// 
+			this.txtSearchText.Location = new System.Drawing.Point(89, 6);
+			this.txtSearchText.Name = "txtSearchText";
+			this.txtSearchText.Size = new System.Drawing.Size(168, 20);
+			this.txtSearchText.TabIndex = 13;
+			// 
 			// BukgetPluginsControl
 			// 
+			this.Controls.Add(this.lblBrowse);
+			this.Controls.Add(this.cbCategories);
+			this.Controls.Add(this.btnSearch);
+			this.Controls.Add(this.lblSearch);
+			this.Controls.Add(this.txtSearchText);
 			this.Controls.Add(this.button3);
 			this.Controls.Add(this.button2);
 			this.Controls.Add(this.btnInstall);
@@ -116,6 +171,7 @@
 			this.Size = new System.Drawing.Size(780, 440);
 			this.VisibleChanged += new System.EventHandler(this.BukgetPluginsControl_VisibleChanged);
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 
@@ -129,5 +185,10 @@
 		private System.Windows.Forms.Button btnInstall;
 		private System.Windows.Forms.Button button2;
 		private System.Windows.Forms.Button button3;
+		private System.Windows.Forms.Label lblBrowse;
+		private System.Windows.Forms.ComboBox cbCategories;
+		private System.Windows.Forms.Button btnSearch;
+		private System.Windows.Forms.Label lblSearch;
+		private System.Windows.Forms.TextBox txtSearchText;
 	}
 }
