@@ -40,6 +40,16 @@ namespace Net.Bertware.Bukkitgui2.AddOn
 		/// </summary>
 		public static Dictionary<IAddon, UserControl> SettingsDictionary { get; private set; }
 
+		public static event AddonsReadyEventArgs AddonsReady;
+
+		public delegate void AddonsReadyEventArgs();
+
+		private static void RaiseAddonsReadyEvent()
+		{
+			AddonsReadyEventArgs handler = AddonsReady;
+			if (handler!= null) handler.Invoke();
+		}
+
 		/// <summary>
 		///     Get the instance of a loaded addon
 		/// </summary>
@@ -93,6 +103,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn
 			}
 
 			AddonsLoaded = true;
+			RaiseAddonsReadyEvent();
 		}
 
 		private static void HandleFormClose(object sender, CancelEventArgs e)

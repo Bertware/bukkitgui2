@@ -8,6 +8,7 @@ using System.IO;
 using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
+using Net.Bertware.Bukkitgui2.Core;
 using Net.Bertware.Bukkitgui2.UI;
 using Net.Bertware.Get;
 
@@ -19,7 +20,7 @@ namespace Net.Bertware.Bukkitgui2
 		///     The main entry point for the application.
 		/// </summary>
 		[STAThread]
-		private static void Main()
+		private static void Main(string[] argStrings)
 		{
 			// Load embedded DLLs
 			AppDomain.CurrentDomain.AssemblyResolve += LoadDll;

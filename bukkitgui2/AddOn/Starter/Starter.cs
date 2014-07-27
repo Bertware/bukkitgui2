@@ -4,6 +4,7 @@
 // ©Bertware, visit http://bertware.net
 
 using System;
+using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler;
@@ -45,6 +46,16 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 		public void Initialize()
 		{
 			_tab = new StarterTab {Text = Name, ParentAddon = this};
+			AddonManager.AddonsReady += OnLoad;
+		
+		}
+
+		private void OnLoad()
+		{
+			if (Environment.GetCommandLineArgs().Contains("-startserver"))
+			{
+				StartServer();
+			}
 		}
 
 		public void Dispose()

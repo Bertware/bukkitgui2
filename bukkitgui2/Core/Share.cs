@@ -19,9 +19,21 @@ namespace Net.Bertware.Bukkitgui2.Core
 		public static IFilesystem ServerFileSystem = null;
 		public static IntPtr MainFormHandle;
 
+		/// <summary>
+		/// Assembly name
+		/// </summary>
 		public static readonly string AssemblyName = Assembly.GetExecutingAssembly().GetName().Name;
+		/// <summary>
+		/// Assembly version
+		/// </summary>
 		public static readonly Version AssemblyVersion = Assembly.GetExecutingAssembly().GetName().Version;
+		/// <summary>
+		/// Assembly fullname
+		/// </summary>
 		public static readonly string AssemblyFullName = Assembly.GetExecutingAssembly().GetName().FullName;
+		/// <summary>
+		/// Directory containing the assembly.
+		/// </summary>
 		public static readonly string AssemblyLocation = new FileInfo(AssemblyFullName).DirectoryName;
 
 		public static void Initialize()
