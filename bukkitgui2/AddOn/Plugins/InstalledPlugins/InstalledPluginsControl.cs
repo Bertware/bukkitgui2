@@ -6,6 +6,7 @@
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using Net.Bertware.Bukkitgui2.Core.Util;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 {
@@ -26,7 +27,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 				// TODO: correct text
 				string[] text =
 				{
-					pair.Value.Name, pair.Value.Description, ListToCsv(pair.Value.Authors), pair.Value.Version, "",
+					pair.Value.Name, pair.Value.Description, StringUtil.ListToCsv(pair.Value.Authors), pair.Value.Version, "",
 					pair.Value.FileCreationDate.ToShortDateString()
 				};
 				ListViewItem lvi = new ListViewItem(text) {Tag = pair.Key};
@@ -34,17 +35,6 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 			}
 		}
 
-		private static string ListToCsv(IEnumerable<object> list)
-		{
-			if (list == null) return "";
-			string result = "";
-			foreach (Object obj in list)
-			{
-				result += obj + ", ";
-			}
-			result = result.Substring(0, result.Length - 2); //remove the last ", "
-			return result;
-		}
-
+		
 	}
 }

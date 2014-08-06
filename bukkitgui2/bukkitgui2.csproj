@@ -98,6 +98,12 @@
     <Compile Include="AddOn\Plugins\Bukget\api3\BukgetPluginVersion.cs" />
     <Compile Include="AddOn\Plugins\Bukget\api3\Bukget.cs" />
     <Compile Include="AddOn\Plugins\Bukget\api3\BukkitDevApiSupport.cs" />
+    <Compile Include="AddOn\Plugins\Bukget\BukgetPluginView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddOn\Plugins\Bukget\BukgetPluginView.Designer.cs">
+      <DependentUpon>BukgetPluginView.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddOn\Plugins\InstalledPlugins\InstalledPlugin.cs" />
     <Compile Include="AddOn\Plugins\InstalledPlugins\InstalledPluginManager.cs" />
     <Compile Include="AddOn\Plugins\InstalledPlugins\InstalledPluginsControl.cs">
@@ -261,6 +267,7 @@
     <Compile Include="Core\Util\Performance\CpuCounter.cs" />
     <Compile Include="Core\Util\Performance\MemoryCounter.cs" />
     <Compile Include="Core\Util\Performance\Wmi.cs" />
+    <Compile Include="Core\Util\StringUtil.cs" />
     <Compile Include="Core\Util\Web\FileDownloader.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -342,6 +349,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddOn\Plugins\Bukget\BukgetPluginsControl.resx">
       <DependentUpon>BukgetPluginsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddOn\Plugins\Bukget\BukgetPluginView.resx">
+      <DependentUpon>BukgetPluginView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddOn\Plugins\InstalledPlugins\InstalledPluginsControl.resx">
       <DependentUpon>InstalledPluginsControl.cs</DependentUpon>

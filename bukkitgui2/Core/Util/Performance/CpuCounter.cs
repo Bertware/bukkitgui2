@@ -84,7 +84,11 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Performance
 
 		public int CpuUsage
 		{
-			get { return _value; }
+			get
+			{
+				if (_value > 100) return 100;
+				return _value;
+			}
 		}
 
 

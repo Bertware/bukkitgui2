@@ -1,15 +1,13 @@
 ﻿// StarterTab.cs in bukkitgui2/bukkitgui2
 // Created 2014/01/17
-// Last edited at 2014/07/19 17:53
+// Last edited at 2014/08/06 10:17
 // ©Bertware, visit http://bertware.net
 
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Runtime.Remoting.Channels;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using Microsoft.VisualBasic;
 using Net.Bertware.Bukkitgui2.Core;
 using Net.Bertware.Bukkitgui2.Core.Configuration;
 using Net.Bertware.Bukkitgui2.Core.Logging;
@@ -169,6 +167,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			BtnDownloadRec.Enabled = server.CanDownloadRecommendedVersion;
 			BtnDownloadBeta.Enabled = server.CanDownloadBetaVersion;
 			BtnDownloadDev.Enabled = server.CanDownloadDevVersion;
+			btnGetCurrentBuild.Enabled = server.CanGetCurrentVersion;
 
 			// If this server doesn't use a custom assembly, use the java settings
 			CBJavaVersion.Enabled = !server.HasCustomAssembly;
@@ -304,7 +303,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 					"Server could not be started", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return;
 			}
-				
+
 			IMinecraftServer server = GetSelectedServer();
 			Starter starter = ParentAddon as Starter;
 
@@ -343,15 +342,17 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 		{
 			BtnLaunch.Enabled = false;
 			errorProvider.SetError(BtnLaunch, "The provided settings are invalid");
-			
+
 			if (!File.Exists(TxtJarFile.Text))
 			{
-				errorProvider.SetError(TxtJarFile, "File does not exist. Press the download button or change the file path to an existing file.");
+				errorProvider.SetError(TxtJarFile,
+					"File does not exist. Press the download button or change the file path to an existing file.");
 				return false;
 			}
 			if (!TxtJarFile.Text.EndsWith(".jar"))
 			{
-				errorProvider.SetError(TxtJarFile, "File should be a *.jar file. This file is not a .jar file, or the extension is incorrect.");
+				errorProvider.SetError(TxtJarFile,
+					"File should be a *.jar file. This file is not a .jar file, or the extension is incorrect.");
 				return false;
 			}
 			if (new FileInfo(TxtJarFile.Text).Length < 1024)
@@ -375,7 +376,8 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 				if (NumMinRam.Value > 1024)
 				{
 					NumMinRam.Value = 1025;
-					errorProvider.SetError(NumMinRam, "You are using a 32bit version of java. In this case, RAM is limited to 1024mb due to java limitations.");
+					errorProvider.SetError(NumMinRam,
+						"You are using a 32bit version of java. In this case, RAM is limited to 1024mb due to java limitations.");
 				}
 				if (NumMinRam.Value > 768)
 				{
@@ -389,7 +391,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			}
 
 			BtnLaunch.Enabled = true;
-			errorProvider.SetError(BtnLaunch,"");
+			errorProvider.SetError(BtnLaunch, "");
 			errorProvider.SetError(TxtJarFile, "");
 			return true;
 		}
@@ -631,7 +633,5 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			if (!GetSelectedServer().CanGetCurrentVersion) return;
 			LblCurrentVer.Text = "Version: " + GetSelectedServer().GetCurrentVersionUiString(GetSelectedServerPath());
 		}
-
-
 	}
 }

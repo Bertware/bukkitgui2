@@ -42,7 +42,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget
 			foreach (BukgetPlugin p in _plugins.Values)
 			{
 				string[] contents = {p.Name, p.Description, p.LastVersionNumber, p.LastGameVersion};
-				ListViewItem i = new ListViewItem(contents) {Tag = p.Name};
+				ListViewItem i = new ListViewItem(contents) {Tag = p.Main};
 				slvPlugins.Items.Add(i);
 			}
 		}
@@ -56,6 +56,15 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget
 		private void btnSearch_Click(object sender, EventArgs e)
 		{
 			api3.Bukget.SearchPlugins(txtSearchText.Text, 50);
+		}
+
+		private void btnInfo_Click(object sender, EventArgs e)
+		{
+			string main = slvPlugins.SelectedItems[0].Tag.ToString();
+			BukgetPlugin plugin = api3.Bukget.CurrentlyLoadedPlugins[main];
+			BukgetPluginView pluginView = new BukgetPluginView();
+			pluginView.Plugin = plugin;
+			pluginView.ShowDialog();
 		}
 	}
 }

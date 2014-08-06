@@ -1,6 +1,6 @@
 ﻿// MainForm.cs in bukkitgui2/bukkitgui2
 // Created 2014/01/30
-// Last edited at 2014/07/13 14:01
+// Last edited at 2014/08/06 10:17
 // ©Bertware, visit http://bertware.net
 
 using System;
@@ -21,13 +21,17 @@ namespace Net.Bertware.Bukkitgui2.UI
 	{
 		public static MainForm Reference;
 
+		public readonly string FormTitle = Share.AssemblyName + " (v" + Share.AssemblyVersion + ")";
+
 		public MainForm()
 		{
 			Reference = this;
 			Share.MainFormHandle = Handle; //Immediatly set the handle for form operations, tray issues, etc..
+
 			// Start loading everything to the UI
 			InitializeComponent();
 
+			Initialize();
 
 			// ____________ initializations here ____________ //
 			// no splash screen due to the limited initializing that should be performed
@@ -40,7 +44,6 @@ namespace Net.Bertware.Bukkitgui2.UI
 
 
 			LoadTabs();
-			Initialize();
 		}
 
 		public void ShowForm()
@@ -59,6 +62,7 @@ namespace Net.Bertware.Bukkitgui2.UI
 		{
 			MinecraftOutputHandler.OutputParsed += HandleOutput;
 			ProcessHandler.ServerStatusChanged += HandleServerStatusChange;
+			Text = FormTitle;
 		}
 
 		private void HandleServerStatusChange(ServerState currentState)
@@ -76,23 +80,31 @@ namespace Net.Bertware.Bukkitgui2.UI
 						LblToolsMainServerState.Text = Locale.Tr("Starting...");
 						ToolStripBtnStartStop.Enabled = false;
 						ToolStripBtnStartStop.Text = Locale.Tr("Starting...");
+						Text = FormTitle + Locale.Tr("Starting...");
+						
 						break;
 					case ServerState.Running:
 						LblToolsMainServerState.Text = Locale.Tr("Server running");
 						ToolStripBtnStartStop.Enabled = true;
 						ToolStripBtnStartStop.Text = Locale.Tr("Stop");
+						Text = FormTitle + " - " + Locale.Tr("Server running");
+						
 						break;
 
 					case ServerState.Stopping:
 						LblToolsMainServerState.Text = Locale.Tr("Stopping...");
 						ToolStripBtnStartStop.Enabled = false;
 						ToolStripBtnStartStop.Text = Locale.Tr("Stopping...");
+						Text = FormTitle + " - " + Locale.Tr("Server stopping");
+						
 						break;
 					case ServerState.Stopped:
 						LblToolsMainServerState.Text = Locale.Tr("Stopped");
 
 						ToolStripBtnStartStop.Enabled = true;
 						ToolStripBtnStartStop.Text = Locale.Tr("Start");
+						Text = FormTitle + " - " + Locale.Tr("Server stopped");
+						
 						break;
 				}
 			}

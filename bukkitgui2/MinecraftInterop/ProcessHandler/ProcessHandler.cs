@@ -119,6 +119,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler
 		private static void RaiseServerStarting()
 		{
 			CurrentState = ServerState.Starting;
+			RaiseServerStatusChanged();
 			SpecificServerStatusEvent handler = ServerStarting;
 			if (handler != null)
 			{
@@ -134,6 +135,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler
 		private static void RaiseServerStarted()
 		{
 			CurrentState = ServerState.Running;
+			RaiseServerStatusChanged();
 			SpecificServerStatusEvent handler = ServerStarted;
 			if (handler != null)
 			{
@@ -149,6 +151,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler
 		private static void RaiseServerStopping()
 		{
 			CurrentState = ServerState.Stopping;
+			RaiseServerStatusChanged();
 			SpecificServerStatusEvent handler = ServerStopping;
 			if (handler != null)
 			{
@@ -164,6 +167,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler
 		private static void RaiseServerStopped()
 		{
 			CurrentState = ServerState.Stopped;
+			RaiseServerStatusChanged();
 			SpecificServerStatusEvent handler = ServerStopped;
 			if (handler != null)
 			{
@@ -181,6 +185,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler
 		{
 			SpecificServerStatusEvent handler = UnexpectedServerStop;
 			CurrentState = ServerState.Stopped;
+			RaiseServerStatusChanged();
 			if (handler != null)
 			{
 				handler();
