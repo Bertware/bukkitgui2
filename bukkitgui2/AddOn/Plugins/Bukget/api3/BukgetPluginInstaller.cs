@@ -79,9 +79,6 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
 			if (string.IsNullOrEmpty(targetlocation))
 				targetlocation = Fl.Location(RequestFile.Plugindir) + "/" + version.Filename;
 
-			string name = version.VersionNumber;
-			if (version.PluginName != null && !string.IsNullOrEmpty(version.PluginName))
-				name = version.PluginName + " - " + version.VersionNumber;
 			FileDownloader fdd = new FileDownloader();
 
 			fdd.AddFile(version.DownloadLink, targetlocation);

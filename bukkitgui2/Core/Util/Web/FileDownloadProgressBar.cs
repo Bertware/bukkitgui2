@@ -57,8 +57,9 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Web
 		/// </summary>
 		/// <param name="url">Url to download from</param>
 		/// <param name="targetlocation">targetlocation to save the file</param>
-		public void CreateDownload(string url, string targetlocation)
+		public bool CreateDownload(string url, string targetlocation)
 		{
+			//if (string.IsNullOrEmpty(url) || string.IsNullOrEmpty(targetlocation)) return false;
 			_webc = new WebClient();
 			Url = url;
 
@@ -74,6 +75,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Web
 			Targetlocation = targetlocation;
 
 			_tmplocation = _tmp + Filename;
+			return true;
 		}
 
 		/// <summary>

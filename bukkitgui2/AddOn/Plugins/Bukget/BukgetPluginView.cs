@@ -1,10 +1,11 @@
 ﻿// BukgetPluginView.cs in bukkitgui2/bukkitgui2
 // Created 2014/08/06
-// Last edited at 2014/08/06 10:30
+// Last edited at 2014/08/07 14:21
 // ©Bertware, visit http://bertware.net
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Windows.Forms;
 using Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3;
 using Net.Bertware.Bukkitgui2.Core.Translation;
@@ -21,6 +22,11 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget
 
 		private BukgetPlugin _plugin;
 
+		/// <summary>
+		/// Location of the installed plugin, if any
+		/// </summary>
+		private string _currentPluginVersionPath = "";
+
 		public BukgetPlugin Plugin
 		{
 			get { return _plugin; }
@@ -31,14 +37,26 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget
 			}
 		}
 
+		public String CurrentPluginVersionPath
+		{
+			get { return _currentPluginVersionPath; }
+			set
+			{
+				value = new FileInfo(value).FullName;
+				_currentPluginVersionPath = value;
+			}
+		}
+
 		private void LoadPlugin(BukgetPlugin plugin)
 		{
 			string detail = Translator.Tr("Name:") + " " + plugin.Name + Environment.NewLine + Environment.NewLine +
-							Translator.Tr("Author(s):") + " " +StringUtil.ListToCsv<string>(plugin.AuthorsList) + Environment.NewLine + Environment.NewLine +
-							Translator.Tr("Description:") + " " + plugin.Description + Environment.NewLine + Environment.NewLine +
-							Translator.Tr("Categories:") + " " + StringUtil.ListToCsv<PluginCategory>(plugin.CategoryList) + Environment.NewLine + Environment.NewLine +
-							Translator.Tr("Main namespace:") + " " + plugin.Main + Environment.NewLine + Environment.NewLine +
-							Translator.Tr("Status:") + " " + plugin.Status + Environment.NewLine + Environment.NewLine +
+			                Translator.Tr("Author(s):") + " " + StringUtil.ListToCsv(plugin.AuthorsList) + Environment.NewLine +
+			                Environment.NewLine +
+			                Translator.Tr("Description:") + " " + plugin.Description + Environment.NewLine + Environment.NewLine +
+			                Translator.Tr("Categories:") + " " + StringUtil.ListToCsv(plugin.CategoryList) + Environment.NewLine +
+			                Environment.NewLine +
+			                Translator.Tr("Main namespace:") + " " + plugin.Main + Environment.NewLine + Environment.NewLine +
+			                Translator.Tr("Status:") + " " + plugin.Status + Environment.NewLine + Environment.NewLine +
 			                Translator.Tr("Website:") + " " + plugin.Website;
 			lblPluginDetail.Text = detail;
 			LoadVersions(plugin.VersionsList);
@@ -60,6 +78,23 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget
 
 				ListViewItem lvi = new ListViewItem(text) {Tag = version.VersionNumber};
 				slvVersions.Items.Add(lvi);
+			}
+		}
+
+		private void BtnClose_Click(object sender, EventArgs e)
+		{
+			this.Close();
+		}
+
+		private void btnInstall_Click(object sender, EventArgs e)
+		{
+			if (slvVersions.SelectedItems.Count<0) return;
+			
+			string versionNumber = slvVersions.SelectedItems[0].Tag.ToString();
+
+			foreach (BukgetPluginVersion version in _plugin.VersionsList)
+			{
+				if (version.VersionNumber.Equals(versionNumber)) version.Install(_currentPluginVersionPath);
 			}
 		}
 	}

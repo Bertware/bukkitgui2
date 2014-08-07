@@ -51,6 +51,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Web
 					new Point(0, _files.Count*50 - 50)
 			};
 			control.CreateDownload(url, targetlocation);
+
 			_downloads.Add(url, control);
 			Controls.Add(control);
 			Logger.Log(LogLevel.Info, "FileDownloader", "Added download: " + control.Filename + " from " + control.Url);

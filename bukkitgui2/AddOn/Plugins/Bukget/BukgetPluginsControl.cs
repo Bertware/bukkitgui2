@@ -21,10 +21,10 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget
 			{
 				cbCategories.Items.Add(category.Replace("__", "-").Replace("_", " "));
 			}
-			api3.Bukget.NewPluginsLoaded += updatePluginsDictionary;
+			api3.Bukget.NewPluginsLoaded += UpdatePluginsDictionary;
 		}
 
-		private void updatePluginsDictionary(Dictionary<string, BukgetPlugin> currentlyLoadedPlugins)
+		private void UpdatePluginsDictionary(Dictionary<string, BukgetPlugin> currentlyLoadedPlugins)
 		{
 			_plugins = currentlyLoadedPlugins;
 			ShowPlugins();
@@ -60,10 +60,10 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget
 
 		private void btnInfo_Click(object sender, EventArgs e)
 		{
+			if (slvPlugins.SelectedItems.Count < 0) return;
 			string main = slvPlugins.SelectedItems[0].Tag.ToString();
 			BukgetPlugin plugin = api3.Bukget.CurrentlyLoadedPlugins[main];
-			BukgetPluginView pluginView = new BukgetPluginView();
-			pluginView.Plugin = plugin;
+			BukgetPluginView pluginView = new BukgetPluginView {Plugin = plugin};
 			pluginView.ShowDialog();
 		}
 	}
