@@ -1,11 +1,11 @@
 ﻿// Starter.cs in bukkitgui2/bukkitgui2
 // Created 2014/01/17
-// Last edited at 2014/07/13 14:01
+// Last edited at 2014/08/08 18:13
 // ©Bertware, visit http://bertware.net
 
 using System;
+using System.Diagnostics;
 using System.Linq;
-using System.Reflection;
 using System.Windows.Forms;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler;
 using Net.Bertware.Bukkitgui2.MinecraftServers;
@@ -47,7 +47,6 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 		{
 			_tab = new StarterTab {Text = Name, ParentAddon = this};
 			AddonManager.AddonsReady += OnLoad;
-		
 		}
 
 		private void OnLoad()
@@ -92,42 +91,92 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 		/// </summary>
 		public static void StartServer()
 		{
-			ProcessHandler.ServerStopped -= StartServer;
 			((StarterTab) GetInstance().TabPage).DoServerLaunch();
 		}
 
+		/// <summary>
+		///     Launch a new server using the settings in the tabpage. Will validate, shows popup if errors occur.
+		///     Important! Since this is for automated starts, all update checks will be skipped. Update checks are only executed
+		///     for manual starts
+		/// </summary>
+		public static void StartServerAutomated()
+		{
+			ProcessHandler.ServerStopped -= StartServerAutomated;
+			((StarterTab) GetInstance().TabPage).DoServerLaunch(true);
+		}
+
+		/// <summary>
+		///     Restart the server
+		/// </summary>
 		public static void RestartServer()
 		{
 			if (ProcessHandler.IsRunning)
 			{
 				StopServer();
-				ProcessHandler.ServerStopped += StartServer;
+				ProcessHandler.ServerStopped += StartServerAutomated;
 			}
 		}
 
+		/// <summary>
+		///     Reload the server
+		/// </summary>
 		public static void ReloadServer()
 		{
 			ProcessHandler.SendInput("reload");
 		}
 
+		/// <summary>
+		///     Stop the server
+		/// </summary>
 		public static void StopServer()
 		{
 			ProcessHandler.StopServer();
 		}
 
+		/// <summary>
+		///     kill the server process
+		/// </summary>
 		public static void KillServer()
 		{
 			if (!ProcessHandler.ServerProcess.HasExited) ProcessHandler.ServerProcess.Kill();
 		}
 
+		/// <summary>
+		///     Kill all java processes
+		/// </summary>
+		public static void KillAllJava()
+		{
+			foreach (Process process in Process.GetProcesses())
+			{
+				if (process.ProcessName.Equals("java")) process.Kill();
+			}
+		}
+
+		/// <summary>
+		///     Get the selected java path.
+		/// </summary>
+		/// <returns></returns>
 		public static string GetSelectedJavaPath()
 		{
 			return ((StarterTab) GetInstance().TabPage).GetSelectedJavaPath();
 		}
 
+		/// <summary>
+		///     Get the path for the .jar file.
+		/// </summary>
+		/// <returns></returns>
 		public static string GetSelectedServerPath()
 		{
 			return ((StarterTab) GetInstance().TabPage).GetSelectedServerPath();
+		}
+
+		/// <summary>
+		///     Get the custom settings control, for server types who require this.
+		/// </summary>
+		/// <returns></returns>
+		public static Control GetCustomSettingsControl()
+		{
+			return ((StarterTab) GetInstance().TabPage).GetCustomSettingsControl();
 		}
 
 		/// <summary>
@@ -140,8 +189,12 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 		/// <param name="maxMem">the maximum amount of memory to set</param>
 		/// <param name="defaultParameters">the parameters entered by the user (optional)</param>
 		/// <param name="defaultFlags">the flags entered by the user (optional)</param>
+		/// <param name="automated">
+		///     If this is an automated launch. Automated launches won't check for server updates and limit
+		///     popups.
+		/// </param>
 		public void LaunchServer(IMinecraftServer server, JavaVersion javaVersion, string jarFile, UInt32 minMem,
-			UInt32 maxMem, string defaultParameters = "", string defaultFlags = "")
+			UInt32 maxMem, string defaultParameters = "", string defaultFlags = "", Boolean automated = false)
 		{
 			server.PrepareLaunch();
 			string parameters = server.GetLaunchParameters(defaultParameters);
@@ -156,10 +209,13 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 		///     Launch a new server
 		/// </summary>
 		/// <param name="server">the server type that will be executed</param>
-		/// <param name="customAssembly">the custom assembly that will be executed, absolute path recommended</param>
 		/// <param name="customSettingsControl">The custom settings control that is filled out</param>
-		public void LaunchServer(IMinecraftServer server, Assembly customAssembly, UserControl customSettingsControl)
+		public void LaunchServer(IMinecraftServer server, UserControl customSettingsControl)
 		{
+			server.PrepareLaunch();
+			string parameters = server.GetLaunchParameters();
+			string executable = server.CustomAssembly.Location;
+			ProcessHandler.StartServer(executable, parameters, server);
 		}
 	}
 }

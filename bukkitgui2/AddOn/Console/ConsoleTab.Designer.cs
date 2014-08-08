@@ -102,6 +102,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.CIConsoleInput.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
 			this.CIConsoleInput.AutoCompletion = true;
+			this.CIConsoleInput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.CIConsoleInput.Location = new System.Drawing.Point(0, 332);
 			this.CIConsoleInput.Name = "CIConsoleInput";
 			this.CIConsoleInput.Size = new System.Drawing.Size(624, 20);
@@ -113,6 +114,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.MCCOut.Autoscroll = true;
+			this.MCCOut.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.MCCOut.Location = new System.Drawing.Point(0, 0);
 			this.MCCOut.MessageColorInfo = System.Drawing.Color.Blue;
 			this.MCCOut.MessageColorPlayerAction = System.Drawing.Color.DarkGreen;
@@ -169,6 +171,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			// 
 			// ConsoleTab
 			// 
+			this.BackColor = System.Drawing.Color.White;
 			this.Controls.Add(this.groupBox3);
 			this.Controls.Add(this.groupBox2);
 			this.Controls.Add(this.groupBox1);

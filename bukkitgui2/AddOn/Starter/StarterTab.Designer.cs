@@ -437,6 +437,7 @@
 			this.CBUpdateBranch.Name = "CBUpdateBranch";
 			this.CBUpdateBranch.Size = new System.Drawing.Size(292, 21);
 			this.CBUpdateBranch.TabIndex = 7;
+			this.CBUpdateBranch.SelectedIndexChanged += new System.EventHandler(this.CBUpdateBranch_SelectedIndexChanged);
 			// 
 			// label8
 			// 
@@ -455,6 +456,7 @@
 			this.CBUpdateBehaviour.Name = "CBUpdateBehaviour";
 			this.CBUpdateBehaviour.Size = new System.Drawing.Size(292, 21);
 			this.CBUpdateBehaviour.TabIndex = 5;
+			this.CBUpdateBehaviour.SelectedIndexChanged += new System.EventHandler(this.CBUpdateBehaviour_SelectedIndexChanged);
 			// 
 			// BtnDownloadDev
 			// 

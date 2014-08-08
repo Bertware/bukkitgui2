@@ -209,7 +209,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			{
 				CBUpdateBehaviour.Items.Add("Check for updates and auto update");
 			}
-			CBUpdateBehaviour.SelectedIndex = Config.ReadInt("Starter", "updatebehaviour", 0);
+			CBUpdateBehaviour.SelectedIndex = Config.ReadInt("starter", "updatebehaviour", 0);
 
 			CBUpdateBranch.Items.Clear();
 
@@ -226,7 +226,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 				CBUpdateBranch.Items.Add("Development builds");
 			}
 
-			if (CBUpdateBranch.Items.Count > 0) CBUpdateBehaviour.SelectedIndex = Config.ReadInt("Starter", "updatebranch", 0);
+			if (CBUpdateBranch.Items.Count > 0) CBUpdateBehaviour.SelectedIndex = Config.ReadInt("starter", "updatebranch", 0);
 
 			// If there is a custom settings control, load it
 			if (server.HasCustomSettingsControl)
@@ -294,7 +294,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 		/// <summary>
 		///     Launch the server, get all settings from
 		/// </summary>
-		public void DoServerLaunch()
+		public void DoServerLaunch(Boolean automated = false)
 		{
 			if (!ValidateInput())
 			{
@@ -325,11 +325,12 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 					Convert.ToUInt32(NumMinRam.Value),
 					Convert.ToUInt32(NumMaxRam.Value),
 					TxtOptArg.Text,
-					TxtOptFlag.Text);
+					TxtOptFlag.Text,
+					automated);
 			}
 			else
 			{
-				starter.LaunchServer(server, server.CustomAssembly, _customControl);
+				starter.LaunchServer(server, _customControl);
 			}
 		}
 
@@ -340,6 +341,8 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 		/// <remarks>Important checks: RAM less than 1024Mb on 32bit, java installed, valid .jar file</remarks>
 		public Boolean ValidateInput()
 		{
+			if (GetSelectedServer().HasCustomAssembly) return true;
+
 			BtnLaunch.Enabled = false;
 			errorProvider.SetError(BtnLaunch, "The provided settings are invalid");
 
@@ -587,7 +590,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 		{
 			if (TxtJarFile.Text == "")
 			{
-				TxtJarFile.Text = Share.AssemblyLocation; // set GUI location as server folder
+				TxtJarFile.Text = Share.AssemblyLocation + GetSelectedServer().Name.ToLower() ; // set GUI location as server folder
 			}
 			GetSelectedServer().DownloadRecommendedVersion(TxtJarFile.Text);
 		}
@@ -596,7 +599,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 		{
 			if (TxtJarFile.Text == "")
 			{
-				TxtJarFile.Text = Share.AssemblyLocation; // set GUI location as server folder
+				TxtJarFile.Text = Share.AssemblyLocation + GetSelectedServer().Name.ToLower(); // set GUI location as server folder
 			}
 			GetSelectedServer().DownloadBetaVersion(TxtJarFile.Text);
 		}
@@ -605,7 +608,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 		{
 			if (TxtJarFile.Text == "")
 			{
-				TxtJarFile.Text = Share.AssemblyLocation; // set GUI location as server folder
+				TxtJarFile.Text = Share.AssemblyLocation + GetSelectedServer().Name.ToLower(); // set GUI location as server folder
 			}
 			GetSelectedServer().DownloadDevVersion(TxtJarFile.Text);
 		}
@@ -628,10 +631,30 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			return TxtJarFile.Text;
 		}
 
+		/// <summary>
+		///     Get the path of the jar file
+		/// </summary>
+		/// <returns></returns>
+		public Control GetCustomSettingsControl()
+		{
+			if (GBCustomSettings.Controls.Count<1) return null;
+			return GBCustomSettings.Controls[0];
+		}
+
 		private void btnGetCurrentBuild_Click(object sender, EventArgs e)
 		{
 			if (!GetSelectedServer().CanGetCurrentVersion) return;
 			LblCurrentVer.Text = "Version: " + GetSelectedServer().GetCurrentVersionUiString(GetSelectedServerPath());
+		}
+
+		private void CBUpdateBehaviour_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			Config.WriteInt("starter", "updatebehaviour", CBUpdateBehaviour.SelectedIndex);
+		}
+
+		private void CBUpdateBranch_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			Config.WriteInt("starter", "updatebranch", CBUpdateBehaviour.SelectedIndex);
 		}
 	}
 }

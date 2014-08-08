@@ -150,6 +150,13 @@
     <Compile Include="AddOn\Tasker\TaskerDialog\TaskerUI\TriggerPicker.Designer.cs">
       <DependentUpon>TriggerPicker.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddOn\Updater\Updater.cs" />
+    <Compile Include="AddOn\Updater\UpdaterSettings.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AddOn\Updater\UpdaterSettings.Designer.cs">
+      <DependentUpon>UpdaterSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ColorPicker\ColorPicker.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -383,6 +390,9 @@
     <EmbeddedResource Include="AddOn\Notifications\NotificationsSettings.resx">
       <DependentUpon>NotificationsSettings.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AddOn\Updater\UpdaterSettings.resx">
+      <DependentUpon>UpdaterSettings.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddOn\WebControl\WebControlTab.resx">
       <DependentUpon>WebControlTab.cs</DependentUpon>
     </EmbeddedResource>
@@ -400,6 +410,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Core\Util\Web\FileDownloadProgressBar.resx">
       <DependentUpon>FileDownloadProgressBar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MinecraftServers\Tools\JsonApiCredentialsSettingsControl.resx">
+      <DependentUpon>JsonApiCredentialsSettingsControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

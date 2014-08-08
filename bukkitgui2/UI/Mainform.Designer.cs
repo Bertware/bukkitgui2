@@ -55,6 +55,7 @@
 			// 
 			// StatusStripMain
 			// 
+			this.StatusStripMain.BackColor = System.Drawing.Color.White;
 			this.StatusStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.LblToolsMainServerState,
             this.MenuToolsMainServerAction,
@@ -139,6 +140,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.BackColor = System.Drawing.Color.White;
 			this.ClientSize = new System.Drawing.Size(884, 562);
 			this.Controls.Add(this.StatusStripMain);
 			this.Controls.Add(this.TabCtrlAddons);
