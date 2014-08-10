@@ -4,6 +4,7 @@
 // ©Bertware, visit http://bertware.net
 
 using System.Windows.Forms;
+using Net.Bertware.Bukkitgui2.AddOn.Tasker.TaskerDialog.TaskerUI;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 {
@@ -15,5 +16,11 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 		}
 
 		public IAddon ParentAddon { get; set; }
+
+		private void btnNew_Click(object sender, System.EventArgs e)
+		{
+			TaskEditor editor = new TaskEditor();
+			editor.ShowDialog();
+		}
 	}
 }

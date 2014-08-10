@@ -28,6 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			this.gbTrigger = new System.Windows.Forms.GroupBox();
 			this.lblTriggerDescription = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
@@ -40,8 +41,10 @@
 			this.btnSave = new System.Windows.Forms.Button();
 			this.btnCancel = new System.Windows.Forms.Button();
 			this.chkEnable = new System.Windows.Forms.CheckBox();
+			this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
 			this.gbTrigger.SuspendLayout();
 			this.gbAction.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// gbTrigger
@@ -83,10 +86,12 @@
 			this.txtTriggerParam.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.txtTriggerParam.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.errorProvider.SetIconPadding(this.txtTriggerParam, -16);
 			this.txtTriggerParam.Location = new System.Drawing.Point(6, 59);
 			this.txtTriggerParam.Name = "txtTriggerParam";
 			this.txtTriggerParam.Size = new System.Drawing.Size(482, 20);
 			this.txtTriggerParam.TabIndex = 1;
+			this.txtTriggerParam.TextChanged += new System.EventHandler(this.txtTriggerParam_TextChanged);
 			// 
 			// cbTrigger
 			// 
@@ -98,6 +103,7 @@
 			this.cbTrigger.Name = "cbTrigger";
 			this.cbTrigger.Size = new System.Drawing.Size(482, 21);
 			this.cbTrigger.TabIndex = 0;
+			this.cbTrigger.SelectedIndexChanged += new System.EventHandler(this.cbTrigger_SelectedIndexChanged);
 			// 
 			// gbAction
 			// 
@@ -168,6 +174,10 @@
 			this.chkEnable.Text = "Enable";
 			this.chkEnable.UseVisualStyleBackColor = true;
 			// 
+			// errorProvider
+			// 
+			this.errorProvider.ContainerControl = this;
+			// 
 			// TaskEditor
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -183,10 +193,12 @@
 			this.Controls.Add(this.gbTrigger);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.Name = "TaskEditor";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Edit Task..";
 			this.gbTrigger.ResumeLayout(false);
 			this.gbTrigger.PerformLayout();
 			this.gbAction.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -206,5 +218,6 @@
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.TextBox txtTriggerParam;
 		private System.Windows.Forms.CheckBox chkEnable;
+		private System.Windows.Forms.ErrorProvider errorProvider;
 	}
 }
