@@ -19,9 +19,9 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Trigger
 				"The time on which this task should execute, in HH:MM:SS format. Multiple times can be entered, separated by ; (e.g.: 01:00:00;13:00:00)";
 		}
 
-		public event TaskerTriggerEventArgs TaskerTriggerFired;
-		public event TaskerTriggerEventArgs TaskerTriggerEnabled;
-		public event TaskerTriggerEventArgs TaskerTriggerDisabled;
+		public event TaskerEventArgs TaskerTriggerFired;
+		public event TaskerEventArgs TaskerTriggerEnabled;
+		public event TaskerEventArgs TaskerTriggerDisabled;
 
 		public string Name { get; protected set; }
 
@@ -34,7 +34,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Trigger
 			return Regex.IsMatch(inputText, "^((\\d{2}:\\d{2}:\\d{2})(;?))+$");
 		}
 
-		public string Parameters { get; protected set; }
+		public string Parameters { get; set; }
 
 		public bool Enabled { get; protected set; }
 

@@ -113,6 +113,9 @@
       <DependentUpon>InstalledPluginsControl.cs</DependentUpon>
     </Compile>
     <Compile Include="AddOn\Starter\JavaApi.cs" />
+    <Compile Include="AddOn\Tasker\Action\ConsoleCommandAction.cs" />
+    <Compile Include="AddOn\Tasker\Action\IAction.cs" />
+    <Compile Include="AddOn\Tasker\Action\ShellCommandAction.cs" />
     <Compile Include="AddOn\Tasker\TaskerDialog\ActionSelector.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -422,7 +425,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="AddOn\Tasker\Action\" />
     <Folder Include="Core\Filesystem\FTP\" />
   </ItemGroup>
   <ItemGroup>

@@ -5,6 +5,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 using Net.Bertware.Bukkitgui2.AddOn.Tasker.Trigger;
 
@@ -49,6 +50,17 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.TaskerDialog.TaskerUI
 			} else {
 				errorProvider.SetError(txtTriggerParam, "Invalid parameter!" + Environment.NewLine +  _selectedTrigger.ParameterDescription);
 			}
+		}
+
+		private void btnNewaction_Click(object sender, EventArgs e)
+		{
+			this.Height += 180;
+			ActionSelector selector = new ActionSelector(this.gbAction.Controls.Count)
+			{
+				Location = new Point(6, 50 + 180*(gbAction.Controls.Count-1))
+			};
+			this.gbAction.Controls.Add(selector);
+			if (gbAction.Controls.Count > 4) btnNewAction.Enabled = false;
 		}
 
 		

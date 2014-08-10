@@ -7,13 +7,13 @@ using System.Text;
 namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Trigger
 {
 
-	public delegate void TaskerTriggerEventArgs();
+
 	interface ITrigger
 	{
 
-		event TaskerTriggerEventArgs TaskerTriggerFired;
-		event TaskerTriggerEventArgs TaskerTriggerEnabled;
-		event TaskerTriggerEventArgs TaskerTriggerDisabled;
+		event TaskerEventArgs TaskerTriggerFired;
+		event TaskerEventArgs TaskerTriggerEnabled;
+		event TaskerEventArgs TaskerTriggerDisabled;
 
 		/// <summary>
 		/// Name of the trigger
@@ -38,7 +38,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Trigger
 		/// <summary>
 		/// The saved parameters for an instance of this trigger
 		/// </summary>
-		string Parameters { get; }
+		string Parameters { get; set; }
 		/// <summary>
 		/// If this trigger instance is enabled
 		/// </summary>

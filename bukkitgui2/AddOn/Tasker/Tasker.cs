@@ -1,13 +1,15 @@
 ﻿// Tasker.cs in bukkitgui2/bukkitgui2
 // Created 2014/01/17
-// Last edited at 2014/07/13 14:01
+// Last edited at 2014/08/10 20:25
 // ©Bertware, visit http://bertware.net
 
 using System.Windows.Forms;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 {
-	internal class Tasker : IAddon
+	public delegate void TaskerEventArgs();
+
+	public class Tasker : IAddon
 	{
 		private UserControl _tab;
 
