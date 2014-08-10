@@ -113,11 +113,11 @@
       <DependentUpon>InstalledPluginsControl.cs</DependentUpon>
     </Compile>
     <Compile Include="AddOn\Starter\JavaApi.cs" />
-    <Compile Include="AddOn\Tasker\TaskerDialog\TaskerUI\ActionPicker.cs">
+    <Compile Include="AddOn\Tasker\TaskerDialog\ActionSelector.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="AddOn\Tasker\TaskerDialog\TaskerUI\ActionPicker.Designer.cs">
-      <DependentUpon>ActionPicker.cs</DependentUpon>
+    <Compile Include="AddOn\Tasker\TaskerDialog\ActionSelector.Designer.cs">
+      <DependentUpon>ActionSelector.cs</DependentUpon>
     </Compile>
     <Compile Include="AddOn\Tasker\TaskerDialog\TaskEditor.cs">
       <SubType>Form</SubType>
@@ -125,30 +125,12 @@
     <Compile Include="AddOn\Tasker\TaskerDialog\TaskEditor.Designer.cs">
       <DependentUpon>TaskEditor.cs</DependentUpon>
     </Compile>
-    <Compile Include="AddOn\Tasker\TaskerDialog\TaskerUI\TimeInput.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="AddOn\Tasker\TaskerDialog\TaskerUI\TimeInput.Designer.cs">
-      <DependentUpon>TimeInput.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AddOn\Tasker\TaskerDialog\TaskerUI\MultiStringInput.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="AddOn\Tasker\TaskerDialog\TaskerUI\MultiStringInput.Designer.cs">
-      <DependentUpon>MultiStringInput.cs</DependentUpon>
-    </Compile>
     <Compile Include="AddOn\Notifications\Notifications.cs" />
     <Compile Include="AddOn\Notifications\NotificationsSettings.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="AddOn\Notifications\NotificationsSettings.Designer.cs">
       <DependentUpon>NotificationsSettings.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AddOn\Tasker\TaskerDialog\TaskerUI\TriggerPicker.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="AddOn\Tasker\TaskerDialog\TaskerUI\TriggerPicker.Designer.cs">
-      <DependentUpon>TriggerPicker.cs</DependentUpon>
     </Compile>
     <Compile Include="AddOn\Updater\Updater.cs" />
     <Compile Include="AddOn\Updater\UpdaterSettings.cs">
@@ -372,17 +354,11 @@
     <EmbeddedResource Include="AddOn\Starter\StarterTab.resx">
       <DependentUpon>StarterTab.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AddOn\Tasker\TaskerDialog\TaskerUI\ActionPicker.resx">
-      <DependentUpon>ActionPicker.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AddOn\Tasker\TaskerDialog\TaskerUI\MultiStringInput.resx">
-      <DependentUpon>MultiStringInput.cs</DependentUpon>
+    <EmbeddedResource Include="AddOn\Tasker\TaskerDialog\ActionSelector.resx">
+      <DependentUpon>ActionSelector.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddOn\Tasker\TaskerDialog\TaskEditor.resx">
       <DependentUpon>TaskEditor.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AddOn\Tasker\TaskerDialog\TaskerUI\TriggerPicker.resx">
-      <DependentUpon>TriggerPicker.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddOn\Tasker\TaskerTab.resx">
       <DependentUpon>TaskerTab.cs</DependentUpon>
