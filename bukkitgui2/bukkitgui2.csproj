@@ -132,6 +132,9 @@
     <Compile Include="AddOn\Notifications\NotificationsSettings.Designer.cs">
       <DependentUpon>NotificationsSettings.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddOn\Tasker\Trigger\CurrentTimeTrigger.cs" />
+    <Compile Include="AddOn\Tasker\Trigger\ITrigger.cs" />
+    <Compile Include="AddOn\Tasker\Trigger\ServerUptimeTrigger.cs" />
     <Compile Include="AddOn\Updater\Updater.cs" />
     <Compile Include="AddOn\Updater\UpdaterSettings.cs">
       <SubType>UserControl</SubType>
@@ -419,6 +422,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="AddOn\Tasker\Action\" />
     <Folder Include="Core\Filesystem\FTP\" />
   </ItemGroup>
   <ItemGroup>

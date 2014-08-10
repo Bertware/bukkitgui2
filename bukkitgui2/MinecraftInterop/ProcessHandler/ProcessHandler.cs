@@ -40,6 +40,11 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler
 			get { return (CurrentState != ServerState.Stopped); }
 		}
 
+		public static TimeSpan Uptime
+		{
+			get { return (DateTime.Now.Subtract(ServerProcess.StartTime)); }
+		}
+
 		/// <summary>
 		///     The current state of the server, private object
 		/// </summary>
