@@ -1,5 +1,5 @@
-﻿// ConsoleCommandAction.cs in bukkitgui2/bukkitgui2
-// Created 2014/08/10
+﻿// ServerStartAction.cs in bukkitgui2/bukkitgui2
+// Created 2014/08/13
 // Last edited at 2014/08/13 19:56
 // ©Bertware, visit http://bertware.net
 
@@ -7,14 +7,14 @@ using Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Action
 {
-	internal class ConsoleCommandAction : IAction
+	internal class ServerStartAction : IAction
 	{
-		public ConsoleCommandAction()
+		public ServerStartAction()
 		{
-			Name = "ConsoleCommand";
-			Description = "Send a command to the console, if the server is running";
+			Name = "Start Server";
+			Description = "Start the server, if no other instance is running";
 			ParameterDescription =
-				"The command to send";
+				"No parameters are required";
 		}
 
 		public event TaskerEventArgs TaskerActionExecuteStarted;
@@ -35,7 +35,6 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Action
 
 		public bool ValidateInput(string inputText)
 		{
-			// accept all input, it's a command, so we can't check if it exists
 			return true;
 		}
 
@@ -44,7 +43,8 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Action
 		public void Execute()
 		{
 			TaskerActionExecuteStarted.Invoke();
-			ProcessHandler.SendInput(Parameters);
+			// if no instance is currently running, start a new one
+			if (!ProcessHandler.IsRunning) Starter.Starter.StartServer();
 			TaskerActionExecuteFinished.Invoke();
 		}
 	}

@@ -1,20 +1,19 @@
-﻿// ConsoleCommandAction.cs in bukkitgui2/bukkitgui2
-// Created 2014/08/10
+﻿// ServerKillAction.cs in bukkitgui2/bukkitgui2
+// Created 2014/08/13
 // Last edited at 2014/08/13 19:56
 // ©Bertware, visit http://bertware.net
 
-using Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler;
-
 namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Action
 {
-	internal class ConsoleCommandAction : IAction
+	internal class ServerKillAction : IAction
 	{
-		public ConsoleCommandAction()
+		public ServerKillAction()
 		{
-			Name = "ConsoleCommand";
-			Description = "Send a command to the console, if the server is running";
+			Name = "Kill Server";
+			Description =
+				"Kill the current server instance. Warning! May corrupt data, use at own risk. Only to be used in case of a crashed server.";
 			ParameterDescription =
-				"The command to send";
+				"No parameters are required";
 		}
 
 		public event TaskerEventArgs TaskerActionExecuteStarted;
@@ -35,7 +34,6 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Action
 
 		public bool ValidateInput(string inputText)
 		{
-			// accept all input, it's a command, so we can't check if it exists
 			return true;
 		}
 
@@ -44,7 +42,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Action
 		public void Execute()
 		{
 			TaskerActionExecuteStarted.Invoke();
-			ProcessHandler.SendInput(Parameters);
+			Starter.Starter.KillServer();
 			TaskerActionExecuteFinished.Invoke();
 		}
 	}

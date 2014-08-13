@@ -1,6 +1,6 @@
-﻿// CurrentTimeTrigger.cs in bukkitgui2/bukkitgui2
+﻿// ServerUptimeTrigger.cs in bukkitgui2/bukkitgui2
 // Created 2014/08/10
-// Last edited at 2014/08/10 17:40
+// Last edited at 2014/08/13 19:56
 // ©Bertware, visit http://bertware.net
 
 using System;
@@ -33,6 +33,21 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Trigger
 		public bool ValidateInput(string inputText)
 		{
 			return Regex.IsMatch(inputText, "^(\\d{2}:\\d{2}:\\d{2})$");
+		}
+
+		public void Load(string name, string parameters)
+		{
+			if (Enabled)
+			{
+				Disable();
+				Load(name, parameters);
+				Enable();
+			}
+			else
+			{
+				Name = name;
+				Parameters = parameters;
+			}
 		}
 
 		public string Parameters { get; set; }
@@ -70,7 +85,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Trigger
 		private TimeSpan _time;
 
 		/// <summary>
-		///    The timer has elapsed, raise event
+		///     The timer has elapsed, raise event
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>

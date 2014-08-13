@@ -1,56 +1,62 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
+﻿// ITrigger.cs in bukkitgui2/bukkitgui2
+// Created 2014/08/10
+// Last edited at 2014/08/13 19:56
+// ©Bertware, visit http://bertware.net
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Trigger
 {
-
-
-	interface ITrigger
+	internal interface ITrigger
 	{
-
 		event TaskerEventArgs TaskerTriggerFired;
 		event TaskerEventArgs TaskerTriggerEnabled;
 		event TaskerEventArgs TaskerTriggerDisabled;
 
 		/// <summary>
-		/// Name of the trigger
+		///     Name of the trigger
 		/// </summary>
 		string Name { get; }
 
 		/// <summary>
-		/// Description of the trigger
+		///     Description of the trigger
 		/// </summary>
 		string Description { get; }
+
 		/// <summary>
-		/// Description of the trigger parameters
+		///     Description of the trigger parameters
 		/// </summary>
 		string ParameterDescription { get; }
+
 		/// <summary>
-		/// Validate parameter input
+		///     Validate parameter input
 		/// </summary>
 		/// <param name="inputText">The input to validate</param>
 		/// <returns>Returns True if valid</returns>
 		bool ValidateInput(string inputText);
 
 		/// <summary>
-		/// The saved parameters for an instance of this trigger
+		///     Load a trigger by name and parameter
+		/// </summary>
+		/// <param name="name"></param>
+		/// <param name="parameters"></param>
+		void Load(string name, string parameters);
+
+		/// <summary>
+		///     The saved parameters for an instance of this trigger
 		/// </summary>
 		string Parameters { get; set; }
+
 		/// <summary>
-		/// If this trigger instance is enabled
+		///     If this trigger instance is enabled
 		/// </summary>
 		bool Enabled { get; }
 
 		/// <summary>
-		/// Enable this trigger
+		///     Enable this trigger
 		/// </summary>
 		void Enable();
 
 		/// <summary>
-		/// Disable this trigger
+		///     Disable this trigger
 		/// </summary>
 		void Disable();
 	}

@@ -1,4 +1,4 @@
-﻿namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.TaskerDialog.TaskerUI
+﻿namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.TaskerUI
 {
 	partial class TaskEditor
 	{
@@ -155,6 +155,7 @@
 			this.btnSave.TabIndex = 4;
 			this.btnSave.Text = "&Save";
 			this.btnSave.UseVisualStyleBackColor = true;
+			this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
 			// 
 			// btnCancel
 			// 
@@ -165,6 +166,7 @@
 			this.btnCancel.TabIndex = 5;
 			this.btnCancel.Text = "&Cancel";
 			this.btnCancel.UseVisualStyleBackColor = true;
+			this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
 			// 
 			// chkEnable
 			// 
@@ -193,7 +195,11 @@
 			this.Controls.Add(this.gbAction);
 			this.Controls.Add(this.gbTrigger);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+			this.MaximizeBox = false;
+			this.MinimizeBox = false;
 			this.Name = "TaskEditor";
+			this.ShowIcon = false;
+			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Edit Task..";
 			this.gbTrigger.ResumeLayout(false);

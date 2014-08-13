@@ -1,10 +1,7 @@
 ﻿// IAction.cs in bukkitgui2/bukkitgui2
 // Created 2014/08/10
-// Last edited at 2014/08/10 20:23
+// Last edited at 2014/08/13 19:56
 // ©Bertware, visit http://bertware.net
-
-using System;
-using Net.Bertware.Bukkitgui2.AddOn.Tasker.Trigger;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Action
 {
@@ -29,6 +26,13 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Action
 		string ParameterDescription { get; }
 
 		/// <summary>
+		///     Load an action by name and parameter
+		/// </summary>
+		/// <param name="name"></param>
+		/// <param name="parameters"></param>
+		void Load(string name, string parameters);
+
+		/// <summary>
 		///     Validate parameter input
 		/// </summary>
 		/// <param name="inputText">The input to validate</param>
@@ -45,7 +49,5 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Action
 		///     Enable this action
 		/// </summary>
 		void Execute();
-
-
 	}
 }

@@ -1,6 +1,6 @@
 ﻿// ShellCommandAction.cs in bukkitgui2/bukkitgui2
 // Created 2014/08/10
-// Last edited at 2014/08/10 20:33
+// Last edited at 2014/08/13 19:56
 // ©Bertware, visit http://bertware.net
 
 using System.Diagnostics;
@@ -26,6 +26,12 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Action
 		public string Description { get; protected set; }
 
 		public string ParameterDescription { get; protected set; }
+
+		public void Load(string name, string parameters)
+		{
+			Name = name;
+			Parameters = parameters;
+		}
 
 		public bool ValidateInput(string inputText)
 		{
