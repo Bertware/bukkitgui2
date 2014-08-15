@@ -11,7 +11,7 @@ using Net.Bertware.Bukkitgui2.Core.Util;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 {
-	internal class Task
+	public class Task
 	{
 		public static readonly List<ITrigger> AllTriggers =
 			DynamicModuleLoader.GetClassesOfType<ITrigger>("Net.Bertware.Bukkitgui2.AddOn.Tasker.Trigger");
@@ -23,7 +23,10 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 		public bool Enabled { get; private set; }
 		public ITrigger Trigger { get; private set; }
 		public List<IAction> Actions { get; private set; }
-
+		
+		public event EventHandler TaskExecuting;
+		public event EventHandler TaskExecuted;
+		
 		public Task()
 		{
 			Name = "";
@@ -41,6 +44,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 			if (Actions == null) return;
 
 			Trigger.TaskerTriggerFired += ExecuteActions;
+			if (Enabled) Trigger.Enable();
 		}
 
 		public void Dispose()
@@ -50,12 +54,26 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 			Actions = null;
 		}
 
+		public void Enable()
+		{
+			Trigger.Enable();
+			Enabled = true;
+		}
+
+		public void Disable()
+		{
+			Trigger.Disable();
+			Enabled = false;
+		}
+
 		private void ExecuteActions()
 		{
+			TaskExecuting.Invoke(this,new EventArgs());
 			foreach (IAction action in Actions)
 			{
 				action.Execute();
 			}
+			TaskExecuted.Invoke(this,new EventArgs());
 		}
 
 		public string Serialize()
@@ -106,6 +124,11 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 				}
 			}
 			return this;
+		}
+
+		public override string ToString()
+		{
+			return "Task:" + this.Name + ":Trigger:" + Trigger.Name + ":Actions:" + Actions.Count;
 		}
 	}
 }

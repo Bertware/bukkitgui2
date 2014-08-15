@@ -5,7 +5,7 @@
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Action
 {
-	internal interface IAction
+	public interface IAction
 	{
 		event TaskerEventArgs TaskerActionExecuteStarted;
 		event TaskerEventArgs TaskerActionExecuteFinished;

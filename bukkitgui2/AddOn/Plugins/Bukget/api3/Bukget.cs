@@ -1,6 +1,6 @@
 ﻿// Bukget.cs in bukkitgui2/bukkitgui2
 // Created 2014/05/03
-// Last edited at 2014/07/13 14:01
+// Last edited at 2014/08/15 14:31
 // ©Bertware, visit http://bertware.net
 
 using System;
@@ -13,6 +13,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
 	public static class Bukget
 	{
 		public delegate void PluginsLoadedEventArgs(Dictionary<String, BukgetPlugin> currentlyLoadedPlugins);
+
 		public static event PluginsLoadedEventArgs NewPluginsLoaded;
 
 		private static void RaiseNewPluginsLoaded()
@@ -24,10 +25,22 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
 			}
 		}
 
+
+		private static Dictionary<String, BukgetPlugin> _currentlyLoadedPlugins;
+
 		/// <summary>
 		///     Dictionary with currently loaded plugins, key: namespace, value: plugin
 		/// </summary>
-		public static Dictionary<String, BukgetPlugin> CurrentlyLoadedPlugins;
+		public static Dictionary<String, BukgetPlugin> CurrentlyLoadedPlugins
+		{
+			get
+			{
+				if (_currentlyLoadedPlugins != null) return _currentlyLoadedPlugins;
+				_currentlyLoadedPlugins = GetMostPopularPlugins(20);
+				return _currentlyLoadedPlugins;
+			}
+			private set { _currentlyLoadedPlugins = value; }
+		}
 
 		public static Dictionary<String, BukgetPlugin> GetMostPopularPlugins(int amount)
 		{
@@ -44,7 +57,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
 
 		public static Dictionary<String, BukgetPlugin> SearchPlugins(string searchtext, int amount)
 		{
-			string url = BukgetUrlBuilder.ConstructUrl(PluginInfoField.Plugin_Name,SearchAction.Like, searchtext, amount);
+			string url = BukgetUrlBuilder.ConstructUrl(PluginInfoField.Plugin_Name, SearchAction.Like, searchtext, amount);
 			return RetrieveParseStore(url);
 		}
 

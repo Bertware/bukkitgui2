@@ -89,6 +89,7 @@
 			this.btnInstall.TabIndex = 1;
 			this.btnInstall.Text = "Install";
 			this.btnInstall.UseVisualStyleBackColor = true;
+			this.btnInstall.Click += new System.EventHandler(this.btnInstall_Click);
 			// 
 			// btnInfo
 			// 

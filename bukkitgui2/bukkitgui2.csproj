@@ -140,6 +140,11 @@
     <Compile Include="AddOn\Notifications\NotificationsSettings.Designer.cs">
       <DependentUpon>NotificationsSettings.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddOn\Tasker\Trigger\UnexpectedServerStopTrigger.cs" />
+    <Compile Include="AddOn\Tasker\Trigger\ServerStoppingTrigger.cs" />
+    <Compile Include="AddOn\Tasker\Trigger\ServerStoppedTrigger.cs" />
+    <Compile Include="AddOn\Tasker\Trigger\ServerStartingTrigger.cs" />
+    <Compile Include="AddOn\Tasker\Trigger\ServerStartedTrigger.cs" />
     <Compile Include="AddOn\Tasker\Trigger\CurrentTimeTrigger.cs" />
     <Compile Include="AddOn\Tasker\Trigger\ITrigger.cs" />
     <Compile Include="AddOn\Tasker\Trigger\ServerUptimeTrigger.cs" />

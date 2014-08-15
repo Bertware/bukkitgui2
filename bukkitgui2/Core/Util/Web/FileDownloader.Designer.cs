@@ -37,6 +37,7 @@
 			this.ClientSize = new System.Drawing.Size(414, 109);
 			this.Name = "FileDownloader";
 			this.Text = "FileDownloader";
+			this.Load += new System.EventHandler(this.FileDownloader_Load);
 			this.ResumeLayout(false);
 
 		}

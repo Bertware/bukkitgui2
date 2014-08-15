@@ -5,7 +5,7 @@
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Trigger
 {
-	internal interface ITrigger
+	public interface ITrigger
 	{
 		event TaskerEventArgs TaskerTriggerFired;
 		event TaskerEventArgs TaskerTriggerEnabled;

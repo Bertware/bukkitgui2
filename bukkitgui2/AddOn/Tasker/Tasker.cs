@@ -3,7 +3,11 @@
 // Last edited at 2014/08/13 19:56
 // ©Bertware, visit http://bertware.net
 
+using System.Collections.Generic;
+using System.IO;
 using System.Windows.Forms;
+using Net.Bertware.Bukkitgui2.Core.FileLocation;
+using Net.Bertware.Bukkitgui2.Core.Logging;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 {
@@ -11,9 +15,8 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 
 	public class Tasker : IAddon
 	{
-		private UserControl _tab;
-
-
+		public Dictionary<string, Task> Tasks { get; private set; }
+		private readonly string _configfile = Fl.SafeLocation(RequestFile.Config) + "tasklist";
 		/// <summary>
 		///     The addon name, ideally this name is the same as used in the tabpage
 		/// </summary>
@@ -43,8 +46,27 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 		/// </summary>
 		public void Initialize()
 		{
-			_tab = new TaskerTab {Text = Name, ParentAddon = this};
+			TabPage = new TaskerTab {Text = Name, ParentAddon = this};
 			ConfigPage = null;
+			LoadTasks();
+		}
+
+		private void LoadTasks()
+		{
+			Logger.Log(LogLevel.Info, "Tasker", "Loading tasks...", _configfile);
+			
+			Tasks = new Dictionary<string, Task>();
+			if (!File.Exists(_configfile)) File.Create(_configfile).Close();
+			using (StreamReader sr = File.OpenText(_configfile))
+			{
+				while (!sr.EndOfStream)
+				{
+					Task t = new Task(sr.ReadLine());
+					Logger.Log(LogLevel.Info, "Tasker", "Parsed task", t.ToString());
+					Tasks.Add(t.Name,t);
+					t.Initialize();
+				}
+			}
 		}
 
 		public void Dispose()
@@ -56,10 +78,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 		///     The tab control for this addon
 		/// </summary>
 		/// <returns>Returns the tabpage</returns>
-		UserControl IAddon.TabPage
-		{
-			get { return _tab; }
-		}
+		public UserControl TabPage { get; private set; }
 
 		public UserControl ConfigPage { get; private set; }
 

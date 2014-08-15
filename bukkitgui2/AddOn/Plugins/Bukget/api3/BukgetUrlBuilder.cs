@@ -1,6 +1,6 @@
 ﻿// BukgetUrlBuilder.cs in bukkitgui2/bukkitgui2
 // Created 2014/05/03
-// Last edited at 2014/07/13 14:01
+// Last edited at 2014/08/15 14:33
 // ©Bertware, visit http://bertware.net
 
 using System;
@@ -21,8 +21,10 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
 		/// <remarks></remarks>
 		public static readonly PluginInfoField[] FieldsSimple =
 		{
-			PluginInfoField.Slug, PluginInfoField.Plugin_Name, PluginInfoField.Description, PluginInfoField.Main,PluginInfoField.Authors,
-			PluginInfoField.Vf_Version, PluginInfoField.Vf_Filename, PluginInfoField.Vf_Game_Versions,PluginInfoField.Vf_Download,PluginInfoField.Vf_Date,PluginInfoField.Vf_Link
+			PluginInfoField.Slug, PluginInfoField.Plugin_Name, PluginInfoField.Description, PluginInfoField.Main,
+			PluginInfoField.Authors,
+			PluginInfoField.Vf_Version, PluginInfoField.Vf_Filename, PluginInfoField.Vf_Game_Versions,
+			PluginInfoField.Vf_Download, PluginInfoField.Vf_Date, PluginInfoField.Vf_Link
 		};
 
 		/// <summary>
@@ -185,7 +187,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
 		public static string ConstructUrl(PluginInfoField searchField, SearchAction action, String value, int limit)
 		{
 			return ConstructBaseUrl() + "/search/" + GetFieldUrlValue(searchField) + "/"
-			       + GetSearchActionUrlValue(action) + "/" + value;
+			       + GetSearchActionUrlValue(action) + "/" + value + GetFieldArrayUrlValue(FieldsSimple);
 		}
 
 		/// <summary>
@@ -478,7 +480,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
 		/// <summary>
 		///     Popularity score this week
 		/// </summary>
-		Pop_weekly,
+		Pop_Weekly,
 
 		/// <summary>
 		///     Popularity score this month

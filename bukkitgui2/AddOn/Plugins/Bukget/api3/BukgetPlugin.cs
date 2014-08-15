@@ -1,6 +1,6 @@
 ﻿// BukgetPlugin.cs in bukkitgui2/bukkitgui2
 // Created 2014/05/03
-// Last edited at 2014/07/13 14:01
+// Last edited at 2014/08/15 14:26
 // ©Bertware, visit http://bertware.net
 
 using System;
@@ -110,6 +110,23 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
 		///     The website of the plugin
 		/// </summary>
 		public string Website { get; set; }
+
+		/// <summary>
+		///     Show a dialog with plugin info & versions
+		/// </summary>
+		public void ShowVersionDialog()
+		{
+			BukgetPluginView pluginView = new BukgetPluginView {Plugin = this};
+			pluginView.ShowDialog();
+		}
+
+		/// <summary>
+		///     Install the latest plugin version
+		/// </summary>
+		public void InstallLatestVersion(string targetlocation = "")
+		{
+			LastVersion.Install(targetlocation);
+		}
 
 		public BukgetPlugin(string main, string name)
 		{

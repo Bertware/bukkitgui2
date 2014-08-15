@@ -14,6 +14,9 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Web
 {
 	public partial class FileDownloader : Form
 	{
+
+		private bool _downloadStarted = false;
+
 		/// <summary>
 		///     Dictionary containing URLs of files to download and their target locations
 		/// </summary>
@@ -51,7 +54,6 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Web
 					new Point(0, _files.Count*50 - 50)
 			};
 			control.CreateDownload(url, targetlocation);
-
 			_downloads.Add(url, control);
 			Controls.Add(control);
 			Logger.Log(LogLevel.Info, "FileDownloader", "Added download: " + control.Filename + " from " + control.Url);
@@ -63,6 +65,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Web
 		/// </summary>
 		public void StartDownload()
 		{
+			_downloadStarted = true;
 			Logger.Log(LogLevel.Info, "FileDownloader", "Starting " + _downloads.Count + " download(s)");
 			foreach (FileDownloadProgressBar control in _downloads.Values)
 			{
@@ -90,6 +93,11 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Web
 					Close();
 				}
 			}
+		}
+
+		private void FileDownloader_Load(object sender, EventArgs e)
+		{
+			if (!_downloadStarted) StartDownload();
 		}
 	}
 }

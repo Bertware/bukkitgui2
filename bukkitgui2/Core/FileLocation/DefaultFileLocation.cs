@@ -70,7 +70,7 @@ namespace Net.Bertware.Bukkitgui2.Core.FileLocation
 				case RequestFile.Cache:
 					return Location(RequestFile.StorageRoot) + CacheFolder;
 				case RequestFile.Plugindir:
-					return Location(RequestFile.GuiDir) + "/plugins";
+					return Location(RequestFile.GuiDir) + "\\plugins";
 				default:
 					return Location(RequestFile.StorageRoot);
 			}

@@ -62,9 +62,15 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget
 		{
 			if (slvPlugins.SelectedItems.Count < 0) return;
 			string main = slvPlugins.SelectedItems[0].Tag.ToString();
-			BukgetPlugin plugin = api3.Bukget.CurrentlyLoadedPlugins[main];
-			BukgetPluginView pluginView = new BukgetPluginView {Plugin = plugin};
-			pluginView.ShowDialog();
+			api3.Bukget.CurrentlyLoadedPlugins[main].ShowVersionDialog();
+
+		}
+
+		private void btnInstall_Click(object sender, EventArgs e)
+		{
+			if (slvPlugins.SelectedItems.Count < 0) return;
+			string main = slvPlugins.SelectedItems[0].Tag.ToString();
+			api3.Bukget.CurrentlyLoadedPlugins[main].InstallLatestVersion();
 		}
 	}
 }
