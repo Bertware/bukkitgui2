@@ -59,5 +59,15 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.TaskerUI
 					"Invalid parameter!" + Environment.NewLine + _selectedAction.ParameterDescription);
 			}
 		}
+		/// <summary>
+		/// Get the action based upon the input
+		/// </summary>
+		/// <returns></returns>
+		public IAction GetAction()
+		{
+			IAction action = _selectedAction;
+			action.Parameters = txtActionParameters.Text;
+			return action;
+		}
 	}
 }

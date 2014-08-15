@@ -38,6 +38,14 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 			Deserialize(serializedData);
 		}
 
+		public Task(string name, bool enabled, ITrigger trigger, List<IAction> actions)
+		{
+			this.Name = name;
+			this.Enabled = enabled;
+			this.Trigger = trigger;
+			this.Actions = actions;
+		}
+
 		public void Initialize()
 		{
 			if (Trigger == null) return;

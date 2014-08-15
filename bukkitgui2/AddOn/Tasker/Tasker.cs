@@ -1,8 +1,9 @@
 ﻿// Tasker.cs in bukkitgui2/bukkitgui2
 // Created 2014/01/17
-// Last edited at 2014/08/13 19:56
+// Last edited at 2014/08/15 18:25
 // ©Bertware, visit http://bertware.net
 
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
@@ -15,8 +16,17 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 
 	public class Tasker : IAddon
 	{
-		public Dictionary<string, Task> Tasks { get; private set; }
-		private readonly string _configfile = Fl.SafeLocation(RequestFile.Config) + "tasklist";
+
+		public event EventHandler TaskListAltered;
+		public static Tasker Reference { get; private set; }
+		public static Dictionary<string, Task> Tasks;
+		private static readonly string Configfile = Fl.SafeLocation(RequestFile.Config) + "tasklist";
+
+		public Tasker()
+		{
+			Reference = this;
+		}
+
 		/// <summary>
 		///     The addon name, ideally this name is the same as used in the tabpage
 		/// </summary>
@@ -46,32 +56,86 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 		/// </summary>
 		public void Initialize()
 		{
+			LoadTasks();
 			TabPage = new TaskerTab {Text = Name, ParentAddon = this};
 			ConfigPage = null;
-			LoadTasks();
 		}
 
 		private void LoadTasks()
 		{
-			Logger.Log(LogLevel.Info, "Tasker", "Loading tasks...", _configfile);
-			
+			Logger.Log(LogLevel.Info, "Tasker", "Loading tasks...", Configfile);
+
 			Tasks = new Dictionary<string, Task>();
-			if (!File.Exists(_configfile)) File.Create(_configfile).Close();
-			using (StreamReader sr = File.OpenText(_configfile))
+			if (!File.Exists(Configfile)) File.Create(Configfile).Close();
+			using (StreamReader sr = File.OpenText(Configfile))
 			{
 				while (!sr.EndOfStream)
 				{
 					Task t = new Task(sr.ReadLine());
 					Logger.Log(LogLevel.Info, "Tasker", "Parsed task", t.ToString());
-					Tasks.Add(t.Name,t);
+					Tasks.Add(t.Name, t);
 					t.Initialize();
 				}
 			}
+			Logger.Log(LogLevel.Info, "Tasker", "Loaded all tasks");
+		}
+
+		/// <summary>
+		///     Save (update) a task
+		/// </summary>
+		/// <param name="oldTask"></param>
+		/// <param name="newTask"></param>
+		public void SaveTask(Task oldTask, Task newTask)
+		{
+			DeleteTask(oldTask);
+			AddTask(newTask);
+			// events already fired by delete & add operations
+		}
+
+		/// <summary>
+		///     Add a new task
+		/// </summary>
+		/// <param name="task">the task to add</param>
+		public void AddTask(Task task)
+		{
+			if (Tasks != null && !Tasks.ContainsKey(task.Name)) Tasks.Add(task.Name, task);
+			TaskListAltered.Invoke(Reference, EventArgs.Empty); // list changed, invoke event
+			SaveConfig();
+		}
+
+		/// <summary>
+		///     Delete a task
+		/// </summary>
+		/// <param name="task">the task to delete</param>
+		public void DeleteTask(Task task)
+		{
+			if (Tasks != null && Tasks.ContainsKey(task.Name)) Tasks.Remove(task.Name);
+			TaskListAltered.Invoke(Reference, EventArgs.Empty); // list changed, invoke event
+			SaveConfig();
+		}
+
+		/// <summary>
+		///     Save all tasks to config file.
+		/// </summary>
+		private static void SaveConfig()
+		{
+			Logger.Log(LogLevel.Info, "Tasker", "Saving tasks...", Configfile);
+
+			if (!File.Exists(Configfile)) File.Create(Configfile).Close();
+			using (StreamWriter sw = File.CreateText(Configfile))
+			{
+				foreach (KeyValuePair<string, Task> pair in Tasks)
+				{
+					sw.WriteLine(pair.Value.Serialize());
+					Logger.Log(LogLevel.Info, "Tasker", "Saved task", pair.Value.ToString());
+				}
+			}
+			Logger.Log(LogLevel.Info, "Tasker", "Saved all tasks");
 		}
 
 		public void Dispose()
 		{
-			// nothing to do
+			SaveConfig();
 		}
 
 		/// <summary>
