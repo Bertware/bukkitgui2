@@ -1,6 +1,6 @@
-﻿// ServerStartedTrigger.cs in bukkitgui2/bukkitgui2
+﻿// UnexpectedServerStopTrigger.cs in bukkitgui2/bukkitgui2
 // Created 2014/08/14
-// Last edited at 2014/08/14 12:43
+// Last edited at 2014/08/16 12:24
 // ©Bertware, visit http://bertware.net
 
 using Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler;
@@ -17,8 +17,13 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Trigger
 		}
 
 		public event TaskerEventArgs TaskerTriggerFired;
-		public event TaskerEventArgs TaskerTriggerEnabled;
-		public event TaskerEventArgs TaskerTriggerDisabled;
+
+		protected virtual void OnTaskerTriggerFired()
+		{
+			TaskerEventArgs handler = TaskerTriggerFired;
+			if (handler != null) handler();
+		}
+
 
 		public string Name { get; protected set; }
 
@@ -32,17 +37,16 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Trigger
 			return true;
 		}
 
-		public void Load(string name, string parameters)
+		public void Load(string parameters)
 		{
 			if (Enabled)
 			{
 				Disable();
-				Load(name, parameters);
+				Load(parameters);
 				Enable();
 			}
 			else
 			{
-				Name = name;
 				Parameters = parameters;
 			}
 		}
@@ -53,16 +57,14 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Trigger
 
 		public void Enable()
 		{
-			ProcessHandler.UnexpectedServerStop += TaskerTriggerFired.Invoke;
+			ProcessHandler.UnexpectedServerStop += OnTaskerTriggerFired;
 			Enabled = true;
-			TaskerTriggerEnabled.Invoke();
 		}
 
 		public void Disable()
 		{
-			ProcessHandler.UnexpectedServerStop -= TaskerTriggerFired.Invoke;
+			ProcessHandler.UnexpectedServerStop -= OnTaskerTriggerFired;
 			Enabled = false;
-			TaskerTriggerDisabled.Invoke();
 		}
 	}
 }

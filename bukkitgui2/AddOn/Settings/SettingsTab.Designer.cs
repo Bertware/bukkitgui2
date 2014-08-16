@@ -56,6 +56,7 @@
 			// 
 			// SettingsTab
 			// 
+			this.BackColor = System.Drawing.Color.White;
 			this.Controls.Add(this.gbSettings);
 			this.Controls.Add(this.TVSettings);
 			this.Name = "SettingsTab";

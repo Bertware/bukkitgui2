@@ -1,6 +1,6 @@
 ﻿// ServerUptimeTrigger.cs in bukkitgui2/bukkitgui2
 // Created 2014/08/10
-// Last edited at 2014/08/13 19:56
+// Last edited at 2014/08/16 12:24
 // ©Bertware, visit http://bertware.net
 
 using System;
@@ -21,8 +21,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Trigger
 		}
 
 		public event TaskerEventArgs TaskerTriggerFired;
-		public event TaskerEventArgs TaskerTriggerEnabled;
-		public event TaskerEventArgs TaskerTriggerDisabled;
+
 
 		public string Name { get; protected set; }
 
@@ -35,17 +34,16 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Trigger
 			return Regex.IsMatch(inputText, "^(\\d{2}:\\d{2}:\\d{2})$");
 		}
 
-		public void Load(string name, string parameters)
+		public void Load(string parameters)
 		{
 			if (Enabled)
 			{
 				Disable();
-				Load(name, parameters);
+				Load(parameters);
 				Enable();
 			}
 			else
 			{
-				Name = name;
 				Parameters = parameters;
 			}
 		}
@@ -64,7 +62,6 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Trigger
 			// only start counting when the server is running
 			ProcessHandler.ServerStarted += _timerCheckCurrentTime.Start;
 			ProcessHandler.ServerStopped += _timerCheckCurrentTime.Stop;
-			TaskerTriggerEnabled.Invoke();
 		}
 
 		public void Disable()
@@ -77,7 +74,6 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Trigger
 			}
 
 			Enabled = false;
-			TaskerTriggerDisabled.Invoke();
 		}
 
 

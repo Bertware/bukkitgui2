@@ -170,6 +170,8 @@
 			// 
 			// chkEnable
 			// 
+			this.chkEnable.Checked = true;
+			this.chkEnable.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.chkEnable.Location = new System.Drawing.Point(426, 8);
 			this.chkEnable.Name = "chkEnable";
 			this.chkEnable.Size = new System.Drawing.Size(80, 17);

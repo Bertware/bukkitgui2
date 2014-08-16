@@ -45,8 +45,8 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 		{
 			if (slvPlugins.SelectedItems.Count < 0) return;
 			string filename = slvPlugins.SelectedItems[0].Tag.ToString();
-			string main = InstalledPluginManager.Plugins[filename].Mainspace;
-			Bukget.api3.BukgetPlugin.CreateFromNamespace(main).ShowVersionDialog();
+			InstalledPlugin plugin = InstalledPluginManager.Plugins[filename];
+			Bukget.api3.BukgetPlugin.CreateFromNamespace(plugin.Mainspace).ShowVersionDialog(plugin.Path);
 		}
 	}
 }

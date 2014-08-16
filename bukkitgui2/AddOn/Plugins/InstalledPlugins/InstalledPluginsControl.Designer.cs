@@ -123,6 +123,7 @@
 			// 
 			// InstalledPluginsControl
 			// 
+			this.BackColor = System.Drawing.Color.White;
 			this.Controls.Add(this.btnInfo);
 			this.Controls.Add(this.btnVersions);
 			this.Controls.Add(this.btnRemove);

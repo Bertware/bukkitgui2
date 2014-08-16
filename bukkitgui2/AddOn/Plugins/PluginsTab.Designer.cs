@@ -57,7 +57,7 @@
 			this.tabInstalled.Location = new System.Drawing.Point(4, 22);
 			this.tabInstalled.Name = "tabInstalled";
 			this.tabInstalled.Padding = new System.Windows.Forms.Padding(3);
-			this.tabInstalled.Size = new System.Drawing.Size(792, 449);
+			this.tabInstalled.Size = new System.Drawing.Size(792, 474);
 			this.tabInstalled.TabIndex = 0;
 			this.tabInstalled.Text = "Installed plugins";
 			this.tabInstalled.UseVisualStyleBackColor = true;
@@ -67,7 +67,7 @@
 			this.installedCtrl.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.installedCtrl.Location = new System.Drawing.Point(3, 3);
 			this.installedCtrl.Name = "installedCtrl";
-			this.installedCtrl.Size = new System.Drawing.Size(786, 443);
+			this.installedCtrl.Size = new System.Drawing.Size(786, 468);
 			this.installedCtrl.TabIndex = 0;
 			// 
 			// tabBukget
@@ -91,6 +91,7 @@
 			// 
 			// PluginsTab
 			// 
+			this.BackColor = System.Drawing.Color.White;
 			this.Controls.Add(this.tabctrlPlugins);
 			this.Name = "PluginsTab";
 			this.Size = new System.Drawing.Size(800, 500);

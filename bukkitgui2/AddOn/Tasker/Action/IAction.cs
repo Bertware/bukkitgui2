@@ -1,6 +1,6 @@
 ﻿// IAction.cs in bukkitgui2/bukkitgui2
 // Created 2014/08/10
-// Last edited at 2014/08/13 19:56
+// Last edited at 2014/08/16 12:24
 // ©Bertware, visit http://bertware.net
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Action
@@ -28,9 +28,8 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Action
 		/// <summary>
 		///     Load an action by name and parameter
 		/// </summary>
-		/// <param name="name"></param>
 		/// <param name="parameters"></param>
-		void Load(string name, string parameters);
+		void Load(string parameters);
 
 		/// <summary>
 		///     Validate parameter input

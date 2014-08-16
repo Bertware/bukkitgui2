@@ -31,13 +31,13 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Notifications
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
-			this.chkEnable = new SettingsCheckbox();
-			this.chkAlways = new SettingsCheckbox();
-			this.chkOnStatusChange = new SettingsCheckbox();
-			this.chkOnPlayerJoin = new SettingsCheckbox();
-			this.chkOnPlayerLeave = new SettingsCheckbox();
-			this.chkOnPlayerBan = new SettingsCheckbox();
-			this.chkOnPlayerKick = new SettingsCheckbox();
+			this.chkEnable = new Net.Bertware.Bukkitgui2.Controls.SettingsCheckbox();
+			this.chkAlways = new Net.Bertware.Bukkitgui2.Controls.SettingsCheckbox();
+			this.chkOnStatusChange = new Net.Bertware.Bukkitgui2.Controls.SettingsCheckbox();
+			this.chkOnPlayerJoin = new Net.Bertware.Bukkitgui2.Controls.SettingsCheckbox();
+			this.chkOnPlayerLeave = new Net.Bertware.Bukkitgui2.Controls.SettingsCheckbox();
+			this.chkOnPlayerBan = new Net.Bertware.Bukkitgui2.Controls.SettingsCheckbox();
+			this.chkOnPlayerKick = new Net.Bertware.Bukkitgui2.Controls.SettingsCheckbox();
 			this.toolTip = new System.Windows.Forms.ToolTip(this.components);
 			this.gbBalloons = new System.Windows.Forms.GroupBox();
 			this.gbSound = new System.Windows.Forms.GroupBox();
@@ -66,7 +66,6 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Notifications
 			this.chkAlways.Text = "Always show balloons";
 			this.toolTip.SetToolTip(this.chkAlways, "Show balloons, even if the GUI isn\'t minimized\r\n");
 			this.chkAlways.UseVisualStyleBackColor = true;
-			
 			// 
 			// chkOnStatusChange
 			// 
@@ -78,7 +77,6 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Notifications
 			this.chkOnStatusChange.Text = "Show balloon on server status change";
 			this.toolTip.SetToolTip(this.chkOnStatusChange, "Show a balloon when the server starts, is started, is stopping or stopped");
 			this.chkOnStatusChange.UseVisualStyleBackColor = true;
-		
 			// 
 			// chkOnPlayerJoin
 			// 
@@ -119,7 +117,6 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Notifications
 			this.chkOnPlayerKick.TabIndex = 5;
 			this.chkOnPlayerKick.Text = "Show balloon on player kick";
 			this.chkOnPlayerKick.UseVisualStyleBackColor = true;
-
 			// 
 			// gbBalloons
 			// 
@@ -163,6 +160,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Notifications
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.BackColor = System.Drawing.Color.White;
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.gbSound);
 			this.Controls.Add(this.gbBalloons);

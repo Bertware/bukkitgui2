@@ -1,6 +1,6 @@
 ﻿// ActionSelector.cs in bukkitgui2/bukkitgui2
 // Created 2014/08/10
-// Last edited at 2014/08/13 19:56
+// Last edited at 2014/08/16 12:24
 // ©Bertware, visit http://bertware.net
 
 using System;
@@ -59,8 +59,9 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.TaskerUI
 					"Invalid parameter!" + Environment.NewLine + _selectedAction.ParameterDescription);
 			}
 		}
+
 		/// <summary>
-		/// Get the action based upon the input
+		///     Get the action based upon the input
 		/// </summary>
 		/// <returns></returns>
 		public IAction GetAction()

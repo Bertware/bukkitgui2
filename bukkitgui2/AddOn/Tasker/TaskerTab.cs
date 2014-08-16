@@ -1,13 +1,12 @@
 ﻿// TaskerTab.cs in bukkitgui2/bukkitgui2
 // Created 2014/01/17
-// Last edited at 2014/08/13 19:56
+// Last edited at 2014/08/16 12:24
 // ©Bertware, visit http://bertware.net
 
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using Net.Bertware.Bukkitgui2.AddOn.Tasker.TaskerUI;
-using Net.Bertware.Bukkitgui2.Core.Util;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 {
@@ -28,7 +27,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 		public IAddon ParentAddon { get; set; }
 
 		/// <summary>
-		/// Load all tasks to the UI
+		///     Load all tasks to the UI
 		/// </summary>
 		private void LoadUi()
 		{
@@ -37,11 +36,12 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 			{
 				string[] content =
 				{
-					pair.Key, 
+					pair.Key,
 					pair.Value.Trigger.Name,
 					pair.Value.Trigger.Parameters,
 					pair.Value.Actions[0].Name,
-					pair.Value.Actions[0].Parameters
+					pair.Value.Actions[0].Parameters,
+					pair.Value.Enabled.ToString()
 				};
 				ListViewItem lvi = new ListViewItem(content) {Tag = pair.Value};
 				slvTasks.Items.Add(lvi);
@@ -69,7 +69,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 
 		private void btnDelete_Click(object sender, EventArgs e)
 		{
-			Task t = (Task)slvTasks.SelectedItems[0].Tag;
+			Task t = (Task) slvTasks.SelectedItems[0].Tag;
 			Tasker.Reference.DeleteTask(t);
 		}
 	}

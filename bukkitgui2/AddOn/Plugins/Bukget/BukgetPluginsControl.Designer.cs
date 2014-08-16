@@ -149,6 +149,7 @@
 			// 
 			// BukgetPluginsControl
 			// 
+			this.BackColor = System.Drawing.Color.White;
 			this.Controls.Add(this.lblBrowse);
 			this.Controls.Add(this.cbCategories);
 			this.Controls.Add(this.btnSearch);

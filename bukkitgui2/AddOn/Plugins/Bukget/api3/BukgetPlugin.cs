@@ -1,6 +1,6 @@
 ﻿// BukgetPlugin.cs in bukkitgui2/bukkitgui2
 // Created 2014/05/03
-// Last edited at 2014/08/15 14:26
+// Last edited at 2014/08/16 12:02
 // ©Bertware, visit http://bertware.net
 
 using System;
@@ -114,9 +114,13 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
 		/// <summary>
 		///     Show a dialog with plugin info & versions
 		/// </summary>
-		public void ShowVersionDialog()
+		public void ShowVersionDialog(string currentPluginVersionPath = "")
 		{
-			BukgetPluginView pluginView = new BukgetPluginView {Plugin = this};
+			BukgetPluginView pluginView = new BukgetPluginView
+			{
+				Plugin = this,
+				CurrentPluginVersionPath = currentPluginVersionPath
+			};
 			pluginView.ShowDialog();
 		}
 

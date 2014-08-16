@@ -30,8 +30,8 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.chkTime = new SettingsCheckbox();
-			this.chkDate = new SettingsCheckbox();
+			this.chkTime = new Net.Bertware.Bukkitgui2.Controls.SettingsCheckbox();
+			this.chkDate = new Net.Bertware.Bukkitgui2.Controls.SettingsCheckbox();
 			this.button1 = new System.Windows.Forms.Button();
 			this.CpInfo = new Net.Bertware.Bukkitgui2.Controls.ColorPicker.ColorPicker();
 			this.gbColors = new System.Windows.Forms.GroupBox();
@@ -174,6 +174,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.BackColor = System.Drawing.Color.White;
 			this.Controls.Add(this.gbColors);
 			this.Controls.Add(this.button1);
 			this.Controls.Add(this.chkDate);

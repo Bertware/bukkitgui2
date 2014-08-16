@@ -1,6 +1,6 @@
 ﻿// ShellCommandAction.cs in bukkitgui2/bukkitgui2
 // Created 2014/08/10
-// Last edited at 2014/08/13 19:56
+// Last edited at 2014/08/16 12:24
 // ©Bertware, visit http://bertware.net
 
 using System.Diagnostics;
@@ -19,7 +19,19 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Action
 
 		public event TaskerEventArgs TaskerActionExecuteStarted;
 
+		protected virtual void OnTaskerActionExecuteStarted()
+		{
+			TaskerEventArgs handler = TaskerActionExecuteStarted;
+			if (handler != null) handler();
+		}
+
 		public event TaskerEventArgs TaskerActionExecuteFinished;
+
+		protected virtual void OnTaskerActionExecuteFinished()
+		{
+			TaskerEventArgs handler = TaskerActionExecuteFinished;
+			if (handler != null) handler();
+		}
 
 		public string Name { get; protected set; }
 
@@ -27,9 +39,8 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Action
 
 		public string ParameterDescription { get; protected set; }
 
-		public void Load(string name, string parameters)
+		public void Load(string parameters)
 		{
-			Name = name;
 			Parameters = parameters;
 		}
 
@@ -42,7 +53,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Action
 
 		public void Execute()
 		{
-			TaskerActionExecuteStarted.Invoke();
+			OnTaskerActionExecuteStarted();
 			Process process = new Process
 			{
 				StartInfo = new ProcessStartInfo
@@ -53,7 +64,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Action
 				}
 			};
 			process.Start();
-			TaskerActionExecuteFinished.Invoke();
+			OnTaskerActionExecuteFinished();
 		}
 	}
 }

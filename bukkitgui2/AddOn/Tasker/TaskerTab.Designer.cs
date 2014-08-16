@@ -137,6 +137,7 @@
 			// 
 			// TaskerTab
 			// 
+			this.BackColor = System.Drawing.Color.White;
 			this.Controls.Add(this.btnEdit);
 			this.Controls.Add(this.btnTest);
 			this.Controls.Add(this.btnDelete);

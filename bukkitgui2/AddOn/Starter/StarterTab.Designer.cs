@@ -517,6 +517,7 @@
 			// 
 			// StarterTab
 			// 
+			this.BackColor = System.Drawing.Color.White;
 			this.Controls.Add(this.GBCustomSettings);
 			this.Controls.Add(this.GBMaintainance);
 			this.Controls.Add(this.GBServer);

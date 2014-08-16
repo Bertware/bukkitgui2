@@ -1,6 +1,6 @@
 ﻿// Task.cs in bukkitgui2/bukkitgui2
 // Created 2014/08/13
-// Last edited at 2014/08/13 19:56
+// Last edited at 2014/08/16 12:24
 // ©Bertware, visit http://bertware.net
 
 using System;
@@ -23,10 +23,23 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 		public bool Enabled { get; private set; }
 		public ITrigger Trigger { get; private set; }
 		public List<IAction> Actions { get; private set; }
-		
+
 		public event EventHandler TaskExecuting;
+
+		protected virtual void OnTaskExecuting()
+		{
+			EventHandler handler = TaskExecuting;
+			if (handler != null) handler(this, EventArgs.Empty);
+		}
+
 		public event EventHandler TaskExecuted;
-		
+
+		protected virtual void OnTaskExecuted()
+		{
+			EventHandler handler = TaskExecuted;
+			if (handler != null) handler(this, EventArgs.Empty);
+		}
+
 		public Task()
 		{
 			Name = "";
@@ -40,10 +53,10 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 
 		public Task(string name, bool enabled, ITrigger trigger, List<IAction> actions)
 		{
-			this.Name = name;
-			this.Enabled = enabled;
-			this.Trigger = trigger;
-			this.Actions = actions;
+			Name = name;
+			Enabled = enabled;
+			Trigger = trigger;
+			Actions = actions;
 		}
 
 		public void Initialize()
@@ -76,12 +89,12 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 
 		private void ExecuteActions()
 		{
-			TaskExecuting.Invoke(this,new EventArgs());
+			OnTaskExecuting();
 			foreach (IAction action in Actions)
 			{
 				action.Execute();
 			}
-			TaskExecuted.Invoke(this,new EventArgs());
+			OnTaskExecuted();
 		}
 
 		public string Serialize()
@@ -97,10 +110,11 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 
 		public Task Deserialize(string data)
 		{
+			Actions = new List<IAction>();
 			string[] partedData = data.Split(new[] {":;"}, StringSplitOptions.RemoveEmptyEntries);
 			foreach (string s in partedData)
 			{
-				string[] dataFragments = s.Split(new[] {"::"}, StringSplitOptions.RemoveEmptyEntries);
+				string[] dataFragments = s.Split(new[] {"::"}, StringSplitOptions.None);
 				switch (dataFragments[0])
 				{
 					case "TASK":
@@ -113,7 +127,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 							if (!t.Name.Equals(dataFragments[1])) continue;
 
 							ITrigger trigger = (ITrigger) Activator.CreateInstance(t.GetType());
-							trigger.Load(dataFragments[2], dataFragments[3]);
+							trigger.Load(dataFragments[2]);
 							Trigger = trigger;
 							break; // we're done, we got the trigger. There can only be one trigger!
 						}
@@ -124,7 +138,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 							if (!a.Name.Equals(dataFragments[1])) continue;
 
 							IAction action = (IAction) Activator.CreateInstance(a.GetType());
-							action.Load(dataFragments[2], dataFragments[3]);
+							action.Load(dataFragments[2]);
 							Actions.Add(action);
 							break; // we're done, we got the trigger. There can only be one trigger!
 						}
@@ -136,7 +150,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 
 		public override string ToString()
 		{
-			return "Task:" + this.Name + ":Trigger:" + Trigger.Name + ":Actions:" + Actions.Count;
+			return "Task:" + Name + ":Trigger:" + Trigger.Name + ":Actions:" + Actions.Count;
 		}
 	}
 }
