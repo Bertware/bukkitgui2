@@ -1,4 +1,6 @@
-﻿namespace Net.Bertware.Bukkitgui2.UI
+﻿using MetroFramework.Controls;
+
+namespace Net.Bertware.Bukkitgui2.UI
 {
     partial class MainForm
     {
@@ -29,7 +31,7 @@
         private void InitializeComponent()
         {
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-			this.TabCtrlAddons = new System.Windows.Forms.TabControl();
+			this.TabCtrlAddons = new MetroFramework.Controls.MetroTabControl();
 			this.StatusStripMain = new System.Windows.Forms.StatusStrip();
 			this.LblToolsMainServerState = new System.Windows.Forms.ToolStripStatusLabel();
 			this.MenuToolsMainServerAction = new System.Windows.Forms.ToolStripDropDownButton();
@@ -47,15 +49,21 @@
 			this.TabCtrlAddons.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.TabCtrlAddons.Location = new System.Drawing.Point(0, 0);
+			this.TabCtrlAddons.Location = new System.Drawing.Point(0, 63);
+			this.TabCtrlAddons.Margin = new System.Windows.Forms.Padding(0);
 			this.TabCtrlAddons.Name = "TabCtrlAddons";
-			this.TabCtrlAddons.SelectedIndex = 0;
-			this.TabCtrlAddons.Size = new System.Drawing.Size(884, 537);
+			this.TabCtrlAddons.Padding = new System.Drawing.Point(6, 8);
+			this.TabCtrlAddons.Size = new System.Drawing.Size(886, 474);
 			this.TabCtrlAddons.TabIndex = 0;
+			this.TabCtrlAddons.UseSelectable = true;
 			// 
 			// StatusStripMain
 			// 
+			this.StatusStripMain.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.StatusStripMain.AutoSize = false;
 			this.StatusStripMain.BackColor = System.Drawing.Color.White;
+			this.StatusStripMain.Dock = System.Windows.Forms.DockStyle.None;
 			this.StatusStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.LblToolsMainServerState,
             this.MenuToolsMainServerAction,
@@ -64,7 +72,7 @@
             this.LblToolsMainGUIState});
 			this.StatusStripMain.Location = new System.Drawing.Point(0, 540);
 			this.StatusStripMain.Name = "StatusStripMain";
-			this.StatusStripMain.Size = new System.Drawing.Size(884, 22);
+			this.StatusStripMain.Size = new System.Drawing.Size(886, 22);
 			this.StatusStripMain.TabIndex = 1;
 			this.StatusStripMain.Text = "statusStrip1";
 			// 
@@ -140,24 +148,22 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.BackColor = System.Drawing.Color.White;
 			this.ClientSize = new System.Drawing.Size(884, 562);
 			this.Controls.Add(this.StatusStripMain);
 			this.Controls.Add(this.TabCtrlAddons);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "MainForm";
-			this.Text = "Mainform";
+			this.Text = "BukkitGui";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
 			this.StatusStripMain.ResumeLayout(false);
 			this.StatusStripMain.PerformLayout();
 			this.ResumeLayout(false);
-			this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TabControl TabCtrlAddons;
+        private MetroTabControl TabCtrlAddons;
         private System.Windows.Forms.StatusStrip StatusStripMain;
         private System.Windows.Forms.ToolStripStatusLabel LblToolsMainServerState;
         private System.Windows.Forms.ToolStripDropDownButton MenuToolsMainServerAction;

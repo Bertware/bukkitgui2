@@ -100,9 +100,8 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			// 
 			this.CIConsoleInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.CIConsoleInput.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+			//this.CIConsoleInput.AutoCompletionSource = System.Windows.Forms.AutoCompleteMode.Suggest;
 			this.CIConsoleInput.AutoCompletion = true;
-			this.CIConsoleInput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.CIConsoleInput.Location = new System.Drawing.Point(0, 332);
 			this.CIConsoleInput.Name = "CIConsoleInput";
 			this.CIConsoleInput.Size = new System.Drawing.Size(624, 20);
@@ -168,9 +167,9 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			this.quickButtons1.Name = "quickButtons1";
 			this.quickButtons1.Size = new System.Drawing.Size(151, 98);
 			this.quickButtons1.TabIndex = 0;
-			// 
+			//
 			// ConsoleTab
-			// 
+			//
 			this.BackColor = System.Drawing.Color.White;
 			this.Controls.Add(this.groupBox3);
 			this.Controls.Add(this.groupBox2);

@@ -5,12 +5,13 @@
 
 using System;
 using System.Windows.Forms;
+using MetroFramework.Forms;
 using Net.Bertware.Bukkitgui2.AddOn.Starter;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler;
 
 namespace Net.Bertware.Bukkitgui2.UI
 {
-	public partial class ServerStopDialog : Form
+	public partial class ServerStopDialog : MetroForm
 	{
 		public ServerStopDialog()
 		{

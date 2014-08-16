@@ -1,4 +1,7 @@
-﻿namespace Net.Bertware.Bukkitgui2.Controls.PerformanceMonitor
+﻿using System.Windows.Forms;
+using MetroFramework.Controls;
+
+namespace Net.Bertware.Bukkitgui2.Controls.PerformanceMonitor
 {
 	partial class PerformanceMonitor
 	{
@@ -28,26 +31,26 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.ProgBarServerRam = new System.Windows.Forms.ProgressBar();
+			this.ProgBarServerRam = new MetroProgressBar();
 			this.label1 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
 			this.label4 = new System.Windows.Forms.Label();
 			this.LblServerRamUsageValue = new System.Windows.Forms.Label();
 			this.LblGuiRamUsageValue = new System.Windows.Forms.Label();
-			this.ProgBarGuiRam = new System.Windows.Forms.ProgressBar();
+			this.ProgBarGuiRam = new MetroProgressBar();
 			this.LblTotalRamUsageValue = new System.Windows.Forms.Label();
-			this.ProgBarTotalRam = new System.Windows.Forms.ProgressBar();
+			this.ProgBarTotalRam = new MetroProgressBar();
 			this.lblTotalCpuUsageValue = new System.Windows.Forms.Label();
-			this.ProgBarTotalCpu = new System.Windows.Forms.ProgressBar();
+			this.ProgBarTotalCpu = new MetroProgressBar();
 			this.lblGuiCpuUsageValue = new System.Windows.Forms.Label();
-			this.ProgBarGuiCpu = new System.Windows.Forms.ProgressBar();
+			this.ProgBarGuiCpu = new MetroProgressBar();
 			this.lblServerCpuUsageValue = new System.Windows.Forms.Label();
 			this.label11 = new System.Windows.Forms.Label();
 			this.label12 = new System.Windows.Forms.Label();
 			this.label13 = new System.Windows.Forms.Label();
 			this.label14 = new System.Windows.Forms.Label();
-			this.ProgBarServerCpu = new System.Windows.Forms.ProgressBar();
+			this.ProgBarServerCpu = new MetroProgressBar();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.panel1.SuspendLayout();
@@ -62,7 +65,6 @@
 			this.ProgBarServerRam.MarqueeAnimationSpeed = 0;
 			this.ProgBarServerRam.Name = "ProgBarServerRam";
 			this.ProgBarServerRam.Size = new System.Drawing.Size(97, 15);
-			this.ProgBarServerRam.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
 			this.ProgBarServerRam.TabIndex = 0;
 			// 
 			// label1
@@ -165,7 +167,6 @@
 			this.ProgBarTotalCpu.MarqueeAnimationSpeed = 0;
 			this.ProgBarTotalCpu.Name = "ProgBarTotalCpu";
 			this.ProgBarTotalCpu.Size = new System.Drawing.Size(148, 15);
-			this.ProgBarTotalCpu.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
 			this.ProgBarTotalCpu.TabIndex = 19;
 			// 
 			// lblGuiCpuUsageValue
@@ -185,7 +186,6 @@
 			this.ProgBarGuiCpu.MarqueeAnimationSpeed = 0;
 			this.ProgBarGuiCpu.Name = "ProgBarGuiCpu";
 			this.ProgBarGuiCpu.Size = new System.Drawing.Size(148, 15);
-			this.ProgBarGuiCpu.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
 			this.ProgBarGuiCpu.TabIndex = 17;
 			// 
 			// lblServerCpuUsageValue
@@ -241,7 +241,6 @@
 			this.ProgBarServerCpu.MarqueeAnimationSpeed = 0;
 			this.ProgBarServerCpu.Name = "ProgBarServerCpu";
 			this.ProgBarServerCpu.Size = new System.Drawing.Size(148, 15);
-			this.ProgBarServerCpu.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
 			this.ProgBarServerCpu.TabIndex = 11;
 			// 
 			// panel1
@@ -296,26 +295,26 @@
 
 		#endregion
 
-        private System.Windows.Forms.ProgressBar ProgBarServerRam;
+        private MetroProgressBar ProgBarServerRam;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label LblServerRamUsageValue;
         private System.Windows.Forms.Label LblGuiRamUsageValue;
-        private System.Windows.Forms.ProgressBar ProgBarGuiRam;
+        private MetroProgressBar ProgBarGuiRam;
         private System.Windows.Forms.Label LblTotalRamUsageValue;
-        private System.Windows.Forms.ProgressBar ProgBarTotalRam;
+        private MetroProgressBar ProgBarTotalRam;
         private System.Windows.Forms.Label lblTotalCpuUsageValue;
-        private System.Windows.Forms.ProgressBar ProgBarTotalCpu;
+        private MetroProgressBar ProgBarTotalCpu;
         private System.Windows.Forms.Label lblGuiCpuUsageValue;
-        private System.Windows.Forms.ProgressBar ProgBarGuiCpu;
+        private MetroProgressBar ProgBarGuiCpu;
         private System.Windows.Forms.Label lblServerCpuUsageValue;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.ProgressBar ProgBarServerCpu;
+        private MetroProgressBar ProgBarServerCpu;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
 

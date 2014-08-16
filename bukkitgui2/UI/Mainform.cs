@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using MetroFramework.Forms;
 using Net.Bertware.Bukkitgui2.AddOn;
 using Net.Bertware.Bukkitgui2.AddOn.Starter;
 using Net.Bertware.Bukkitgui2.Core;
@@ -17,7 +18,7 @@ using Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler;
 
 namespace Net.Bertware.Bukkitgui2.UI
 {
-	public partial class MainForm : Form
+	public partial class MainForm : MetroForm
 	{
 		public static MainForm Reference;
 

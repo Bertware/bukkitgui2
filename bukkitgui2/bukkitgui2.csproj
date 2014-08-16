@@ -46,6 +46,9 @@
     <Reference Include="Jayrock.Json">
       <HintPath>Resources\Dll\Jayrock.Json.dll</HintPath>
     </Reference>
+    <Reference Include="MetroFramework">
+      <HintPath>Resources\Dll\MetroFramework.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Net.Bertware.Get">
       <HintPath>Resources\Dll\Net.Bertware.Get.dll</HintPath>
@@ -367,6 +370,9 @@
     <EmbeddedResource Include="AddOn\Settings\SettingsTab.resx">
       <DependentUpon>SettingsTab.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AddOn\SixtySetup\SixtySetup.resx">
+      <DependentUpon>SixtySetup.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddOn\Starter\StarterTab.resx">
       <DependentUpon>StarterTab.cs</DependentUpon>
     </EmbeddedResource>
@@ -444,6 +450,8 @@
     <EmbeddedResource Include="Resources\Dll\Jayrock.Json.dll" />
     <EmbeddedResource Include="Resources\Dll\ICSharpCode.SharpZipLib.dll" />
     <Content Include="GUI icon 32.ico" />
+    <EmbeddedResource Include="Resources\Dll\MetroFramework.dll" />
+    <Content Include="Resources\Dll\MetroFramework.pdb" />
     <Content Include="Resources\Dll\Net.Bertware.Get.pdb" />
     <Content Include="Resources\Img\bukkit_logo.png" />
     <Content Include="Resources\Img\GUI icon 16.ico" />

@@ -32,6 +32,7 @@
 			// 
 			// BackupTab
 			// 
+			this.BackColor = System.Drawing.Color.White;
 			this.Name = "BackupTab";
 			this.Size = new System.Drawing.Size(800, 500);
 			this.ResumeLayout(false);

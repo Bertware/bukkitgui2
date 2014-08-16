@@ -5,10 +5,11 @@
 
 using System;
 using System.Windows.Forms;
+using MetroFramework.Controls;
 
 namespace Net.Bertware.Bukkitgui2.Controls.ConsoleInput
 {
-	internal class ConsoleInput : TextBox
+	internal class ConsoleInput : MetroTextBox
 	{
 		/// <summary>
 		///     If autocompletion should be enabled or not
@@ -28,7 +29,7 @@ namespace Net.Bertware.Bukkitgui2.Controls.ConsoleInput
 
 		public ConsoleInput()
 		{
-			KeyPress += HandleKeyPress;
+			//KeyPress += HandleKeyPress;
 			CreateContextMenu();
 		}
 
@@ -47,10 +48,10 @@ namespace Net.Bertware.Bukkitgui2.Controls.ConsoleInput
 					handler(Text);
 					if (AutoCompletion)
 					{
-						if (AutoCompleteCustomSource != null)
-						{
-							AutoCompleteCustomSource.Add(Text);
-						}
+						//if (AutoCompleteCustomSource != null)
+						//{
+						//	AutoCompleteCustomSource.Add(Text);
+						//}
 					}
 				}
 				Text = "";
@@ -63,10 +64,10 @@ namespace Net.Bertware.Bukkitgui2.Controls.ConsoleInput
 		/// </summary>
 		public void ClearAutoCompletionHistory()
 		{
-			if (AutoCompleteCustomSource != null)
-			{
-				AutoCompleteCustomSource.Clear();
-			}
+			//if (AutoCompleteCustomSource != null)
+			//{
+			//	AutoCompleteCustomSource.Clear();
+			//}
 		}
 
 		private void CreateContextMenu()

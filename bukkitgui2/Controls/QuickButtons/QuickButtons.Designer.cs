@@ -1,4 +1,6 @@
-﻿namespace Net.Bertware.Bukkitgui2.Controls.QuickButtons
+﻿using MetroFramework.Controls;
+
+namespace Net.Bertware.Bukkitgui2.Controls.QuickButtons
 {
 	partial class QuickButtons
 	{
@@ -28,9 +30,9 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.btnStartStop = new System.Windows.Forms.Button();
-			this.btnRestart = new System.Windows.Forms.Button();
-			this.btnCustom = new System.Windows.Forms.Button();
+			this.btnStartStop = new MetroButton();
+			this.btnRestart = new MetroButton();
+			this.btnCustom = new MetroButton();
 			this.SuspendLayout();
 			// 
 			// btnStartStop
@@ -77,9 +79,9 @@
 
 		#endregion
 
-        private System.Windows.Forms.Button btnStartStop;
-        private System.Windows.Forms.Button btnRestart;
-        private System.Windows.Forms.Button btnCustom;
+        private MetroButton btnStartStop;
+		private MetroButton btnRestart;
+		private MetroButton btnCustom;
 
     }
 }
