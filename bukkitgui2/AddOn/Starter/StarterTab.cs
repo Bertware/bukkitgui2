@@ -1,13 +1,15 @@
 ﻿// StarterTab.cs in bukkitgui2/bukkitgui2
 // Created 2014/01/17
-// Last edited at 2014/08/06 10:17
+// Last edited at 2014/08/16 17:37
 // ©Bertware, visit http://bertware.net
 
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Windows.Forms;
+using Net.Bertware.Bukkitgui2.AddOn.Console;
 using Net.Bertware.Bukkitgui2.Core;
 using Net.Bertware.Bukkitgui2.Core.Configuration;
 using Net.Bertware.Bukkitgui2.Core.Logging;
@@ -201,6 +203,10 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 
 			CBUpdateBehaviour.Items.Clear();
 			CBUpdateBehaviour.Items.Add("Don't check for updates");
+			//
+			// DO NOT TRANSLATE BELOW
+			// 
+
 			if (notifyRb || notifyBeta || notifyDev)
 			{
 				CBUpdateBehaviour.Items.Add("Check for updates and notify me");
@@ -209,9 +215,18 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			{
 				CBUpdateBehaviour.Items.Add("Check for updates and auto update");
 			}
+
+			//
+			// DO NOT TRANSLATE ABOVE
+			// 
+
 			CBUpdateBehaviour.SelectedIndex = Config.ReadInt("starter", "updatebehaviour", 0);
 
 			CBUpdateBranch.Items.Clear();
+
+			//
+			// DO NOT TRANSLATE BELOW
+			// 
 
 			if (updateRb)
 			{
@@ -226,7 +241,11 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 				CBUpdateBranch.Items.Add("Development builds");
 			}
 
-			if (CBUpdateBranch.Items.Count > 0) CBUpdateBehaviour.SelectedIndex = Config.ReadInt("starter", "updatebranch", 0);
+			//
+			// DO NOT TRANSLATE ABOVE
+			// 
+
+			if (CBUpdateBranch.Items.Count > 0) CBUpdateBranch.SelectedIndex = Config.ReadInt("starter", "updatebranch", 0);
 
 			// If there is a custom settings control, load it
 			if (server.HasCustomSettingsControl)
@@ -296,6 +315,8 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 		/// </summary>
 		public void DoServerLaunch(Boolean automated = false)
 		{
+			ConsoleTab.Reference.MCCOut.Clear();
+
 			if (!ValidateInput())
 			{
 				MessageBox.Show(
@@ -316,6 +337,13 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 				return;
 			}
 
+			// Auto update
+			if (CBUpdateBehaviour.SelectedIndex > 0)
+			{
+				CheckAutoUpdate();
+			}
+
+
 			if (!server.HasCustomAssembly)
 			{
 				starter.LaunchServer(
@@ -332,6 +360,65 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			{
 				starter.LaunchServer(server, _customControl);
 			}
+		}
+
+		private void CheckAutoUpdate()
+		{
+			if (CBUpdateBehaviour.SelectedIndex<1) return;
+			if (CBUpdateBranch.SelectedItem == null || string.IsNullOrEmpty(CBUpdateBranch.SelectedItem.ToString())) return;
+			
+			ConsoleTab.WriteOut("__________________________________________________________________");
+			ConsoleTab.WriteOut("Performing version check... Branch: " + CBUpdateBranch.SelectedItem);
+			
+			IMinecraftServer server = GetSelectedServer();
+			string currentversion = server.GetCurrentVersion(TxtJarFile.Text);
+			ConsoleTab.WriteOut("Performing version check... Current version: " + currentversion);
+			
+			string latestversion = "";
+			
+			if (CBUpdateBranch.SelectedItem.ToString().ToLower().Contains("recommended"))
+				latestversion = server.FetchRecommendedVersion;
+			if (CBUpdateBranch.SelectedItem.ToString().ToLower().Contains("beta"))
+				latestversion = server.FetchBetaVersion;
+			if (CBUpdateBranch.SelectedItem.ToString().ToLower().Contains("dev"))
+				latestversion = server.FetchDevVersion;
+			ConsoleTab.WriteOut("Performing version check... Latest version: " + latestversion);
+			
+			switch (CBUpdateBehaviour.SelectedIndex)
+			{
+				case 1: // Notify
+
+					if (int.Parse(latestversion) > int.Parse(currentversion))
+					{
+						ConsoleTab.WriteOut("A new server version is available for " + server.Name);
+						ConsoleTab.WriteOut("Download the latest version in the starter tab. The latest version is #" + latestversion);
+						
+						Thread t = new Thread(() =>
+							MessageBox.Show(
+								"A new server version is available for " + server.Name + "." + Environment.NewLine +
+								"Download the latest version in the starter tab. The latest version is #" + latestversion,
+								"Server update available",
+								MessageBoxButtons.OK, MessageBoxIcon.Information)
+							);
+						t.Start();
+					}
+					break;
+				case 2: // Auto update
+					if (int.Parse(latestversion) > int.Parse(currentversion))
+					{
+						ConsoleTab.WriteOut("New server version available: #" + latestversion + ". This version will be installed automaticly. You can disable this in the starter tab.");
+						if (CBUpdateBranch.SelectedItem.ToString().ToLower().Contains("recommended"))
+							server.DownloadRecommendedVersion(TxtJarFile.Text);
+						if (CBUpdateBranch.SelectedItem.ToString().ToLower().Contains("beta"))
+							server.DownloadBetaVersion(TxtJarFile.Text);
+						if (CBUpdateBranch.SelectedItem.ToString().ToLower().Contains("dev"))
+							server.DownloadDevVersion(TxtJarFile.Text);
+						ConsoleTab.WriteOut("New server version installed.");
+					}
+					break;
+			}
+			ConsoleTab.WriteOut("Finished update check. Starting server...");
+			ConsoleTab.WriteOut("__________________________________________________________________");
 		}
 
 		/// <summary>
@@ -590,7 +677,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 		{
 			if (TxtJarFile.Text == "")
 			{
-				TxtJarFile.Text = Share.AssemblyLocation + GetSelectedServer().Name.ToLower() ; // set GUI location as server folder
+				TxtJarFile.Text = Share.AssemblyLocation + GetSelectedServer().Name.ToLower(); // set GUI location as server folder
 			}
 			GetSelectedServer().DownloadRecommendedVersion(TxtJarFile.Text);
 		}
@@ -637,7 +724,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 		/// <returns></returns>
 		public Control GetCustomSettingsControl()
 		{
-			if (GBCustomSettings.Controls.Count<1) return null;
+			if (GBCustomSettings.Controls.Count < 1) return null;
 			return GBCustomSettings.Controls[0];
 		}
 

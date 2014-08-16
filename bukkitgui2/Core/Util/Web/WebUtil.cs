@@ -35,11 +35,18 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Web
 			}
 		}
 
-		public static void DownloadFile(string url, string targetlocation, Boolean showUi)
+		public static void DownloadFile(string url, string targetlocation, Boolean showUi, Boolean sync = false)
 		{
 			FileDownloader fileDownloadDialog = new FileDownloader();
 			fileDownloadDialog.AddFile(url, targetlocation);
-			fileDownloadDialog.StartDownload();
+			if (!sync)
+			{
+				fileDownloadDialog.StartDownload();
+			}
+			else
+			{
+				fileDownloadDialog.ShowDialog();
+			}
 		}
 	}
 }

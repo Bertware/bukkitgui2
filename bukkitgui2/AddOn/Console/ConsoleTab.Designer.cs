@@ -190,7 +190,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 
         #endregion
 
-        private Net.Bertware.Bukkitgui2.Controls.MinecraftConsole.MinecraftConsole MCCOut;
+        internal Net.Bertware.Bukkitgui2.Controls.MinecraftConsole.MinecraftConsole MCCOut;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.GroupBox groupBox2;

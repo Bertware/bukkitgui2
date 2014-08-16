@@ -45,21 +45,21 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers.Servers
 		public override bool DownloadDevVersion(string targetfile)
 		{
 			string source = Dlb.GetlatestVersionInfo(Dlb.BukkitVersionType.Dev).FileUrl;
-			WebUtil.DownloadFile(source, targetfile, true);
+			WebUtil.DownloadFile(source, targetfile, true, true);
 			return true;
 		}
 
 		public override bool DownloadBetaVersion(string targetfile)
 		{
 			string source = Dlb.GetlatestVersionInfo(Dlb.BukkitVersionType.Beta).FileUrl;
-			WebUtil.DownloadFile(source, targetfile, true);
+			WebUtil.DownloadFile(source, targetfile, true, true);
 			return true;
 		}
 
 		public override bool DownloadRecommendedVersion(string targetfile)
 		{
 			string source = Dlb.GetlatestVersionInfo(Dlb.BukkitVersionType.Rb).FileUrl;
-			WebUtil.DownloadFile(source, targetfile, true);
+			WebUtil.DownloadFile(source, targetfile, true,true);
 			return true;
 		}
 
@@ -68,7 +68,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers.Servers
 			get
 			{
 				// results are cached in dlb class
-				return Dlb.GetlatestVersionInfo(Dlb.BukkitVersionType.Dev).Version;
+				return Dlb.GetlatestVersionInfo(Dlb.BukkitVersionType.Dev).Build.ToString();
 			}
 		}
 
@@ -78,7 +78,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers.Servers
 			get
 			{
 				// results are cached in dlb class
-				return Dlb.GetlatestVersionInfo(Dlb.BukkitVersionType.Beta).Version;
+				return Dlb.GetlatestVersionInfo(Dlb.BukkitVersionType.Beta).Build.ToString();
 			}
 		}
 
@@ -87,7 +87,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers.Servers
 			get
 			{
 				// results are cached in dlb class
-				return Dlb.GetlatestVersionInfo(Dlb.BukkitVersionType.Rb).Version;
+				return Dlb.GetlatestVersionInfo(Dlb.BukkitVersionType.Rb).Build.ToString();
 			}
 		}
 

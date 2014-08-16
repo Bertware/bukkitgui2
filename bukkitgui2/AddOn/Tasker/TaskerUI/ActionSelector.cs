@@ -70,5 +70,14 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.TaskerUI
 			action.Parameters = txtActionParameters.Text;
 			return action;
 		}
+
+		public void SetAction(IAction action)
+		{
+			for (int i = 0; i < cbAction.Items.Count; i++)
+			{
+				if (cbAction.Items[i].ToString().Equals(action.Name)) cbAction.SelectedIndex = i;
+			}
+			txtActionParameters.Text = action.Parameters;
+		}
 	}
 }

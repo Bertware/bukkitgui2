@@ -33,5 +33,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util
 			result = result.Substring(0, result.Length - 2); //remove the last ", "
 			return result;
 		}
+
+
 	}
 }

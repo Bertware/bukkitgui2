@@ -16,9 +16,11 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 	public partial class ConsoleTab : UserControl, IAddonTab
 	{
 		public IAddon ParentAddon { get; set; }
+		public static ConsoleTab Reference;
 
 		public ConsoleTab()
 		{
+			Reference = this;
 			InitializeComponent();
 			MinecraftOutputHandler.OutputParsed += PrintOutput;
 			ProcessHandler.ServerStarting += HandleServerStart;
@@ -95,10 +97,10 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 		/// </summary>
 		private void HandleServerStart()
 		{
+			// clearing console is already performed by the starter routine, so the starter routine can display its own information too.
 			SLVPlayers.Items.Clear();
-			MCCOut.Clear();
 			CIConsoleInput.ClearAutoCompletionHistory();
-			MCCOut.WriteOutput(MessageType.Info, "[GUI] Starting a new server");
+			WriteOut("Starting a new server");
 		}
 
 		/// <summary>
@@ -114,7 +116,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			{
 				SLVPlayers.Items.Clear();
 				CIConsoleInput.ClearAutoCompletionHistory();
-				MCCOut.WriteOutput(MessageType.Info, "[GUI] The server has stopped");
+				WriteOut("The server has stopped");
 			}
 		}
 
@@ -138,6 +140,14 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			{
 				ProcessHandler.SendInput(text);
 			}
+		}
+		/// <summary>
+		/// Write output to the console. Will be prefixed with [GUI] 
+		/// </summary>
+		/// <param name="text"></param>
+		public static void WriteOut(string text)
+		{
+			Reference.MCCOut.WriteOutput(MessageType.Info, "[GUI] " + text);
 		}
 	}
 }
