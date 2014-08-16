@@ -8,11 +8,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
+using MetroFramework.Forms;
 using Net.Bertware.Bukkitgui2.Core.Logging;
 
 namespace Net.Bertware.Bukkitgui2.Core.Util.Web
 {
-	public partial class FileDownloader : Form
+	public partial class FileDownloader : MetroForm
 	{
 
 		private bool _downloadStarted = false;
@@ -30,7 +31,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Web
 		public FileDownloader()
 		{
 			InitializeComponent();
-			Size = new Size(500, 50);
+			Size = new Size(500, 120);
 			_files = new Dictionary<string, string>();
 			_downloads = new Dictionary<string, FileDownloadProgressBar>();
 		}
@@ -51,7 +52,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Web
 			FileDownloadProgressBar control = new FileDownloadProgressBar
 			{
 				Location =
-					new Point(0, _files.Count*50 - 50)
+					new Point(0,63+ _files.Count*50 - 50)
 			};
 			control.CreateDownload(url, targetlocation);
 			_downloads.Add(url, control);

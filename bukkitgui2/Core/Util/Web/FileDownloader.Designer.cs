@@ -34,9 +34,14 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(414, 109);
+			this.ClientSize = new System.Drawing.Size(414, 133);
+			this.MaximizeBox = false;
+			this.MinimizeBox = false;
 			this.Name = "FileDownloader";
-			this.Text = "FileDownloader";
+			this.Resizable = false;
+			this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+			this.Text = "Downloads...";
 			this.Load += new System.EventHandler(this.FileDownloader_Load);
 			this.ResumeLayout(false);
 

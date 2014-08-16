@@ -1,3 +1,5 @@
+using MetroFramework.Controls;
+
 namespace Net.Bertware.Bukkitgui2.Core.Util.Web
 { 
 using System.Windows.Forms;
@@ -8,7 +10,7 @@ using System.Windows.Forms;
     public partial class FileDownloadProgressBar : UserControl
     {
 		private Label lblInfo;
-		private ProgressBar PbProgress;
+		private MetroProgressBar PbProgress;
 		private Label lblPercent;
 
 
@@ -32,7 +34,7 @@ using System.Windows.Forms;
 private void InitializeComponent()
 		{
 			this.lblInfo = new System.Windows.Forms.Label();
-			this.PbProgress = new System.Windows.Forms.ProgressBar();
+			this.PbProgress = new MetroProgressBar();
 			this.lblPercent = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
@@ -56,7 +58,7 @@ private void InitializeComponent()
 			this.PbProgress.MarqueeAnimationSpeed = 10;
 			this.PbProgress.Name = "PbProgress";
 			this.PbProgress.Size = new System.Drawing.Size(394, 23);
-			this.PbProgress.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+			this.PbProgress.ProgressBarStyle = ProgressBarStyle.Continuous;
 			this.PbProgress.TabIndex = 1;
 			// 
 			// lblPercent

@@ -210,7 +210,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Web
 			else
 			{
 				lblPercent.Text = percentage + "%";
-				PbProgress.Style = ProgressBarStyle.Continuous;
+				PbProgress.ProgressBarStyle = ProgressBarStyle.Continuous;
 				PbProgress.Value = percentage;
 			}
 		}
