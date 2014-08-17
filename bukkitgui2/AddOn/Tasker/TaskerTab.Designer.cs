@@ -1,4 +1,6 @@
-﻿namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
+﻿using MetroFramework.Controls;
+
+namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 {
 	partial class TaskerTab
 	{
@@ -28,9 +30,9 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.btnNew = new System.Windows.Forms.Button();
-			this.btnDelete = new System.Windows.Forms.Button();
-			this.btnTest = new System.Windows.Forms.Button();
+			this.btnNew = new MetroButton();
+			this.btnDelete = new MetroButton();
+			this.btnTest = new MetroButton();
 			this.slvTasks = new Net.Bertware.Bukkitgui2.Controls.SortableListView.SortableListView();
 			this.ColName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.ColTrigger = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -38,7 +40,7 @@
 			this.ColAction = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.ColActionSettings = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.colEnable = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.btnEdit = new System.Windows.Forms.Button();
+			this.btnEdit = new MetroButton();
 			this.SuspendLayout();
 			// 
 			// btnNew
@@ -60,7 +62,6 @@
 			this.btnDelete.Size = new System.Drawing.Size(75, 23);
 			this.btnDelete.TabIndex = 2;
 			this.btnDelete.Text = "&Delete";
-			this.btnDelete.UseVisualStyleBackColor = true;
 			this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
 			// 
 			// btnTest
@@ -71,7 +72,6 @@
 			this.btnTest.Size = new System.Drawing.Size(75, 23);
 			this.btnTest.TabIndex = 3;
 			this.btnTest.Text = "&Test";
-			this.btnTest.UseVisualStyleBackColor = true;
 			// 
 			// slvTasks
 			// 
@@ -132,7 +132,6 @@
 			this.btnEdit.Size = new System.Drawing.Size(75, 23);
 			this.btnEdit.TabIndex = 4;
 			this.btnEdit.Text = "&Edit";
-			this.btnEdit.UseVisualStyleBackColor = true;
 			this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
 			// 
 			// TaskerTab
@@ -158,9 +157,9 @@
 		private System.Windows.Forms.ColumnHeader ColAction;
 		private System.Windows.Forms.ColumnHeader ColActionSettings;
 		private System.Windows.Forms.ColumnHeader colEnable;
-		private System.Windows.Forms.Button btnNew;
-		private System.Windows.Forms.Button btnDelete;
-		private System.Windows.Forms.Button btnTest;
-		private System.Windows.Forms.Button btnEdit;
+		private MetroButton btnNew;
+		private MetroButton btnDelete;
+		private MetroButton btnTest;
+		private MetroButton btnEdit;
 	}
 }

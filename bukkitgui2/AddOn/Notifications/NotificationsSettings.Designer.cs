@@ -1,4 +1,5 @@
-﻿using Net.Bertware.Bukkitgui2.Controls;
+﻿using MetroFramework.Controls;
+using Net.Bertware.Bukkitgui2.Controls;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Notifications
 {
@@ -41,19 +42,19 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Notifications
 			this.toolTip = new System.Windows.Forms.ToolTip(this.components);
 			this.gbBalloons = new System.Windows.Forms.GroupBox();
 			this.gbSound = new System.Windows.Forms.GroupBox();
-			this.label1 = new System.Windows.Forms.Label();
+			this.label1 = new MetroFramework.Controls.MetroLabel();
 			this.gbBalloons.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// chkEnable
 			// 
 			this.chkEnable.AutoSize = true;
-			this.chkEnable.Location = new System.Drawing.Point(3, 3);
+			this.chkEnable.Location = new System.Drawing.Point(3, 5);
 			this.chkEnable.Name = "chkEnable";
-			this.chkEnable.Size = new System.Drawing.Size(102, 17);
+			this.chkEnable.Size = new System.Drawing.Size(107, 15);
 			this.chkEnable.TabIndex = 0;
 			this.chkEnable.Text = "Enable tray icon";
-			this.chkEnable.UseVisualStyleBackColor = true;
+			this.chkEnable.UseSelectable = true;
 			this.chkEnable.CheckedChanged += new System.EventHandler(this.chkEnable_CheckedChanged);
 			// 
 			// chkAlways
@@ -61,62 +62,62 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Notifications
 			this.chkAlways.AutoSize = true;
 			this.chkAlways.Location = new System.Drawing.Point(6, 19);
 			this.chkAlways.Name = "chkAlways";
-			this.chkAlways.Size = new System.Drawing.Size(129, 17);
+			this.chkAlways.Size = new System.Drawing.Size(139, 15);
 			this.chkAlways.TabIndex = 1;
 			this.chkAlways.Text = "Always show balloons";
 			this.toolTip.SetToolTip(this.chkAlways, "Show balloons, even if the GUI isn\'t minimized\r\n");
-			this.chkAlways.UseVisualStyleBackColor = true;
+			this.chkAlways.UseSelectable = true;
 			// 
 			// chkOnStatusChange
 			// 
 			this.chkOnStatusChange.AutoSize = true;
 			this.chkOnStatusChange.Location = new System.Drawing.Point(6, 42);
 			this.chkOnStatusChange.Name = "chkOnStatusChange";
-			this.chkOnStatusChange.Size = new System.Drawing.Size(207, 17);
+			this.chkOnStatusChange.Size = new System.Drawing.Size(222, 15);
 			this.chkOnStatusChange.TabIndex = 2;
 			this.chkOnStatusChange.Text = "Show balloon on server status change";
 			this.toolTip.SetToolTip(this.chkOnStatusChange, "Show a balloon when the server starts, is started, is stopping or stopped");
-			this.chkOnStatusChange.UseVisualStyleBackColor = true;
+			this.chkOnStatusChange.UseSelectable = true;
 			// 
 			// chkOnPlayerJoin
 			// 
 			this.chkOnPlayerJoin.AutoSize = true;
 			this.chkOnPlayerJoin.Location = new System.Drawing.Point(6, 65);
 			this.chkOnPlayerJoin.Name = "chkOnPlayerJoin";
-			this.chkOnPlayerJoin.Size = new System.Drawing.Size(155, 17);
+			this.chkOnPlayerJoin.Size = new System.Drawing.Size(170, 15);
 			this.chkOnPlayerJoin.TabIndex = 3;
 			this.chkOnPlayerJoin.Text = "Show balloon on player join";
-			this.chkOnPlayerJoin.UseVisualStyleBackColor = true;
+			this.chkOnPlayerJoin.UseSelectable = true;
 			// 
 			// chkOnPlayerLeave
 			// 
 			this.chkOnPlayerLeave.AutoSize = true;
 			this.chkOnPlayerLeave.Location = new System.Drawing.Point(6, 88);
 			this.chkOnPlayerLeave.Name = "chkOnPlayerLeave";
-			this.chkOnPlayerLeave.Size = new System.Drawing.Size(165, 17);
+			this.chkOnPlayerLeave.Size = new System.Drawing.Size(177, 15);
 			this.chkOnPlayerLeave.TabIndex = 4;
 			this.chkOnPlayerLeave.Text = "Show balloon on player leave";
-			this.chkOnPlayerLeave.UseVisualStyleBackColor = true;
+			this.chkOnPlayerLeave.UseSelectable = true;
 			// 
 			// chkOnPlayerBan
 			// 
 			this.chkOnPlayerBan.AutoSize = true;
 			this.chkOnPlayerBan.Location = new System.Drawing.Point(6, 134);
 			this.chkOnPlayerBan.Name = "chkOnPlayerBan";
-			this.chkOnPlayerBan.Size = new System.Drawing.Size(157, 17);
+			this.chkOnPlayerBan.Size = new System.Drawing.Size(170, 15);
 			this.chkOnPlayerBan.TabIndex = 6;
 			this.chkOnPlayerBan.Text = "Show balloon on player ban";
-			this.chkOnPlayerBan.UseVisualStyleBackColor = true;
+			this.chkOnPlayerBan.UseSelectable = true;
 			// 
 			// chkOnPlayerKick
 			// 
 			this.chkOnPlayerKick.AutoSize = true;
 			this.chkOnPlayerKick.Location = new System.Drawing.Point(6, 111);
 			this.chkOnPlayerKick.Name = "chkOnPlayerKick";
-			this.chkOnPlayerKick.Size = new System.Drawing.Size(159, 17);
+			this.chkOnPlayerKick.Size = new System.Drawing.Size(171, 15);
 			this.chkOnPlayerKick.TabIndex = 5;
 			this.chkOnPlayerKick.Text = "Show balloon on player kick";
-			this.chkOnPlayerKick.UseVisualStyleBackColor = true;
+			this.chkOnPlayerKick.UseSelectable = true;
 			// 
 			// gbBalloons
 			// 
@@ -150,9 +151,9 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Notifications
 			// 
 			this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(310, 7);
+			this.label1.Location = new System.Drawing.Point(253, 1);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(247, 13);
+			this.label1.Size = new System.Drawing.Size(304, 19);
 			this.label1.TabIndex = 9;
 			this.label1.Text = "All settings will take effect after the next GUI restart";
 			// 
@@ -186,6 +187,6 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Notifications
 		private SettingsCheckbox chkOnPlayerKick;
 		private System.Windows.Forms.GroupBox gbBalloons;
 		private System.Windows.Forms.GroupBox gbSound;
-		private System.Windows.Forms.Label label1;
+		private MetroLabel label1;
 	}
 }

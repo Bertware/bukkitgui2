@@ -71,6 +71,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			this.PBServerLogo = new System.Windows.Forms.PictureBox();
 			this.GBCustomSettings = new System.Windows.Forms.GroupBox();
 			this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+			this.metroStyleExtender = new MetroFramework.Components.MetroStyleExtender(this.components);
 			this.GBServer.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.NumMaxRam)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.NumMinRam)).BeginInit();
@@ -359,12 +360,12 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			// 
 			// LLblSite
 			// 
-			this.LLblSite.AutoSize = true;
 			this.LLblSite.Location = new System.Drawing.Point(6, 403);
 			this.LLblSite.Name = "LLblSite";
-			this.LLblSite.Size = new System.Drawing.Size(38, 23);
+			this.LLblSite.Size = new System.Drawing.Size(292, 23);
 			this.LLblSite.TabIndex = 1;
 			this.LLblSite.Text = "Site:";
+			this.LLblSite.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.LLblSite.UseSelectable = true;
 			// 
 			// LblCurrentVer
@@ -378,9 +379,9 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			// 
 			// btnGetCurrentBuild
 			// 
-			this.btnGetCurrentBuild.Location = new System.Drawing.Point(3, 152);
+			this.btnGetCurrentBuild.Location = new System.Drawing.Point(6, 152);
 			this.btnGetCurrentBuild.Name = "btnGetCurrentBuild";
-			this.btnGetCurrentBuild.Size = new System.Drawing.Size(132, 23);
+			this.btnGetCurrentBuild.Size = new System.Drawing.Size(129, 23);
 			this.btnGetCurrentBuild.TabIndex = 15;
 			this.btnGetCurrentBuild.Text = "Get current build";
 			this.btnGetCurrentBuild.UseSelectable = true;
@@ -525,6 +526,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			// 
 			this.GBCustomSettings.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.metroStyleExtender.SetApplyMetroTheme(this.GBCustomSettings, true);
 			this.GBCustomSettings.Location = new System.Drawing.Point(3, 318);
 			this.GBCustomSettings.Name = "GBCustomSettings";
 			this.GBCustomSettings.Size = new System.Drawing.Size(484, 117);
@@ -596,5 +598,6 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
         private MetroLabel LblLatestRecommended;
         private MetroButton BtnBrowseJarFile;
 		private System.Windows.Forms.ErrorProvider errorProvider;
+		private MetroFramework.Components.MetroStyleExtender metroStyleExtender;
 	}
 }

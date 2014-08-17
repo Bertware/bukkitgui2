@@ -1,4 +1,6 @@
-﻿namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
+﻿using MetroFramework.Controls;
+
+namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 {
 	partial class InstalledPluginsControl
 	{
@@ -28,9 +30,9 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.btnInfo = new System.Windows.Forms.Button();
-			this.btnVersions = new System.Windows.Forms.Button();
-			this.btnRemove = new System.Windows.Forms.Button();
+			this.btnInfo = new MetroButton();
+			this.btnVersions = new MetroButton();
+			this.btnRemove = new MetroButton();
 			this.slvPlugins = new Net.Bertware.Bukkitgui2.Controls.SortableListView.SortableListView();
 			this.colName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.colDescription = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -48,7 +50,7 @@
 			this.btnInfo.Size = new System.Drawing.Size(75, 23);
 			this.btnInfo.TabIndex = 7;
 			this.btnInfo.Text = "Info";
-			this.btnInfo.UseVisualStyleBackColor = true;
+
 			// 
 			// btnVersions
 			// 
@@ -58,7 +60,7 @@
 			this.btnVersions.Size = new System.Drawing.Size(75, 23);
 			this.btnVersions.TabIndex = 6;
 			this.btnVersions.Text = "Versions";
-			this.btnVersions.UseVisualStyleBackColor = true;
+
 			this.btnVersions.Click += new System.EventHandler(this.btnVersions_Click);
 			// 
 			// btnRemove
@@ -69,7 +71,7 @@
 			this.btnRemove.Size = new System.Drawing.Size(75, 23);
 			this.btnRemove.TabIndex = 5;
 			this.btnRemove.Text = "Remove";
-			this.btnRemove.UseVisualStyleBackColor = true;
+
 			// 
 			// slvPlugins
 			// 
@@ -136,9 +138,9 @@
 
 		#endregion
 
-		private System.Windows.Forms.Button btnInfo;
-		private System.Windows.Forms.Button btnVersions;
-		private System.Windows.Forms.Button btnRemove;
+		private MetroButton btnInfo;
+		private MetroButton btnVersions;
+		private MetroButton btnRemove;
 		private Controls.SortableListView.SortableListView slvPlugins;
 		private System.Windows.Forms.ColumnHeader colName;
 		private System.Windows.Forms.ColumnHeader colDescription;

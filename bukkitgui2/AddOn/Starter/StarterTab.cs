@@ -1,6 +1,6 @@
 ﻿// StarterTab.cs in bukkitgui2/bukkitgui2
 // Created 2014/01/17
-// Last edited at 2014/08/17 11:19
+// Last edited at 2014/08/17 17:04
 // ©Bertware, visit http://bertware.net
 
 using System;
@@ -9,6 +9,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
+using MetroFramework;
 using Net.Bertware.Bukkitgui2.AddOn.Console;
 using Net.Bertware.Bukkitgui2.Core;
 using Net.Bertware.Bukkitgui2.Core.Configuration;
@@ -319,7 +320,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 
 			if (!ValidateInput())
 			{
-				MessageBox.Show(
+				MetroMessageBox.Show(FindForm(),
 					"The server could not be started: one or more settings are incorrect. See the starter tab for more details",
 					"Server could not be started", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return;
@@ -394,7 +395,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 						ConsoleTab.WriteOut("Download the latest version in the starter tab. The latest version is #" + latestversion);
 
 						Thread t = new Thread(() =>
-							MessageBox.Show(
+							MetroMessageBox.Show(FindForm(),
 								"A new server version is available for " + server.Name + "." + Environment.NewLine +
 								"Download the latest version in the starter tab. The latest version is #" + latestversion,
 								"Server update available",

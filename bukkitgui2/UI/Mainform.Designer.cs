@@ -34,12 +34,12 @@ namespace Net.Bertware.Bukkitgui2.UI
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
 			this.TabCtrlAddons = new MetroFramework.Controls.MetroTabControl();
 			this.LblToolsMainServerState = new MetroFramework.Controls.MetroLabel();
-			this.metroStyleExtender = new MetroFramework.Components.MetroStyleExtender(this.components);
-			this.LblToolsMainServerOutput = new MetroFramework.Controls.MetroLabel();
-			this.LblToolsSplit = new MetroFramework.Controls.MetroLabel();
 			this.ToolStripBtn = new MetroFramework.Controls.MetroContextMenu(this.components);
 			this.ToolStripBtnStartStop = new System.Windows.Forms.ToolStripMenuItem();
 			this.ToolStripBtnRestart = new System.Windows.Forms.ToolStripMenuItem();
+			this.metroStyleExtender = new MetroFramework.Components.MetroStyleExtender(this.components);
+			this.LblToolsMainServerOutput = new MetroFramework.Controls.MetroLabel();
+			this.LblToolsSplit = new MetroFramework.Controls.MetroLabel();
 			this.ToolStripBtn.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -65,25 +65,6 @@ namespace Net.Bertware.Bukkitgui2.UI
 			this.LblToolsMainServerState.TabIndex = 1;
 			this.LblToolsMainServerState.Text = "Server stopped";
 			// 
-			// LblToolsMainServerOutput
-			// 
-			this.LblToolsMainServerOutput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.LblToolsMainServerOutput.Location = new System.Drawing.Point(150, 537);
-			this.LblToolsMainServerOutput.Name = "LblToolsMainServerOutput";
-			this.LblToolsMainServerOutput.Size = new System.Drawing.Size(711, 23);
-			this.LblToolsMainServerOutput.TabIndex = 2;
-			this.LblToolsMainServerOutput.Text = "No output to show";
-			// 
-			// LblToolsSplit
-			// 
-			this.LblToolsSplit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.LblToolsSplit.Location = new System.Drawing.Point(134, 537);
-			this.LblToolsSplit.Name = "LblToolsSplit";
-			this.LblToolsSplit.Size = new System.Drawing.Size(10, 23);
-			this.LblToolsSplit.TabIndex = 3;
-			this.LblToolsSplit.Text = "|";
-			// 
 			// ToolStripBtn
 			// 
 			this.ToolStripBtn.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -103,6 +84,25 @@ namespace Net.Bertware.Bukkitgui2.UI
 			this.ToolStripBtnRestart.Name = "ToolStripBtnRestart";
 			this.ToolStripBtnRestart.Size = new System.Drawing.Size(110, 22);
 			this.ToolStripBtnRestart.Text = "Restart";
+			// 
+			// LblToolsMainServerOutput
+			// 
+			this.LblToolsMainServerOutput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.LblToolsMainServerOutput.Location = new System.Drawing.Point(152, 537);
+			this.LblToolsMainServerOutput.Name = "LblToolsMainServerOutput";
+			this.LblToolsMainServerOutput.Size = new System.Drawing.Size(709, 23);
+			this.LblToolsMainServerOutput.TabIndex = 2;
+			this.LblToolsMainServerOutput.Text = "No output to show";
+			// 
+			// LblToolsSplit
+			// 
+			this.LblToolsSplit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.LblToolsSplit.Location = new System.Drawing.Point(134, 537);
+			this.LblToolsSplit.Name = "LblToolsSplit";
+			this.LblToolsSplit.Size = new System.Drawing.Size(12, 23);
+			this.LblToolsSplit.TabIndex = 3;
+			this.LblToolsSplit.Text = "|";
 			// 
 			// MainForm
 			// 

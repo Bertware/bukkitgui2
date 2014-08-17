@@ -1,4 +1,6 @@
-﻿namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget
+﻿using MetroFramework.Controls;
+
+namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget
 {
 	partial class BukgetPluginView
 	{
@@ -31,8 +33,8 @@
 			this.gbGeneral = new System.Windows.Forms.GroupBox();
 			this.lblPluginDetail = new System.Windows.Forms.Label();
 			this.gbVersions = new System.Windows.Forms.GroupBox();
-			this.btnInstall = new System.Windows.Forms.Button();
-			this.BtnClose = new System.Windows.Forms.Button();
+			this.BtnClose = new MetroFramework.Controls.MetroButton();
+			this.btnInstall = new MetroFramework.Controls.MetroButton();
 			this.slvVersions = new Net.Bertware.Bukkitgui2.Controls.SortableListView.SortableListView();
 			this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -49,9 +51,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.gbGeneral.Controls.Add(this.lblPluginDetail);
-			this.gbGeneral.Location = new System.Drawing.Point(12, 12);
+			this.gbGeneral.Location = new System.Drawing.Point(12, 63);
 			this.gbGeneral.Name = "gbGeneral";
-			this.gbGeneral.Size = new System.Drawing.Size(760, 278);
+			this.gbGeneral.Size = new System.Drawing.Size(760, 227);
 			this.gbGeneral.TabIndex = 0;
 			this.gbGeneral.TabStop = false;
 			this.gbGeneral.Text = "General";
@@ -61,7 +63,7 @@
 			this.lblPluginDetail.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.lblPluginDetail.Location = new System.Drawing.Point(3, 16);
 			this.lblPluginDetail.Name = "lblPluginDetail";
-			this.lblPluginDetail.Size = new System.Drawing.Size(754, 259);
+			this.lblPluginDetail.Size = new System.Drawing.Size(754, 208);
 			this.lblPluginDetail.TabIndex = 0;
 			this.lblPluginDetail.Text = "Plugin details";
 			// 
@@ -79,16 +81,6 @@
 			this.gbVersions.TabStop = false;
 			this.gbVersions.Text = "Versions";
 			// 
-			// btnInstall
-			// 
-			this.btnInstall.Location = new System.Drawing.Point(598, 225);
-			this.btnInstall.Name = "btnInstall";
-			this.btnInstall.Size = new System.Drawing.Size(75, 23);
-			this.btnInstall.TabIndex = 1;
-			this.btnInstall.Text = "&Install";
-			this.btnInstall.UseVisualStyleBackColor = true;
-			this.btnInstall.Click += new System.EventHandler(this.btnInstall_Click);
-			// 
 			// BtnClose
 			// 
 			this.BtnClose.Location = new System.Drawing.Point(679, 225);
@@ -96,8 +88,18 @@
 			this.BtnClose.Size = new System.Drawing.Size(75, 23);
 			this.BtnClose.TabIndex = 2;
 			this.BtnClose.Text = "&Close";
-			this.BtnClose.UseVisualStyleBackColor = true;
+			this.BtnClose.UseSelectable = true;
 			this.BtnClose.Click += new System.EventHandler(this.BtnClose_Click);
+			// 
+			// btnInstall
+			// 
+			this.btnInstall.Location = new System.Drawing.Point(598, 225);
+			this.btnInstall.Name = "btnInstall";
+			this.btnInstall.Size = new System.Drawing.Size(75, 23);
+			this.btnInstall.TabIndex = 1;
+			this.btnInstall.Text = "&Install";
+			this.btnInstall.UseSelectable = true;
+			this.btnInstall.Click += new System.EventHandler(this.btnInstall_Click);
 			// 
 			// slvVersions
 			// 
@@ -150,7 +152,11 @@
 			this.ClientSize = new System.Drawing.Size(784, 562);
 			this.Controls.Add(this.gbVersions);
 			this.Controls.Add(this.gbGeneral);
+			this.MaximizeBox = false;
+			this.MinimizeBox = false;
 			this.Name = "BukgetPluginView";
+			this.Resizable = false;
+			this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "BukgetPluginView";
 			this.gbGeneral.ResumeLayout(false);
@@ -163,7 +169,7 @@
 
 		private System.Windows.Forms.GroupBox gbGeneral;
 		private System.Windows.Forms.GroupBox gbVersions;
-		private System.Windows.Forms.Button btnInstall;
+		private MetroButton btnInstall;
 		private Controls.SortableListView.SortableListView slvVersions;
 		private System.Windows.Forms.Label lblPluginDetail;
 		private System.Windows.Forms.ColumnHeader columnHeader1;
@@ -171,6 +177,6 @@
 		private System.Windows.Forms.ColumnHeader columnHeader3;
 		private System.Windows.Forms.ColumnHeader columnHeader4;
 		private System.Windows.Forms.ColumnHeader columnHeader5;
-		private System.Windows.Forms.Button BtnClose;
+		private MetroButton BtnClose;
 	}
 }

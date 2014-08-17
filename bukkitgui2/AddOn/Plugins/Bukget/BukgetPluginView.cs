@@ -7,13 +7,14 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
+using MetroFramework.Forms;
 using Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3;
 using Net.Bertware.Bukkitgui2.Core.Translation;
 using Net.Bertware.Bukkitgui2.Core.Util;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget
 {
-	public partial class BukgetPluginView : Form
+	public partial class BukgetPluginView : MetroForm
 	{
 		public BukgetPluginView()
 		{

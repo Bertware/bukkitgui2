@@ -1,4 +1,5 @@
-﻿using Net.Bertware.Bukkitgui2.Controls;
+﻿using MetroFramework.Controls;
+using Net.Bertware.Bukkitgui2.Controls;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Console
 {
@@ -32,16 +33,15 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 		{
 			this.chkTime = new Net.Bertware.Bukkitgui2.Controls.SettingsCheckbox();
 			this.chkDate = new Net.Bertware.Bukkitgui2.Controls.SettingsCheckbox();
-			this.button1 = new System.Windows.Forms.Button();
 			this.CpInfo = new Net.Bertware.Bukkitgui2.Controls.ColorPicker.ColorPicker();
 			this.gbColors = new System.Windows.Forms.GroupBox();
-			this.label4 = new System.Windows.Forms.Label();
+			this.label4 = new MetroFramework.Controls.MetroLabel();
 			this.cpPlayer = new Net.Bertware.Bukkitgui2.Controls.ColorPicker.ColorPicker();
-			this.label3 = new System.Windows.Forms.Label();
+			this.label3 = new MetroFramework.Controls.MetroLabel();
 			this.cpSevere = new Net.Bertware.Bukkitgui2.Controls.ColorPicker.ColorPicker();
-			this.label2 = new System.Windows.Forms.Label();
+			this.label2 = new MetroFramework.Controls.MetroLabel();
 			this.cpWarn = new Net.Bertware.Bukkitgui2.Controls.ColorPicker.ColorPicker();
-			this.label1 = new System.Windows.Forms.Label();
+			this.label1 = new MetroFramework.Controls.MetroLabel();
 			this.gbColors.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -50,36 +50,26 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			this.chkTime.AutoSize = true;
 			this.chkTime.Location = new System.Drawing.Point(3, 3);
 			this.chkTime.Name = "chkTime";
-			this.chkTime.Size = new System.Drawing.Size(79, 17);
+			this.chkTime.Size = new System.Drawing.Size(82, 15);
 			this.chkTime.TabIndex = 0;
 			this.chkTime.Text = "Show &Time";
-			this.chkTime.UseVisualStyleBackColor = true;
+			this.chkTime.UseSelectable = true;
 			// 
 			// chkDate
 			// 
 			this.chkDate.AutoSize = true;
 			this.chkDate.Location = new System.Drawing.Point(3, 26);
 			this.chkDate.Name = "chkDate";
-			this.chkDate.Size = new System.Drawing.Size(79, 17);
+			this.chkDate.Size = new System.Drawing.Size(79, 15);
 			this.chkDate.TabIndex = 1;
 			this.chkDate.Text = "Show &Date";
-			this.chkDate.UseVisualStyleBackColor = true;
-			// 
-			// button1
-			// 
-			this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.button1.Location = new System.Drawing.Point(482, 464);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(75, 23);
-			this.button1.TabIndex = 2;
-			this.button1.Text = "&Apply";
-			this.button1.UseVisualStyleBackColor = true;
+			this.chkDate.UseSelectable = true;
 			// 
 			// CpInfo
 			// 
 			this.CpInfo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.CpInfo.Color = System.Drawing.Color.Empty;
-			this.CpInfo.Location = new System.Drawing.Point(109, 12);
+			this.CpInfo.Location = new System.Drawing.Point(127, 18);
 			this.CpInfo.Name = "CpInfo";
 			this.CpInfo.Size = new System.Drawing.Size(76, 20);
 			this.CpInfo.TabIndex = 3;
@@ -109,7 +99,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			this.label4.AutoSize = true;
 			this.label4.Location = new System.Drawing.Point(6, 99);
 			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(85, 13);
+			this.label4.Size = new System.Drawing.Size(105, 19);
 			this.label4.TabIndex = 10;
 			this.label4.Text = "player messages";
 			// 
@@ -117,7 +107,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			// 
 			this.cpPlayer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.cpPlayer.Color = System.Drawing.Color.Empty;
-			this.cpPlayer.Location = new System.Drawing.Point(109, 92);
+			this.cpPlayer.Location = new System.Drawing.Point(127, 99);
 			this.cpPlayer.Name = "cpPlayer";
 			this.cpPlayer.Size = new System.Drawing.Size(76, 20);
 			this.cpPlayer.TabIndex = 9;
@@ -128,7 +118,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			this.label3.AutoSize = true;
 			this.label3.Location = new System.Drawing.Point(6, 73);
 			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(89, 13);
+			this.label3.Size = new System.Drawing.Size(106, 19);
 			this.label3.TabIndex = 8;
 			this.label3.Text = "severe messages";
 			// 
@@ -136,7 +126,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			// 
 			this.cpSevere.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.cpSevere.Color = System.Drawing.Color.Empty;
-			this.cpSevere.Location = new System.Drawing.Point(109, 66);
+			this.cpSevere.Location = new System.Drawing.Point(127, 72);
 			this.cpSevere.Name = "cpSevere";
 			this.cpSevere.Size = new System.Drawing.Size(76, 20);
 			this.cpSevere.TabIndex = 7;
@@ -147,7 +137,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			this.label2.AutoSize = true;
 			this.label2.Location = new System.Drawing.Point(6, 47);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(94, 13);
+			this.label2.Size = new System.Drawing.Size(115, 19);
 			this.label2.TabIndex = 6;
 			this.label2.Text = "warning messages";
 			// 
@@ -155,7 +145,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			// 
 			this.cpWarn.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.cpWarn.Color = System.Drawing.Color.Empty;
-			this.cpWarn.Location = new System.Drawing.Point(109, 40);
+			this.cpWarn.Location = new System.Drawing.Point(127, 47);
 			this.cpWarn.Name = "cpWarn";
 			this.cpWarn.Size = new System.Drawing.Size(76, 20);
 			this.cpWarn.TabIndex = 5;
@@ -166,7 +156,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			this.label1.AutoSize = true;
 			this.label1.Location = new System.Drawing.Point(6, 19);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(74, 13);
+			this.label1.Size = new System.Drawing.Size(91, 19);
 			this.label1.TabIndex = 4;
 			this.label1.Text = "info messages";
 			// 
@@ -176,7 +166,6 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.White;
 			this.Controls.Add(this.gbColors);
-			this.Controls.Add(this.button1);
 			this.Controls.Add(this.chkDate);
 			this.Controls.Add(this.chkTime);
 			this.Name = "ConsoleSettings";
@@ -192,15 +181,14 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 
 		private SettingsCheckbox chkTime;
 		private SettingsCheckbox chkDate;
-		private System.Windows.Forms.Button button1;
 		private Controls.ColorPicker.ColorPicker CpInfo;
 		private System.Windows.Forms.GroupBox gbColors;
-		private System.Windows.Forms.Label label2;
+		private MetroLabel label2;
 		private Controls.ColorPicker.ColorPicker cpWarn;
-		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.Label label4;
+		private MetroLabel label1;
+		private MetroLabel label4;
 		private Controls.ColorPicker.ColorPicker cpPlayer;
-		private System.Windows.Forms.Label label3;
+		private MetroLabel label3;
 		private Controls.ColorPicker.ColorPicker cpSevere;
 
 	}
