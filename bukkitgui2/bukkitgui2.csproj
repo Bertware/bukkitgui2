@@ -49,6 +49,10 @@
     <Reference Include="MetroFramework">
       <HintPath>Resources\Dll\MetroFramework.dll</HintPath>
     </Reference>
+    <Reference Include="MetroFramework.Design, Version=1.3.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Resources\Dll\MetroFramework.Design.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Net.Bertware.Get">
       <HintPath>Resources\Dll\Net.Bertware.Get.dll</HintPath>
@@ -451,6 +455,8 @@
     <EmbeddedResource Include="Resources\Dll\ICSharpCode.SharpZipLib.dll" />
     <Content Include="GUI icon 32.ico" />
     <EmbeddedResource Include="Resources\Dll\MetroFramework.dll" />
+    <Content Include="Resources\Dll\MetroFramework.Design.dll" />
+    <Content Include="Resources\Dll\MetroFramework.Design.pdb" />
     <Content Include="Resources\Dll\MetroFramework.pdb" />
     <Content Include="Resources\Dll\Net.Bertware.Get.pdb" />
     <Content Include="Resources\Img\bukkit_logo.png" />

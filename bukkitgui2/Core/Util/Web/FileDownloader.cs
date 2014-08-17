@@ -1,6 +1,6 @@
 ﻿// FileDownloader.cs in bukkitgui2/bukkitgui2
 // Created 2014/02/02
-// Last edited at 2014/07/13 14:01
+// Last edited at 2014/08/17 11:19
 // ©Bertware, visit http://bertware.net
 
 using System;
@@ -15,8 +15,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Web
 {
 	public partial class FileDownloader : MetroForm
 	{
-
-		private bool _downloadStarted = false;
+		private bool _downloadStarted;
 
 		/// <summary>
 		///     Dictionary containing URLs of files to download and their target locations
@@ -52,7 +51,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Web
 			FileDownloadProgressBar control = new FileDownloadProgressBar
 			{
 				Location =
-					new Point(0,63+ _files.Count*50 - 50)
+					new Point(0, 63 + _files.Count*50 - 50)
 			};
 			control.CreateDownload(url, targetlocation);
 			_downloads.Add(url, control);

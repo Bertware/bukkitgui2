@@ -9,9 +9,7 @@ using System.Windows.Forms;
     /// </summary>
     public partial class FileDownloadProgressBar : UserControl
     {
-		private Label lblInfo;
-		private MetroProgressBar PbProgress;
-		private Label lblPercent;
+
 
 
 		/// <summary>
@@ -34,8 +32,8 @@ using System.Windows.Forms;
 private void InitializeComponent()
 		{
 			this.lblInfo = new System.Windows.Forms.Label();
-			this.PbProgress = new MetroProgressBar();
 			this.lblPercent = new System.Windows.Forms.Label();
+			this.PbProgress = new MetroFramework.Controls.MetroProgressBar();
 			this.SuspendLayout();
 			// 
 			// lblInfo
@@ -49,18 +47,6 @@ private void InitializeComponent()
 			this.lblInfo.Text = "Starting download...";
 			this.lblInfo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
-			// PbProgress
-			// 
-			this.PbProgress.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.PbProgress.Location = new System.Drawing.Point(3, 24);
-			this.PbProgress.MarqueeAnimationSpeed = 10;
-			this.PbProgress.Name = "PbProgress";
-			this.PbProgress.Size = new System.Drawing.Size(394, 23);
-			this.PbProgress.ProgressBarStyle = ProgressBarStyle.Continuous;
-			this.PbProgress.TabIndex = 1;
-			// 
 			// lblPercent
 			// 
 			this.lblPercent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -70,6 +56,17 @@ private void InitializeComponent()
 			this.lblPercent.TabIndex = 2;
 			this.lblPercent.Text = "100%";
 			this.lblPercent.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
+			// PbProgress
+			// 
+			this.PbProgress.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.PbProgress.Location = new System.Drawing.Point(3, 24);
+			this.PbProgress.MarqueeAnimationSpeed = 10;
+			this.PbProgress.Name = "PbProgress";
+			this.PbProgress.Size = new System.Drawing.Size(394, 23);
+			this.PbProgress.TabIndex = 1;
 			// 
 			// FileDownloadProgressBar
 			// 
@@ -81,4 +78,7 @@ private void InitializeComponent()
 			this.ResumeLayout(false);
 
 		}
+private Label lblInfo;
+private MetroProgressBar PbProgress;
+private Label lblPercent;
 	}}

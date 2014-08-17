@@ -1,6 +1,6 @@
 ﻿// StarterTab.cs in bukkitgui2/bukkitgui2
 // Created 2014/01/17
-// Last edited at 2014/08/16 17:37
+// Last edited at 2014/08/17 11:19
 // ©Bertware, visit http://bertware.net
 
 using System;
@@ -364,18 +364,18 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 
 		private void CheckAutoUpdate()
 		{
-			if (CBUpdateBehaviour.SelectedIndex<1) return;
+			if (CBUpdateBehaviour.SelectedIndex < 1) return;
 			if (CBUpdateBranch.SelectedItem == null || string.IsNullOrEmpty(CBUpdateBranch.SelectedItem.ToString())) return;
-			
+
 			ConsoleTab.WriteOut("__________________________________________________________________");
 			ConsoleTab.WriteOut("Performing version check... Branch: " + CBUpdateBranch.SelectedItem);
-			
+
 			IMinecraftServer server = GetSelectedServer();
 			string currentversion = server.GetCurrentVersion(TxtJarFile.Text);
 			ConsoleTab.WriteOut("Performing version check... Current version: " + currentversion);
-			
+
 			string latestversion = "";
-			
+
 			if (CBUpdateBranch.SelectedItem.ToString().ToLower().Contains("recommended"))
 				latestversion = server.FetchRecommendedVersion;
 			if (CBUpdateBranch.SelectedItem.ToString().ToLower().Contains("beta"))
@@ -383,7 +383,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			if (CBUpdateBranch.SelectedItem.ToString().ToLower().Contains("dev"))
 				latestversion = server.FetchDevVersion;
 			ConsoleTab.WriteOut("Performing version check... Latest version: " + latestversion);
-			
+
 			switch (CBUpdateBehaviour.SelectedIndex)
 			{
 				case 1: // Notify
@@ -392,7 +392,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 					{
 						ConsoleTab.WriteOut("A new server version is available for " + server.Name);
 						ConsoleTab.WriteOut("Download the latest version in the starter tab. The latest version is #" + latestversion);
-						
+
 						Thread t = new Thread(() =>
 							MessageBox.Show(
 								"A new server version is available for " + server.Name + "." + Environment.NewLine +
@@ -406,7 +406,8 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 				case 2: // Auto update
 					if (int.Parse(latestversion) > int.Parse(currentversion))
 					{
-						ConsoleTab.WriteOut("New server version available: #" + latestversion + ". This version will be installed automaticly. You can disable this in the starter tab.");
+						ConsoleTab.WriteOut("New server version available: #" + latestversion +
+						                    ". This version will be installed automaticly. You can disable this in the starter tab.");
 						if (CBUpdateBranch.SelectedItem.ToString().ToLower().Contains("recommended"))
 							server.DownloadRecommendedVersion(TxtJarFile.Text);
 						if (CBUpdateBranch.SelectedItem.ToString().ToLower().Contains("beta"))

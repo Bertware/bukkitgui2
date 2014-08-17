@@ -30,18 +30,17 @@ namespace Net.Bertware.Bukkitgui2.UI
         /// </summary>
         private void InitializeComponent()
         {
+			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
 			this.TabCtrlAddons = new MetroFramework.Controls.MetroTabControl();
-			this.StatusStripMain = new System.Windows.Forms.StatusStrip();
-			this.LblToolsMainServerState = new System.Windows.Forms.ToolStripStatusLabel();
-			this.MenuToolsMainServerAction = new System.Windows.Forms.ToolStripDropDownButton();
-			this.ToolStripBtnReload = new System.Windows.Forms.ToolStripMenuItem();
-			this.ToolStripBtnRestart = new System.Windows.Forms.ToolStripMenuItem();
+			this.LblToolsMainServerState = new MetroFramework.Controls.MetroLabel();
+			this.metroStyleExtender = new MetroFramework.Components.MetroStyleExtender(this.components);
+			this.LblToolsMainServerOutput = new MetroFramework.Controls.MetroLabel();
+			this.LblToolsSplit = new MetroFramework.Controls.MetroLabel();
+			this.ToolStripBtn = new MetroFramework.Controls.MetroContextMenu(this.components);
 			this.ToolStripBtnStartStop = new System.Windows.Forms.ToolStripMenuItem();
-			this.LblToolsMainServerOutput = new System.Windows.Forms.ToolStripStatusLabel();
-			this.ProgBarToolsMain = new System.Windows.Forms.ToolStripProgressBar();
-			this.LblToolsMainGUIState = new System.Windows.Forms.ToolStripStatusLabel();
-			this.StatusStripMain.SuspendLayout();
+			this.ToolStripBtnRestart = new System.Windows.Forms.ToolStripMenuItem();
+			this.ToolStripBtn.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// TabCtrlAddons
@@ -52,126 +51,86 @@ namespace Net.Bertware.Bukkitgui2.UI
 			this.TabCtrlAddons.Location = new System.Drawing.Point(0, 63);
 			this.TabCtrlAddons.Margin = new System.Windows.Forms.Padding(0);
 			this.TabCtrlAddons.Name = "TabCtrlAddons";
-			this.TabCtrlAddons.Padding = new System.Drawing.Point(6, 8);
 			this.TabCtrlAddons.Size = new System.Drawing.Size(886, 474);
 			this.TabCtrlAddons.TabIndex = 0;
 			this.TabCtrlAddons.UseSelectable = true;
 			// 
-			// StatusStripMain
-			// 
-			this.StatusStripMain.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.StatusStripMain.AutoSize = false;
-			this.StatusStripMain.BackColor = System.Drawing.Color.White;
-			this.StatusStripMain.Dock = System.Windows.Forms.DockStyle.None;
-			this.StatusStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.LblToolsMainServerState,
-            this.MenuToolsMainServerAction,
-            this.LblToolsMainServerOutput,
-            this.ProgBarToolsMain,
-            this.LblToolsMainGUIState});
-			this.StatusStripMain.Location = new System.Drawing.Point(0, 540);
-			this.StatusStripMain.Name = "StatusStripMain";
-			this.StatusStripMain.Size = new System.Drawing.Size(886, 22);
-			this.StatusStripMain.TabIndex = 1;
-			this.StatusStripMain.Text = "statusStrip1";
-			// 
 			// LblToolsMainServerState
 			// 
-			this.LblToolsMainServerState.AutoSize = false;
+			this.LblToolsMainServerState.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.LblToolsMainServerState.ContextMenuStrip = this.ToolStripBtn;
+			this.LblToolsMainServerState.Location = new System.Drawing.Point(0, 537);
 			this.LblToolsMainServerState.Name = "LblToolsMainServerState";
-			this.LblToolsMainServerState.Size = new System.Drawing.Size(105, 17);
-			this.LblToolsMainServerState.Text = "Server not running";
-			this.LblToolsMainServerState.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.LblToolsMainServerState.ToolTipText = "Server state (starting/stopping/running/error)";
+			this.LblToolsMainServerState.Size = new System.Drawing.Size(128, 23);
+			this.LblToolsMainServerState.TabIndex = 1;
+			this.LblToolsMainServerState.Text = "Server stopped";
 			// 
-			// MenuToolsMainServerAction
+			// LblToolsMainServerOutput
 			// 
-			this.MenuToolsMainServerAction.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.MenuToolsMainServerAction.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ToolStripBtnReload,
-            this.ToolStripBtnRestart,
-            this.ToolStripBtnStartStop});
-			this.MenuToolsMainServerAction.Image = global::Net.Bertware.Bukkitgui2.Properties.Resources.vanilla_logo;
-			this.MenuToolsMainServerAction.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.MenuToolsMainServerAction.Name = "MenuToolsMainServerAction";
-			this.MenuToolsMainServerAction.Size = new System.Drawing.Size(29, 20);
-			this.MenuToolsMainServerAction.Text = "Server Actions";
-			this.MenuToolsMainServerAction.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
-			this.MenuToolsMainServerAction.ToolTipText = "Quick server actions";
+			this.LblToolsMainServerOutput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.LblToolsMainServerOutput.Location = new System.Drawing.Point(150, 537);
+			this.LblToolsMainServerOutput.Name = "LblToolsMainServerOutput";
+			this.LblToolsMainServerOutput.Size = new System.Drawing.Size(711, 23);
+			this.LblToolsMainServerOutput.TabIndex = 2;
+			this.LblToolsMainServerOutput.Text = "No output to show";
 			// 
-			// ToolStripBtnReload
+			// LblToolsSplit
 			// 
-			this.ToolStripBtnReload.Name = "ToolStripBtnReload";
-			this.ToolStripBtnReload.Size = new System.Drawing.Size(110, 22);
-			this.ToolStripBtnReload.Text = "Reload";
+			this.LblToolsSplit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.LblToolsSplit.Location = new System.Drawing.Point(134, 537);
+			this.LblToolsSplit.Name = "LblToolsSplit";
+			this.LblToolsSplit.Size = new System.Drawing.Size(10, 23);
+			this.LblToolsSplit.TabIndex = 3;
+			this.LblToolsSplit.Text = "|";
 			// 
-			// ToolStripBtnRestart
+			// ToolStripBtn
 			// 
-			this.ToolStripBtnRestart.Name = "ToolStripBtnRestart";
-			this.ToolStripBtnRestart.Size = new System.Drawing.Size(110, 22);
-			this.ToolStripBtnRestart.Text = "Restart";
-			this.ToolStripBtnRestart.Click += new System.EventHandler(this.ToolStripBtnRestart_Click);
+			this.ToolStripBtn.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ToolStripBtnStartStop,
+            this.ToolStripBtnRestart});
+			this.ToolStripBtn.Name = "ToolStripBtn";
+			this.ToolStripBtn.Size = new System.Drawing.Size(111, 48);
 			// 
 			// ToolStripBtnStartStop
 			// 
 			this.ToolStripBtnStartStop.Name = "ToolStripBtnStartStop";
 			this.ToolStripBtnStartStop.Size = new System.Drawing.Size(110, 22);
 			this.ToolStripBtnStartStop.Text = "Start";
-			this.ToolStripBtnStartStop.Click += new System.EventHandler(this.ToolStripBtnStartStop_Click);
 			// 
-			// LblToolsMainServerOutput
+			// ToolStripBtnRestart
 			// 
-			this.LblToolsMainServerOutput.AutoSize = false;
-			this.LblToolsMainServerOutput.Name = "LblToolsMainServerOutput";
-			this.LblToolsMainServerOutput.Size = new System.Drawing.Size(550, 17);
-			this.LblToolsMainServerOutput.Text = "Last output";
-			this.LblToolsMainServerOutput.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.LblToolsMainServerOutput.ToolTipText = "Last server output";
-			// 
-			// ProgBarToolsMain
-			// 
-			this.ProgBarToolsMain.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-			this.ProgBarToolsMain.Name = "ProgBarToolsMain";
-			this.ProgBarToolsMain.Size = new System.Drawing.Size(100, 16);
-			this.ProgBarToolsMain.ToolTipText = "Progress on current operation";
-			// 
-			// LblToolsMainGUIState
-			// 
-			this.LblToolsMainGUIState.AutoSize = false;
-			this.LblToolsMainGUIState.Name = "LblToolsMainGUIState";
-			this.LblToolsMainGUIState.Size = new System.Drawing.Size(26, 17);
-			this.LblToolsMainGUIState.Text = "Idle";
-			this.LblToolsMainGUIState.ToolTipText = "GUI state (idle/action)";
+			this.ToolStripBtnRestart.Name = "ToolStripBtnRestart";
+			this.ToolStripBtnRestart.Size = new System.Drawing.Size(110, 22);
+			this.ToolStripBtnRestart.Text = "Restart";
 			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(884, 562);
-			this.Controls.Add(this.StatusStripMain);
+			this.Controls.Add(this.LblToolsSplit);
+			this.Controls.Add(this.LblToolsMainServerOutput);
+			this.Controls.Add(this.LblToolsMainServerState);
 			this.Controls.Add(this.TabCtrlAddons);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "MainForm";
 			this.Text = "BukkitGui";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
-			this.StatusStripMain.ResumeLayout(false);
-			this.StatusStripMain.PerformLayout();
+			this.ToolStripBtn.ResumeLayout(false);
 			this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private MetroTabControl TabCtrlAddons;
-        private System.Windows.Forms.StatusStrip StatusStripMain;
-        private System.Windows.Forms.ToolStripStatusLabel LblToolsMainServerState;
-        private System.Windows.Forms.ToolStripDropDownButton MenuToolsMainServerAction;
-        private System.Windows.Forms.ToolStripMenuItem ToolStripBtnReload;
-        private System.Windows.Forms.ToolStripMenuItem ToolStripBtnRestart;
-        private System.Windows.Forms.ToolStripMenuItem ToolStripBtnStartStop;
-        private System.Windows.Forms.ToolStripStatusLabel LblToolsMainServerOutput;
-        private System.Windows.Forms.ToolStripStatusLabel LblToolsMainGUIState;
-        private System.Windows.Forms.ToolStripProgressBar ProgBarToolsMain;
+		private MetroTabControl TabCtrlAddons;
+		private MetroLabel LblToolsMainServerState;
+		private MetroFramework.Components.MetroStyleExtender metroStyleExtender;
+		private MetroLabel LblToolsMainServerOutput;
+		private MetroLabel LblToolsSplit;
+		private MetroContextMenu ToolStripBtn;
+		private System.Windows.Forms.ToolStripMenuItem ToolStripBtnStartStop;
+		private System.Windows.Forms.ToolStripMenuItem ToolStripBtnRestart;
     }
 }

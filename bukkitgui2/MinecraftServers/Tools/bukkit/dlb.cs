@@ -1,6 +1,6 @@
 ﻿// dlb.cs in bukkitgui2/bukkitgui2
 // Created 2014/02/21
-// Last edited at 2014/07/13 14:01
+// Last edited at 2014/08/17 11:19
 // ©Bertware, visit http://bertware.net
 
 using System;
@@ -25,15 +25,17 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers.Tools.bukkit
 		}
 
 		/// <summary>
-		/// Cache for latest dev version info
+		///     Cache for latest dev version info
 		/// </summary>
 		private static DlbDownload _latestDevVersion;
+
 		/// <summary>
-		/// Cache for latest beta version info
+		///     Cache for latest beta version info
 		/// </summary>
 		private static DlbDownload _latestBetaVersion;
+
 		/// <summary>
-		/// Cache for latest recommended version info
+		///     Cache for latest recommended version info
 		/// </summary>
 		private static DlbDownload _latestRecommendedVersion;
 
@@ -47,23 +49,23 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers.Tools.bukkit
 			// check cache
 			switch (version)
 			{
-					case BukkitVersionType.Rb:
-						if (_latestRecommendedVersion != null) return _latestRecommendedVersion;
-						break;
-					case BukkitVersionType.Beta:
-						if (_latestBetaVersion != null) return _latestBetaVersion;
-						break;
-					case BukkitVersionType.Dev:
-						if (_latestDevVersion != null) return _latestDevVersion;
-						break;
+				case BukkitVersionType.Rb:
+					if (_latestRecommendedVersion != null) return _latestRecommendedVersion;
+					break;
+				case BukkitVersionType.Beta:
+					if (_latestBetaVersion != null) return _latestBetaVersion;
+					break;
+				case BukkitVersionType.Dev:
+					if (_latestDevVersion != null) return _latestDevVersion;
+					break;
 			}
 
 			// get xml
 			string xml = GetWebContents(ConstructUrl(version));
-			
+
 			// create dlb_download from xml
 			DlbDownload dlbd = new DlbDownload(xml);
-	
+
 
 			switch (version)
 			{
@@ -79,7 +81,6 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers.Tools.bukkit
 			}
 			// return result
 			return dlbd;
-		
 		}
 
 		/// <summary>

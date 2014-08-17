@@ -1,15 +1,15 @@
 ﻿// SettingsCheckbox.cs in bukkitgui2/bukkitgui2
 // Created 2014/07/13
-// Last edited at 2014/07/13 14:01
+// Last edited at 2014/08/17 11:19
 // ©Bertware, visit http://bertware.net
 
 using System;
-using System.Windows.Forms;
+using MetroFramework.Controls;
 using Net.Bertware.Bukkitgui2.Core.Configuration;
 
 namespace Net.Bertware.Bukkitgui2.Controls
 {
-	internal class SettingsCheckbox : CheckBox
+	internal class SettingsCheckbox : MetroCheckBox
 	{
 		private string _ident, _key;
 		private Boolean _defaultvalue;

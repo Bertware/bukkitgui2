@@ -42,7 +42,6 @@ namespace Net.Bertware.Bukkitgui2.Controls.QuickButtons
 			this.btnStartStop.Size = new System.Drawing.Size(144, 23);
 			this.btnStartStop.TabIndex = 0;
 			this.btnStartStop.Text = "Start";
-			this.btnStartStop.UseVisualStyleBackColor = true;
 			this.btnStartStop.Click += new System.EventHandler(this.BtnStartStopClick);
 			// 
 			// btnRestart
@@ -52,7 +51,6 @@ namespace Net.Bertware.Bukkitgui2.Controls.QuickButtons
 			this.btnRestart.Size = new System.Drawing.Size(144, 23);
 			this.btnRestart.TabIndex = 1;
 			this.btnRestart.Text = "Restart";
-			this.btnRestart.UseVisualStyleBackColor = true;
 			// 
 			// btnCustom
 			// 
@@ -61,7 +59,6 @@ namespace Net.Bertware.Bukkitgui2.Controls.QuickButtons
 			this.btnCustom.Size = new System.Drawing.Size(144, 23);
 			this.btnCustom.TabIndex = 2;
 			this.btnCustom.Text = "Custom";
-			this.btnCustom.UseVisualStyleBackColor = true;
 			this.btnCustom.Click += new System.EventHandler(this.btnCustom_Click);
 			// 
 			// QuickButtons

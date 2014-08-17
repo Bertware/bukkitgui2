@@ -1,6 +1,6 @@
 ﻿// Program.cs in bukkitgui2/bukkitgui2
 // Created 2014/01/17
-// Last edited at 2014/07/13 15:53
+// Last edited at 2014/08/17 11:19
 // ©Bertware, visit http://bertware.net
 
 using System;
@@ -8,7 +8,6 @@ using System.IO;
 using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
-using Net.Bertware.Bukkitgui2.Core;
 using Net.Bertware.Bukkitgui2.UI;
 using Net.Bertware.Get;
 

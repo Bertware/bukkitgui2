@@ -1,17 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿// Updater.cs in bukkitgui2/bukkitgui2
+// Created 2014/08/08
+// Last edited at 2014/08/17 11:19
+// ©Bertware, visit http://bertware.net
+
 using System.Windows.Forms;
+
 namespace Net.Bertware.Bukkitgui2.AddOn.Updater
 {
 	/// <summary>
-	/// Addon to show updater settings and info
+	///     Addon to show updater settings and info
 	/// </summary>
-	class Updater: IAddon
+	internal class Updater : IAddon
 	{
-
-
 		/// <summary>
 		///     The addon name, ideally this name is the same as used in the tabpage
 		/// </summary>

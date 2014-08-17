@@ -1,12 +1,11 @@
 ﻿// BukkitServer.cs in bukkitgui2/bukkitgui2
 // Created 2014/01/17
-// Last edited at 2014/07/13 14:01
+// Last edited at 2014/08/17 11:19
 // ©Bertware, visit http://bertware.net
 
 using System.Diagnostics;
 using System.IO;
 using System.Threading;
-using Microsoft.VisualBasic;
 using Net.Bertware.Bukkitgui2.AddOn.Starter;
 using Net.Bertware.Bukkitgui2.Core.Logging;
 using Net.Bertware.Bukkitgui2.Core.Util.Web;
@@ -59,7 +58,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers.Servers
 		public override bool DownloadRecommendedVersion(string targetfile)
 		{
 			string source = Dlb.GetlatestVersionInfo(Dlb.BukkitVersionType.Rb).FileUrl;
-			WebUtil.DownloadFile(source, targetfile, true,true);
+			WebUtil.DownloadFile(source, targetfile, true, true);
 			return true;
 		}
 
@@ -96,7 +95,8 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers.Servers
 		{
 			get
 			{
-				return "#" + Dlb.GetlatestVersionInfo(Dlb.BukkitVersionType.Beta).Build + " (" + Dlb.GetlatestVersionInfo(Dlb.BukkitVersionType.Beta).Version + ")";
+				return "#" + Dlb.GetlatestVersionInfo(Dlb.BukkitVersionType.Beta).Build + " (" +
+				       Dlb.GetlatestVersionInfo(Dlb.BukkitVersionType.Beta).Version + ")";
 			}
 		}
 
@@ -104,7 +104,8 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers.Servers
 		{
 			get
 			{
-				return "#" + Dlb.GetlatestVersionInfo(Dlb.BukkitVersionType.Dev).Build + " (" + Dlb.GetlatestVersionInfo(Dlb.BukkitVersionType.Dev).Version + ")";
+				return "#" + Dlb.GetlatestVersionInfo(Dlb.BukkitVersionType.Dev).Build + " (" +
+				       Dlb.GetlatestVersionInfo(Dlb.BukkitVersionType.Dev).Version + ")";
 			}
 		}
 
@@ -113,7 +114,8 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers.Servers
 			get
 			{
 				// #0000 (1.0.0-R1.0)
-				return "#" + Dlb.GetlatestVersionInfo(Dlb.BukkitVersionType.Rb).Build + " (" + Dlb.GetlatestVersionInfo(Dlb.BukkitVersionType.Rb).Version + ")";
+				return "#" + Dlb.GetlatestVersionInfo(Dlb.BukkitVersionType.Rb).Build + " (" +
+				       Dlb.GetlatestVersionInfo(Dlb.BukkitVersionType.Rb).Version + ")";
 			}
 		}
 
@@ -144,10 +146,11 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers.Servers
 				}
 			};
 
-			Logger.Log(LogLevel.Info, "BukkitServer","Starting process for version check", "\"" + p.StartInfo.FileName + "\"" + p.StartInfo.Arguments);
-			
+			Logger.Log(LogLevel.Info, "BukkitServer", "Starting process for version check",
+				"\"" + p.StartInfo.FileName + "\"" + p.StartInfo.Arguments);
+
 			p.Start();
-			
+
 			using (StreamReader sr = new StreamReader(p.StandardOutput.BaseStream))
 			{
 				for (int i = 0; i < 8; i++)

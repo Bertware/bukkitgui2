@@ -1,6 +1,6 @@
 ﻿// BukgetPluginView.cs in bukkitgui2/bukkitgui2
 // Created 2014/08/06
-// Last edited at 2014/08/07 14:21
+// Last edited at 2014/08/17 11:19
 // ©Bertware, visit http://bertware.net
 
 using System;
@@ -23,7 +23,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget
 		private BukgetPlugin _plugin;
 
 		/// <summary>
-		/// Location of the installed plugin, if any
+		///     Location of the installed plugin, if any
 		/// </summary>
 		private string _currentPluginVersionPath = "";
 
@@ -83,13 +83,13 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget
 
 		private void BtnClose_Click(object sender, EventArgs e)
 		{
-			this.Close();
+			Close();
 		}
 
 		private void btnInstall_Click(object sender, EventArgs e)
 		{
-			if (slvVersions.SelectedItems.Count<0) return;
-			
+			if (slvVersions.SelectedItems.Count < 0) return;
+
 			string versionNumber = slvVersions.SelectedItems[0].Tag.ToString();
 
 			foreach (BukgetPluginVersion version in _plugin.VersionsList)

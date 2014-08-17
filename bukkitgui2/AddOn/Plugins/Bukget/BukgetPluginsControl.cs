@@ -1,6 +1,6 @@
 ﻿// BukgetPluginsControl.cs in bukkitgui2/bukkitgui2
 // Created 2014/01/17
-// Last edited at 2014/07/19 19:13
+// Last edited at 2014/08/17 11:19
 // ©Bertware, visit http://bertware.net
 
 using System;
@@ -63,7 +63,6 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget
 			if (slvPlugins.SelectedItems.Count < 0) return;
 			string main = slvPlugins.SelectedItems[0].Tag.ToString();
 			api3.Bukget.CurrentlyLoadedPlugins[main].ShowVersionDialog();
-
 		}
 
 		private void btnInstall_Click(object sender, EventArgs e)

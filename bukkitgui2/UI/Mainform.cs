@@ -1,6 +1,6 @@
 ﻿// MainForm.cs in bukkitgui2/bukkitgui2
 // Created 2014/01/30
-// Last edited at 2014/08/06 10:17
+// Last edited at 2014/08/17 11:19
 // ©Bertware, visit http://bertware.net
 
 using System;
@@ -82,14 +82,14 @@ namespace Net.Bertware.Bukkitgui2.UI
 						ToolStripBtnStartStop.Enabled = false;
 						ToolStripBtnStartStop.Text = Locale.Tr("Starting...");
 						Text = FormTitle + Locale.Tr("Starting...");
-						
+
 						break;
 					case ServerState.Running:
 						LblToolsMainServerState.Text = Locale.Tr("Server running");
 						ToolStripBtnStartStop.Enabled = true;
 						ToolStripBtnStartStop.Text = Locale.Tr("Stop");
 						Text = FormTitle + " - " + Locale.Tr("Server running");
-						
+
 						break;
 
 					case ServerState.Stopping:
@@ -97,7 +97,7 @@ namespace Net.Bertware.Bukkitgui2.UI
 						ToolStripBtnStartStop.Enabled = false;
 						ToolStripBtnStartStop.Text = Locale.Tr("Stopping...");
 						Text = FormTitle + " - " + Locale.Tr("Server stopping");
-						
+
 						break;
 					case ServerState.Stopped:
 						LblToolsMainServerState.Text = Locale.Tr("Stopped");
@@ -105,7 +105,7 @@ namespace Net.Bertware.Bukkitgui2.UI
 						ToolStripBtnStartStop.Enabled = true;
 						ToolStripBtnStartStop.Text = Locale.Tr("Start");
 						Text = FormTitle + " - " + Locale.Tr("Server stopped");
-						
+
 						break;
 				}
 			}

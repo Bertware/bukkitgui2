@@ -1,4 +1,7 @@
-﻿namespace Net.Bertware.Bukkitgui2.AddOn.Starter
+﻿using System.Windows.Forms;
+using MetroFramework.Controls;
+
+namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 {
 	partial class StarterTab
 	{
@@ -30,49 +33,47 @@
 		{
 			this.components = new System.ComponentModel.Container();
 			this.GBServer = new System.Windows.Forms.GroupBox();
-			this.BtnBrowseJarFile = new System.Windows.Forms.Button();
-			this.BtnLaunch = new System.Windows.Forms.Button();
-			this.label7 = new System.Windows.Forms.Label();
-			this.TxtOptFlag = new System.Windows.Forms.TextBox();
-			this.label6 = new System.Windows.Forms.Label();
-			this.TxtOptArg = new System.Windows.Forms.TextBox();
-			this.label5 = new System.Windows.Forms.Label();
+			this.BtnBrowseJarFile = new MetroFramework.Controls.MetroButton();
+			this.BtnLaunch = new MetroFramework.Controls.MetroButton();
+			this.label7 = new MetroFramework.Controls.MetroLabel();
+			this.TxtOptFlag = new MetroFramework.Controls.MetroTextBox();
+			this.label6 = new MetroFramework.Controls.MetroLabel();
+			this.TxtOptArg = new MetroFramework.Controls.MetroTextBox();
+			this.label5 = new MetroFramework.Controls.MetroLabel();
 			this.NumMaxRam = new System.Windows.Forms.NumericUpDown();
-			this.TBMaxRam = new System.Windows.Forms.TrackBar();
-			this.label4 = new System.Windows.Forms.Label();
+			this.TBMaxRam = new MetroFramework.Controls.MetroTrackBar();
+			this.label4 = new MetroFramework.Controls.MetroLabel();
 			this.NumMinRam = new System.Windows.Forms.NumericUpDown();
-			this.TBMinRam = new System.Windows.Forms.TrackBar();
-			this.label3 = new System.Windows.Forms.Label();
-			this.label2 = new System.Windows.Forms.Label();
-			this.CBJavaVersion = new System.Windows.Forms.ComboBox();
-			this.TxtJarFile = new System.Windows.Forms.TextBox();
-			this.label1 = new System.Windows.Forms.Label();
-			this.CBServerType = new System.Windows.Forms.ComboBox();
+			this.TBMinRam = new MetroFramework.Controls.MetroTrackBar();
+			this.label3 = new MetroFramework.Controls.MetroLabel();
+			this.label2 = new MetroFramework.Controls.MetroLabel();
+			this.CBJavaVersion = new MetroFramework.Controls.MetroComboBox();
+			this.TxtJarFile = new MetroFramework.Controls.MetroTextBox();
+			this.label1 = new MetroFramework.Controls.MetroLabel();
+			this.CBServerType = new MetroFramework.Controls.MetroComboBox();
 			this.GBMaintainance = new System.Windows.Forms.GroupBox();
-			this.LLblSite = new System.Windows.Forms.LinkLabel();
-			this.LblCurrentVer = new System.Windows.Forms.Label();
-			this.btnGetCurrentBuild = new System.Windows.Forms.Button();
-			this.LblLatestDevValue = new System.Windows.Forms.Label();
-			this.LblLatestBetaValue = new System.Windows.Forms.Label();
-			this.LblLatestRecommendedValue = new System.Windows.Forms.Label();
-			this.LblLatestBeta = new System.Windows.Forms.Label();
-			this.LblLatestDevelopment = new System.Windows.Forms.Label();
-			this.LblLatestRecommended = new System.Windows.Forms.Label();
-			this.label9 = new System.Windows.Forms.Label();
-			this.CBUpdateBranch = new System.Windows.Forms.ComboBox();
-			this.label8 = new System.Windows.Forms.Label();
-			this.CBUpdateBehaviour = new System.Windows.Forms.ComboBox();
-			this.BtnDownloadDev = new System.Windows.Forms.Button();
-			this.BtnDownloadBeta = new System.Windows.Forms.Button();
-			this.BtnDownloadRec = new System.Windows.Forms.Button();
+			this.LLblSite = new MetroFramework.Controls.MetroLink();
+			this.LblCurrentVer = new MetroFramework.Controls.MetroLabel();
+			this.btnGetCurrentBuild = new MetroFramework.Controls.MetroButton();
+			this.LblLatestDevValue = new MetroFramework.Controls.MetroLabel();
+			this.LblLatestBetaValue = new MetroFramework.Controls.MetroLabel();
+			this.LblLatestRecommendedValue = new MetroFramework.Controls.MetroLabel();
+			this.LblLatestBeta = new MetroFramework.Controls.MetroLabel();
+			this.LblLatestDevelopment = new MetroFramework.Controls.MetroLabel();
+			this.LblLatestRecommended = new MetroFramework.Controls.MetroLabel();
+			this.label9 = new MetroFramework.Controls.MetroLabel();
+			this.CBUpdateBranch = new MetroFramework.Controls.MetroComboBox();
+			this.label8 = new MetroFramework.Controls.MetroLabel();
+			this.CBUpdateBehaviour = new MetroFramework.Controls.MetroComboBox();
+			this.BtnDownloadDev = new MetroFramework.Controls.MetroButton();
+			this.BtnDownloadBeta = new MetroFramework.Controls.MetroButton();
+			this.BtnDownloadRec = new MetroFramework.Controls.MetroButton();
 			this.PBServerLogo = new System.Windows.Forms.PictureBox();
 			this.GBCustomSettings = new System.Windows.Forms.GroupBox();
 			this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
 			this.GBServer.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.NumMaxRam)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.TBMaxRam)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.NumMinRam)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.TBMinRam)).BeginInit();
 			this.GBMaintainance.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.PBServerLogo)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
@@ -102,7 +103,7 @@
 			this.GBServer.Controls.Add(this.CBServerType);
 			this.GBServer.Location = new System.Drawing.Point(3, 3);
 			this.GBServer.Name = "GBServer";
-			this.GBServer.Size = new System.Drawing.Size(484, 284);
+			this.GBServer.Size = new System.Drawing.Size(484, 309);
 			this.GBServer.TabIndex = 0;
 			this.GBServer.TabStop = false;
 			this.GBServer.Text = "Server";
@@ -110,12 +111,12 @@
 			// BtnBrowseJarFile
 			// 
 			this.BtnBrowseJarFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.BtnBrowseJarFile.Location = new System.Drawing.Point(448, 74);
+			this.BtnBrowseJarFile.Location = new System.Drawing.Point(448, 90);
 			this.BtnBrowseJarFile.Name = "BtnBrowseJarFile";
 			this.BtnBrowseJarFile.Size = new System.Drawing.Size(30, 20);
 			this.BtnBrowseJarFile.TabIndex = 17;
 			this.BtnBrowseJarFile.Text = "...";
-			this.BtnBrowseJarFile.UseVisualStyleBackColor = true;
+			this.BtnBrowseJarFile.UseSelectable = true;
 			this.BtnBrowseJarFile.Click += new System.EventHandler(this.BtnBrowseJarFile_Click);
 			// 
 			// BtnLaunch
@@ -123,17 +124,17 @@
 			this.BtnLaunch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.errorProvider.SetIconAlignment(this.BtnLaunch, System.Windows.Forms.ErrorIconAlignment.MiddleLeft);
-			this.BtnLaunch.Location = new System.Drawing.Point(152, 255);
+			this.BtnLaunch.Location = new System.Drawing.Point(152, 270);
 			this.BtnLaunch.Name = "BtnLaunch";
 			this.BtnLaunch.Size = new System.Drawing.Size(326, 23);
 			this.BtnLaunch.TabIndex = 16;
 			this.BtnLaunch.Text = "Launch Server";
-			this.BtnLaunch.UseVisualStyleBackColor = true;
+			this.BtnLaunch.UseSelectable = true;
 			this.BtnLaunch.Click += new System.EventHandler(this.BtnLaunch_Click);
 			// 
 			// label7
 			// 
-			this.label7.Location = new System.Drawing.Point(7, 221);
+			this.label7.Location = new System.Drawing.Point(7, 244);
 			this.label7.Name = "label7";
 			this.label7.Size = new System.Drawing.Size(139, 20);
 			this.label7.TabIndex = 15;
@@ -145,15 +146,21 @@
 			this.TxtOptFlag.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.errorProvider.SetIconAlignment(this.TxtOptFlag, System.Windows.Forms.ErrorIconAlignment.MiddleLeft);
-			this.TxtOptFlag.Location = new System.Drawing.Point(152, 221);
+			this.TxtOptFlag.Lines = new string[0];
+			this.TxtOptFlag.Location = new System.Drawing.Point(152, 244);
+			this.TxtOptFlag.MaxLength = 32767;
 			this.TxtOptFlag.Name = "TxtOptFlag";
+			this.TxtOptFlag.PasswordChar = '\0';
+			this.TxtOptFlag.ScrollBars = System.Windows.Forms.ScrollBars.None;
+			this.TxtOptFlag.SelectedText = "";
 			this.TxtOptFlag.Size = new System.Drawing.Size(326, 20);
 			this.TxtOptFlag.TabIndex = 14;
+			this.TxtOptFlag.UseSelectable = true;
 			this.TxtOptFlag.TextChanged += new System.EventHandler(this.TxtOptFlag_TextChanged);
 			// 
 			// label6
 			// 
-			this.label6.Location = new System.Drawing.Point(7, 195);
+			this.label6.Location = new System.Drawing.Point(7, 218);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(139, 20);
 			this.label6.TabIndex = 13;
@@ -165,15 +172,21 @@
 			this.TxtOptArg.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.errorProvider.SetIconAlignment(this.TxtOptArg, System.Windows.Forms.ErrorIconAlignment.MiddleLeft);
-			this.TxtOptArg.Location = new System.Drawing.Point(152, 195);
+			this.TxtOptArg.Lines = new string[0];
+			this.TxtOptArg.Location = new System.Drawing.Point(152, 218);
+			this.TxtOptArg.MaxLength = 32767;
 			this.TxtOptArg.Name = "TxtOptArg";
+			this.TxtOptArg.PasswordChar = '\0';
+			this.TxtOptArg.ScrollBars = System.Windows.Forms.ScrollBars.None;
+			this.TxtOptArg.SelectedText = "";
 			this.TxtOptArg.Size = new System.Drawing.Size(326, 20);
 			this.TxtOptArg.TabIndex = 12;
+			this.TxtOptArg.UseSelectable = true;
 			this.TxtOptArg.TextChanged += new System.EventHandler(this.TxtOptArg_TextChanged);
 			// 
 			// label5
 			// 
-			this.label5.Location = new System.Drawing.Point(7, 160);
+			this.label5.Location = new System.Drawing.Point(7, 176);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(139, 20);
 			this.label5.TabIndex = 11;
@@ -183,7 +196,7 @@
 			// NumMaxRam
 			// 
 			this.errorProvider.SetIconAlignment(this.NumMaxRam, System.Windows.Forms.ErrorIconAlignment.MiddleLeft);
-			this.NumMaxRam.Location = new System.Drawing.Point(152, 160);
+			this.NumMaxRam.Location = new System.Drawing.Point(152, 176);
 			this.NumMaxRam.Margin = new System.Windows.Forms.Padding(3, 12, 3, 12);
 			this.NumMaxRam.Maximum = new decimal(new int[] {
             8192,
@@ -199,20 +212,19 @@
 			// 
 			this.TBMaxRam.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.TBMaxRam.BackColor = System.Drawing.Color.Transparent;
 			this.errorProvider.SetIconAlignment(this.TBMaxRam, System.Windows.Forms.ErrorIconAlignment.MiddleLeft);
 			this.TBMaxRam.LargeChange = 512;
-			this.TBMaxRam.Location = new System.Drawing.Point(231, 151);
+			this.TBMaxRam.Location = new System.Drawing.Point(231, 167);
 			this.TBMaxRam.Maximum = 4096;
 			this.TBMaxRam.Name = "TBMaxRam";
 			this.TBMaxRam.Size = new System.Drawing.Size(247, 45);
 			this.TBMaxRam.SmallChange = 256;
 			this.TBMaxRam.TabIndex = 9;
-			this.TBMaxRam.TickFrequency = 512;
-			this.TBMaxRam.Scroll += new System.EventHandler(this.TbMaxRamScroll);
 			// 
 			// label4
 			// 
-			this.label4.Location = new System.Drawing.Point(7, 109);
+			this.label4.Location = new System.Drawing.Point(7, 125);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(139, 20);
 			this.label4.TabIndex = 8;
@@ -222,7 +234,7 @@
 			// NumMinRam
 			// 
 			this.errorProvider.SetIconAlignment(this.NumMinRam, System.Windows.Forms.ErrorIconAlignment.MiddleLeft);
-			this.NumMinRam.Location = new System.Drawing.Point(152, 109);
+			this.NumMinRam.Location = new System.Drawing.Point(152, 125);
 			this.NumMinRam.Margin = new System.Windows.Forms.Padding(3, 12, 3, 12);
 			this.NumMinRam.Maximum = new decimal(new int[] {
             8192,
@@ -238,20 +250,19 @@
 			// 
 			this.TBMinRam.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.TBMinRam.BackColor = System.Drawing.Color.Transparent;
 			this.errorProvider.SetIconAlignment(this.TBMinRam, System.Windows.Forms.ErrorIconAlignment.MiddleLeft);
 			this.TBMinRam.LargeChange = 512;
-			this.TBMinRam.Location = new System.Drawing.Point(231, 100);
+			this.TBMinRam.Location = new System.Drawing.Point(231, 116);
 			this.TBMinRam.Maximum = 4096;
 			this.TBMinRam.Name = "TBMinRam";
 			this.TBMinRam.Size = new System.Drawing.Size(247, 45);
 			this.TBMinRam.SmallChange = 256;
 			this.TBMinRam.TabIndex = 6;
-			this.TBMinRam.TickFrequency = 512;
-			this.TBMinRam.Scroll += new System.EventHandler(this.TbMinRamScroll);
 			// 
 			// label3
 			// 
-			this.label3.Location = new System.Drawing.Point(7, 74);
+			this.label3.Location = new System.Drawing.Point(7, 90);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(139, 20);
 			this.label3.TabIndex = 5;
@@ -260,7 +271,7 @@
 			// 
 			// label2
 			// 
-			this.label2.Location = new System.Drawing.Point(7, 47);
+			this.label2.Location = new System.Drawing.Point(7, 63);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(139, 21);
 			this.label2.TabIndex = 4;
@@ -271,12 +282,13 @@
 			// 
 			this.CBJavaVersion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.CBJavaVersion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.CBJavaVersion.FormattingEnabled = true;
-			this.CBJavaVersion.Location = new System.Drawing.Point(152, 47);
+			this.CBJavaVersion.ItemHeight = 23;
+			this.CBJavaVersion.Location = new System.Drawing.Point(152, 55);
 			this.CBJavaVersion.Name = "CBJavaVersion";
-			this.CBJavaVersion.Size = new System.Drawing.Size(326, 21);
+			this.CBJavaVersion.Size = new System.Drawing.Size(326, 29);
 			this.CBJavaVersion.TabIndex = 3;
+			this.CBJavaVersion.UseSelectable = true;
 			this.CBJavaVersion.SelectedIndexChanged += new System.EventHandler(this.CbJavaVersionSelectedIndexChanged);
 			// 
 			// TxtJarFile
@@ -284,15 +296,21 @@
 			this.TxtJarFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.errorProvider.SetIconAlignment(this.TxtJarFile, System.Windows.Forms.ErrorIconAlignment.MiddleLeft);
-			this.TxtJarFile.Location = new System.Drawing.Point(152, 74);
+			this.TxtJarFile.Lines = new string[0];
+			this.TxtJarFile.Location = new System.Drawing.Point(152, 90);
+			this.TxtJarFile.MaxLength = 32767;
 			this.TxtJarFile.Name = "TxtJarFile";
+			this.TxtJarFile.PasswordChar = '\0';
+			this.TxtJarFile.ScrollBars = System.Windows.Forms.ScrollBars.None;
+			this.TxtJarFile.SelectedText = "";
 			this.TxtJarFile.Size = new System.Drawing.Size(290, 20);
 			this.TxtJarFile.TabIndex = 2;
+			this.TxtJarFile.UseSelectable = true;
 			this.TxtJarFile.TextChanged += new System.EventHandler(this.TxtJarFile_TextChanged);
 			// 
 			// label1
 			// 
-			this.label1.Location = new System.Drawing.Point(7, 20);
+			this.label1.Location = new System.Drawing.Point(7, 28);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(139, 21);
 			this.label1.TabIndex = 1;
@@ -303,12 +321,13 @@
 			// 
 			this.CBServerType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.CBServerType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.CBServerType.FormattingEnabled = true;
+			this.CBServerType.ItemHeight = 23;
 			this.CBServerType.Location = new System.Drawing.Point(152, 20);
 			this.CBServerType.Name = "CBServerType";
-			this.CBServerType.Size = new System.Drawing.Size(326, 21);
+			this.CBServerType.Size = new System.Drawing.Size(326, 29);
 			this.CBServerType.TabIndex = 0;
+			this.CBServerType.UseSelectable = true;
 			this.CBServerType.SelectedIndexChanged += new System.EventHandler(this.CbServerTypeSelectedIndexChanged);
 			// 
 			// GBMaintainance
@@ -341,102 +360,103 @@
 			// LLblSite
 			// 
 			this.LLblSite.AutoSize = true;
-			this.LLblSite.Location = new System.Drawing.Point(6, 416);
+			this.LLblSite.Location = new System.Drawing.Point(6, 403);
 			this.LLblSite.Name = "LLblSite";
-			this.LLblSite.Size = new System.Drawing.Size(28, 13);
+			this.LLblSite.Size = new System.Drawing.Size(38, 23);
 			this.LLblSite.TabIndex = 1;
-			this.LLblSite.TabStop = true;
 			this.LLblSite.Text = "Site:";
+			this.LLblSite.UseSelectable = true;
 			// 
 			// LblCurrentVer
 			// 
-			this.LblCurrentVer.Location = new System.Drawing.Point(162, 157);
+			this.LblCurrentVer.Location = new System.Drawing.Point(141, 154);
 			this.LblCurrentVer.Margin = new System.Windows.Forms.Padding(3, 5, 3, 0);
 			this.LblCurrentVer.Name = "LblCurrentVer";
-			this.LblCurrentVer.Size = new System.Drawing.Size(136, 13);
+			this.LblCurrentVer.Size = new System.Drawing.Size(154, 21);
 			this.LblCurrentVer.TabIndex = 16;
 			this.LblCurrentVer.Text = "Version:";
 			// 
 			// btnGetCurrentBuild
 			// 
-			this.btnGetCurrentBuild.Location = new System.Drawing.Point(6, 152);
+			this.btnGetCurrentBuild.Location = new System.Drawing.Point(3, 152);
 			this.btnGetCurrentBuild.Name = "btnGetCurrentBuild";
-			this.btnGetCurrentBuild.Size = new System.Drawing.Size(150, 23);
+			this.btnGetCurrentBuild.Size = new System.Drawing.Size(132, 23);
 			this.btnGetCurrentBuild.TabIndex = 15;
 			this.btnGetCurrentBuild.Text = "Get current build";
-			this.btnGetCurrentBuild.UseVisualStyleBackColor = true;
+			this.btnGetCurrentBuild.UseSelectable = true;
 			this.btnGetCurrentBuild.Click += new System.EventHandler(this.btnGetCurrentBuild_Click);
 			// 
 			// LblLatestDevValue
 			// 
-			this.LblLatestDevValue.Location = new System.Drawing.Point(140, 109);
-			this.LblLatestDevValue.Margin = new System.Windows.Forms.Padding(3, 5, 3, 0);
+			this.LblLatestDevValue.Location = new System.Drawing.Point(139, 126);
+			this.LblLatestDevValue.Margin = new System.Windows.Forms.Padding(2);
 			this.LblLatestDevValue.Name = "LblLatestDevValue";
-			this.LblLatestDevValue.Size = new System.Drawing.Size(158, 13);
+			this.LblLatestDevValue.Size = new System.Drawing.Size(158, 18);
 			this.LblLatestDevValue.TabIndex = 14;
 			this.LblLatestDevValue.Text = "#0000 (MC 1.0.0)";
 			// 
 			// LblLatestBetaValue
 			// 
-			this.LblLatestBetaValue.Location = new System.Drawing.Point(140, 74);
-			this.LblLatestBetaValue.Margin = new System.Windows.Forms.Padding(3, 5, 3, 0);
+			this.LblLatestBetaValue.Location = new System.Drawing.Point(139, 82);
+			this.LblLatestBetaValue.Margin = new System.Windows.Forms.Padding(2);
 			this.LblLatestBetaValue.Name = "LblLatestBetaValue";
-			this.LblLatestBetaValue.Size = new System.Drawing.Size(158, 13);
+			this.LblLatestBetaValue.Size = new System.Drawing.Size(158, 18);
 			this.LblLatestBetaValue.TabIndex = 13;
 			this.LblLatestBetaValue.Text = "#0000 (MC 1.0.0)";
 			// 
 			// LblLatestRecommendedValue
 			// 
-			this.LblLatestRecommendedValue.Location = new System.Drawing.Point(140, 38);
-			this.LblLatestRecommendedValue.Margin = new System.Windows.Forms.Padding(3, 5, 3, 0);
+			this.LblLatestRecommendedValue.Location = new System.Drawing.Point(139, 38);
+			this.LblLatestRecommendedValue.Margin = new System.Windows.Forms.Padding(2);
 			this.LblLatestRecommendedValue.Name = "LblLatestRecommendedValue";
-			this.LblLatestRecommendedValue.Size = new System.Drawing.Size(158, 13);
+			this.LblLatestRecommendedValue.Size = new System.Drawing.Size(158, 18);
 			this.LblLatestRecommendedValue.TabIndex = 12;
 			this.LblLatestRecommendedValue.Text = "#0000 (MC 1.0.0)";
 			// 
 			// LblLatestBeta
 			// 
-			this.LblLatestBeta.Location = new System.Drawing.Point(140, 56);
-			this.LblLatestBeta.Margin = new System.Windows.Forms.Padding(3, 5, 3, 0);
+			this.LblLatestBeta.Location = new System.Drawing.Point(139, 60);
+			this.LblLatestBeta.Margin = new System.Windows.Forms.Padding(2);
 			this.LblLatestBeta.Name = "LblLatestBeta";
-			this.LblLatestBeta.Size = new System.Drawing.Size(158, 13);
+			this.LblLatestBeta.Size = new System.Drawing.Size(158, 18);
 			this.LblLatestBeta.TabIndex = 11;
 			this.LblLatestBeta.Text = "Latest beta build:";
 			// 
 			// LblLatestDevelopment
 			// 
-			this.LblLatestDevelopment.Location = new System.Drawing.Point(140, 92);
-			this.LblLatestDevelopment.Margin = new System.Windows.Forms.Padding(3, 5, 3, 0);
+			this.LblLatestDevelopment.Location = new System.Drawing.Point(139, 104);
+			this.LblLatestDevelopment.Margin = new System.Windows.Forms.Padding(2);
 			this.LblLatestDevelopment.Name = "LblLatestDevelopment";
-			this.LblLatestDevelopment.Size = new System.Drawing.Size(158, 13);
+			this.LblLatestDevelopment.Size = new System.Drawing.Size(158, 18);
 			this.LblLatestDevelopment.TabIndex = 10;
 			this.LblLatestDevelopment.Text = "Latest development build:";
 			// 
 			// LblLatestRecommended
 			// 
-			this.LblLatestRecommended.Location = new System.Drawing.Point(140, 20);
+			this.LblLatestRecommended.Location = new System.Drawing.Point(139, 16);
+			this.LblLatestRecommended.Margin = new System.Windows.Forms.Padding(2);
 			this.LblLatestRecommended.Name = "LblLatestRecommended";
-			this.LblLatestRecommended.Size = new System.Drawing.Size(158, 13);
+			this.LblLatestRecommended.Size = new System.Drawing.Size(158, 18);
 			this.LblLatestRecommended.TabIndex = 9;
 			this.LblLatestRecommended.Text = "Latest recommended build:";
 			// 
 			// label9
 			// 
-			this.label9.AutoSize = true;
-			this.label9.Location = new System.Drawing.Point(6, 330);
+			this.label9.Location = new System.Drawing.Point(6, 344);
 			this.label9.Name = "label9";
-			this.label9.Size = new System.Drawing.Size(104, 13);
+			this.label9.Size = new System.Drawing.Size(129, 21);
 			this.label9.TabIndex = 8;
 			this.label9.Text = "Auto update branch:\r\n";
 			// 
 			// CBUpdateBranch
 			// 
-			this.CBUpdateBranch.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.CBUpdateBranch.FormattingEnabled = true;
-			this.CBUpdateBranch.Location = new System.Drawing.Point(6, 346);
+			this.CBUpdateBranch.ItemHeight = 23;
+			this.CBUpdateBranch.Location = new System.Drawing.Point(6, 368);
 			this.CBUpdateBranch.Name = "CBUpdateBranch";
-			this.CBUpdateBranch.Size = new System.Drawing.Size(292, 21);
+			this.CBUpdateBranch.Size = new System.Drawing.Size(292, 29);
 			this.CBUpdateBranch.TabIndex = 7;
+			this.CBUpdateBranch.UseSelectable = true;
 			this.CBUpdateBranch.SelectedIndexChanged += new System.EventHandler(this.CBUpdateBranch_SelectedIndexChanged);
 			// 
 			// label8
@@ -444,18 +464,19 @@
 			this.label8.AutoSize = true;
 			this.label8.Location = new System.Drawing.Point(6, 290);
 			this.label8.Name = "label8";
-			this.label8.Size = new System.Drawing.Size(118, 13);
+			this.label8.Size = new System.Drawing.Size(147, 19);
 			this.label8.TabIndex = 6;
 			this.label8.Text = "Auto update behaviour:";
 			// 
 			// CBUpdateBehaviour
 			// 
-			this.CBUpdateBehaviour.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.CBUpdateBehaviour.FormattingEnabled = true;
-			this.CBUpdateBehaviour.Location = new System.Drawing.Point(6, 306);
+			this.CBUpdateBehaviour.ItemHeight = 23;
+			this.CBUpdateBehaviour.Location = new System.Drawing.Point(6, 312);
 			this.CBUpdateBehaviour.Name = "CBUpdateBehaviour";
-			this.CBUpdateBehaviour.Size = new System.Drawing.Size(292, 21);
+			this.CBUpdateBehaviour.Size = new System.Drawing.Size(292, 29);
 			this.CBUpdateBehaviour.TabIndex = 5;
+			this.CBUpdateBehaviour.UseSelectable = true;
 			this.CBUpdateBehaviour.SelectedIndexChanged += new System.EventHandler(this.CBUpdateBehaviour_SelectedIndexChanged);
 			// 
 			// BtnDownloadDev
@@ -465,7 +486,7 @@
 			this.BtnDownloadDev.Size = new System.Drawing.Size(292, 23);
 			this.BtnDownloadDev.TabIndex = 4;
 			this.BtnDownloadDev.Text = "Download Latest Development build";
-			this.BtnDownloadDev.UseVisualStyleBackColor = true;
+			this.BtnDownloadDev.UseSelectable = true;
 			this.BtnDownloadDev.Click += new System.EventHandler(this.BtnDownloadDev_Click);
 			// 
 			// BtnDownloadBeta
@@ -475,7 +496,7 @@
 			this.BtnDownloadBeta.Size = new System.Drawing.Size(292, 23);
 			this.BtnDownloadBeta.TabIndex = 3;
 			this.BtnDownloadBeta.Text = "Download Latest Beta build";
-			this.BtnDownloadBeta.UseVisualStyleBackColor = true;
+			this.BtnDownloadBeta.UseSelectable = true;
 			this.BtnDownloadBeta.Click += new System.EventHandler(this.BtnDownloadBeta_Click);
 			// 
 			// BtnDownloadRec
@@ -485,7 +506,7 @@
 			this.BtnDownloadRec.Size = new System.Drawing.Size(292, 23);
 			this.BtnDownloadRec.TabIndex = 2;
 			this.BtnDownloadRec.Text = "Download Latest Recommended build";
-			this.BtnDownloadRec.UseVisualStyleBackColor = true;
+			this.BtnDownloadRec.UseSelectable = true;
 			this.BtnDownloadRec.Click += new System.EventHandler(this.BtnDownloadRec_Click);
 			// 
 			// PBServerLogo
@@ -504,9 +525,9 @@
 			// 
 			this.GBCustomSettings.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.GBCustomSettings.Location = new System.Drawing.Point(3, 293);
+			this.GBCustomSettings.Location = new System.Drawing.Point(3, 318);
 			this.GBCustomSettings.Name = "GBCustomSettings";
-			this.GBCustomSettings.Size = new System.Drawing.Size(484, 142);
+			this.GBCustomSettings.Size = new System.Drawing.Size(484, 117);
 			this.GBCustomSettings.TabIndex = 2;
 			this.GBCustomSettings.TabStop = false;
 			this.GBCustomSettings.Text = "Server specific settings";
@@ -524,11 +545,8 @@
 			this.Name = "StarterTab";
 			this.Size = new System.Drawing.Size(800, 500);
 			this.GBServer.ResumeLayout(false);
-			this.GBServer.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.NumMaxRam)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.TBMaxRam)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.NumMinRam)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.TBMinRam)).EndInit();
 			this.GBMaintainance.ResumeLayout(false);
 			this.GBMaintainance.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.PBServerLogo)).EndInit();
@@ -540,43 +558,43 @@
 		#endregion
 
         private System.Windows.Forms.GroupBox GBServer;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox CBServerType;
+        private MetroLabel label1;
+        private MetroComboBox CBServerType;
         private System.Windows.Forms.GroupBox GBMaintainance;
         private System.Windows.Forms.GroupBox GBCustomSettings;
-        private System.Windows.Forms.Button BtnLaunch;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox TxtOptFlag;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox TxtOptArg;
-        private System.Windows.Forms.Label label5;
+        private MetroButton BtnLaunch;
+        private MetroLabel label7;
+        private MetroTextBox TxtOptFlag;
+        private MetroLabel label6;
+        private MetroTextBox TxtOptArg;
+        private MetroLabel label5;
         private System.Windows.Forms.NumericUpDown NumMaxRam;
-        private System.Windows.Forms.TrackBar TBMaxRam;
-        private System.Windows.Forms.Label label4;
+        private MetroTrackBar TBMaxRam;
+        private MetroLabel label4;
         private System.Windows.Forms.NumericUpDown NumMinRam;
-        private System.Windows.Forms.TrackBar TBMinRam;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox CBJavaVersion;
-        private System.Windows.Forms.TextBox TxtJarFile;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.ComboBox CBUpdateBranch;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ComboBox CBUpdateBehaviour;
-        private System.Windows.Forms.Button BtnDownloadDev;
-        private System.Windows.Forms.Button BtnDownloadBeta;
-        private System.Windows.Forms.Button BtnDownloadRec;
-        private System.Windows.Forms.LinkLabel LLblSite;
+        private MetroTrackBar TBMinRam;
+        private MetroLabel label3;
+        private MetroLabel label2;
+        private MetroComboBox CBJavaVersion;
+        private MetroTextBox TxtJarFile;
+        private MetroLabel label9;
+        private MetroComboBox CBUpdateBranch;
+        private MetroLabel label8;
+        private MetroComboBox CBUpdateBehaviour;
+        private MetroButton BtnDownloadDev;
+        private MetroButton BtnDownloadBeta;
+        private MetroButton BtnDownloadRec;
+        private MetroLink LLblSite;
         private System.Windows.Forms.PictureBox PBServerLogo;
-        private System.Windows.Forms.Label LblCurrentVer;
-        private System.Windows.Forms.Button btnGetCurrentBuild;
-        private System.Windows.Forms.Label LblLatestDevValue;
-        private System.Windows.Forms.Label LblLatestBetaValue;
-        private System.Windows.Forms.Label LblLatestRecommendedValue;
-        private System.Windows.Forms.Label LblLatestBeta;
-        private System.Windows.Forms.Label LblLatestDevelopment;
-        private System.Windows.Forms.Label LblLatestRecommended;
-        private System.Windows.Forms.Button BtnBrowseJarFile;
+        private MetroLabel LblCurrentVer;
+        private MetroButton btnGetCurrentBuild;
+        private MetroLabel LblLatestDevValue;
+        private MetroLabel LblLatestBetaValue;
+        private MetroLabel LblLatestRecommendedValue;
+        private MetroLabel LblLatestBeta;
+        private MetroLabel LblLatestDevelopment;
+        private MetroLabel LblLatestRecommended;
+        private MetroButton BtnBrowseJarFile;
 		private System.Windows.Forms.ErrorProvider errorProvider;
 	}
 }

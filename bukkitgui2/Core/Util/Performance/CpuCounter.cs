@@ -1,6 +1,6 @@
 ﻿// CpuCounter.cs in bukkitgui2/bukkitgui2
 // Created 2014/07/13
-// Last edited at 2014/07/19 18:24
+// Last edited at 2014/08/17 11:19
 // ©Bertware, visit http://bertware.net
 
 using System;
@@ -78,7 +78,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Performance
 			}
 			catch (Exception exception)
 			{
-				Logger.Log(LogLevel.Warning,"CpuCounter", "Failed to update CpuCounter values", exception.Message);
+				Logger.Log(LogLevel.Warning, "CpuCounter", "Failed to update CpuCounter values", exception.Message);
 			}
 		}
 

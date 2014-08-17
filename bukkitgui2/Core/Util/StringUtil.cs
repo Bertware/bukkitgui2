@@ -1,6 +1,6 @@
 ﻿// StringUtil.cs in bukkitgui2/bukkitgui2
 // Created 2014/08/06
-// Last edited at 2014/08/06 10:40
+// Last edited at 2014/08/17 11:19
 // ©Bertware, visit http://bertware.net
 
 using System;
@@ -24,7 +24,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util
 
 		public static string ListToCsv<T>(List<T> list)
 		{
-			if (list == null || list.Count <1) return "";
+			if (list == null || list.Count < 1) return "";
 			string result = "";
 			foreach (Object obj in list)
 			{
@@ -33,7 +33,5 @@ namespace Net.Bertware.Bukkitgui2.Core.Util
 			result = result.Substring(0, result.Length - 2); //remove the last ", "
 			return result;
 		}
-
-
 	}
 }
