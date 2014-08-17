@@ -15,6 +15,7 @@ using Net.Bertware.Bukkitgui2.Core;
 using Net.Bertware.Bukkitgui2.Core.Configuration;
 using Net.Bertware.Bukkitgui2.Core.Logging;
 using Net.Bertware.Bukkitgui2.Core.Util.Performance;
+using Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler;
 using Net.Bertware.Bukkitgui2.MinecraftServers;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Starter
@@ -368,6 +369,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			if (CBUpdateBehaviour.SelectedIndex < 1) return;
 			if (CBUpdateBranch.SelectedItem == null || string.IsNullOrEmpty(CBUpdateBranch.SelectedItem.ToString())) return;
 
+			ProcessHandler.SetStatusStarting(); // already show that the server is starting
 			ConsoleTab.WriteOut("__________________________________________________________________");
 			ConsoleTab.WriteOut("Performing version check... Branch: " + CBUpdateBranch.SelectedItem);
 

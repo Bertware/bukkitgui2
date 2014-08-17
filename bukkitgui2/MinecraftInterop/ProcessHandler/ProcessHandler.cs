@@ -101,6 +101,15 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler
 		/// </summary>
 		public delegate void SpecificServerStatusEvent();
 
+		/// <summary>
+		/// Raise the server starting event, to anounce that the server will be started, while in reality, it could take up some time before the process is actually started. (e.g. update check before starting the server)
+		/// Use with care! 
+		/// </summary>
+		/// <remarks>Used for the update check in the starter Addon</remarks>
+		internal static void SetStatusStarting()
+		{
+			RaiseServerStarting();
+		}
 
 		/// <summary>
 		///     This event is raised before the server is going to start

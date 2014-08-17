@@ -39,7 +39,7 @@ namespace Net.Bertware.Bukkitgui2.UI
 			this.ToolStripBtnRestart = new System.Windows.Forms.ToolStripMenuItem();
 			this.metroStyleExtender = new MetroFramework.Components.MetroStyleExtender(this.components);
 			this.LblToolsMainServerOutput = new MetroFramework.Controls.MetroLabel();
-			this.LblToolsSplit = new MetroFramework.Controls.MetroLabel();
+			this.SpinServerState = new MetroFramework.Controls.MetroProgressSpinner();
 			this.ToolStripBtn.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -61,7 +61,7 @@ namespace Net.Bertware.Bukkitgui2.UI
 			this.LblToolsMainServerState.ContextMenuStrip = this.ToolStripBtn;
 			this.LblToolsMainServerState.Location = new System.Drawing.Point(0, 537);
 			this.LblToolsMainServerState.Name = "LblToolsMainServerState";
-			this.LblToolsMainServerState.Size = new System.Drawing.Size(128, 23);
+			this.LblToolsMainServerState.Size = new System.Drawing.Size(144, 23);
 			this.LblToolsMainServerState.TabIndex = 1;
 			this.LblToolsMainServerState.Text = "Server stopped";
 			// 
@@ -78,38 +78,43 @@ namespace Net.Bertware.Bukkitgui2.UI
 			this.ToolStripBtnStartStop.Name = "ToolStripBtnStartStop";
 			this.ToolStripBtnStartStop.Size = new System.Drawing.Size(110, 22);
 			this.ToolStripBtnStartStop.Text = "Start";
+			this.ToolStripBtnStartStop.Click += new System.EventHandler(this.ToolStripBtnStartStop_Click);
 			// 
 			// ToolStripBtnRestart
 			// 
 			this.ToolStripBtnRestart.Name = "ToolStripBtnRestart";
 			this.ToolStripBtnRestart.Size = new System.Drawing.Size(110, 22);
 			this.ToolStripBtnRestart.Text = "Restart";
+			this.ToolStripBtnRestart.Click += new System.EventHandler(this.ToolStripBtnRestart_Click);
 			// 
 			// LblToolsMainServerOutput
 			// 
 			this.LblToolsMainServerOutput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.LblToolsMainServerOutput.Location = new System.Drawing.Point(152, 537);
+			this.LblToolsMainServerOutput.Location = new System.Drawing.Point(172, 537);
 			this.LblToolsMainServerOutput.Name = "LblToolsMainServerOutput";
-			this.LblToolsMainServerOutput.Size = new System.Drawing.Size(709, 23);
+			this.LblToolsMainServerOutput.Size = new System.Drawing.Size(689, 23);
 			this.LblToolsMainServerOutput.TabIndex = 2;
 			this.LblToolsMainServerOutput.Text = "No output to show";
 			// 
-			// LblToolsSplit
+			// SpinServerState
 			// 
-			this.LblToolsSplit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.LblToolsSplit.Location = new System.Drawing.Point(134, 537);
-			this.LblToolsSplit.Name = "LblToolsSplit";
-			this.LblToolsSplit.Size = new System.Drawing.Size(12, 23);
-			this.LblToolsSplit.TabIndex = 3;
-			this.LblToolsSplit.Text = "|";
+			this.SpinServerState.Location = new System.Drawing.Point(150, 540);
+			this.SpinServerState.Maximum = 100;
+			this.SpinServerState.Name = "SpinServerState";
+			this.SpinServerState.Size = new System.Drawing.Size(16, 16);
+			this.SpinServerState.Speed = 2F;
+			this.SpinServerState.Spinning = false;
+			this.SpinServerState.TabIndex = 4;
+			this.SpinServerState.UseSelectable = true;
+			this.SpinServerState.Value = 100;
 			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(884, 562);
-			this.Controls.Add(this.LblToolsSplit);
+			this.Controls.Add(this.SpinServerState);
 			this.Controls.Add(this.LblToolsMainServerOutput);
 			this.Controls.Add(this.LblToolsMainServerState);
 			this.Controls.Add(this.TabCtrlAddons);
@@ -128,9 +133,9 @@ namespace Net.Bertware.Bukkitgui2.UI
 		private MetroLabel LblToolsMainServerState;
 		private MetroFramework.Components.MetroStyleExtender metroStyleExtender;
 		private MetroLabel LblToolsMainServerOutput;
-		private MetroLabel LblToolsSplit;
 		private MetroContextMenu ToolStripBtn;
 		private System.Windows.Forms.ToolStripMenuItem ToolStripBtnStartStop;
 		private System.Windows.Forms.ToolStripMenuItem ToolStripBtnRestart;
+		private MetroProgressSpinner SpinServerState;
     }
 }

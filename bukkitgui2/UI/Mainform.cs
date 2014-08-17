@@ -82,14 +82,18 @@ namespace Net.Bertware.Bukkitgui2.UI
 						ToolStripBtnStartStop.Enabled = false;
 						ToolStripBtnStartStop.Text = Locale.Tr("Starting...");
 						Text = FormTitle + Locale.Tr("Starting...");
-
+						SpinServerState.Spinning = true;
+						SpinServerState.Speed = 7;
+						SpinServerState.Value = 15;
 						break;
 					case ServerState.Running:
 						LblToolsMainServerState.Text = Locale.Tr("Server running");
 						ToolStripBtnStartStop.Enabled = true;
 						ToolStripBtnStartStop.Text = Locale.Tr("Stop");
 						Text = FormTitle + " - " + Locale.Tr("Server running");
-
+						SpinServerState.Spinning = true;
+						SpinServerState.Speed = 1;
+						SpinServerState.Value = 100;
 						break;
 
 					case ServerState.Stopping:
@@ -97,7 +101,9 @@ namespace Net.Bertware.Bukkitgui2.UI
 						ToolStripBtnStartStop.Enabled = false;
 						ToolStripBtnStartStop.Text = Locale.Tr("Stopping...");
 						Text = FormTitle + " - " + Locale.Tr("Server stopping");
-
+												SpinServerState.Spinning = true;
+						SpinServerState.Speed = 7;
+						SpinServerState.Value = 15;
 						break;
 					case ServerState.Stopped:
 						LblToolsMainServerState.Text = Locale.Tr("Stopped");
@@ -105,7 +111,10 @@ namespace Net.Bertware.Bukkitgui2.UI
 						ToolStripBtnStartStop.Enabled = true;
 						ToolStripBtnStartStop.Text = Locale.Tr("Start");
 						Text = FormTitle + " - " + Locale.Tr("Server stopped");
-
+						
+						SpinServerState.Spinning = false;
+						SpinServerState.Speed = 1;
+						SpinServerState.Value = 100;
 						break;
 				}
 			}
