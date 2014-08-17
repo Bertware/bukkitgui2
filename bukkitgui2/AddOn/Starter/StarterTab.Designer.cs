@@ -222,6 +222,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			this.TBMaxRam.Size = new System.Drawing.Size(247, 45);
 			this.TBMaxRam.SmallChange = 256;
 			this.TBMaxRam.TabIndex = 9;
+			this.TBMaxRam.ValueChanged += new System.EventHandler(this.TbMaxRamScroll);
 			// 
 			// label4
 			// 
@@ -260,6 +261,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			this.TBMinRam.Size = new System.Drawing.Size(247, 45);
 			this.TBMinRam.SmallChange = 256;
 			this.TBMinRam.TabIndex = 6;
+			this.TBMinRam.ValueChanged += new System.EventHandler(this.TbMinRamScroll);
 			// 
 			// label3
 			// 

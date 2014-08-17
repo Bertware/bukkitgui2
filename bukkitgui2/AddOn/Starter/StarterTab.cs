@@ -221,24 +221,24 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			//
 			// DO NOT TRANSLATE ABOVE
 			// 
-
-			CBUpdateBehaviour.SelectedIndex = Config.ReadInt("starter", "updatebehaviour", 0);
-
+			int updatebehaviour = Config.ReadInt("starter", "updatebehaviour", 0);
+			CBUpdateBehaviour.SelectedIndex = 0;
+			if (CBUpdateBehaviour.Items.Count > updatebehaviour) CBUpdateBehaviour.SelectedIndex = updatebehaviour;
 			CBUpdateBranch.Items.Clear();
 
 			//
 			// DO NOT TRANSLATE BELOW
 			// 
 
-			if (updateRb)
+			if (notifyRb)
 			{
 				CBUpdateBranch.Items.Add("Recommended builds");
 			}
-			if (updateBeta)
+			if (notifyBeta)
 			{
 				CBUpdateBranch.Items.Add("Beta builds");
 			}
-			if (updateDev)
+			if (notifyDev)
 			{
 				CBUpdateBranch.Items.Add("Development builds");
 			}
@@ -246,8 +246,9 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			//
 			// DO NOT TRANSLATE ABOVE
 			// 
-
-			if (CBUpdateBranch.Items.Count > 0) CBUpdateBranch.SelectedIndex = Config.ReadInt("starter", "updatebranch", 0);
+			int updatebranch = Config.ReadInt("starter", "updatebranch", 0);
+			if (CBUpdateBranch.Items.Count > 0) CBUpdateBranch.SelectedIndex = 0;
+			if (CBUpdateBranch.Items.Count > updatebranch) CBUpdateBranch.SelectedIndex = updatebranch;
 
 			// If there is a custom settings control, load it
 			if (server.HasCustomSettingsControl)
