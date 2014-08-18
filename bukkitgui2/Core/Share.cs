@@ -52,7 +52,7 @@ namespace Net.Bertware.Bukkitgui2.Core
 		/// <summary>
 		///     Directory containing the assembly.
 		/// </summary>
-		public static readonly string AssemblyLocation = new FileInfo(AssemblyFullName).DirectoryName;
+		public static readonly string AssemblyLocation = new FileInfo(AssemblyFullName).DirectoryName + "\\";
 
 		public static void Initialize()
 		{

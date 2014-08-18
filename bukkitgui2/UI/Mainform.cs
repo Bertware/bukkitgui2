@@ -6,6 +6,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Windows.Forms;
 using MetroFramework.Forms;
 using Net.Bertware.Bukkitgui2.AddOn;
@@ -28,6 +29,8 @@ namespace Net.Bertware.Bukkitgui2.UI
 		{
 			Reference = this;
 			Share.MainFormHandle = Handle; //Immediatly set the handle for form operations, tray issues, etc..
+			new Thread(() => new SplashScreen().ShowDialog()).Start();
+
 
 			// Start loading everything to the UI
 			InitializeComponent();
@@ -45,6 +48,7 @@ namespace Net.Bertware.Bukkitgui2.UI
 
 
 			LoadTabs();
+			SplashScreen.Reference.SafeFormClose();
 		}
 
 		public void ShowForm()

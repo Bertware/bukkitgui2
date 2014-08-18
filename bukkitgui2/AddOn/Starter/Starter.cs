@@ -214,7 +214,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 		{
 			server.PrepareLaunch();
 			string parameters = server.GetLaunchParameters();
-			string executable = server.CustomAssembly.Location;
+			string executable = server.CustomAssembly;
 			ProcessHandler.StartServer(executable, parameters, server);
 		}
 	}

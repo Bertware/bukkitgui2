@@ -34,13 +34,17 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(763, 527);
+			this.ClientSize = new System.Drawing.Size(491, 324);
 			this.Name = "SixtySetup";
+			this.Resizable = false;
+			this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
 			this.Text = "SixtySetup";
+			this.Load += new System.EventHandler(this.SixtySetup_Load);
 			this.ResumeLayout(false);
 
 		}
 
 		#endregion
+
 	}
 }

@@ -62,7 +62,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers
 		/// <summary>
 		///     The custom assembly to be used. Can be set in PrepareLaunch()
 		/// </summary>
-		Assembly CustomAssembly { get; }
+		string CustomAssembly { get; }
 
 		/// <summary>
 		///     Get the launch parameters

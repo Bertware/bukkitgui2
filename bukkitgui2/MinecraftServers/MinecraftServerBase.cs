@@ -104,7 +104,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers
 
 		public bool HasCustomAssembly { get; protected set; }
 
-		public Assembly CustomAssembly { get; protected set; }
+		public string CustomAssembly { get; protected set; }
 
 		public virtual string GetLaunchParameters(string defaultParameters = "")
 		{

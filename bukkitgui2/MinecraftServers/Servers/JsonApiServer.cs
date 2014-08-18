@@ -4,9 +4,11 @@
 // ©Bertware, visit http://bertware.net
 
 using System;
+using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
 using Net.Bertware.Bukkitgui2.AddOn.Starter;
+using Net.Bertware.Bukkitgui2.Core.FileLocation;
 using Net.Bertware.Bukkitgui2.MinecraftServers.Tools;
 using Net.Bertware.Bukkitgui2.Properties;
 
@@ -18,9 +20,20 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers.Servers
 		{
 			Name = "JsonApi";
 
-			CustomAssembly = Assembly.Load(Resources.JsonApiConnector);
+			HasCustomAssembly = true;
+			CustomAssembly = ""; // will be set in preparelaunch
 			SupportsPlugins = false; //disable plugin manager on this one
+			HasCustomSettingsControl = true;
 			CustomSettingsControl = new JsonApiCredentialsSettingsControl();
+		}
+
+		public override void PrepareLaunch()
+		{
+			this.CustomAssembly = Fl.SafeLocation(RequestFile.Temp) + "connector.exe";
+			using (FileStream fs = File.Create(CustomAssembly))
+			{
+				fs.Write(Resources.JsonApiConnector, 0, Resources.JsonApiConnector.Length);
+			}
 		}
 
 		public override string GetLaunchParameters(string defaultParameters = "")

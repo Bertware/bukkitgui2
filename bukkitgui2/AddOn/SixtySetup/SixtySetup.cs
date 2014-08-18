@@ -3,7 +3,10 @@
 // Last edited at 2014/08/17 11:19
 // ©Bertware, visit http://bertware.net
 
+using System;
 using System.Windows.Forms;
+using MetroFramework.Forms;
+using MetroMessageBox = MetroFramework.MetroMessageBox;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.SixtySetup
 {
@@ -20,11 +23,27 @@ namespace Net.Bertware.Bukkitgui2.AddOn.SixtySetup
 	///     Remote servers not supported since the lack of support for running a command on the remote console without SSH
 	///     access (this would be too much access to ask from users)
 	/// </remarks>
-	public partial class SixtySetup : Form
+	public partial class SixtySetup : MetroForm
 	{
 		public SixtySetup()
 		{
 			InitializeComponent();
+		}
+
+		private void SixtySetup_Load(object sender, System.EventArgs e)
+		{
+			if (MetroMessageBox.Show(this, "Do you want to create a new server?" + Environment.NewLine +
+			                               "Select YES in case you do not have a previous server you'd like to use." +
+			                               Environment.NewLine +
+			                               "Select NO in case you want to use the GUI with an existing server",
+				"Create a new server?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No) this.Close();
+
+
+		}
+
+		private void metroTile1_Click(object sender, EventArgs e)
+		{
+
 		}
 	}
 }

@@ -682,27 +682,30 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 		{
 			if (TxtJarFile.Text == "")
 			{
-				TxtJarFile.Text = Share.AssemblyLocation + GetSelectedServer().Name.ToLower(); // set GUI location as server folder
+				TxtJarFile.Text = Share.AssemblyLocation + GetSelectedServer().Name.ToLower() + ".jar"; // set GUI location as server folder
 			}
 			GetSelectedServer().DownloadRecommendedVersion(TxtJarFile.Text);
+			ValidateInput();
 		}
 
 		private void BtnDownloadBeta_Click(object sender, EventArgs e)
 		{
 			if (TxtJarFile.Text == "")
 			{
-				TxtJarFile.Text = Share.AssemblyLocation + GetSelectedServer().Name.ToLower(); // set GUI location as server folder
+				TxtJarFile.Text = Share.AssemblyLocation + GetSelectedServer().Name.ToLower() + "-beta.jar"; // set GUI location as server folder
 			}
 			GetSelectedServer().DownloadBetaVersion(TxtJarFile.Text);
+			ValidateInput();
 		}
 
 		private void BtnDownloadDev_Click(object sender, EventArgs e)
 		{
 			if (TxtJarFile.Text == "")
 			{
-				TxtJarFile.Text = Share.AssemblyLocation + GetSelectedServer().Name.ToLower(); // set GUI location as server folder
+				TxtJarFile.Text = Share.AssemblyLocation + GetSelectedServer().Name.ToLower() + "-dev.jar"; // set GUI location as server folder
 			}
 			GetSelectedServer().DownloadDevVersion(TxtJarFile.Text);
+			ValidateInput();
 		}
 
 		/// <summary>
