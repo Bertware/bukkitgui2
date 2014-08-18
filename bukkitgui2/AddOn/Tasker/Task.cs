@@ -13,11 +13,24 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 {
 	public class Task
 	{
-		public static readonly List<ITrigger> AllTriggers =
-			DynamicModuleLoader.GetClassesOfType<ITrigger>("Net.Bertware.Bukkitgui2.AddOn.Tasker.Trigger");
+		public static List<ITrigger> AllTriggers
+		{
+			get
+			{
+				return DynamicModuleLoader.GetClassesOfType<ITrigger>("Net.Bertware.Bukkitgui2.AddOn.Tasker.Trigger");
+			}
+		}
 
-		public static readonly List<IAction> AllActions =
-			DynamicModuleLoader.GetClassesOfType<IAction>("Net.Bertware.Bukkitgui2.AddOn.Tasker.Action");
+
+		public static  List<IAction> AllActions
+		{
+			get
+			{
+				return DynamicModuleLoader.GetClassesOfType<IAction>("Net.Bertware.Bukkitgui2.AddOn.Tasker.Action");
+			}
+		}
+
+	
 
 		public string Name { get; private set; }
 		public bool Enabled { get; private set; }
@@ -44,19 +57,23 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 		{
 			Name = "";
 			Enabled = false;
+			Initialize();
 		}
 
 		public Task(string serializedData)
 		{
 			Deserialize(serializedData);
+			Initialize();
 		}
 
 		public Task(string name, bool enabled, ITrigger trigger, List<IAction> actions)
 		{
 			Name = name;
-			Enabled = enabled;
+
 			Trigger = trigger;
 			Actions = actions;
+					
+			Initialize();
 		}
 
 		public void Initialize()
@@ -65,7 +82,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 			if (Actions == null) return;
 
 			Trigger.TaskerTriggerFired += ExecuteActions;
-			if (Enabled) Trigger.Enable();
+			if (Enabled) Enable();
 		}
 
 		public void Dispose()

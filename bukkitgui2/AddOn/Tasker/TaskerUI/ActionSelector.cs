@@ -43,6 +43,10 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.TaskerUI
 			{
 				if (cbAction.SelectedItem.ToString().Equals(action.Name)) _selectedAction = action;
 			}
+			if (_selectedAction != null)
+			{
+				lblActionDescription.Text = _selectedAction.ParameterDescription;
+			}
 		}
 
 		private void txtactionParam_TextChanged(object sender, EventArgs e)

@@ -37,9 +37,9 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			this.CIConsoleInput = new Net.Bertware.Bukkitgui2.Controls.ConsoleInput.ConsoleInput();
 			this.MCCOut = new Net.Bertware.Bukkitgui2.Controls.MinecraftConsole.MinecraftConsole();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
-			this.performanceMonitor1 = new Net.Bertware.Bukkitgui2.Controls.PerformanceMonitor.PerformanceMonitor();
+			this.performanceMonitor = new Net.Bertware.Bukkitgui2.Controls.PerformanceMonitor.PerformanceMonitor();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
-			this.quickButtons1 = new Net.Bertware.Bukkitgui2.Controls.QuickButtons.QuickButtons();
+			this.quickButtons = new Net.Bertware.Bukkitgui2.Controls.QuickButtons.QuickButtons();
 			this.groupBox1.SuspendLayout();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
@@ -100,12 +100,17 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			// 
 			this.CIConsoleInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			//this.CIConsoleInput.AutoCompletionSource = System.Windows.Forms.AutoCompleteMode.Suggest;
 			this.CIConsoleInput.AutoCompletion = true;
+			this.CIConsoleInput.Lines = new string[0];
 			this.CIConsoleInput.Location = new System.Drawing.Point(0, 332);
+			this.CIConsoleInput.MaxLength = 32767;
 			this.CIConsoleInput.Name = "CIConsoleInput";
+			this.CIConsoleInput.PasswordChar = '\0';
+			this.CIConsoleInput.ScrollBars = System.Windows.Forms.ScrollBars.None;
+			this.CIConsoleInput.SelectedText = "";
 			this.CIConsoleInput.Size = new System.Drawing.Size(624, 20);
 			this.CIConsoleInput.TabIndex = 1;
+			this.CIConsoleInput.UseSelectable = true;
 			// 
 			// MCCOut
 			// 
@@ -133,7 +138,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			// 
 			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.groupBox2.Controls.Add(this.performanceMonitor1);
+			this.groupBox2.Controls.Add(this.performanceMonitor);
 			this.groupBox2.Location = new System.Drawing.Point(170, 380);
 			this.groupBox2.Name = "groupBox2";
 			this.groupBox2.Size = new System.Drawing.Size(624, 117);
@@ -141,18 +146,18 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Performance";
 			// 
-			// performanceMonitor1
+			// performanceMonitor
 			// 
-			this.performanceMonitor1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.performanceMonitor1.Location = new System.Drawing.Point(3, 16);
-			this.performanceMonitor1.Name = "performanceMonitor1";
-			this.performanceMonitor1.Size = new System.Drawing.Size(618, 98);
-			this.performanceMonitor1.TabIndex = 0;
+			this.performanceMonitor.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.performanceMonitor.Location = new System.Drawing.Point(3, 16);
+			this.performanceMonitor.Name = "performanceMonitor";
+			this.performanceMonitor.Size = new System.Drawing.Size(618, 98);
+			this.performanceMonitor.TabIndex = 0;
 			// 
 			// groupBox3
 			// 
 			this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.groupBox3.Controls.Add(this.quickButtons1);
+			this.groupBox3.Controls.Add(this.quickButtons);
 			this.groupBox3.Location = new System.Drawing.Point(7, 380);
 			this.groupBox3.Name = "groupBox3";
 			this.groupBox3.Size = new System.Drawing.Size(157, 117);
@@ -160,16 +165,16 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "Quick Actions";
 			// 
-			// quickButtons1
+			// quickButtons
 			// 
-			this.quickButtons1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.quickButtons1.Location = new System.Drawing.Point(3, 16);
-			this.quickButtons1.Name = "quickButtons1";
-			this.quickButtons1.Size = new System.Drawing.Size(151, 98);
-			this.quickButtons1.TabIndex = 0;
-			//
+			this.quickButtons.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.quickButtons.Location = new System.Drawing.Point(3, 16);
+			this.quickButtons.Name = "quickButtons";
+			this.quickButtons.Size = new System.Drawing.Size(151, 98);
+			this.quickButtons.TabIndex = 0;
+			// 
 			// ConsoleTab
-			//
+			// 
 			this.BackColor = System.Drawing.Color.White;
 			this.Controls.Add(this.groupBox3);
 			this.Controls.Add(this.groupBox2);
@@ -179,7 +184,6 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			this.groupBox1.ResumeLayout(false);
 			this.splitContainer1.Panel1.ResumeLayout(false);
 			this.splitContainer1.Panel2.ResumeLayout(false);
-			this.splitContainer1.Panel2.PerformLayout();
 			this.splitContainer1.ResumeLayout(false);
 			this.groupBox2.ResumeLayout(false);
 			this.groupBox3.ResumeLayout(false);
@@ -195,8 +199,8 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
         private Controls.ConsoleInput.ConsoleInput CIConsoleInput;
-        private QuickButtons quickButtons1;
-        private Controls.PerformanceMonitor.PerformanceMonitor performanceMonitor1;
+        internal QuickButtons quickButtons;
+        private Controls.PerformanceMonitor.PerformanceMonitor performanceMonitor;
 		private Controls.SortableListView.SortableListView SLVPlayers;
 		private System.Windows.Forms.ColumnHeader ColPlayers;
 

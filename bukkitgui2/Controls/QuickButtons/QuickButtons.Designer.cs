@@ -30,9 +30,10 @@ namespace Net.Bertware.Bukkitgui2.Controls.QuickButtons
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.btnStartStop = new MetroButton();
-			this.btnRestart = new MetroButton();
-			this.btnCustom = new MetroButton();
+			this.btnStartStop = new MetroFramework.Controls.MetroButton();
+			this.btnRestart = new MetroFramework.Controls.MetroButton();
+			this.btnCustom = new MetroFramework.Controls.MetroButton();
+			this.metroToolTip = new MetroFramework.Components.MetroToolTip();
 			this.SuspendLayout();
 			// 
 			// btnStartStop
@@ -42,6 +43,8 @@ namespace Net.Bertware.Bukkitgui2.Controls.QuickButtons
 			this.btnStartStop.Size = new System.Drawing.Size(144, 23);
 			this.btnStartStop.TabIndex = 0;
 			this.btnStartStop.Text = "Start";
+			this.metroToolTip.SetToolTip(this.btnStartStop, "Start the server");
+			this.btnStartStop.UseSelectable = true;
 			this.btnStartStop.Click += new System.EventHandler(this.BtnStartStopClick);
 			// 
 			// btnRestart
@@ -51,6 +54,8 @@ namespace Net.Bertware.Bukkitgui2.Controls.QuickButtons
 			this.btnRestart.Size = new System.Drawing.Size(144, 23);
 			this.btnRestart.TabIndex = 1;
 			this.btnRestart.Text = "Restart";
+			this.metroToolTip.SetToolTip(this.btnRestart, "Restart the server");
+			this.btnRestart.UseSelectable = true;
 			// 
 			// btnCustom
 			// 
@@ -58,8 +63,20 @@ namespace Net.Bertware.Bukkitgui2.Controls.QuickButtons
 			this.btnCustom.Name = "btnCustom";
 			this.btnCustom.Size = new System.Drawing.Size(144, 23);
 			this.btnCustom.TabIndex = 2;
-			this.btnCustom.Text = "Custom";
+			this.btnCustom.Text = "Run Task";
+			this.metroToolTip.SetToolTip(this.btnCustom, "Run a task.\r\nNote: you should create a task in the task manager first!\r\nUse the \"" +
+        "task button\" trigger so the task gets executed when you press this button\r\n");
+			this.btnCustom.UseSelectable = true;
 			this.btnCustom.Click += new System.EventHandler(this.btnCustom_Click);
+			// 
+			// metroToolTip
+			// 
+			this.metroToolTip.AutoPopDelay = 5000;
+			this.metroToolTip.InitialDelay = 250;
+			this.metroToolTip.ReshowDelay = 100;
+			this.metroToolTip.Style = MetroFramework.MetroColorStyle.Blue;
+			this.metroToolTip.StyleManager = null;
+			this.metroToolTip.Theme = MetroFramework.MetroThemeStyle.Light;
 			// 
 			// QuickButtons
 			// 
@@ -79,6 +96,7 @@ namespace Net.Bertware.Bukkitgui2.Controls.QuickButtons
         private MetroButton btnStartStop;
 		private MetroButton btnRestart;
 		private MetroButton btnCustom;
+		private MetroFramework.Components.MetroToolTip metroToolTip;
 
     }
 }

@@ -19,6 +19,14 @@ namespace Net.Bertware.Bukkitgui2.Controls.QuickButtons
 			ProcessHandler.ServerStatusChanged += HandleServerStatusChange;
 		}
 
+		public event EventHandler TaskButtonPressed;
+
+		protected virtual void OnTaskButtonPressed()
+		{
+			var handler = TaskButtonPressed;
+			if (handler != null) handler(this, EventArgs.Empty);
+		}
+
 		private void HandleServerStatusChange(ServerState currentState)
 		{
 			//suport for calls from other threads
@@ -32,18 +40,24 @@ namespace Net.Bertware.Bukkitgui2.Controls.QuickButtons
 				{
 					case ServerState.Starting:
 						btnStartStop.Enabled = false;
+						btnRestart.Enabled = false;
 						btnStartStop.Text = Locale.Tr("Starting...");
+						metroToolTip.SetToolTip(btnStartStop,"Stop the server");
 						break;
 					case ServerState.Running:
 						btnStartStop.Enabled = true;
+						btnRestart.Enabled = true;
 						btnStartStop.Text = Locale.Tr("Stop");
 						break;
 					case ServerState.Stopping:
 						btnStartStop.Enabled = false;
+						btnRestart.Enabled = false;
 						btnStartStop.Text = Locale.Tr("Stopping...");
+						metroToolTip.SetToolTip(btnStartStop, "Start the server");
 						break;
 					case ServerState.Stopped:
 						btnStartStop.Enabled = true;
+						btnRestart.Enabled = false;
 						btnStartStop.Text = Locale.Tr("Start");
 						break;
 				}
@@ -72,7 +86,7 @@ namespace Net.Bertware.Bukkitgui2.Controls.QuickButtons
 
 		private void btnCustom_Click(object sender, EventArgs e)
 		{
-			Starter.KillServer();
+			OnTaskButtonPressed();
 		}
 	}
 }

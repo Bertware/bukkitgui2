@@ -147,6 +147,7 @@
     <Compile Include="AddOn\Notifications\NotificationsSettings.Designer.cs">
       <DependentUpon>NotificationsSettings.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddOn\Tasker\Trigger\TaskButtonPressedTrigger.cs" />
     <Compile Include="AddOn\Tasker\Trigger\UnexpectedServerStopTrigger.cs" />
     <Compile Include="AddOn\Tasker\Trigger\ServerStoppingTrigger.cs" />
     <Compile Include="AddOn\Tasker\Trigger\ServerStoppedTrigger.cs" />

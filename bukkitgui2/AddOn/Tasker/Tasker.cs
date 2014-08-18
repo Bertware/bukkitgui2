@@ -73,7 +73,6 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 					Task t = new Task(sr.ReadLine());
 					Logger.Log(LogLevel.Info, "Tasker", "Parsed task", t.ToString());
 					Tasks.Add(t.Name, t);
-					t.Initialize();
 				}
 			}
 			Logger.Log(LogLevel.Info, "Tasker", "Loaded all tasks");
@@ -97,6 +96,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 		/// <param name="task">the task to add</param>
 		public void AddTask(Task task)
 		{
+			task.Enable();
 			if (Tasks != null && !Tasks.ContainsKey(task.Name)) Tasks.Add(task.Name, task);
 			TaskListAltered.Invoke(Reference, EventArgs.Empty); // list changed, invoke event
 			SaveConfig();
@@ -108,6 +108,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 		/// <param name="task">the task to delete</param>
 		public void DeleteTask(Task task)
 		{
+			task.Disable();
 			if (Tasks != null && Tasks.ContainsKey(task.Name)) Tasks.Remove(task.Name);
 			TaskListAltered.Invoke(Reference, EventArgs.Empty); // list changed, invoke event
 			SaveConfig();
