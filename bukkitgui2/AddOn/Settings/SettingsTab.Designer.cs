@@ -28,14 +28,17 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			this.TVSettings = new System.Windows.Forms.TreeView();
 			this.gbSettings = new System.Windows.Forms.GroupBox();
+			this.metroStyleExtender = new MetroFramework.Components.MetroStyleExtender(this.components);
 			this.SuspendLayout();
 			// 
 			// TVSettings
 			// 
 			this.TVSettings.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+			this.metroStyleExtender.SetApplyMetroTheme(this.TVSettings, true);
 			this.TVSettings.Location = new System.Drawing.Point(3, 3);
 			this.TVSettings.Name = "TVSettings";
 			this.TVSettings.Size = new System.Drawing.Size(221, 494);
@@ -47,6 +50,8 @@
 			this.gbSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.metroStyleExtender.SetApplyMetroTheme(this.gbSettings, true);
+			this.gbSettings.BackColor = System.Drawing.Color.Transparent;
 			this.gbSettings.Location = new System.Drawing.Point(230, 3);
 			this.gbSettings.Name = "gbSettings";
 			this.gbSettings.Size = new System.Drawing.Size(567, 494);
@@ -69,5 +74,6 @@
 
 		private System.Windows.Forms.TreeView TVSettings;
 		private System.Windows.Forms.GroupBox gbSettings;
+		private MetroFramework.Components.MetroStyleExtender metroStyleExtender;
 	}
 }

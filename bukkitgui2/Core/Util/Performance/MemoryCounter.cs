@@ -81,6 +81,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Performance
 
 		public void Disable()
 		{
+			_value = 0;
 			if (_updateTimer != null) _updateTimer.Enabled = false;
 		}
 

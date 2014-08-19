@@ -6,6 +6,7 @@
 using System;
 using System.Windows.Forms;
 using MetroFramework.Controls;
+using Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler;
 
 namespace Net.Bertware.Bukkitgui2.Controls.ConsoleInput
 {
@@ -29,8 +30,21 @@ namespace Net.Bertware.Bukkitgui2.Controls.ConsoleInput
 
 		public ConsoleInput()
 		{
-			//KeyPress += HandleKeyPress;
+			KeyPress += HandleKeyPress;
 			CreateContextMenu();
+			ProcessHandler.ServerStarted +=ProcessHandler_ServerStarted;
+		}
+
+		private void ProcessHandler_ServerStarted()
+		{
+			if (this.InvokeRequired)
+			{
+				this.Invoke((MethodInvoker) ProcessHandler_ServerStarted);
+			}
+			else
+			{
+				this.Focus();
+			}	
 		}
 
 		/// <summary>

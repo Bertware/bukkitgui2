@@ -123,6 +123,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers
 		public virtual OutputParseResult ParseOutput(string text)
 		{
 			string message = ParseMessage(text);
+			if (string.IsNullOrEmpty(message)) return null;
 
 			MessageType type = ParseMessageType(message);
 
@@ -260,6 +261,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers
 
 		public virtual string FilterText(string text)
 		{
+			text = Regex.Replace(text, "(.*)Unable to instantiate org\\.fusesource\\.jansi\\.WindowsAnsiOutputStream(.*)", "");
 			text = text.Replace("Server thread/", "");
 			text = Regex.Replace(text, "\\[minecraft(-server|)\\]", "", RegexOptions.IgnoreCase);
 			// remove [minecraft] or [minecraft-server] tags, for better parsing

@@ -6,6 +6,7 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using MetroFramework.Controls;
 using Net.Bertware.Bukkitgui2.Core.Configuration;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler;
@@ -13,7 +14,7 @@ using Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Console
 {
-	public partial class ConsoleTab : UserControl, IAddonTab
+	public partial class ConsoleTab : MetroUserControl, IAddonTab
 	{
 		public IAddon ParentAddon { get; set; }
 		public static ConsoleTab Reference;

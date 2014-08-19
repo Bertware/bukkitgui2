@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
+using MetroFramework;
 using MetroFramework.Forms;
 using Net.Bertware.Bukkitgui2.AddOn;
 using Net.Bertware.Bukkitgui2.AddOn.Starter;
@@ -302,6 +303,13 @@ namespace Net.Bertware.Bukkitgui2.UI
 			{
 				Close();
 			}
+		}
+
+		private void ToggleTheme_CheckedChanged(object sender, EventArgs e)
+		{
+			metroStyleManager.Theme =  (ToggleTheme.Checked) ? MetroThemeStyle.Dark :  MetroThemeStyle.Light;
+			this.Theme = metroStyleManager.Theme;
+			this.Refresh();
 		}
 	}
 }

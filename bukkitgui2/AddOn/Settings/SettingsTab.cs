@@ -5,11 +5,12 @@
 
 using System.Collections.Generic;
 using System.Windows.Forms;
+using MetroFramework.Controls;
 using Net.Bertware.Bukkitgui2.Core.Configuration;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Settings
 {
-	public partial class SettingsTab : UserControl, IAddonTab
+	public partial class SettingsTab : MetroUserControl, IAddonTab
 	{
 		public bool IsInitialized { get; private set; }
 

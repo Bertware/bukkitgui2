@@ -35,6 +35,11 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Web
 			}
 		}
 
+		public static string GetGeoLocation(string ip)
+		{
+			return RetrieveString("http://geoip.bertware.net/?key=qXCsPUpvCvaQnWRv&ip=" + ip);
+		}
+
 		public static void DownloadFile(string url, string targetlocation, Boolean showUi, Boolean sync = false)
 		{
 			FileDownloader fileDownloadDialog = new FileDownloader();

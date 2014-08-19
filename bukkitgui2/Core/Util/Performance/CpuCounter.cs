@@ -78,6 +78,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Performance
 			}
 			catch (Exception exception)
 			{
+				_value = 0;
 				Logger.Log(LogLevel.Warning, "CpuCounter", "Failed to update CpuCounter values", exception.Message);
 			}
 		}
@@ -99,6 +100,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Performance
 
 		public void Disable()
 		{
+			_value = 0;
 			if (_updateTimer != null) _updateTimer.Enabled = false;
 		}
 	}

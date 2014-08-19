@@ -6,11 +6,12 @@
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using MetroFramework.Controls;
 using Net.Bertware.Bukkitgui2.AddOn.Tasker.TaskerUI;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 {
-	public partial class TaskerTab : UserControl, IAddonTab
+	public partial class TaskerTab : MetroUserControl, IAddonTab
 	{
 		public TaskerTab()
 		{

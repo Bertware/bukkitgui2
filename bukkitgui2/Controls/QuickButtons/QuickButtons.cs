@@ -5,13 +5,14 @@
 
 using System;
 using System.Windows.Forms;
+using MetroFramework.Controls;
 using Net.Bertware.Bukkitgui2.AddOn.Starter;
 using Net.Bertware.Bukkitgui2.Core;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler;
 
 namespace Net.Bertware.Bukkitgui2.Controls.QuickButtons
 {
-	public partial class QuickButtons : UserControl
+	public partial class QuickButtons : MetroUserControl
 	{
 		public QuickButtons()
 		{
@@ -73,14 +74,16 @@ namespace Net.Bertware.Bukkitgui2.Controls.QuickButtons
 			}
 			else
 			{
+
 				if (ProcessHandler.IsRunning)
 				{
-					ProcessHandler.StopServer();
+					ProcessHandler.StopServer(); // stop running server
 				}
 				else
 				{
 					Starter.StartServer(); // Launch with tab settings
 				}
+
 			}
 		}
 

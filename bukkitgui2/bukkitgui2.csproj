@@ -474,7 +474,7 @@
     <EmbeddedResource Include="Resources\Dll\ICSharpCode.SharpZipLib.dll" />
     <Content Include="GUI icon 32.ico" />
     <EmbeddedResource Include="Resources\Dll\MetroFramework.dll" />
-    <Content Include="Resources\Dll\MetroFramework.Design.dll" />
+    <EmbeddedResource Include="Resources\Dll\MetroFramework.Design.dll" />
     <Content Include="Resources\Dll\MetroFramework.Design.pdb" />
     <Content Include="Resources\Dll\MetroFramework.pdb" />
     <Content Include="Resources\Dll\Net.Bertware.Get.pdb" />

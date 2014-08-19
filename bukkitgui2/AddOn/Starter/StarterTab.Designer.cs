@@ -84,6 +84,8 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			// 
 			this.GBServer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.metroStyleExtender.SetApplyMetroTheme(this.GBServer, true);
+			this.GBServer.BackColor = System.Drawing.Color.Transparent;
 			this.GBServer.Controls.Add(this.BtnBrowseJarFile);
 			this.GBServer.Controls.Add(this.BtnLaunch);
 			this.GBServer.Controls.Add(this.label7);
@@ -336,6 +338,8 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			// GBMaintainance
 			// 
 			this.GBMaintainance.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.metroStyleExtender.SetApplyMetroTheme(this.GBMaintainance, true);
+			this.GBMaintainance.BackColor = System.Drawing.Color.Transparent;
 			this.GBMaintainance.Controls.Add(this.LLblSite);
 			this.GBMaintainance.Controls.Add(this.LblCurrentVer);
 			this.GBMaintainance.Controls.Add(this.btnGetCurrentBuild);
@@ -529,6 +533,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			this.GBCustomSettings.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.metroStyleExtender.SetApplyMetroTheme(this.GBCustomSettings, true);
+			this.GBCustomSettings.BackColor = System.Drawing.Color.Transparent;
 			this.GBCustomSettings.Location = new System.Drawing.Point(3, 318);
 			this.GBCustomSettings.Name = "GBCustomSettings";
 			this.GBCustomSettings.Size = new System.Drawing.Size(484, 117);

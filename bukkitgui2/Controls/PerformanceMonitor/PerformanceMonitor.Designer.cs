@@ -78,9 +78,9 @@ namespace Net.Bertware.Bukkitgui2.Controls.PerformanceMonitor
 			// 
 			// label2
 			// 
-			this.label2.Location = new System.Drawing.Point(0, 25);
+			this.label2.Location = new System.Drawing.Point(0, 21);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(75, 16);
+			this.label2.Size = new System.Drawing.Size(75, 19);
 			this.label2.TabIndex = 3;
 			this.label2.Text = "Server:";
 			this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -192,7 +192,7 @@ namespace Net.Bertware.Bukkitgui2.Controls.PerformanceMonitor
 			// 
 			this.lblServerCpuUsageValue.Location = new System.Drawing.Point(85, 25);
 			this.lblServerCpuUsageValue.Name = "lblServerCpuUsageValue";
-			this.lblServerCpuUsageValue.Size = new System.Drawing.Size(52, 15);
+			this.lblServerCpuUsageValue.Size = new System.Drawing.Size(52, 18);
 			this.lblServerCpuUsageValue.TabIndex = 16;
 			this.lblServerCpuUsageValue.Text = "100%";
 			this.lblServerCpuUsageValue.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -219,7 +219,7 @@ namespace Net.Bertware.Bukkitgui2.Controls.PerformanceMonitor
 			// 
 			this.label13.Location = new System.Drawing.Point(4, 25);
 			this.label13.Name = "label13";
-			this.label13.Size = new System.Drawing.Size(75, 15);
+			this.label13.Size = new System.Drawing.Size(75, 18);
 			this.label13.TabIndex = 13;
 			this.label13.Text = "Server:";
 			this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleRight;

@@ -4,11 +4,23 @@
 // ©Bertware, visit http://bertware.net
 
 using System;
+using System.Threading;
+using Net.Bertware.Bukkitgui2.Core.Util.Web;
 
 namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 {
 	public class Player
 	{
+		public event EventHandler DetailsLoaded; 
+
+		protected virtual void OnDetailsLoaded()
+		{
+			var handler = DetailsLoaded;
+			if (handler != null) handler(this, EventArgs.Empty);
+		}
+
+
+
 		/// <summary>
 		///     The name of this player
 		/// </summary>
@@ -47,6 +59,13 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 			Name = name;
 			Ip = ip;
 			DisplayName = displayName;
+			new Thread(GetLocation).Start();
+		}
+
+		private void GetLocation()
+		{
+			this.Location = WebUtil.GetGeoLocation(Ip);
+			OnDetailsLoaded();
 		}
 	}
 }

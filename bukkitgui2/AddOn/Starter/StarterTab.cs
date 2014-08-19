@@ -10,6 +10,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
 using MetroFramework;
+using MetroFramework.Controls;
 using Net.Bertware.Bukkitgui2.AddOn.Console;
 using Net.Bertware.Bukkitgui2.Core;
 using Net.Bertware.Bukkitgui2.Core.Configuration;
@@ -20,7 +21,7 @@ using Net.Bertware.Bukkitgui2.MinecraftServers;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 {
-	public partial class StarterTab : UserControl, IAddonTab
+	public partial class StarterTab : MetroUserControl, IAddonTab
 	{
 		private readonly Dictionary<string, IMinecraftServer> _servers;
 

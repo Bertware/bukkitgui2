@@ -38,6 +38,7 @@ namespace Net.Bertware.Bukkitgui2.Controls.QuickButtons
 			// 
 			// btnStartStop
 			// 
+			this.btnStartStop.Highlight = true;
 			this.btnStartStop.Location = new System.Drawing.Point(3, 3);
 			this.btnStartStop.Name = "btnStartStop";
 			this.btnStartStop.Size = new System.Drawing.Size(144, 23);

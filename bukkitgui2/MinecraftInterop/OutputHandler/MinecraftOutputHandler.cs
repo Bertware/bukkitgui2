@@ -6,10 +6,12 @@
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using MetroFramework;
 using Net.Bertware.Bukkitgui2.AddOn.Starter;
 using Net.Bertware.Bukkitgui2.Core.Translation;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler.PlayerActions;
 using Net.Bertware.Bukkitgui2.MinecraftServers;
+using Net.Bertware.Bukkitgui2.UI;
 
 namespace Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler
 {
@@ -241,7 +243,8 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler
 			RaiseOutputReceivedEvent(text);
 
 			OutputParseResult result = server.ParseOutput(text);
-
+			if (result == null) return;
+			
 			RaiseOutputParsedEvent(text, result);
 
 			switch (result.Type)
@@ -305,9 +308,9 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler
 		/// <param name="text"></param>
 		private static void CheckErrorCause(string text)
 		{
-			if (text == "Error: Unable to access jarfile")
+			if (text.Equals("Error: Unable to access jarfile"))
 			{
-				MessageBox.Show(
+				MetroMessageBox.Show(MainForm.Reference,
 					Translator.Tr(
 						"Java couldn't open the .jar file you provided in the superstart tab. Make sure the path is correct and the file is valid. Try downloading the file again, and make sure the file is accessible."),
 					Translator.Tr("Unable to access .jar file"), MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -315,14 +318,14 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler
 			}
 
 			if (!ProcessHandler.ProcessHandler.ServerProcess.HasExited &&
-			    (text == "[WARN] Perhaps a server is already running on that port?" ||
-			     text == "[WARN] The exception was: java.net.BindException: Address already in use: bind"))
+			    (Equals(text, "[WARN] Perhaps a server is already running on that port?") ||
+			     Equals(text, "[WARN] The exception was: java.net.BindException: Address already in use: bind")))
 			{
-				MessageBox.Show(
+				MetroMessageBox.Show(MainForm.Reference,
 					Translator.Tr(
-						"The server could not be started, because the port is already in use. Make sure there are no other servers running on this port." +
-						" An incorrectly stopped server could cause this. Make sure you have your server-ip= blank (in server.properties)." +
-						" Otherwise rebooting or logging out will resolve this issue. ") +
+						"The server could not be started, because the port is already in use. Make sure there are no other servers running on this port." + Environment.NewLine +
+						"An incorrectly stopped server could cause this. Make sure you have your server-ip= blank (in server.properties)." + Environment.NewLine +
+						"Otherwise rebooting or logging out will resolve this issue. ") + Environment.NewLine +
 					Environment.NewLine + "The exception was: java.net.BindException: Address already in use: bind",
 					Translator.Tr("Cannot bind to port"), MessageBoxButtons.OK, MessageBoxIcon.Error);
 				Starter.KillServer();

@@ -30,6 +30,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
         /// </summary>
         private void InitializeComponent()
         {
+			this.components = new System.ComponentModel.Container();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.SLVPlayers = new Net.Bertware.Bukkitgui2.Controls.SortableListView.SortableListView();
@@ -40,6 +41,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			this.performanceMonitor = new Net.Bertware.Bukkitgui2.Controls.PerformanceMonitor.PerformanceMonitor();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
 			this.quickButtons = new Net.Bertware.Bukkitgui2.Controls.QuickButtons.QuickButtons();
+			this.metroStyleExtender = new MetroFramework.Components.MetroStyleExtender(this.components);
 			this.groupBox1.SuspendLayout();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
@@ -53,6 +55,8 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.metroStyleExtender.SetApplyMetroTheme(this.groupBox1, true);
+			this.groupBox1.BackColor = System.Drawing.Color.Transparent;
 			this.groupBox1.Controls.Add(this.splitContainer1);
 			this.groupBox1.Location = new System.Drawing.Point(3, 3);
 			this.groupBox1.Name = "groupBox1";
@@ -138,6 +142,8 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			// 
 			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.metroStyleExtender.SetApplyMetroTheme(this.groupBox2, true);
+			this.groupBox2.BackColor = System.Drawing.Color.Transparent;
 			this.groupBox2.Controls.Add(this.performanceMonitor);
 			this.groupBox2.Location = new System.Drawing.Point(170, 380);
 			this.groupBox2.Name = "groupBox2";
@@ -157,6 +163,8 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			// groupBox3
 			// 
 			this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.metroStyleExtender.SetApplyMetroTheme(this.groupBox3, true);
+			this.groupBox3.BackColor = System.Drawing.Color.Transparent;
 			this.groupBox3.Controls.Add(this.quickButtons);
 			this.groupBox3.Location = new System.Drawing.Point(7, 380);
 			this.groupBox3.Name = "groupBox3";
@@ -172,6 +180,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			this.quickButtons.Name = "quickButtons";
 			this.quickButtons.Size = new System.Drawing.Size(151, 98);
 			this.quickButtons.TabIndex = 0;
+			this.quickButtons.UseSelectable = true;
 			// 
 			// ConsoleTab
 			// 
@@ -203,6 +212,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
         private Controls.PerformanceMonitor.PerformanceMonitor performanceMonitor;
 		private Controls.SortableListView.SortableListView SLVPlayers;
 		private System.Windows.Forms.ColumnHeader ColPlayers;
+		private MetroFramework.Components.MetroStyleExtender metroStyleExtender;
 
 
      }
