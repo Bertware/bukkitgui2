@@ -24,8 +24,7 @@ namespace Net.Bertware.Bukkitgui2
 			// Load app
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			UiLauncher.Run();
-			Application.Run();
+			Application.Run(new UiLauncher());
 		}
 
 		public static Assembly LoadDll(object sender, ResolveEventArgs args)
