@@ -93,6 +93,16 @@ namespace Net.Bertware.Bukkitgui2.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] ICSharpCode_SharpZipLib {
+            get {
+                object obj = ResourceManager.GetObject("ICSharpCode_SharpZipLib", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] Jayrock_Json {
             get {
                 object obj = ResourceManager.GetObject("Jayrock_Json", resourceCulture);
@@ -106,6 +116,36 @@ namespace Net.Bertware.Bukkitgui2.Properties {
         internal static byte[] JsonApiConnector {
             get {
                 object obj = ResourceManager.GetObject("JsonApiConnector", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] MetroFramework {
+            get {
+                object obj = ResourceManager.GetObject("MetroFramework", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] MetroFramework_Design {
+            get {
+                object obj = ResourceManager.GetObject("MetroFramework_Design", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Net_Bertware_Get {
+            get {
+                object obj = ResourceManager.GetObject("Net_Bertware_Get", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -137,6 +177,16 @@ namespace Net.Bertware.Bukkitgui2.Properties {
             get {
                 object obj = ResourceManager.GetObject("vanilla_logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] YamlUtility {
+            get {
+                object obj = ResourceManager.GetObject("YamlUtility", resourceCulture);
+                return ((byte[])(obj));
             }
         }
     }

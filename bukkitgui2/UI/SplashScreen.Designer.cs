@@ -82,7 +82,7 @@
 			this.ShowInTaskbar = false;
 			this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
 			this.Style = MetroFramework.MetroColorStyle.Default;
-			this.Text = "BukkitGUI- Starting...";
+			this.Text = "BukkitGUI · Starting...";
 			this.TopMost = true;
 			this.UseWaitCursor = true;
 			this.ResumeLayout(false);

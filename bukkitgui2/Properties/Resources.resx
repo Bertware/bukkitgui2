@@ -142,4 +142,19 @@
   <data name="JsonApiConnector" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\JsonApiConnector.exe;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="ICSharpCode_SharpZipLib" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\dll\icsharpcode.sharpziplib.dll;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MetroFramework" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\dll\metroframework.dll;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MetroFramework_Design" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\dll\metroframework.design.dll;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Net_Bertware_Get" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\dll\net.bertware.get.dll;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="YamlUtility" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\dll\yamlutility.dll;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

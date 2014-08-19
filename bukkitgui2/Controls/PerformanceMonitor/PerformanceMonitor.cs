@@ -28,6 +28,10 @@ namespace Net.Bertware.Bukkitgui2.Controls.PerformanceMonitor
 		public PerformanceMonitor()
 		{
 			InitializeComponent();
+			
+			// do not draw in design mode!
+			if (DesignMode) return;
+			
 			_totalRamCounter = new MemoryCounter();
 			_totalRamCounter.UpdateStats();
 			_guiRamCounter = new MemoryCounter(Process.GetCurrentProcess().Id);
@@ -60,12 +64,22 @@ namespace Net.Bertware.Bukkitgui2.Controls.PerformanceMonitor
 
 		private void PerformanceMonitor_Load(object sender, EventArgs e)
 		{
+			// do not draw in design mode!
+			if (DesignMode) return;
+			
 			_tmrRefresh = new Timer(1000);
 			_tmrRefresh.Elapsed += RefreshData;
 		}
 
 		private void PerformanceMonitor_VisibleChanged(object sender, EventArgs e)
 		{
+			// do not draw in design mode!
+			if (DesignMode)
+			{
+				_tmrRefresh.Enabled = false;
+				return;
+			}
+			
 			if (_tmrRefresh != null) _tmrRefresh.Enabled = Visible; //Do not refresh if invisible
 		}
 

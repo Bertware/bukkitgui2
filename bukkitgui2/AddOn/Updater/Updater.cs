@@ -3,6 +3,7 @@
 // Last edited at 2014/08/17 11:19
 // ©Bertware, visit http://bertware.net
 
+using System.Threading;
 using System.Windows.Forms;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Updater
@@ -42,6 +43,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Updater
 		public void Initialize()
 		{
 			ConfigPage = new UpdaterSettings();
+			CheckForUpdates();
 		}
 
 		public void Dispose()
@@ -60,6 +62,11 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Updater
 		public bool CanDisable
 		{
 			get { return true; }
+		}
+
+		public static void CheckForUpdates()
+		{
+			new Thread(() => Get.api.RunUpdateCheck(true)).Start();
 		}
 	}
 }

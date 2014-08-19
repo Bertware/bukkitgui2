@@ -6,6 +6,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
 using MetroFramework;
@@ -28,6 +29,7 @@ namespace Net.Bertware.Bukkitgui2.UI
 
 		public MainForm()
 		{
+
 			Reference = this;
 			Share.MainFormHandle = Handle; //Immediatly set the handle for form operations, tray issues, etc..
 			new Thread(() => new SplashScreen().ShowDialog()).Start();
