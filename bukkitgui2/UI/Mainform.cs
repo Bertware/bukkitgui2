@@ -52,6 +52,8 @@ namespace Net.Bertware.Bukkitgui2.UI
 
 			LoadTabs();
 			SplashScreen.Reference.SafeFormClose();
+            this.BringToFront();
+		    this.FocusMe();
 		}
 
 		public void ShowForm()

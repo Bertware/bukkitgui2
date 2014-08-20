@@ -8,13 +8,14 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Timers;
 using System.Windows.Forms;
+using MetroFramework.Controls;
 using Net.Bertware.Bukkitgui2.Core.Util.Performance;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler;
 using Timer = System.Timers.Timer;
 
 namespace Net.Bertware.Bukkitgui2.Controls.PerformanceMonitor
 {
-	public partial class PerformanceMonitor : UserControl
+	public partial class PerformanceMonitor : MetroUserControl
 	{
 		private Timer _tmrRefresh = new Timer(1000);
 		private readonly MemoryCounter _totalRamCounter;
