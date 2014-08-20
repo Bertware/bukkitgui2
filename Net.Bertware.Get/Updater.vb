@@ -38,7 +38,6 @@ Module Updater
             Dim tmp = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) & "\Bertware\Get"
 
 
-
             ' Updater tool to replace files is included in the assembly
             Dim fs As FileStream = File.Create(tmp & "\BertwareUpdater.exe")
             fs.Write(My.Resources.Updater, 0, My.Resources.Updater.Length)

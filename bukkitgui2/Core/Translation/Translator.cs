@@ -15,190 +15,190 @@ using Net.Bertware.Bukkitgui2.UI;
 
 namespace Net.Bertware.Bukkitgui2.Core.Translation
 {
-	/// <summary>
-	///     XML Translator support, Translator is cached during runtime
-	/// </summary>
-	internal static class Translator
-	{
-		private const string CteFileName = "translator.xml";
+    /// <summary>
+    ///     XML Translator support, Translator is cached during runtime
+    /// </summary>
+    internal static class Translator
+    {
+        private const string CteFileName = "translator.xml";
 
-		private static string _filepath;
+        private static string _filepath;
 
-		private static XmlDocument _xmldoc;
+        private static XmlDocument _xmldoc;
 
-		private static Dictionary<string, string> _cache;
-
-
-		/// <summary>
-		///     Indicates wether this component is initialized and can be used
-		/// </summary>
-		public static bool IsInitialized { get; private set; }
-
-		/// <summary>
-		///     Create or open needed files, create streams if needed, do everything what's needed before a Log() call can be made
-		/// </summary>
-		public static void Initialize()
-		{
-			LoadFile();
-			IsInitialized = true;
-
-			MainForm form = (MainForm) Control.FromHandle(Share.MainFormHandle);
-			form.Closing += HandleExit;
-		}
-
-		/// <summary>
-		///     Stop the logger, dispose used sources
-		/// </summary>
-		public static void Dispose()
-		{
-			SaveCache();
-		}
-
-		private static void HandleExit(object sender, EventArgs e)
-		{
-			Dispose(); //Will cause a save
-		}
-
-		/// <summary>
-		///     Load a Translator file
-		/// </summary>
-		/// <param name="location"></param>
-		public static void LoadFile(string location = "")
-		{
-			if (string.IsNullOrEmpty(location))
-			{
-				location = Fl.SafeLocation(RequestFile.Language) + CteFileName;
-			}
-
-			_filepath = location;
+        private static Dictionary<string, string> _cache;
 
 
-			Logger.Log(LogLevel.Info, "Translator", "Loading file", _filepath);
+        /// <summary>
+        ///     Indicates wether this component is initialized and can be used
+        /// </summary>
+        public static bool IsInitialized { get; private set; }
 
-			if (!File.Exists(_filepath))
-			{
-				Logger.Log(LogLevel.Info, "Translator", "Creating Translator file");
-				DirectoryInfo dirInfo = new FileInfo(_filepath).Directory;
-				if (dirInfo != null)
-				{
-					string parent = dirInfo.ToString();
-					FsUtil.CreateDirectoryIfNotExists(parent);
-				}
+        /// <summary>
+        ///     Create or open needed files, create streams if needed, do everything what's needed before a Log() call can be made
+        /// </summary>
+        public static void Initialize()
+        {
+            LoadFile();
+            IsInitialized = true;
 
-				FileStream fs = File.Create(_filepath);
-				StreamWriter sw = new StreamWriter(fs);
-				sw.WriteLine("<xml></xml>");
-				sw.Close();
-				fs.Close();
-			}
+            MainForm form = (MainForm) Control.FromHandle(Share.MainFormHandle);
+            form.Closing += HandleExit;
+        }
 
-			_xmldoc = new XmlDocument();
-			_xmldoc.Load(_filepath);
+        /// <summary>
+        ///     Stop the logger, dispose used sources
+        /// </summary>
+        public static void Dispose()
+        {
+            SaveCache();
+        }
 
-			LoadCache(); //everything's cached, we're ready to go
-		}
+        private static void HandleExit(object sender, EventArgs e)
+        {
+            Dispose(); //Will cause a save
+        }
 
-		/// <summary>
-		///     Save a Translator file
-		/// </summary>
-		/// <param name="location"></param>
-		public static void SaveFile(string location = "")
-		{
-			if (string.IsNullOrEmpty(location))
-			{
-				location = Fl.Location(RequestFile.Language) + CteFileName;
-			}
+        /// <summary>
+        ///     Load a Translator file
+        /// </summary>
+        /// <param name="location"></param>
+        public static void LoadFile(string location = "")
+        {
+            if (string.IsNullOrEmpty(location))
+            {
+                location = Fl.SafeLocation(RequestFile.Language) + CteFileName;
+            }
 
-			if (_cache.Count == 0)
-			{
-				Logger.Log(LogLevel.Debug, "Translator", "Didn't save file: nothing to save");
-				return;
-			}
-
-			_filepath = location;
-
-			Logger.Log(LogLevel.Info, "Translator", "Saving file", _filepath);
-
-			SaveCache();
-		}
-
-		/// <summary>
-		///     Read a string value from Translator
-		/// </summary>
-		/// <param name="text">The text to translate</param>
-		/// <returns>Returns the requested value</returns>
-		public static string Tr(string text)
-		{
-			if (!IsInitialized)
-			{
-				return text;
-			}
-
-			if (_cache.ContainsKey(text))
-			{
-				string value = _cache[text];
-				Logger.Log(LogLevel.Info, "Translator", "Read value", text + ":" + value);
-				return value;
-			}
-
-			_cache.Add(text, text);
-			Logger.Log(LogLevel.Info, "Translator", "Added value", text);
-			return text;
-		}
+            _filepath = location;
 
 
-		/// <summary>
-		///     Load the XMLDocument to the cache dictionary
-		/// </summary>
-		private static void LoadCache()
-		{
-			if (_xmldoc == null)
-			{
-				return;
-			}
+            Logger.Log(LogLevel.Info, "Translator", "Loading file", _filepath);
 
-			Dictionary<string, string> newcache = new Dictionary<string, string>();
+            if (!File.Exists(_filepath))
+            {
+                Logger.Log(LogLevel.Info, "Translator", "Creating Translator file");
+                DirectoryInfo dirInfo = new FileInfo(_filepath).Directory;
+                if (dirInfo != null)
+                {
+                    string parent = dirInfo.ToString();
+                    FsUtil.CreateDirectoryIfNotExists(parent);
+                }
 
-			Logger.Log(LogLevel.Info, "Translator", "Loading cache");
-			XmlElement xmle = _xmldoc.DocumentElement;
-			if (xmle == null) return;
+                FileStream fs = File.Create(_filepath);
+                StreamWriter sw = new StreamWriter(fs);
+                sw.WriteLine("<xml></xml>");
+                sw.Close();
+                fs.Close();
+            }
 
-			foreach (XmlElement entry in xmle.ChildNodes) //for each element, 
-			{
-				if (!(entry.Name == "xml" || entry.Name == "root"))
-				{
-					newcache.Add(entry.Name, entry.InnerText);
-				}
-			}
+            _xmldoc = new XmlDocument();
+            _xmldoc.Load(_filepath);
 
-			Logger.Log(LogLevel.Info, "Translator", "Loaded cache: " + newcache.Count + " entries loaded");
+            LoadCache(); //everything's cached, we're ready to go
+        }
 
-			_cache = newcache;
-		}
+        /// <summary>
+        ///     Save a Translator file
+        /// </summary>
+        /// <param name="location"></param>
+        public static void SaveFile(string location = "")
+        {
+            if (string.IsNullOrEmpty(location))
+            {
+                location = Fl.Location(RequestFile.Language) + CteFileName;
+            }
 
-		/// <summary>
-		///     Save the cache to file
-		/// </summary>
-		private static void SaveCache()
-		{
-			if (_cache == null)
-			{
-				return;
-			}
+            if (_cache.Count == 0)
+            {
+                Logger.Log(LogLevel.Debug, "Translator", "Didn't save file: nothing to save");
+                return;
+            }
+
+            _filepath = location;
+
+            Logger.Log(LogLevel.Info, "Translator", "Saving file", _filepath);
+
+            SaveCache();
+        }
+
+        /// <summary>
+        ///     Read a string value from Translator
+        /// </summary>
+        /// <param name="text">The text to translate</param>
+        /// <returns>Returns the requested value</returns>
+        public static string Tr(string text)
+        {
+            if (!IsInitialized)
+            {
+                return text;
+            }
+
+            if (_cache.ContainsKey(text))
+            {
+                string value = _cache[text];
+                Logger.Log(LogLevel.Info, "Translator", "Read value", text + ":" + value);
+                return value;
+            }
+
+            _cache.Add(text, text);
+            Logger.Log(LogLevel.Info, "Translator", "Added value", text);
+            return text;
+        }
 
 
-			Logger.Log(LogLevel.Info, "Translator", "Saving cache");
+        /// <summary>
+        ///     Load the XMLDocument to the cache dictionary
+        /// </summary>
+        private static void LoadCache()
+        {
+            if (_xmldoc == null)
+            {
+                return;
+            }
 
-			string newxml = "<xml>" + Environment.NewLine;
+            Dictionary<string, string> newcache = new Dictionary<string, string>();
 
-			foreach (KeyValuePair<string, string> entry in _cache) //for each element, 
-			{
-				newxml += "<" + entry.Key + ">" + entry.Value + "</" + entry.Key + ">" + Environment.NewLine;
-			}
-			newxml += "</xml>";
-			_xmldoc.LoadXml(newxml);
-			_xmldoc.Save(_filepath);
-			Logger.Log(LogLevel.Info, "Translator", "Saved cache");
-		}
-	}
+            Logger.Log(LogLevel.Info, "Translator", "Loading cache");
+            XmlElement xmle = _xmldoc.DocumentElement;
+            if (xmle == null) return;
+
+            foreach (XmlElement entry in xmle.ChildNodes) //for each element, 
+            {
+                if (!(entry.Name == "xml" || entry.Name == "root"))
+                {
+                    newcache.Add(entry.Name, entry.InnerText);
+                }
+            }
+
+            Logger.Log(LogLevel.Info, "Translator", "Loaded cache: " + newcache.Count + " entries loaded");
+
+            _cache = newcache;
+        }
+
+        /// <summary>
+        ///     Save the cache to file
+        /// </summary>
+        private static void SaveCache()
+        {
+            if (_cache == null)
+            {
+                return;
+            }
+
+
+            Logger.Log(LogLevel.Info, "Translator", "Saving cache");
+
+            string newxml = "<xml>" + Environment.NewLine;
+
+            foreach (KeyValuePair<string, string> entry in _cache) //for each element, 
+            {
+                newxml += "<" + entry.Key + ">" + entry.Value + "</" + entry.Key + ">" + Environment.NewLine;
+            }
+            newxml += "</xml>";
+            _xmldoc.LoadXml(newxml);
+            _xmldoc.Save(_filepath);
+            Logger.Log(LogLevel.Info, "Translator", "Saved cache");
+        }
+    }
 }

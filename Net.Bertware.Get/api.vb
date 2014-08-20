@@ -1,6 +1,6 @@
 ﻿Imports System.Security.Cryptography
-Imports System.Reflection
 Imports System.Net
+Imports System.Reflection
 Imports System.IO
 
 Public Module api
@@ -16,7 +16,7 @@ Public Module api
     ''' </summary>
     ''' <remarks></remarks>
 
-    Friend ReadOnly _
+        Friend ReadOnly _
         UA As String = "Bertware 1.3/" & My.Application.Info.AssemblyName & " " & My.Application.Info.Version.ToString &
                        "/" & MAIL
 

@@ -5,16 +5,16 @@
 
 namespace Net.Bertware.Bukkitgui2.MinecraftServers.Servers
 {
-	internal class McpcServer : MinecraftServerBase
-	{
-		public McpcServer()
-		{
-			Name = "MCPC";
-			Site = "http://minecraft.net";
-			Logo = null;
+    internal class McpcServer : MinecraftServerBase
+    {
+        public McpcServer()
+        {
+            Name = "MCPC";
+            Site = "http://minecraft.net";
+            Logo = null;
 
-			CanDownloadRecommendedVersion = true;
-			//default value for boolean is false, so all other features are disabled by default
-		}
-	}
+            CanDownloadRecommendedVersion = true;
+            //default value for boolean is false, so all other features are disabled by default
+        }
+    }
 }

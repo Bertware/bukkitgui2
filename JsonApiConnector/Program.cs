@@ -10,63 +10,63 @@ using System.Threading;
 
 namespace JsonApiConnector
 {
-	/// <summary>
-	///     Emulate a local server (standardin,standardout) by connecting to a remote Jsonapi server
-	/// </summary>
-	internal class Program
-	{
-		private static JsonApiConnector _connector;
-		public static Boolean ThreadsRunning = true;
+    /// <summary>
+    ///     Emulate a local server (standardin,standardout) by connecting to a remote Jsonapi server
+    /// </summary>
+    internal class Program
+    {
+        private static JsonApiConnector _connector;
+        public static Boolean ThreadsRunning = true;
 
-		private static void Main(string[] args)
-		{
+        private static void Main(string[] args)
+        {
             // Load embedded DLLs
             AppDomain.CurrentDomain.AssemblyResolve += LoadDll;
 
-			_connector = new JsonApiConnector(args);
-			_connector.OutputReceived += TextReceived;
+            _connector = new JsonApiConnector(args);
+            _connector.OutputReceived += TextReceived;
 
-			Thread t;
-			if (_connector.ShowConsole)
-			{
-				t = new Thread(ScanInput) {Name = "thd_ScanInput", IsBackground = true};
-				t.Start();
-			}
-			else
-			{
-				t = new Thread(ScanStdIn) {Name = "thd_ScanStdIn", IsBackground = true};
-				t.Start();
-			}
-			_connector.Connect();
-			while (_connector.IsListening())
-			{
-				Thread.Sleep(10);
-			}
-		}
+            Thread t;
+            if (_connector.ShowConsole)
+            {
+                t = new Thread(ScanInput) {Name = "thd_ScanInput", IsBackground = true};
+                t.Start();
+            }
+            else
+            {
+                t = new Thread(ScanStdIn) {Name = "thd_ScanStdIn", IsBackground = true};
+                t.Start();
+            }
+            _connector.Connect();
+            while (_connector.IsListening())
+            {
+                Thread.Sleep(10);
+            }
+        }
 
-		private static void TextReceived(string text)
-		{
-			Console.Out.WriteLine(text);
-			//Console.WriteLine(text);
-		}
+        private static void TextReceived(string text)
+        {
+            Console.Out.WriteLine(text);
+            //Console.WriteLine(text);
+        }
 
-		private static void ScanInput()
-		{
-			while (ThreadsRunning)
-			{
-				string input = Console.In.ReadLine();
-				_connector.SendConsoleCommand(input);
-			}
-		}
+        private static void ScanInput()
+        {
+            while (ThreadsRunning)
+            {
+                string input = Console.In.ReadLine();
+                _connector.SendConsoleCommand(input);
+            }
+        }
 
-		private static void ScanStdIn()
-		{
-			while (ThreadsRunning)
-			{
-				string input = Console.In.ReadLine();
-				_connector.SendConsoleCommand(input);
-			}
-		}
+        private static void ScanStdIn()
+        {
+            while (ThreadsRunning)
+            {
+                string input = Console.In.ReadLine();
+                _connector.SendConsoleCommand(input);
+            }
+        }
 
         public static Assembly LoadDll(object sender, ResolveEventArgs args)
         {
@@ -84,5 +84,5 @@ namespace JsonApiConnector
                 return Assembly.Load(assemblyData);
             }
         }
-	}
+    }
 }

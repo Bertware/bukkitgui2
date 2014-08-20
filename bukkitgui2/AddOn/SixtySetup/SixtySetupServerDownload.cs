@@ -13,52 +13,53 @@ using Net.Bertware.Bukkitgui2.MinecraftServers.Servers;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.SixtySetup
 {
-	public partial class SixtySetupServerDownload : MetroUserControl
-	{
-		private readonly IMinecraftServer _server = new BukkitServer();
+    public partial class SixtySetupServerDownload : MetroUserControl
+    {
+        private readonly IMinecraftServer _server = new BukkitServer();
 
-		public event EventHandler ServerDownloaded;
+        public event EventHandler ServerDownloaded;
 
-		protected virtual void OnServerDownloaded()
-		{
-			EventHandler handler = ServerDownloaded;
-			if (handler != null) handler(this, EventArgs.Empty);
-		}
+        protected virtual void OnServerDownloaded()
+        {
+            EventHandler handler = ServerDownloaded;
+            if (handler != null) handler(this, EventArgs.Empty);
+        }
 
-		public SixtySetupServerDownload()
-		{
-			InitializeComponent();
-		}
+        public SixtySetupServerDownload()
+        {
+            InitializeComponent();
+        }
 
-		private void metroTileRecommendedBuild_Click(object sender, EventArgs e)
-		{
-			if (ShowVersionBox(_server.FetchRecommendedVersionUiString) == DialogResult.No) return;
+        private void metroTileRecommendedBuild_Click(object sender, EventArgs e)
+        {
+            if (ShowVersionBox(_server.FetchRecommendedVersionUiString) == DialogResult.No) return;
 
-			_server.DownloadRecommendedVersion(Share.AssemblyLocation + _server.Name.ToLower() + ".jar");
-			OnServerDownloaded();
-		}
+            _server.DownloadRecommendedVersion(Share.AssemblyLocation + _server.Name.ToLower() + ".jar");
+            OnServerDownloaded();
+        }
 
-		private void MetroTileBetaBuild_Click(object sender, EventArgs e)
-		{
-			if (ShowVersionBox(_server.FetchBetaVersionUiString) == DialogResult.No) return;
+        private void MetroTileBetaBuild_Click(object sender, EventArgs e)
+        {
+            if (ShowVersionBox(_server.FetchBetaVersionUiString) == DialogResult.No) return;
 
-			_server.DownloadRecommendedVersion(Share.AssemblyLocation + _server.Name.ToLower() + "-beta.jar");
-			OnServerDownloaded();
-		}
+            _server.DownloadRecommendedVersion(Share.AssemblyLocation + _server.Name.ToLower() + "-beta.jar");
+            OnServerDownloaded();
+        }
 
-		private void MetroTileDevBuild_Click(object sender, EventArgs e)
-		{
-			if (ShowVersionBox(_server.FetchDevVersionUiString) == DialogResult.No) return;
+        private void MetroTileDevBuild_Click(object sender, EventArgs e)
+        {
+            if (ShowVersionBox(_server.FetchDevVersionUiString) == DialogResult.No) return;
 
-			_server.DownloadDevVersion(Share.AssemblyLocation + _server.Name.ToLower() + "-dev.jar");
-			OnServerDownloaded();
-		}
+            _server.DownloadDevVersion(Share.AssemblyLocation + _server.Name.ToLower() + "-dev.jar");
+            OnServerDownloaded();
+        }
 
-		private DialogResult ShowVersionBox(string version)
-		{
-			return MetroMessageBox.Show(FindForm(),
-				"You are about to install " + _server.Name + ", version " + version + Environment.NewLine + "Proceed?", "Proceed?",
-				MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-		}
-	}
+        private DialogResult ShowVersionBox(string version)
+        {
+            return MetroMessageBox.Show(FindForm(),
+                "You are about to install " + _server.Name + ", version " + version + Environment.NewLine + "Proceed?",
+                "Proceed?",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+        }
+    }
 }

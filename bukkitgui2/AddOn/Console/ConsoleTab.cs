@@ -14,142 +14,142 @@ using Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Console
 {
-	public partial class ConsoleTab : MetroUserControl, IAddonTab
-	{
-		public IAddon ParentAddon { get; set; }
-		public static ConsoleTab Reference;
+    public partial class ConsoleTab : MetroUserControl, IAddonTab
+    {
+        public IAddon ParentAddon { get; set; }
+        public static ConsoleTab Reference;
 
-		public ConsoleTab()
-		{
-			Reference = this;
-			InitializeComponent();
-			MinecraftOutputHandler.OutputParsed += PrintOutput;
-			ProcessHandler.ServerStarting += HandleServerStart;
-			ProcessHandler.ServerStopped += HandleServerStop;
-			CIConsoleInput.CommandSent += HandleCommandSent;
-			PlayerHandler.PlayerListAddition += HandlePlayerAddition;
-			PlayerHandler.PlayerListDeletion += HandlePlayerDeletion;
+        public ConsoleTab()
+        {
+            Reference = this;
+            InitializeComponent();
+            MinecraftOutputHandler.OutputParsed += PrintOutput;
+            ProcessHandler.ServerStarting += HandleServerStart;
+            ProcessHandler.ServerStopped += HandleServerStop;
+            CIConsoleInput.CommandSent += HandleCommandSent;
+            PlayerHandler.PlayerListAddition += HandlePlayerAddition;
+            PlayerHandler.PlayerListDeletion += HandlePlayerDeletion;
 
 
-			CIConsoleInput.AutoCompletion = Config.ReadBool("console", "autocompletion", true);
-			MCCOut.MessageColorInfo = Color.FromArgb(Config.ReadInt("console", "color_info", Color.Blue.ToArgb()));
-			MCCOut.MessageColorPlayerAction =
-				Color.FromArgb(Config.ReadInt("console", "color_playeraction", Color.DarkGreen.ToArgb()));
-			MCCOut.MessageColorSevere = Color.FromArgb(Config.ReadInt("console", "color_severe", Color.DarkRed.ToArgb()));
-			MCCOut.MessageColorWarning =
-				Color.FromArgb(Config.ReadInt("console", "color_warning", Color.DarkOrange.ToArgb()));
+            CIConsoleInput.AutoCompletion = Config.ReadBool("console", "autocompletion", true);
+            MCCOut.MessageColorInfo = Color.FromArgb(Config.ReadInt("console", "color_info", Color.Blue.ToArgb()));
+            MCCOut.MessageColorPlayerAction =
+                Color.FromArgb(Config.ReadInt("console", "color_playeraction", Color.DarkGreen.ToArgb()));
+            MCCOut.MessageColorSevere = Color.FromArgb(Config.ReadInt("console", "color_severe", Color.DarkRed.ToArgb()));
+            MCCOut.MessageColorWarning =
+                Color.FromArgb(Config.ReadInt("console", "color_warning", Color.DarkOrange.ToArgb()));
 
-			MCCOut.ShowDate = Config.ReadBool("console", "date", false);
-			MCCOut.ShowTime = Config.ReadBool("console", "time", true);
-		}
+            MCCOut.ShowDate = Config.ReadBool("console", "date", false);
+            MCCOut.ShowTime = Config.ReadBool("console", "time", true);
+        }
 
-		/// <summary>
-		///     Remove a player from the listview
-		/// </summary>
-		/// <param name="player"></param>
-		private void HandlePlayerDeletion(Player player)
-		{
-			if (InvokeRequired)
-			{
-				Invoke((MethodInvoker) (() => HandlePlayerDeletion(player)));
-			}
-			else
-			{
-				SLVPlayers.Items.RemoveByKey(player.Name);
-			}
-		}
+        /// <summary>
+        ///     Remove a player from the listview
+        /// </summary>
+        /// <param name="player"></param>
+        private void HandlePlayerDeletion(Player player)
+        {
+            if (InvokeRequired)
+            {
+                Invoke((MethodInvoker) (() => HandlePlayerDeletion(player)));
+            }
+            else
+            {
+                SLVPlayers.Items.RemoveByKey(player.Name);
+            }
+        }
 
-		/// <summary>
-		///     Add a player to the listview
-		/// </summary>
-		/// <param name="player"></param>
-		private void HandlePlayerAddition(Player player)
-		{
-			if (InvokeRequired)
-			{
-				Invoke((MethodInvoker) (() => HandlePlayerAddition(player)));
-			}
-			else
-			{
-				String[] text = {player.Name, player.Ip};
-				ListViewItem lvi = new ListViewItem(text) {Tag = player.Name, Name = player.Name};
-				AddListViewItem(lvi);
-			}
-		}
+        /// <summary>
+        ///     Add a player to the listview
+        /// </summary>
+        /// <param name="player"></param>
+        private void HandlePlayerAddition(Player player)
+        {
+            if (InvokeRequired)
+            {
+                Invoke((MethodInvoker) (() => HandlePlayerAddition(player)));
+            }
+            else
+            {
+                String[] text = {player.Name, player.Ip};
+                ListViewItem lvi = new ListViewItem(text) {Tag = player.Name, Name = player.Name};
+                AddListViewItem(lvi);
+            }
+        }
 
-		/// <summary>
-		///     Add an item to the listview, thread-safe
-		/// </summary>
-		/// <param name="item">the item to add</param>
-		private void AddListViewItem(ListViewItem item)
-		{
-			if (InvokeRequired)
-			{
-				Invoke((MethodInvoker) (() => AddListViewItem(item)));
-			}
-			else
-			{
-				SLVPlayers.Items.Add(item);
-			}
-		}
+        /// <summary>
+        ///     Add an item to the listview, thread-safe
+        /// </summary>
+        /// <param name="item">the item to add</param>
+        private void AddListViewItem(ListViewItem item)
+        {
+            if (InvokeRequired)
+            {
+                Invoke((MethodInvoker) (() => AddListViewItem(item)));
+            }
+            else
+            {
+                SLVPlayers.Items.Add(item);
+            }
+        }
 
-		/// <summary>
-		///     Handle starting server, prepare UI and display text
-		/// </summary>
-		private void HandleServerStart()
-		{
-			// clearing console is already performed by the starter routine, so the starter routine can display its own information too.
-			SLVPlayers.Items.Clear();
-			CIConsoleInput.ClearAutoCompletionHistory();
-			WriteOut("Starting a new server");
-		}
+        /// <summary>
+        ///     Handle starting server, prepare UI and display text
+        /// </summary>
+        private void HandleServerStart()
+        {
+            // clearing console is already performed by the starter routine, so the starter routine can display its own information too.
+            SLVPlayers.Items.Clear();
+            CIConsoleInput.ClearAutoCompletionHistory();
+            WriteOut("Starting a new server");
+        }
 
-		/// <summary>
-		///     Handle stopped server, clear UI.
-		/// </summary>
-		private void HandleServerStop()
-		{
-			if (InvokeRequired)
-			{
-				Invoke((MethodInvoker) HandleServerStop);
-			}
-			else
-			{
-				SLVPlayers.Items.Clear();
-				CIConsoleInput.ClearAutoCompletionHistory();
-				WriteOut("The server has stopped");
-			}
-		}
+        /// <summary>
+        ///     Handle stopped server, clear UI.
+        /// </summary>
+        private void HandleServerStop()
+        {
+            if (InvokeRequired)
+            {
+                Invoke((MethodInvoker) HandleServerStop);
+            }
+            else
+            {
+                SLVPlayers.Items.Clear();
+                CIConsoleInput.ClearAutoCompletionHistory();
+                WriteOut("The server has stopped");
+            }
+        }
 
-		/// <summary>
-		///     Print output to the console
-		/// </summary>
-		/// <param name="text"></param>
-		/// <param name="outputParseResult"></param>
-		private void PrintOutput(string text, OutputParseResult outputParseResult)
-		{
-			MCCOut.WriteOutput(outputParseResult.Type, outputParseResult.Message);
-		}
+        /// <summary>
+        ///     Print output to the console
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="outputParseResult"></param>
+        private void PrintOutput(string text, OutputParseResult outputParseResult)
+        {
+            MCCOut.WriteOutput(outputParseResult.Type, outputParseResult.Message);
+        }
 
-		/// <summary>
-		///     Handle a commandsent event from the textbox and redirect it to the server
-		/// </summary>
-		/// <param name="text"></param>
-		private static void HandleCommandSent(string text)
-		{
-			if (ProcessHandler.IsRunning)
-			{
-				ProcessHandler.SendInput(text);
-			}
-		}
+        /// <summary>
+        ///     Handle a commandsent event from the textbox and redirect it to the server
+        /// </summary>
+        /// <param name="text"></param>
+        private static void HandleCommandSent(string text)
+        {
+            if (ProcessHandler.IsRunning)
+            {
+                ProcessHandler.SendInput(text);
+            }
+        }
 
-		/// <summary>
-		///     Write output to the console. Will be prefixed with [GUI]
-		/// </summary>
-		/// <param name="text"></param>
-		public static void WriteOut(string text)
-		{
-			Reference.MCCOut.WriteOutput(MessageType.Info, "[GUI] " + text);
-		}
-	}
+        /// <summary>
+        ///     Write output to the console. Will be prefixed with [GUI]
+        /// </summary>
+        /// <param name="text"></param>
+        public static void WriteOut(string text)
+        {
+            Reference.MCCOut.WriteOutput(MessageType.Info, "[GUI] " + text);
+        }
+    }
 }
