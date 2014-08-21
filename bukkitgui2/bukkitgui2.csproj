@@ -126,6 +126,12 @@
     <Compile Include="AddOn\Plugins\InstalledPlugins\InstalledPluginsControl.Designer.cs">
       <DependentUpon>InstalledPluginsControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddOn\SixtySetup\SixtySetupSettings.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AddOn\SixtySetup\SixtySetupSettings.Designer.cs">
+      <DependentUpon>SixtySetupSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddOn\SixtySetup\SixtySetupServerDownload.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -402,6 +408,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddOn\Settings\SettingsTab.resx">
       <DependentUpon>SettingsTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddOn\SixtySetup\SixtySetupSettings.resx">
+      <DependentUpon>SixtySetupSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddOn\SixtySetup\SixtySetup.resx">
       <DependentUpon>SixtySetup.cs</DependentUpon>

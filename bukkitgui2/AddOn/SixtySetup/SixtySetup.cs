@@ -37,6 +37,16 @@ namespace Net.Bertware.Bukkitgui2.AddOn.SixtySetup
                                            Environment.NewLine +
                                            "Select NO in case you want to use the GUI with an existing server",
                 "Create a new server?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No) Close();
+
+	        SixtySetupServerDownload downloadControl = new SixtySetupServerDownload();
+			downloadControl.Dock= DockStyle.Fill;
+			downloadControl.ServerDownloaded += downloadControl_ServerDownloaded;
+			pContainer.Controls.Add(downloadControl);
         }
+
+		void downloadControl_ServerDownloaded(object sender, EventArgs e)
+		{
+			pContainer.Controls.Clear();
+		}
     }
 }

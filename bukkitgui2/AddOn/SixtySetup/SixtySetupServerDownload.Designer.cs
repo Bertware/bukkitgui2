@@ -83,13 +83,13 @@
 			this.metroTileRecommendedBuild.UseSelectable = true;
 			this.metroTileRecommendedBuild.Click += new System.EventHandler(this.metroTileRecommendedBuild_Click);
 			// 
-			// SixtySetupWelcom
+			// SixtySetupServerDownload
 			// 
 			this.Controls.Add(this.metroLabel1);
 			this.Controls.Add(this.MetroTileBetaBuild);
 			this.Controls.Add(this.MetroTileDevBuild);
 			this.Controls.Add(this.metroTileRecommendedBuild);
-			this.Name = "SixtySetupWelcom";
+			this.Name = "SixtySetupServerDownload";
 			this.Size = new System.Drawing.Size(500, 250);
 			this.ResumeLayout(false);
 			this.PerformLayout();
