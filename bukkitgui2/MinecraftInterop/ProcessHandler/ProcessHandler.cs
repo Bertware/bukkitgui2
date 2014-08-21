@@ -42,7 +42,11 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler
 
         public static TimeSpan Uptime
         {
-            get { return (DateTime.Now.Subtract(ServerProcess.StartTime)); }
+	        get
+	        {
+		        if (ServerProcess == null) return new TimeSpan(0);
+				return (DateTime.Now.Subtract(ServerProcess.StartTime));
+	        }
         }
 
         /// <summary>

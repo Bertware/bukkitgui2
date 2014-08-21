@@ -26,7 +26,7 @@ namespace Net.Bertware.Bukkitgui2.Controls.PerformanceMonitor
         private readonly CpuCounter _guiCpuCounter;
         private CpuCounter _serverCpuCounter;
 
-        public PerformanceMonitor()
+		public PerformanceMonitor()
         {
             InitializeComponent();
 
@@ -45,6 +45,7 @@ namespace Net.Bertware.Bukkitgui2.Controls.PerformanceMonitor
             _guiCpuCounter.UpdateStats();
             _serverCpuCounter = new CpuCounter();
             _serverCpuCounter.Disable();
+
             ProcessHandler.ServerStarted += StartServerChecks;
             ProcessHandler.ServerStopped += StopServerChecks;
         }
@@ -104,6 +105,11 @@ namespace Net.Bertware.Bukkitgui2.Controls.PerformanceMonitor
                 lblTotalCpuUsageValue.Text = ConstructCpuLabelText(_totalCpuCounter);
                 ProgBarServerCpu.Value = _serverCpuCounter.CpuUsage;
                 lblServerCpuUsageValue.Text = ConstructCpuLabelText(_serverCpuCounter);
+
+	            TimeSpan uptime = ProcessHandler.Uptime;
+	            LblUptimeValue.Text = uptime.Hours.ToString().PadLeft(2, '0') + ":" +
+	                                  uptime.Minutes.ToString().PadLeft(2, '0') + ":" +
+	                                  uptime.Seconds.ToString().PadLeft(2, '0');
             }
         }
 
