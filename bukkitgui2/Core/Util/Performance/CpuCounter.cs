@@ -13,13 +13,13 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Performance
     /// <summary>
     ///     Provide information over total, used, available memory
     /// </summary>
-    internal class CpuCounter
+    public class CpuCounter
     {
         private const int Interval = 333;
         private readonly int _pid;
         private Int32 _value;
 
-        private static readonly int Cores =
+        private static readonly int _Cores =
             Convert.ToInt16(Wmi.GetprocessorInfo(Wmi.ProcessorProp.NumberOfLogicalProcessors));
 
         private Timer _updateTimer;
@@ -78,7 +78,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Performance
                     return;
                 }
                 _value = Convert.ToInt16(_counter.NextValue());
-                if (_pid != 0) _value = _value/Cores;
+                if (_pid != 0) _value = _value/_Cores;
             }
             catch (Exception exception)
             {

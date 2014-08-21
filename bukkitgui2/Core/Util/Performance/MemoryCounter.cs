@@ -14,7 +14,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Performance
     /// <summary>
     ///     Provide information over total, used, available memory
     /// </summary>
-    internal class MemoryCounter
+    public class MemoryCounter
     {
         private const int Interval = 500;
         public int Pid { get; private set; }

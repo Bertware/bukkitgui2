@@ -194,6 +194,7 @@
     <Compile Include="Controls\PerformanceMonitor\PerformanceMonitor.Designer.cs">
       <DependentUpon>PerformanceMonitor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Core\Util\Performance\PerformanceMonitorDataSource.cs" />
     <Compile Include="Controls\QuickButtons\QuickButtons.cs">
       <SubType>UserControl</SubType>
     </Compile>

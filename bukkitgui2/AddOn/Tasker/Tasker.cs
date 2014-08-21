@@ -19,7 +19,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
         public event EventHandler TaskListAltered;
         public static Tasker Reference { get; private set; }
         public static Dictionary<string, Task> Tasks;
-        private static readonly string Configfile = Fl.SafeLocation(RequestFile.Config) + "tasklist";
+        private static readonly string _Configfile = Fl.SafeLocation(RequestFile.Config) + "tasklist";
 
         public Tasker()
         {
@@ -62,11 +62,11 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 
         private void LoadTasks()
         {
-            Logger.Log(LogLevel.Info, "Tasker", "Loading tasks...", Configfile);
+            Logger.Log(LogLevel.Info, "Tasker", "Loading tasks...", _Configfile);
 
             Tasks = new Dictionary<string, Task>();
-            if (!File.Exists(Configfile)) File.Create(Configfile).Close();
-            using (StreamReader sr = File.OpenText(Configfile))
+            if (!File.Exists(_Configfile)) File.Create(_Configfile).Close();
+            using (StreamReader sr = File.OpenText(_Configfile))
             {
                 while (!sr.EndOfStream)
                 {
@@ -119,10 +119,10 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
         /// </summary>
         private static void SaveConfig()
         {
-            Logger.Log(LogLevel.Info, "Tasker", "Saving tasks...", Configfile);
+            Logger.Log(LogLevel.Info, "Tasker", "Saving tasks...", _Configfile);
 
-            if (!File.Exists(Configfile)) File.Create(Configfile).Close();
-            using (StreamWriter sw = File.CreateText(Configfile))
+            if (!File.Exists(_Configfile)) File.Create(_Configfile).Close();
+            using (StreamWriter sw = File.CreateText(_Configfile))
             {
                 foreach (KeyValuePair<string, Task> pair in Tasks)
                 {
