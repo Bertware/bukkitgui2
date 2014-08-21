@@ -160,6 +160,8 @@
     <Compile Include="AddOn\Tasker\TaskerUI\TaskEditor.designer.cs">
       <DependentUpon>TaskEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddOn\Tasker\Trigger\TotalCpuUsageTrigger.cs" />
+    <Compile Include="AddOn\Tasker\Trigger\ServerCpuUsageTrigger.cs" />
     <Compile Include="AddOn\Tasker\Trigger\TaskButtonPressedTrigger.cs" />
     <Compile Include="AddOn\Tasker\Trigger\UnexpectedServerStopTrigger.cs" />
     <Compile Include="AddOn\Tasker\Trigger\ServerStoppingTrigger.cs" />
