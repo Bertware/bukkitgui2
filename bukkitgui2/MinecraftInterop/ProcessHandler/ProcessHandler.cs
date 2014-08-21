@@ -39,7 +39,9 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler
         {
             get { return (CurrentState != ServerState.Stopped); }
         }
-
+		/// <summary>
+		/// Uptime for the current process.
+		/// </summary>
         public static TimeSpan Uptime
         {
 	        get
@@ -331,7 +333,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler
                     if (string.IsNullOrEmpty(output)) continue;
 
                     Logger.Log(LogLevel.Debug, "LocalProcessHandler", "StdOut output: " + output);
-                    MinecraftOutputHandler.HandleOutput(Server, output, false);
+                    MinecraftOutputHandler.HandleOutput(Server, output);
                 }
 
                 //This should be false if we're stopping the server, so this is strange
