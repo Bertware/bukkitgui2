@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
+using MetroFramework;
 using Microsoft.VisualBasic;
 using Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins;
 using Net.Bertware.Bukkitgui2.Core.FileLocation;
@@ -14,6 +15,7 @@ using Net.Bertware.Bukkitgui2.Core.Logging;
 using Net.Bertware.Bukkitgui2.Core.Translation;
 using Net.Bertware.Bukkitgui2.Core.Util;
 using Net.Bertware.Bukkitgui2.Core.Util.Web;
+using Net.Bertware.Bukkitgui2.UI;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
 {
@@ -45,7 +47,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
             {
                 return InstallZip(version, updatelist, showUi);
             }
-            MessageBox.Show(
+			MetroMessageBox.Show(Application.OpenForms[Application.OpenForms.Count - 1],
                 Translator.Tr("The file you chose to download is not supported yet.") + Constants.vbCrLf +
                 Translator.Tr("At this moment only .jar and .zip files are supported."),
                 Translator.Tr("Not supported"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -67,7 +69,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
             if (showUi)
             {
                 if (
-                    MessageBox.Show(
+					MetroMessageBox.Show(Application.OpenForms[Application.OpenForms.Count - 1],
                         Translator.Tr("You are about to install") + " " + version.Filename.Replace(".jar", "") + " (" +
                         version.VersionNumber + ")" + Constants.vbCrLf + Translator.Tr("Do you wish to continue?"),
                         Translator.Tr("Continue?"), MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
@@ -87,7 +89,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
             InstalledPluginManager.ReloadInstalledPluginFile(targetlocation);
             if (showUi)
             {
-                MessageBox.Show(
+				MetroMessageBox.Show(Application.OpenForms[Application.OpenForms.Count - 1],
                     version.Filename.Replace(".jar", "") + " (" + version.VersionNumber + ") " +
                     Translator.Tr("was installed succesfully"), Translator.Tr("Plugin Installed"), MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
@@ -112,7 +114,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
             if (showUi)
             {
                 if (
-                    MessageBox.Show(
+					MetroMessageBox.Show(Application.OpenForms[Application.OpenForms.Count - 1],
                         Translator.Tr("You are about to install") + " " + version.Filename.Replace(".zip", "") + " (" +
                         version.VersionNumber + ")" + Constants.vbCrLf + Translator.Tr("Do you wish to continue?"),
                         Translator.Tr("Continue?"), MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)

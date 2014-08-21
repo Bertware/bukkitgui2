@@ -7,12 +7,13 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using MetroFramework.Forms;
 using Net.Bertware.Bukkitgui2.AddOn.Tasker.Action;
 using Net.Bertware.Bukkitgui2.AddOn.Tasker.Trigger;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.TaskerUI
 {
-    public partial class TaskEditor : Form
+    public partial class TaskEditor : MetroForm
     {
         private readonly Task _taskToEdit;
 
@@ -112,9 +113,11 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.TaskerUI
             Height += 180;
             ActionSelector selector = new ActionSelector(gbAction.Controls.Count)
             {
-                Location = new Point(6, 50 + 180*(gbAction.Controls.Count - 1))
+	            Location = new Point(6, 50 + 180*(gbAction.Controls.Count - 1)),
+	            Size = new Size(448, 175),
+	            Anchor = ( AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top)
             };
-            gbAction.Controls.Add(selector);
+	        gbAction.Controls.Add(selector);
             if (gbAction.Controls.Count > 4) btnNewAction.Enabled = false;
         }
 

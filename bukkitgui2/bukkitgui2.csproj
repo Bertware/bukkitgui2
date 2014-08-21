@@ -52,6 +52,12 @@
       <HintPath>Resources\Dll\MetroFramework.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="MetroFramework.Design">
+      <HintPath>Resources\Dll\MetroFramework.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="MetroFramework.Fonts">
+      <HintPath>Resources\Dll\MetroFramework.Fonts.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Net.Bertware.Get">
       <HintPath>Resources\Dll\Net.Bertware.Get.dll</HintPath>
@@ -148,7 +154,9 @@
     <Compile Include="AddOn\Notifications\NotificationsSettings.Designer.cs">
       <DependentUpon>NotificationsSettings.cs</DependentUpon>
     </Compile>
-    <Compile Include="AddOn\Tasker\TaskerUI\TaskEditor.cs" />
+    <Compile Include="AddOn\Tasker\TaskerUI\TaskEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="AddOn\Tasker\TaskerUI\TaskEditor.designer.cs">
       <DependentUpon>TaskEditor.cs</DependentUpon>
     </Compile>
@@ -162,7 +170,9 @@
     <Compile Include="AddOn\Tasker\Trigger\ITrigger.cs" />
     <Compile Include="AddOn\Tasker\Trigger\ServerUptimeTrigger.cs" />
     <Compile Include="AddOn\Updater\Updater.cs" />
-    <Compile Include="AddOn\Updater\UpdaterSettings.cs" />
+    <Compile Include="AddOn\Updater\UpdaterSettings.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="AddOn\Updater\UpdaterSettings.Designer.cs">
       <DependentUpon>UpdaterSettings.cs</DependentUpon>
     </Compile>
@@ -480,10 +490,12 @@
     <EmbeddedResource Include="Resources\Dll\ICSharpCode.SharpZipLib.dll" />
     <Content Include="GUI icon 32.ico" />
     <EmbeddedResource Include="Resources\Dll\MetroFramework.Design.dll" />
-    <EmbeddedResource Include="Resources\Dll\MetroFramework.Design.pdb" />
+    <None Include="Resources\Dll\MetroFramework.Design.pdb" />
     <EmbeddedResource Include="Resources\Dll\MetroFramework.pdb" />
-    <EmbeddedResource Include="Resources\Dll\Net.Bertware.Get.pdb" />
+    <None Include="Resources\Dll\Net.Bertware.Get.pdb" />
     <EmbeddedResource Include="Resources\Dll\MetroFramework.dll" />
+    <EmbeddedResource Include="Resources\Dll\MetroFramework.Fonts.dll" />
+    <None Include="Resources\Dll\MetroFramework.Fonts.pdb" />
     <Content Include="Resources\Img\bukkit_logo.png" />
     <Content Include="Resources\Img\GUI icon 16.ico" />
     <Content Include="Resources\Img\GUI icon 32.ico" />

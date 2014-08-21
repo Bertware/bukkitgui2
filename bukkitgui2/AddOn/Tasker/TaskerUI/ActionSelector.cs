@@ -5,11 +5,12 @@
 
 using System;
 using System.Windows.Forms;
+using MetroFramework.Controls;
 using Net.Bertware.Bukkitgui2.AddOn.Tasker.Action;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.TaskerUI
 {
-    public partial class ActionSelector : UserControl
+    public partial class ActionSelector : MetroUserControl
     {
         private IAction _selectedAction;
 
