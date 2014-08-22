@@ -41,7 +41,7 @@ namespace Net.Bertware.Bukkitgui2.UI
 			this.LblToolsMainServerOutput = new MetroFramework.Controls.MetroLabel();
 			this.SpinServerState = new MetroFramework.Controls.MetroProgressSpinner();
 			this.ToggleTheme = new MetroFramework.Controls.MetroToggle();
-			this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
+			this.lblTheme = new MetroFramework.Controls.MetroLabel();
 			this.metroStyleManager = new MetroFramework.Components.MetroStyleManager(this.components);
 			this.ToolStripBtn.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.metroStyleManager)).BeginInit();
@@ -77,19 +77,19 @@ namespace Net.Bertware.Bukkitgui2.UI
             this.ToolStripBtnStartStop,
             this.ToolStripBtnRestart});
 			this.ToolStripBtn.Name = "ToolStripBtn";
-			this.ToolStripBtn.Size = new System.Drawing.Size(153, 70);
+			this.ToolStripBtn.Size = new System.Drawing.Size(111, 48);
 			// 
 			// ToolStripBtnStartStop
 			// 
 			this.ToolStripBtnStartStop.Name = "ToolStripBtnStartStop";
-			this.ToolStripBtnStartStop.Size = new System.Drawing.Size(152, 22);
+			this.ToolStripBtnStartStop.Size = new System.Drawing.Size(110, 22);
 			this.ToolStripBtnStartStop.Text = "Start";
 			this.ToolStripBtnStartStop.Click += new System.EventHandler(this.ToolStripBtnStartStop_Click);
 			// 
 			// ToolStripBtnRestart
 			// 
 			this.ToolStripBtnRestart.Name = "ToolStripBtnRestart";
-			this.ToolStripBtnRestart.Size = new System.Drawing.Size(152, 22);
+			this.ToolStripBtnRestart.Size = new System.Drawing.Size(110, 22);
 			this.ToolStripBtnRestart.Text = "Restart";
 			this.ToolStripBtnRestart.Click += new System.EventHandler(this.ToolStripBtnRestart_Click);
 			// 
@@ -129,16 +129,16 @@ namespace Net.Bertware.Bukkitgui2.UI
 			this.ToggleTheme.UseSelectable = true;
 			this.ToggleTheme.CheckedChanged += new System.EventHandler(this.ToggleTheme_CheckedChanged);
 			// 
-			// metroLabel1
+			// lblTheme
 			// 
-			this.metroLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.metroLabel1.ContextMenuStrip = this.ToolStripBtn;
-			this.metroLabel1.Location = new System.Drawing.Point(685, 540);
-			this.metroLabel1.Name = "metroLabel1";
-			this.metroLabel1.Size = new System.Drawing.Size(90, 20);
-			this.metroLabel1.TabIndex = 6;
-			this.metroLabel1.Text = "Dark theme";
-			this.metroLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.lblTheme.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.lblTheme.ContextMenuStrip = this.ToolStripBtn;
+			this.lblTheme.Location = new System.Drawing.Point(685, 540);
+			this.lblTheme.Name = "lblTheme";
+			this.lblTheme.Size = new System.Drawing.Size(90, 20);
+			this.lblTheme.TabIndex = 6;
+			this.lblTheme.Text = "Dark theme";
+			this.lblTheme.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// metroStyleManager
 			// 
@@ -149,7 +149,7 @@ namespace Net.Bertware.Bukkitgui2.UI
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(884, 562);
-			this.Controls.Add(this.metroLabel1);
+			this.Controls.Add(this.lblTheme);
 			this.Controls.Add(this.ToggleTheme);
 			this.Controls.Add(this.SpinServerState);
 			this.Controls.Add(this.LblToolsMainServerOutput);
@@ -177,7 +177,7 @@ namespace Net.Bertware.Bukkitgui2.UI
 		private System.Windows.Forms.ToolStripMenuItem ToolStripBtnRestart;
 		private MetroProgressSpinner SpinServerState;
 		private MetroToggle ToggleTheme;
-		private MetroLabel metroLabel1;
+		private MetroLabel lblTheme;
 		private MetroFramework.Components.MetroStyleManager metroStyleManager;
     }
 }

@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using MetroFramework;
 using MetroFramework.Controls;
 using Net.Bertware.Bukkitgui2.Core;
+using Net.Bertware.Bukkitgui2.Core.Configuration;
 using Net.Bertware.Bukkitgui2.MinecraftServers;
 using Net.Bertware.Bukkitgui2.MinecraftServers.Servers;
 
@@ -21,6 +22,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.SixtySetup
 
         protected virtual void OnServerDownloaded()
         {
+			Config.SaveFile();
             EventHandler handler = ServerDownloaded;
             if (handler != null) handler(this, EventArgs.Empty);
         }
@@ -35,6 +37,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.SixtySetup
             if (ShowVersionBox(_server.FetchRecommendedVersionUiString) == DialogResult.No) return;
 
             _server.DownloadRecommendedVersion(Share.AssemblyLocation + _server.Name.ToLower() + ".jar");
+			Config.WriteString("Starter", "JarFile", Share.AssemblyLocation + _server.Name.ToLower() + ".jar");	
             OnServerDownloaded();
         }
 
@@ -43,6 +46,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.SixtySetup
             if (ShowVersionBox(_server.FetchBetaVersionUiString) == DialogResult.No) return;
 
             _server.DownloadRecommendedVersion(Share.AssemblyLocation + _server.Name.ToLower() + "-beta.jar");
+			Config.WriteString("Starter", "JarFile", Share.AssemblyLocation + _server.Name.ToLower() + "-beta.jar");
             OnServerDownloaded();
         }
 
@@ -51,6 +55,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.SixtySetup
             if (ShowVersionBox(_server.FetchDevVersionUiString) == DialogResult.No) return;
 
             _server.DownloadDevVersion(Share.AssemblyLocation + _server.Name.ToLower() + "-dev.jar");
+			Config.WriteString("Starter", "JarFile", Share.AssemblyLocation + _server.Name.ToLower() + "-dev.jar");
             OnServerDownloaded();
         }
 

@@ -10,7 +10,6 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins
 {
     internal class Plugins : IAddon
     {
-        private UserControl _tab;
 
         /// <summary>
         ///     The addon name, ideally this name is the same as used in the tabpage
@@ -41,7 +40,10 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins
         /// </summary>
         public void Initialize()
         {
-            _tab = new PluginsTab {Text = Name, ParentAddon = this};
+            TabPage = new PluginsTab {Text = Name, ParentAddon = this};
+	        ConfigPage = null;
+
+			// TODO: This code locks up the UI for a while
             InstalledPluginManager.Initialize();
         }
 
@@ -54,10 +56,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins
         ///     The tab control for this addon
         /// </summary>
         /// <returns>Returns the tabpage</returns>
-        UserControl IAddon.TabPage
-        {
-            get { return _tab; }
-        }
+        public UserControl TabPage { get; private set; }
 
         public UserControl ConfigPage { get; private set; }
 

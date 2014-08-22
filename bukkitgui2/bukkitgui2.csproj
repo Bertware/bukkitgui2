@@ -126,6 +126,12 @@
     <Compile Include="AddOn\Plugins\InstalledPlugins\InstalledPluginsControl.Designer.cs">
       <DependentUpon>InstalledPluginsControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddOn\Plugins\InstalledPlugins\PluginUpdater.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddOn\Plugins\InstalledPlugins\PluginUpdater.Designer.cs">
+      <DependentUpon>PluginUpdater.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddOn\SixtySetup\SixtySetupSettings.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -402,6 +408,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddOn\Plugins\InstalledPlugins\InstalledPluginsControl.resx">
       <DependentUpon>InstalledPluginsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddOn\Plugins\InstalledPlugins\PluginUpdater.resx">
+      <DependentUpon>PluginUpdater.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddOn\Plugins\PluginsTab.resx">
       <DependentUpon>PluginsTab.cs</DependentUpon>

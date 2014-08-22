@@ -44,14 +44,14 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
         public static void LoadPlugins()
         {
             CreateSimpleList();
-            Thread t = new Thread(CreateDetailledList) {Name = "InstalledPluginManager_LoadAsync", IsBackground = true};
+            Thread t = new Thread(CreateDetailledList) {Name = "InstalledPluginManager_LoadAsync", IsBackground = true, Priority = ThreadPriority.BelowNormal};
             t.Start();
         }
 
         public static void RefreshAllInstalledPluginsAsync()
         {
             Thread t = new Thread(LoadPlugins) {Name = "InstalledPluginManager_LoadAsync", IsBackground = true};
-            t.Start();
+			t.Start();
         }
 
         public static void ReloadInstalledPluginFile(string path)

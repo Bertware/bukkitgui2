@@ -37,6 +37,7 @@
 			this.TBMinRam = new MetroFramework.Controls.MetroTrackBar();
 			this.txtServerName = new MetroFramework.Controls.MetroTextBox();
 			this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
+			this.btnDone = new MetroFramework.Controls.MetroButton();
 			((System.ComponentModel.ISupportInitialize)(this.NumMaxRam)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.NumMinRam)).BeginInit();
 			this.SuspendLayout();
@@ -84,7 +85,7 @@
 			this.TBMaxRam.Location = new System.Drawing.Point(227, 128);
 			this.TBMaxRam.Maximum = 4096;
 			this.TBMaxRam.Name = "TBMaxRam";
-			this.TBMaxRam.Size = new System.Drawing.Size(247, 45);
+			this.TBMaxRam.Size = new System.Drawing.Size(270, 45);
 			this.TBMaxRam.SmallChange = 256;
 			this.TBMaxRam.TabIndex = 15;
 			this.TBMaxRam.ValueChanged += new System.EventHandler(this.TbMaxRamScroll);
@@ -121,7 +122,7 @@
 			this.TBMinRam.Location = new System.Drawing.Point(227, 77);
 			this.TBMinRam.Maximum = 4096;
 			this.TBMinRam.Name = "TBMinRam";
-			this.TBMinRam.Size = new System.Drawing.Size(247, 45);
+			this.TBMinRam.Size = new System.Drawing.Size(270, 45);
 			this.TBMinRam.SmallChange = 256;
 			this.TBMinRam.TabIndex = 12;
 			this.TBMinRam.ValueChanged += new System.EventHandler(this.TbMinRamScroll);
@@ -136,7 +137,7 @@
 			this.txtServerName.PasswordChar = '\0';
 			this.txtServerName.ScrollBars = System.Windows.Forms.ScrollBars.None;
 			this.txtServerName.SelectedText = "";
-			this.txtServerName.Size = new System.Drawing.Size(326, 23);
+			this.txtServerName.Size = new System.Drawing.Size(349, 23);
 			this.txtServerName.TabIndex = 18;
 			this.txtServerName.Text = "Minecraft! Powered by Bukkit & BukkitGui";
 			this.txtServerName.UseSelectable = true;
@@ -150,8 +151,19 @@
 			this.metroLabel2.Text = "Server Name :";
 			this.metroLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
+			// btnDone
+			// 
+			this.btnDone.Location = new System.Drawing.Point(422, 224);
+			this.btnDone.Name = "btnDone";
+			this.btnDone.Size = new System.Drawing.Size(75, 23);
+			this.btnDone.TabIndex = 20;
+			this.btnDone.Text = "Done";
+			this.btnDone.UseSelectable = true;
+			this.btnDone.Click += new System.EventHandler(this.btnDone_Click);
+			// 
 			// SixtySetupSettings
 			// 
+			this.Controls.Add(this.btnDone);
 			this.Controls.Add(this.metroLabel2);
 			this.Controls.Add(this.txtServerName);
 			this.Controls.Add(this.label5);
@@ -181,6 +193,7 @@
 		private MetroFramework.Controls.MetroTrackBar TBMinRam;
 		private MetroFramework.Controls.MetroTextBox txtServerName;
 		private MetroFramework.Controls.MetroLabel metroLabel2;
+		private MetroFramework.Controls.MetroButton btnDone;
 
 
 	}

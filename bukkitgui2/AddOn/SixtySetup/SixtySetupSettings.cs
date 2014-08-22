@@ -1,35 +1,45 @@
-﻿// SixtySetupServerDownload.cs in bukkitgui2/bukkitgui2
-// Created 2014/08/18
-// Last edited at 2014/08/18 16:17
+﻿// SixtySetupSettings.cs in bukkitgui2/bukkitgui2
+// Created 2014/08/21
+// Last edited at 2014/08/22 11:55
 // ©Bertware, visit http://bertware.net
 
 using System;
-using System.Windows.Forms;
-using MetroFramework;
+using System.IO;
 using MetroFramework.Controls;
-using Net.Bertware.Bukkitgui2.Core;
 using Net.Bertware.Bukkitgui2.Core.Configuration;
-using Net.Bertware.Bukkitgui2.MinecraftServers;
-using Net.Bertware.Bukkitgui2.MinecraftServers.Servers;
+using Net.Bertware.Bukkitgui2.Core.Util.Performance;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.SixtySetup
 {
 	public partial class SixtySetupSettings : MetroUserControl
-    {
-	    private bool _ready = false;
+	{
+		private bool _ready = false;
 
-        public event EventHandler SetupComplete;
+		public event EventHandler SetupComplete;
 
 		protected virtual void OnSetupComplete()
-        {
+		{
 			EventHandler handler = SetupComplete;
-            if (handler != null) handler(this, EventArgs.Empty);
-        }
+			if (handler != null) handler(this, EventArgs.Empty);
+		}
 
-        public SixtySetupSettings()
-        {
-            InitializeComponent();
-        }
+		public SixtySetupSettings()
+		{
+			InitializeComponent();
+			// Cache total amount of ram, set maximum values
+			int totalMb = Convert.ToInt32(MemoryCounter.TotalMemoryMb());
+			TBMaxRam.Maximum = totalMb;
+			TBMinRam.Maximum = totalMb;
+			NumMaxRam.Maximum = totalMb;
+			NumMinRam.Maximum = totalMb;
+
+			_ready = true;
+
+			NumMinRam.Value = 128; // 128mb default min ram
+			
+			NumMaxRam.Value = 1024; // 1gb default max ram
+			if (totalMb < 2048) NumMaxRam.Value = 768; // 768mb for computers with fewer ram
+		}
 
 		/// <summary>
 		///     Trackbar scrolled, also adjust numeric value
@@ -85,7 +95,6 @@ namespace Net.Bertware.Bukkitgui2.AddOn.SixtySetup
 			{
 				NumMaxRam.Value = NumMinRam.Value; // keep the value of the item we're changing
 			}
-		
 		}
 
 		/// <summary>
@@ -110,7 +119,23 @@ namespace Net.Bertware.Bukkitgui2.AddOn.SixtySetup
 			{
 				NumMinRam.Value = NumMaxRam.Value; // keep the value of the item we're changing
 			}
-		
 		}
-    }
+
+		private void btnDone_Click(object sender, EventArgs e)
+		{
+			Config.SaveFile();
+			using (StreamWriter sw = File.CreateText("eula.txt"))
+			{
+				sw.WriteLine(
+					"#By changing the setting below to TRUE you are indicating your agreement to our EULA (https://account.mojang.com/documents/minecraft_eula).");
+				sw.WriteLine("eula=true");
+			}
+			using (StreamWriter sw = File.CreateText("server.properties"))
+			{
+				sw.WriteLine("motd=" + txtServerName.Text);
+			}
+
+			OnSetupComplete();
+		}
+	}
 }
