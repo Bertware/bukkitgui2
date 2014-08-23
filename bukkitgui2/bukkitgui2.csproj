@@ -199,6 +199,9 @@
     <Compile Include="Controls\ConsoleInput\ConsoleInput.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\SettingsToggle.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\MinecraftConsole\MinecraftConsole.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -504,6 +507,10 @@
     <Folder Include="Core\Filesystem\FTP\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\Sound\sound_connect.wav" />
+    <Content Include="Resources\Sound\sound_disconnect.wav" />
+    <Content Include="Resources\Sound\sound_severe.wav" />
+    <Content Include="Resources\Sound\sound_warning.wav" />
     <EmbeddedResource Include="Resources\Dll\Net.Bertware.Get.dll" />
     <EmbeddedResource Include="Resources\JsonApiConnector.exe" />
     <EmbeddedResource Include="Resources\Dll\YamlUtility.dll" />

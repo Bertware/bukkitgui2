@@ -157,4 +157,16 @@
   <data name="YamlUtility" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\dll\yamlutility.dll;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="sound_connect" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\sound\sound_connect.wav;System.IO.MemoryStream, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="sound_disconnect" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\sound\sound_disconnect.wav;System.IO.MemoryStream, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="sound_severe" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\sound\sound_severe.wav;System.IO.MemoryStream, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="sound_warning" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\sound\sound_warning.wav;System.IO.MemoryStream, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

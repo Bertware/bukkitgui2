@@ -21,12 +21,24 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Notifications
             chkOnPlayerLeave.Link(Notifications.CfgIdent, "leave", false);
             chkOnPlayerKick.Link(Notifications.CfgIdent, "kick", false);
             chkOnPlayerBan.Link(Notifications.CfgIdent, "ban", false);
+
+			chkSoundOnError.Link(Notifications.CfgIdent, "sound_error", false);
+			chkSoundOnWarning.Link(Notifications.CfgIdent, "sound_warn", false);
+			chkSoundOnJoin.Link(Notifications.CfgIdent, "sound_join", false);
+			chkSoundOnLeave.Link(Notifications.CfgIdent, "sound_leave", false);
         }
 
         private void chkEnable_CheckedChanged(object sender, EventArgs e)
         {
             gbBalloons.Enabled = chkEnable.Checked;
-            gbSound.Enabled = chkEnable.Checked;
+            //gbSound.Enabled = chkEnable.Checked;
         }
+
+		private void btnReload_Click(object sender, EventArgs e)
+		{
+			IAddon notifications = AddonManager.GetAddon("Notifications");
+			notifications.Dispose();
+			notifications.Initialize();
+		}
     }
 }
