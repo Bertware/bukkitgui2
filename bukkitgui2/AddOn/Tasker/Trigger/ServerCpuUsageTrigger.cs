@@ -1,6 +1,6 @@
 ﻿// ServerCpuUsageTrigger.cs in bukkitgui2/bukkitgui2
 // Created 2014/08/21
-// Last edited at 2014/08/21 23:25
+// Last edited at 2014/08/23 11:51
 // ©Bertware, visit http://bertware.net
 
 using System.Timers;

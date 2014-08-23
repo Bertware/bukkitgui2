@@ -226,6 +226,12 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers
             {
                 type = MessageType.PlayerLeave;
             }
+
+			else if (Regex.IsMatch(text, RG_INFO + RG_SPACE + "There are " + "\\d+" + "/" + "\\d+" + " players online:", RegexOptions.IgnoreCase))
+			{
+				type = MessageType.PlayerList;
+			}
+
                 // stacktraces
             else if (Regex.IsMatch(
                 text,
