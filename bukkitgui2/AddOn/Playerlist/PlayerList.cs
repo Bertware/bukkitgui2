@@ -3,14 +3,26 @@
 // Last edited at 2014/08/17 11:19
 // ©Bertware, visit http://bertware.net
 
+using System;
 using System.Windows.Forms;
+using Net.Bertware.Bukkitgui2.Core.Configuration;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler;
+using Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler;
+using Net.Bertware.Bukkitgui2.MinecraftServers;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.PlayerList
 {
     internal class PlayerList : IAddon
     {
-        private UserControl _tab;
+		/// <summary>
+		/// Reference to the latest created playerlist instance
+		/// </summary>
+	    public static PlayerList Reference;
+
+	    public PlayerList()
+	    {
+		    Reference = this;
+	    }
 
         /// <summary>
         ///     The addon name, ideally this name is the same as used in the tabpage
@@ -42,7 +54,8 @@ namespace Net.Bertware.Bukkitgui2.AddOn.PlayerList
         public void Initialize()
         {
             PlayerHandler.Initialize();
-            _tab = new PlayerListTab {Text = Name, ParentAddon = this};
+            TabPage = new PlayerListTab {Text = Name, ParentAddon = this};
+	        ConfigPage = null;
         }
 
         public void Dispose()
@@ -54,10 +67,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.PlayerList
         ///     The tab control for this addon
         /// </summary>
         /// <returns>Returns the tabpage</returns>
-        UserControl IAddon.TabPage
-        {
-            get { return _tab; }
-        }
+        public UserControl TabPage { get; private set; }
 
         public UserControl ConfigPage { get; private set; }
 
@@ -65,5 +75,6 @@ namespace Net.Bertware.Bukkitgui2.AddOn.PlayerList
         {
             get { return true; }
         }
+
     }
 }

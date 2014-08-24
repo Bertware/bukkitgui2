@@ -33,7 +33,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.PlayerList
                         player.Name, player.DisplayName, player.Ip, player.JoinTime.ToLongTimeString(),
                         player.Location
                     };
-                    ListViewItem item = new ListViewItem(contents) {Tag = player.Name};
+                    ListViewItem item = new ListViewItem(contents) {Tag = player};
                     slvPlayers.Items.Add(item);
                     player.DetailsLoaded += player_DetailsLoaded;
                 }
@@ -49,9 +49,10 @@ namespace Net.Bertware.Bukkitgui2.AddOn.PlayerList
             else
             {
                 Player p = (Player) sender;
+				
                 foreach (ListViewItem lvi in slvPlayers.Items)
                 {
-                    if (lvi.Tag.Equals(p.Name))
+                    if (lvi.Tag.Equals(p))
                     {
                         lvi.SubItems[4].Text = p.Location;
                     }
