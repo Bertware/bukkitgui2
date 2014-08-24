@@ -13,6 +13,7 @@ using MetroFramework.Forms;
 using Net.Bertware.Bukkitgui2.AddOn;
 using Net.Bertware.Bukkitgui2.AddOn.Starter;
 using Net.Bertware.Bukkitgui2.Core;
+using Net.Bertware.Bukkitgui2.Core.Configuration;
 using Net.Bertware.Bukkitgui2.Core.Logging;
 using Net.Bertware.Bukkitgui2.Core.Translation;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler;
@@ -35,6 +36,9 @@ namespace Net.Bertware.Bukkitgui2.UI
 
 			// Should the splash screen be shown?
 			bool showSplash = !Environment.GetCommandLineArgs().Contains("-nosplash");
+			bool showUi = !Environment.GetCommandLineArgs().Contains("-minimized");
+			if (!showUi) showSplash = false;
+
 			if (showSplash)
 			{
 				new Thread(() => new SplashScreen().ShowDialog()).Start();
@@ -61,10 +65,19 @@ namespace Net.Bertware.Bukkitgui2.UI
 				SplashScreen.Reference.SafeFormClose();
 			}
 
-			// Visible and to front
-			Visible = true;
-			BringToFront();
-			FocusMe();
+			if (showUi)
+			{
+				// Visible and to front
+				Visible = true;
+				BringToFront();
+				FocusMe();
+			}
+			else
+			{
+				// If we're starting minimized, we have to make sure the tray is enabled
+				Config.WriteBool("notifications", "enabled", false);
+				Config.WriteBool("notifications", "always", false);
+			}
 		}
 
 

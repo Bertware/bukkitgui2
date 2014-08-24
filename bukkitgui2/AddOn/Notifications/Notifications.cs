@@ -45,7 +45,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Notifications
 		{
 			ConfigPage = new NotificationSettings();
 
-			if (!Config.ReadBool(CfgIdent, "enable", false)) return;
+			if (!Config.ReadBool(CfgIdent, "enabled", false)) return;
 
 
 			_icon = new NotifyIcon {Icon = Resources.GUI_icon, Visible = true};

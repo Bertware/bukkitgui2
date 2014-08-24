@@ -14,7 +14,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Notifications
         public NotificationSettings()
         {
             InitializeComponent();
-            chkEnable.Link(Notifications.CfgIdent, "enable", false);
+            chkEnable.Link(Notifications.CfgIdent, "enabled", false);
             chkAlways.Link(Notifications.CfgIdent, "always", false);
             chkOnStatusChange.Link(Notifications.CfgIdent, "status", false);
             chkOnStatusChange.Link(Notifications.CfgIdent, "status", false);
