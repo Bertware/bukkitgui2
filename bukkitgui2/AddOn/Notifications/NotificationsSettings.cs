@@ -5,10 +5,11 @@
 
 using System;
 using System.Windows.Forms;
+using MetroFramework.Controls;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Notifications
 {
-    public partial class NotificationSettings : UserControl
+    public partial class NotificationSettings : MetroUserControl
     {
         public NotificationSettings()
         {

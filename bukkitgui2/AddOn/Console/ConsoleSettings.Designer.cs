@@ -79,6 +79,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			// 
 			this.gbColors.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.gbColors.BackColor = System.Drawing.Color.Transparent;
 			this.gbColors.Controls.Add(this.label4);
 			this.gbColors.Controls.Add(this.cpPlayer);
 			this.gbColors.Controls.Add(this.label3);
@@ -164,7 +165,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.BackColor = System.Drawing.Color.White;
+			this.BackColor = System.Drawing.Color.Transparent;
 			this.Controls.Add(this.gbColors);
 			this.Controls.Add(this.chkDate);
 			this.Controls.Add(this.chkTime);

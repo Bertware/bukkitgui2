@@ -201,9 +201,12 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 
 
             if (server.CanFetchDevVersion) LblLatestDevValue.Text = server.FetchDevVersionUiString;
+			metroToolTip.SetToolTip(LblLatestDevValue, LblLatestDevValue.Text);
             if (server.CanFetchBetaVersion) LblLatestBetaValue.Text = server.FetchBetaVersionUiString;
+			metroToolTip.SetToolTip(LblLatestBetaValue, LblLatestBetaValue.Text);
             if (server.CanFetchRecommendedVersion)
                 LblLatestRecommendedValue.Text = server.FetchRecommendedVersionUiString;
+			metroToolTip.SetToolTip(LblLatestRecommendedValue, LblLatestRecommendedValue.Text);
 
             CBUpdateBehaviour.Items.Clear();
             CBUpdateBehaviour.Items.Add("Don't check for updates");
@@ -748,6 +751,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
         {
             if (!GetSelectedServer().CanGetCurrentVersion) return;
             LblCurrentVer.Text = "Version: " + GetSelectedServer().GetCurrentVersionUiString(GetSelectedServerPath());
+			metroToolTip.SetToolTip(LblCurrentVer,LblCurrentVer.Text);
         }
 
         private void CBUpdateBehaviour_SelectedIndexChanged(object sender, EventArgs e)

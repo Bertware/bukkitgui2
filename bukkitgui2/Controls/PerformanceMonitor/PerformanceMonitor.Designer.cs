@@ -51,10 +51,10 @@ namespace Net.Bertware.Bukkitgui2.Controls.PerformanceMonitor
 			this.label13 = new MetroFramework.Controls.MetroLabel();
 			this.label14 = new MetroFramework.Controls.MetroLabel();
 			this.ProgBarServerCpu = new MetroFramework.Controls.MetroProgressBar();
-			this.panel1 = new System.Windows.Forms.Panel();
-			this.panel2 = new System.Windows.Forms.Panel();
-			this.LblUptimeText = new MetroFramework.Controls.MetroLabel();
+			this.panel1 = new MetroPanel();
 			this.LblUptimeValue = new MetroFramework.Controls.MetroLabel();
+			this.LblUptimeText = new MetroFramework.Controls.MetroLabel();
+			this.panel2 = new MetroPanel();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
@@ -264,6 +264,24 @@ namespace Net.Bertware.Bukkitgui2.Controls.PerformanceMonitor
 			this.panel1.Size = new System.Drawing.Size(306, 100);
 			this.panel1.TabIndex = 21;
 			// 
+			// LblUptimeValue
+			// 
+			this.LblUptimeValue.Location = new System.Drawing.Point(81, 78);
+			this.LblUptimeValue.Name = "LblUptimeValue";
+			this.LblUptimeValue.Size = new System.Drawing.Size(113, 19);
+			this.LblUptimeValue.TabIndex = 12;
+			this.LblUptimeValue.Text = "00:00:00";
+			this.LblUptimeValue.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
+			// LblUptimeText
+			// 
+			this.LblUptimeText.Location = new System.Drawing.Point(0, 78);
+			this.LblUptimeText.Name = "LblUptimeText";
+			this.LblUptimeText.Size = new System.Drawing.Size(75, 19);
+			this.LblUptimeText.TabIndex = 11;
+			this.LblUptimeText.Text = "Uptime:";
+			this.LblUptimeText.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
 			// panel2
 			// 
 			this.panel2.Controls.Add(this.label14);
@@ -281,29 +299,11 @@ namespace Net.Bertware.Bukkitgui2.Controls.PerformanceMonitor
 			this.panel2.Size = new System.Drawing.Size(248, 100);
 			this.panel2.TabIndex = 22;
 			// 
-			// LblUptimeText
-			// 
-			this.LblUptimeText.Location = new System.Drawing.Point(0, 78);
-			this.LblUptimeText.Name = "LblUptimeText";
-			this.LblUptimeText.Size = new System.Drawing.Size(75, 19);
-			this.LblUptimeText.TabIndex = 11;
-			this.LblUptimeText.Text = "Uptime:";
-			this.LblUptimeText.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			// 
-			// LblUptimeValue
-			// 
-			this.LblUptimeValue.Location = new System.Drawing.Point(81, 78);
-			this.LblUptimeValue.Name = "LblUptimeValue";
-			this.LblUptimeValue.Size = new System.Drawing.Size(113, 19);
-			this.LblUptimeValue.TabIndex = 12;
-			this.LblUptimeValue.Text = "00:00:00";
-			this.LblUptimeValue.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			// 
 			// PerformanceMonitor
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.BackColor = System.Drawing.Color.White;
+			this.BackColor = System.Drawing.Color.Transparent;
 			this.Controls.Add(this.panel2);
 			this.Controls.Add(this.panel1);
 			this.Name = "PerformanceMonitor";
@@ -338,8 +338,8 @@ namespace Net.Bertware.Bukkitgui2.Controls.PerformanceMonitor
         private MetroLabel label13;
         private MetroLabel label14;
         private MetroProgressBar ProgBarServerCpu;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
+        private MetroPanel panel1;
+		private MetroPanel panel2;
 		private MetroLabel LblUptimeValue;
 		private MetroLabel LblUptimeText;
 

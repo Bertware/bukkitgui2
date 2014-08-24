@@ -202,7 +202,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers
                 // [command sender]: Kicked player [player]. With reason: [newline] [Reason]
             else if (Regex.IsMatch(
                 text,
-                RG_INFO + RG_SPACE + RG_PLAYER + " lost connection: Disconnected",
+                RG_INFO + RG_SPACE + RG_PLAYER + " lost connection: Kicked by",
                 RegexOptions.IgnoreCase))
             {
                 type = MessageType.PlayerKick;

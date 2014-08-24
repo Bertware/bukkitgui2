@@ -33,7 +33,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			this.components = new System.ComponentModel.Container();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-			this.SLVPlayers = new Net.Bertware.Bukkitgui2.Controls.SortableListView.SortableListView();
+			this.SlvPlayers = new Net.Bertware.Bukkitgui2.Controls.SortableListView.SortableListView();
 			this.ColPlayers = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.CIConsoleInput = new Net.Bertware.Bukkitgui2.Controls.ConsoleInput.ConsoleInput();
 			this.MCCOut = new Net.Bertware.Bukkitgui2.Controls.MinecraftConsole.MinecraftConsole();
@@ -42,12 +42,19 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
 			this.quickButtons = new Net.Bertware.Bukkitgui2.Controls.QuickButtons.QuickButtons();
 			this.metroStyleExtender = new MetroFramework.Components.MetroStyleExtender(this.components);
+			this.ContextPlayers = new MetroFramework.Controls.MetroContextMenu(this.components);
+			this.ContextPlayersKick = new System.Windows.Forms.ToolStripMenuItem();
+			this.ContextPlayersBan = new System.Windows.Forms.ToolStripMenuItem();
+			this.ContextPlayersBanIp = new System.Windows.Forms.ToolStripMenuItem();
+			this.ContextPlayersOp = new System.Windows.Forms.ToolStripMenuItem();
+			this.ContextPlayersDeOp = new System.Windows.Forms.ToolStripMenuItem();
 			this.groupBox1.SuspendLayout();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
 			this.splitContainer1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.groupBox3.SuspendLayout();
+			this.ContextPlayers.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// groupBox1
@@ -73,7 +80,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			// 
 			// splitContainer1.Panel1
 			// 
-			this.splitContainer1.Panel1.Controls.Add(this.SLVPlayers);
+			this.splitContainer1.Panel1.Controls.Add(this.SlvPlayers);
 			// 
 			// splitContainer1.Panel2
 			// 
@@ -83,17 +90,18 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			this.splitContainer1.SplitterDistance = 160;
 			this.splitContainer1.TabIndex = 1;
 			// 
-			// SLVPlayers
+			// SlvPlayers
 			// 
-			this.SLVPlayers.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+			this.SlvPlayers.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.ColPlayers});
-			this.SLVPlayers.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.SLVPlayers.Location = new System.Drawing.Point(0, 0);
-			this.SLVPlayers.Name = "SLVPlayers";
-			this.SLVPlayers.Size = new System.Drawing.Size(160, 352);
-			this.SLVPlayers.TabIndex = 0;
-			this.SLVPlayers.UseCompatibleStateImageBehavior = false;
-			this.SLVPlayers.View = System.Windows.Forms.View.Details;
+			this.SlvPlayers.ContextMenuStrip = this.ContextPlayers;
+			this.SlvPlayers.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.SlvPlayers.Location = new System.Drawing.Point(0, 0);
+			this.SlvPlayers.Name = "SlvPlayers";
+			this.SlvPlayers.Size = new System.Drawing.Size(160, 352);
+			this.SlvPlayers.TabIndex = 0;
+			this.SlvPlayers.UseCompatibleStateImageBehavior = false;
+			this.SlvPlayers.View = System.Windows.Forms.View.Details;
 			// 
 			// ColPlayers
 			// 
@@ -154,11 +162,13 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			// 
 			// performanceMonitor
 			// 
+			this.performanceMonitor.BackColor = System.Drawing.Color.White;
 			this.performanceMonitor.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.performanceMonitor.Location = new System.Drawing.Point(3, 16);
 			this.performanceMonitor.Name = "performanceMonitor";
 			this.performanceMonitor.Size = new System.Drawing.Size(618, 98);
 			this.performanceMonitor.TabIndex = 0;
+			this.performanceMonitor.UseSelectable = true;
 			// 
 			// groupBox3
 			// 
@@ -182,6 +192,52 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			this.quickButtons.TabIndex = 0;
 			this.quickButtons.UseSelectable = true;
 			// 
+			// ContextPlayers
+			// 
+			this.ContextPlayers.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ContextPlayersKick,
+            this.ContextPlayersBan,
+            this.ContextPlayersBanIp,
+            this.ContextPlayersOp,
+            this.ContextPlayersDeOp});
+			this.ContextPlayers.Name = "ContextPlayers";
+			this.ContextPlayers.Size = new System.Drawing.Size(110, 114);
+			// 
+			// ContextPlayersKick
+			// 
+			this.ContextPlayersKick.Name = "ContextPlayersKick";
+			this.ContextPlayersKick.Size = new System.Drawing.Size(109, 22);
+			this.ContextPlayersKick.Text = "Kick";
+			this.ContextPlayersKick.Click += new System.EventHandler(this.ContextPlayersKick_Click);
+			// 
+			// ContextPlayersBan
+			// 
+			this.ContextPlayersBan.Name = "ContextPlayersBan";
+			this.ContextPlayersBan.Size = new System.Drawing.Size(109, 22);
+			this.ContextPlayersBan.Text = "Ban";
+			this.ContextPlayersBan.Click += new System.EventHandler(this.ContextPlayersBan_Click);
+			// 
+			// ContextPlayersBanIp
+			// 
+			this.ContextPlayersBanIp.Name = "ContextPlayersBanIp";
+			this.ContextPlayersBanIp.Size = new System.Drawing.Size(109, 22);
+			this.ContextPlayersBanIp.Text = "Ban-ip";
+			this.ContextPlayersBanIp.Click += new System.EventHandler(this.ContextPlayersBanIp_Click);
+			// 
+			// ContextPlayersOp
+			// 
+			this.ContextPlayersOp.Name = "ContextPlayersOp";
+			this.ContextPlayersOp.Size = new System.Drawing.Size(109, 22);
+			this.ContextPlayersOp.Text = "Op";
+			this.ContextPlayersOp.Click += new System.EventHandler(this.ContextPlayersOp_Click);
+			// 
+			// ContextPlayersDeOp
+			// 
+			this.ContextPlayersDeOp.Name = "ContextPlayersDeOp";
+			this.ContextPlayersDeOp.Size = new System.Drawing.Size(109, 22);
+			this.ContextPlayersDeOp.Text = "De-op";
+			this.ContextPlayersDeOp.Click += new System.EventHandler(this.ContextPlayersDeOp_Click);
+			// 
 			// ConsoleTab
 			// 
 			this.BackColor = System.Drawing.Color.White;
@@ -196,6 +252,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			this.splitContainer1.ResumeLayout(false);
 			this.groupBox2.ResumeLayout(false);
 			this.groupBox3.ResumeLayout(false);
+			this.ContextPlayers.ResumeLayout(false);
 			this.ResumeLayout(false);
 
         }
@@ -210,9 +267,15 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
         private Controls.ConsoleInput.ConsoleInput CIConsoleInput;
         internal QuickButtons quickButtons;
         private Controls.PerformanceMonitor.PerformanceMonitor performanceMonitor;
-		private Controls.SortableListView.SortableListView SLVPlayers;
+		private Controls.SortableListView.SortableListView SlvPlayers;
 		private System.Windows.Forms.ColumnHeader ColPlayers;
 		private MetroFramework.Components.MetroStyleExtender metroStyleExtender;
+		private MetroFramework.Controls.MetroContextMenu ContextPlayers;
+		private System.Windows.Forms.ToolStripMenuItem ContextPlayersKick;
+		private System.Windows.Forms.ToolStripMenuItem ContextPlayersBan;
+		private System.Windows.Forms.ToolStripMenuItem ContextPlayersBanIp;
+		private System.Windows.Forms.ToolStripMenuItem ContextPlayersOp;
+		private System.Windows.Forms.ToolStripMenuItem ContextPlayersDeOp;
 
 
      }

@@ -55,7 +55,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
             }
             else
             {
-                SLVPlayers.Items.RemoveByKey(player.Name);
+                SlvPlayers.Items.RemoveByKey(player.Name);
             }
         }
 
@@ -72,7 +72,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
             else
             {
                 String[] text = {player.Name, player.Ip};
-                ListViewItem lvi = new ListViewItem(text) {Tag = player.Name, Name = player.Name};
+                ListViewItem lvi = new ListViewItem(text) {Tag = player, Name = player.Name};
                 AddListViewItem(lvi);
             }
         }
@@ -89,7 +89,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
             }
             else
             {
-                SLVPlayers.Items.Add(item);
+                SlvPlayers.Items.Add(item);
             }
         }
 
@@ -99,7 +99,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
         private void HandleServerStart()
         {
             // clearing console is already performed by the starter routine, so the starter routine can display its own information too.
-            SLVPlayers.Items.Clear();
+            SlvPlayers.Items.Clear();
             CIConsoleInput.ClearAutoCompletionHistory();
             WriteOut("Starting a new server");
         }
@@ -115,7 +115,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
             }
             else
             {
-                SLVPlayers.Items.Clear();
+                SlvPlayers.Items.Clear();
                 CIConsoleInput.ClearAutoCompletionHistory();
                 WriteOut("The server has stopped");
             }
@@ -151,5 +151,35 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
         {
             Reference.MCCOut.WriteOutput(MessageType.Info, "[GUI] " + text);
         }
+
+		private void ContextPlayersKick_Click(object sender, EventArgs e)
+		{
+			if (SlvPlayers.SelectedItems.Count < 1) return;
+			((Player)(SlvPlayers.SelectedItems[0].Tag)).Kick();
+		}
+
+		private void ContextPlayersBan_Click(object sender, EventArgs e)
+		{
+			if (SlvPlayers.SelectedItems.Count < 1) return;
+			((Player)(SlvPlayers.SelectedItems[0].Tag)).Ban();
+		}
+
+		private void ContextPlayersBanIp_Click(object sender, EventArgs e)
+		{
+			if (SlvPlayers.SelectedItems.Count < 1) return;
+			((Player)(SlvPlayers.SelectedItems[0].Tag)).BanIp();
+		}
+
+		private void ContextPlayersOp_Click(object sender, EventArgs e)
+		{
+			if (SlvPlayers.SelectedItems.Count < 1) return;
+			((Player)(SlvPlayers.SelectedItems[0].Tag)).SetOp(true);
+		}
+
+		private void ContextPlayersDeOp_Click(object sender, EventArgs e)
+		{
+			if (SlvPlayers.SelectedItems.Count < 1) return;
+			((Player)(SlvPlayers.SelectedItems[0].Tag)).SetOp(false);
+		}
     }
 }

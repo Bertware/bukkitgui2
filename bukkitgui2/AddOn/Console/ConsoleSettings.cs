@@ -5,11 +5,12 @@
 
 using System.Drawing;
 using System.Windows.Forms;
+using MetroFramework.Controls;
 using Net.Bertware.Bukkitgui2.Core.Configuration;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Console
 {
-    public partial class ConsoleSettings : UserControl
+	public partial class ConsoleSettings : MetroUserControl
     {
         public ConsoleSettings()
         {

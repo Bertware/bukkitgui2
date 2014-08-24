@@ -78,7 +78,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 		{
 			if (ProcessHandler.ProcessHandler.IsRunning)
 			{
-				ProcessHandler.ProcessHandler.SendInput("gamemode " + (int) mode + " " + player);
+				ProcessHandler.ProcessHandler.SendInput("gamemode " + (int)mode + " " + player);
 			}
 		}
 

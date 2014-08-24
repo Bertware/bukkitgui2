@@ -25,7 +25,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.PlayerList
             }
             else
             {
-                slvPlayers.Items.Clear();
+                SlvPlayers.Items.Clear();
                 foreach (Player player in PlayerHandler.GetOnlinePlayers())
                 {
                     string[] contents =
@@ -34,7 +34,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.PlayerList
                         player.Location
                     };
                     ListViewItem item = new ListViewItem(contents) {Tag = player};
-                    slvPlayers.Items.Add(item);
+                    SlvPlayers.Items.Add(item);
                     player.DetailsLoaded += player_DetailsLoaded;
                 }
             }
@@ -50,7 +50,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.PlayerList
             {
                 Player p = (Player) sender;
 				
-                foreach (ListViewItem lvi in slvPlayers.Items)
+                foreach (ListViewItem lvi in SlvPlayers.Items)
                 {
                     if (lvi.Tag.Equals(p))
                     {
@@ -61,5 +61,35 @@ namespace Net.Bertware.Bukkitgui2.AddOn.PlayerList
         }
 
         public IAddon ParentAddon { get; set; }
+
+		private void ContextPlayersKick_Click(object sender, EventArgs e)
+		{
+			if (SlvPlayers.SelectedItems.Count <1) return;
+			((Player) (SlvPlayers.SelectedItems[0].Tag)).Kick();
+		}
+
+		private void ContextPlayersBan_Click(object sender, EventArgs e)
+		{
+			if (SlvPlayers.SelectedItems.Count < 1) return;
+			((Player)(SlvPlayers.SelectedItems[0].Tag)).Ban();
+		}
+
+		private void ContextPlayersBanIp_Click(object sender, EventArgs e)
+		{
+			if (SlvPlayers.SelectedItems.Count < 1) return;
+			((Player)(SlvPlayers.SelectedItems[0].Tag)).BanIp();
+		}
+
+		private void ContextPlayersOp_Click(object sender, EventArgs e)
+		{
+			if (SlvPlayers.SelectedItems.Count < 1) return;
+			((Player)(SlvPlayers.SelectedItems[0].Tag)).SetOp(true);
+		}
+
+		private void ContextPlayersDeOp_Click(object sender, EventArgs e)
+		{
+			if (SlvPlayers.SelectedItems.Count < 1) return;
+			((Player)(SlvPlayers.SelectedItems[0].Tag)).SetOp(false);
+		}
     }
 }

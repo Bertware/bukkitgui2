@@ -72,6 +72,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			this.GBCustomSettings = new System.Windows.Forms.GroupBox();
 			this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
 			this.metroStyleExtender = new MetroFramework.Components.MetroStyleExtender(this.components);
+			this.metroToolTip = new MetroFramework.Components.MetroToolTip();
 			this.GBServer.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.NumMaxRam)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.NumMinRam)).BeginInit();
@@ -209,6 +210,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			this.NumMaxRam.Name = "NumMaxRam";
 			this.NumMaxRam.Size = new System.Drawing.Size(73, 20);
 			this.NumMaxRam.TabIndex = 10;
+			this.metroToolTip.SetToolTip(this.NumMaxRam, "Recommended value: 1024mb");
 			this.NumMaxRam.ValueChanged += new System.EventHandler(this.NumMaxRam_ValueChanged);
 			// 
 			// TBMaxRam
@@ -224,6 +226,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			this.TBMaxRam.Size = new System.Drawing.Size(247, 45);
 			this.TBMaxRam.SmallChange = 256;
 			this.TBMaxRam.TabIndex = 9;
+			this.metroToolTip.SetToolTip(this.TBMaxRam, "Recommended value: 1024mb");
 			this.TBMaxRam.ValueChanged += new System.EventHandler(this.TbMaxRamScroll);
 			// 
 			// label4
@@ -248,6 +251,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			this.NumMinRam.Name = "NumMinRam";
 			this.NumMinRam.Size = new System.Drawing.Size(73, 20);
 			this.NumMinRam.TabIndex = 7;
+			this.metroToolTip.SetToolTip(this.NumMinRam, "Recommended value: 128mb");
 			this.NumMinRam.ValueChanged += new System.EventHandler(this.NumMinRam_ValueChanged);
 			// 
 			// TBMinRam
@@ -263,6 +267,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			this.TBMinRam.Size = new System.Drawing.Size(247, 45);
 			this.TBMinRam.SmallChange = 256;
 			this.TBMinRam.TabIndex = 6;
+			this.metroToolTip.SetToolTip(this.TBMinRam, "Recommended value: 128mb");
 			this.TBMinRam.ValueChanged += new System.EventHandler(this.TbMinRamScroll);
 			// 
 			// label3
@@ -293,6 +298,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			this.CBJavaVersion.Name = "CBJavaVersion";
 			this.CBJavaVersion.Size = new System.Drawing.Size(326, 29);
 			this.CBJavaVersion.TabIndex = 3;
+			this.metroToolTip.SetToolTip(this.CBJavaVersion, "The java version to use.\r\nOnly installed versions are selectable.");
 			this.CBJavaVersion.UseSelectable = true;
 			this.CBJavaVersion.SelectedIndexChanged += new System.EventHandler(this.CbJavaVersionSelectedIndexChanged);
 			// 
@@ -310,6 +316,8 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			this.TxtJarFile.SelectedText = "";
 			this.TxtJarFile.Size = new System.Drawing.Size(290, 20);
 			this.TxtJarFile.TabIndex = 2;
+			this.metroToolTip.SetToolTip(this.TxtJarFile, "The server file (java .jar file).\r\nIf you don\'t have one, download one using the " +
+        "buttons on the right.");
 			this.TxtJarFile.UseSelectable = true;
 			this.TxtJarFile.TextChanged += new System.EventHandler(this.TxtJarFile_TextChanged);
 			// 
@@ -332,6 +340,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			this.CBServerType.Name = "CBServerType";
 			this.CBServerType.Size = new System.Drawing.Size(326, 29);
 			this.CBServerType.TabIndex = 0;
+			this.metroToolTip.SetToolTip(this.CBServerType, "The minecraft server type you want to use");
 			this.CBServerType.UseSelectable = true;
 			this.CBServerType.SelectedIndexChanged += new System.EventHandler(this.CbServerTypeSelectedIndexChanged);
 			// 
@@ -545,6 +554,12 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			// 
 			this.errorProvider.ContainerControl = this;
 			// 
+			// metroToolTip
+			// 
+			this.metroToolTip.Style = MetroFramework.MetroColorStyle.Blue;
+			this.metroToolTip.StyleManager = null;
+			this.metroToolTip.Theme = MetroFramework.MetroThemeStyle.Light;
+			// 
 			// StarterTab
 			// 
 			this.BackColor = System.Drawing.Color.White;
@@ -606,5 +621,6 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
         private MetroButton BtnBrowseJarFile;
 		private System.Windows.Forms.ErrorProvider errorProvider;
 		private MetroFramework.Components.MetroStyleExtender metroStyleExtender;
+		private MetroFramework.Components.MetroToolTip metroToolTip;
 	}
 }
