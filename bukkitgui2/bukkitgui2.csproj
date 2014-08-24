@@ -146,6 +146,7 @@
     </Compile>
     <Compile Include="AddOn\Starter\JavaApi.cs" />
     <Compile Include="AddOn\Tasker\Action\ConsoleCommandAction.cs" />
+    <Compile Include="AddOn\Tasker\Action\ConsoleClearAction.cs" />
     <Compile Include="AddOn\Tasker\Action\ServerKillAction.cs" />
     <Compile Include="AddOn\Tasker\Action\ServerStartAction.cs" />
     <Compile Include="AddOn\Tasker\Action\ServerStopAction.cs" />
