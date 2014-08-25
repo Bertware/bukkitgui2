@@ -27,7 +27,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 
         public IAddon ParentAddon { get; set; }
 
-        /// <summary>
+	    /// <summary>
         ///     The reference to the custom control used by some servers
         /// </summary>
         private UserControl _customControl;

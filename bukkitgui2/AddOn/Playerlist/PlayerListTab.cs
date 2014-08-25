@@ -14,6 +14,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.PlayerList
         public PlayerListTab()
         {
             InitializeComponent();
+
             PlayerHandler.PlayerListChanged += HandlePlayerListChange;
         }
 
@@ -62,7 +63,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.PlayerList
 
         public IAddon ParentAddon { get; set; }
 
-		private void ContextPlayersKick_Click(object sender, EventArgs e)
+	    private void ContextPlayersKick_Click(object sender, EventArgs e)
 		{
 			if (SlvPlayers.SelectedItems.Count <1) return;
 			((Player) (SlvPlayers.SelectedItems[0].Tag)).Kick();

@@ -16,7 +16,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Settings
 
         public IAddon ParentAddon { get; set; }
 
-        /// <summary>
+	    /// <summary>
         ///     Dictionary of addon names and their settings controls
         /// </summary>
         private Dictionary<string, UserControl> _settings;
@@ -37,12 +37,17 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Settings
                 return;
             }
             _settings = new Dictionary<string, UserControl>();
-            foreach (KeyValuePair<IAddon, UserControl> settingsEntry in AddonManager.SettingsDictionary)
+	        TreeNode node;
+			
+			foreach (KeyValuePair<IAddon, UserControl> settingsEntry in AddonManager.SettingsDictionary)
             {
                 _settings.Add(settingsEntry.Key.Name, settingsEntry.Value);
-                TreeNode node = new TreeNode(settingsEntry.Key.Name) {Name = settingsEntry.Key.Name};
+                node = new TreeNode(settingsEntry.Key.Name) {Name = settingsEntry.Key.Name};
                 TVSettings.Nodes.Add(node);
             }
+			_settings.Add("Credits", new Credits());
+			node = new TreeNode("Credits") { Name = "Credits" };
+			TVSettings.Nodes.Add(node);
             IsInitialized = true;
         }
 

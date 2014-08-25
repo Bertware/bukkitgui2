@@ -169,4 +169,70 @@
   <data name="sound_warning" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\sound\sound_warning.wav;System.IO.MemoryStream, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="icon_cancel_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icon\icon_cancel-64.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_chat_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icon\icon_chat-64.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_checkmark_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icon\icon_checkmark-64.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_clock_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icon\icon_clock-64.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_command_line_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icon\icon_command_line-64.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_console_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icon\icon_console-64.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_contacts_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icon\icon_contacts-64.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_downloading_updates_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icon\icon_downloading_updates-64.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_downloads_folder_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icon\icon_downloads_folder-64.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_down_circular_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icon\icon_down_circular-64.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_extensions_folder_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icon\icon_extensions_folder-64.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_group_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icon\icon_group-64.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_left_round_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icon\icon_left_round-64.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_minus_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icon\icon_minus-64.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_plus_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icon\icon_plus-64.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_right_circular_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icon\icon_right_circular-64.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_right_round_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icon\icon_right_round-64.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_services_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icon\icon_services-64.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_settings_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icon\icon_settings-64.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_sinchronize_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icon\icon_sinchronize-64.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_today_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icon\icon_today-64.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_up_circular_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icon\icon_up_circular-64.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

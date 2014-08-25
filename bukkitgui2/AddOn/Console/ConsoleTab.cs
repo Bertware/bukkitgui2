@@ -17,12 +17,13 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
     public partial class ConsoleTab : MetroUserControl, IAddonTab
     {
         public IAddon ParentAddon { get; set; }
-        public static ConsoleTab Reference;
+	    public static ConsoleTab Reference;
 
         public ConsoleTab()
         {
             Reference = this;
             InitializeComponent();
+
             MinecraftOutputHandler.OutputParsed += PrintOutput;
             ProcessHandler.ServerStarting += HandleServerStart;
             ProcessHandler.ServerStopped += HandleServerStop;

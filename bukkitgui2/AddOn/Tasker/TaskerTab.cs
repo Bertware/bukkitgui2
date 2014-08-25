@@ -27,7 +27,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 
         public IAddon ParentAddon { get; set; }
 
-        /// <summary>
+	    /// <summary>
         ///     Load all tasks to the UI
         /// </summary>
         private void LoadUi()

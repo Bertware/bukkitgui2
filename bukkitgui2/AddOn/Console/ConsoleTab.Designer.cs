@@ -35,6 +35,12 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.SlvPlayers = new Net.Bertware.Bukkitgui2.Controls.SortableListView.SortableListView();
 			this.ColPlayers = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.ContextPlayers = new MetroFramework.Controls.MetroContextMenu(this.components);
+			this.ContextPlayersKick = new System.Windows.Forms.ToolStripMenuItem();
+			this.ContextPlayersBan = new System.Windows.Forms.ToolStripMenuItem();
+			this.ContextPlayersBanIp = new System.Windows.Forms.ToolStripMenuItem();
+			this.ContextPlayersOp = new System.Windows.Forms.ToolStripMenuItem();
+			this.ContextPlayersDeOp = new System.Windows.Forms.ToolStripMenuItem();
 			this.CIConsoleInput = new Net.Bertware.Bukkitgui2.Controls.ConsoleInput.ConsoleInput();
 			this.MCCOut = new Net.Bertware.Bukkitgui2.Controls.MinecraftConsole.MinecraftConsole();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -42,19 +48,13 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
 			this.quickButtons = new Net.Bertware.Bukkitgui2.Controls.QuickButtons.QuickButtons();
 			this.metroStyleExtender = new MetroFramework.Components.MetroStyleExtender(this.components);
-			this.ContextPlayers = new MetroFramework.Controls.MetroContextMenu(this.components);
-			this.ContextPlayersKick = new System.Windows.Forms.ToolStripMenuItem();
-			this.ContextPlayersBan = new System.Windows.Forms.ToolStripMenuItem();
-			this.ContextPlayersBanIp = new System.Windows.Forms.ToolStripMenuItem();
-			this.ContextPlayersOp = new System.Windows.Forms.ToolStripMenuItem();
-			this.ContextPlayersDeOp = new System.Windows.Forms.ToolStripMenuItem();
 			this.groupBox1.SuspendLayout();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
 			this.splitContainer1.SuspendLayout();
+			this.ContextPlayers.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.groupBox3.SuspendLayout();
-			this.ContextPlayers.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// groupBox1
@@ -107,6 +107,57 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			// 
 			this.ColPlayers.Text = "Players";
 			this.ColPlayers.Width = 146;
+			// 
+			// ContextPlayers
+			// 
+			this.ContextPlayers.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ContextPlayersKick,
+            this.ContextPlayersBan,
+            this.ContextPlayersBanIp,
+            this.ContextPlayersOp,
+            this.ContextPlayersDeOp});
+			this.ContextPlayers.Name = "ContextPlayers";
+			this.ContextPlayers.Size = new System.Drawing.Size(110, 114);
+			// 
+			// ContextPlayersKick
+			// 
+			this.ContextPlayersKick.Image = global::Net.Bertware.Bukkitgui2.Properties.Resources.icon_minus_64;
+			this.ContextPlayersKick.Name = "ContextPlayersKick";
+			this.ContextPlayersKick.Size = new System.Drawing.Size(109, 22);
+			this.ContextPlayersKick.Text = "Kick";
+			this.ContextPlayersKick.Click += new System.EventHandler(this.ContextPlayersKick_Click);
+			// 
+			// ContextPlayersBan
+			// 
+			this.ContextPlayersBan.Image = global::Net.Bertware.Bukkitgui2.Properties.Resources.icon_cancel_64;
+			this.ContextPlayersBan.Name = "ContextPlayersBan";
+			this.ContextPlayersBan.Size = new System.Drawing.Size(109, 22);
+			this.ContextPlayersBan.Text = "Ban";
+			this.ContextPlayersBan.Click += new System.EventHandler(this.ContextPlayersBan_Click);
+			// 
+			// ContextPlayersBanIp
+			// 
+			this.ContextPlayersBanIp.Image = global::Net.Bertware.Bukkitgui2.Properties.Resources.icon_cancel_64;
+			this.ContextPlayersBanIp.Name = "ContextPlayersBanIp";
+			this.ContextPlayersBanIp.Size = new System.Drawing.Size(109, 22);
+			this.ContextPlayersBanIp.Text = "Ban-ip";
+			this.ContextPlayersBanIp.Click += new System.EventHandler(this.ContextPlayersBanIp_Click);
+			// 
+			// ContextPlayersOp
+			// 
+			this.ContextPlayersOp.Image = global::Net.Bertware.Bukkitgui2.Properties.Resources.icon_up_circular_64;
+			this.ContextPlayersOp.Name = "ContextPlayersOp";
+			this.ContextPlayersOp.Size = new System.Drawing.Size(109, 22);
+			this.ContextPlayersOp.Text = "Op";
+			this.ContextPlayersOp.Click += new System.EventHandler(this.ContextPlayersOp_Click);
+			// 
+			// ContextPlayersDeOp
+			// 
+			this.ContextPlayersDeOp.Image = global::Net.Bertware.Bukkitgui2.Properties.Resources.icon_down_circular_64;
+			this.ContextPlayersDeOp.Name = "ContextPlayersDeOp";
+			this.ContextPlayersDeOp.Size = new System.Drawing.Size(109, 22);
+			this.ContextPlayersDeOp.Text = "De-op";
+			this.ContextPlayersDeOp.Click += new System.EventHandler(this.ContextPlayersDeOp_Click);
 			// 
 			// CIConsoleInput
 			// 
@@ -192,52 +243,6 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			this.quickButtons.TabIndex = 0;
 			this.quickButtons.UseSelectable = true;
 			// 
-			// ContextPlayers
-			// 
-			this.ContextPlayers.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ContextPlayersKick,
-            this.ContextPlayersBan,
-            this.ContextPlayersBanIp,
-            this.ContextPlayersOp,
-            this.ContextPlayersDeOp});
-			this.ContextPlayers.Name = "ContextPlayers";
-			this.ContextPlayers.Size = new System.Drawing.Size(110, 114);
-			// 
-			// ContextPlayersKick
-			// 
-			this.ContextPlayersKick.Name = "ContextPlayersKick";
-			this.ContextPlayersKick.Size = new System.Drawing.Size(109, 22);
-			this.ContextPlayersKick.Text = "Kick";
-			this.ContextPlayersKick.Click += new System.EventHandler(this.ContextPlayersKick_Click);
-			// 
-			// ContextPlayersBan
-			// 
-			this.ContextPlayersBan.Name = "ContextPlayersBan";
-			this.ContextPlayersBan.Size = new System.Drawing.Size(109, 22);
-			this.ContextPlayersBan.Text = "Ban";
-			this.ContextPlayersBan.Click += new System.EventHandler(this.ContextPlayersBan_Click);
-			// 
-			// ContextPlayersBanIp
-			// 
-			this.ContextPlayersBanIp.Name = "ContextPlayersBanIp";
-			this.ContextPlayersBanIp.Size = new System.Drawing.Size(109, 22);
-			this.ContextPlayersBanIp.Text = "Ban-ip";
-			this.ContextPlayersBanIp.Click += new System.EventHandler(this.ContextPlayersBanIp_Click);
-			// 
-			// ContextPlayersOp
-			// 
-			this.ContextPlayersOp.Name = "ContextPlayersOp";
-			this.ContextPlayersOp.Size = new System.Drawing.Size(109, 22);
-			this.ContextPlayersOp.Text = "Op";
-			this.ContextPlayersOp.Click += new System.EventHandler(this.ContextPlayersOp_Click);
-			// 
-			// ContextPlayersDeOp
-			// 
-			this.ContextPlayersDeOp.Name = "ContextPlayersDeOp";
-			this.ContextPlayersDeOp.Size = new System.Drawing.Size(109, 22);
-			this.ContextPlayersDeOp.Text = "De-op";
-			this.ContextPlayersDeOp.Click += new System.EventHandler(this.ContextPlayersDeOp_Click);
-			// 
 			// ConsoleTab
 			// 
 			this.BackColor = System.Drawing.Color.White;
@@ -250,9 +255,9 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			this.splitContainer1.Panel1.ResumeLayout(false);
 			this.splitContainer1.Panel2.ResumeLayout(false);
 			this.splitContainer1.ResumeLayout(false);
+			this.ContextPlayers.ResumeLayout(false);
 			this.groupBox2.ResumeLayout(false);
 			this.groupBox3.ResumeLayout(false);
-			this.ContextPlayers.ResumeLayout(false);
 			this.ResumeLayout(false);
 
         }

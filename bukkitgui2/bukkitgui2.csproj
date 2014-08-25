@@ -132,6 +132,12 @@
     <Compile Include="AddOn\Plugins\InstalledPlugins\PluginUpdater.Designer.cs">
       <DependentUpon>PluginUpdater.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddOn\Settings\Credits.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AddOn\Settings\Credits.Designer.cs">
+      <DependentUpon>Credits.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddOn\SixtySetup\SixtySetupSettings.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -422,6 +428,9 @@
     <EmbeddedResource Include="AddOn\Plugins\PluginsTab.resx">
       <DependentUpon>PluginsTab.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AddOn\Settings\Credits.resx">
+      <DependentUpon>Credits.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddOn\Settings\SettingsTab.resx">
       <DependentUpon>SettingsTab.cs</DependentUpon>
     </EmbeddedResource>
@@ -511,6 +520,28 @@
     <Folder Include="Core\Filesystem\FTP\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\Icon\icon_cancel-64.png" />
+    <Content Include="Resources\Icon\icon_chat-64.png" />
+    <Content Include="Resources\Icon\icon_checkmark-64.png" />
+    <Content Include="Resources\Icon\icon_clock-64.png" />
+    <Content Include="Resources\Icon\icon_command_line-64.png" />
+    <Content Include="Resources\Icon\icon_console-64.png" />
+    <Content Include="Resources\Icon\icon_contacts-64.png" />
+    <Content Include="Resources\Icon\icon_downloading_updates-64.png" />
+    <Content Include="Resources\Icon\icon_downloads_folder-64.png" />
+    <Content Include="Resources\Icon\icon_down_circular-64.png" />
+    <Content Include="Resources\Icon\icon_extensions_folder-64.png" />
+    <Content Include="Resources\Icon\icon_group-64.png" />
+    <Content Include="Resources\Icon\icon_left_round-64.png" />
+    <Content Include="Resources\Icon\icon_minus-64.png" />
+    <Content Include="Resources\Icon\icon_plus-64.png" />
+    <Content Include="Resources\Icon\icon_right_circular-64.png" />
+    <Content Include="Resources\Icon\icon_right_round-64.png" />
+    <Content Include="Resources\Icon\icon_services-64.png" />
+    <Content Include="Resources\Icon\icon_settings-64.png" />
+    <Content Include="Resources\Icon\icon_sinchronize-64.png" />
+    <Content Include="Resources\Icon\icon_today-64.png" />
+    <Content Include="Resources\Icon\icon_up_circular-64.png" />
     <Content Include="Resources\Sound\sound_connect.wav" />
     <Content Include="Resources\Sound\sound_disconnect.wav" />
     <Content Include="Resources\Sound\sound_severe.wav" />
