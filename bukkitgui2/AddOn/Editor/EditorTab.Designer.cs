@@ -31,10 +31,13 @@
 		private void InitializeComponent()
 		{
 			this.TabCtrlSettings = new MetroFramework.Controls.MetroTabControl();
-			this.tabEditor = new System.Windows.Forms.TabPage();
 			this.tabSettings = new System.Windows.Forms.TabPage();
-			this.tabPlayerLists = new System.Windows.Forms.TabPage();
-			this.serverSettingsControl1 = new Net.Bertware.Bukkitgui2.AddOn.Editor.ServerSettingsControl();
+			this.serverSettingsControl = new Net.Bertware.Bukkitgui2.AddOn.Editor.ServerSettingsControl();
+			this.tabWhitelist = new System.Windows.Forms.TabPage();
+			this.tabEditor = new System.Windows.Forms.TabPage();
+			this.tabBanlist = new System.Windows.Forms.TabPage();
+			this.tabIpbanList = new System.Windows.Forms.TabPage();
+			this.tabOplist = new System.Windows.Forms.TabPage();
 			this.TabCtrlSettings.SuspendLayout();
 			this.tabSettings.SuspendLayout();
 			this.SuspendLayout();
@@ -42,7 +45,10 @@
 			// TabCtrlSettings
 			// 
 			this.TabCtrlSettings.Controls.Add(this.tabSettings);
-			this.TabCtrlSettings.Controls.Add(this.tabPlayerLists);
+			this.TabCtrlSettings.Controls.Add(this.tabWhitelist);
+			this.TabCtrlSettings.Controls.Add(this.tabOplist);
+			this.TabCtrlSettings.Controls.Add(this.tabBanlist);
+			this.TabCtrlSettings.Controls.Add(this.tabIpbanList);
 			this.TabCtrlSettings.Controls.Add(this.tabEditor);
 			this.TabCtrlSettings.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.TabCtrlSettings.Location = new System.Drawing.Point(0, 0);
@@ -52,6 +58,32 @@
 			this.TabCtrlSettings.TabIndex = 2;
 			this.TabCtrlSettings.UseSelectable = true;
 			// 
+			// tabSettings
+			// 
+			this.tabSettings.Controls.Add(this.serverSettingsControl);
+			this.tabSettings.Location = new System.Drawing.Point(4, 38);
+			this.tabSettings.Name = "tabSettings";
+			this.tabSettings.Size = new System.Drawing.Size(792, 458);
+			this.tabSettings.TabIndex = 0;
+			this.tabSettings.Text = "Server Settings";
+			// 
+			// serverSettingsControl
+			// 
+			this.serverSettingsControl.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.serverSettingsControl.Location = new System.Drawing.Point(0, 0);
+			this.serverSettingsControl.Name = "serverSettingsControl";
+			this.serverSettingsControl.Size = new System.Drawing.Size(792, 458);
+			this.serverSettingsControl.TabIndex = 4;
+			this.serverSettingsControl.UseSelectable = true;
+			// 
+			// tabWhitelist
+			// 
+			this.tabWhitelist.Location = new System.Drawing.Point(4, 38);
+			this.tabWhitelist.Name = "tabWhitelist";
+			this.tabWhitelist.Size = new System.Drawing.Size(792, 458);
+			this.tabWhitelist.TabIndex = 2;
+			this.tabWhitelist.Text = "Whitelist";
+			// 
 			// tabEditor
 			// 
 			this.tabEditor.Location = new System.Drawing.Point(4, 38);
@@ -60,31 +92,29 @@
 			this.tabEditor.TabIndex = 1;
 			this.tabEditor.Text = "Config Editor";
 			// 
-			// tabSettings
+			// tabBanlist
 			// 
-			this.tabSettings.Controls.Add(this.serverSettingsControl1);
-			this.tabSettings.Location = new System.Drawing.Point(4, 38);
-			this.tabSettings.Name = "tabSettings";
-			this.tabSettings.Size = new System.Drawing.Size(792, 458);
-			this.tabSettings.TabIndex = 0;
-			this.tabSettings.Text = "Server Settings";
+			this.tabBanlist.Location = new System.Drawing.Point(4, 38);
+			this.tabBanlist.Name = "tabBanlist";
+			this.tabBanlist.Size = new System.Drawing.Size(792, 458);
+			this.tabBanlist.TabIndex = 3;
+			this.tabBanlist.Text = "Banlist";
 			// 
-			// tabPlayerLists
+			// tabIpbanList
 			// 
-			this.tabPlayerLists.Location = new System.Drawing.Point(4, 38);
-			this.tabPlayerLists.Name = "tabPlayerLists";
-			this.tabPlayerLists.Size = new System.Drawing.Size(792, 458);
-			this.tabPlayerLists.TabIndex = 2;
-			this.tabPlayerLists.Text = "White/black/op list";
+			this.tabIpbanList.Location = new System.Drawing.Point(4, 38);
+			this.tabIpbanList.Name = "tabIpbanList";
+			this.tabIpbanList.Size = new System.Drawing.Size(792, 458);
+			this.tabIpbanList.TabIndex = 4;
+			this.tabIpbanList.Text = "Ipbanlist";
 			// 
-			// serverSettingsControl1
+			// tabOplist
 			// 
-			this.serverSettingsControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.serverSettingsControl1.Location = new System.Drawing.Point(0, 0);
-			this.serverSettingsControl1.Name = "serverSettingsControl1";
-			this.serverSettingsControl1.Size = new System.Drawing.Size(792, 458);
-			this.serverSettingsControl1.TabIndex = 4;
-			this.serverSettingsControl1.UseSelectable = true;
+			this.tabOplist.Location = new System.Drawing.Point(4, 38);
+			this.tabOplist.Name = "tabOplist";
+			this.tabOplist.Size = new System.Drawing.Size(792, 458);
+			this.tabOplist.TabIndex = 5;
+			this.tabOplist.Text = "Operators";
 			// 
 			// EditorTab
 			// 
@@ -103,8 +133,11 @@
 		private MetroFramework.Controls.MetroTabControl TabCtrlSettings;
 		private TabPage tabSettings;
 		private TabPage tabEditor;
-		private TabPage tabPlayerLists;
-		private ServerSettingsControl serverSettingsControl1;
+		private TabPage tabWhitelist;
+		private ServerSettingsControl serverSettingsControl;
+		private TabPage tabBanlist;
+		private TabPage tabIpbanList;
+		private TabPage tabOplist;
 
 	}
 }
