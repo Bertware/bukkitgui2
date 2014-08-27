@@ -97,6 +97,18 @@
     <Compile Include="AddOn\Console\ConsoleTab.Designer.cs">
       <DependentUpon>ConsoleTab.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddOn\Editor\ServerSettingsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AddOn\Editor\ServerSettingsControl.Designer.cs">
+      <DependentUpon>ServerSettingsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddOn\Editor\SettingsEditDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddOn\Editor\SettingsEditDialog.Designer.cs">
+      <DependentUpon>SettingsEditDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddOn\IAddon.cs" />
     <Compile Include="AddOn\IAddonTab.cs" />
     <Compile Include="AddOn\Plugins\Bukget\api3\BukgetPlugin.cs" />
@@ -349,6 +361,7 @@
     <Compile Include="MinecraftInterop\PlayerHandler\PlayerActions.cs" />
     <Compile Include="MinecraftInterop\PlayerHandler\PlayerHandler.cs" />
     <Compile Include="MinecraftInterop\ProcessHandler\ProcessHandler.cs" />
+    <Compile Include="MinecraftInterop\ServerConfig.cs" />
     <Compile Include="MinecraftServers\IMinecraftServer.cs" />
     <Compile Include="MinecraftInterop\PlayerHandler\MinecraftGameMode.cs" />
     <Compile Include="MinecraftServers\Servers\BukkitServer.cs" />
@@ -403,6 +416,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddOn\Editor\EditorTab.resx">
       <DependentUpon>EditorTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddOn\Editor\ServerSettingsControl.resx">
+      <DependentUpon>ServerSettingsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddOn\Editor\SettingsEditDialog.resx">
+      <DependentUpon>SettingsEditDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddOn\Forwarder\ForwarderTab.resx">
       <DependentUpon>ForwarderTab.cs</DependentUpon>

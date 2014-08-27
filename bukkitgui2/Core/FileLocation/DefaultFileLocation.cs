@@ -5,6 +5,8 @@
 
 using System;
 using System.IO;
+using System.Linq;
+using Net.Bertware.Bukkitgui2.Core.Configuration;
 
 namespace Net.Bertware.Bukkitgui2.Core.FileLocation
 {
@@ -13,6 +15,9 @@ namespace Net.Bertware.Bukkitgui2.Core.FileLocation
     /// </summary>
     internal static class Fl
     {
+
+	    private static string _workingdirectory;
+	    private static bool _customWorkingDirectory;
         private const string AppdataSubfolder = "\\Bertware\\Bukkitgui2\\";
         private const string LocalSubfolder = "\\Bukkitgui2\\";
 
@@ -32,7 +37,30 @@ namespace Net.Bertware.Bukkitgui2.Core.FileLocation
         /// </summary>
         public static void Initialize()
         {
-            IsInitialized = true;
+			//set working directory
+	        Environment.CurrentDirectory = Share.AssemblyLocation;
+
+			IsInitialized = true;
+	        _workingdirectory = SafeLocation(RequestFile.Appdata);
+
+			// -portable argument for keeping everything in the working directory
+	        if (Environment.GetCommandLineArgs().Contains("-portable") || Config.ReadBool("filelocation","local",false))
+	        {
+				_workingdirectory = Environment.CurrentDirectory;
+	        }
+
+			// custom working directory
+	        if (Environment.GetCommandLineArgs().Contains("-wd"))
+	        {
+		        foreach (string arg in Environment.GetCommandLineArgs())
+		        {
+			        if (!arg.Contains("-wd=")) continue;
+			        _workingdirectory = arg.Split('=')[1];
+					Environment.CurrentDirectory = _workingdirectory;
+			        _customWorkingDirectory = true;
+					break;
+		        }
+	        }
         }
 
         /// <summary>
@@ -54,11 +82,11 @@ namespace Net.Bertware.Bukkitgui2.Core.FileLocation
                 case RequestFile.Appdata:
                     return Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + AppdataSubfolder;
                 case RequestFile.GuiDir:
-                    return AppDomain.CurrentDomain.BaseDirectory;
+		            return Share.AssemblyLocation;
                 case RequestFile.Local:
                     return Location(RequestFile.GuiDir) + LocalSubfolder;
                 case RequestFile.StorageRoot:
-                    return Location(RequestFile.Appdata); //Should return appdata or local, right now always appdata
+		            return _workingdirectory;
                 case RequestFile.Log:
                     return Location(RequestFile.StorageRoot) + LogFolder;
                 case RequestFile.Config:
@@ -69,8 +97,12 @@ namespace Net.Bertware.Bukkitgui2.Core.FileLocation
                     return Location(RequestFile.StorageRoot) + TmpFolder;
                 case RequestFile.Cache:
                     return Location(RequestFile.StorageRoot) + CacheFolder;
+				case RequestFile.Serverdir:
+		            if (!_customWorkingDirectory)
+			            return Location(RequestFile.GuiDir);
+		            return _workingdirectory;
                 case RequestFile.Plugindir:
-                    return Location(RequestFile.GuiDir) + "\\plugins";
+					return Location(RequestFile.Serverdir) + "\\plugins";
                 default:
                     return Location(RequestFile.StorageRoot);
             }
@@ -107,6 +139,7 @@ namespace Net.Bertware.Bukkitgui2.Core.FileLocation
         Local,
         Language,
         Temp,
+		Serverdir,
         Plugindir,
         Cache
     }

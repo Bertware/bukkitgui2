@@ -10,7 +10,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Editor
         public EditorTab()
         {
             InitializeComponent();
-        }
+		}
 
         public IAddon ParentAddon { get; set; }
     }

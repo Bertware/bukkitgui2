@@ -1,6 +1,6 @@
 ﻿// Player.cs in bukkitgui2/bukkitgui2
 // Created 2014/04/27
-// Last edited at 2014/08/25 15:40
+// Last edited at 2014/08/27 15:13
 // ©Bertware, visit http://bertware.net
 
 using System;
@@ -9,6 +9,7 @@ using System.IO;
 using System.Net;
 using System.Threading;
 using Microsoft.VisualBasic.Devices;
+using Net.Bertware.Bukkitgui2.Core.Logging;
 using Net.Bertware.Bukkitgui2.Core.Util.Web;
 using Net.Bertware.Bukkitgui2.Properties;
 
@@ -78,54 +79,55 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 			OnDetailsLoaded();
 		}
 
+		/// <summary>
+		///     Get the location (country) for this player.
+		/// </summary>
 		private void GetLocation()
 		{
 			Location = WebUtil.GetGeoLocation(Ip);
 		}
 
+		/// <summary>
+		///     Gets the player face for this player
+		/// </summary>
 		private void GetMinotar()
 		{
-		//Gets the player face for a certain playername
-		//Send request, and get the image from the stream
-		//using bertware.net as a compatibility layer towards minotar.net
+			Image img = Resources.player_face;
 
+			if (new Computer().Network.IsAvailable == false)
 			{
-				Image img = Resources.player_face;
-				
-				if (new Computer().Network.IsAvailable == false)
+				//use default
+				Minotar = img;
+				return;
+			}
+
+			try
+			{
+				string url = "http://minotar.net/helm/" + Name + "/32.png";
+				WebRequest webreq = WebRequest.Create(new Uri(url));
+				//set useragent - currently only for statistics
+				webreq.Headers.Set(HttpRequestHeader.UserAgent, WebUtil.UserAgent);
+
+				WebResponse resp = webreq.GetResponse();
+
+				Stream imgstream = resp.GetResponseStream();
+				if (imgstream == null || imgstream.Equals(Stream.Null))
 				{
 					//use default
 					Minotar = img;
 					return;
 				}
-
-				try
-				{
-					string url = "http://minotar.net/helm/" + Name + "/32.png";
-					WebRequest webreq = WebRequest.Create(new Uri(url));
-					//set useragent - currently only for statistics
-					webreq.Headers.Set(HttpRequestHeader.UserAgent, WebUtil.UserAgent);
-
-					WebResponse resp = webreq.GetResponse();
-
-					Stream imgstream = resp.GetResponseStream();
-					if (imgstream == null || imgstream.Equals(Stream.Null))
-					{
-						//use default
-						Minotar = img;
-						return;
-					}
-					img = Image.FromStream(imgstream);
-					//Get image from file
-				}
-				catch (Exception ex)
-				{
-					Minotar = img;
-					//use default
-				}
-
-				Minotar = img;
+				img = Image.FromStream(imgstream);
+				//Get image from file
 			}
+			catch (Exception ex)
+			{
+				Minotar = img;
+				//use default
+				Logger.Log(LogLevel.Warning, "Player", "Exception while retrieving minotar", ex.Message);
+			}
+
+			Minotar = img;
 		}
 
 		/// <summary>

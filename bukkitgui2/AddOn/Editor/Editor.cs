@@ -24,7 +24,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Editor
         /// </summary>
         public bool HasTab
         {
-            get { return false; }
+            get { return true; }
         }
 
         /// <summary>
