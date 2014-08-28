@@ -368,7 +368,9 @@
     <Compile Include="MinecraftInterop\PlayerHandler\PlayerActions.cs" />
     <Compile Include="MinecraftInterop\PlayerHandler\PlayerHandler.cs" />
     <Compile Include="MinecraftInterop\ProcessHandler\ProcessHandler.cs" />
-    <Compile Include="MinecraftInterop\ServerConfig.cs" />
+    <Compile Include="MinecraftInterop\ServerConfig\ServerListItem.cs" />
+    <Compile Include="MinecraftInterop\ServerConfig\ServerWhitelist.cs" />
+    <Compile Include="MinecraftInterop\ServerConfig\ServerProperties.cs" />
     <Compile Include="MinecraftServers\IMinecraftServer.cs" />
     <Compile Include="MinecraftInterop\PlayerHandler\MinecraftGameMode.cs" />
     <Compile Include="MinecraftServers\Servers\BukkitServer.cs" />

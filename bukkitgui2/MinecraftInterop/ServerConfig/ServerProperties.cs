@@ -1,4 +1,4 @@
-﻿// ServerConfig.cs in bukkitgui2/bukkitgui2
+﻿// ServerProperties.cs in bukkitgui2/bukkitgui2
 // Created 2014/08/27
 // Last edited at 2014/08/27 14:59
 // ©Bertware, visit http://bertware.net
@@ -7,9 +7,9 @@ using System.Collections.Generic;
 using System.IO;
 using Net.Bertware.Bukkitgui2.Core.FileLocation;
 
-namespace Net.Bertware.Bukkitgui2.MinecraftInterop
+namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ServerConfig
 {
-	internal static class ServerConfig
+	internal static class ServerProperties
 	{
 		private static bool _initialized;
 		private static string _lastPath;
