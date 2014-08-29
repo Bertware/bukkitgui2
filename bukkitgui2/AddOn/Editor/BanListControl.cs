@@ -8,9 +8,9 @@ using Net.Bertware.Bukkitgui2.MinecraftInterop.ServerConfig;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Editor
 {
-    public partial class WhitelistControl : IAddonTab
+    public partial class BanListControl : IAddonTab
     {
-		public WhitelistControl()
+		public BanListControl()
         {
             InitializeComponent();
 		}
@@ -25,9 +25,9 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Editor
 	    private void RefreshList()
 	    {
 		    slvList.Items.Clear();
-		    foreach (ServerListItem item in ServerWhitelist.Whitelist.Values)
+		    foreach (ServerListItem item in ServerBanlist.BanList.Values)
 		    {
-			    string[] content = {item.Name, item.Uuid};
+			    string[] content = {item.Name, item.Uuid, item.Created, item.Source, item.Expires};
 				ListViewItem lvi = new ListViewItem(content) {Tag = item.Name};
 			    slvList.Items.Add(lvi);
 		    }

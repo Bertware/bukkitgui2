@@ -1,8 +1,10 @@
-﻿namespace Net.Bertware.Bukkitgui2.AddOn.Editor
+﻿using MetroFramework.Controls;
+
+namespace Net.Bertware.Bukkitgui2.AddOn.Editor
 {
     using System.Windows.Forms;
 
-	partial class WhitelistControl : UserControl
+	partial class BanListControl : MetroUserControl
 	{
 		/// <summary> 
 		/// Required designer variable.
@@ -36,6 +38,9 @@
 			this.ColName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.ColUuid = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.btnRemove = new MetroFramework.Controls.MetroButton();
+			this.ColCreated = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.ColSource = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.ColExpires = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.SuspendLayout();
 			// 
 			// btnAdd
@@ -65,7 +70,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.slvList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.ColName,
-            this.ColUuid});
+            this.ColUuid,
+            this.ColCreated,
+            this.ColSource,
+            this.ColExpires});
 			this.slvList.FullRowSelect = true;
 			this.slvList.Location = new System.Drawing.Point(3, 3);
 			this.slvList.Name = "slvList";
@@ -94,6 +102,21 @@
 			this.btnRemove.Text = "&Remove";
 			this.btnRemove.UseSelectable = true;
 			// 
+			// ColCreated
+			// 
+			this.ColCreated.Text = "Created";
+			this.ColCreated.Width = 120;
+			// 
+			// ColSource
+			// 
+			this.ColSource.Text = "Source";
+			this.ColSource.Width = 120;
+			// 
+			// ColExpires
+			// 
+			this.ColExpires.Text = "Expires";
+			this.ColExpires.Width = 120;
+			// 
 			// WhitelistControl
 			// 
 			this.BackColor = System.Drawing.Color.White;
@@ -116,6 +139,9 @@
 		private ColumnHeader ColName;
 		private ColumnHeader ColUuid;
 		private MetroFramework.Controls.MetroButton btnRemove;
+		private ColumnHeader ColCreated;
+		private ColumnHeader ColSource;
+		private ColumnHeader ColExpires;
 
 
 	}

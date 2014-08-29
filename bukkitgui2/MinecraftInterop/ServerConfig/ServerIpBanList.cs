@@ -1,6 +1,6 @@
-﻿// ServerWhitelist.cs in bukkitgui2/bukkitgui2
-// Created 2014/08/28
-// Last edited at 2014/08/29 12:58
+﻿// ServerConfig.cs in bukkitgui2/bukkitgui2
+// Created 2014/08/27
+// Last edited at 2014/08/27 14:59
 // ©Bertware, visit http://bertware.net
 
 using System;
@@ -9,61 +9,51 @@ using System.IO;
 using Jayrock.Json;
 using Jayrock.Json.Conversion;
 using Net.Bertware.Bukkitgui2.Core.FileLocation;
-using Net.Bertware.Bukkitgui2.Core.Logging;
 
 namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ServerConfig
 {
-	public static class ServerWhitelist
+	public static class ServerIpBanList
 	{
 		private static bool _initialized;
 		private static string _lastPath;
-		private static Dictionary<string, ServerListItem> _whitelist;
+		private static Dictionary<string, ServerListItem> _bans;
 
 		public static void Initialize()
 		{
-			LoadList(Fl.SafeLocation(RequestFile.Serverdir) + "\\whitelist.json");
+			LoadList(Fl.SafeLocation(RequestFile.Serverdir) + "\\banned-ips.json");
 			_initialized = true;
 		}
 
-		public static Dictionary<string, ServerListItem> Whitelist
+		public static Dictionary<string, ServerListItem> IpBanList
 		{
 			get
 			{
 				if (!_initialized) Initialize();
-				return _whitelist;
+				return _bans;
 			}
 		}
 
 		/// <summary>
-		///     Load a server.properties file
+		///     Load a json list file
 		/// </summary>
 		/// <param name="path">the full path to the file</param>
 		public static void LoadList(string path)
 		{
-			try
-			{
-				_lastPath = path;
+			_lastPath = path;
 
-				_whitelist = new Dictionary<string, ServerListItem>();
-				if (!File.Exists(path)) return;
+			_bans = new Dictionary<string, ServerListItem>();
+			if (!File.Exists(path)) return;
 
-				string jsonText = File.ReadAllText(path);
-				JsonArray array = (JsonArray) JsonConvert.Import(jsonText);
-				foreach (JsonObject obj in array)
-				{
-					ServerListItem item = new ServerListItem(obj);
-					if (string.IsNullOrEmpty(item.Name)) continue;
-					if (!_whitelist.ContainsKey(item.Name)) _whitelist.Add(item.Name, item);
-				}
-			}
-			catch (Exception ex)
+			string jsonText = File.ReadAllText(path);
+			JsonArray array = JsonConvert.Import<JsonArray>(jsonText);
+			foreach (JsonObject obj in array)
 			{
-				Logger.Log(LogLevel.Warning, "ServerWhitelist", "Failed to load list: " + path, ex.Message);
+				ServerListItem item = new ServerListItem(obj);
+				if (!_bans.ContainsKey(item.Name)) _bans.Add(item.Name, item);
 			}
 		}
-
 		/// <summary>
-		///     Set a list entry
+		/// Set a list entry
 		/// </summary>
 		/// <param name="name">The name of the player, of which you want to set the entry</param>
 		/// <param name="value">The value you want to assign to this setting</param>
@@ -73,31 +63,30 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ServerConfig
 			// if not yet initialized, initialize
 			if (!_initialized) Initialize();
 
-			if (_whitelist.ContainsKey(name))
+			if (_bans.ContainsKey(name))
 			{
-				_whitelist[name] = value;
+				_bans[name] = value;
 			}
 			else
 			{
-				_whitelist.Add(name, value);
+				_bans.Add(name, value);
 			}
 		}
-
 		/// <summary>
-		///     Get an entry in the list
+		/// Get an entry in the list
 		/// </summary>
 		/// <param name="name">The name of the player, of which you want to retrieve the entry</param>
 		/// <returns></returns>
 		public static ServerListItem GetListEntry(string name)
 		{
 			// if not yet initialized, initialize
-			if (_whitelist.ContainsKey(name))
-				return _whitelist[name];
+			if (_bans.ContainsKey(name))
+				return _bans[name];
 			return null;
 		}
 
 		/// <summary>
-		///     Save the server settings
+		/// Save the server settings
 		/// </summary>
 		/// <param name="path">The path to save the file to. If empty, the last loaded file will be overwritten</param>
 		public static void SaveList(string path = "")
