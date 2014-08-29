@@ -1,6 +1,6 @@
-﻿// WhitelistControl.cs in bukkitgui2/bukkitgui2
-// Created 2014/08/27
-// Last edited at 2014/08/29 17:03
+﻿// IpBanListControl.cs in bukkitgui2/bukkitgui2
+// Created 2014/08/29
+// Last edited at 2014/08/29 17:02
 // ©Bertware, visit http://bertware.net
 
 using System;
@@ -11,9 +11,9 @@ using Net.Bertware.Bukkitgui2.MinecraftInterop.ServerConfig;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Editor
 {
-	public partial class WhitelistControl : IAddonTab
+	public partial class IpBanListControl : IAddonTab
 	{
-		public WhitelistControl()
+		public IpBanListControl()
 		{
 			InitializeComponent();
 		}
@@ -28,20 +28,20 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Editor
 		private void RefreshList()
 		{
 			slvList.Items.Clear();
-			foreach (ServerListItem item in ServerWhitelist.Whitelist.Values)
+			foreach (ServerListItem item in ServerIpBanList.IpBanList.Values)
 			{
-				string[] content = {item.Name, item.Uuid};
-				ListViewItem lvi = new ListViewItem(content) {Tag = item.Name};
+				string[] content = {item.Ip, item.Created, item.Source, item.Expires};
+				ListViewItem lvi = new ListViewItem(content) {Tag = item.Ip};
 				slvList.Items.Add(lvi);
 			}
 		}
 
 		private void btnAdd_Click(object sender, EventArgs e)
 		{
-			string name = MetroPrompt.ShowPrompt("Whitelist player", "Enter the name of the player you'd like to whitelist");
-			if (string.IsNullOrEmpty(name)) return;
+			string ip = MetroPrompt.ShowPrompt("Ban ip", "Enter the ip you'd like to ban");
+			if (string.IsNullOrEmpty(ip)) return;
 
-			PlayerActions.SetPlayerWhitelist(name, true);
+			PlayerActions.BanIp(ip);
 
 			RefreshList();
 		}
@@ -49,8 +49,9 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Editor
 		private void btnRemove_Click(object sender, EventArgs e)
 		{
 			if (slvList.SelectedItems.Count < 1) return;
-			string name = slvList.SelectedItems[0].Tag.ToString();
-			if (!string.IsNullOrEmpty(name)) PlayerActions.SetPlayerWhitelist(name, false);
+			string ip = slvList.SelectedItems[0].Tag.ToString();
+			if (!string.IsNullOrEmpty(ip)) PlayerActions.PardonIp(ip);
+
 			RefreshList();
 		}
 	}

@@ -1,8 +1,9 @@
 ﻿// SettingsEditDialog.cs in bukkitgui2/bukkitgui2
 // Created 2014/08/27
-// Last edited at 2014/08/27 15:21
+// Last edited at 2014/08/29 17:03
 // ©Bertware, visit http://bertware.net
 
+using System;
 using System.Windows.Forms;
 using MetroFramework.Forms;
 
@@ -35,7 +36,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Editor
 			get { return txtValue.Text; }
 		}
 
-		private void btnSave_Click(object sender, System.EventArgs e)
+		private void btnSave_Click(object sender, EventArgs e)
 		{
 			DialogResult = DialogResult.OK;
 			Close();

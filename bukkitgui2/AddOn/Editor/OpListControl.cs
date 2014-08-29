@@ -1,5 +1,5 @@
-﻿// WhitelistControl.cs in bukkitgui2/bukkitgui2
-// Created 2014/08/27
+﻿// OpListControl.cs in bukkitgui2/bukkitgui2
+// Created 2014/08/29
 // Last edited at 2014/08/29 17:03
 // ©Bertware, visit http://bertware.net
 
@@ -11,9 +11,9 @@ using Net.Bertware.Bukkitgui2.MinecraftInterop.ServerConfig;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Editor
 {
-	public partial class WhitelistControl : IAddonTab
+	public partial class OpListControl : IAddonTab
 	{
-		public WhitelistControl()
+		public OpListControl()
 		{
 			InitializeComponent();
 		}
@@ -28,9 +28,9 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Editor
 		private void RefreshList()
 		{
 			slvList.Items.Clear();
-			foreach (ServerListItem item in ServerWhitelist.Whitelist.Values)
+			foreach (ServerListItem item in ServerOpList.OpsList.Values)
 			{
-				string[] content = {item.Name, item.Uuid};
+				string[] content = {item.Name, item.Uuid, item.OpLevel.ToString()};
 				ListViewItem lvi = new ListViewItem(content) {Tag = item.Name};
 				slvList.Items.Add(lvi);
 			}
@@ -38,7 +38,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Editor
 
 		private void btnAdd_Click(object sender, EventArgs e)
 		{
-			string name = MetroPrompt.ShowPrompt("Whitelist player", "Enter the name of the player you'd like to whitelist");
+			string name = MetroPrompt.ShowPrompt("Op player", "Enter the name of the player you'd like to op");
 			if (string.IsNullOrEmpty(name)) return;
 
 			PlayerActions.SetPlayerWhitelist(name, true);
@@ -50,7 +50,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Editor
 		{
 			if (slvList.SelectedItems.Count < 1) return;
 			string name = slvList.SelectedItems[0].Tag.ToString();
-			if (!string.IsNullOrEmpty(name)) PlayerActions.SetPlayerWhitelist(name, false);
+			if (!string.IsNullOrEmpty(name)) PlayerActions.SetPlayerOp(name, false);
 			RefreshList();
 		}
 	}

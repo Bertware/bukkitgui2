@@ -104,6 +104,18 @@
     <Compile Include="AddOn\Editor\BanListControl.Designer.cs">
       <DependentUpon>BanListControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddOn\Editor\OpListControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AddOn\Editor\OpListControl.Designer.cs">
+      <DependentUpon>OpListControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddOn\Editor\IpBanListControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AddOn\Editor\IpBanListControl.Designer.cs">
+      <DependentUpon>IpBanListControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddOn\Editor\WhitelistControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -434,6 +446,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddOn\Editor\BanListControl.resx">
       <DependentUpon>BanListControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddOn\Editor\OpListControl.resx">
+      <DependentUpon>OpListControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddOn\Editor\IpBanListControl.resx">
+      <DependentUpon>IpBanListControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddOn\Editor\WhitelistControl.resx">
       <DependentUpon>WhitelistControl.cs</DependentUpon>

@@ -1,13 +1,12 @@
 ﻿// ServerSettingsControl.cs in bukkitgui2/bukkitgui2
 // Created 2014/08/27
-// Last edited at 2014/08/27 15:09
+// Last edited at 2014/08/29 17:03
 // ©Bertware, visit http://bertware.net
 
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using MetroFramework.Controls;
-using Net.Bertware.Bukkitgui2.MinecraftInterop;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.ServerConfig;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Editor
@@ -39,14 +38,14 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Editor
 
 		private void btnEdit_Click(object sender, EventArgs e)
 		{
-			if (slvServerSettings.SelectedItems.Count<1) return;
+			if (slvServerSettings.SelectedItems.Count < 1) return;
 
 			string key = slvServerSettings.SelectedItems[0].Tag.ToString();
 			string value = ServerProperties.GetServerSetting(key);
 
-			SettingsEditDialog dialog = new SettingsEditDialog(key,value);
+			SettingsEditDialog dialog = new SettingsEditDialog(key, value);
 			if (dialog.ShowDialog() != DialogResult.OK) return;
-			ServerProperties.SetServerSetting(dialog.Setting,dialog.Value);
+			ServerProperties.SetServerSetting(dialog.Setting, dialog.Value);
 			UpdateListView();
 		}
 
