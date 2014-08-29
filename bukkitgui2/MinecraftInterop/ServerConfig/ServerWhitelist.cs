@@ -96,6 +96,20 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ServerConfig
 			return null;
 		}
 
+
+		/// <summary>
+		///     Get an entry in the list
+		/// </summary>
+		/// <param name="name">The name of the player, of which you want to retrieve the entry</param>
+		/// <returns></returns>
+		public static void RemoveListEntry(string name)
+		{
+			// if not yet initialized, initialize
+			if (_whitelist.ContainsKey(name))
+				_whitelist.Remove(name);
+		}
+
+
 		/// <summary>
 		///     Save the server settings
 		/// </summary>

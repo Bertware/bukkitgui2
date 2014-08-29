@@ -135,10 +135,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 		/// </summary>
 		public void Kick()
 		{
-			if (ProcessHandler.ProcessHandler.IsRunning)
-			{
-				ProcessHandler.ProcessHandler.SendInput("kick " + Name);
-			}
+			PlayerActions.KickPlayer(this.Name);
 		}
 
 		/// <summary>
@@ -146,10 +143,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 		/// </summary>
 		public void Ban()
 		{
-			if (ProcessHandler.ProcessHandler.IsRunning)
-			{
-				ProcessHandler.ProcessHandler.SendInput("ban " + Name);
-			}
+			PlayerActions.BanPlayer(this.Name);
 		}
 
 		/// <summary>
@@ -157,10 +151,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 		/// </summary>
 		public void BanIp()
 		{
-			if (ProcessHandler.ProcessHandler.IsRunning)
-			{
-				ProcessHandler.ProcessHandler.SendInput("ban-ip " + Ip);
-			}
+			PlayerActions.BanIp(this.Ip);
 		}
 
 		/// <summary>
@@ -168,10 +159,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 		/// </summary>
 		public void Pardon()
 		{
-			if (ProcessHandler.ProcessHandler.IsRunning)
-			{
-				ProcessHandler.ProcessHandler.SendInput("pardon " + Name);
-			}
+			PlayerActions.PardonPlayer(this.Name);
 		}
 
 		/// <summary>
@@ -180,10 +168,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 		/// <param name="ip">the ip to pardon</param>
 		public void PardonIp(string ip)
 		{
-			if (ProcessHandler.ProcessHandler.IsRunning)
-			{
-				ProcessHandler.ProcessHandler.SendInput("pardon-ip " + ip);
-			}
+			PlayerActions.PardonIp(this.Ip);
 		}
 
 		/// <summary>
@@ -192,10 +177,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 		/// <param name="mode">The gamemode to set</param>
 		public void SetGameMode(MinecraftGameMode mode)
 		{
-			if (ProcessHandler.ProcessHandler.IsRunning)
-			{
-				ProcessHandler.ProcessHandler.SendInput("gamemode " + (int) mode + " " + Name);
-			}
+			PlayerActions.SetGameMode(mode, this.Name);
 		}
 
 
@@ -205,10 +187,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 		/// <param name="whitelist">True to op the this.Name, false to remove him from the op</param>
 		public void SetWhitelist(bool whitelist)
 		{
-			if (ProcessHandler.ProcessHandler.IsRunning)
-			{
-				ProcessHandler.ProcessHandler.SendInput("op " + (whitelist ? "add" : "remove") + " " + Name);
-			}
+			PlayerActions.SetPlayerWhitelist(this.Name, whitelist);
 		}
 
 		/// <summary>
@@ -217,10 +196,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 		/// <param name="op">True to OP the this.Name, false to de-OP him</param>
 		public void SetOp(bool op)
 		{
-			if (ProcessHandler.ProcessHandler.IsRunning)
-			{
-				ProcessHandler.ProcessHandler.SendInput((op ? "op" : "de-op") + " " + Name);
-			}
+			PlayerActions.SetPlayerOp(this.Name, op);
 		}
 
 		/// <summary>

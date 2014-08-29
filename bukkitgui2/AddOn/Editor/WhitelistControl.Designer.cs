@@ -31,7 +31,6 @@
 		private void InitializeComponent()
 		{
 			this.btnAdd = new MetroFramework.Controls.MetroButton();
-			this.btnEdit = new MetroFramework.Controls.MetroButton();
 			this.slvList = new Net.Bertware.Bukkitgui2.Controls.SortableListView.SortableListView();
 			this.ColName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.ColUuid = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -47,16 +46,7 @@
 			this.btnAdd.TabIndex = 7;
 			this.btnAdd.Text = "&Add";
 			this.btnAdd.UseSelectable = true;
-			// 
-			// btnEdit
-			// 
-			this.btnEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnEdit.Location = new System.Drawing.Point(601, 374);
-			this.btnEdit.Name = "btnEdit";
-			this.btnEdit.Size = new System.Drawing.Size(75, 23);
-			this.btnEdit.TabIndex = 6;
-			this.btnEdit.Text = "&Edit";
-			this.btnEdit.UseSelectable = true;
+			this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
 			// 
 			// slvList
 			// 
@@ -77,29 +67,29 @@
 			// ColName
 			// 
 			this.ColName.Text = "Name";
-			this.ColName.Width = 120;
+			this.ColName.Width = 180;
 			// 
 			// ColUuid
 			// 
 			this.ColUuid.Text = "Uuid";
-			this.ColUuid.Width = 120;
+			this.ColUuid.Width = 240;
 			// 
 			// btnRemove
 			// 
 			this.btnRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnRemove.Location = new System.Drawing.Point(520, 374);
+			this.btnRemove.Location = new System.Drawing.Point(601, 374);
 			this.btnRemove.Name = "btnRemove";
 			this.btnRemove.Size = new System.Drawing.Size(75, 23);
 			this.btnRemove.TabIndex = 8;
 			this.btnRemove.Text = "&Remove";
 			this.btnRemove.UseSelectable = true;
+			this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
 			// 
 			// WhitelistControl
 			// 
 			this.BackColor = System.Drawing.Color.White;
 			this.Controls.Add(this.btnRemove);
 			this.Controls.Add(this.btnAdd);
-			this.Controls.Add(this.btnEdit);
 			this.Controls.Add(this.slvList);
 			this.Name = "WhitelistControl";
 			this.Size = new System.Drawing.Size(760, 400);
@@ -111,7 +101,6 @@
 		#endregion
 
 		private MetroFramework.Controls.MetroButton btnAdd;
-		private MetroFramework.Controls.MetroButton btnEdit;
 		private Controls.SortableListView.SortableListView slvList;
 		private ColumnHeader ColName;
 		private ColumnHeader ColUuid;

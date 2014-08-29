@@ -1,9 +1,11 @@
 ﻿// PlayerActions.cs in bukkitgui2/bukkitgui2
 // Created 2014/08/24
-// Last edited at 2014/08/24 14:18
+// Last edited at 2014/08/29 16:24
 // ©Bertware, visit http://bertware.net
 
 using System;
+using System.Windows.Forms;
+using MetroFramework;
 
 namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 {
@@ -18,7 +20,11 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 			if (ProcessHandler.ProcessHandler.IsRunning)
 			{
 				ProcessHandler.ProcessHandler.SendInput("kick " + name);
+				return;
 			}
+			MetroMessageBox.Show(Application.OpenForms[0],
+				"The server has to be running to perform this operation!", "Server not running", MessageBoxButtons.OK,
+				MessageBoxIcon.Error);
 		}
 
 		/// <summary>
@@ -30,7 +36,11 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 			if (ProcessHandler.ProcessHandler.IsRunning)
 			{
 				ProcessHandler.ProcessHandler.SendInput("ban " + name);
+				return;
 			}
+			MetroMessageBox.Show(Application.OpenForms[0],
+				"The server has to be running to perform this operation!", "Server not running", MessageBoxButtons.OK,
+				MessageBoxIcon.Error);
 		}
 
 		/// <summary>
@@ -42,7 +52,11 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 			if (ProcessHandler.ProcessHandler.IsRunning)
 			{
 				ProcessHandler.ProcessHandler.SendInput("ban-ip " + ip);
+				return;
 			}
+			MetroMessageBox.Show(Application.OpenForms[0],
+				"The server has to be running to perform this operation!", "Server not running", MessageBoxButtons.OK,
+				MessageBoxIcon.Error);
 		}
 
 		/// <summary>
@@ -54,7 +68,11 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 			if (ProcessHandler.ProcessHandler.IsRunning)
 			{
 				ProcessHandler.ProcessHandler.SendInput("pardon " + name);
+				return;
 			}
+			MetroMessageBox.Show(Application.OpenForms[0],
+				"The server has to be running to perform this operation!", "Server not running", MessageBoxButtons.OK,
+				MessageBoxIcon.Error);
 		}
 
 		/// <summary>
@@ -66,7 +84,11 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 			if (ProcessHandler.ProcessHandler.IsRunning)
 			{
 				ProcessHandler.ProcessHandler.SendInput("pardon-ip " + ip);
+				return;
 			}
+			MetroMessageBox.Show(Application.OpenForms[0],
+				"The server has to be running to perform this operation!", "Server not running", MessageBoxButtons.OK,
+				MessageBoxIcon.Error);
 		}
 
 		/// <summary>
@@ -78,8 +100,12 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 		{
 			if (ProcessHandler.ProcessHandler.IsRunning)
 			{
-				ProcessHandler.ProcessHandler.SendInput("gamemode " + (int)mode + " " + player);
+				ProcessHandler.ProcessHandler.SendInput("gamemode " + (int) mode + " " + player);
+				return;
 			}
+			MetroMessageBox.Show(Application.OpenForms[0],
+				"The server has to be running to perform this operation!", "Server not running", MessageBoxButtons.OK,
+				MessageBoxIcon.Error);
 		}
 
 		/// <summary>
@@ -91,7 +117,11 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 			if (ProcessHandler.ProcessHandler.IsRunning)
 			{
 				ProcessHandler.ProcessHandler.SendInput("op " + (useWhitelist ? "on" : "off"));
+				return;
 			}
+			MetroMessageBox.Show(Application.OpenForms[0],
+				"The server has to be running to perform this operation!", "Server not running", MessageBoxButtons.OK,
+				MessageBoxIcon.Error);
 		}
 
 		/// <summary>
@@ -104,7 +134,11 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 			if (ProcessHandler.ProcessHandler.IsRunning)
 			{
 				ProcessHandler.ProcessHandler.SendInput("op " + (whitelist ? "add" : "remove") + " " + name);
+				return;
 			}
+			MetroMessageBox.Show(Application.OpenForms[0],
+				"The server has to be running to perform this operation!", "Server not running", MessageBoxButtons.OK,
+				MessageBoxIcon.Error);
 		}
 
 		/// <summary>
@@ -117,7 +151,11 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 			if (ProcessHandler.ProcessHandler.IsRunning)
 			{
 				ProcessHandler.ProcessHandler.SendInput((op ? "op" : "de-op") + " " + name);
+				return;
 			}
+			MetroMessageBox.Show(Application.OpenForms[0],
+				"The server has to be running to perform this operation!", "Server not running", MessageBoxButtons.OK,
+				MessageBoxIcon.Error);
 		}
 
 		/// <summary>
@@ -132,7 +170,11 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 			if (ProcessHandler.ProcessHandler.IsRunning)
 			{
 				ProcessHandler.ProcessHandler.SendInput("give " + player + " " + item + " " + amount + " " + data);
+				return;
 			}
+			MetroMessageBox.Show(Application.OpenForms[0],
+				"The server has to be running to perform this operation!", "Server not running", MessageBoxButtons.OK,
+				MessageBoxIcon.Error);
 		}
 
 		/// <summary>
@@ -147,7 +189,11 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 			if (ProcessHandler.ProcessHandler.IsRunning)
 			{
 				ProcessHandler.ProcessHandler.SendInput("give " + player + " " + item + " " + amount + " " + data);
+				return;
 			}
+			MetroMessageBox.Show(Application.OpenForms[0],
+				"The server has to be running to perform this operation!", "Server not running", MessageBoxButtons.OK,
+				MessageBoxIcon.Error);
 		}
 
 		/// <summary>
@@ -160,7 +206,11 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 			if (ProcessHandler.ProcessHandler.IsRunning)
 			{
 				ProcessHandler.ProcessHandler.SendInput("tp " + player + " " + targetplayer);
+				return;
 			}
+			MetroMessageBox.Show(Application.OpenForms[0],
+				"The server has to be running to perform this operation!", "Server not running", MessageBoxButtons.OK,
+				MessageBoxIcon.Error);
 		}
 
 		/// <summary>
@@ -175,7 +225,11 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 			if (ProcessHandler.ProcessHandler.IsRunning)
 			{
 				ProcessHandler.ProcessHandler.SendInput("tp " + player + " " + x + " " + y + " " + z);
+				return;
 			}
+			MetroMessageBox.Show(Application.OpenForms[0],
+				"The server has to be running to perform this operation!", "Server not running", MessageBoxButtons.OK,
+				MessageBoxIcon.Error);
 		}
 	}
 }

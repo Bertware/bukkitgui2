@@ -33,14 +33,13 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Editor
 		private void InitializeComponent()
 		{
 			this.btnAdd = new MetroFramework.Controls.MetroButton();
-			this.btnEdit = new MetroFramework.Controls.MetroButton();
 			this.slvList = new Net.Bertware.Bukkitgui2.Controls.SortableListView.SortableListView();
 			this.ColName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.ColUuid = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.btnRemove = new MetroFramework.Controls.MetroButton();
 			this.ColCreated = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.ColSource = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.ColExpires = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.btnRemove = new MetroFramework.Controls.MetroButton();
 			this.SuspendLayout();
 			// 
 			// btnAdd
@@ -52,16 +51,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Editor
 			this.btnAdd.TabIndex = 7;
 			this.btnAdd.Text = "&Add";
 			this.btnAdd.UseSelectable = true;
-			// 
-			// btnEdit
-			// 
-			this.btnEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnEdit.Location = new System.Drawing.Point(601, 374);
-			this.btnEdit.Name = "btnEdit";
-			this.btnEdit.Size = new System.Drawing.Size(75, 23);
-			this.btnEdit.TabIndex = 6;
-			this.btnEdit.Text = "&Edit";
-			this.btnEdit.UseSelectable = true;
+			this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
 			// 
 			// slvList
 			// 
@@ -92,16 +82,6 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Editor
 			this.ColUuid.Text = "Uuid";
 			this.ColUuid.Width = 120;
 			// 
-			// btnRemove
-			// 
-			this.btnRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnRemove.Location = new System.Drawing.Point(520, 374);
-			this.btnRemove.Name = "btnRemove";
-			this.btnRemove.Size = new System.Drawing.Size(75, 23);
-			this.btnRemove.TabIndex = 8;
-			this.btnRemove.Text = "&Remove";
-			this.btnRemove.UseSelectable = true;
-			// 
 			// ColCreated
 			// 
 			this.ColCreated.Text = "Created";
@@ -117,14 +97,24 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Editor
 			this.ColExpires.Text = "Expires";
 			this.ColExpires.Width = 120;
 			// 
-			// WhitelistControl
+			// btnRemove
+			// 
+			this.btnRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.btnRemove.Location = new System.Drawing.Point(601, 374);
+			this.btnRemove.Name = "btnRemove";
+			this.btnRemove.Size = new System.Drawing.Size(75, 23);
+			this.btnRemove.TabIndex = 8;
+			this.btnRemove.Text = "&Remove";
+			this.btnRemove.UseSelectable = true;
+			this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
+			// 
+			// BanListControl
 			// 
 			this.BackColor = System.Drawing.Color.White;
 			this.Controls.Add(this.btnRemove);
 			this.Controls.Add(this.btnAdd);
-			this.Controls.Add(this.btnEdit);
 			this.Controls.Add(this.slvList);
-			this.Name = "WhitelistControl";
+			this.Name = "BanListControl";
 			this.Size = new System.Drawing.Size(760, 400);
 			this.Load += new System.EventHandler(this.WhitelistControl_Load);
 			this.ResumeLayout(false);
@@ -134,7 +124,6 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Editor
 		#endregion
 
 		private MetroFramework.Controls.MetroButton btnAdd;
-		private MetroFramework.Controls.MetroButton btnEdit;
 		private Controls.SortableListView.SortableListView slvList;
 		private ColumnHeader ColName;
 		private ColumnHeader ColUuid;

@@ -4,6 +4,8 @@
 // ©Bertware, visit http://bertware.net
 
 using System.Windows.Forms;
+using MetroFramework.Forms;
+using Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.ServerConfig;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Editor
@@ -32,5 +34,23 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Editor
 			    slvList.Items.Add(lvi);
 		    }
 	    }
+
+		private void btnAdd_Click(object sender, System.EventArgs e)
+		{
+			string name = MetroPrompt.ShowPrompt("Whitelist player", "Enter the name of the player you'd like to whitelist");
+			if (string.IsNullOrEmpty(name)) return;
+
+			PlayerActions.SetPlayerWhitelist(name,true);
+
+			RefreshList();
+		}
+
+		private void btnRemove_Click(object sender, System.EventArgs e)
+		{
+			if (slvList.SelectedItems.Count<1) return;
+			string name = slvList.SelectedItems[0].Tag.ToString();
+			if(!string.IsNullOrEmpty(name)) PlayerActions.SetPlayerWhitelist(name, false);
+			RefreshList();
+		}
     }
 }

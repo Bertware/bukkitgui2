@@ -64,15 +64,15 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ServerConfig
 		/// <param name="jsonString">the json code to parse</param>
 		public ServerListItem(string jsonString)
 		{
-			JsonObject json = JsonConvert.Import<JsonObject>(jsonString);
-			if (json.Contains("Name")) Name = json["Name"].ToString();
-			if (json.Contains("Ip")) Ip = json["Ip"].ToString();
-			if (json.Contains("Uuid")) Uuid = json["Uuid"].ToString();
-			if (json.Contains("Level")) OpLevel = int.Parse(json["Level"].ToString());
-			if (json.Contains("Created")) Created = json["Created"].ToString();
-			if (json.Contains("Source")) Source = json["Source"].ToString();
-			if (json.Contains("Expires")) Expires = json["Expires"].ToString();
-			if (json.Contains("Reason")) Reason = json["Reason"].ToString();
+			JsonObject jsonObject = JsonConvert.Import<JsonObject>(jsonString);
+			if (jsonObject.Contains("name")) Name = jsonObject["name"].ToString();
+			if (jsonObject.Contains("ip")) Ip = jsonObject["ip"].ToString();
+			if (jsonObject.Contains("uuid")) Uuid = jsonObject["uuid"].ToString();
+			if (jsonObject.Contains("level")) OpLevel = int.Parse(jsonObject["level"].ToString());
+			if (jsonObject.Contains("created")) Created = jsonObject["created"].ToString();
+			if (jsonObject.Contains("source")) Source = jsonObject["source"].ToString();
+			if (jsonObject.Contains("expires")) Expires = jsonObject["expires"].ToString();
+			if (jsonObject.Contains("reason")) Reason = jsonObject["reason"].ToString();
 		}
 
 		/// <summary>
@@ -81,14 +81,14 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ServerConfig
 		/// <param name="jsonObject">the json object to parse</param>
 		public ServerListItem(JsonObject jsonObject)
 		{
-			if (jsonObject.Contains("Name")) Name = jsonObject["Name"].ToString();
-			if (jsonObject.Contains("Ip")) Ip = jsonObject["Ip"].ToString();
-			if (jsonObject.Contains("Uuid")) Uuid = jsonObject["Uuid"].ToString();
-			if (jsonObject.Contains("Level")) OpLevel = int.Parse(jsonObject["Level"].ToString());
-			if (jsonObject.Contains("Created")) Created = jsonObject["Created"].ToString();
-			if (jsonObject.Contains("Source")) Source = jsonObject["Source"].ToString();
-			if (jsonObject.Contains("Expires")) Expires = jsonObject["Expires"].ToString();
-			if (jsonObject.Contains("Reason")) Reason = jsonObject["Reason"].ToString();
+			if (jsonObject.Contains("name")) Name = jsonObject["name"].ToString();
+			if (jsonObject.Contains("ip")) Ip = jsonObject["ip"].ToString();
+			if (jsonObject.Contains("uuid")) Uuid = jsonObject["uuid"].ToString();
+			if (jsonObject.Contains("level")) OpLevel = int.Parse(jsonObject["level"].ToString());
+			if (jsonObject.Contains("created")) Created = jsonObject["created"].ToString();
+			if (jsonObject.Contains("source")) Source = jsonObject["source"].ToString();
+			if (jsonObject.Contains("expires")) Expires = jsonObject["expires"].ToString();
+			if (jsonObject.Contains("reason")) Reason = jsonObject["reason"].ToString();
 		}
 	}
 }
