@@ -41,6 +41,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			this.ContextPlayersBanIp = new System.Windows.Forms.ToolStripMenuItem();
 			this.ContextPlayersOp = new System.Windows.Forms.ToolStripMenuItem();
 			this.ContextPlayersDeOp = new System.Windows.Forms.ToolStripMenuItem();
+			this.imgListPlayerFaces = new System.Windows.Forms.ImageList(this.components);
 			this.CIConsoleInput = new Net.Bertware.Bukkitgui2.Controls.ConsoleInput.ConsoleInput();
 			this.MCCOut = new Net.Bertware.Bukkitgui2.Controls.MinecraftConsole.MinecraftConsole();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -97,9 +98,12 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
             this.ColPlayers});
 			this.SlvPlayers.ContextMenuStrip = this.ContextPlayers;
 			this.SlvPlayers.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.SlvPlayers.FullRowSelect = true;
+			this.SlvPlayers.LargeImageList = this.imgListPlayerFaces;
 			this.SlvPlayers.Location = new System.Drawing.Point(0, 0);
 			this.SlvPlayers.Name = "SlvPlayers";
 			this.SlvPlayers.Size = new System.Drawing.Size(160, 352);
+			this.SlvPlayers.SmallImageList = this.imgListPlayerFaces;
 			this.SlvPlayers.TabIndex = 0;
 			this.SlvPlayers.UseCompatibleStateImageBehavior = false;
 			this.SlvPlayers.View = System.Windows.Forms.View.Details;
@@ -107,7 +111,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			// ColPlayers
 			// 
 			this.ColPlayers.Text = "Players";
-			this.ColPlayers.Width = 146;
+			this.ColPlayers.Width = 155;
 			// 
 			// ContextPlayers
 			// 
@@ -159,6 +163,12 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			this.ContextPlayersDeOp.Size = new System.Drawing.Size(109, 22);
 			this.ContextPlayersDeOp.Text = "De-op";
 			this.ContextPlayersDeOp.Click += new System.EventHandler(this.ContextPlayersDeOp_Click);
+			// 
+			// imgListPlayerFaces
+			// 
+			this.imgListPlayerFaces.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+			this.imgListPlayerFaces.ImageSize = new System.Drawing.Size(16, 16);
+			this.imgListPlayerFaces.TransparentColor = System.Drawing.Color.Transparent;
 			// 
 			// CIConsoleInput
 			// 
@@ -284,6 +294,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 		private System.Windows.Forms.ToolStripMenuItem ContextPlayersBanIp;
 		private System.Windows.Forms.ToolStripMenuItem ContextPlayersOp;
 		private System.Windows.Forms.ToolStripMenuItem ContextPlayersDeOp;
+		private System.Windows.Forms.ImageList imgListPlayerFaces;
 
 
      }

@@ -175,7 +175,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
         {
             PlayerActionJoin join = (PlayerActionJoin) playeraction;
 
-            Player player = new Player(join.PlayerName, join.Ip, join.PlayerName) {JoinTime = join.Time};
+            Player player = new Player(join.PlayerName, join.Ip, join.PlayerName);
 
             AddPlayer(player);
         }

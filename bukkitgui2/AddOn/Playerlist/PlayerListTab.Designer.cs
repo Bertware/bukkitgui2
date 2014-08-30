@@ -41,6 +41,8 @@
 			this.ContextPlayersBanIp = new System.Windows.Forms.ToolStripMenuItem();
 			this.ContextPlayersOp = new System.Windows.Forms.ToolStripMenuItem();
 			this.ContextPlayersDeOp = new System.Windows.Forms.ToolStripMenuItem();
+			this.imageListPlayerFacesBig = new System.Windows.Forms.ImageList(this.components);
+			this.imageListPlayerFaces = new System.Windows.Forms.ImageList(this.components);
 			this.ContextPlayers.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -54,9 +56,12 @@
             this.colLocation});
 			this.SlvPlayers.ContextMenuStrip = this.ContextPlayers;
 			this.SlvPlayers.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.SlvPlayers.FullRowSelect = true;
+			this.SlvPlayers.LargeImageList = this.imageListPlayerFacesBig;
 			this.SlvPlayers.Location = new System.Drawing.Point(0, 0);
 			this.SlvPlayers.Name = "SlvPlayers";
 			this.SlvPlayers.Size = new System.Drawing.Size(800, 500);
+			this.SlvPlayers.SmallImageList = this.imageListPlayerFaces;
 			this.SlvPlayers.TabIndex = 0;
 			this.SlvPlayers.UseCompatibleStateImageBehavior = false;
 			this.SlvPlayers.View = System.Windows.Forms.View.Details;
@@ -131,6 +136,18 @@
 			this.ContextPlayersDeOp.Text = "De-op";
 			this.ContextPlayersDeOp.Click += new System.EventHandler(this.ContextPlayersDeOp_Click);
 			// 
+			// imageListPlayerFacesBig
+			// 
+			this.imageListPlayerFacesBig.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+			this.imageListPlayerFacesBig.ImageSize = new System.Drawing.Size(96, 96);
+			this.imageListPlayerFacesBig.TransparentColor = System.Drawing.Color.Transparent;
+			// 
+			// imageListPlayerFaces
+			// 
+			this.imageListPlayerFaces.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+			this.imageListPlayerFaces.ImageSize = new System.Drawing.Size(24, 24);
+			this.imageListPlayerFaces.TransparentColor = System.Drawing.Color.Transparent;
+			// 
 			// PlayerListTab
 			// 
 			this.Controls.Add(this.SlvPlayers);
@@ -155,5 +172,7 @@
 		private System.Windows.Forms.ToolStripMenuItem ContextPlayersBanIp;
 		private System.Windows.Forms.ToolStripMenuItem ContextPlayersOp;
 		private System.Windows.Forms.ToolStripMenuItem ContextPlayersDeOp;
+		private System.Windows.Forms.ImageList imageListPlayerFaces;
+		private System.Windows.Forms.ImageList imageListPlayerFacesBig;
 	}
 }

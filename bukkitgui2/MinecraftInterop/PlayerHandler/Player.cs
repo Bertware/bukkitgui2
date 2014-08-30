@@ -7,6 +7,7 @@ using System;
 using System.Drawing;
 using System.IO;
 using System.Net;
+using System.Net.Cache;
 using System.Threading;
 using Microsoft.VisualBasic.Devices;
 using Net.Bertware.Bukkitgui2.Core.Logging;
@@ -29,12 +30,12 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 		/// <summary>
 		///     The name of this player
 		/// </summary>
-		public string Name { get; set; }
+		public string Name { get; private set; }
 
 		/// <summary>
 		///     the IP address of this player
 		/// </summary>
-		public string Ip { get; set; }
+		public string Ip { get; private set; }
 
 		/// <summary>
 		///     The in-game display name of this player
@@ -44,12 +45,12 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 		/// <summary>
 		///     Time of join
 		/// </summary>
-		public DateTime JoinTime { get; set; }
+		public DateTime JoinTime { get; private set; }
 
 		/// <summary>
 		///     The player's face
 		/// </summary>
-		public Image Minotar { get; set; }
+		public Image Minotar { get; private set; }
 
 		/// <summary>
 		///     The geographical location of this player (based on IP)
@@ -62,6 +63,9 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 		public Player(string name)
 		{
 			Name = name;
+			DisplayName = name;
+			Location = "locating...";
+			JoinTime = DateTime.Now;
 		}
 
 		public Player(string name, string ip, string displayName)
@@ -69,6 +73,8 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 			Name = name;
 			Ip = ip;
 			DisplayName = displayName;
+			Location = "locating...";
+			JoinTime = DateTime.Now;
 			new Thread(GetDetails).Start();
 		}
 
@@ -103,11 +109,11 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 
 			try
 			{
-				string url = "http://minotar.net/helm/" + Name + "/32.png";
-				WebRequest webreq = WebRequest.Create(new Uri(url));
+				string url = "http://minotar.net/helm/" + Name + "/96.png";
+				HttpWebRequest webreq = (HttpWebRequest) WebRequest.Create(new Uri(url));
 				//set useragent - currently only for statistics
-				webreq.Headers.Set(HttpRequestHeader.UserAgent, WebUtil.UserAgent);
-
+				webreq.UserAgent = WebUtil.UserAgent;
+				webreq.CachePolicy = new RequestCachePolicy(RequestCacheLevel.CacheIfAvailable);
 				WebResponse resp = webreq.GetResponse();
 
 				Stream imgstream = resp.GetResponseStream();
