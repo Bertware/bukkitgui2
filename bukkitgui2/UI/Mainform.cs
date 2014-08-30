@@ -69,7 +69,7 @@ namespace Net.Bertware.Bukkitgui2.UI
 			{
 				// Visible and to front
 				Visible = true;
-				this.TopLevel = true;
+				TopLevel = true;
 				BringToFront();
 				FocusMe();
 				

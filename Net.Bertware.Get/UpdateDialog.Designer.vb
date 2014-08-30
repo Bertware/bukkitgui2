@@ -141,6 +141,7 @@ Partial Class UpdateDialog
         Me.Name = "UpdateDialog"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Update available"
+        Me.TopMost = True
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
