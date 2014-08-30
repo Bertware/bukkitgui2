@@ -28,7 +28,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Editor
 		private void RefreshList()
 		{
 			slvList.Items.Clear();
-			foreach (ServerListItem item in ServerBanlist.BanList.Values)
+			foreach (ServerListItem item in ServerList.BannedPlayers.List.Values)
 			{
 				string[] content = {item.Name, item.Uuid, item.Created, item.Source, item.Expires};
 				ListViewItem lvi = new ListViewItem(content) {Tag = item.Name};

@@ -28,7 +28,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Editor
 		private void RefreshList()
 		{
 			slvList.Items.Clear();
-			foreach (ServerListItem item in ServerOpList.OpsList.Values)
+			foreach (ServerListItem item in ServerList.Ops.List.Values)
 			{
 				string[] content = {item.Name, item.Uuid, item.OpLevel.ToString()};
 				ListViewItem lvi = new ListViewItem(content) {Tag = item.Name};
@@ -41,7 +41,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Editor
 			string name = MetroPrompt.ShowPrompt("Op player", "Enter the name of the player you'd like to op");
 			if (string.IsNullOrEmpty(name)) return;
 
-			PlayerActions.SetPlayerWhitelist(name, true);
+			PlayerActions.SetPlayerOp(name, true);
 
 			RefreshList();
 		}
@@ -52,6 +52,16 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Editor
 			string name = slvList.SelectedItems[0].Tag.ToString();
 			if (!string.IsNullOrEmpty(name)) PlayerActions.SetPlayerOp(name, false);
 			RefreshList();
+		}
+
+		private void bntRefresh_Click(object sender, EventArgs e)
+		{
+			RefreshList();
+		}
+
+		private void OpListControl_VisibleChanged(object sender, EventArgs e)
+		{
+			if (Visible) RefreshList();
 		}
 	}
 }

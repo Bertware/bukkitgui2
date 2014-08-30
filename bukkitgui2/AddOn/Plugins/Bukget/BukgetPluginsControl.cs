@@ -6,11 +6,12 @@
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using MetroFramework.Controls;
 using Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget
 {
-    public partial class BukgetPluginsControl : UserControl
+	public partial class BukgetPluginsControl : MetroUserControl
     {
         private Dictionary<string, BukgetPlugin> _plugins;
 

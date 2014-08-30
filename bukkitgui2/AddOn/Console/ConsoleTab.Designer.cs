@@ -92,6 +92,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			// 
 			// SlvPlayers
 			// 
+			this.metroStyleExtender.SetApplyMetroTheme(this.SlvPlayers, true);
 			this.SlvPlayers.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.ColPlayers});
 			this.SlvPlayers.ContextMenuStrip = this.ContextPlayers;
@@ -180,7 +181,9 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			this.MCCOut.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.metroStyleExtender.SetApplyMetroTheme(this.MCCOut, true);
 			this.MCCOut.Autoscroll = true;
+			this.MCCOut.BackColor = System.Drawing.SystemColors.Window;
 			this.MCCOut.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.MCCOut.Location = new System.Drawing.Point(0, 0);
 			this.MCCOut.MessageColorInfo = System.Drawing.Color.Blue;

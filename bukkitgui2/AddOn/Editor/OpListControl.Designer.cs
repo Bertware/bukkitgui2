@@ -34,8 +34,9 @@
 			this.slvList = new Net.Bertware.Bukkitgui2.Controls.SortableListView.SortableListView();
 			this.ColName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.ColUuid = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.btnRemove = new MetroFramework.Controls.MetroButton();
 			this.ColLevel = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.btnRemove = new MetroFramework.Controls.MetroButton();
+			this.bntRefresh = new MetroFramework.Controls.MetroButton();
 			this.SuspendLayout();
 			// 
 			// btnAdd
@@ -76,6 +77,10 @@
 			this.ColUuid.Text = "Uuid";
 			this.ColUuid.Width = 240;
 			// 
+			// ColLevel
+			// 
+			this.ColLevel.Text = "Level";
+			// 
 			// btnRemove
 			// 
 			this.btnRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -87,19 +92,28 @@
 			this.btnRemove.UseSelectable = true;
 			this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
 			// 
-			// ColLevel
+			// bntRefresh
 			// 
-			this.ColLevel.Text = "Level";
+			this.bntRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.bntRefresh.Location = new System.Drawing.Point(520, 374);
+			this.bntRefresh.Name = "bntRefresh";
+			this.bntRefresh.Size = new System.Drawing.Size(75, 23);
+			this.bntRefresh.TabIndex = 9;
+			this.bntRefresh.Text = "Refresh";
+			this.bntRefresh.UseSelectable = true;
+			this.bntRefresh.Click += new System.EventHandler(this.bntRefresh_Click);
 			// 
-			// WhitelistControl
+			// OpListControl
 			// 
 			this.BackColor = System.Drawing.Color.White;
+			this.Controls.Add(this.bntRefresh);
 			this.Controls.Add(this.btnRemove);
 			this.Controls.Add(this.btnAdd);
 			this.Controls.Add(this.slvList);
-			this.Name = "WhitelistControl";
+			this.Name = "OpListControl";
 			this.Size = new System.Drawing.Size(760, 400);
 			this.Load += new System.EventHandler(this.WhitelistControl_Load);
+			this.VisibleChanged += new System.EventHandler(this.OpListControl_VisibleChanged);
 			this.ResumeLayout(false);
 
 		}
@@ -112,6 +126,7 @@
 		private ColumnHeader ColUuid;
 		private MetroFramework.Controls.MetroButton btnRemove;
 		private ColumnHeader ColLevel;
+		private MetroFramework.Controls.MetroButton bntRefresh;
 
 
 	}

@@ -116,7 +116,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 		{
 			if (ProcessHandler.ProcessHandler.IsRunning)
 			{
-				ProcessHandler.ProcessHandler.SendInput("op " + (useWhitelist ? "on" : "off"));
+				ProcessHandler.ProcessHandler.SendInput("whitelist " + (useWhitelist ? "on" : "off"));
 				return;
 			}
 			MetroMessageBox.Show(Application.OpenForms[0],
@@ -133,7 +133,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 		{
 			if (ProcessHandler.ProcessHandler.IsRunning)
 			{
-				ProcessHandler.ProcessHandler.SendInput("op " + (whitelist ? "add" : "remove") + " " + name);
+				ProcessHandler.ProcessHandler.SendInput("whitelist " + (whitelist ? "add" : "remove") + " " + name);
 				return;
 			}
 			MetroMessageBox.Show(Application.OpenForms[0],
@@ -150,7 +150,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 		{
 			if (ProcessHandler.ProcessHandler.IsRunning)
 			{
-				ProcessHandler.ProcessHandler.SendInput((op ? "op" : "de-op") + " " + name);
+				ProcessHandler.ProcessHandler.SendInput((op ? "op" : "deop") + " " + name);
 				return;
 			}
 			MetroMessageBox.Show(Application.OpenForms[0],

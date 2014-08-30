@@ -1,8 +1,10 @@
-﻿namespace Net.Bertware.Bukkitgui2.AddOn.Editor
+﻿using MetroFramework.Controls;
+
+namespace Net.Bertware.Bukkitgui2.AddOn.Editor
 {
     using System.Windows.Forms;
 
-    partial class EditorTab: UserControl
+	partial class EditorTab : MetroUserControl
 	{
 		/// <summary> 
 		/// Required designer variable.

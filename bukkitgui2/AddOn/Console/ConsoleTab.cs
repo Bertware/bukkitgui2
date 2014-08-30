@@ -6,6 +6,7 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using MetroFramework;
 using MetroFramework.Controls;
 using Net.Bertware.Bukkitgui2.Core.Configuration;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler;
@@ -42,7 +43,10 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 
             MCCOut.ShowDate = Config.ReadBool("console", "date", false);
             MCCOut.ShowTime = Config.ReadBool("console", "time", true);
+
+			
         }
+
 
         /// <summary>
         ///     Remove a player from the listview

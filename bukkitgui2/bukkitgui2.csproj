@@ -386,11 +386,8 @@
     <Compile Include="MinecraftInterop\PlayerHandler\PlayerActions.cs" />
     <Compile Include="MinecraftInterop\PlayerHandler\PlayerHandler.cs" />
     <Compile Include="MinecraftInterop\ProcessHandler\ProcessHandler.cs" />
-    <Compile Include="MinecraftInterop\ServerConfig\ServerOpList.cs" />
-    <Compile Include="MinecraftInterop\ServerConfig\ServerIpBanList.cs" />
-    <Compile Include="MinecraftInterop\ServerConfig\ServerBanList.cs" />
+    <Compile Include="MinecraftInterop\ServerConfig\ServerList.cs" />
     <Compile Include="MinecraftInterop\ServerConfig\ServerListItem.cs" />
-    <Compile Include="MinecraftInterop\ServerConfig\ServerWhitelist.cs" />
     <Compile Include="MinecraftInterop\ServerConfig\ServerProperties.cs" />
     <Compile Include="MinecraftServers\IMinecraftServer.cs" />
     <Compile Include="MinecraftInterop\PlayerHandler\MinecraftGameMode.cs" />
@@ -603,6 +600,7 @@
     <Content Include="Resources\Icon\icon_sinchronize-64.png" />
     <Content Include="Resources\Icon\icon_today-64.png" />
     <Content Include="Resources\Icon\icon_up_circular-64.png" />
+    <EmbeddedResource Include="Resources\Dll\MetroFramework.dll" />
     <Content Include="Resources\Sound\sound_connect.wav" />
     <Content Include="Resources\Sound\sound_disconnect.wav" />
     <Content Include="Resources\Sound\sound_severe.wav" />
@@ -615,9 +613,7 @@
     <Content Include="GUI icon 32.ico" />
     <EmbeddedResource Include="Resources\Dll\MetroFramework.Design.dll" />
     <None Include="Resources\Dll\MetroFramework.Design.pdb" />
-    <EmbeddedResource Include="Resources\Dll\MetroFramework.pdb" />
     <None Include="Resources\Dll\Net.Bertware.Get.pdb" />
-    <EmbeddedResource Include="Resources\Dll\MetroFramework.dll" />
     <EmbeddedResource Include="Resources\Dll\MetroFramework.Fonts.dll" />
     <None Include="Resources\Dll\MetroFramework.Fonts.pdb" />
     <Content Include="Resources\Img\bukkit_logo.png" />

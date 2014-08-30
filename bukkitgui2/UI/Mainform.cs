@@ -336,11 +336,5 @@ namespace Net.Bertware.Bukkitgui2.UI
 			}
 		}
 
-		private void ToggleTheme_CheckedChanged(object sender, EventArgs e)
-		{
-			metroStyleManager.Theme = (ToggleTheme.Checked) ? MetroThemeStyle.Dark : MetroThemeStyle.Light;
-			Theme = metroStyleManager.Theme;
-			Refresh();
-		}
 	}
 }

@@ -73,6 +73,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins
 			this.installedCtrl.Name = "installedCtrl";
 			this.installedCtrl.Size = new System.Drawing.Size(786, 452);
 			this.installedCtrl.TabIndex = 0;
+			this.installedCtrl.UseSelectable = true;
 			// 
 			// tabBukget
 			// 
@@ -93,6 +94,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins
 			this.bukgetCtrl.Name = "bukgetCtrl";
 			this.bukgetCtrl.Size = new System.Drawing.Size(786, 452);
 			this.bukgetCtrl.TabIndex = 0;
+			this.bukgetCtrl.UseSelectable = true;
 			// 
 			// PluginsTab
 			// 

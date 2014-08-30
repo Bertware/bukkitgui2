@@ -40,8 +40,6 @@ namespace Net.Bertware.Bukkitgui2.UI
 			this.metroStyleExtender = new MetroFramework.Components.MetroStyleExtender(this.components);
 			this.LblToolsMainServerOutput = new MetroFramework.Controls.MetroLabel();
 			this.SpinServerState = new MetroFramework.Controls.MetroProgressSpinner();
-			this.ToggleTheme = new MetroFramework.Controls.MetroToggle();
-			this.lblTheme = new MetroFramework.Controls.MetroLabel();
 			this.metroStyleManager = new MetroFramework.Components.MetroStyleManager(this.components);
 			this.ToolStripBtn.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.metroStyleManager)).BeginInit();
@@ -117,29 +115,6 @@ namespace Net.Bertware.Bukkitgui2.UI
 			this.SpinServerState.UseStyleColors = true;
 			this.SpinServerState.Value = 100;
 			// 
-			// ToggleTheme
-			// 
-			this.ToggleTheme.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.ToggleTheme.AutoSize = true;
-			this.ToggleTheme.Location = new System.Drawing.Point(781, 543);
-			this.ToggleTheme.Name = "ToggleTheme";
-			this.ToggleTheme.Size = new System.Drawing.Size(80, 17);
-			this.ToggleTheme.TabIndex = 5;
-			this.ToggleTheme.Text = "Off";
-			this.ToggleTheme.UseSelectable = true;
-			this.ToggleTheme.CheckedChanged += new System.EventHandler(this.ToggleTheme_CheckedChanged);
-			// 
-			// lblTheme
-			// 
-			this.lblTheme.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.lblTheme.ContextMenuStrip = this.ToolStripBtn;
-			this.lblTheme.Location = new System.Drawing.Point(685, 540);
-			this.lblTheme.Name = "lblTheme";
-			this.lblTheme.Size = new System.Drawing.Size(90, 20);
-			this.lblTheme.TabIndex = 6;
-			this.lblTheme.Text = "Dark theme";
-			this.lblTheme.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			// 
 			// metroStyleManager
 			// 
 			this.metroStyleManager.Owner = this;
@@ -149,8 +124,6 @@ namespace Net.Bertware.Bukkitgui2.UI
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(884, 562);
-			this.Controls.Add(this.lblTheme);
-			this.Controls.Add(this.ToggleTheme);
 			this.Controls.Add(this.SpinServerState);
 			this.Controls.Add(this.LblToolsMainServerOutput);
 			this.Controls.Add(this.LblToolsMainServerState);
@@ -162,7 +135,6 @@ namespace Net.Bertware.Bukkitgui2.UI
 			this.ToolStripBtn.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.metroStyleManager)).EndInit();
 			this.ResumeLayout(false);
-			this.PerformLayout();
 
         }
 
@@ -176,8 +148,6 @@ namespace Net.Bertware.Bukkitgui2.UI
 		private System.Windows.Forms.ToolStripMenuItem ToolStripBtnStartStop;
 		private System.Windows.Forms.ToolStripMenuItem ToolStripBtnRestart;
 		private MetroProgressSpinner SpinServerState;
-		private MetroToggle ToggleTheme;
-		private MetroLabel lblTheme;
 		private MetroFramework.Components.MetroStyleManager metroStyleManager;
     }
 }

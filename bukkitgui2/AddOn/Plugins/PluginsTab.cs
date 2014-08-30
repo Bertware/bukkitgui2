@@ -4,10 +4,11 @@
 // ©Bertware, visit http://bertware.net
 
 using System.Windows.Forms;
+using MetroFramework.Controls;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Plugins
 {
-    public partial class PluginsTab : UserControl, IAddonTab
+    public partial class PluginsTab : MetroUserControl, IAddonTab
     {
         public PluginsTab()
         {

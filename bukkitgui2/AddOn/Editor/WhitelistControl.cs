@@ -28,7 +28,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Editor
 		private void RefreshList()
 		{
 			slvList.Items.Clear();
-			foreach (ServerListItem item in ServerWhitelist.Whitelist.Values)
+			foreach (ServerListItem item in ServerList.WhiteList.List.Values)
 			{
 				string[] content = {item.Name, item.Uuid};
 				ListViewItem lvi = new ListViewItem(content) {Tag = item.Name};
