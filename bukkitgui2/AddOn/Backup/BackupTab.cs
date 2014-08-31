@@ -1,6 +1,5 @@
 ﻿// BackupTab.cs in bukkitgui2/bukkitgui2
 // Created 2014/01/17
-// Last edited at 2014/08/31 12:22
 // ©Bertware, visit http://bertware.net
 
 using MetroFramework.Controls;

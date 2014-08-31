@@ -1,6 +1,5 @@
 ﻿// ServerListItem.cs in bukkitgui2/bukkitgui2
 // Created 2014/08/28
-// Last edited at 2014/08/28 21:10
 // ©Bertware, visit http://bertware.net
 
 using Jayrock.Json;

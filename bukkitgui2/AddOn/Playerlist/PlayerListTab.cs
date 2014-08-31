@@ -1,6 +1,5 @@
 ﻿// PlayerListTab.cs in bukkitgui2/bukkitgui2
 // Created 2014/01/17
-// Last edited at 2014/08/30 15:48
 // ©Bertware, visit http://bertware.net
 
 using System;

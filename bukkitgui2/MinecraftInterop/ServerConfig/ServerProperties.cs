@@ -1,6 +1,5 @@
 ﻿// ServerProperties.cs in bukkitgui2/bukkitgui2
-// Created 2014/08/27
-// Last edited at 2014/08/27 14:59
+// Created 2014/08/28
 // ©Bertware, visit http://bertware.net
 
 using System.Collections.Generic;
@@ -51,8 +50,9 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ServerConfig
 				if (!_serverSettings.ContainsKey(key)) _serverSettings.Add(key, value);
 			}
 		}
+
 		/// <summary>
-		/// Set a server setting in server.properties
+		///     Set a server setting in server.properties
 		/// </summary>
 		/// <param name="setting">The setting to save</param>
 		/// <param name="value">The value you want to assign to this setting</param>
@@ -71,8 +71,9 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ServerConfig
 				_serverSettings.Add(setting, value);
 			}
 		}
+
 		/// <summary>
-		/// Get a server setting from server.properties
+		///     Get a server setting from server.properties
 		/// </summary>
 		/// <param name="setting">The setting to retrieve</param>
 		/// <returns></returns>
@@ -85,7 +86,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ServerConfig
 		}
 
 		/// <summary>
-		/// Save the server settings
+		///     Save the server settings
 		/// </summary>
 		/// <param name="path">The path to save the file to. If empty, the last loaded file will be overwritten</param>
 		public static void SaveSettings(string path = "")

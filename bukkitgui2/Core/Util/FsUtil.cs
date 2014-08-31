@@ -1,6 +1,5 @@
 ﻿// FsUtil.cs in bukkitgui2/bukkitgui2
 // Created 2014/01/31
-// Last edited at 2014/08/30 13:40
 // ©Bertware, visit http://bertware.net
 
 using System.IO;

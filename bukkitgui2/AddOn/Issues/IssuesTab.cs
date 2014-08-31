@@ -1,9 +1,7 @@
 ﻿// IssuesTab.cs in bukkitgui2/bukkitgui2
 // Created 2014/08/31
-// Last edited at 2014/08/31 12:22
 // ©Bertware, visit http://bertware.net
 
-using System.Collections;
 using System.Windows.Forms;
 using MetroFramework.Controls;
 using Net.Bertware.Bukkitgui2.AddOn.Console;
@@ -25,9 +23,9 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Issues
 
 		private void ClearList()
 		{
-			if (this.InvokeRequired)
+			if (InvokeRequired)
 			{
-				this.Invoke((MethodInvoker)(ClearList));
+				Invoke((MethodInvoker) (ClearList));
 			}
 			else
 			{
@@ -37,9 +35,9 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Issues
 
 		private void HandleMessage(string text, OutputParseResult outputParseResult)
 		{
-			if (this.InvokeRequired)
+			if (InvokeRequired)
 			{
-				this.Invoke((MethodInvoker) (() => HandleMessage(text, outputParseResult)));
+				Invoke((MethodInvoker) (() => HandleMessage(text, outputParseResult)));
 			}
 			else
 			{
@@ -47,7 +45,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Issues
 				{
 					(slvIssues.Items.Count + 1).ToString(),
 					outputParseResult.Type.ToString(),
-					outputParseResult.Time.ToLongTimeString(), 
+					outputParseResult.Time.ToLongTimeString(),
 					outputParseResult.Message
 				};
 				ListViewItem lvi = new ListViewItem(content) {Tag = outputParseResult};
@@ -60,7 +58,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Issues
 						lvi.ForeColor = ConsoleTab.Reference.MCCOut.MessageColorSevere;
 						break;
 				}
-				
+
 				slvIssues.Items.Add(lvi);
 			}
 		}

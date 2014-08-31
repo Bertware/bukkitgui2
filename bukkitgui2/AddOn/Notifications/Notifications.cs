@@ -1,6 +1,5 @@
 ﻿// Notifications.cs in bukkitgui2/bukkitgui2
 // Created 2014/06/21
-// Last edited at 2014/08/23 11:31
 // ©Bertware, visit http://bertware.net
 
 using System;
@@ -110,8 +109,12 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Notifications
 		{
 			try
 			{
-				_icon.Visible = false;
-				_icon.Dispose();
+				if (_icon != null)
+				{
+					_icon.Visible = false;
+					_icon.Dispose();
+				}
+
 				ProcessHandler.ServerStatusChanged -= ShowStatusTray;
 				MinecraftOutputHandler.PlayerJoin -= ShowJoinTray;
 				MinecraftOutputHandler.PlayerLeave -= ShowLeaveTray;

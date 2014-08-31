@@ -1,6 +1,5 @@
 ﻿// SettingsEditDialog.cs in bukkitgui2/bukkitgui2
 // Created 2014/08/27
-// Last edited at 2014/08/29 17:03
 // ©Bertware, visit http://bertware.net
 
 using System;

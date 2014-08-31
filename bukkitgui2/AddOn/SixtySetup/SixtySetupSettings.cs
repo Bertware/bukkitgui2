@@ -1,6 +1,5 @@
 ﻿// SixtySetupSettings.cs in bukkitgui2/bukkitgui2
 // Created 2014/08/21
-// Last edited at 2014/08/22 11:55
 // ©Bertware, visit http://bertware.net
 
 using System;
@@ -13,7 +12,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.SixtySetup
 {
 	public partial class SixtySetupSettings : MetroUserControl
 	{
-		private bool _ready = false;
+		private bool _ready;
 
 		public event EventHandler SetupComplete;
 
@@ -36,7 +35,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.SixtySetup
 			_ready = true;
 
 			NumMinRam.Value = 128; // 128mb default min ram
-			
+
 			NumMaxRam.Value = 1024; // 1gb default max ram
 			if (totalMb < 2048) NumMaxRam.Value = 768; // 768mb for computers with fewer ram
 		}

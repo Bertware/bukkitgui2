@@ -1,6 +1,5 @@
 ﻿// BanListControl.cs in bukkitgui2/bukkitgui2
 // Created 2014/08/29
-// Last edited at 2014/08/29 17:02
 // ©Bertware, visit http://bertware.net
 
 using System;

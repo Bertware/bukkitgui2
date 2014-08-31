@@ -1,11 +1,9 @@
 ﻿// ConsoleTab.cs in bukkitgui2/bukkitgui2
 // Created 2014/01/17
-// Last edited at 2014/08/30 15:46
 // ©Bertware, visit http://bertware.net
 
 using System;
 using System.Drawing;
-using System.Reflection;
 using System.Windows.Forms;
 using MetroFramework.Controls;
 using Net.Bertware.Bukkitgui2.Core.Configuration;
@@ -80,9 +78,8 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			else
 			{
 				player.DetailsLoaded += player_DetailsLoaded;
-				
-				SlvPlayers.Items.Add(player.Name,player.DisplayName,"default");
-				
+
+				SlvPlayers.Items.Add(player.Name, player.DisplayName, "default");
 			}
 		}
 
@@ -94,7 +91,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			}
 			else
 			{
-				Player p = (Player)sender;
+				Player p = (Player) sender;
 				imgListPlayerFaces.Images.Add(p.Name, p.Minotar);
 				SlvPlayers.Items[p.Name].ImageKey = p.Name;
 			}

@@ -1,6 +1,5 @@
 ﻿// MinecraftOutputHandler.cs in bukkitgui2/bukkitgui2
 // Created 2014/02/05
-// Last edited at 2014/08/31 12:39
 // ©Bertware, visit http://bertware.net
 
 using System;

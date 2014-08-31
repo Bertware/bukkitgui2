@@ -1,6 +1,5 @@
 ﻿// PluginUpdater.cs in bukkitgui2/bukkitgui2
 // Created 2014/08/22
-// Last edited at 2014/08/22 13:10
 // ©Bertware, visit http://bertware.net
 
 using System;
@@ -189,7 +188,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 									T.Tr("No data available"),
 									T.Tr("No data available")
 								};
-								lvi = new ListViewItem(content) { BackColor = Color.LightGray, Tag = "FALSE" };
+								lvi = new ListViewItem(content) {BackColor = Color.LightGray, Tag = "FALSE"};
 							}
 							else
 							{
@@ -469,12 +468,10 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 
 		private void CloseThisForm()
 		{
-
 		}
 
 		private void Plugins_Update()
 		{
-
 		}
 	}
 }

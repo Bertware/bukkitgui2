@@ -1,6 +1,5 @@
 ﻿// HeartbeatTrigger.cs in bukkitgui2/bukkitgui2
 // Created 2014/08/23
-// Last edited at 2014/08/23 11:51
 // ©Bertware, visit http://bertware.net
 
 using System.Collections.Generic;

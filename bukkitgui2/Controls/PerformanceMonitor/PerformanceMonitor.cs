@@ -1,6 +1,5 @@
 ﻿// PerformanceMonitor.cs in bukkitgui2/bukkitgui2
 // Created 2014/01/30
-// Last edited at 2014/08/21 22:07
 // ©Bertware, visit http://bertware.net
 
 using System;

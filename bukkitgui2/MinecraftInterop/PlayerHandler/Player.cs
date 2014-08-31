@@ -1,6 +1,5 @@
 ﻿// Player.cs in bukkitgui2/bukkitgui2
 // Created 2014/04/27
-// Last edited at 2014/08/27 15:13
 // ©Bertware, visit http://bertware.net
 
 using System;
@@ -141,7 +140,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 		/// </summary>
 		public void Kick()
 		{
-			PlayerActions.KickPlayer(this.Name);
+			PlayerActions.KickPlayer(Name);
 		}
 
 		/// <summary>
@@ -149,7 +148,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 		/// </summary>
 		public void Ban()
 		{
-			PlayerActions.BanPlayer(this.Name);
+			PlayerActions.BanPlayer(Name);
 		}
 
 		/// <summary>
@@ -157,7 +156,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 		/// </summary>
 		public void BanIp()
 		{
-			PlayerActions.BanIp(this.Ip);
+			PlayerActions.BanIp(Ip);
 		}
 
 		/// <summary>
@@ -165,7 +164,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 		/// </summary>
 		public void Pardon()
 		{
-			PlayerActions.PardonPlayer(this.Name);
+			PlayerActions.PardonPlayer(Name);
 		}
 
 		/// <summary>
@@ -174,7 +173,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 		/// <param name="ip">the ip to pardon</param>
 		public void PardonIp(string ip)
 		{
-			PlayerActions.PardonIp(this.Ip);
+			PlayerActions.PardonIp(Ip);
 		}
 
 		/// <summary>
@@ -183,7 +182,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 		/// <param name="mode">The gamemode to set</param>
 		public void SetGameMode(MinecraftGameMode mode)
 		{
-			PlayerActions.SetGameMode(mode, this.Name);
+			PlayerActions.SetGameMode(mode, Name);
 		}
 
 
@@ -193,7 +192,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 		/// <param name="whitelist">True to op the this.Name, false to remove him from the op</param>
 		public void SetWhitelist(bool whitelist)
 		{
-			PlayerActions.SetPlayerWhitelist(this.Name, whitelist);
+			PlayerActions.SetPlayerWhitelist(Name, whitelist);
 		}
 
 		/// <summary>
@@ -202,7 +201,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 		/// <param name="op">True to OP the this.Name, false to de-OP him</param>
 		public void SetOp(bool op)
 		{
-			PlayerActions.SetPlayerOp(this.Name, op);
+			PlayerActions.SetPlayerOp(Name, op);
 		}
 
 		/// <summary>

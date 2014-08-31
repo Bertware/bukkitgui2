@@ -1,6 +1,5 @@
 ﻿// ServerStartingTrigger.cs in bukkitgui2/bukkitgui2
 // Created 2014/08/14
-// Last edited at 2014/08/23 11:51
 // ©Bertware, visit http://bertware.net
 
 using Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler;

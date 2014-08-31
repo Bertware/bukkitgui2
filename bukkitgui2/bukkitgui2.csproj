@@ -263,6 +263,7 @@
     <Compile Include="Controls\PerformanceMonitor\PerformanceMonitor.Designer.cs">
       <DependentUpon>PerformanceMonitor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Core\Logging\LogEntry.cs" />
     <Compile Include="Core\Util\Performance\PerformanceMonitorDataSource.cs" />
     <Compile Include="Controls\QuickButtons\QuickButtons.cs">
       <SubType>UserControl</SubType>
@@ -588,6 +589,7 @@
     <Folder Include="Core\Filesystem\FTP\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="GUI icon 32.ico" />
     <Content Include="Resources\Icon\icon_cancel-64.png" />
     <Content Include="Resources\Icon\icon_chat-64.png" />
     <Content Include="Resources\Icon\icon_checkmark-64.png" />
@@ -620,7 +622,6 @@
     <EmbeddedResource Include="Resources\Dll\YamlUtility.dll" />
     <EmbeddedResource Include="Resources\Dll\Jayrock.Json.dll" />
     <EmbeddedResource Include="Resources\Dll\ICSharpCode.SharpZipLib.dll" />
-    <Content Include="GUI icon 32.ico" />
     <EmbeddedResource Include="Resources\Dll\MetroFramework.Design.dll" />
     <None Include="Resources\Dll\MetroFramework.Design.pdb" />
     <None Include="Resources\Dll\Net.Bertware.Get.pdb" />
