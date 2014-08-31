@@ -322,122 +322,139 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 		/// </summary>
 		public void DoServerLaunch(Boolean automated = false)
 		{
-			ConsoleTab.Reference.MCCOut.Clear();
-
-			if (!ValidateInput())
+			if (InvokeRequired)
 			{
-				MetroMessageBox.Show(FindForm(),
-					"The server could not be started: one or more settings are incorrect. See the starter tab for more details",
-					"Server could not be started", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				return;
-			}
-
-			IMinecraftServer server = GetSelectedServer();
-			Starter starter = ParentAddon as Starter;
-
-			Logger.Log(LogLevel.Info, "StarterTab", "starting server: " + server.Name);
-
-			// We need access to a starter object (the parent)
-			if (starter == null)
-			{
-				Logger.Log(LogLevel.Severe, "StarterTab", "Failed to start server", "No starter object found");
-				return;
-			}
-
-			// Auto update
-			if (CBUpdateBehaviour.SelectedIndex > 0)
-			{
-				CheckAutoUpdate();
-			}
-
-
-			if (!server.HasCustomAssembly)
-			{
-				starter.LaunchServer(
-					server,
-					GetSelectedJavaVersion(),
-					TxtJarFile.Text,
-					Convert.ToUInt32(NumMinRam.Value),
-					Convert.ToUInt32(NumMaxRam.Value),
-					TxtOptArg.Text,
-					TxtOptFlag.Text,
-					automated);
+				Invoke((MethodInvoker) (() => DoServerLaunch(automated)));
 			}
 			else
 			{
-				starter.LaunchServer(server, _customControl);
+				ConsoleTab.Reference.MCCOut.Clear();
+
+				if (!ValidateInput())
+				{
+					MetroMessageBox.Show(FindForm(),
+						"The server could not be started: one or more settings are incorrect. See the starter tab for more details",
+						"Server could not be started", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					return;
+				}
+
+				IMinecraftServer server = GetSelectedServer();
+				Starter starter = ParentAddon as Starter;
+
+				Logger.Log(LogLevel.Info, "StarterTab", "starting server: " + server.Name);
+
+				// We need access to a starter object (the parent)
+				if (starter == null)
+				{
+					Logger.Log(LogLevel.Severe, "StarterTab", "Failed to start server", "No starter object found");
+					return;
+				}
+
+				// Auto update
+				if (CBUpdateBehaviour.SelectedIndex > 0)
+				{
+					CheckAutoUpdate();
+				}
+
+
+				if (!server.HasCustomAssembly)
+				{
+					starter.LaunchServer(
+						server,
+						GetSelectedJavaVersion(),
+						TxtJarFile.Text,
+						Convert.ToUInt32(NumMinRam.Value),
+						Convert.ToUInt32(NumMaxRam.Value),
+						TxtOptArg.Text,
+						TxtOptFlag.Text,
+						automated);
+				}
+				else
+				{
+					starter.LaunchServer(server, _customControl);
+				}
 			}
 		}
 
 		private void CheckAutoUpdate()
 		{
-			if (CBUpdateBehaviour.SelectedIndex < 1) return;
-			if (CBUpdateBranch.SelectedItem == null || string.IsNullOrEmpty(CBUpdateBranch.SelectedItem.ToString()))
-				return;
-
-			ProcessHandler.SetStatusStarting(); // already show that the server is starting
-			ConsoleTab.WriteOut("__________________________________________________________________");
-			ConsoleTab.WriteOut("Performing version check... Branch: " + CBUpdateBranch.SelectedItem);
-
-			IMinecraftServer server = GetSelectedServer();
-			string currentversion = server.GetCurrentVersion(TxtJarFile.Text);
-			ConsoleTab.WriteOut("Performing version check... Current version: " + currentversion);
-
-			string latestversion = "";
-
-			if (CBUpdateBranch.SelectedItem.ToString().ToLower().Contains("recommended"))
-				latestversion = server.FetchRecommendedVersion;
-			if (CBUpdateBranch.SelectedItem.ToString().ToLower().Contains("beta"))
-				latestversion = server.FetchBetaVersion;
-			if (CBUpdateBranch.SelectedItem.ToString().ToLower().Contains("dev"))
-				latestversion = server.FetchDevVersion;
-			ConsoleTab.WriteOut("Performing version check... Latest version: " + latestversion);
-
-			switch (CBUpdateBehaviour.SelectedIndex)
+			if (InvokeRequired)
 			{
-				case 1: // Notify
-
-					if (int.Parse(latestversion) > int.Parse(currentversion))
-					{
-						ConsoleTab.WriteOut("A new server version is available for " + server.Name);
-						ConsoleTab.WriteOut("Download the latest version in the starter tab. The latest version is #" +
-						                    latestversion);
-
-						Thread t = new Thread(() =>
-							MetroMessageBox.Show(FindForm(),
-								"A new server version is available for " + server.Name + "." + Environment.NewLine +
-								"Download the latest version in the starter tab. The latest version is #" +
-								latestversion,
-								"Server update available",
-								MessageBoxButtons.OK, MessageBoxIcon.Information)
-							);
-						t.Start();
-					}
-					break;
-				case 2: // Auto update
-					if (int.Parse(latestversion) > int.Parse(currentversion))
-					{
-						ConsoleTab.WriteOut("New server version available: #" + latestversion +
-						                    ". This version will be installed automaticly. You can disable this in the starter tab.");
-						if (CBUpdateBranch.SelectedItem.ToString().ToLower().Contains("recommended"))
-							server.DownloadRecommendedVersion(TxtJarFile.Text);
-						if (CBUpdateBranch.SelectedItem.ToString().ToLower().Contains("beta"))
-							server.DownloadBetaVersion(TxtJarFile.Text);
-						if (CBUpdateBranch.SelectedItem.ToString().ToLower().Contains("dev"))
-							server.DownloadDevVersion(TxtJarFile.Text);
-						ConsoleTab.WriteOut("New server version installed.");
-					}
-					break;
+				Invoke((MethodInvoker) (() => CheckAutoUpdate()));
 			}
-			ConsoleTab.WriteOut("Finished update check. Starting server...");
-			ConsoleTab.WriteOut("__________________________________________________________________");
+			else
+			{
+				if (CBUpdateBehaviour.SelectedIndex < 1) return;
+				if (CBUpdateBranch.SelectedItem == null || string.IsNullOrEmpty(CBUpdateBranch.SelectedItem.ToString()))
+					return;
+
+				ProcessHandler.SetStatusStarting(); // already show that the server is starting
+				ConsoleTab.WriteOut("__________________________________________________________________");
+				ConsoleTab.WriteOut("Performing version check... Branch: " + CBUpdateBranch.SelectedItem);
+
+				IMinecraftServer server = GetSelectedServer();
+				string currentversion = server.GetCurrentVersion(TxtJarFile.Text);
+				ConsoleTab.WriteOut("Performing version check... Current version: " + currentversion);
+
+				string latestversion = "";
+
+				if (CBUpdateBranch.SelectedItem.ToString().ToLower().Contains("recommended"))
+					latestversion = server.FetchRecommendedVersion;
+				if (CBUpdateBranch.SelectedItem.ToString().ToLower().Contains("beta"))
+					latestversion = server.FetchBetaVersion;
+				if (CBUpdateBranch.SelectedItem.ToString().ToLower().Contains("dev"))
+					latestversion = server.FetchDevVersion;
+				ConsoleTab.WriteOut("Performing version check... Latest version: " + latestversion);
+
+				switch (CBUpdateBehaviour.SelectedIndex)
+				{
+					case 1: // Notify
+
+						if (int.Parse(latestversion) > int.Parse(currentversion))
+						{
+							ConsoleTab.WriteOut("A new server version is available for " + server.Name);
+							ConsoleTab.WriteOut("Download the latest version in the starter tab. The latest version is #" +
+							                    latestversion);
+
+							Thread t = new Thread(() =>
+								MetroMessageBox.Show(FindForm(),
+									"A new server version is available for " + server.Name + "." + Environment.NewLine +
+									"Download the latest version in the starter tab. The latest version is #" +
+									latestversion,
+									"Server update available",
+									MessageBoxButtons.OK, MessageBoxIcon.Information)
+								);
+							t.Start();
+						}
+						break;
+					case 2: // Auto update
+						if (int.Parse(latestversion) > int.Parse(currentversion))
+						{
+							ConsoleTab.WriteOut("New server version available: #" + latestversion +
+							                    ". This version will be installed automaticly. You can disable this in the starter tab.");
+							if (CBUpdateBranch.SelectedItem.ToString().ToLower().Contains("recommended"))
+								server.DownloadRecommendedVersion(TxtJarFile.Text);
+							if (CBUpdateBranch.SelectedItem.ToString().ToLower().Contains("beta"))
+								server.DownloadBetaVersion(TxtJarFile.Text);
+							if (CBUpdateBranch.SelectedItem.ToString().ToLower().Contains("dev"))
+								server.DownloadDevVersion(TxtJarFile.Text);
+							ConsoleTab.WriteOut("New server version installed.");
+						}
+						break;
+				}
+				ConsoleTab.WriteOut("Finished update check. Starting server...");
+				ConsoleTab.WriteOut("__________________________________________________________________");
+			}
 		}
 
 		/// <summary>
 		///     Validate the input. Return true if input is valid and server can be started.
 		/// </summary>
 		/// <returns>Returns true if all input is valid</returns>
-		/// <remarks>Important checks: RAM less than 1024Mb on 32bit, java installed, valid .jar file</remarks>
+		/// <remarks>
+		///     Important checks: RAM less than 1024Mb on 32bit, java installed, valid .jar file
+		///     This method is NOT thread-safe
+		/// </remarks>
 		public Boolean ValidateInput()
 		{
 			if (GetSelectedServer().HasCustomAssembly) return true;

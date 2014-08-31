@@ -98,6 +98,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.TaskerUI
 			this.cbAction.Size = new System.Drawing.Size(438, 29);
 			this.cbAction.TabIndex = 4;
 			this.cbAction.UseSelectable = true;
+			this.cbAction.SelectedIndexChanged += new System.EventHandler(this.cbaction_SelectedIndexChanged);
 			// 
 			// txtActionParameters
 			// 
@@ -114,6 +115,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.TaskerUI
 			this.txtActionParameters.Size = new System.Drawing.Size(438, 20);
 			this.txtActionParameters.TabIndex = 5;
 			this.txtActionParameters.UseSelectable = true;
+			this.txtActionParameters.TextChanged += new System.EventHandler(this.txtactionParam_TextChanged);
 			// 
 			// errorProvider
 			// 
