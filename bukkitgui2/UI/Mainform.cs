@@ -1,6 +1,6 @@
 ﻿// MainForm.cs in bukkitgui2/bukkitgui2
 // Created 2014/01/30
-// Last edited at 2014/08/22 12:19
+// Last edited at 2014/08/31 12:21
 // ©Bertware, visit http://bertware.net
 
 using System;
@@ -8,7 +8,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
-using MetroFramework;
 using MetroFramework.Forms;
 using Net.Bertware.Bukkitgui2.AddOn;
 using Net.Bertware.Bukkitgui2.AddOn.Starter;
@@ -43,7 +42,7 @@ namespace Net.Bertware.Bukkitgui2.UI
 			{
 				new Thread(() => new SplashScreen().ShowDialog()).Start();
 			}
-			
+
 			// ____________ initializations here ____________ //
 			// 
 			Initialize();
@@ -72,7 +71,6 @@ namespace Net.Bertware.Bukkitgui2.UI
 				TopLevel = true;
 				BringToFront();
 				FocusMe();
-				
 			}
 			else
 			{
@@ -213,25 +211,27 @@ namespace Net.Bertware.Bukkitgui2.UI
 				case "console":
 					return 0;
 				case "players":
-					return 1;
-				case "starter":
-					return 2;
-				case "tasker":
-					return 3;
-				case "plugins":
-					return 4;
-				case "editor":
-					return 5;
-				case "permissions":
-					return 6;
-				case "forwarder":
-					return 7;
-				case "backup":
 					return 8;
-				case "settings":
-					return 128;
-				default:
+				case "starter":
+					return 16;
+				case "issues":
+					return 17;
+				case "tasker":
+					return 24;
+				case "plugins":
+					return 32;
+				case "editor":
+					return 40;
+				case "permissions":
+					return 48;
+				case "forwarder":
+					return 56;
+				case "backup":
 					return 64;
+				case "settings":
+					return 256;
+				default:
+					return 128;
 			}
 		}
 
@@ -335,6 +335,5 @@ namespace Net.Bertware.Bukkitgui2.UI
 				Close();
 			}
 		}
-
 	}
 }

@@ -1,19 +1,19 @@
-﻿// Backup.cs in bukkitgui2/bukkitgui2
-// Created 2014/01/17
-// Last edited at 2014/08/31 12:19
+﻿// Issues.cs in bukkitgui2/bukkitgui2
+// Created 2014/08/31
+// Last edited at 2014/08/31 12:20
 // ©Bertware, visit http://bertware.net
 
 using System.Windows.Forms;
 
-namespace Net.Bertware.Bukkitgui2.AddOn.Backup
+namespace Net.Bertware.Bukkitgui2.AddOn.Issues
 {
-	public class Backup : IAddon
+	internal class Issues : IAddon
 	{
-		public Backup()
+		public Issues()
 		{
-			Name = "Backup";
+			Name = "Issues";
 			HasTab = true;
-			TabPage = new BackupTab();
+			TabPage = new IssuesTab();
 			HasConfig = false;
 			ConfigPage = null;
 		}
