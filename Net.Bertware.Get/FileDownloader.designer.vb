@@ -84,6 +84,7 @@ Partial Class FileDownloader
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "File Download"
+        Me.TopMost = True
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

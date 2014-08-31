@@ -8,7 +8,6 @@ Public Module api
     Const MAIL As String = "contact@bertware.net"
     Private cpp As New SHA1CryptoServiceProvider
 
-    
     ''' <summary>
     '''     User agent:
     '''     Bertware x.y/application_name application_version [DEBUG]/hash/mail
@@ -34,7 +33,6 @@ Public Module api
     End Enum
 
     Public Event UpdateAvailable(upd As UpdateInfo)
-    Public Event LatestRecommededVersionLoaded(upd As UpdateInfo)
     Public Event LatestVersionLoaded(upd As UpdateInfo)
 
     Public ReadOnly Property RequestHeader As WebHeaderCollection
@@ -65,27 +63,31 @@ Public Module api
         End Get
     End Property
 
-    'Dim _latestrecommendedversion As UpdateInfo = Nothing
+    Dim _latestRecommendedVersion As UpdateInfo = Nothing
 
-    'Public ReadOnly Property LatestRecommendedVersion() As UpdateInfo
-    '    Get
-    '        If _latestrecommendedversion Is Nothing Then _
-    '            _latestrecommendedversion = GetLatestVersionByChannel(releasechannel.recommended)
-    '        If _latestrecommendedversion IsNot Nothing Then _
-    '            RaiseEvent LatestRecommededVersionLoaded(_latestrecommendedversion)
-    '        Return _latestrecommendedversion
-    '    End Get
-    'End Property
+    Public ReadOnly Property LatestRecommendedVersion() As UpdateInfo
+        Get
+            Dim pi = New ProgramInfo(Assembly.GetEntryAssembly().GetName().Name)
+            If pi Is Nothing OrElse pi.updates Is Nothing Then Return Nothing : Exit Property
+            If _latestRecommendedVersion Is Nothing Then
+                For Each update As UpdateInfo In pi.updates
+                    If update.Channel = releasechannel.recommended Then _latestRecommendedVersion = update
+                Next
+            End If
+            Return _latestRecommendedVersion
+        End Get
+    End Property
 
 
-    Public Function RunUpdateCheck(Optional ByVal showUpdaterForm As Boolean = False,
-                                   Optional ByVal limitedUpdate As Boolean = False) As Boolean
+    Public Function RunUpdateCheck(Optional ByVal showUpdaterForm As Boolean = False, Optional recommendedVersionsOnly As Boolean = True) As Boolean
         Dim lrv = LatestVersion
-        If lrv Is Nothing OrElse lrv.Version Is Nothing Then Return False : Exit Function
+        If (recommendedVersionsOnly) Then lrv = LatestRecommendedVersion
+
+        If lrv Is Nothing OrElse lrv.Version Is Nothing Then Return False
         If CheckVersion(CurrentVersion, lrv.Version) = 1 Then
             Trace.WriteLine("Update available!")
             RaiseEvent UpdateAvailable(LatestVersion)
-            If ShowUpdaterForm Then ShowUpdater(limitedUpdate)
+            If showUpdaterForm Then ShowUpdater()
             Return True
         Else
             Trace.WriteLine("No update available!")
@@ -115,22 +117,26 @@ Public Module api
         Return Nothing
     End Function
 
-    Public Function performUpdate(Optional ByVal limited As Boolean = False)
+    Public Function UpdateToLatest()
         Return Update(LatestVersion)
     End Function
 
-    Public Function PerformUpdate(update As UpdateInfo, Optional ByVal limited As Boolean = False)
+    Public Function UpdateToLatestRelease()
+        Return Update(LatestRecommendedVersion)
+    End Function
+
+    Public Function PerformUpdate(update As UpdateInfo)
         Return Updater.Update(update)
     End Function
 
-    Public Function GetAPIResponse(action As APIAction,
+    Public Function GetApiResponse(action As APIAction,
                                    Optional ByVal parameters As Dictionary(Of String, String) = Nothing) As String
-        Dim response = downloadText(CreateURL(action, parameters)).Trim
+        Dim response = DownloadText(CreateUrl(action, parameters)).Trim
         If Not (response.StartsWith("<") And response.EndsWith(">")) Then Return ""
         Return response
     End Function
 
-    Private Function CreateURL(action As APIAction, Optional ByVal parameters As Dictionary(Of String, String) = Nothing) _
+    Private Function CreateUrl(action As APIAction, Optional ByVal parameters As Dictionary(Of String, String) = Nothing) _
         As String
         Dim url As String = API + "?act=" & action.ToString
         If parameters IsNot Nothing Then
@@ -145,7 +151,7 @@ Public Module api
 
     Private Function DownloadText(url As String) As String
         Try
-            If url Is Nothing Then Return "" : Exit Function
+            If url Is Nothing Then Return ""
 
             If My.Computer.Network.IsAvailable = False Then
                 Trace.WriteLine("Request to " & url & " cancelled, no internet available or page not available")
