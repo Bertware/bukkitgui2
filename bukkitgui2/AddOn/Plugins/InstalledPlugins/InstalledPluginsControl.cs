@@ -38,7 +38,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 						pair.Value.Version, "",
 						pair.Value.FileCreationDate.ToShortDateString()
 					};
-					ListViewItem lvi = new ListViewItem(text) {Tag = pair.Key};
+					ListViewItem lvi = new ListViewItem(text) {Tag = pair.Value};
 					slvPlugins.Items.Add(lvi);
 				}
 			}
@@ -47,9 +47,21 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 		private void btnVersions_Click(object sender, EventArgs e)
 		{
 			if (slvPlugins.SelectedItems.Count < 0) return;
-			string filename = slvPlugins.SelectedItems[0].Tag.ToString();
+			string filename = ((InstalledPlugin) (slvPlugins.SelectedItems[0].Tag)).Path;
 			InstalledPlugin plugin = InstalledPluginManager.Plugins[filename];
 			BukgetPlugin.CreateFromNamespace(plugin.Mainspace).ShowVersionDialog(plugin.Path);
+		}
+
+		private void btnUpdate_Click(object sender, EventArgs e)
+		{
+			if (slvPlugins.SelectedItems.Count < 0) return;
+			List<InstalledPlugin> plugins = new List<InstalledPlugin>();
+			foreach (ListViewItem item in slvPlugins.SelectedItems)
+			{
+				plugins.Add((InstalledPlugin) item.Tag);
+			} 
+			PluginUpdater updater = new PluginUpdater(plugins);
+			updater.Show();
 		}
 	}
 }

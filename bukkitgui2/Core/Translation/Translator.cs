@@ -18,7 +18,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Translation
 	/// </summary>
 	internal static class Translator
 	{
-		private const string CteFileName = "translator.xml";
+		private const string CteFileName = "locale.xml";
 
 		private static string _filepath;
 
@@ -38,9 +38,9 @@ namespace Net.Bertware.Bukkitgui2.Core.Translation
 		public static void Initialize()
 		{
 			LoadFile();
+			Application.ApplicationExit += ((sender, e) => Dispose());
 			IsInitialized = true;
 
-			Application.ApplicationExit += ((sender, e) => Dispose());
 		}
 
 		/// <summary>

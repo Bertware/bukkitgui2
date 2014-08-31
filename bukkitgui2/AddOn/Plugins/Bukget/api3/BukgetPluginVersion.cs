@@ -105,7 +105,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
 
 		public Boolean Install(string targetLocation = "")
 		{
-			return BukgetPluginInstaller.Install(this, targetLocation, true, true);
+			return BukgetPluginInstaller.Install(this, targetLocation, true,true);
 		}
 	}
 }

@@ -30,9 +30,9 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.btnInfo = new MetroButton();
-			this.btnVersions = new MetroButton();
-			this.btnRemove = new MetroButton();
+			this.btnUpdate = new MetroFramework.Controls.MetroButton();
+			this.btnVersions = new MetroFramework.Controls.MetroButton();
+			this.btnRemove = new MetroFramework.Controls.MetroButton();
 			this.slvPlugins = new Net.Bertware.Bukkitgui2.Controls.SortableListView.SortableListView();
 			this.colName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.colDescription = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -42,15 +42,16 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 			this.colInstalled = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.SuspendLayout();
 			// 
-			// btnInfo
+			// btnUpdate
 			// 
-			this.btnInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnInfo.Location = new System.Drawing.Point(540, 414);
-			this.btnInfo.Name = "btnInfo";
-			this.btnInfo.Size = new System.Drawing.Size(75, 23);
-			this.btnInfo.TabIndex = 7;
-			this.btnInfo.Text = "Info";
-
+			this.btnUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.btnUpdate.Location = new System.Drawing.Point(540, 414);
+			this.btnUpdate.Name = "btnUpdate";
+			this.btnUpdate.Size = new System.Drawing.Size(75, 23);
+			this.btnUpdate.TabIndex = 7;
+			this.btnUpdate.Text = "Update";
+			this.btnUpdate.UseSelectable = true;
+			this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
 			// 
 			// btnVersions
 			// 
@@ -60,7 +61,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 			this.btnVersions.Size = new System.Drawing.Size(75, 23);
 			this.btnVersions.TabIndex = 6;
 			this.btnVersions.Text = "Versions";
-
+			this.btnVersions.UseSelectable = true;
 			this.btnVersions.Click += new System.EventHandler(this.btnVersions_Click);
 			// 
 			// btnRemove
@@ -71,7 +72,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 			this.btnRemove.Size = new System.Drawing.Size(75, 23);
 			this.btnRemove.TabIndex = 5;
 			this.btnRemove.Text = "Remove";
-
+			this.btnRemove.UseSelectable = true;
 			// 
 			// slvPlugins
 			// 
@@ -126,7 +127,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 			// InstalledPluginsControl
 			// 
 			this.BackColor = System.Drawing.Color.White;
-			this.Controls.Add(this.btnInfo);
+			this.Controls.Add(this.btnUpdate);
 			this.Controls.Add(this.btnVersions);
 			this.Controls.Add(this.btnRemove);
 			this.Controls.Add(this.slvPlugins);
@@ -138,7 +139,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 
 		#endregion
 
-		private MetroButton btnInfo;
+		private MetroButton btnUpdate;
 		private MetroButton btnVersions;
 		private MetroButton btnRemove;
 		private Controls.SortableListView.SortableListView slvPlugins;

@@ -323,7 +323,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 											          pair.Value.VersionsList[0].VersionNumber + " (" + i + "/" + SlvPlugins.CheckedItems.Count + ")")
 												;
 										Logger.Log(LogLevel.Info, "PluginUpdater", "Updating plugin:" + pair.Key.Name);
-										pair.Value.VersionsList[0].Install(pair.Key.Path);
+										BukgetPluginInstaller.Install(pair.Value.VersionsList[0], pair.Key.Path, false, false);
 									}
 								}
 								catch (Exception ex)
@@ -345,12 +345,16 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 						SetProgress(Convert.ToByte(tmpp));
 						i++;
 					}
+
 					if (this != null && !(Disposing | IsDisposed) && !(lblStatus.IsDisposed | lblStatus.Disposing))
 						SetStatus(T.Tr("Idle"));
+
 					if (this != null && BtnClose != null && !(Disposing | IsDisposed) &&
 					    !(BtnClose.Disposing | BtnClose.IsDisposed))
 						BtnClose.Enabled = true;
+
 					InstalledPluginManager.RefreshAllInstalledPluginsAsync();
+
 					if (this != null && !(Disposing | IsDisposed))
 						Close();
 				}
