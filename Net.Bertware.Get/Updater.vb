@@ -7,6 +7,7 @@ Imports System.Net
 
 Module Updater
     Public Event UpdateStarting()
+    Public Const BUKKITDEV As Boolean = False
 
     Public Function Update(upd As UpdateInfo, Optional ByVal limited As Boolean = False) As Boolean _
 'verify if dialog should be shown. If manual, always show. 
@@ -44,16 +45,17 @@ Module Updater
             fs.Close()
             Trace.WriteLine("Extracted updater tool")
 
+            If (BUKKITDEV) Then
 
-            If (url.StartsWith("http://")) Then
-                url = url.Substring(url.IndexOf("/", 10, StringComparison.Ordinal))
+                If (url.StartsWith("http://") Or url.StartsWith("https://")) Then
+                    url = url.Substring(url.IndexOf("/", 10, StringComparison.Ordinal))
+                End If
+
+                ' BUKKITDEV COMPLIANCY
+                ' all url's will start with a hard coded http://dev.bukkit.org/ part
+                url = "http://dev.bukkit.org" + url
+                Trace.WriteLine("Bukkitdev hardcoded url: " & url)
             End If
-
-
-            ' BUKKITDEV COMPLIANCY
-            ' all url's will start with a hard coded http://dev.bukkit.org/ part
-            url = "http://dev.bukkit.org" + url
-            Trace.WriteLine("Bukkitdev hardcoded url: " & url)
 
             Dim fd As FileDownloader
             fd = New FileDownloader(url, tmp & "/" & fname)
