@@ -48,16 +48,14 @@ namespace Net.Bertware.Bukkitgui2.Core.FileLocation
 			}
 
 			// custom working directory
-			if (Environment.GetCommandLineArgs().Contains("-wd"))
+
+			foreach (string arg in Environment.GetCommandLineArgs())
 			{
-				foreach (string arg in Environment.GetCommandLineArgs())
-				{
-					if (!arg.Contains("-wd=")) continue;
-					_workingdirectory = arg.Split('=')[1];
-					Environment.CurrentDirectory = _workingdirectory;
-					_customWorkingDirectory = true;
-					break;
-				}
+				if (!arg.Contains("-wd=")) continue;
+				_workingdirectory = arg.Split('=')[1];
+				Environment.CurrentDirectory = _workingdirectory;
+				_customWorkingDirectory = true;
+				break;
 			}
 		}
 

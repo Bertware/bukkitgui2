@@ -8,6 +8,7 @@ using System.IO;
 using System.Text;
 using System.Threading;
 using Net.Bertware.Bukkitgui2.Core;
+using Net.Bertware.Bukkitgui2.Core.FileLocation;
 using Net.Bertware.Bukkitgui2.Core.Logging;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler;
 using Net.Bertware.Bukkitgui2.MinecraftServers;
@@ -249,9 +250,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler
 
 			if (string.IsNullOrEmpty(serverDir))
 			{
-				serverDir = Environment.CurrentDirectory;
-				FileInfo guiFileInfo = new FileInfo(Share.AssemblyFullName);
-				if (guiFileInfo.Directory != null) serverDir = guiFileInfo.Directory.FullName;
+				serverDir = Fl.SafeLocation(RequestFile.Serverdir);
 			}
 
 			ServerProcess = new Process
@@ -272,6 +271,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler
 						RedirectStandardOutput = true,
 						RedirectStandardError = true
 					},
+					
 				EnableRaisingEvents = true
 			};
 			ServerProcess.Start();
@@ -358,6 +358,14 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler
 					MinecraftOutputHandler.HandleOutput(Server, output, true);
 				}
 			}
+		}
+
+		/// <summary>
+		/// Stop the reading threads. Will make the server inaccessible.
+		/// </summary>
+		internal static void StopOutputReading()
+		{
+			_runThreads = false;
 		}
 
 		public static Boolean SendInput(string text)
