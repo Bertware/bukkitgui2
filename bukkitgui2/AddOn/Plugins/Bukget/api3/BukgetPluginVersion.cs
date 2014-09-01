@@ -69,20 +69,31 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
 				}
 
 
-				//name of this version
-				if (json["download"] != null) DownloadLink = json["download"].ToString();
-
-				//download link
+			
+				if (json["download"] != null)
+				{
+					// BukkitDev Compliancy
+					// Since this program is distributed using dev.bukkit.org, every download url needs to have the "http://dev.bukkit.org" part hardcoded
+					
+					DownloadLink = json["download"].ToString();
+					if (DownloadLink.StartsWith("http://") || DownloadLink.StartsWith("https://"))
+					{
+						DownloadLink = DownloadLink.Substring(DownloadLink.IndexOf('/', 10));
+						DownloadLink = "http://dev.bukkit.org/" + DownloadLink;
+					}
+				}
+			
+				
 				if (json["link"] != null) PageLink = json["link"].ToString();
 
-				//download link
+				
 				if (json["date"] != null)
 					ReleaseDate = new DateTime(1970, 1, 1).AddSeconds(Convert.ToDouble(json["date"].ToString()));
 
-				//date, in UNIX formart (seconds elapsed since 1/1/1970)
+				
 				if (json["filename"] != null) Filename = json["filename"].ToString();
 
-				//filename
+			
 				if (json["status"] != null)
 					Type = (PluginStatus) Enum.Parse(typeof (PluginStatus), json["status"].ToString().Replace("-", "_"));
 			}

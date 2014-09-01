@@ -155,7 +155,6 @@
     </Compile>
     <Compile Include="AddOn\Plugins\Bukget\api3\BukgetPluginVersion.cs" />
     <Compile Include="AddOn\Plugins\Bukget\api3\Bukget.cs" />
-    <Compile Include="AddOn\Plugins\Bukget\api3\BukkitDevApiSupport.cs" />
     <Compile Include="AddOn\Plugins\Bukget\BukgetPluginView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -263,6 +262,9 @@
     <Compile Include="Controls\PerformanceMonitor\PerformanceMonitor.Designer.cs">
       <DependentUpon>PerformanceMonitor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\SortableListView\ListViewNumericSort.cs" />
+    <Compile Include="Controls\SortableListView\ListViewDateSort.cs" />
+    <Compile Include="Controls\SortableListView\ListViewStringSort.cs" />
     <Compile Include="Core\Logging\LogEntry.cs" />
     <Compile Include="Core\Util\Performance\PerformanceMonitorDataSource.cs" />
     <Compile Include="Controls\QuickButtons\QuickButtons.cs">
