@@ -3,10 +3,12 @@
 // ©Bertware, visit http://bertware.net
 
 using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 using MetroFramework.Controls;
 using Net.Bertware.Bukkitgui2.Core.Configuration;
+using Net.Bertware.Bukkitgui2.Core.Logging;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler;
@@ -184,6 +186,22 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 		{
 			if (SlvPlayers.SelectedItems.Count < 1) return;
 			((Player) (SlvPlayers.SelectedItems[0].Tag)).SetOp(false);
+		}
+
+		private void ConsoleTab_KeyDown(object sender, KeyEventArgs e)
+		{
+			try
+			{
+
+				if (e.KeyData == Keys.F11)
+					new EmulatorInput().Show();
+				e.Handled = true;
+				e.SuppressKeyPress = true;
+			}
+			catch (Exception exception)
+			{
+				Logger.Log(LogLevel.Warning, "ConsoleTab","Exception thrown while showing emulator",exception.Message);
+			}
 		}
 	}
 }

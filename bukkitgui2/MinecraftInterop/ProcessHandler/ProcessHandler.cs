@@ -7,11 +7,13 @@ using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Threading;
-using Net.Bertware.Bukkitgui2.Core;
+using System.Windows.Forms;
+using MetroFramework;
 using Net.Bertware.Bukkitgui2.Core.FileLocation;
 using Net.Bertware.Bukkitgui2.Core.Logging;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler;
 using Net.Bertware.Bukkitgui2.MinecraftServers;
+using Net.Bertware.Bukkitgui2.UI;
 
 namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler
 {
@@ -271,7 +273,6 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler
 						RedirectStandardOutput = true,
 						RedirectStandardError = true
 					},
-					
 				EnableRaisingEvents = true
 			};
 			ServerProcess.Start();
@@ -361,7 +362,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler
 		}
 
 		/// <summary>
-		/// Stop the reading threads. Will make the server inaccessible.
+		///     Stop the reading threads. Will make the server inaccessible.
 		/// </summary>
 		internal static void StopOutputReading()
 		{
@@ -371,6 +372,22 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler
 		public static Boolean SendInput(string text)
 		{
 			ServerProcess.StandardInput.WriteLine(text);
+			return true;
+		}
+		/// <summary>
+		/// Show a messagebox asking to stop the server, and if the user agrees, wait for the server to stop
+		/// </summary>
+		/// <returns>Returns true if the server has been stopped</returns>
+		public static bool RequestServerStop()
+		{
+			if (IsRunning)
+			{
+				if (MetroMessageBox.Show(Application.OpenForms[0],
+					"You want to perform an operation, which can't be executed while the server is running. Stop the server now?",
+					"Server has to be stopped",
+					MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No) return false;
+				new ServerStopDialog().ShowDialog();
+			}
 			return true;
 		}
 	}

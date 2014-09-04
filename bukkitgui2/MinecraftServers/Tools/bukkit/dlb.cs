@@ -122,6 +122,13 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers.Tools.bukkit
 				return webc.DownloadString(url);
 				//return result
 			}
+			catch (WebException webException)
+			{
+				Logger.Log(LogLevel.Severe, "dlb", "Couldn't download dlb data, webexception occurred (4xx/5xx)",
+					webException.Message);
+				return null;
+			}
+
 			catch (Exception ex)
 			{
 				Logger.Log(LogLevel.Severe, "dlb", "Could not download data from " + url, ex.Message);
@@ -150,9 +157,11 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers.Tools.bukkit
 
 		public DlbDownload(string xmlString)
 		{
+			if (string.IsNullOrEmpty(xmlString)) return;
+
 			try
 			{
-				if (xmlString == null || string.IsNullOrEmpty(xmlString) || xmlString.Contains("<") == false
+				if (string.IsNullOrEmpty(xmlString) || xmlString.Contains("<") == false
 				    || xmlString.Contains(">") == false)
 				{
 					Logger.Log(

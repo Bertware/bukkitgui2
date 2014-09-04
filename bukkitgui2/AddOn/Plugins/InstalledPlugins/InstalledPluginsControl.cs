@@ -5,6 +5,7 @@
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using MetroFramework;
 using MetroFramework.Controls;
 using Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3;
 using Net.Bertware.Bukkitgui2.Core.Util;
@@ -62,6 +63,17 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 			} 
 			PluginUpdater updater = new PluginUpdater(plugins);
 			updater.Show();
+		}
+
+		private void btnRemove_Click(object sender, EventArgs e)
+		{
+			if (slvPlugins.SelectedItems.Count < 0) return;
+			foreach (ListViewItem item in slvPlugins.SelectedItems)
+			{
+				InstalledPlugin plugin = (InstalledPlugin) item.Tag;
+				if (MetroMessageBox.Show(Application.OpenForms[0],"Are you sure you want to delete this plugin?" + Environment.NewLine + plugin.Name,"Delete this plugin?",MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes)
+					plugin.Remove();
+			} 
 		}
 	}
 }

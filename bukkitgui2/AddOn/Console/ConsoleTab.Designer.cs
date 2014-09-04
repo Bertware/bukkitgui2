@@ -209,6 +209,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			this.MCCOut.Size = new System.Drawing.Size(624, 326);
 			this.MCCOut.TabIndex = 0;
 			this.MCCOut.Text = "";
+			this.MCCOut.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ConsoleTab_KeyDown);
 			// 
 			// groupBox2
 			// 

@@ -73,6 +73,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 			this.btnRemove.TabIndex = 5;
 			this.btnRemove.Text = "Remove";
 			this.btnRemove.UseSelectable = true;
+			this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
 			// 
 			// slvPlugins
 			// 

@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 using MetroFramework;
 using Microsoft.VisualBasic;
 using Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins;
@@ -95,6 +96,9 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
 			if (updatelist)
 				InstalledPluginManager.RefreshAllInstalledPluginsAsync();
 			//refresh installed list
+
+			ShowInstallationComplete();
+
 			return true;
 		}
 
@@ -121,9 +125,10 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
 
 			Logger.Log(LogLevel.Info, "BukGetAPI", "Installing plugin:" + version.Filename + ", packed as zip file");
 
-			string zipfile = Fl.SafeLocation(RequestFile.Temp) + "install.zip";
-			string extraction = Fl.SafeLocation(RequestFile.Temp) + "/install/";
+			string randomName = DateTime.Now.Ticks.ToString();
 
+			string zipfile = Fl.SafeLocation(RequestFile.Temp) + "install.zip";
+			string extraction = Fl.SafeLocation(RequestFile.Temp) + "/install_" + randomName + "/";
 
 			FileDownloader fdd = new FileDownloader();
 			fdd.AddFile(version.DownloadLink, zipfile);
@@ -228,10 +233,8 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
 					}
 					if (copy2)
 					{
-						Directory.Move(directoryInZipInfo.FullName,
-							Fl.Location(RequestFile.Plugindir) + "/" + dir2.Name);
-						hasFileBeenMoved = false;
-						hasFolderBeenMoved = true;
+						CopyFolder(directoryInZipInfo.FullName,
+							Fl.Location(RequestFile.Plugindir) + "/" + dir2.Name,true);
 					}
 				}
 
@@ -241,11 +244,49 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
 
 			Logger.Log(LogLevel.Info, "BukgetAPI",
 				"Finished plugin installation: Success?" + (hasFileBeenMoved || hasFolderBeenMoved));
-
+			
+			//refresh installed list
 			if (updatelist)
 				InstalledPluginManager.RefreshAllInstalledPluginsAsync();
 			//refresh installed list
+
+			ShowInstallationComplete();
+			
 			return (hasFileBeenMoved || hasFolderBeenMoved);
+		}
+
+		/// <summary>
+		/// Copy a folder, also works between different drives
+		/// </summary>
+		/// <param name="sourceFolder">source dir</param>
+		/// <param name="destFolder">destination dir</param>
+		/// <param name="deleteSource">delete the source? (move)</param>
+		static public void CopyFolder(string sourceFolder, string destFolder, bool deleteSource = false)
+		{
+			if (!Directory.Exists(destFolder))
+				Directory.CreateDirectory(destFolder);
+			string[] files = Directory.GetFiles(sourceFolder);
+			foreach (string file in files)
+			{
+				string name = Path.GetFileName(file);
+				string dest = Path.Combine(destFolder, name);
+				File.Copy(file, dest, true);
+			}
+			string[] folders = Directory.GetDirectories(sourceFolder);
+			foreach (string folder in folders)
+			{
+				string name = Path.GetFileName(folder);
+				string dest = Path.Combine(destFolder, name);
+				CopyFolder(folder, dest);
+			}
+			if (deleteSource) Directory.Delete(sourceFolder,true);
+		}
+
+		private static void ShowInstallationComplete()
+		{
+			MetroMessageBox.Show(Application.OpenForms[0],
+				Translator.Tr("The plugin has been installed. Restart your server to enable it."),
+				Translator.Tr("Plugin installed"), MessageBoxButtons.OK, MessageBoxIcon.Information);
 		}
 	}
 }

@@ -42,7 +42,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget
 			get { return _currentPluginVersionPath; }
 			set
 			{
-				value = new FileInfo(value).FullName;
+				if (!string.IsNullOrEmpty(value)) value = new FileInfo(value).FullName;
 				_currentPluginVersionPath = value;
 			}
 		}

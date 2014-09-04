@@ -6,8 +6,13 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading;
+using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
+using MetroFramework;
 using Net.Bertware.Bukkitgui2.Core.FileLocation;
 using Net.Bertware.Bukkitgui2.Core.Logging;
+using Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler;
+using Net.Bertware.Bukkitgui2.UI;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 {
@@ -75,17 +80,17 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 		private static void CreateSimpleList()
 		{
 			FileInfo[] pluginfiles = new DirectoryInfo(Fl.SafeLocation(RequestFile.Plugindir)).GetFiles();
+			
+			//create dictionary
+			Plugins = new Dictionary<string, InstalledPlugin>();
 
 			if (pluginfiles.Length < 1)
 			{
 				Logger.Log(LogLevel.Warning, "pluginmanager", "Cancelled simple list creation: no Plugins");
-				Plugins = new Dictionary<string, InstalledPlugin>();
 				//no Plugins, nothing to do here
 				return;
 			}
 
-			//create dictionary
-			Plugins = new Dictionary<string, InstalledPlugin>();
 
 			//load all the Plugins in the dictionary
 			foreach (FileInfo pluginfile in pluginfiles)
@@ -127,13 +132,15 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 				//create dictionary
 				Dictionary<string, InstalledPlugin> updatedPlugins = new Dictionary<string, InstalledPlugin>();
 
-				foreach (string pluginname in Plugins.Keys)
+				foreach (KeyValuePair<string,InstalledPlugin> pair in Plugins)
 				{
+					string pluginname = pair.Key;
+					InstalledPlugin value = pair.Value;
 					try
 					{
 						Logger.Log(LogLevel.Info, "InstalledPlugins",
-							"Loading plugin " + i + 1 + " of " + Plugins.Count + " : " + pluginname);
-						InstalledPlugin plugin = new InstalledPlugin().ParseAllFields(pluginname);
+							"Loading plugin " + (i + 1) + " of " + Plugins.Count + " : " + pluginname);
+						InstalledPlugin plugin = new InstalledPlugin().ParseAllFields(value.Path);
 
 // ReSharper disable once AssignNullToNotNullAttribute
 						if (plugin != null) updatedPlugins.Add(plugin.FileName, plugin);
@@ -171,6 +178,29 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 		{
 			if (Directory.Exists(Fl.Location(RequestFile.Cache) + "/Plugins/"))
 				Directory.Delete(Fl.Location(RequestFile.Cache) + "/Plugins/", true);
+		}
+
+		public static void RemovePlugin(string filename)
+		{
+			if (!ProcessHandler.RequestServerStop()) return;
+			if (Plugins.ContainsKey(filename))
+			{
+				Plugins[filename].Remove();
+			}
+			else
+			{
+				try
+				{
+					File.Delete(Fl.Location(RequestFile.Plugindir) + "/" + filename);
+				}
+				catch (Exception exception)
+				{
+					Logger.Log(LogLevel.Warning, "InstalledPluginManager", "Failed to remove plugin", exception.Message);
+					MetroMessageBox.Show(Application.OpenForms[0], "Plugin removal failed", "Plugin removal failed",
+						MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}
+			}
+			RefreshAllInstalledPluginsAsync();
 		}
 	}
 }

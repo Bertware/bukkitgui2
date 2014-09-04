@@ -57,6 +57,9 @@ namespace Net.Bertware.Bukkitgui2.Core.FileLocation
 				_customWorkingDirectory = true;
 				break;
 			}
+
+			// clear the temporary files
+			Directory.Delete(Fl.Location(RequestFile.Temp), true);
 		}
 
 		/// <summary>
