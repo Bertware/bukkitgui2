@@ -1,5 +1,10 @@
 ﻿// BukgetPluginVersion.cs in bukkitgui2/bukkitgui2
 // Created 2014/05/03
+// 
+// This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
+// If a copy of the MPL was not distributed with this file,
+// you can obtain one at http://mozilla.org/MPL/2.0/.
+// 
 // ©Bertware, visit http://bertware.net
 
 using System;
@@ -69,12 +74,11 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
 				}
 
 
-			
 				if (json["download"] != null)
 				{
 					// BukkitDev Compliancy
 					// Since this program is distributed using dev.bukkit.org, every download url needs to have the "http://dev.bukkit.org" part hardcoded
-					
+
 					DownloadLink = json["download"].ToString();
 					if (DownloadLink.StartsWith("http://") || DownloadLink.StartsWith("https://"))
 					{
@@ -82,18 +86,18 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
 						DownloadLink = "http://dev.bukkit.org/" + DownloadLink;
 					}
 				}
-			
-				
+
+
 				if (json["link"] != null) PageLink = json["link"].ToString();
 
-				
+
 				if (json["date"] != null)
 					ReleaseDate = new DateTime(1970, 1, 1).AddSeconds(Convert.ToDouble(json["date"].ToString()));
 
-				
+
 				if (json["filename"] != null) Filename = json["filename"].ToString();
 
-			
+
 				if (json["status"] != null)
 					Type = (PluginStatus) Enum.Parse(typeof (PluginStatus), json["status"].ToString().Replace("-", "_"));
 			}
@@ -116,7 +120,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
 
 		public Boolean Install(string targetLocation = "")
 		{
-			return BukgetPluginInstaller.Install(this, targetLocation, true,true);
+			return BukgetPluginInstaller.Install(this, targetLocation, true, true);
 		}
 	}
 }

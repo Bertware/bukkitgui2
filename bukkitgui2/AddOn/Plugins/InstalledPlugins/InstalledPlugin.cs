@@ -1,18 +1,20 @@
 ﻿// InstalledPlugin.cs in bukkitgui2/bukkitgui2
 // Created 2014/07/13
+// 
+// This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
+// If a copy of the MPL was not distributed with this file,
+// you can obtain one at http://mozilla.org/MPL/2.0/.
+// 
 // ©Bertware, visit http://bertware.net
 
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Windows.Forms;
-using MetroFramework;
 using Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3;
 using Net.Bertware.Bukkitgui2.Core.FileLocation;
 using Net.Bertware.Bukkitgui2.Core.Logging;
 using Net.Bertware.Bukkitgui2.Core.Util;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler;
-using Net.Bertware.Bukkitgui2.UI;
 using Yaml.Grammar;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
@@ -64,10 +66,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 		/// <summary>
 		///     The full path of the plugin
 		/// </summary>
-		public string Path { 
-			get;
-			private set; 
-		}
+		public string Path { get; private set; }
 
 		/// <summary>
 		///     Commands registered by this plugin
@@ -98,13 +97,14 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 				return BukgetPlugin.CreateFromNamespace(Mainspace);
 			}
 		}
+
 		/// <summary>
-		/// Remove (Delete) this plugin
+		///     Remove (Delete) this plugin
 		/// </summary>
 		public void Remove()
 		{
 			if (!ProcessHandler.RequestServerStop()) return;
-			File.Delete(this.Path);
+			File.Delete(Path);
 			InstalledPluginManager.RefreshAllInstalledPluginsAsync();
 		}
 
@@ -135,7 +135,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 		{
 			OnlySimpleFields = false;
 			ParseSimpleFields(path); // load the simple fields first
-			Loadplugin(this.Path, useCache); // this.path is already loaded in parseSimpleFields
+			Loadplugin(Path, useCache); // this.path is already loaded in parseSimpleFields
 			return this;
 		}
 

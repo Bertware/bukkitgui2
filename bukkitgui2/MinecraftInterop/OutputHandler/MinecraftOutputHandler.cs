@@ -1,5 +1,10 @@
 ﻿// MinecraftOutputHandler.cs in bukkitgui2/bukkitgui2
 // Created 2014/02/05
+// 
+// This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
+// If a copy of the MPL was not distributed with this file,
+// you can obtain one at http://mozilla.org/MPL/2.0/.
+// 
 // ©Bertware, visit http://bertware.net
 
 using System;
@@ -320,7 +325,6 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler
 			    (Equals(text, "[WARN] Perhaps a server is already running on that port?") ||
 			     Equals(text, "[WARN] The exception was: java.net.BindException: Address already in use: bind")))
 			{
-
 				MetroMessageBox.Show(MainForm.Reference,
 					Translator.Tr(
 						"The server could not be started, because the port is already in use. Make sure there are no other servers running on this port." +
@@ -331,7 +335,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler
 					Environment.NewLine + "The exception was: java.net.BindException: Address already in use: bind",
 					Translator.Tr("Cannot bind to port"), MessageBoxButtons.OK, MessageBoxIcon.Error);
 				Starter.KillServer();
-				
+
 				//if (MetroMessageBox.Show(MainForm.Reference,
 				//	Translator.Tr("Do you want to kill all java processes, in an attempt to start the server?") +
 				//	Environment.NewLine +

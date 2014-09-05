@@ -1,5 +1,10 @@
 ﻿// DefaultFileLocation.cs in bukkitgui2/bukkitgui2
 // Created 2014/01/18
+// 
+// This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
+// If a copy of the MPL was not distributed with this file,
+// you can obtain one at http://mozilla.org/MPL/2.0/.
+// 
 // ©Bertware, visit http://bertware.net
 
 using System;
@@ -44,9 +49,6 @@ namespace Net.Bertware.Bukkitgui2.Core.FileLocation
 
 			try
 			{
-
-
-
 				// -portable argument for keeping everything in the working directory
 				if (Environment.GetCommandLineArgs().Contains("-portable") || Config.ReadBool("filelocation", "local", false))
 				{
@@ -65,11 +67,11 @@ namespace Net.Bertware.Bukkitgui2.Core.FileLocation
 				}
 
 				// clear the temporary files
-				if (Directory.Exists(Fl.Location(RequestFile.Temp))) Directory.Delete(Fl.Location(RequestFile.Temp), true);
+				if (Directory.Exists(Location(RequestFile.Temp))) Directory.Delete(Location(RequestFile.Temp), true);
 			}
 			catch (Exception exception)
 			{
-				Logger.Log(LogLevel.Severe, "DefaultFileLocation","Exception thrown while initialising!", exception.Message);
+				Logger.Log(LogLevel.Severe, "DefaultFileLocation", "Exception thrown while initialising!", exception.Message);
 			}
 		}
 

@@ -1,6 +1,10 @@
 ﻿// ServerList.cs in bukkitgui2/bukkitgui2
 // Created 2014/08/29
-// Last edited at 2014/08/30 13:57
+// 
+// This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
+// If a copy of the MPL was not distributed with this file,
+// you can obtain one at http://mozilla.org/MPL/2.0/.
+// 
 // ©Bertware, visit http://bertware.net
 
 using System;
@@ -99,7 +103,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ServerConfig
 		private void Initialize()
 		{
 			string file = _type.ToString().ToLower().Replace('_', '-') + ".json";
-			_path = Fl.SafeLocation(RequestFile.Serverdir)  + file;
+			_path = Fl.SafeLocation(RequestFile.Serverdir) + file;
 
 			LoadList();
 			_watcher = new FileSystemWatcher(Fl.SafeLocation(RequestFile.Serverdir))
@@ -126,8 +130,6 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ServerConfig
 
 			try
 			{
-
-
 				string jsonText = FsUtil.ReadFileInUse(_path);
 				if (string.IsNullOrEmpty(jsonText)) return;
 
@@ -142,7 +144,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ServerConfig
 			}
 			catch (Exception ex)
 			{
-				Logger.Log(LogLevel.Warning, "Failed to load list: " + _type,ex.Message);
+				Logger.Log(LogLevel.Warning, "Failed to load list: " + _type, ex.Message);
 			}
 		}
 	}

@@ -1,5 +1,10 @@
 ﻿// ProcessHandler.cs in bukkitgui2/bukkitgui2
 // Created 2014/02/05
+// 
+// This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
+// If a copy of the MPL was not distributed with this file,
+// you can obtain one at http://mozilla.org/MPL/2.0/.
+// 
 // ©Bertware, visit http://bertware.net
 
 using System;
@@ -374,8 +379,9 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler
 			ServerProcess.StandardInput.WriteLine(text);
 			return true;
 		}
+
 		/// <summary>
-		/// Show a messagebox asking to stop the server, and if the user agrees, wait for the server to stop
+		///     Show a messagebox asking to stop the server, and if the user agrees, wait for the server to stop
 		/// </summary>
 		/// <returns>Returns true if the server has been stopped</returns>
 		public static bool RequestServerStop()

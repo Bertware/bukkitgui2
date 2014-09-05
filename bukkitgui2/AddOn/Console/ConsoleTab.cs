@@ -1,9 +1,13 @@
 ﻿// ConsoleTab.cs in bukkitgui2/bukkitgui2
 // Created 2014/01/17
+// 
+// This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
+// If a copy of the MPL was not distributed with this file,
+// you can obtain one at http://mozilla.org/MPL/2.0/.
+// 
 // ©Bertware, visit http://bertware.net
 
 using System;
-using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 using MetroFramework.Controls;
@@ -192,7 +196,6 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 		{
 			try
 			{
-
 				if (e.KeyData == Keys.F11)
 					new EmulatorInput().Show();
 				e.Handled = true;
@@ -200,7 +203,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			}
 			catch (Exception exception)
 			{
-				Logger.Log(LogLevel.Warning, "ConsoleTab","Exception thrown while showing emulator",exception.Message);
+				Logger.Log(LogLevel.Warning, "ConsoleTab", "Exception thrown while showing emulator", exception.Message);
 			}
 		}
 	}

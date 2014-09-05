@@ -1,5 +1,10 @@
 ﻿// InstalledPluginsControl.cs in bukkitgui2/bukkitgui2
 // Created 2014/01/17
+// 
+// This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
+// If a copy of the MPL was not distributed with this file,
+// you can obtain one at http://mozilla.org/MPL/2.0/.
+// 
 // ©Bertware, visit http://bertware.net
 
 using System;
@@ -60,7 +65,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 			foreach (ListViewItem item in slvPlugins.SelectedItems)
 			{
 				plugins.Add((InstalledPlugin) item.Tag);
-			} 
+			}
 			PluginUpdater updater = new PluginUpdater(plugins);
 			updater.Show();
 		}
@@ -71,9 +76,12 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 			foreach (ListViewItem item in slvPlugins.SelectedItems)
 			{
 				InstalledPlugin plugin = (InstalledPlugin) item.Tag;
-				if (MetroMessageBox.Show(Application.OpenForms[0],"Are you sure you want to delete this plugin?" + Environment.NewLine + plugin.Name,"Delete this plugin?",MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes)
+				if (
+					MetroMessageBox.Show(Application.OpenForms[0],
+						"Are you sure you want to delete this plugin?" + Environment.NewLine + plugin.Name, "Delete this plugin?",
+						MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
 					plugin.Remove();
-			} 
+			}
 		}
 	}
 }

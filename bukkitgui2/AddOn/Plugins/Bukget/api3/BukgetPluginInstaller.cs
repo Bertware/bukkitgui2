@@ -1,12 +1,16 @@
 ﻿// BukgetPluginInstaller.cs in bukkitgui2/bukkitgui2
 // Created 2014/07/13
+// 
+// This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
+// If a copy of the MPL was not distributed with this file,
+// you can obtain one at http://mozilla.org/MPL/2.0/.
+// 
 // ©Bertware, visit http://bertware.net
 
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
 using MetroFramework;
 using Microsoft.VisualBasic;
 using Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins;
@@ -234,7 +238,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
 					if (copy2)
 					{
 						CopyFolder(directoryInZipInfo.FullName,
-							Fl.Location(RequestFile.Plugindir) + "/" + dir2.Name,true);
+							Fl.Location(RequestFile.Plugindir) + "/" + dir2.Name, true);
 					}
 				}
 
@@ -244,24 +248,24 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
 
 			Logger.Log(LogLevel.Info, "BukgetAPI",
 				"Finished plugin installation: Success?" + (hasFileBeenMoved || hasFolderBeenMoved));
-			
+
 			//refresh installed list
 			if (updatelist)
 				InstalledPluginManager.RefreshAllInstalledPluginsAsync();
 			//refresh installed list
 
 			ShowInstallationComplete();
-			
+
 			return (hasFileBeenMoved || hasFolderBeenMoved);
 		}
 
 		/// <summary>
-		/// Copy a folder, also works between different drives
+		///     Copy a folder, also works between different drives
 		/// </summary>
 		/// <param name="sourceFolder">source dir</param>
 		/// <param name="destFolder">destination dir</param>
 		/// <param name="deleteSource">delete the source? (move)</param>
-		static public void CopyFolder(string sourceFolder, string destFolder, bool deleteSource = false)
+		public static void CopyFolder(string sourceFolder, string destFolder, bool deleteSource = false)
 		{
 			if (!Directory.Exists(destFolder))
 				Directory.CreateDirectory(destFolder);
@@ -279,7 +283,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
 				string dest = Path.Combine(destFolder, name);
 				CopyFolder(folder, dest);
 			}
-			if (deleteSource) Directory.Delete(sourceFolder,true);
+			if (deleteSource) Directory.Delete(sourceFolder, true);
 		}
 
 		private static void ShowInstallationComplete()
