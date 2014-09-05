@@ -63,6 +63,8 @@ namespace Net.Bertware.Bukkitgui2.UI
 				SplashScreen.Reference.SafeFormClose();
 			}
 
+			this.Text = FormTitle;
+
 			if (showUi)
 			{
 				// Visible and to front
