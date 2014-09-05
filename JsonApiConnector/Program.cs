@@ -42,7 +42,7 @@ namespace JsonApiConnector
 				t.Start();
 			}
 			_connector.Connect();
-			while (_connector.IsListening())
+			while (_connector.Api.IsListening())
 			{
 				Thread.Sleep(10);
 			}
@@ -59,7 +59,7 @@ namespace JsonApiConnector
 			while (ThreadsRunning)
 			{
 				string input = Console.In.ReadLine();
-				_connector.SendConsoleCommand(input);
+				_connector.Api.SendConsoleCommand(input);
 			}
 		}
 
@@ -68,7 +68,7 @@ namespace JsonApiConnector
 			while (ThreadsRunning)
 			{
 				string input = Console.In.ReadLine();
-				_connector.SendConsoleCommand(input);
+				_connector.Api.SendConsoleCommand(input);
 			}
 		}
 

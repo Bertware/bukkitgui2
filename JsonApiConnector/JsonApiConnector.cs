@@ -21,7 +21,7 @@ namespace JsonApiConnector
 		private String _host;
 		private UInt16 _port;
 
-		private IJsonApi api;
+		internal IJsonApi Api;
 
 		public Boolean ShowConsole = true;
 		private const char Splitter = '=';
@@ -108,10 +108,10 @@ namespace JsonApiConnector
 				switch (apiversion)
 				{
 					case 1:
-						api = new JsonApiV1(_username, _password, _salt, _host, _port);
+						Api = new JsonApiV1(_username, _password, _salt, _host, _port);
 						break;
 					default:
-						api = new JsonApiV2(_username, _password, _host, _port);
+						Api = new JsonApiV2(_username, _password, _host, _port);
 						break;
 				}
 			}
@@ -146,12 +146,12 @@ namespace JsonApiConnector
 
 		public void Connect()
 		{
-			api.Connect();
+			Api.Connect();
 		}
 
 		public void Disconnect()
 		{
-			api.Disconnect();
+			Api.Disconnect();
 		}
 
 		/// <summary>
