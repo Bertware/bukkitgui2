@@ -1,5 +1,5 @@
-﻿// JsonApiServer.cs in bukkitgui2/bukkitgui2
-// Created 2014/02/02
+﻿// JsonApi2Server.cs in bukkitgui2/bukkitgui2
+// Created 2014/09/05
 // 
 // This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
 // If a copy of the MPL was not distributed with this file,
@@ -17,18 +17,18 @@ using Net.Bertware.Bukkitgui2.Properties;
 
 namespace Net.Bertware.Bukkitgui2.MinecraftServers.Servers
 {
-	internal class JsonApiServer : MinecraftServerBase
+	internal class JsonApi2Server : MinecraftServerBase
 	{
-		public JsonApiServer()
+		public JsonApi2Server()
 		{
-			Name = "JsonApi";
+			Name = "JsonApi API v2";
 			Logo = Resources.jsonapi_logo;
 			Site = "http://mcjsonapi.com/";
 			HasCustomAssembly = true;
 			CustomAssembly = ""; // will be set in preparelaunch
 			SupportsPlugins = false; //disable plugin manager on this one
 			HasCustomSettingsControl = true;
-			CustomSettingsControl = new JsonApiCredentialsSettingsControl();
+			CustomSettingsControl = new JsonApi2CredentialsSettingsControl();
 		}
 
 		public override void PrepareLaunch()
@@ -44,13 +44,13 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers.Servers
 		public override string GetLaunchParameters(string defaultParameters = "")
 		{
 			Control control = Starter.GetCustomSettingsControl();
-			if (! (control is JsonApiCredentialsSettingsControl)) throw new Exception("Couldn't retrieve parameters");
+			if (! (control is JsonApi2CredentialsSettingsControl)) throw new Exception("Couldn't retrieve parameters");
 
-			JsonApiCredentialsSettingsControl cred = (JsonApiCredentialsSettingsControl) control;
+			JsonApi2CredentialsSettingsControl cred = (JsonApi2CredentialsSettingsControl) control;
 
-			return "-u=" + cred.Username + " -p=" + cred.Password + " -s=" + cred.Salt + " -host=" + cred.Host +
+			return "-u=" + cred.Username + " -p=" + cred.Password + " -host=" + cred.Host +
 			       " -port=" +
-			       cred.Port + " -api=1";
+			       cred.Port;
 		}
 	}
 }

@@ -13,8 +13,6 @@ using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
-using Jayrock.Json;
-using Jayrock.Json.Conversion;
 
 namespace JsonApiConnector
 {
@@ -26,12 +24,13 @@ namespace JsonApiConnector
         private String _host;
         private UInt16 _port;
 
-        private Boolean _listening;
+	    private IJsonApi api;
 
         public Boolean ShowConsole = true;
         private const char Splitter = '=';
-        private const string ErrPrefix = "!!! ERROR: ";
 
+
+	    private static JsonApiConnector reference;
 
         public delegate void OutputReceivedEventHandler(string text);
 
@@ -40,19 +39,29 @@ namespace JsonApiConnector
         /// </summary>
         public event OutputReceivedEventHandler OutputReceived;
 
-        public JsonApiConnector(string[] args)
+	    protected virtual void OnOutputReceived(string text)
+	    {
+		    var handler = OutputReceived;
+		    if (handler != null) handler(text);
+	    }
+
+	    public JsonApiConnector(string[] args)
         {
             //Arguments:
             // -u=username
             // -p=password
+			// -s=salt (if necessary)
             // -host=[ip or hostname]
             // -port=20060
-
+			// -api=1 (to use old api, default is v2)
+	        reference = this;
             LoadArguments(args);
         }
 
         private void LoadArguments(string[] args)
         {
+	        int apiversion = 2;
+
             if (args.Length < 1 || args.Contains("-help") || args.Contains("/help") || args.Contains("-?") ||
                 args.Contains("/?"))
             {
@@ -87,6 +96,9 @@ namespace JsonApiConnector
                         case "-background":
                             ShowConsole = false;
                             break;
+						case "-api=1":
+		                    apiversion = 1;
+		                    break;
                         default:
                             throw new ArgumentException();
                     }
@@ -95,6 +107,16 @@ namespace JsonApiConnector
                 {
                     PrintUsage();
                 }
+
+	            switch (apiversion)
+	            {
+					case 1:
+						api = new JsonApiV1(_username,_password,_salt,_host,_port);
+			            break;
+					default:
+						api = new JsonApiV2(_username, _password, _host, _port);
+			            break;
+	            }
             }
         }
 
@@ -102,20 +124,21 @@ namespace JsonApiConnector
         {
             Console.WriteLine();
             Console.WriteLine("JsonApi Connector " + Assembly.GetExecutingAssembly().GetName().Version);
-            Console.WriteLine("Built for JsonApi Api v1");
+            Console.WriteLine("Built for JsonApi Api v1/v2");
             Console.WriteLine();
             Console.WriteLine("Usage:");
             Console.WriteLine(Assembly.GetExecutingAssembly().GetName().Name +
-                              " -u=[username] -p=[password] -s=[salt] -host=[ip or hostname] -port=[port]");
+                              " -u=[username] -p=[password] -s=[salt] -host=[ip or hostname] -port=[port] -api=1");
             Console.WriteLine();
             Console.WriteLine("Username: JsonApi username as set in the jsonapi config");
             Console.WriteLine("Password: JsonApi password as set in the jsonapi config");
-            Console.WriteLine("Salt: JsonApi salt as set in the jsonapi config");
+            Console.WriteLine("Salt: JsonApi salt as set in the jsonapi config (api v1 only)");
             Console.WriteLine("Ip/Hostname: Ip or hostname to the server running the jsonapi plugin");
             Console.WriteLine("Port: The port used by JsonApi, as set in the JsonApi config.");
+			Console.WriteLine("Api: The api version to use. Default is 2");
             Console.WriteLine();
             Console.WriteLine(
-                "Note: You need to forward the port, port+1 and port+2 for all functions to work (due to JsonApi requirements)");
+                "Note: (Only for jsonapi v1) You need to forward the port, port+1 and port+2 for all functions to work (due to JsonApi requirements)");
             Console.WriteLine();
             Console.WriteLine("Press a key...");
             Console.ReadLine();
@@ -123,131 +146,18 @@ namespace JsonApiConnector
 
         public void Connect()
         {
-            _listening = true;
-            Thread t = new Thread(ReadConsoleStream) {Name = "ReadConsoleStream", IsBackground = true};
-            t.Start();
+
         }
 
-        public void DisConnect()
+        public void Disconnect()
         {
-            _listening = false;
+
         }
 
-        private void ReadConsoleStream()
-        {
-            Socket sock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            try
-            {
-                sock.Connect(_host, _port + 1);
-            }
-            catch (Exception connectException)
-            {
-                OutputReceived(ErrPrefix + "Couldn't connect to JsonApi stream:" + connectException.Message);
-            }
+	    public static void HandleOutput(string text)
+	    {
+			reference.OnOutputReceived(text);
+	    }
 
-            if (sock.Connected)
-            {
-                string key = CreateKey("console");
-                NetworkStream stream = new NetworkStream(sock);
-                StreamWriter sw = new StreamWriter(stream);
-                sw.WriteLine("/api/subscribe?source=console&key=" + key);
-                sw.Flush();
-                StreamReader sr = new StreamReader(stream);
-
-
-                while (_listening && sock.Connected && stream.CanRead)
-                {
-                    string l = "";
-                    try
-                    {
-                        while (_listening && sock.Connected && stream.CanRead && sr.EndOfStream)
-                        {
-                            Thread.Sleep(100);
-                        }
-                        if (_listening && sock.Connected) l = sr.ReadLine();
-                    }
-                    catch (Exception readex)
-                    {
-                        Debug.WriteLine("exception at run_connection_receive, while reading from networkstream " +
-                                        readex.Message);
-                        //don't flag as critical error
-                    }
-
-                    if (!string.IsNullOrEmpty(l) && l.Contains("{") & l.Contains(":") & l.Contains("}"))
-                    {
-                        l = new JsonApiStreamResult(l).Line;
-                        if (!l.Contains("[API Call]")) OutputReceived(l.TrimEnd(Environment.NewLine.ToCharArray()));
-                    }
-
-                    Thread.Sleep(10);
-                }
-            }
-            OutputReceived(ErrPrefix + "Disconnected");
-            if (sock.Connected) sock.Close();
-            _listening = false;
-        }
-
-        public void SendConsoleCommand(string command)
-        {
-            new WebClient().DownloadString("http://" + _host + ":" + _port +
-                                           "/api/call?method=runConsoleCommand&args=%5B%22" +
-                                           command + "%22%5D&key=" + CreateKey("runConsoleCommand"));
-        }
-
-        private readonly HashAlgorithm _hashAlgorithm = SHA256.Create();
-
-        internal string CreateKey(string method)
-        {
-            byte[] data = Encoding.ASCII.GetBytes(_username + method + _password + _salt);
-            byte[] hash = _hashAlgorithm.ComputeHash(data);
-
-            char[] result = new char[hash.Length*2];
-
-            for (int i = 0; i < hash.Length; ++i)
-            {
-                byte b = (byte) (hash[i] >> 4);
-                result[i*2] = (char) (b > 9 ? b + 0x57 : b + 0x30);
-
-                b = (byte) (hash[i] & 0xF);
-                result[i*2 + 1] = (char) (b > 9 ? b + 0x57 : b + 0x30);
-            }
-
-            return new string(result);
-        }
-
-        public Boolean IsListening()
-        {
-            return _listening;
-        }
-    }
-
-    public class JsonApiStreamResult
-    {
-        public string Result;
-        public string Source;
-        public string Time = "";
-
-        public string Line = "";
-
-        public JsonApiStreamResult(string text)
-        {
-            //JsonObject obj = JsonConvert.Import(text);
-            JsonObject resultJsonObject = JsonConvert.Import(typeof (JsonObject), text) as JsonObject;
-
-            if (resultJsonObject == null) return;
-
-            Result = resultJsonObject["result"].ToString();
-            Source = resultJsonObject["source"].ToString();
-
-            if (Result != "success") return;
-
-            JsonObject outputJsonObject =
-                JsonConvert.Import(typeof (JsonObject), resultJsonObject["success"].ToString()) as JsonObject;
-
-            if (outputJsonObject == null) return;
-
-            Time = outputJsonObject["time"].ToString();
-            Line = outputJsonObject["line"].ToString();
-        }
     }
 }

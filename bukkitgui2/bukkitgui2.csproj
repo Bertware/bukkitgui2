@@ -412,10 +412,17 @@
     <Compile Include="MinecraftServers\Servers\BukkitServer.cs" />
     <Compile Include="MinecraftServers\MinecraftServerBase.cs" />
     <Compile Include="MinecraftServers\MinecraftServerLoader.cs" />
+    <Compile Include="MinecraftServers\Servers\JsonApi2Server.cs" />
     <Compile Include="MinecraftServers\Servers\JsonApiServer.cs" />
     <Compile Include="MinecraftServers\Servers\McpcServer.cs" />
     <Compile Include="MinecraftServers\Servers\SpigotServer.cs" />
     <Compile Include="MinecraftServers\Servers\VanillaServer.cs" />
+    <Compile Include="MinecraftServers\Tools\JsonApi2CredentialsSettingsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MinecraftServers\Tools\JsonApi2CredentialsSettingsControl.Designer.cs">
+      <DependentUpon>JsonApi2CredentialsSettingsControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="MinecraftServers\Tools\JsonApiCredentialsSettingsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -560,6 +567,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Core\Util\Web\FileDownloadProgressBar.resx">
       <DependentUpon>FileDownloadProgressBar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MinecraftServers\Tools\JsonApi2CredentialsSettingsControl.resx">
+      <DependentUpon>JsonApi2CredentialsSettingsControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MinecraftServers\Tools\JsonApiCredentialsSettingsControl.resx">
       <DependentUpon>JsonApiCredentialsSettingsControl.cs</DependentUpon>

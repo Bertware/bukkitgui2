@@ -44,7 +44,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IJsonApi.cs" />
     <Compile Include="JsonApiConnector.cs" />
+    <Compile Include="JsonApiStreamResult.cs" />
+    <Compile Include="JsonApiV1.cs" />
+    <Compile Include="JsonApiV2.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
