@@ -20,9 +20,10 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Editor
 		public SettingsEditDialog(string setting, string value)
 		{
 			InitializeComponent();
-			txtSetting.ReadOnly = true;
+			txtSetting.ReadOnly = true; // make setting name readonly
 			txtSetting.Text = setting;
 			txtValue.Text = value;
+			txtValue.Focus(); // focus value textbox
 		}
 
 		public string Setting
