@@ -331,12 +331,32 @@ namespace Net.Bertware.Bukkitgui2.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap jsonapi_logo {
+            get {
+                object obj = ResourceManager.GetObject("jsonapi_logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
         internal static byte[] JsonApiConnector {
             get {
                 object obj = ResourceManager.GetObject("JsonApiConnector", resourceCulture);
                 return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap mcpc_cauldron_logo {
+            get {
+                object obj = ResourceManager.GetObject("mcpc_cauldron_logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

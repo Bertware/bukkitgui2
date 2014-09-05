@@ -22,7 +22,8 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers.Servers
 		public JsonApiServer()
 		{
 			Name = "JsonApi";
-
+			Logo = Resources.jsonapi_logo;
+			Site = "http://mcjsonapi.com/";
 			HasCustomAssembly = true;
 			CustomAssembly = ""; // will be set in preparelaunch
 			SupportsPlugins = false; //disable plugin manager on this one

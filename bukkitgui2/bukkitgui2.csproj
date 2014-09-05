@@ -626,6 +626,8 @@
     <Content Include="Resources\Icon\icon_today-64.png" />
     <Content Include="Resources\Icon\icon_up_circular-64.png" />
     <EmbeddedResource Include="Resources\Dll\MetroFramework.dll" />
+    <Content Include="Resources\Img\jsonapi_logo.png" />
+    <Content Include="Resources\Img\mcpc_cauldron_logo.png" />
     <Content Include="Resources\Sound\sound_connect.wav" />
     <Content Include="Resources\Sound\sound_disconnect.wav" />
     <Content Include="Resources\Sound\sound_severe.wav" />
