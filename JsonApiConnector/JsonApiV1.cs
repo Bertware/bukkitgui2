@@ -125,5 +125,17 @@ namespace JsonApiConnector
 		{
 			return _listening;
 		}
+
+		public void Connect()
+		{
+			_listening = true;
+			Thread t = new Thread(ReadConsoleStream) {Name = "ReadConsoleStream", IsBackground = true};
+			t.Start();
+		}
+
+		public void Disconnect()
+		{
+			_listening = false;
+		}
 	}
 }

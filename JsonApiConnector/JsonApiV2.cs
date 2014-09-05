@@ -1,11 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿// JsonApiV2.cs in bukkitgui2/JsonApiConnector
+// Created 2014/09/05
+// 
+// This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
+// If a copy of the MPL was not distributed with this file,
+// you can obtain one at http://mozilla.org/MPL/2.0/.
+// 
+// ©Bertware, visit http://bertware.net
+
+using System;
+using System.Threading;
 
 namespace JsonApiConnector
 {
-	class JsonApiV2 : IJsonApi
+	internal class JsonApiV2 : IJsonApi
 	{
 		// TODO: implement API2
 		// http://mcjsonapi.com/#JSONAPI-Key-Format
@@ -44,6 +51,18 @@ namespace JsonApiConnector
 		public bool IsListening()
 		{
 			throw new NotImplementedException();
+		}
+
+		public void Connect()
+		{
+			_listening = true;
+			Thread t = new Thread(ReadConsoleStream) {Name = "ReadConsoleStream", IsBackground = true};
+			t.Start();
+		}
+
+		public void Disconnect()
+		{
+			_listening = false;
 		}
 	}
 }
