@@ -6,6 +6,7 @@ using System;
 using System.IO;
 using System.Linq;
 using Net.Bertware.Bukkitgui2.Core.Configuration;
+using Net.Bertware.Bukkitgui2.Core.Logging;
 
 namespace Net.Bertware.Bukkitgui2.Core.FileLocation
 {
@@ -41,25 +42,35 @@ namespace Net.Bertware.Bukkitgui2.Core.FileLocation
 			IsInitialized = true;
 			_workingdirectory = SafeLocation(RequestFile.Appdata);
 
-			// -portable argument for keeping everything in the working directory
-			if (Environment.GetCommandLineArgs().Contains("-portable") || Config.ReadBool("filelocation", "local", false))
+			try
 			{
-				_workingdirectory = Environment.CurrentDirectory;
+
+
+
+				// -portable argument for keeping everything in the working directory
+				if (Environment.GetCommandLineArgs().Contains("-portable") || Config.ReadBool("filelocation", "local", false))
+				{
+					_workingdirectory = Environment.CurrentDirectory;
+				}
+
+				// custom working directory
+
+				foreach (string arg in Environment.GetCommandLineArgs())
+				{
+					if (!arg.Contains("-wd=")) continue;
+					_workingdirectory = arg.Split('=')[1];
+					Environment.CurrentDirectory = _workingdirectory;
+					_customWorkingDirectory = true;
+					break;
+				}
+
+				// clear the temporary files
+				if (Directory.Exists(Fl.Location(RequestFile.Temp))) Directory.Delete(Fl.Location(RequestFile.Temp), true);
 			}
-
-			// custom working directory
-
-			foreach (string arg in Environment.GetCommandLineArgs())
+			catch (Exception exception)
 			{
-				if (!arg.Contains("-wd=")) continue;
-				_workingdirectory = arg.Split('=')[1];
-				Environment.CurrentDirectory = _workingdirectory;
-				_customWorkingDirectory = true;
-				break;
+				Logger.Log(LogLevel.Severe, "DefaultFileLocation","Exception thrown while initialising!", exception.Message);
 			}
-
-			// clear the temporary files
-			Directory.Delete(Fl.Location(RequestFile.Temp), true);
 		}
 
 		/// <summary>

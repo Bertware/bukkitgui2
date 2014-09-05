@@ -55,14 +55,16 @@
     </Reference>
     <Reference Include="MetroFramework.Design">
       <HintPath>Resources\Dll\MetroFramework.Design.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="MetroFramework.Fonts">
       <HintPath>Resources\Dll\MetroFramework.Fonts.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Net.Bertware.Get">
       <HintPath>Resources\Dll\Net.Bertware.Get.dll</HintPath>
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
