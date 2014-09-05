@@ -5,6 +5,7 @@
 using System.Collections.Generic;
 using System.IO;
 using Net.Bertware.Bukkitgui2.Core.FileLocation;
+using Net.Bertware.Bukkitgui2.Core.Logging;
 
 namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ServerConfig
 {
@@ -36,7 +37,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ServerConfig
 		public static void LoadSettings(string path)
 		{
 			_lastPath = path;
-
+			Logger.Log(LogLevel.Info, "ServerProperties", "Loading properties file...", path);
 			_serverSettings = new Dictionary<string, string>();
 			if (!File.Exists(path)) return;
 
@@ -49,6 +50,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ServerConfig
 				string value = line.Split('=')[1];
 				if (!_serverSettings.ContainsKey(key)) _serverSettings.Add(key, value);
 			}
+			Logger.Log(LogLevel.Info, "ServerProperties", "Loaded properties file", path);
 		}
 
 		/// <summary>
@@ -70,6 +72,8 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ServerConfig
 			{
 				_serverSettings.Add(setting, value);
 			}
+			Logger.Log(LogLevel.Info, "ServerProperties", "Updated setting", setting + " : " + value);
+			SaveSettings();
 		}
 
 		/// <summary>
@@ -92,7 +96,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ServerConfig
 		public static void SaveSettings(string path = "")
 		{
 			if (string.IsNullOrEmpty(path)) path = _lastPath;
-
+			Logger.Log(LogLevel.Info, "ServerProperties", "Saving properties file...", path);
 			string[] lines = new string[_serverSettings.Count];
 			int i = 0;
 			foreach (KeyValuePair<string, string> serverSetting in _serverSettings)
@@ -102,6 +106,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ServerConfig
 			}
 
 			File.WriteAllLines(path, lines);
+			Logger.Log(LogLevel.Info, "ServerProperties", "Saved properties file", path);
 		}
 	}
 }

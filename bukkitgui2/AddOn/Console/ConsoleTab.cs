@@ -107,7 +107,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			// clearing console is already performed by the starter routine, so the starter routine can display its own information too.
 			SlvPlayers.Items.Clear();
 			CIConsoleInput.ClearAutoCompletionHistory();
-			WriteOut("Starting a new server");
+			WriteOut("Starting server...");
 		}
 
 		/// <summary>

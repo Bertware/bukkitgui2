@@ -48,6 +48,12 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Editor
 			UpdateListView();
 		}
 
+
+		private void slvServerSettings_DoubleClick(object sender, EventArgs e)
+		{
+			btnEdit_Click(sender, e);
+		}
+
 		private void btnAdd_Click(object sender, EventArgs e)
 		{
 			SettingsEditDialog dialog = new SettingsEditDialog();
@@ -55,5 +61,6 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Editor
 			ServerProperties.SetServerSetting(dialog.Setting, dialog.Value);
 			UpdateListView();
 		}
+
 	}
 }

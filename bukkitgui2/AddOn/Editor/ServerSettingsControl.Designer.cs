@@ -50,6 +50,7 @@
 			this.slvServerSettings.TabIndex = 2;
 			this.slvServerSettings.UseCompatibleStateImageBehavior = false;
 			this.slvServerSettings.View = System.Windows.Forms.View.Details;
+			this.slvServerSettings.DoubleClick += new System.EventHandler(this.slvServerSettings_DoubleClick);
 			// 
 			// ColSetting
 			// 
