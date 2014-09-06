@@ -38,7 +38,7 @@
     <StartupObject>Net.Bertware.Bukkitgui2.Program</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>GUI icon 32.ico</ApplicationIcon>
+    <ApplicationIcon>bukkitgui-icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ICSharpCode.SharpZipLib">
@@ -433,6 +433,11 @@
     <Compile Include="MinecraftServers\Tools\MinecraftServerVersion.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="UiLauncher.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -576,14 +581,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="UiLauncher.resx">
       <DependentUpon>UiLauncher.cs</DependentUpon>
     </EmbeddedResource>
@@ -612,7 +612,7 @@
     <Folder Include="Core\Filesystem\FTP\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="GUI icon 32.ico" />
+    <Content Include="bukkitgui-icon.ico" />
     <Content Include="Resources\Icon\icon_cancel-64.png" />
     <Content Include="Resources\Icon\icon_chat-64.png" />
     <Content Include="Resources\Icon\icon_checkmark-64.png" />
@@ -636,6 +636,9 @@
     <Content Include="Resources\Icon\icon_today-64.png" />
     <Content Include="Resources\Icon\icon_up_circular-64.png" />
     <EmbeddedResource Include="Resources\Dll\MetroFramework.dll" />
+    <Content Include="Resources\Img\bukkitgui-icon.ico" />
+    <Content Include="Resources\Img\bukkitgui-logo.png" />
+    <Content Include="Resources\Img\bukkitgui-white-icon.png" />
     <Content Include="Resources\Img\jsonapi_logo.png" />
     <Content Include="Resources\Img\mcpc_cauldron_logo.png" />
     <Content Include="Resources\Sound\sound_connect.wav" />
@@ -653,11 +656,6 @@
     <EmbeddedResource Include="Resources\Dll\MetroFramework.Fonts.dll" />
     <None Include="Resources\Dll\MetroFramework.Fonts.pdb" />
     <Content Include="Resources\Img\bukkit_logo.png" />
-    <Content Include="Resources\Img\GUI icon 16.ico" />
-    <Content Include="Resources\Img\GUI icon 32.ico" />
-    <Content Include="Resources\Img\GUI icon 64.ico" />
-    <Content Include="Resources\Img\GUI icon.ico" />
-    <Content Include="Resources\Img\GUI icon.png" />
     <Content Include="Resources\Img\player_face.png" />
     <Content Include="Resources\Img\spigot_logo.png" />
     <Content Include="Resources\Img\vanilla_logo.png" />

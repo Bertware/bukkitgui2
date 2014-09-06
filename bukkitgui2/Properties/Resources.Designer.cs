@@ -73,9 +73,9 @@ namespace Net.Bertware.Bukkitgui2.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon GUI_icon {
+        internal static System.Drawing.Icon bukkitgui_icon {
             get {
-                object obj = ResourceManager.GetObject("GUI_icon", resourceCulture);
+                object obj = ResourceManager.GetObject("bukkitgui_icon", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }
@@ -83,9 +83,9 @@ namespace Net.Bertware.Bukkitgui2.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap GUI_logo {
+        internal static System.Drawing.Bitmap bukkitgui_logo {
             get {
-                object obj = ResourceManager.GetObject("GUI_logo", resourceCulture);
+                object obj = ResourceManager.GetObject("bukkitgui_logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

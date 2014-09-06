@@ -52,7 +52,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Notifications
 			if (!Config.ReadBool(CfgIdent, "enabled", false)) return;
 
 
-			_icon = new NotifyIcon {Icon = Resources.GUI_icon, Visible = true};
+			_icon = new NotifyIcon {Icon = Resources.bukkitgui_icon, Visible = true};
 
 			_icon.DoubleClick += ShowMainForm;
 
