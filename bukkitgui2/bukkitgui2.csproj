@@ -81,6 +81,7 @@
   <ItemGroup>
     <Compile Include="AddOn\AddonManager.cs" />
     <Compile Include="AddOn\Backup\Backup.cs" />
+    <Compile Include="AddOn\Backup\BackupDefenition.cs" />
     <Compile Include="AddOn\Backup\BackupTab.cs">
       <SubType>UserControl</SubType>
     </Compile>

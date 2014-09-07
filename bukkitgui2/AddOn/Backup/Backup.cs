@@ -7,12 +7,15 @@
 // 
 // ©Bertware, visit http://bertware.net
 
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Backup
 {
 	public class Backup : IAddon
 	{
+		public static Backup Reference;
+
 		public Backup()
 		{
 			Name = "Backup";
@@ -20,6 +23,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Backup
 			TabPage = new BackupTab();
 			HasConfig = false;
 			ConfigPage = null;
+			Reference = this;
 		}
 
 		/// <summary>
@@ -42,13 +46,21 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Backup
 		/// </summary>
 		public void Initialize()
 		{
-			// nothing to do
+			_backups = new Dictionary<string, BackupDefenition>();
 		}
 
 		public void Dispose()
 		{
 			// nothing to do
 		}
+
+		private Dictionary<string, BackupDefenition> _backups;
+
+		public Dictionary<string, BackupDefenition> Backups
+		{
+			get { return _backups; }
+		}
+
 
 		/// <summary>
 		///     The tab control for this addon
