@@ -7,17 +7,18 @@
 // 
 // ©Bertware, visit http://bertware.net
 
+using Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Trigger
 {
-	internal class PlayerCountTrigger : ITrigger
+	internal class ServerOutputTrigger : ITrigger
 	{
-		public PlayerCountTrigger()
+		public ServerOutputTrigger()
 		{
-			Name = "Playercount";
-			Description = "Execute a task when a given amount of players is online (evaluated after every join or leave)";
-			ParameterDescription = "The amount of players on which this trigger should run (0 to 9999)";
+			Name = "Server output";
+			Description = "Execute a task when the server output contains the parameter text";
+			ParameterDescription = "the text which the server output should contain. Case insensitive.";
 		}
 
 		public event TaskerEventArgs TaskerTriggerFired;
@@ -37,9 +38,8 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Trigger
 
 		public bool ValidateInput(string inputText)
 		{
-			// int
-			int i;
-			return int.TryParse(inputText, out i);
+			// any text
+			return true;
 		}
 
 		public void Load(string parameters)
@@ -62,19 +62,20 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Trigger
 
 		public void Enable()
 		{
-			PlayerHandler.PlayerListChanged += OnPlayerListChanged;
+			MinecraftOutputHandler.OutputParsed += OnOutputReceived;
 			Enabled = true;
 		}
 
 		public void Disable()
 		{
-			PlayerHandler.PlayerListChanged -= OnPlayerListChanged;
+			MinecraftOutputHandler.OutputParsed -= OnOutputReceived;
 			Enabled = false;
 		}
 
-		private void OnPlayerListChanged()
+		private void OnOutputReceived(string s, OutputParseResult result)
 		{
-			if (PlayerHandler.GetOnlinePlayerCount() == int.Parse(Parameters)) OnTaskerTriggerFired();
+			if (result.Message.ToLower().Contains(result.Message.ToLower())) OnTaskerTriggerFired();
 		}
+
 	}
 }
