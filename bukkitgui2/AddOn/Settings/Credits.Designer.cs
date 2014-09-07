@@ -37,7 +37,7 @@
 			this.lblCredits.AutoSize = true;
 			this.lblCredits.Location = new System.Drawing.Point(3, 0);
 			this.lblCredits.Name = "lblCredits";
-			this.lblCredits.Size = new System.Drawing.Size(466, 228);
+			this.lblCredits.Size = new System.Drawing.Size(466, 247);
 			this.lblCredits.TabIndex = 0;
 			this.lblCredits.Text = resources.GetString("lblCredits.Text");
 			// 

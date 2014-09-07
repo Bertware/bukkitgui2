@@ -189,18 +189,6 @@
     <Compile Include="AddOn\Settings\Credits.Designer.cs">
       <DependentUpon>Credits.cs</DependentUpon>
     </Compile>
-    <Compile Include="AddOn\SixtySetup\SixtySetupSettings.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="AddOn\SixtySetup\SixtySetupSettings.Designer.cs">
-      <DependentUpon>SixtySetupSettings.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AddOn\SixtySetup\SixtySetupServerDownload.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="AddOn\SixtySetup\SixtySetupServerDownload.Designer.cs">
-      <DependentUpon>SixtySetupServerDownload.cs</DependentUpon>
-    </Compile>
     <Compile Include="AddOn\Starter\JavaApi.cs" />
     <Compile Include="AddOn\Tasker\Action\ConsoleCommandAction.cs" />
     <Compile Include="AddOn\Tasker\Action\ConsoleClearAction.cs" />
@@ -323,12 +311,6 @@
     <Compile Include="AddOn\Settings\SettingsTab.Designer.cs">
       <DependentUpon>SettingsTab.cs</DependentUpon>
     </Compile>
-    <Compile Include="AddOn\SixtySetup\SixtySetup.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AddOn\SixtySetup\SixtySetup.Designer.cs">
-      <DependentUpon>SixtySetup.cs</DependentUpon>
-    </Compile>
     <Compile Include="AddOn\Starter\Starter.cs" />
     <Compile Include="AddOn\Starter\StarterTab.cs">
       <SubType>UserControl</SubType>
@@ -342,13 +324,6 @@
     </Compile>
     <Compile Include="AddOn\Tasker\TaskerTab.Designer.cs">
       <DependentUpon>TaskerTab.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AddOn\WebControl\WebControl.cs" />
-    <Compile Include="AddOn\WebControl\WebControlTab.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="AddOn\WebControl\WebControlTab.Designer.cs">
-      <DependentUpon>WebControlTab.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\MarkupTextArea\MarkupTextArea.cs">
       <SubType>UserControl</SubType>
@@ -528,15 +503,6 @@
     <EmbeddedResource Include="AddOn\Settings\SettingsTab.resx">
       <DependentUpon>SettingsTab.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AddOn\SixtySetup\SixtySetupSettings.resx">
-      <DependentUpon>SixtySetupSettings.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AddOn\SixtySetup\SixtySetup.resx">
-      <DependentUpon>SixtySetup.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AddOn\SixtySetup\SixtySetupServerDownload.resx">
-      <DependentUpon>SixtySetupServerDownload.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="AddOn\Starter\StarterTab.resx">
       <DependentUpon>StarterTab.cs</DependentUpon>
     </EmbeddedResource>
@@ -554,9 +520,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddOn\Updater\UpdaterSettings.resx">
       <DependentUpon>UpdaterSettings.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AddOn\WebControl\WebControlTab.resx">
-      <DependentUpon>WebControlTab.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ColorPicker\ColorPicker.resx">
       <DependentUpon>ColorPicker.cs</DependentUpon>
