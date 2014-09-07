@@ -45,11 +45,13 @@
 			// 
 			// btnCustomFolder
 			// 
+			this.btnCustomFolder.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.btnCustomFolder.Location = new System.Drawing.Point(3, 24);
 			this.btnCustomFolder.Name = "btnCustomFolder";
-			this.btnCustomFolder.Size = new System.Drawing.Size(170, 23);
+			this.btnCustomFolder.Size = new System.Drawing.Size(554, 23);
 			this.btnCustomFolder.TabIndex = 1;
-			this.btnCustomFolder.Text = "Use custom folder";
+			this.btnCustomFolder.Text = "Create shortcut for custom folder";
 			this.btnCustomFolder.UseSelectable = true;
 			this.btnCustomFolder.Click += new System.EventHandler(this.btnCustomFolder_Click);
 			// 
