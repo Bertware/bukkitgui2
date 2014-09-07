@@ -1,4 +1,4 @@
-﻿// PlayerCountTrigger.cs in bukkitgui2/bukkitgui2
+﻿// ServerOutputTrigger.cs in bukkitgui2/bukkitgui2
 // Created 2014/09/07
 // 
 // This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
@@ -8,7 +8,6 @@
 // ©Bertware, visit http://bertware.net
 
 using Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler;
-using Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Trigger
 {
@@ -76,6 +75,5 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Trigger
 		{
 			if (result.Message.ToLower().Contains(result.Message.ToLower())) OnTaskerTriggerFired();
 		}
-
 	}
 }
