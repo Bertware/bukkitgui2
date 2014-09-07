@@ -117,4 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="lblCustomDirExplanation.Text" xml:space="preserve">
+    <value>You can save all (both server and GUI) files in a directory of your choice.
+To do so, click the button below, and use the shortcut that's created on your desktop.
+This way you can use 1 GUI executable with multiple shortcuts for different servers. </value>
+  </data>
 </root>

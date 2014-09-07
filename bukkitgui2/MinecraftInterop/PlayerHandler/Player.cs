@@ -140,20 +140,24 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 			Minotar = img;
 		}
 
-		/// <summary>
-		///     Kick a this.Name
-		/// </summary>
-		public void Kick()
-		{
-			PlayerActions.KickPlayer(Name);
-		}
 
 		/// <summary>
-		///     Ban a this.Name
+		///     Kick a player
 		/// </summary>
-		public void Ban()
+		/// <param name="reason">Reason for the kick</param>
+		public void Kick(string reason="")
 		{
-			PlayerActions.BanPlayer(Name);
+			PlayerActions.KickPlayer(Name,reason);
+		}
+
+
+		/// <summary>
+		///     Ban a player
+		/// </summary>
+		/// <param name="reason">Reason for the ban</param>
+		public void Ban(string reason="")
+		{
+			PlayerActions.BanPlayer(Name, reason);
 		}
 
 		/// <summary>
@@ -165,7 +169,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 		}
 
 		/// <summary>
-		///     Pardon a banned this.Name
+		///     Pardon a banned player
 		/// </summary>
 		public void Pardon()
 		{
@@ -182,7 +186,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 		}
 
 		/// <summary>
-		///     Set the gamemode for a given this.Name
+		///     Set the gamemode for a given player
 		/// </summary>
 		/// <param name="mode">The gamemode to set</param>
 		public void SetGameMode(MinecraftGameMode mode)
@@ -192,7 +196,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 
 
 		/// <summary>
-		///     Add or remove a this.Name from the op
+		///     Add or remove a player from the op list
 		/// </summary>
 		/// <param name="whitelist">True to op the this.Name, false to remove him from the op</param>
 		public void SetWhitelist(bool whitelist)
@@ -201,7 +205,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 		}
 
 		/// <summary>
-		///     Add or remove a this.Name from the OP list
+		///     Add or remove a player from the OP list
 		/// </summary>
 		/// <param name="op">True to OP the this.Name, false to de-OP him</param>
 		public void SetOp(bool op)
@@ -210,7 +214,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 		}
 
 		/// <summary>
-		///     Give a this.Name a certain item
+		///     Give a player a certain item
 		/// </summary>
 		/// <param name="item">The item to give</param>
 		/// <param name="amount">The amount of the item to give</param>
@@ -224,7 +228,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 		}
 
 		/// <summary>
-		///     Give a this.Name a certain item
+		///     Give a player a certain item
 		/// </summary>
 		/// <param name="item">The item to give</param>
 		/// <param name="amount">The amount of the item to give</param>
@@ -238,9 +242,9 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 		}
 
 		/// <summary>
-		///     Teleport a this.Name to another this.Name
+		///     Teleport a player to another player
 		/// </summary>
-		/// <param name="targetplayer">The this.Name to teleport the first this.Name to</param>
+		/// <param name="targetplayer">The this.Name to teleport the first player to</param>
 		public void Teleport(string targetplayer)
 		{
 			if (ProcessHandler.ProcessHandler.IsRunning)
@@ -250,7 +254,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 		}
 
 		/// <summary>
-		///     Teleport a this.Name to a place in the world
+		///     Teleport a player to a place in the world
 		/// </summary>
 		/// <param name="x">x-coordinate</param>
 		/// <param name="y">y-coordinate</param>

@@ -28,8 +28,10 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VariousSettings));
 			this.chkSaveInServerDir = new MetroFramework.Controls.MetroCheckBox();
 			this.btnCustomFolder = new MetroFramework.Controls.MetroButton();
+			this.lblCustomDirExplanation = new MetroFramework.Controls.MetroLabel();
 			this.SuspendLayout();
 			// 
 			// chkSaveInServerDir
@@ -47,7 +49,7 @@
 			// 
 			this.btnCustomFolder.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnCustomFolder.Location = new System.Drawing.Point(3, 24);
+			this.btnCustomFolder.Location = new System.Drawing.Point(3, 81);
 			this.btnCustomFolder.Name = "btnCustomFolder";
 			this.btnCustomFolder.Size = new System.Drawing.Size(554, 23);
 			this.btnCustomFolder.TabIndex = 1;
@@ -55,10 +57,19 @@
 			this.btnCustomFolder.UseSelectable = true;
 			this.btnCustomFolder.Click += new System.EventHandler(this.btnCustomFolder_Click);
 			// 
+			// lblCustomDirExplanation
+			// 
+			this.lblCustomDirExplanation.Location = new System.Drawing.Point(3, 21);
+			this.lblCustomDirExplanation.Name = "lblCustomDirExplanation";
+			this.lblCustomDirExplanation.Size = new System.Drawing.Size(554, 57);
+			this.lblCustomDirExplanation.TabIndex = 2;
+			this.lblCustomDirExplanation.Text = resources.GetString("lblCustomDirExplanation.Text");
+			// 
 			// VariousSettings
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.Controls.Add(this.lblCustomDirExplanation);
 			this.Controls.Add(this.btnCustomFolder);
 			this.Controls.Add(this.chkSaveInServerDir);
 			this.Name = "VariousSettings";
@@ -72,6 +83,7 @@
 
 		private MetroFramework.Controls.MetroCheckBox chkSaveInServerDir;
 		private MetroFramework.Controls.MetroButton btnCustomFolder;
+		private MetroFramework.Controls.MetroLabel lblCustomDirExplanation;
 
 	}
 }

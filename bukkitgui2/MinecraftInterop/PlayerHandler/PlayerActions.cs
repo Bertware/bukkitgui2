@@ -19,11 +19,13 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 		///     Kick a player
 		/// </summary>
 		/// <param name="name"></param>
-		public static void KickPlayer(string name)
+		public static void KickPlayer(string name, string reason = "")
 		{
 			if (ProcessHandler.ProcessHandler.IsRunning)
 			{
-				ProcessHandler.ProcessHandler.SendInput("kick " + name);
+				string command = "kick " + name;
+				if (!string.IsNullOrEmpty(reason)) command += " " + reason;
+				ProcessHandler.ProcessHandler.SendInput(command);
 				return;
 			}
 			MetroMessageBox.Show(Application.OpenForms[0],
@@ -35,11 +37,13 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 		///     Ban a player
 		/// </summary>
 		/// <param name="name">the player to ban</param>
-		public static void BanPlayer(string name)
+		public static void BanPlayer(string name, string reason ="")
 		{
 			if (ProcessHandler.ProcessHandler.IsRunning)
 			{
-				ProcessHandler.ProcessHandler.SendInput("ban " + name);
+				string command = "ban " + name;
+				if (!string.IsNullOrEmpty(reason)) command += " " + reason;
+				ProcessHandler.ProcessHandler.SendInput(command);
 				return;
 			}
 			MetroMessageBox.Show(Application.OpenForms[0],
