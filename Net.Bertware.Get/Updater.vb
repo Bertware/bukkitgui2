@@ -7,13 +7,15 @@ Imports System.Net
 
 Module Updater
     Public Event UpdateStarting()
-    Public Const BUKKITDEV As Boolean = False
+    Public ReadOnly BUKKITDEV As Boolean = False
 
     Public Function Update(upd As UpdateInfo, Optional ByVal limited As Boolean = False) As Boolean _
 'verify if dialog should be shown. If manual, always show. 
         Try
             If upd Is Nothing Then Return False : Exit Function
             Trace.WriteLine("preparing to update...")
+            Trace.WriteLine("Bukkitdev compliancy: " & BUKKITDEV)
+
             RaiseEvent UpdateStarting()
             'select mirror
             Dim url As String = ""
@@ -46,7 +48,6 @@ Module Updater
             Trace.WriteLine("Extracted updater tool")
 
             If (BUKKITDEV) Then
-
                 If (url.StartsWith("http://") Or url.StartsWith("https://")) Then
                     url = url.Substring(url.IndexOf("/", 10, StringComparison.Ordinal))
                 End If

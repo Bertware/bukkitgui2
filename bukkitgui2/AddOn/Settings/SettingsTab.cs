@@ -52,6 +52,10 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Settings
 			_settings.Add("Credits", new Credits());
 			node = new TreeNode("Credits") {Name = "Credits"};
 			TVSettings.Nodes.Add(node);
+
+			_settings.Add("Various", new VariousSettings());
+			node = new TreeNode("Various") { Name = "Various" };
+			TVSettings.Nodes.Add(node);
 			IsInitialized = true;
 		}
 

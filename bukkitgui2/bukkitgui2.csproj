@@ -184,6 +184,12 @@
     <Compile Include="AddOn\Plugins\InstalledPlugins\PluginUpdater.Designer.cs">
       <DependentUpon>PluginUpdater.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddOn\Settings\VariousSettings.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AddOn\Settings\VariousSettings.Designer.cs">
+      <DependentUpon>VariousSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddOn\Settings\Credits.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -283,13 +289,6 @@
     </Compile>
     <Compile Include="AddOn\Forwarder\ForwarderTab.Designer.cs">
       <DependentUpon>ForwarderTab.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AddOn\Permissions\Permissions.cs" />
-    <Compile Include="AddOn\Permissions\PermissionsTab.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="AddOn\Permissions\PermissionsTab.Designer.cs">
-      <DependentUpon>PermissionsTab.cs</DependentUpon>
     </Compile>
     <Compile Include="AddOn\PlayerList\PlayerList.cs" />
     <Compile Include="AddOn\PlayerList\PlayerListTab.cs">
@@ -477,9 +476,6 @@
     <EmbeddedResource Include="AddOn\Forwarder\ForwarderTab.resx">
       <DependentUpon>ForwarderTab.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AddOn\Permissions\PermissionsTab.resx">
-      <DependentUpon>PermissionsTab.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="AddOn\PlayerList\PlayerListTab.resx">
       <DependentUpon>PlayerListTab.cs</DependentUpon>
     </EmbeddedResource>
@@ -497,6 +493,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddOn\Plugins\PluginsTab.resx">
       <DependentUpon>PluginsTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddOn\Settings\VariousSettings.resx">
+      <DependentUpon>VariousSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddOn\Settings\Credits.resx">
       <DependentUpon>Credits.cs</DependentUpon>

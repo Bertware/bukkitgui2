@@ -10,7 +10,7 @@
 using System;
 using System.IO;
 using System.Linq;
-using Net.Bertware.Bukkitgui2.Core.Configuration;
+using Microsoft.Win32;
 using Net.Bertware.Bukkitgui2.Core.Logging;
 
 namespace Net.Bertware.Bukkitgui2.Core.FileLocation
@@ -50,7 +50,7 @@ namespace Net.Bertware.Bukkitgui2.Core.FileLocation
 			try
 			{
 				// -portable argument for keeping everything in the working directory
-				if (Environment.GetCommandLineArgs().Contains("-portable") || Config.ReadBool("filelocation", "local", false))
+				if (Environment.GetCommandLineArgs().Contains("-portable") || GetLocal())
 				{
 					_workingdirectory = Environment.CurrentDirectory;
 				}
@@ -130,6 +130,31 @@ namespace Net.Bertware.Bukkitgui2.Core.FileLocation
 			string location = Location(file);
 			if (!Directory.Exists(location)) Directory.CreateDirectory(location);
 			return location;
+		}
+
+		public static void SetLocal(bool local)
+		{
+			try
+			{
+				Registry.SetValue("HKCU\\Software\\Bertware\\Bukkitgui", "local", local);
+			}
+			catch
+			{
+				// TODO: fix
+			}
+		}
+
+		public static bool GetLocal()
+		{
+			try
+			{
+				return (bool) Registry.GetValue("HKEY_CURRENT_USER\\Software\\Bertware\\Bukkitgui", "local", false);
+			}
+			catch
+			{
+				// TODO: fix
+			}
+			return false;
 		}
 	}
 
