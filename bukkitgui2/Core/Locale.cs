@@ -129,7 +129,6 @@ namespace Net.Bertware.Bukkitgui2.Core
 
 			_xmldoc = new XmlDocument();
 			_xmldoc.Load(file);
-
 		}
 
 		/// <summary>
@@ -144,7 +143,8 @@ namespace Net.Bertware.Bukkitgui2.Core
 
 			foreach (XmlElement entry in _xmldoc.ChildNodes) //for each element, 
 			{
-				if (entry.Name == "text") newcache.Add(entry.GetAttribute("original").Replace("&amp;", "&"), entry.Value.Replace("&amp;", "&"));
+				if (entry.Name == "text")
+					newcache.Add(entry.GetAttribute("original").Replace("&amp;", "&"), entry.Value.Replace("&amp;", "&"));
 			}
 
 			_cache = newcache;
@@ -158,7 +158,8 @@ namespace Net.Bertware.Bukkitgui2.Core
 
 			foreach (KeyValuePair<string, string> entry in _cache) //for each element, 
 			{
-				newxml += "<text original=\"" + entry.Key.Replace("&", "&amp;") + "\">" + entry.Value.Replace("&", "&amp;") + "</text>" + Environment.NewLine;
+				newxml += "<text original=\"" + entry.Key.Replace("&", "&amp;") + "\">" + entry.Value.Replace("&", "&amp;") +
+				          "</text>" + Environment.NewLine;
 			}
 			newxml += XmlTail;
 			_xmldoc.LoadXml(newxml);
