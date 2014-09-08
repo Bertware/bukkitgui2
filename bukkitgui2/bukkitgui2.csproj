@@ -393,6 +393,7 @@
     <Compile Include="MinecraftServers\Servers\BukkitServer.cs" />
     <Compile Include="MinecraftServers\MinecraftServerBase.cs" />
     <Compile Include="MinecraftServers\MinecraftServerLoader.cs" />
+    <Compile Include="MinecraftServers\Servers\GlowstoneServer.cs" />
     <Compile Include="MinecraftServers\Servers\JsonApi2Server.cs" />
     <Compile Include="MinecraftServers\Servers\JsonApiServer.cs" />
     <Compile Include="MinecraftServers\Servers\McpcServer.cs" />
@@ -608,6 +609,7 @@
     <Content Include="Resources\Img\bukkitgui-icon.ico" />
     <Content Include="Resources\Img\bukkitgui-logo.png" />
     <Content Include="Resources\Img\bukkitgui-white-icon.png" />
+    <Content Include="Resources\Img\glowstone-logo.png" />
     <Content Include="Resources\Img\jsonapi_logo.png" />
     <Content Include="Resources\Img\mcpc_cauldron_logo.png" />
     <Content Include="Resources\Sound\sound_connect.wav" />

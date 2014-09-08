@@ -7,20 +7,20 @@ Imports System.Net
 
 Module Updater
     Public Event UpdateStarting()
-    Public ReadOnly BUKKITDEV As Boolean = False
+    'Public ReadOnly BUKKITDEV As Boolean = False
 
     Public Function Update(upd As UpdateInfo, Optional ByVal limited As Boolean = False) As Boolean _
-'verify if dialog should be shown. If manual, always show. 
+        'verify if dialog should be shown. If manual, always show. 
         Try
             If upd Is Nothing Then Return False : Exit Function
             Trace.WriteLine("preparing to update...")
-            Trace.WriteLine("Bukkitdev compliancy: " & BUKKITDEV)
+            'Trace.WriteLine("Bukkitdev compliancy: " & BUKKITDEV)
 
             RaiseEvent UpdateStarting()
             'select mirror
             Dim url As String = ""
-            If ping(upd.URL_1) = False Then
-                If ping(upd.URL_2) = False Then
+            If Ping(upd.URL_1) = False Then
+                If Ping(upd.URL_2) = False Then
                     MessageBox.Show("All download links for this update are unavailable. Try again later.",
                                     "Download unavailable", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     ShowFailedDialog()
@@ -47,16 +47,16 @@ Module Updater
             fs.Close()
             Trace.WriteLine("Extracted updater tool")
 
-            If (BUKKITDEV) Then
-                If (url.StartsWith("http://") Or url.StartsWith("https://")) Then
-                    url = url.Substring(url.IndexOf("/", 10, StringComparison.Ordinal))
-                End If
+            'If (BUKKITDEV) Then
+            '    If (url.StartsWith("http://") Or url.StartsWith("https://")) Then
+            '        url = url.Substring(url.IndexOf("/", 10, StringComparison.Ordinal))
+            '    End If
 
-                ' BUKKITDEV COMPLIANCY
-                ' all url's will start with a hard coded http://dev.bukkit.org/ part
-                url = "http://dev.bukkit.org" + url
-                Trace.WriteLine("Bukkitdev hardcoded url: " & url)
-            End If
+            '    ' BUKKITDEV COMPLIANCY
+            '    ' all url's will start with a hard coded http://dev.bukkit.org/ part
+            '    url = "http://dev.bukkit.org" + url
+            '    Trace.WriteLine("Bukkitdev hardcoded url: " & url)
+            'End If
 
             Dim fd As FileDownloader
             fd = New FileDownloader(url, tmp & "/" & fname)
