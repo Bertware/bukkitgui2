@@ -28,18 +28,32 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.lblNotAvailableYet = new MetroFramework.Controls.MetroLabel();
 			this.SuspendLayout();
+			// 
+			// lblNotAvailableYet
+			// 
+			this.lblNotAvailableYet.AutoSize = true;
+			this.lblNotAvailableYet.Location = new System.Drawing.Point(3, 0);
+			this.lblNotAvailableYet.Name = "lblNotAvailableYet";
+			this.lblNotAvailableYet.Size = new System.Drawing.Size(428, 19);
+			this.lblNotAvailableYet.TabIndex = 0;
+			this.lblNotAvailableYet.Text = "Backups aren\'t available at this time, and will be added in a later release";
 			// 
 			// BackupTab
 			// 
 			this.BackColor = System.Drawing.Color.White;
+			this.Controls.Add(this.lblNotAvailableYet);
 			this.Name = "BackupTab";
 			this.Size = new System.Drawing.Size(800, 500);
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 
 		#endregion
+
+		private MetroFramework.Controls.MetroLabel lblNotAvailableYet;
 
 	}
 }

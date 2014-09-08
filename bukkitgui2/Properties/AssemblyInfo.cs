@@ -15,11 +15,11 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 
 [assembly: AssemblyTitle("Bukkitgui2")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Minecraft server hosting made easy")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Bertware.net")]
 [assembly: AssemblyProduct("Bukkitgui2")]
-[assembly: AssemblyCopyright("Copyright ©  2014")]
+[assembly: AssemblyCopyright("Copyright ©2011 - 2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -44,5 +44,5 @@ using System.Runtime.InteropServices;
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
 
-[assembly: AssemblyVersion("0.8.6.3")]
-[assembly: AssemblyFileVersion("0.8.6.3")]
+[assembly: AssemblyVersion("2.0.0.173")]
+[assembly: AssemblyFileVersion("2.0.0.173")]

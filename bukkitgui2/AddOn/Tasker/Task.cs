@@ -56,13 +56,23 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 			Enabled = false;
 			Initialize();
 		}
-
+		/// <summary>
+		/// Create a new task from serialized data
+		/// </summary>
+		/// <param name="serializedData">data to parse</param>
 		public Task(string serializedData)
 		{
 			Deserialize(serializedData);
 			Initialize();
 		}
 
+		/// <summary>
+		/// Create a new task from given parameters
+		/// </summary>
+		/// <param name="name">Name for this task</param>
+		/// <param name="enabled">Enable this task?</param>
+		/// <param name="trigger">Trigger for this task</param>
+		/// <param name="actions">Actions to be executed on trigger</param>
 		public Task(string name, bool enabled, ITrigger trigger, List<IAction> actions)
 		{
 			Name = name;
@@ -101,7 +111,10 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 			Enabled = false;
 		}
 
-		private void ExecuteActions()
+		/// <summary>
+		/// Execute the actions for this task (either triggered or for testing purposes)
+		/// </summary>
+		public void ExecuteActions()
 		{
 			OnTaskExecuting();
 			foreach (IAction action in Actions)
@@ -111,6 +124,10 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 			OnTaskExecuted();
 		}
 
+		/// <summary>
+		/// Get a string representing this object. Can be parsed using Deserialize(string s)
+		/// </summary>
+		/// <returns></returns>
 		public string Serialize()
 		{
 			string triggerSerial = "TRG::" + Trigger.Name + "::" + Trigger.Parameters + ":;";
@@ -121,7 +138,11 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 			}
 			return "TASK::" + Name + "::" + Enabled + ":;" + triggerSerial + actionSerial;
 		}
-
+		/// <summary>
+		/// Deserialize a string, and save it to this instance
+		/// </summary>
+		/// <param name="data">string to parse</param>
+		/// <returns>returns this task object</returns>
 		public Task Deserialize(string data)
 		{
 			Actions = new List<IAction>();
@@ -161,7 +182,10 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 			}
 			return this;
 		}
-
+		/// <summary>
+		/// String representation for debug purposes
+		/// </summary>
+		/// <returns></returns>
 		public override string ToString()
 		{
 			return "Task:" + Name + ":Trigger:" + Trigger.Name + ":Actions:" + Actions.Count;

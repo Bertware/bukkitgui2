@@ -32,6 +32,8 @@
 			this.chkSaveInServerDir = new MetroFramework.Controls.MetroCheckBox();
 			this.btnCustomFolder = new MetroFramework.Controls.MetroButton();
 			this.lblCustomDirExplanation = new MetroFramework.Controls.MetroLabel();
+			this.CbLanguage = new MetroFramework.Controls.MetroComboBox();
+			this.lblLanguage = new MetroFramework.Controls.MetroLabel();
 			this.SuspendLayout();
 			// 
 			// chkSaveInServerDir
@@ -65,10 +67,33 @@
 			this.lblCustomDirExplanation.TabIndex = 2;
 			this.lblCustomDirExplanation.Text = resources.GetString("lblCustomDirExplanation.Text");
 			// 
+			// CbLanguage
+			// 
+			this.CbLanguage.FormattingEnabled = true;
+			this.CbLanguage.ItemHeight = 23;
+			this.CbLanguage.Items.AddRange(new object[] {
+            "English"});
+			this.CbLanguage.Location = new System.Drawing.Point(132, 129);
+			this.CbLanguage.Name = "CbLanguage";
+			this.CbLanguage.Size = new System.Drawing.Size(425, 29);
+			this.CbLanguage.TabIndex = 3;
+			this.CbLanguage.UseSelectable = true;
+			// 
+			// lblLanguage
+			// 
+			this.lblLanguage.Location = new System.Drawing.Point(3, 129);
+			this.lblLanguage.Name = "lblLanguage";
+			this.lblLanguage.Size = new System.Drawing.Size(123, 29);
+			this.lblLanguage.TabIndex = 4;
+			this.lblLanguage.Text = "Change language";
+			this.lblLanguage.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			// 
 			// VariousSettings
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.Controls.Add(this.lblLanguage);
+			this.Controls.Add(this.CbLanguage);
 			this.Controls.Add(this.lblCustomDirExplanation);
 			this.Controls.Add(this.btnCustomFolder);
 			this.Controls.Add(this.chkSaveInServerDir);
@@ -84,6 +109,8 @@
 		private MetroFramework.Controls.MetroCheckBox chkSaveInServerDir;
 		private MetroFramework.Controls.MetroButton btnCustomFolder;
 		private MetroFramework.Controls.MetroLabel lblCustomDirExplanation;
+		private MetroFramework.Controls.MetroComboBox CbLanguage;
+		private MetroFramework.Controls.MetroLabel lblLanguage;
 
 	}
 }

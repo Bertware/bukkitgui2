@@ -77,5 +77,12 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 			Task t = (Task) slvTasks.SelectedItems[0].Tag;
 			Tasker.Reference.DeleteTask(t);
 		}
+
+		private void btnTest_Click(object sender, EventArgs e)
+		{
+			if (slvTasks.SelectedItems.Count < 1) return;
+			Task t = (Task)slvTasks.SelectedItems[0].Tag;
+			t.ExecuteActions();
+		}
 	}
 }

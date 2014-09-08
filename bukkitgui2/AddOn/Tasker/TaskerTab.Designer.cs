@@ -30,9 +30,9 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.btnNew = new MetroButton();
-			this.btnDelete = new MetroButton();
-			this.btnTest = new MetroButton();
+			this.btnNew = new MetroFramework.Controls.MetroButton();
+			this.btnDelete = new MetroFramework.Controls.MetroButton();
+			this.btnTest = new MetroFramework.Controls.MetroButton();
 			this.slvTasks = new Net.Bertware.Bukkitgui2.Controls.SortableListView.SortableListView();
 			this.ColName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.ColTrigger = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -40,7 +40,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 			this.ColAction = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.ColActionSettings = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.colEnable = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.btnEdit = new MetroButton();
+			this.btnEdit = new MetroFramework.Controls.MetroButton();
 			this.SuspendLayout();
 			// 
 			// btnNew
@@ -51,7 +51,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 			this.btnNew.Size = new System.Drawing.Size(75, 23);
 			this.btnNew.TabIndex = 1;
 			this.btnNew.Text = "&New task";
-			this.btnNew.UseVisualStyleBackColor = true;
+			this.btnNew.UseSelectable = true;
 			this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
 			// 
 			// btnDelete
@@ -62,6 +62,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 			this.btnDelete.Size = new System.Drawing.Size(75, 23);
 			this.btnDelete.TabIndex = 2;
 			this.btnDelete.Text = "&Delete";
+			this.btnDelete.UseSelectable = true;
 			this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
 			// 
 			// btnTest
@@ -72,6 +73,8 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 			this.btnTest.Size = new System.Drawing.Size(75, 23);
 			this.btnTest.TabIndex = 3;
 			this.btnTest.Text = "&Test";
+			this.btnTest.UseSelectable = true;
+			this.btnTest.Click += new System.EventHandler(this.btnTest_Click);
 			// 
 			// slvTasks
 			// 
@@ -132,6 +135,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 			this.btnEdit.Size = new System.Drawing.Size(75, 23);
 			this.btnEdit.TabIndex = 4;
 			this.btnEdit.Text = "&Edit";
+			this.btnEdit.UseSelectable = true;
 			this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
 			// 
 			// TaskerTab
