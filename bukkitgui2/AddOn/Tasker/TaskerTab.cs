@@ -81,7 +81,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 		private void btnTest_Click(object sender, EventArgs e)
 		{
 			if (slvTasks.SelectedItems.Count < 1) return;
-			Task t = (Task)slvTasks.SelectedItems[0].Tag;
+			Task t = (Task) slvTasks.SelectedItems[0].Tag;
 			t.ExecuteActions();
 		}
 	}

@@ -1,5 +1,6 @@
-﻿using System.Windows.Forms;
+using System.Windows.Forms;
 using MetroFramework.Controls;
+using Net.Bertware.Bukkitgui2.Core;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 {
@@ -48,22 +49,22 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 			// 
 			// ColPlugName
 			// 
-			this.ColPlugName.Text = "Plugin";
+			this.ColPlugName.Text = Locale.Tr("Plugin");
 			this.ColPlugName.Width = 294;
 			// 
 			// ColPlugCurVer
 			// 
-			this.ColPlugCurVer.Text = "Current Version";
+			this.ColPlugCurVer.Text = Locale.Tr("Current Version");
 			this.ColPlugCurVer.Width = 95;
 			// 
 			// ColPlugNewVer
 			// 
-			this.ColPlugNewVer.Text = "New version";
+			this.ColPlugNewVer.Text = Locale.Tr("New version");
 			this.ColPlugNewVer.Width = 81;
 			// 
 			// ColPlugNewBukkit
 			// 
-			this.ColPlugNewBukkit.Text = "Bukkit Version";
+			this.ColPlugNewBukkit.Text = Locale.Tr("Bukkit Version");
 			this.ColPlugNewBukkit.Width = 111;
 			// 
 			// ChkCheckAll
@@ -74,7 +75,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 			this.ChkCheckAll.Name = "ChkCheckAll";
 			this.ChkCheckAll.Size = new System.Drawing.Size(71, 15);
 			this.ChkCheckAll.TabIndex = 15;
-			this.ChkCheckAll.Text = "Check all";
+			this.ChkCheckAll.Text = Locale.Tr("Check all");
 			this.ChkCheckAll.UseSelectable = true;
 			this.ChkCheckAll.CheckedChanged += new System.EventHandler(this.ChkCheckAll_CheckedChanged);
 			// 
@@ -86,7 +87,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 			this.LblBukkitBuild.Name = "LblBukkitBuild";
 			this.LblBukkitBuild.Size = new System.Drawing.Size(170, 29);
 			this.LblBukkitBuild.TabIndex = 14;
-			this.LblBukkitBuild.Text = "Update for bukkit build:";
+			this.LblBukkitBuild.Text = Locale.Tr("Update for bukkit build:");
 			this.LblBukkitBuild.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.LblBukkitBuild.Visible = false;
 			// 
@@ -99,7 +100,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 			this.ChkForce.Name = "ChkForce";
 			this.ChkForce.Size = new System.Drawing.Size(200, 15);
 			this.ChkForce.TabIndex = 13;
-			this.ChkForce.Text = "Force update if already up to date";
+			this.ChkForce.Text = Locale.Tr("Force update if already up to date");
 			this.ChkForce.UseSelectable = true;
 			this.ChkForce.Visible = false;
 			// 
@@ -110,7 +111,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 			this.BtnClose.Name = "BtnClose";
 			this.BtnClose.Size = new System.Drawing.Size(75, 23);
 			this.BtnClose.TabIndex = 12;
-			this.BtnClose.Text = "Close";
+			this.BtnClose.Text = Locale.Tr("Close");
 			this.BtnClose.UseSelectable = true;
 			this.BtnClose.Click += new System.EventHandler(this.CloseThisForm);
 			// 
@@ -121,7 +122,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 			this.BtnUpdate.Name = "BtnUpdate";
 			this.BtnUpdate.Size = new System.Drawing.Size(75, 23);
 			this.BtnUpdate.TabIndex = 11;
-			this.BtnUpdate.Text = "Update!";
+			this.BtnUpdate.Text = Locale.Tr("Update!");
 			this.BtnUpdate.UseSelectable = true;
 			this.BtnUpdate.Click += new System.EventHandler(this.Plugins_Update);
 			// 
@@ -145,7 +146,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 			this.lblStatus.Name = "lblStatus";
 			this.lblStatus.Size = new System.Drawing.Size(71, 19);
 			this.lblStatus.TabIndex = 9;
-			this.lblStatus.Text = "Status: Idle";
+			this.lblStatus.Text = Locale.Tr("Status: Idle");
 			// 
 			// ProgBar
 			// 
@@ -183,7 +184,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 			this.Controls.Add(this.CBBukkitBuild);
 			this.Controls.Add(this.lblStatus);
 			this.Name = "PluginUpdater";
-			this.Text = "PluginUpdater";
+			this.Text = Locale.Tr("PluginUpdater");
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

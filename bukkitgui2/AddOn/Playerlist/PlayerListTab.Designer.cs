@@ -1,4 +1,6 @@
-﻿namespace Net.Bertware.Bukkitgui2.AddOn.PlayerList
+using Net.Bertware.Bukkitgui2.Core;
+
+namespace Net.Bertware.Bukkitgui2.AddOn.PlayerList
 {
 	partial class PlayerListTab
 	{
@@ -68,26 +70,26 @@
 			// 
 			// colName
 			// 
-			this.colName.Text = "Name";
+			this.colName.Text = Locale.Tr("Name");
 			this.colName.Width = 120;
 			// 
 			// colDispName
 			// 
-			this.colDispName.Text = "Display Name";
+			this.colDispName.Text = Locale.Tr("Display Name");
 			this.colDispName.Width = 120;
 			// 
 			// colIP
 			// 
-			this.colIP.Text = "IP Address";
+			this.colIP.Text = Locale.Tr("IP Address");
 			this.colIP.Width = 120;
 			// 
 			// colTimeJoined
 			// 
-			this.colTimeJoined.Text = "Time";
+			this.colTimeJoined.Text = Locale.Tr("Time");
 			// 
 			// colLocation
 			// 
-			this.colLocation.Text = "Location";
+			this.colLocation.Text = Locale.Tr("Location");
 			this.colLocation.Width = 120;
 			// 
 			// ContextPlayers
@@ -105,35 +107,35 @@
 			// 
 			this.ContextPlayersKick.Name = "ContextPlayersKick";
 			this.ContextPlayersKick.Size = new System.Drawing.Size(109, 22);
-			this.ContextPlayersKick.Text = "Kick";
+			this.ContextPlayersKick.Text = Locale.Tr("Kick");
 			this.ContextPlayersKick.Click += new System.EventHandler(this.ContextPlayersKick_Click);
 			// 
 			// ContextPlayersBan
 			// 
 			this.ContextPlayersBan.Name = "ContextPlayersBan";
 			this.ContextPlayersBan.Size = new System.Drawing.Size(109, 22);
-			this.ContextPlayersBan.Text = "Ban";
+			this.ContextPlayersBan.Text = Locale.Tr("Ban");
 			this.ContextPlayersBan.Click += new System.EventHandler(this.ContextPlayersBan_Click);
 			// 
 			// ContextPlayersBanIp
 			// 
 			this.ContextPlayersBanIp.Name = "ContextPlayersBanIp";
 			this.ContextPlayersBanIp.Size = new System.Drawing.Size(109, 22);
-			this.ContextPlayersBanIp.Text = "Ban-ip";
+			this.ContextPlayersBanIp.Text = Locale.Tr("Ban-ip");
 			this.ContextPlayersBanIp.Click += new System.EventHandler(this.ContextPlayersBanIp_Click);
 			// 
 			// ContextPlayersOp
 			// 
 			this.ContextPlayersOp.Name = "ContextPlayersOp";
 			this.ContextPlayersOp.Size = new System.Drawing.Size(109, 22);
-			this.ContextPlayersOp.Text = "Op";
+			this.ContextPlayersOp.Text = Locale.Tr("Op");
 			this.ContextPlayersOp.Click += new System.EventHandler(this.ContextPlayersOp_Click);
 			// 
 			// ContextPlayersDeOp
 			// 
 			this.ContextPlayersDeOp.Name = "ContextPlayersDeOp";
 			this.ContextPlayersDeOp.Size = new System.Drawing.Size(109, 22);
-			this.ContextPlayersDeOp.Text = "De-op";
+			this.ContextPlayersDeOp.Text = Locale.Tr("De-op");
 			this.ContextPlayersDeOp.Click += new System.EventHandler(this.ContextPlayersDeOp_Click);
 			// 
 			// imageListPlayerFacesBig

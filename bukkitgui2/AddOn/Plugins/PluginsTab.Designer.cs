@@ -1,4 +1,5 @@
-﻿using MetroFramework.Controls;
+using MetroFramework.Controls;
+using Net.Bertware.Bukkitgui2.Core;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Plugins
 {
@@ -62,7 +63,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins
 			this.tabInstalled.Padding = new System.Windows.Forms.Padding(3);
 			this.tabInstalled.Size = new System.Drawing.Size(792, 458);
 			this.tabInstalled.TabIndex = 0;
-			this.tabInstalled.Text = "Installed plugins";
+			this.tabInstalled.Text = Locale.Tr("Installed plugins");
 			this.tabInstalled.UseVisualStyleBackColor = true;
 			// 
 			// installedCtrl
@@ -83,7 +84,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins
 			this.tabBukget.Padding = new System.Windows.Forms.Padding(3);
 			this.tabBukget.Size = new System.Drawing.Size(792, 458);
 			this.tabBukget.TabIndex = 1;
-			this.tabBukget.Text = "Available plugins";
+			this.tabBukget.Text = Locale.Tr("Available plugins");
 			this.tabBukget.UseVisualStyleBackColor = true;
 			// 
 			// bukgetCtrl

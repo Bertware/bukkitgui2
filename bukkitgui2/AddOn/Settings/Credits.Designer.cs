@@ -1,4 +1,4 @@
-﻿namespace Net.Bertware.Bukkitgui2.AddOn.Settings
+namespace Net.Bertware.Bukkitgui2.AddOn.Settings
 {
 	partial class Credits
 	{

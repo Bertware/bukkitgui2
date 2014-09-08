@@ -1,4 +1,6 @@
-﻿namespace Net.Bertware.Bukkitgui2.AddOn.Editor
+using Net.Bertware.Bukkitgui2.Core;
+
+namespace Net.Bertware.Bukkitgui2.AddOn.Editor
 {
 	partial class SettingsEditDialog
 	{
@@ -69,7 +71,7 @@
 			this.btnSave.Name = "btnSave";
 			this.btnSave.Size = new System.Drawing.Size(75, 23);
 			this.btnSave.TabIndex = 2;
-			this.btnSave.Text = "&Save";
+			this.btnSave.Text = Locale.Tr("&Save");
 			this.btnSave.UseSelectable = true;
 			this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
 			// 
@@ -80,7 +82,7 @@
 			this.btnCancel.Name = "btnCancel";
 			this.btnCancel.Size = new System.Drawing.Size(75, 23);
 			this.btnCancel.TabIndex = 3;
-			this.btnCancel.Text = "&Cancel";
+			this.btnCancel.Text = Locale.Tr("&Cancel");
 			this.btnCancel.UseSelectable = true;
 			// 
 			// lblSetting
@@ -89,7 +91,7 @@
 			this.lblSetting.Name = "lblSetting";
 			this.lblSetting.Size = new System.Drawing.Size(70, 23);
 			this.lblSetting.TabIndex = 4;
-			this.lblSetting.Text = "Setting:";
+			this.lblSetting.Text = Locale.Tr("Setting:");
 			this.lblSetting.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// lblValue
@@ -98,7 +100,7 @@
 			this.lblValue.Name = "lblValue";
 			this.lblValue.Size = new System.Drawing.Size(70, 23);
 			this.lblValue.TabIndex = 5;
-			this.lblValue.Text = "Value:";
+			this.lblValue.Text = Locale.Tr("Value:");
 			this.lblValue.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// SettingsEditDialog
@@ -122,7 +124,7 @@
 			this.ShowInTaskbar = false;
 			this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-			this.Text = "Edit setting";
+			this.Text = Locale.Tr("Edit setting");
 			this.ResumeLayout(false);
 
 		}

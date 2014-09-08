@@ -1,4 +1,4 @@
-﻿namespace Net.Bertware.Bukkitgui2.AddOn.Forwarder
+namespace Net.Bertware.Bukkitgui2.AddOn.Forwarder
 {
 	partial class ForwarderTab
 	{

@@ -10,6 +10,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Windows.Forms;
 using System.Xml;
 using Net.Bertware.Bukkitgui2.Core.Configuration;
 using Net.Bertware.Bukkitgui2.Core.FileLocation;
@@ -46,29 +47,9 @@ namespace Net.Bertware.Bukkitgui2.Core
 		{
 			string location = Config.ReadString("Locale", "File",
 				Fl.Location(RequestFile.Config) + "\\default.xml");
-
-			_filepath = location;
-
-			if (!File.Exists(_filepath))
-			{
-				DirectoryInfo dirInfo = new FileInfo(_filepath).Directory;
-				if (dirInfo != null)
-				{
-					string parent = dirInfo.ToString();
-					FsUtil.CreateDirectoryIfNotExists(parent);
-				}
-
-				FileStream fs = File.Create(_filepath);
-				StreamWriter sw = new StreamWriter(fs);
-				sw.WriteLine(XmlHead + XmlTail);
-				sw.Close();
-				fs.Close();
-			}
-
-			_xmldoc = new XmlDocument();
-			_xmldoc.Load(_filepath);
-
+			LoadFile(location);
 			LoadCache(); //everything's cached, we're ready to go
+			Application.ApplicationExit += ((sender, e) => Dispose());
 			IsInitialized = true;
 		}
 
@@ -127,6 +108,30 @@ namespace Net.Bertware.Bukkitgui2.Core
 			return original.Replace("%1", p1).Replace("%2", p2).Replace("%3", p3).Replace("%4", p4);
 		}
 
+		private static void LoadFile(string file)
+		{
+			_filepath = file;
+			if (!File.Exists(file))
+			{
+				DirectoryInfo dirInfo = new FileInfo(file).Directory;
+				if (dirInfo != null)
+				{
+					string parent = dirInfo.ToString();
+					FsUtil.CreateDirectoryIfNotExists(parent);
+				}
+
+				FileStream fs = File.Create(file);
+				StreamWriter sw = new StreamWriter(fs);
+				sw.WriteLine(XmlHead + XmlTail);
+				sw.Close();
+				fs.Close();
+			}
+
+			_xmldoc = new XmlDocument();
+			_xmldoc.Load(file);
+
+		}
+
 		/// <summary>
 		///     Load the XMLDocument to the cache dictionary
 		/// </summary>
@@ -139,7 +144,7 @@ namespace Net.Bertware.Bukkitgui2.Core
 
 			foreach (XmlElement entry in _xmldoc.ChildNodes) //for each element, 
 			{
-				if (entry.Name == "text") newcache.Add(entry.GetAttribute("original"), entry.Value);
+				if (entry.Name == "text") newcache.Add(entry.GetAttribute("original").Replace("&amp;", "&"), entry.Value.Replace("&amp;", "&"));
 			}
 
 			_cache = newcache;
@@ -153,7 +158,7 @@ namespace Net.Bertware.Bukkitgui2.Core
 
 			foreach (KeyValuePair<string, string> entry in _cache) //for each element, 
 			{
-				newxml += "<text original=\"" + entry.Key + "\">" + entry.Value + "</text>" + Environment.NewLine;
+				newxml += "<text original=\"" + entry.Key.Replace("&", "&amp;") + "\">" + entry.Value.Replace("&", "&amp;") + "</text>" + Environment.NewLine;
 			}
 			newxml += XmlTail;
 			_xmldoc.LoadXml(newxml);

@@ -13,7 +13,7 @@ using System.IO;
 using System.Windows.Forms;
 using MetroFramework.Forms;
 using Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3;
-using Net.Bertware.Bukkitgui2.Core.Translation;
+using Net.Bertware.Bukkitgui2.Core;
 using Net.Bertware.Bukkitgui2.Core.Util;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget
@@ -54,19 +54,19 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget
 
 		private void LoadPlugin(BukgetPlugin plugin)
 		{
-			string detail = Translator.Tr("Name:") + " " + plugin.Name + Environment.NewLine + Environment.NewLine +
-			                Translator.Tr("Author(s):") + " " + StringUtil.ListToCsv(plugin.AuthorsList) +
+			string detail = Locale.Tr("Name:") + " " + plugin.Name + Environment.NewLine + Environment.NewLine +
+			                Locale.Tr("Author(s):") + " " + StringUtil.ListToCsv(plugin.AuthorsList) +
 			                Environment.NewLine +
 			                Environment.NewLine +
-			                Translator.Tr("Description:") + " " + plugin.Description + Environment.NewLine +
+			                Locale.Tr("Description:") + " " + plugin.Description + Environment.NewLine +
 			                Environment.NewLine +
-			                Translator.Tr("Categories:") + " " + StringUtil.ListToCsv(plugin.CategoryList) +
+			                Locale.Tr("Categories:") + " " + StringUtil.ListToCsv(plugin.CategoryList) +
 			                Environment.NewLine +
 			                Environment.NewLine +
-			                Translator.Tr("Main namespace:") + " " + plugin.Main + Environment.NewLine +
+			                Locale.Tr("Main namespace:") + " " + plugin.Main + Environment.NewLine +
 			                Environment.NewLine +
-			                Translator.Tr("Status:") + " " + plugin.Status + Environment.NewLine + Environment.NewLine +
-			                Translator.Tr("Website:") + " " + plugin.Website;
+			                Locale.Tr("Status:") + " " + plugin.Status + Environment.NewLine + Environment.NewLine +
+			                Locale.Tr("Website:") + " " + plugin.Website;
 			lblPluginDetail.Text = detail;
 			LoadVersions(plugin.VersionsList);
 		}

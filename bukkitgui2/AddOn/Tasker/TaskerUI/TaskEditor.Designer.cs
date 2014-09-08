@@ -1,5 +1,6 @@
-﻿using System.Windows.Forms;
+using System.Windows.Forms;
 using MetroFramework.Controls;
+using Net.Bertware.Bukkitgui2.Core;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.TaskerUI
 {
@@ -63,7 +64,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.TaskerUI
 			this.gbTrigger.Size = new System.Drawing.Size(454, 170);
 			this.gbTrigger.TabIndex = 0;
 			this.gbTrigger.TabStop = false;
-			this.gbTrigger.Text = "Trigger";
+			this.gbTrigger.Text = Locale.Tr("Trigger");
 			// 
 			// lblTriggerDescription
 			// 
@@ -82,7 +83,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.TaskerUI
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(79, 19);
 			this.label2.TabIndex = 2;
-			this.label2.Text = "Parameters:";
+			this.label2.Text = Locale.Tr("Parameters:");
 			// 
 			// txtTriggerParam
 			// 
@@ -125,7 +126,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.TaskerUI
 			this.gbAction.Size = new System.Drawing.Size(454, 99);
 			this.gbAction.TabIndex = 1;
 			this.gbAction.TabStop = false;
-			this.gbAction.Text = "Action";
+			this.gbAction.Text = Locale.Tr("Action");
 			// 
 			// btnNewAction
 			// 
@@ -133,7 +134,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.TaskerUI
 			this.btnNewAction.Name = "btnNewAction";
 			this.btnNewAction.Size = new System.Drawing.Size(75, 23);
 			this.btnNewAction.TabIndex = 6;
-			this.btnNewAction.Text = "&Add action";
+			this.btnNewAction.Text = Locale.Tr("&Add action");
 			this.btnNewAction.UseSelectable = true;
 			this.btnNewAction.Click += new System.EventHandler(this.btnNewaction_Click);
 			// 
@@ -159,7 +160,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.TaskerUI
 			this.lblName.Name = "lblName";
 			this.lblName.Size = new System.Drawing.Size(48, 19);
 			this.lblName.TabIndex = 3;
-			this.lblName.Text = "Name:";
+			this.lblName.Text = Locale.Tr("Name:");
 			// 
 			// btnSave
 			// 
@@ -168,7 +169,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.TaskerUI
 			this.btnSave.Name = "btnSave";
 			this.btnSave.Size = new System.Drawing.Size(75, 23);
 			this.btnSave.TabIndex = 4;
-			this.btnSave.Text = "&Save";
+			this.btnSave.Text = Locale.Tr("&Save");
 			this.btnSave.UseSelectable = true;
 			this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
 			// 
@@ -179,7 +180,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.TaskerUI
 			this.btnCancel.Name = "btnCancel";
 			this.btnCancel.Size = new System.Drawing.Size(75, 23);
 			this.btnCancel.TabIndex = 5;
-			this.btnCancel.Text = "&Cancel";
+			this.btnCancel.Text = Locale.Tr("&Cancel");
 			this.btnCancel.UseSelectable = true;
 			this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
 			// 
@@ -192,7 +193,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.TaskerUI
 			this.chkEnable.Name = "chkEnable";
 			this.chkEnable.Size = new System.Drawing.Size(75, 20);
 			this.chkEnable.TabIndex = 6;
-			this.chkEnable.Text = "Enable";
+			this.chkEnable.Text = Locale.Tr("Enable");
 			this.chkEnable.UseSelectable = true;
 			// 
 			// errorProvider
@@ -217,7 +218,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.TaskerUI
 			this.ShowIcon = false;
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-			this.Text = "Edit Task..";
+			this.Text = Locale.Tr("Edit Task..");
 			this.gbTrigger.ResumeLayout(false);
 			this.gbTrigger.PerformLayout();
 			this.gbAction.ResumeLayout(false);

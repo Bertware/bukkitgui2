@@ -1,4 +1,6 @@
-﻿namespace Net.Bertware.Bukkitgui2.AddOn.Settings
+using Net.Bertware.Bukkitgui2.Core;
+
+namespace Net.Bertware.Bukkitgui2.AddOn.Settings
 {
 	partial class SettingsTab 
 	{
@@ -57,7 +59,7 @@
 			this.gbSettings.Size = new System.Drawing.Size(567, 494);
 			this.gbSettings.TabIndex = 1;
 			this.gbSettings.TabStop = false;
-			this.gbSettings.Text = "Settings";
+			this.gbSettings.Text = Locale.Tr("Settings");
 			// 
 			// SettingsTab
 			// 

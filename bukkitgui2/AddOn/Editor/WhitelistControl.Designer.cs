@@ -1,4 +1,6 @@
-﻿namespace Net.Bertware.Bukkitgui2.AddOn.Editor
+using Net.Bertware.Bukkitgui2.Core;
+
+namespace Net.Bertware.Bukkitgui2.AddOn.Editor
 {
     using System.Windows.Forms;
 
@@ -44,7 +46,7 @@
 			this.btnAdd.Name = "btnAdd";
 			this.btnAdd.Size = new System.Drawing.Size(75, 23);
 			this.btnAdd.TabIndex = 7;
-			this.btnAdd.Text = "&Add";
+			this.btnAdd.Text = Locale.Tr("&Add");
 			this.btnAdd.UseSelectable = true;
 			this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
 			// 
@@ -66,12 +68,12 @@
 			// 
 			// ColName
 			// 
-			this.ColName.Text = "Name";
+			this.ColName.Text = Locale.Tr("Name");
 			this.ColName.Width = 180;
 			// 
 			// ColUuid
 			// 
-			this.ColUuid.Text = "Uuid";
+			this.ColUuid.Text = Locale.Tr("Uuid");
 			this.ColUuid.Width = 240;
 			// 
 			// btnRemove
@@ -81,7 +83,7 @@
 			this.btnRemove.Name = "btnRemove";
 			this.btnRemove.Size = new System.Drawing.Size(75, 23);
 			this.btnRemove.TabIndex = 8;
-			this.btnRemove.Text = "&Remove";
+			this.btnRemove.Text = Locale.Tr("&Remove");
 			this.btnRemove.UseSelectable = true;
 			this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
 			// 

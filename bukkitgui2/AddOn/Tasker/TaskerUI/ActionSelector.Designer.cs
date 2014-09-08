@@ -1,5 +1,6 @@
-﻿using System.Windows.Forms;
+using System.Windows.Forms;
 using MetroFramework.Controls;
+using Net.Bertware.Bukkitgui2.Core;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.TaskerUI
 {
@@ -56,7 +57,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.TaskerUI
 			this.gbAction.Size = new System.Drawing.Size(450, 175);
 			this.gbAction.TabIndex = 1;
 			this.gbAction.TabStop = false;
-			this.gbAction.Text = "Action 1";
+			this.gbAction.Text = Locale.Tr("Action 1");
 			// 
 			// lblActionDescription
 			// 
@@ -75,7 +76,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.TaskerUI
 			this.btnDeleteAction.Name = "btnDeleteAction";
 			this.btnDeleteAction.Size = new System.Drawing.Size(75, 23);
 			this.btnDeleteAction.TabIndex = 7;
-			this.btnDeleteAction.Text = "&Delete";
+			this.btnDeleteAction.Text = Locale.Tr("&Delete");
 			this.btnDeleteAction.UseSelectable = true;
 			// 
 			// lblActionParam
@@ -85,7 +86,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.TaskerUI
 			this.lblActionParam.Name = "lblActionParam";
 			this.lblActionParam.Size = new System.Drawing.Size(79, 19);
 			this.lblActionParam.TabIndex = 6;
-			this.lblActionParam.Text = "Parameters:";
+			this.lblActionParam.Text = Locale.Tr("Parameters:");
 			// 
 			// cbAction
 			// 

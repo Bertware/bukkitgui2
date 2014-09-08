@@ -1,4 +1,4 @@
-﻿namespace Net.Bertware.Bukkitgui2.Core.Util.Web
+namespace Net.Bertware.Bukkitgui2.Core.Util.Web
 {
 	partial class FileDownloader
 	{
@@ -41,7 +41,7 @@
 			this.Resizable = false;
 			this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-			this.Text = "Downloads...";
+			this.Text = Locale.Tr("Downloads...");
 			this.Load += new System.EventHandler(this.FileDownloader_Load);
 			this.ResumeLayout(false);
 

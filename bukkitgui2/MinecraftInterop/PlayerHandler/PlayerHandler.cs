@@ -133,7 +133,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 		}
 
 		/// <summary>
-		/// Get the online players
+		///     Get the online players
 		/// </summary>
 		/// <returns></returns>
 		public static IEnumerable<Player> GetOnlinePlayers()
@@ -144,7 +144,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 		}
 
 		/// <summary>
-		/// Get the amount of online players
+		///     Get the amount of online players
 		/// </summary>
 		/// <returns></returns>
 		public static int GetOnlinePlayerCount()

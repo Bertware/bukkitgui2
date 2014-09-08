@@ -20,7 +20,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers.Servers
 			Logo = Resources.mcpc_cauldron_logo;
 
 			CanDownloadRecommendedVersion = false;
-			
+
 			//default value for boolean is false, so all other features are disabled by default
 		}
 	}

@@ -1,4 +1,6 @@
-﻿namespace Net.Bertware.Bukkitgui2.AddOn.Editor
+using Net.Bertware.Bukkitgui2.Core;
+
+namespace Net.Bertware.Bukkitgui2.AddOn.Editor
 {
 	partial class ServerSettingsControl
 	{
@@ -54,12 +56,12 @@
 			// 
 			// ColSetting
 			// 
-			this.ColSetting.Text = "Setting";
+			this.ColSetting.Text = Locale.Tr("Setting");
 			this.ColSetting.Width = 180;
 			// 
 			// ColValue
 			// 
-			this.ColValue.Text = "Value";
+			this.ColValue.Text = Locale.Tr("Value");
 			this.ColValue.Width = 240;
 			// 
 			// btnEdit
@@ -69,7 +71,7 @@
 			this.btnEdit.Name = "btnEdit";
 			this.btnEdit.Size = new System.Drawing.Size(75, 23);
 			this.btnEdit.TabIndex = 3;
-			this.btnEdit.Text = "&Edit";
+			this.btnEdit.Text = Locale.Tr("&Edit");
 			this.btnEdit.UseSelectable = true;
 			this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
 			// 
@@ -80,7 +82,7 @@
 			this.btnAdd.Name = "btnAdd";
 			this.btnAdd.Size = new System.Drawing.Size(75, 23);
 			this.btnAdd.TabIndex = 4;
-			this.btnAdd.Text = "&Add";
+			this.btnAdd.Text = Locale.Tr("&Add");
 			this.btnAdd.UseSelectable = true;
 			this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
 			// 

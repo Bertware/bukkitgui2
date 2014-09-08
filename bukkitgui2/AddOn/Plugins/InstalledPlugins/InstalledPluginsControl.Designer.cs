@@ -1,4 +1,5 @@
-﻿using MetroFramework.Controls;
+using MetroFramework.Controls;
+using Net.Bertware.Bukkitgui2.Core;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 {
@@ -49,7 +50,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 			this.btnUpdate.Name = "btnUpdate";
 			this.btnUpdate.Size = new System.Drawing.Size(75, 23);
 			this.btnUpdate.TabIndex = 7;
-			this.btnUpdate.Text = "Update";
+			this.btnUpdate.Text = Locale.Tr("Update");
 			this.btnUpdate.UseSelectable = true;
 			this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
 			// 
@@ -60,7 +61,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 			this.btnVersions.Name = "btnVersions";
 			this.btnVersions.Size = new System.Drawing.Size(75, 23);
 			this.btnVersions.TabIndex = 6;
-			this.btnVersions.Text = "Versions";
+			this.btnVersions.Text = Locale.Tr("Versions");
 			this.btnVersions.UseSelectable = true;
 			this.btnVersions.Click += new System.EventHandler(this.btnVersions_Click);
 			// 
@@ -71,7 +72,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 			this.btnRemove.Name = "btnRemove";
 			this.btnRemove.Size = new System.Drawing.Size(75, 23);
 			this.btnRemove.TabIndex = 5;
-			this.btnRemove.Text = "Remove";
+			this.btnRemove.Text = Locale.Tr("Remove");
 			this.btnRemove.UseSelectable = true;
 			this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
 			// 
@@ -97,32 +98,32 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 			// 
 			// colName
 			// 
-			this.colName.Text = "Name";
+			this.colName.Text = Locale.Tr("Name");
 			this.colName.Width = 120;
 			// 
 			// colDescription
 			// 
-			this.colDescription.Text = "Description";
+			this.colDescription.Text = Locale.Tr("Description");
 			this.colDescription.Width = 220;
 			// 
 			// ColAuthor
 			// 
-			this.ColAuthor.Text = "Author(s)";
+			this.ColAuthor.Text = Locale.Tr("Author(s)");
 			this.ColAuthor.Width = 100;
 			// 
 			// colVersion
 			// 
-			this.colVersion.Text = "Version";
+			this.colVersion.Text = Locale.Tr("Version");
 			this.colVersion.Width = 90;
 			// 
 			// colLatestVersion
 			// 
-			this.colLatestVersion.Text = "Latest version";
+			this.colLatestVersion.Text = Locale.Tr("Latest version");
 			this.colLatestVersion.Width = 90;
 			// 
 			// colInstalled
 			// 
-			this.colInstalled.Text = "Installed";
+			this.colInstalled.Text = Locale.Tr("Installed");
 			this.colInstalled.Width = 90;
 			// 
 			// InstalledPluginsControl

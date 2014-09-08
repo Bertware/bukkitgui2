@@ -17,7 +17,7 @@ using MetroFramework.Forms;
 using Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3;
 using Net.Bertware.Bukkitgui2.Core.Logging;
 using Net.Bertware.Bukkitgui2.Core.Util;
-using T = Net.Bertware.Bukkitgui2.Core.Translation.Translator;
+using T = Net.Bertware.Bukkitgui2.Core.Locale;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 {

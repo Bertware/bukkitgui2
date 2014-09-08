@@ -1,5 +1,6 @@
-﻿using System.Windows.Forms;
+using System.Windows.Forms;
 using MetroFramework.Controls;
+using Net.Bertware.Bukkitgui2.Core;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 {
@@ -110,7 +111,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			this.GBServer.Size = new System.Drawing.Size(484, 309);
 			this.GBServer.TabIndex = 0;
 			this.GBServer.TabStop = false;
-			this.GBServer.Text = "Server";
+			this.GBServer.Text = Locale.Tr("Server");
 			// 
 			// BtnBrowseJarFile
 			// 
@@ -119,7 +120,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			this.BtnBrowseJarFile.Name = "BtnBrowseJarFile";
 			this.BtnBrowseJarFile.Size = new System.Drawing.Size(30, 20);
 			this.BtnBrowseJarFile.TabIndex = 17;
-			this.BtnBrowseJarFile.Text = "...";
+			this.BtnBrowseJarFile.Text = Locale.Tr("...");
 			this.BtnBrowseJarFile.UseSelectable = true;
 			this.BtnBrowseJarFile.Click += new System.EventHandler(this.BtnBrowseJarFile_Click);
 			// 
@@ -132,7 +133,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			this.BtnLaunch.Name = "BtnLaunch";
 			this.BtnLaunch.Size = new System.Drawing.Size(326, 23);
 			this.BtnLaunch.TabIndex = 16;
-			this.BtnLaunch.Text = "Launch Server";
+			this.BtnLaunch.Text = Locale.Tr("Launch Server");
 			this.BtnLaunch.UseSelectable = true;
 			this.BtnLaunch.Click += new System.EventHandler(this.BtnLaunch_Click);
 			// 
@@ -142,7 +143,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			this.label7.Name = "label7";
 			this.label7.Size = new System.Drawing.Size(139, 20);
 			this.label7.TabIndex = 15;
-			this.label7.Text = "Optional flags:";
+			this.label7.Text = Locale.Tr("Optional flags:");
 			this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// TxtOptFlag
@@ -168,7 +169,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(139, 20);
 			this.label6.TabIndex = 13;
-			this.label6.Text = "Optional arguments:";
+			this.label6.Text = Locale.Tr("Optional arguments:");
 			this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// TxtOptArg
@@ -194,7 +195,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(139, 20);
 			this.label5.TabIndex = 11;
-			this.label5.Text = "Maximum Ram [Mb] :";
+			this.label5.Text = Locale.Tr("Maximum Ram [Mb] :");
 			this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// NumMaxRam
@@ -235,7 +236,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(139, 20);
 			this.label4.TabIndex = 8;
-			this.label4.Text = "Minimum Ram [Mb] :";
+			this.label4.Text = Locale.Tr("Minimum Ram [Mb] :");
 			this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// NumMinRam
@@ -276,7 +277,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(139, 20);
 			this.label3.TabIndex = 5;
-			this.label3.Text = "Jar file:";
+			this.label3.Text = Locale.Tr("Jar file:");
 			this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// label2
@@ -285,7 +286,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(139, 21);
 			this.label2.TabIndex = 4;
-			this.label2.Text = "Java version:";
+			this.label2.Text = Locale.Tr("Java version:");
 			this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// CBJavaVersion
@@ -327,7 +328,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(139, 21);
 			this.label1.TabIndex = 1;
-			this.label1.Text = "Server type:";
+			this.label1.Text = Locale.Tr("Server type:");
 			this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// CBServerType
@@ -371,7 +372,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			this.GBMaintainance.Size = new System.Drawing.Size(304, 432);
 			this.GBMaintainance.TabIndex = 1;
 			this.GBMaintainance.TabStop = false;
-			this.GBMaintainance.Text = "Maintainance";
+			this.GBMaintainance.Text = Locale.Tr("Maintainance");
 			// 
 			// LLblSite
 			// 
@@ -379,7 +380,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			this.LLblSite.Name = "LLblSite";
 			this.LLblSite.Size = new System.Drawing.Size(292, 23);
 			this.LLblSite.TabIndex = 1;
-			this.LLblSite.Text = "Site:";
+			this.LLblSite.Text = Locale.Tr("Site:");
 			this.LLblSite.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.LLblSite.UseSelectable = true;
 			// 
@@ -390,7 +391,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			this.LblCurrentVer.Name = "LblCurrentVer";
 			this.LblCurrentVer.Size = new System.Drawing.Size(154, 21);
 			this.LblCurrentVer.TabIndex = 16;
-			this.LblCurrentVer.Text = "Version:";
+			this.LblCurrentVer.Text = Locale.Tr("Version:");
 			// 
 			// btnGetCurrentBuild
 			// 
@@ -398,7 +399,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			this.btnGetCurrentBuild.Name = "btnGetCurrentBuild";
 			this.btnGetCurrentBuild.Size = new System.Drawing.Size(129, 23);
 			this.btnGetCurrentBuild.TabIndex = 15;
-			this.btnGetCurrentBuild.Text = "Get current build";
+			this.btnGetCurrentBuild.Text = Locale.Tr("Get current build");
 			this.btnGetCurrentBuild.UseSelectable = true;
 			this.btnGetCurrentBuild.Click += new System.EventHandler(this.btnGetCurrentBuild_Click);
 			// 
@@ -409,7 +410,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			this.LblLatestDevValue.Name = "LblLatestDevValue";
 			this.LblLatestDevValue.Size = new System.Drawing.Size(158, 18);
 			this.LblLatestDevValue.TabIndex = 14;
-			this.LblLatestDevValue.Text = "#0000 (MC 1.0.0)";
+			this.LblLatestDevValue.Text = Locale.Tr("#0000 (MC 1.0.0)");
 			// 
 			// LblLatestBetaValue
 			// 
@@ -418,7 +419,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			this.LblLatestBetaValue.Name = "LblLatestBetaValue";
 			this.LblLatestBetaValue.Size = new System.Drawing.Size(158, 18);
 			this.LblLatestBetaValue.TabIndex = 13;
-			this.LblLatestBetaValue.Text = "#0000 (MC 1.0.0)";
+			this.LblLatestBetaValue.Text = Locale.Tr("#0000 (MC 1.0.0)");
 			// 
 			// LblLatestRecommendedValue
 			// 
@@ -427,7 +428,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			this.LblLatestRecommendedValue.Name = "LblLatestRecommendedValue";
 			this.LblLatestRecommendedValue.Size = new System.Drawing.Size(158, 18);
 			this.LblLatestRecommendedValue.TabIndex = 12;
-			this.LblLatestRecommendedValue.Text = "#0000 (MC 1.0.0)";
+			this.LblLatestRecommendedValue.Text = Locale.Tr("#0000 (MC 1.0.0)");
 			// 
 			// LblLatestBeta
 			// 
@@ -436,7 +437,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			this.LblLatestBeta.Name = "LblLatestBeta";
 			this.LblLatestBeta.Size = new System.Drawing.Size(158, 18);
 			this.LblLatestBeta.TabIndex = 11;
-			this.LblLatestBeta.Text = "Latest beta build:";
+			this.LblLatestBeta.Text = Locale.Tr("Latest beta build:");
 			// 
 			// LblLatestDevelopment
 			// 
@@ -445,7 +446,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			this.LblLatestDevelopment.Name = "LblLatestDevelopment";
 			this.LblLatestDevelopment.Size = new System.Drawing.Size(158, 18);
 			this.LblLatestDevelopment.TabIndex = 10;
-			this.LblLatestDevelopment.Text = "Latest development build:";
+			this.LblLatestDevelopment.Text = Locale.Tr("Latest development build:");
 			// 
 			// LblLatestRecommended
 			// 
@@ -454,7 +455,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			this.LblLatestRecommended.Name = "LblLatestRecommended";
 			this.LblLatestRecommended.Size = new System.Drawing.Size(158, 18);
 			this.LblLatestRecommended.TabIndex = 9;
-			this.LblLatestRecommended.Text = "Latest recommended build:";
+			this.LblLatestRecommended.Text = Locale.Tr("Latest recommended build:");
 			// 
 			// label9
 			// 
@@ -462,7 +463,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			this.label9.Name = "label9";
 			this.label9.Size = new System.Drawing.Size(129, 21);
 			this.label9.TabIndex = 8;
-			this.label9.Text = "Auto update branch:\r\n";
+			this.label9.Text = Locale.Tr("Auto update branch:\r\n");
 			// 
 			// CBUpdateBranch
 			// 
@@ -482,7 +483,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			this.label8.Name = "label8";
 			this.label8.Size = new System.Drawing.Size(147, 19);
 			this.label8.TabIndex = 6;
-			this.label8.Text = "Auto update behaviour:";
+			this.label8.Text = Locale.Tr("Auto update behaviour:");
 			// 
 			// CBUpdateBehaviour
 			// 
@@ -501,7 +502,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			this.BtnDownloadDev.Name = "BtnDownloadDev";
 			this.BtnDownloadDev.Size = new System.Drawing.Size(292, 23);
 			this.BtnDownloadDev.TabIndex = 4;
-			this.BtnDownloadDev.Text = "Download Latest Development build";
+			this.BtnDownloadDev.Text = Locale.Tr("Download Latest Development build");
 			this.BtnDownloadDev.UseSelectable = true;
 			this.BtnDownloadDev.Click += new System.EventHandler(this.BtnDownloadDev_Click);
 			// 
@@ -511,7 +512,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			this.BtnDownloadBeta.Name = "BtnDownloadBeta";
 			this.BtnDownloadBeta.Size = new System.Drawing.Size(292, 23);
 			this.BtnDownloadBeta.TabIndex = 3;
-			this.BtnDownloadBeta.Text = "Download Latest Beta build";
+			this.BtnDownloadBeta.Text = Locale.Tr("Download Latest Beta build");
 			this.BtnDownloadBeta.UseSelectable = true;
 			this.BtnDownloadBeta.Click += new System.EventHandler(this.BtnDownloadBeta_Click);
 			// 
@@ -521,7 +522,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			this.BtnDownloadRec.Name = "BtnDownloadRec";
 			this.BtnDownloadRec.Size = new System.Drawing.Size(292, 23);
 			this.BtnDownloadRec.TabIndex = 2;
-			this.BtnDownloadRec.Text = "Download Latest Recommended build";
+			this.BtnDownloadRec.Text = Locale.Tr("Download Latest Recommended build");
 			this.BtnDownloadRec.UseSelectable = true;
 			this.BtnDownloadRec.Click += new System.EventHandler(this.BtnDownloadRec_Click);
 			// 
@@ -548,7 +549,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			this.GBCustomSettings.Size = new System.Drawing.Size(484, 117);
 			this.GBCustomSettings.TabIndex = 2;
 			this.GBCustomSettings.TabStop = false;
-			this.GBCustomSettings.Text = "Server specific settings";
+			this.GBCustomSettings.Text = Locale.Tr("Server specific settings");
 			// 
 			// errorProvider
 			// 

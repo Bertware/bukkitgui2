@@ -1,4 +1,5 @@
-﻿using MetroFramework.Controls;
+using MetroFramework.Controls;
+using Net.Bertware.Bukkitgui2.Core;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Editor
 {
@@ -48,7 +49,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Editor
 			this.btnAdd.Name = "btnAdd";
 			this.btnAdd.Size = new System.Drawing.Size(75, 23);
 			this.btnAdd.TabIndex = 7;
-			this.btnAdd.Text = "&Add";
+			this.btnAdd.Text = Locale.Tr("&Add");
 			this.btnAdd.UseSelectable = true;
 			this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
 			// 
@@ -72,22 +73,22 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Editor
 			// 
 			// ColIp
 			// 
-			this.ColIp.Text = "Ip";
+			this.ColIp.Text = Locale.Tr("Ip");
 			this.ColIp.Width = 120;
 			// 
 			// ColCreated
 			// 
-			this.ColCreated.Text = "Created";
+			this.ColCreated.Text = Locale.Tr("Created");
 			this.ColCreated.Width = 120;
 			// 
 			// ColSource
 			// 
-			this.ColSource.Text = "Source";
+			this.ColSource.Text = Locale.Tr("Source");
 			this.ColSource.Width = 120;
 			// 
 			// ColExpires
 			// 
-			this.ColExpires.Text = "Expires";
+			this.ColExpires.Text = Locale.Tr("Expires");
 			this.ColExpires.Width = 120;
 			// 
 			// btnRemove
@@ -97,7 +98,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Editor
 			this.btnRemove.Name = "btnRemove";
 			this.btnRemove.Size = new System.Drawing.Size(75, 23);
 			this.btnRemove.TabIndex = 8;
-			this.btnRemove.Text = "&Remove";
+			this.btnRemove.Text = Locale.Tr("&Remove");
 			this.btnRemove.UseSelectable = true;
 			this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
 			// 

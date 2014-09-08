@@ -18,7 +18,6 @@ using Net.Bertware.Bukkitgui2.AddOn.Starter;
 using Net.Bertware.Bukkitgui2.Core;
 using Net.Bertware.Bukkitgui2.Core.Configuration;
 using Net.Bertware.Bukkitgui2.Core.Logging;
-using Net.Bertware.Bukkitgui2.Core.Translation;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler;
 
@@ -297,9 +296,9 @@ namespace Net.Bertware.Bukkitgui2.UI
 				}
 				// ask what to do
 				DialogResult result = MessageBox.Show(
-					Translator.Tr(
+					Locale.Tr(
 						"The server is still running. Closing it without a proper stop might result in data loss. Send stop command first?"),
-					Translator.Tr("Server still running"), MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+					Locale.Tr("Server still running"), MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
 
 				// execute a correct action based upon user input
 				switch (result)

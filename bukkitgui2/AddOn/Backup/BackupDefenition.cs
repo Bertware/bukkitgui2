@@ -20,9 +20,9 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Backup
 		public string[] Folders = new string[0];
 		public string[] Files = new string[0];
 		public bool Compression = false;
-		
+
 		/// <summary>
-		/// Execute this backup
+		///     Execute this backup
 		/// </summary>
 		/// <param name="savedir"></param>
 		public void Execute(string savedir)

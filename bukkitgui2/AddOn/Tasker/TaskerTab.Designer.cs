@@ -1,4 +1,5 @@
-﻿using MetroFramework.Controls;
+using MetroFramework.Controls;
+using Net.Bertware.Bukkitgui2.Core;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 {
@@ -50,7 +51,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 			this.btnNew.Name = "btnNew";
 			this.btnNew.Size = new System.Drawing.Size(75, 23);
 			this.btnNew.TabIndex = 1;
-			this.btnNew.Text = "&New task";
+			this.btnNew.Text = Locale.Tr("&New task");
 			this.btnNew.UseSelectable = true;
 			this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
 			// 
@@ -61,7 +62,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 			this.btnDelete.Name = "btnDelete";
 			this.btnDelete.Size = new System.Drawing.Size(75, 23);
 			this.btnDelete.TabIndex = 2;
-			this.btnDelete.Text = "&Delete";
+			this.btnDelete.Text = Locale.Tr("&Delete");
 			this.btnDelete.UseSelectable = true;
 			this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
 			// 
@@ -72,7 +73,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 			this.btnTest.Name = "btnTest";
 			this.btnTest.Size = new System.Drawing.Size(75, 23);
 			this.btnTest.TabIndex = 3;
-			this.btnTest.Text = "&Test";
+			this.btnTest.Text = Locale.Tr("&Test");
 			this.btnTest.UseSelectable = true;
 			this.btnTest.Click += new System.EventHandler(this.btnTest_Click);
 			// 
@@ -99,32 +100,32 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 			// 
 			// ColName
 			// 
-			this.ColName.Text = "Name";
+			this.ColName.Text = Locale.Tr("Name");
 			this.ColName.Width = 120;
 			// 
 			// ColTrigger
 			// 
-			this.ColTrigger.Text = "Trigger";
+			this.ColTrigger.Text = Locale.Tr("Trigger");
 			this.ColTrigger.Width = 120;
 			// 
 			// ColTriggerSettings
 			// 
-			this.ColTriggerSettings.Text = "Trigger Settings";
+			this.ColTriggerSettings.Text = Locale.Tr("Trigger Settings");
 			this.ColTriggerSettings.Width = 120;
 			// 
 			// ColAction
 			// 
-			this.ColAction.Text = "Action";
+			this.ColAction.Text = Locale.Tr("Action");
 			this.ColAction.Width = 120;
 			// 
 			// ColActionSettings
 			// 
-			this.ColActionSettings.Text = "ActionSettings";
+			this.ColActionSettings.Text = Locale.Tr("ActionSettings");
 			this.ColActionSettings.Width = 120;
 			// 
 			// colEnable
 			// 
-			this.colEnable.Text = "Enabled";
+			this.colEnable.Text = Locale.Tr("Enabled");
 			// 
 			// btnEdit
 			// 
@@ -134,7 +135,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 			this.btnEdit.Name = "btnEdit";
 			this.btnEdit.Size = new System.Drawing.Size(75, 23);
 			this.btnEdit.TabIndex = 4;
-			this.btnEdit.Text = "&Edit";
+			this.btnEdit.Text = Locale.Tr("&Edit");
 			this.btnEdit.UseSelectable = true;
 			this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
 			// 

@@ -53,7 +53,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 		private void btnVersions_Click(object sender, EventArgs e)
 		{
 			if (slvPlugins.SelectedItems.Count < 0) return;
-			string filename = ((InstalledPlugin) (slvPlugins.SelectedItems[0].Tag)).Path;
+			string filename = ((InstalledPlugin) (slvPlugins.SelectedItems[0].Tag)).FileName;
 			InstalledPlugin plugin = InstalledPluginManager.Plugins[filename];
 			BukgetPlugin.CreateFromNamespace(plugin.Mainspace).ShowVersionDialog(plugin.Path);
 		}

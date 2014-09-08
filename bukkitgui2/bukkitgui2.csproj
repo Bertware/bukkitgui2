@@ -351,7 +351,6 @@
     <Compile Include="Core\Locale.cs" />
     <Compile Include="Core\Logging\Logger.cs" />
     <Compile Include="Core\Share.cs" />
-    <Compile Include="Core\Translation\Translator.cs" />
     <Compile Include="Core\Util\Compression.cs" />
     <Compile Include="Core\Util\Performance\CpuCounter.cs" />
     <Compile Include="Core\Util\Performance\MemoryCounter.cs" />

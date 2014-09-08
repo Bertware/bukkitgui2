@@ -1,4 +1,5 @@
-﻿using MetroFramework.Controls;
+using MetroFramework.Controls;
+using Net.Bertware.Bukkitgui2.Core;
 
 namespace Net.Bertware.Bukkitgui2.UI
 {
@@ -65,7 +66,7 @@ namespace Net.Bertware.Bukkitgui2.UI
 			this.LblToolsMainServerState.Name = "LblToolsMainServerState";
 			this.LblToolsMainServerState.Size = new System.Drawing.Size(144, 20);
 			this.LblToolsMainServerState.TabIndex = 1;
-			this.LblToolsMainServerState.Text = "Server stopped";
+			this.LblToolsMainServerState.Text = Locale.Tr("Server stopped");
 			// 
 			// ToolStripBtn
 			// 
@@ -81,14 +82,14 @@ namespace Net.Bertware.Bukkitgui2.UI
 			// 
 			this.ToolStripBtnStartStop.Name = "ToolStripBtnStartStop";
 			this.ToolStripBtnStartStop.Size = new System.Drawing.Size(110, 22);
-			this.ToolStripBtnStartStop.Text = "Start";
+			this.ToolStripBtnStartStop.Text = Locale.Tr("Start");
 			this.ToolStripBtnStartStop.Click += new System.EventHandler(this.ToolStripBtnStartStop_Click);
 			// 
 			// ToolStripBtnRestart
 			// 
 			this.ToolStripBtnRestart.Name = "ToolStripBtnRestart";
 			this.ToolStripBtnRestart.Size = new System.Drawing.Size(110, 22);
-			this.ToolStripBtnRestart.Text = "Restart";
+			this.ToolStripBtnRestart.Text = Locale.Tr("Restart");
 			this.ToolStripBtnRestart.Click += new System.EventHandler(this.ToolStripBtnRestart_Click);
 			// 
 			// LblToolsMainServerOutput
@@ -99,7 +100,7 @@ namespace Net.Bertware.Bukkitgui2.UI
 			this.LblToolsMainServerOutput.Name = "LblToolsMainServerOutput";
 			this.LblToolsMainServerOutput.Size = new System.Drawing.Size(507, 20);
 			this.LblToolsMainServerOutput.TabIndex = 2;
-			this.LblToolsMainServerOutput.Text = "No output to show";
+			this.LblToolsMainServerOutput.Text = Locale.Tr("No output to show");
 			// 
 			// SpinServerState
 			// 
@@ -130,7 +131,7 @@ namespace Net.Bertware.Bukkitgui2.UI
 			this.Controls.Add(this.TabCtrlAddons);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "MainForm";
-			this.Text = "BukkitGui";
+			this.Text = Locale.Tr("BukkitGui");
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
 			this.ToolStripBtn.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.metroStyleManager)).EndInit();

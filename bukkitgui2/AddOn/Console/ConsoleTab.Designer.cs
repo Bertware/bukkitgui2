@@ -1,4 +1,5 @@
-﻿using  Net.Bertware.Bukkitgui2.Controls.QuickButtons;
+using  Net.Bertware.Bukkitgui2.Controls.QuickButtons;
+using Net.Bertware.Bukkitgui2.Core;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Console
 {
@@ -71,7 +72,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			this.groupBox1.Size = new System.Drawing.Size(794, 371);
 			this.groupBox1.TabIndex = 3;
 			this.groupBox1.TabStop = false;
-			this.groupBox1.Text = "Server management";
+			this.groupBox1.Text = Locale.Tr("Server management");
 			// 
 			// splitContainer1
 			// 
@@ -110,7 +111,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			// 
 			// ColPlayers
 			// 
-			this.ColPlayers.Text = "Players";
+			this.ColPlayers.Text = Locale.Tr("Players");
 			this.ColPlayers.Width = 155;
 			// 
 			// ContextPlayers
@@ -129,7 +130,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			this.ContextPlayersKick.Image = global::Net.Bertware.Bukkitgui2.Properties.Resources.icon_minus_64;
 			this.ContextPlayersKick.Name = "ContextPlayersKick";
 			this.ContextPlayersKick.Size = new System.Drawing.Size(109, 22);
-			this.ContextPlayersKick.Text = "Kick";
+			this.ContextPlayersKick.Text = Locale.Tr("Kick");
 			this.ContextPlayersKick.Click += new System.EventHandler(this.ContextPlayersKick_Click);
 			// 
 			// ContextPlayersBan
@@ -137,7 +138,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			this.ContextPlayersBan.Image = global::Net.Bertware.Bukkitgui2.Properties.Resources.icon_cancel_64;
 			this.ContextPlayersBan.Name = "ContextPlayersBan";
 			this.ContextPlayersBan.Size = new System.Drawing.Size(109, 22);
-			this.ContextPlayersBan.Text = "Ban";
+			this.ContextPlayersBan.Text = Locale.Tr("Ban");
 			this.ContextPlayersBan.Click += new System.EventHandler(this.ContextPlayersBan_Click);
 			// 
 			// ContextPlayersBanIp
@@ -145,7 +146,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			this.ContextPlayersBanIp.Image = global::Net.Bertware.Bukkitgui2.Properties.Resources.icon_cancel_64;
 			this.ContextPlayersBanIp.Name = "ContextPlayersBanIp";
 			this.ContextPlayersBanIp.Size = new System.Drawing.Size(109, 22);
-			this.ContextPlayersBanIp.Text = "Ban-ip";
+			this.ContextPlayersBanIp.Text = Locale.Tr("Ban-ip");
 			this.ContextPlayersBanIp.Click += new System.EventHandler(this.ContextPlayersBanIp_Click);
 			// 
 			// ContextPlayersOp
@@ -153,7 +154,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			this.ContextPlayersOp.Image = global::Net.Bertware.Bukkitgui2.Properties.Resources.icon_up_circular_64;
 			this.ContextPlayersOp.Name = "ContextPlayersOp";
 			this.ContextPlayersOp.Size = new System.Drawing.Size(109, 22);
-			this.ContextPlayersOp.Text = "Op";
+			this.ContextPlayersOp.Text = Locale.Tr("Op");
 			this.ContextPlayersOp.Click += new System.EventHandler(this.ContextPlayersOp_Click);
 			// 
 			// ContextPlayersDeOp
@@ -161,7 +162,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			this.ContextPlayersDeOp.Image = global::Net.Bertware.Bukkitgui2.Properties.Resources.icon_down_circular_64;
 			this.ContextPlayersDeOp.Name = "ContextPlayersDeOp";
 			this.ContextPlayersDeOp.Size = new System.Drawing.Size(109, 22);
-			this.ContextPlayersDeOp.Text = "De-op";
+			this.ContextPlayersDeOp.Text = Locale.Tr("De-op");
 			this.ContextPlayersDeOp.Click += new System.EventHandler(this.ContextPlayersDeOp_Click);
 			// 
 			// imgListPlayerFaces
@@ -208,7 +209,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			this.MCCOut.ShowTime = true;
 			this.MCCOut.Size = new System.Drawing.Size(624, 326);
 			this.MCCOut.TabIndex = 0;
-			this.MCCOut.Text = "";
+			this.MCCOut.Text = Locale.Tr("");
 			this.MCCOut.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ConsoleTab_KeyDown);
 			// 
 			// groupBox2
@@ -223,7 +224,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			this.groupBox2.Size = new System.Drawing.Size(624, 117);
 			this.groupBox2.TabIndex = 4;
 			this.groupBox2.TabStop = false;
-			this.groupBox2.Text = "Performance";
+			this.groupBox2.Text = Locale.Tr("Performance");
 			// 
 			// performanceMonitor
 			// 
@@ -246,7 +247,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			this.groupBox3.Size = new System.Drawing.Size(157, 117);
 			this.groupBox3.TabIndex = 5;
 			this.groupBox3.TabStop = false;
-			this.groupBox3.Text = "Quick Actions";
+			this.groupBox3.Text = Locale.Tr("Quick Actions");
 			// 
 			// quickButtons
 			// 

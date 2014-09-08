@@ -1,4 +1,6 @@
-﻿namespace Net.Bertware.Bukkitgui2.AddOn.Console
+using Net.Bertware.Bukkitgui2.Core;
+
+namespace Net.Bertware.Bukkitgui2.AddOn.Console
 {
 	partial class EmulatorInput
 	{
@@ -48,7 +50,7 @@
 			this.txtLog.SelectedText = "";
 			this.txtLog.Size = new System.Drawing.Size(804, 445);
 			this.txtLog.TabIndex = 0;
-			this.txtLog.Text = "metroTextBox1";
+			this.txtLog.Text = Locale.Tr("metroTextBox1");
 			this.txtLog.UseSelectable = true;
 			// 
 			// btnEmulate
@@ -58,7 +60,7 @@
 			this.btnEmulate.Name = "btnEmulate";
 			this.btnEmulate.Size = new System.Drawing.Size(75, 23);
 			this.btnEmulate.TabIndex = 1;
-			this.btnEmulate.Text = "Emulate!";
+			this.btnEmulate.Text = Locale.Tr("Emulate!");
 			this.btnEmulate.UseSelectable = true;
 			this.btnEmulate.Click += new System.EventHandler(this.btnEmulate_Click);
 			// 
@@ -70,7 +72,7 @@
 			this.Controls.Add(this.btnEmulate);
 			this.Controls.Add(this.txtLog);
 			this.Name = "EmulatorInput";
-			this.Text = "Emulator";
+			this.Text = Locale.Tr("Emulator");
 			this.ResumeLayout(false);
 
 		}

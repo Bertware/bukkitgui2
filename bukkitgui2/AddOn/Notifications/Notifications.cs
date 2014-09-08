@@ -11,9 +11,9 @@ using System;
 using System.Windows.Forms;
 using Microsoft.VisualBasic;
 using Microsoft.VisualBasic.Devices;
+using Net.Bertware.Bukkitgui2.Core;
 using Net.Bertware.Bukkitgui2.Core.Configuration;
 using Net.Bertware.Bukkitgui2.Core.Logging;
-using Net.Bertware.Bukkitgui2.Core.Translation;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler.PlayerActions;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler;
@@ -147,8 +147,8 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Notifications
 			if (!_alwaysShowBalloons && MainForm.Reference.Visible)
 				return; // if visible and balloons shouldn't be shown always, don't show.
 
-			_icon.ShowBalloonTip(BalloonDuration, Translator.Tr("Server") + " " + state,
-				Translator.Tr("The server is") + " " + state.ToString().ToLower(),
+			_icon.ShowBalloonTip(BalloonDuration, Locale.Tr("Server") + " " + state,
+				Locale.Tr("The server is") + " " + state.ToString().ToLower(),
 				ToolTipIcon.Info);
 		}
 
@@ -159,7 +159,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Notifications
 			if (!_alwaysShowBalloons && MainForm.Reference.Visible)
 				return; // if visible and balloons shouldn't be shown always, don't show.
 
-			_icon.ShowBalloonTip(BalloonDuration, playerAction.PlayerName + " " + Translator.Tr("joined the server"),
+			_icon.ShowBalloonTip(BalloonDuration, playerAction.PlayerName + " " + Locale.Tr("joined the server"),
 				outputParseResult.Message,
 				ToolTipIcon.Info);
 		}
@@ -170,7 +170,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Notifications
 			if (!_alwaysShowBalloons && MainForm.Reference.Visible)
 				return; // if visible and balloons shouldn't be shown always, don't show.
 
-			_icon.ShowBalloonTip(BalloonDuration, playerAction.PlayerName + " " + Translator.Tr("left the server"),
+			_icon.ShowBalloonTip(BalloonDuration, playerAction.PlayerName + " " + Locale.Tr("left the server"),
 				outputParseResult.Message,
 				ToolTipIcon.Info);
 		}
@@ -182,7 +182,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Notifications
 				return; // if visible and balloons shouldn't be shown always, don't show.
 
 			_icon.ShowBalloonTip(BalloonDuration,
-				playerAction.PlayerName + " " + Translator.Tr("was kicked from the server"),
+				playerAction.PlayerName + " " + Locale.Tr("was kicked from the server"),
 				outputParseResult.Message, ToolTipIcon.Warning);
 		}
 
@@ -193,7 +193,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Notifications
 				return; // if visible and balloons shouldn't be shown always, don't show.
 
 			_icon.ShowBalloonTip(BalloonDuration,
-				playerAction.PlayerName + " " + Translator.Tr("was banned from the server"),
+				playerAction.PlayerName + " " + Locale.Tr("was banned from the server"),
 				outputParseResult.Message, ToolTipIcon.Warning);
 		}
 

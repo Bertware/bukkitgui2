@@ -14,9 +14,9 @@ using System.Windows.Forms;
 using MetroFramework;
 using Microsoft.VisualBasic;
 using Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins;
+using Net.Bertware.Bukkitgui2.Core;
 using Net.Bertware.Bukkitgui2.Core.FileLocation;
 using Net.Bertware.Bukkitgui2.Core.Logging;
-using Net.Bertware.Bukkitgui2.Core.Translation;
 using Net.Bertware.Bukkitgui2.Core.Util;
 using Net.Bertware.Bukkitgui2.Core.Util.Web;
 
@@ -51,9 +51,9 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
 				return InstallZip(version, updatelist, showUi);
 			}
 			MetroMessageBox.Show(Application.OpenForms[0],
-				Translator.Tr("The file you chose to download is not supported yet.") + Constants.vbCrLf +
-				Translator.Tr("At this moment only .jar and .zip files are supported."),
-				Translator.Tr("Not supported"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				Locale.Tr("The file you chose to download is not supported yet.") + Constants.vbCrLf +
+				Locale.Tr("At this moment only .jar and .zip files are supported."),
+				Locale.Tr("Not supported"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
 			return false;
 		}
 
@@ -73,9 +73,9 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
 			{
 				if (
 					MetroMessageBox.Show(Application.OpenForms[0],
-						Translator.Tr("You are about to install") + " " + version.Filename.Replace(".jar", "") + " (" +
-						version.VersionNumber + ")" + Constants.vbCrLf + Translator.Tr("Do you wish to continue?"),
-						Translator.Tr("Continue?"), MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+						Locale.Tr("You are about to install") + " " + version.Filename.Replace(".jar", "") + " (" +
+						version.VersionNumber + ")" + Constants.vbCrLf + Locale.Tr("Do you wish to continue?"),
+						Locale.Tr("Continue?"), MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
 					return false;
 			}
 
@@ -94,7 +94,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
 			{
 				MetroMessageBox.Show(Application.OpenForms[0],
 					version.Filename.Replace(".jar", "") + " (" + version.VersionNumber + ") " +
-					Translator.Tr("was installed succesfully"), Translator.Tr("Plugin Installed"), MessageBoxButtons.OK,
+					Locale.Tr("was installed succesfully"), Locale.Tr("Plugin Installed"), MessageBoxButtons.OK,
 					MessageBoxIcon.Information);
 			}
 			if (updatelist)
@@ -121,9 +121,9 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
 			{
 				if (
 					MetroMessageBox.Show(Application.OpenForms[0],
-						Translator.Tr("You are about to install") + " " + version.Filename.Replace(".zip", "") + " (" +
-						version.VersionNumber + ")" + Constants.vbCrLf + Translator.Tr("Do you wish to continue?"),
-						Translator.Tr("Continue?"), MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+						Locale.Tr("You are about to install") + " " + version.Filename.Replace(".zip", "") + " (" +
+						version.VersionNumber + ")" + Constants.vbCrLf + Locale.Tr("Do you wish to continue?"),
+						Locale.Tr("Continue?"), MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
 					return false;
 			}
 
@@ -259,13 +259,12 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
 			return (hasFileBeenMoved || hasFolderBeenMoved);
 		}
 
-		
 
 		private static void ShowInstallationComplete()
 		{
 			MetroMessageBox.Show(Application.OpenForms[0],
-				Translator.Tr("The plugin has been installed. Restart your server to enable it."),
-				Translator.Tr("Plugin installed"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+				Locale.Tr("The plugin has been installed. Restart your server to enable it."),
+				Locale.Tr("Plugin installed"), MessageBoxButtons.OK, MessageBoxIcon.Information);
 		}
 	}
 }

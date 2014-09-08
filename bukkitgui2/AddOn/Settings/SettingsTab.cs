@@ -54,7 +54,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Settings
 			TVSettings.Nodes.Add(node);
 
 			_settings.Add("Various", new VariousSettings());
-			node = new TreeNode("Various") { Name = "Various" };
+			node = new TreeNode("Various") {Name = "Various"};
 			TVSettings.Nodes.Add(node);
 			IsInitialized = true;
 		}

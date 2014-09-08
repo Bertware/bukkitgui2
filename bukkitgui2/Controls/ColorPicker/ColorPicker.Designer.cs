@@ -1,4 +1,4 @@
-﻿namespace Net.Bertware.Bukkitgui2.Controls.ColorPicker
+namespace Net.Bertware.Bukkitgui2.Controls.ColorPicker
 {
 	partial class ColorPicker
 	{

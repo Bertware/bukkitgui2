@@ -1,4 +1,6 @@
-﻿namespace Net.Bertware.Bukkitgui2.AddOn.Backup
+using Net.Bertware.Bukkitgui2.Core;
+
+namespace Net.Bertware.Bukkitgui2.AddOn.Backup
 {
 	partial class BackupTab
 	{
@@ -38,7 +40,7 @@
 			this.lblNotAvailableYet.Name = "lblNotAvailableYet";
 			this.lblNotAvailableYet.Size = new System.Drawing.Size(428, 19);
 			this.lblNotAvailableYet.TabIndex = 0;
-			this.lblNotAvailableYet.Text = "Backups aren\'t available at this time, and will be added in a later release";
+			this.lblNotAvailableYet.Text = Locale.Tr("Backups aren\'t available at this time, and will be added in a later release");
 			// 
 			// BackupTab
 			// 

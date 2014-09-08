@@ -1,4 +1,5 @@
-﻿using MetroFramework.Controls;
+using MetroFramework.Controls;
+using Net.Bertware.Bukkitgui2.Core;
 
 namespace Net.Bertware.Bukkitgui2.UI
 {
@@ -40,7 +41,7 @@ namespace Net.Bertware.Bukkitgui2.UI
 			this.btnCancel.Location = new System.Drawing.Point(240, 92);
 			this.btnCancel.Name = "btnCancel";
 			this.btnCancel.TabIndex = 1;
-			this.btnCancel.Text = "&Cancel";
+			this.btnCancel.Text = Locale.Tr("&Cancel");
 			this.btnCancel.UseSelectable = true;
 			this.btnCancel.UseVisualStyleBackColor = true;
 			this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -58,7 +59,7 @@ namespace Net.Bertware.Bukkitgui2.UI
 			this.btnKill.Location = new System.Drawing.Point(159, 92);
 			this.btnKill.Name = "btnKill";
 			this.btnKill.TabIndex = 3;
-			this.btnKill.Text = "&Kill";
+			this.btnKill.Text = Locale.Tr("&Kill");
 			this.btnKill.UseSelectable = true;
 			this.btnKill.UseVisualStyleBackColor = true;
 			this.btnKill.Click += new System.EventHandler(this.btnKill_Click);
@@ -77,7 +78,7 @@ namespace Net.Bertware.Bukkitgui2.UI
 			this.Resizable = false;
 			this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-			this.Text = "Stopping Server...";
+			this.Text = Locale.Tr("Stopping Server...");
 			this.Load += new System.EventHandler(this.ServerStopDialog_Load);
 			this.ResumeLayout(false);
 

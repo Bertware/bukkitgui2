@@ -1,4 +1,5 @@
-﻿using MetroFramework.Controls;
+using MetroFramework.Controls;
+using Net.Bertware.Bukkitgui2.Core;
 
 namespace Net.Bertware.Bukkitgui2.MinecraftServers.Tools
 {
@@ -60,7 +61,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers.Tools
 			this.GBSuperStartRemoteServer.Size = new System.Drawing.Size(635, 107);
 			this.GBSuperStartRemoteServer.TabIndex = 8;
 			this.GBSuperStartRemoteServer.TabStop = false;
-			this.GBSuperStartRemoteServer.Text = "Remote Server";
+			this.GBSuperStartRemoteServer.Text = Locale.Tr("Remote Server");
 			// 
 			// MTxtRemotePassword
 			// 
@@ -84,7 +85,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers.Tools
 			this.Label4.Name = "Label4";
 			this.Label4.Size = new System.Drawing.Size(90, 18);
 			this.Label4.TabIndex = 8;
-			this.Label4.Text = "port:";
+			this.Label4.Text = Locale.Tr("port:");
 			this.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// Label3
@@ -94,7 +95,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers.Tools
 			this.Label3.Name = "Label3";
 			this.Label3.Size = new System.Drawing.Size(93, 20);
 			this.Label3.TabIndex = 7;
-			this.Label3.Text = "password:";
+			this.Label3.Text = Locale.Tr("password:");
 			this.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// Label2
@@ -103,7 +104,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers.Tools
 			this.Label2.Name = "Label2";
 			this.Label2.Size = new System.Drawing.Size(72, 20);
 			this.Label2.TabIndex = 6;
-			this.Label2.Text = "username:";
+			this.Label2.Text = Locale.Tr("username:");
 			this.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// Label1
@@ -112,7 +113,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers.Tools
 			this.Label1.Name = "Label1";
 			this.Label1.Size = new System.Drawing.Size(72, 20);
 			this.Label1.TabIndex = 5;
-			this.Label1.Text = "host:";
+			this.Label1.Text = Locale.Tr("host:");
 			this.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// NumRemotePort

@@ -56,8 +56,9 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 			Enabled = false;
 			Initialize();
 		}
+
 		/// <summary>
-		/// Create a new task from serialized data
+		///     Create a new task from serialized data
 		/// </summary>
 		/// <param name="serializedData">data to parse</param>
 		public Task(string serializedData)
@@ -67,7 +68,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 		}
 
 		/// <summary>
-		/// Create a new task from given parameters
+		///     Create a new task from given parameters
 		/// </summary>
 		/// <param name="name">Name for this task</param>
 		/// <param name="enabled">Enable this task?</param>
@@ -112,7 +113,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 		}
 
 		/// <summary>
-		/// Execute the actions for this task (either triggered or for testing purposes)
+		///     Execute the actions for this task (either triggered or for testing purposes)
 		/// </summary>
 		public void ExecuteActions()
 		{
@@ -125,7 +126,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 		}
 
 		/// <summary>
-		/// Get a string representing this object. Can be parsed using Deserialize(string s)
+		///     Get a string representing this object. Can be parsed using Deserialize(string s)
 		/// </summary>
 		/// <returns></returns>
 		public string Serialize()
@@ -138,8 +139,9 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 			}
 			return "TASK::" + Name + "::" + Enabled + ":;" + triggerSerial + actionSerial;
 		}
+
 		/// <summary>
-		/// Deserialize a string, and save it to this instance
+		///     Deserialize a string, and save it to this instance
 		/// </summary>
 		/// <param name="data">string to parse</param>
 		/// <returns>returns this task object</returns>
@@ -182,8 +184,9 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 			}
 			return this;
 		}
+
 		/// <summary>
-		/// String representation for debug purposes
+		///     String representation for debug purposes
 		/// </summary>
 		/// <returns></returns>
 		public override string ToString()

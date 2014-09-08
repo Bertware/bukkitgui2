@@ -1,4 +1,5 @@
-﻿using MetroFramework.Controls;
+using MetroFramework.Controls;
+using Net.Bertware.Bukkitgui2.Core;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget
 {
@@ -56,7 +57,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget
 			this.gbGeneral.Size = new System.Drawing.Size(760, 227);
 			this.gbGeneral.TabIndex = 0;
 			this.gbGeneral.TabStop = false;
-			this.gbGeneral.Text = "General";
+			this.gbGeneral.Text = Locale.Tr("General");
 			// 
 			// lblPluginDetail
 			// 
@@ -65,7 +66,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget
 			this.lblPluginDetail.Name = "lblPluginDetail";
 			this.lblPluginDetail.Size = new System.Drawing.Size(754, 208);
 			this.lblPluginDetail.TabIndex = 0;
-			this.lblPluginDetail.Text = "Plugin details";
+			this.lblPluginDetail.Text = Locale.Tr("Plugin details");
 			// 
 			// gbVersions
 			// 
@@ -79,7 +80,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget
 			this.gbVersions.Size = new System.Drawing.Size(760, 254);
 			this.gbVersions.TabIndex = 1;
 			this.gbVersions.TabStop = false;
-			this.gbVersions.Text = "Versions";
+			this.gbVersions.Text = Locale.Tr("Versions");
 			// 
 			// BtnClose
 			// 
@@ -87,7 +88,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget
 			this.BtnClose.Name = "BtnClose";
 			this.BtnClose.Size = new System.Drawing.Size(75, 23);
 			this.BtnClose.TabIndex = 2;
-			this.BtnClose.Text = "&Close";
+			this.BtnClose.Text = Locale.Tr("&Close");
 			this.BtnClose.UseSelectable = true;
 			this.BtnClose.Click += new System.EventHandler(this.BtnClose_Click);
 			// 
@@ -97,7 +98,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget
 			this.btnInstall.Name = "btnInstall";
 			this.btnInstall.Size = new System.Drawing.Size(75, 23);
 			this.btnInstall.TabIndex = 1;
-			this.btnInstall.Text = "&Install";
+			this.btnInstall.Text = Locale.Tr("&Install");
 			this.btnInstall.UseSelectable = true;
 			this.btnInstall.Click += new System.EventHandler(this.btnInstall_Click);
 			// 
@@ -122,27 +123,27 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget
 			// 
 			// columnHeader1
 			// 
-			this.columnHeader1.Text = "Version";
+			this.columnHeader1.Text = Locale.Tr("Version");
 			this.columnHeader1.Width = 120;
 			// 
 			// columnHeader2
 			// 
-			this.columnHeader2.Text = "Filename";
+			this.columnHeader2.Text = Locale.Tr("Filename");
 			this.columnHeader2.Width = 180;
 			// 
 			// columnHeader3
 			// 
-			this.columnHeader3.Text = "Game builds";
+			this.columnHeader3.Text = Locale.Tr("Game builds");
 			this.columnHeader3.Width = 180;
 			// 
 			// columnHeader4
 			// 
-			this.columnHeader4.Text = "Release date";
+			this.columnHeader4.Text = Locale.Tr("Release date");
 			this.columnHeader4.Width = 80;
 			// 
 			// columnHeader5
 			// 
-			this.columnHeader5.Text = "Type";
+			this.columnHeader5.Text = Locale.Tr("Type");
 			this.columnHeader5.Width = 80;
 			// 
 			// BukgetPluginView
@@ -158,7 +159,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget
 			this.Resizable = false;
 			this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-			this.Text = "BukgetPluginView";
+			this.Text = Locale.Tr("BukgetPluginView");
 			this.gbGeneral.ResumeLayout(false);
 			this.gbVersions.ResumeLayout(false);
 			this.ResumeLayout(false);

@@ -12,7 +12,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using MetroFramework;
 using Net.Bertware.Bukkitgui2.AddOn.Starter;
-using Net.Bertware.Bukkitgui2.Core.Translation;
+using Net.Bertware.Bukkitgui2.Core;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler.PlayerActions;
 using Net.Bertware.Bukkitgui2.MinecraftServers;
 using Net.Bertware.Bukkitgui2.UI;
@@ -315,9 +315,9 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler
 			if (text.Equals("Error: Unable to access jarfile"))
 			{
 				MetroMessageBox.Show(MainForm.Reference,
-					Translator.Tr(
+					Locale.Tr(
 						"Java couldn't open the .jar file you provided in the superstart tab. Make sure the path is correct and the file is valid. Try downloading the file again, and make sure the file is accessible."),
-					Translator.Tr("Unable to access .jar file"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+					Locale.Tr("Unable to access .jar file"), MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return;
 			}
 
@@ -326,21 +326,21 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler
 			     Equals(text, "[WARN] The exception was: java.net.BindException: Address already in use: bind")))
 			{
 				MetroMessageBox.Show(MainForm.Reference,
-					Translator.Tr(
+					Locale.Tr(
 						"The server could not be started, because the port is already in use. Make sure there are no other servers running on this port." +
 						Environment.NewLine +
 						"An incorrectly stopped server could cause this. Make sure you have your server-ip= blank (in server.properties)." +
 						Environment.NewLine +
 						"Otherwise rebooting or logging out will resolve this issue. ") + Environment.NewLine +
 					Environment.NewLine + "The exception was: java.net.BindException: Address already in use: bind",
-					Translator.Tr("Cannot bind to port"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+					Locale.Tr("Cannot bind to port"), MessageBoxButtons.OK, MessageBoxIcon.Error);
 				Starter.KillServer();
 
 				//if (MetroMessageBox.Show(MainForm.Reference,
-				//	Translator.Tr("Do you want to kill all java processes, in an attempt to start the server?") +
+				//	Locale.Tr("Do you want to kill all java processes, in an attempt to start the server?") +
 				//	Environment.NewLine +
-				//	Translator.Tr("WARNING! killing all java instances is on your own risk, and can lead to data corruption."),
-				//	Translator.Tr("Kill all java instances?"), MessageBoxButtons.YesNo, MessageBoxIcon.Question) ==
+				//	Locale.Tr("WARNING! killing all java instances is on your own risk, and can lead to data corruption."),
+				//	Locale.Tr("Kill all java instances?"), MessageBoxButtons.YesNo, MessageBoxIcon.Question) ==
 				//	DialogResult.Yes)
 				//{
 				//	Starter.KillAllJava();

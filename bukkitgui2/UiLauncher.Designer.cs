@@ -1,4 +1,6 @@
-﻿namespace Net.Bertware.Bukkitgui2
+using Net.Bertware.Bukkitgui2.Core;
+
+namespace Net.Bertware.Bukkitgui2
 {
 	partial class UiLauncher
 	{
@@ -38,7 +40,7 @@
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(108, 13);
 			this.label1.TabIndex = 0;
-			this.label1.Text = "Bukkitgui is running...";
+			this.label1.Text = Locale.Tr("Bukkitgui is running...");
 			// 
 			// UiLauncher
 			// 
@@ -54,7 +56,7 @@
 			this.ShowIcon = false;
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "UiLauncher";
+			this.Text = Locale.Tr("UiLauncher");
 			this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
 			this.ResumeLayout(false);
 			this.PerformLayout();

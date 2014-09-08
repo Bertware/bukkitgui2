@@ -37,7 +37,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 		///     Ban a player
 		/// </summary>
 		/// <param name="name">the player to ban</param>
-		public static void BanPlayer(string name, string reason ="")
+		public static void BanPlayer(string name, string reason = "")
 		{
 			if (ProcessHandler.ProcessHandler.IsRunning)
 			{

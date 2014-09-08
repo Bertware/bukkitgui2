@@ -1,4 +1,5 @@
-﻿using MetroFramework.Controls;
+using MetroFramework.Controls;
+using Net.Bertware.Bukkitgui2.Core;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Editor
 {
@@ -75,7 +76,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Editor
 			this.tabSettings.Name = "tabSettings";
 			this.tabSettings.Size = new System.Drawing.Size(792, 458);
 			this.tabSettings.TabIndex = 0;
-			this.tabSettings.Text = "Server Settings";
+			this.tabSettings.Text = Locale.Tr("Server Settings");
 			// 
 			// serverSettingsControl
 			// 
@@ -93,7 +94,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Editor
 			this.tabWhitelist.Name = "tabWhitelist";
 			this.tabWhitelist.Size = new System.Drawing.Size(792, 458);
 			this.tabWhitelist.TabIndex = 2;
-			this.tabWhitelist.Text = "Whitelist";
+			this.tabWhitelist.Text = Locale.Tr("Whitelist");
 			// 
 			// whitelistControl
 			// 
@@ -112,7 +113,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Editor
 			this.tabOplist.Name = "tabOplist";
 			this.tabOplist.Size = new System.Drawing.Size(792, 461);
 			this.tabOplist.TabIndex = 5;
-			this.tabOplist.Text = "Operators";
+			this.tabOplist.Text = Locale.Tr("Operators");
 			// 
 			// opListControl
 			// 
@@ -131,7 +132,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Editor
 			this.tabBanlist.Name = "tabBanlist";
 			this.tabBanlist.Size = new System.Drawing.Size(792, 461);
 			this.tabBanlist.TabIndex = 3;
-			this.tabBanlist.Text = "Banlist";
+			this.tabBanlist.Text = Locale.Tr("Banlist");
 			// 
 			// banListControl
 			// 
@@ -151,7 +152,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Editor
 			this.tabIpbanList.Name = "tabIpbanList";
 			this.tabIpbanList.Size = new System.Drawing.Size(792, 461);
 			this.tabIpbanList.TabIndex = 4;
-			this.tabIpbanList.Text = "Ipbanlist";
+			this.tabIpbanList.Text = Locale.Tr("Ipbanlist");
 			// 
 			// ipBanListControl
 			// 
@@ -170,7 +171,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Editor
 			this.tabEditor.Name = "tabEditor";
 			this.tabEditor.Size = new System.Drawing.Size(792, 461);
 			this.tabEditor.TabIndex = 1;
-			this.tabEditor.Text = "Config Editor";
+			this.tabEditor.Text = Locale.Tr("Config Editor");
 			// 
 			// EditorTab
 			// 

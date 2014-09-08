@@ -44,7 +44,7 @@ private void InitializeComponent()
 			this.lblInfo.Name = "lblInfo";
 			this.lblInfo.Size = new System.Drawing.Size(351, 21);
 			this.lblInfo.TabIndex = 0;
-			this.lblInfo.Text = "Starting download...";
+			this.lblInfo.Text = Locale.Tr("Starting download...");
 			this.lblInfo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// lblPercent
@@ -54,7 +54,7 @@ private void InitializeComponent()
 			this.lblPercent.Name = "lblPercent";
 			this.lblPercent.Size = new System.Drawing.Size(37, 21);
 			this.lblPercent.TabIndex = 2;
-			this.lblPercent.Text = "100%";
+			this.lblPercent.Text = Locale.Tr("100%");
 			this.lblPercent.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// PbProgress

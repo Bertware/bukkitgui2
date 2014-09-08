@@ -8,16 +8,15 @@
 // ©Bertware, visit http://bertware.net
 
 using Net.Bertware.Bukkitgui2.Core.Util.Web;
-using Net.Bertware.Bukkitgui2.MinecraftServers.Tools.bukkit;
 using Net.Bertware.Bukkitgui2.Properties;
 
 namespace Net.Bertware.Bukkitgui2.MinecraftServers.Servers
 {
 	internal class SpigotServer : MinecraftServerBase
 	{
+		private const string SourceLatest =
+			"http://ci.md-5.net/job/Spigot/lastSuccessfulBuild/artifact/Spigot-Server/target/spigot.jar";
 
-		const string SourceLatest = "http://ci.md-5.net/job/Spigot/lastSuccessfulBuild/artifact/Spigot-Server/target/spigot.jar";
-	
 		public SpigotServer()
 		{
 			Name = "Spigot";
@@ -28,8 +27,6 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers.Servers
 			CanDownloadBetaVersion = false;
 			CanDownloadDevVersion = true;
 			//default value for boolean is false, so all other features are disabled by default
-
-
 		}
 
 

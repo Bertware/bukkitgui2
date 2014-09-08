@@ -145,9 +145,9 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 		///     Kick a player
 		/// </summary>
 		/// <param name="reason">Reason for the kick</param>
-		public void Kick(string reason="")
+		public void Kick(string reason = "")
 		{
-			PlayerActions.KickPlayer(Name,reason);
+			PlayerActions.KickPlayer(Name, reason);
 		}
 
 
@@ -155,7 +155,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 		///     Ban a player
 		/// </summary>
 		/// <param name="reason">Reason for the ban</param>
-		public void Ban(string reason="")
+		public void Ban(string reason = "")
 		{
 			PlayerActions.BanPlayer(Name, reason);
 		}

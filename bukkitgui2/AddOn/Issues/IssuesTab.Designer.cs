@@ -1,4 +1,6 @@
-﻿namespace Net.Bertware.Bukkitgui2.AddOn.Issues
+using Net.Bertware.Bukkitgui2.Core;
+
+namespace Net.Bertware.Bukkitgui2.AddOn.Issues
 {
 	partial class IssuesTab
 	{
@@ -55,21 +57,21 @@
 			// 
 			// ColId
 			// 
-			this.ColId.Text = "Id";
+			this.ColId.Text = Locale.Tr("Id");
 			// 
 			// ColType
 			// 
-			this.ColType.Text = "Type";
+			this.ColType.Text = Locale.Tr("Type");
 			this.ColType.Width = 90;
 			// 
 			// ColTime
 			// 
-			this.ColTime.Text = "Time";
+			this.ColTime.Text = Locale.Tr("Time");
 			this.ColTime.Width = 90;
 			// 
 			// ColMessage
 			// 
-			this.ColMessage.Text = "Message";
+			this.ColMessage.Text = Locale.Tr("Message");
 			this.ColMessage.Width = 480;
 			// 
 			// lblInfo
@@ -79,8 +81,9 @@
 			this.lblInfo.Name = "lblInfo";
 			this.lblInfo.Size = new System.Drawing.Size(660, 19);
 			this.lblInfo.TabIndex = 1;
-			this.lblInfo.Text = "Below you can find all warning and error messages, created by the server. Auto-fi" +
-    "xing is not available right now.";
+			this.lblInfo.Text =
+				Locale.Tr(
+					"Below you can find all warning and error messages, created by the server. Auto-fixing is not available right now.");
 			// 
 			// IssuesTab
 			// 
