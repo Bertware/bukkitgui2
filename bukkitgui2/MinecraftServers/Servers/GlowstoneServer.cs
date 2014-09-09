@@ -26,11 +26,6 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers.Servers
 			Site = "http://www.glowstone.net/";
 			Logo = Resources.glowstone_logo;
 
-			CanFetchBetaVersion = false;
-			CanFetchDevVersion = false;
-			CanFetchRecommendedVersion = false;
-			CanDownloadBetaVersion = false;
-			CanDownloadDevVersion = false;
 			CanDownloadRecommendedVersion = true;
 
 			CanGetCurrentVersion = false;

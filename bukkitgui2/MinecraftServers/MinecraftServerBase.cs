@@ -225,7 +225,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers
 				// catch player left the game message
 			else if (Regex.IsMatch(
 				text,
-				RG_INFO + RG_SPACE + RG_PLAYER + " left the game.",
+				RG_INFO + RG_SPACE + RG_PLAYER + " left the game",
 				RegexOptions.IgnoreCase))
 			{
 				type = MessageType.PlayerLeave;
@@ -271,11 +271,18 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers
 
 		public virtual string FilterText(string text)
 		{
+			// fix harmless warning, users question this warning.
 			text = Regex.Replace(text,
 				"(.*)Unable to instantiate org\\.fusesource\\.jansi\\.WindowsAnsiOutputStream(.*)", "");
-			text = text.Replace("Server thread/", "");
-			text = Regex.Replace(text, "\\[minecraft(-server|)\\]", "", RegexOptions.IgnoreCase);
+
+
 			// remove [minecraft] or [minecraft-server] tags, for better parsing
+			text = Regex.Replace(text, "\\[minecraft(-server|)\\]", "", RegexOptions.IgnoreCase);
+
+			// [User Authenticator #1/INFO] to [INFO]
+			text = Regex.Replace(text, "User Authenticator #\\d/", "");
+			// [Server thread/INFO] to [INFO]
+			text = Regex.Replace(text, "Server (shutdown |)thread/", "");
 			text = Regex.Replace(text, "\\]:", "]");
 			text = text.Trim();
 			return text;
