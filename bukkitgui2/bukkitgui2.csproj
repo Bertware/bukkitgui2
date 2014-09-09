@@ -45,6 +45,10 @@
       <HintPath>Resources\Dll\ICSharpCode.SharpZipLib.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Interop.NATUPNPLib">
+      <HintPath>Resources\Dll\Interop.NATUPNPLib.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="Jayrock.Json">
       <HintPath>Resources\Dll\Jayrock.Json.dll</HintPath>
       <Private>False</Private>
@@ -107,6 +111,8 @@
     <Compile Include="AddOn\Console\EmulatorInput.Designer.cs">
       <DependentUpon>EmulatorInput.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddOn\Forwarder\PortForwardInfo.cs" />
+    <Compile Include="AddOn\Forwarder\Upnp.cs" />
     <Compile Include="AddOn\Issues\Issues.cs" />
     <Compile Include="AddOn\Issues\IssuesTab.cs">
       <SubType>UserControl</SubType>
@@ -583,6 +589,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="bukkitgui-icon.ico" />
+    <EmbeddedResource Include="Resources\Dll\Interop.NATUPNPLib.dll" />
     <Content Include="Resources\Icon\icon_cancel-64.png" />
     <Content Include="Resources\Icon\icon_chat-64.png" />
     <Content Include="Resources\Icon\icon_checkmark-64.png" />

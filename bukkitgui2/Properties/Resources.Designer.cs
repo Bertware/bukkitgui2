@@ -333,6 +333,16 @@ namespace Net.Bertware.Bukkitgui2.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] Interop_NATUPNPLib {
+            get {
+                object obj = ResourceManager.GetObject("Interop_NATUPNPLib", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] Jayrock_Json {
             get {
                 object obj = ResourceManager.GetObject("Jayrock_Json", resourceCulture);

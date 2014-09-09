@@ -8,12 +8,12 @@
 // ©Bertware, visit http://bertware.net
 
 using System.Windows.Forms;
+using MetroFramework.Controls;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Editor
 {
 	internal class Editor : IAddon
 	{
-		private UserControl _tab;
 
 		/// <summary>
 		///     The addon name, ideally this name is the same as used in the tabpage
@@ -44,7 +44,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Editor
 		/// </summary>
 		public void Initialize()
 		{
-			_tab = new EditorTab {Text = Name, ParentAddon = this};
+			TabPage = new EditorTab {Text = Name, ParentAddon = this};
 		}
 
 		public void Dispose()
@@ -56,12 +56,9 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Editor
 		///     The tab control for this addon
 		/// </summary>
 		/// <returns>Returns the tabpage</returns>
-		UserControl IAddon.TabPage
-		{
-			get { return _tab; }
-		}
+		public MetroUserControl TabPage { get; private set; }
 
-		public UserControl ConfigPage { get; private set; }
+		public MetroUserControl ConfigPage { get; private set; }
 
 		public bool CanDisable
 		{

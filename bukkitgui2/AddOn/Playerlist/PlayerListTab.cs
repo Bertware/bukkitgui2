@@ -9,12 +9,13 @@
 
 using System;
 using System.Windows.Forms;
+using MetroFramework.Controls;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler;
 using Net.Bertware.Bukkitgui2.Properties;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.PlayerList
 {
-	public partial class PlayerListTab : UserControl, IAddonTab
+	public partial class PlayerListTab : MetroUserControl, IAddonTab
 	{
 		public PlayerListTab()
 		{

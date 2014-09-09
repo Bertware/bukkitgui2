@@ -8,6 +8,7 @@
 // ©Bertware, visit http://bertware.net
 
 using System.Windows.Forms;
+using MetroFramework.Controls;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Issues
 {
@@ -54,8 +55,8 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Issues
 		///     The tab control for this addon
 		/// </summary>
 		/// <returns>Returns the tabpage</returns>
-		public UserControl TabPage { get; private set; }
+		public MetroUserControl TabPage { get; private set; }
 
-		public UserControl ConfigPage { get; private set; }
+		public MetroUserControl ConfigPage { get; private set; }
 	}
 }

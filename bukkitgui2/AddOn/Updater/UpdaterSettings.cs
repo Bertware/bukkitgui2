@@ -9,12 +9,13 @@
 
 using System;
 using System.Windows.Forms;
+using MetroFramework.Controls;
 using Net.Bertware.Bukkitgui2.Core;
 using Net.Bertware.Get;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Updater
 {
-	public partial class UpdaterSettings : UserControl
+	public partial class UpdaterSettings : MetroUserControl
 	{
 		public UpdaterSettings()
 		{

@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
+using MetroFramework.Controls;
 using Net.Bertware.Bukkitgui2.Core.FileLocation;
 using Net.Bertware.Bukkitgui2.Core.Logging;
 
@@ -28,31 +29,25 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 		public Tasker()
 		{
 			Reference = this;
+			this.Name = "Tasker";
+			this.HasTab = true;
+			this.HasConfig = false;
 		}
 
 		/// <summary>
 		///     The addon name, ideally this name is the same as used in the tabpage
 		/// </summary>
-		public string Name
-		{
-			get { return "Tasker"; }
-		}
+		public string Name { get; private set; }
 
 		/// <summary>
 		///     True if this addon has a tab page
 		/// </summary>
-		public bool HasTab
-		{
-			get { return true; }
-		}
+		public bool HasTab { get; private set; }
 
 		/// <summary>
 		///     True if this addon has a config field
 		/// </summary>
-		public bool HasConfig
-		{
-			get { return false; }
-		}
+		public bool HasConfig { get; private set; }
 
 		/// <summary>
 		///     Initialize all functions and the tabcontrol
@@ -91,7 +86,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 		{
 			DeleteTask(oldTask);
 			AddTask(newTask);
-			// events already fired by delete & add operations
+			// events aLocale.Tready fired by delete & add operations
 		}
 
 		/// <summary>
@@ -146,9 +141,9 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 		///     The tab control for this addon
 		/// </summary>
 		/// <returns>Returns the tabpage</returns>
-		public UserControl TabPage { get; private set; }
+		public MetroUserControl TabPage { get; private set; }
 
-		public UserControl ConfigPage { get; private set; }
+		public MetroUserControl ConfigPage { get; private set; }
 
 		public bool CanDisable
 		{

@@ -11,6 +11,7 @@ using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
+using MetroFramework.Controls;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler;
 using Net.Bertware.Bukkitgui2.MinecraftServers;
 
@@ -70,12 +71,12 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 		///     The tab control for this addon
 		/// </summary>
 		/// <returns>Returns the tabpage</returns>
-		public UserControl TabPage
+		public MetroUserControl TabPage
 		{
 			get { return _tab; }
 		}
 
-		public UserControl ConfigPage
+		public MetroUserControl ConfigPage
 		{
 			get { return null; }
 		}

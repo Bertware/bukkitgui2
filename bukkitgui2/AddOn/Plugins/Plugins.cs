@@ -8,6 +8,7 @@
 // ©Bertware, visit http://bertware.net
 
 using System.Windows.Forms;
+using MetroFramework.Controls;
 using Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Plugins
@@ -59,9 +60,9 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins
 		///     The tab control for this addon
 		/// </summary>
 		/// <returns>Returns the tabpage</returns>
-		public UserControl TabPage { get; private set; }
+		public MetroUserControl TabPage { get; private set; }
 
-		public UserControl ConfigPage { get; private set; }
+		public MetroUserControl ConfigPage { get; private set; }
 
 		public bool CanDisable
 		{

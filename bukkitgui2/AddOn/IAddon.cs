@@ -9,6 +9,7 @@
 
 using System;
 using System.Windows.Forms;
+using MetroFramework.Controls;
 
 namespace Net.Bertware.Bukkitgui2.AddOn
 {
@@ -43,13 +44,13 @@ namespace Net.Bertware.Bukkitgui2.AddOn
 		///     The tab control for this addon, if any
 		/// </summary>
 		/// <returns>Returns the tabpage</returns>
-		UserControl TabPage { get; }
+		MetroUserControl TabPage { get; }
 
 		/// <summary>
 		///     The config control for this addon, if any
 		/// </summary>
 		/// <returns>Returns the tabpage</returns>
-		UserControl ConfigPage { get; }
+		MetroUserControl ConfigPage { get; }
 	}
 
 	public enum RequiredAddon

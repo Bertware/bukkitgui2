@@ -8,6 +8,7 @@
 // ©Bertware, visit http://bertware.net
 
 using System.Windows.Forms;
+using MetroFramework.Controls;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Settings
 {
@@ -43,9 +44,9 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Settings
 		///     The tab control for this addon
 		/// </summary>
 		/// <returns>Returns the tabpage</returns>
-		public UserControl TabPage { get; private set; }
+		public MetroUserControl TabPage { get; private set; }
 
-		public UserControl ConfigPage { get; private set; }
+		public MetroUserControl ConfigPage { get; private set; }
 
 		/// <summary>
 		///     The addon name, ideally this name is the same as used in the tabpage

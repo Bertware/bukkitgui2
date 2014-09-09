@@ -9,6 +9,7 @@
 
 using System;
 using System.Windows.Forms;
+using MetroFramework.Controls;
 using Microsoft.VisualBasic;
 using Microsoft.VisualBasic.Devices;
 using Net.Bertware.Bukkitgui2.Core;
@@ -198,11 +199,11 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Notifications
 		}
 
 
-		public UserControl TabPage
+		public MetroUserControl TabPage
 		{
 			get { return null; }
 		}
 
-		public UserControl ConfigPage { get; private set; }
+		public MetroUserControl ConfigPage { get; private set; }
 	}
 }
