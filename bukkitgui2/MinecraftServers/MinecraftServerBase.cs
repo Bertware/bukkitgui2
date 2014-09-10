@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using Net.Bertware.Bukkitgui2.Core.Logging;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler.PlayerActions;
+using Net.Bertware.Bukkitgui2.Properties;
 
 namespace Net.Bertware.Bukkitgui2.MinecraftServers
 {
@@ -90,6 +91,20 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers
 		/// </summary>
 		public const string RG_EOL = "$";
 
+		public MinecraftServerBase()
+		{
+			this.Name = "Default server";
+			this.Site = "http://minecraft.net";
+			this.Logo = Resources.vanilla_logo;
+			this.SupportsPlugins = false;
+			this.IsLocal = true;
+
+			this.HasCustomAssembly = false;
+			this.CustomAssembly = null;
+			this.HasCustomSettingsControl = false;
+			this.CustomSettingsControl = null;
+		}
+
 		public string Name { get; protected set; }
 
 		public string Site { get; protected set; }
@@ -103,6 +118,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers
 
 		public virtual void PrepareLaunch()
 		{
+			// nothing to do
 		}
 
 		public bool HasCustomAssembly { get; protected set; }
@@ -275,6 +291,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers
 			text = Regex.Replace(text,
 				"(.*)Unable to instantiate org\\.fusesource\\.jansi\\.WindowsAnsiOutputStream(.*)", "");
 
+			if (text.Equals(">")) text = "";
 
 			// remove [minecraft] or [minecraft-server] tags, for better parsing
 			text = Regex.Replace(text, "\\[minecraft(-server|)\\]", "", RegexOptions.IgnoreCase);

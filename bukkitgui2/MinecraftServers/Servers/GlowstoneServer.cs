@@ -9,6 +9,7 @@
 
 using System.Diagnostics;
 using System.IO;
+using System.Text.RegularExpressions;
 using System.Threading;
 using Net.Bertware.Bukkitgui2.AddOn.Starter;
 using Net.Bertware.Bukkitgui2.Core.Logging;
@@ -20,6 +21,9 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers.Servers
 {
 	public class GlowstoneServer : MinecraftServerBase
 	{
+
+		// TODO: Fix issue with jline (glowstone doesn't support -nojline)
+
 		public GlowstoneServer()
 		{
 			Name = "Glowstone";
@@ -33,16 +37,22 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers.Servers
 			SupportsPlugins = true;
 		}
 
-
 		public override string GetLaunchFlags(string defaultFlags = "")
 		{
-			return "-nojline" + defaultFlags;
+			return defaultFlags;
+		}
+
+		public override string RemoveTimeStamp(string text)
+		{
+			//2014-01-01 00:00:00,000
+			text = Regex.Replace(text, "^\\d{2}:\\d{2}:\\d{2}(,\\d{3}|)\\s*", "");
+			text = text.Trim();
+			return text;
 		}
 
 		public override bool DownloadRecommendedVersion(string targetfile)
 		{
-			string source =
-				"http://ci.chrisgward.com/job/Glowstone/lastStableBuild/artifact/build/distributions/glowstone-0.0.1-SNAPSHOT.jar";
+			const string source = "http://ci.chrisgward.com/job/Glowstone/lastStableBuild/artifact/build/distributions/glowstone-0.0.1-SNAPSHOT.jar";
 			WebUtil.DownloadFile(source, targetfile, true, true);
 			return true;
 		}

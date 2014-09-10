@@ -48,6 +48,7 @@
     <Reference Include="Interop.NATUPNPLib">
       <HintPath>Resources\Dll\Interop.NATUPNPLib.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Jayrock.Json">
       <HintPath>Resources\Dll\Jayrock.Json.dll</HintPath>
