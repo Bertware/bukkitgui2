@@ -50,11 +50,15 @@ namespace Net.Bertware.Bukkitgui2.Core.Util
 
 				// For all files
 
-				for (i = 0; i <= filestozip.Length; i++)
+				for (i = 0; i < filestozip.Length; i++)
 				{
+					try
+					{
+
+					
 					// Open file and read
 					FileStream fs = File.OpenRead(filestozip[i]);
-					int mylength = Convert.ToInt16(fs.Length);
+					Int32 mylength =Convert.ToInt32(fs.Length);
 
 					// Tableau de byte, de la taille du fichier à lire
 					byte[] buffer = new byte[mylength + 1];
@@ -71,6 +75,11 @@ namespace Net.Bertware.Bukkitgui2.Core.Util
 
 					// Create in zip archive
 					zipStream.Write(buffer, 0, mylength);
+					}
+					catch (Exception ex)
+					{
+						Logger.Log(LogLevel.Severe, "Compression", "Error while compressing file " + (i+1) + " of " + filestozip.Length +" :" + filestozip[i] , ex.Message);
+					}
 				}
 
 				//Close stream
