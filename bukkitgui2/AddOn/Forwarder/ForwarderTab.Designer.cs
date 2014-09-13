@@ -45,6 +45,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Forwarder
 			this.ColIP = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.ColPort = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.ColProtocol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.btnRemove = new MetroFramework.Controls.MetroButton();
 			((System.ComponentModel.ISupportInitialize)(this.NumPort)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -56,7 +57,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Forwarder
 			this.CBProtocol.Items.AddRange(new object[] {
             "tcp",
             "udp"});
-			this.CBProtocol.Location = new System.Drawing.Point(517, 468);
+			this.CBProtocol.Location = new System.Drawing.Point(505, 468);
 			this.CBProtocol.Name = "CBProtocol";
 			this.CBProtocol.Size = new System.Drawing.Size(49, 29);
 			this.CBProtocol.TabIndex = 22;
@@ -105,7 +106,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Forwarder
 			// BtnAdd
 			// 
 			this.BtnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.BtnAdd.Location = new System.Drawing.Point(641, 474);
+			this.BtnAdd.Location = new System.Drawing.Point(560, 474);
 			this.BtnAdd.Name = "BtnAdd";
 			this.BtnAdd.Size = new System.Drawing.Size(75, 23);
 			this.BtnAdd.TabIndex = 16;
@@ -128,7 +129,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Forwarder
             0,
             0});
 			this.NumPort.Name = "NumPort";
-			this.NumPort.Size = new System.Drawing.Size(76, 20);
+			this.NumPort.Size = new System.Drawing.Size(64, 20);
 			this.NumPort.TabIndex = 15;
 			this.NumPort.Value = new decimal(new int[] {
             25565,
@@ -204,8 +205,20 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Forwarder
 			// 
 			this.ColProtocol.Text = "Protocol";
 			// 
+			// btnRemove
+			// 
+			this.btnRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.btnRemove.Location = new System.Drawing.Point(641, 474);
+			this.btnRemove.Name = "btnRemove";
+			this.btnRemove.Size = new System.Drawing.Size(75, 23);
+			this.btnRemove.TabIndex = 25;
+			this.btnRemove.Text = "Remove";
+			this.btnRemove.UseSelectable = true;
+			this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
+			// 
 			// ForwarderTab
 			// 
+			this.Controls.Add(this.btnRemove);
 			this.Controls.Add(this.slvPortMappings);
 			this.Controls.Add(this.CBProtocol);
 			this.Controls.Add(this.lblIp);
@@ -240,5 +253,6 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Forwarder
 		internal System.Windows.Forms.ColumnHeader ColPort;
 		internal System.Windows.Forms.ColumnHeader ColProtocol;
 		private Controls.SortableListView.SortableListView slvPortMappings;
+		internal MetroButton btnRemove;
 	}
 }

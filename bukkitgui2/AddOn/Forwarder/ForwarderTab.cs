@@ -16,7 +16,6 @@ using MetroFramework;
 using MetroFramework.Controls;
 using Microsoft.VisualBasic;
 using Net.Bertware.Bukkitgui2.Core;
-using Net.Bertware.Bukkitgui2.Core.Logging;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Forwarder
 {
@@ -25,27 +24,17 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Forwarder
 		public ForwarderTab()
 		{
 			InitializeComponent();
-			MappingUpdateReceived += Displaymapping;
-			PortForwardApplied += UpdateMappingAsync;
+			UPnP.MappingUpdateReceived += Displaymapping;
+			UPnP.PortForwardApplied += UpdateMappingAsync;
 			Load += PortForwarder_Load;
 		}
 
 		public IAddon ParentAddon { get; set; }
 
 
-		public event MappingUpdateReceivedEventHandler MappingUpdateReceived;
-
-		public delegate void MappingUpdateReceivedEventHandler(List<PortMappingEntry> mapping);
-
-		public event PortForwardAppliedEventHandler PortForwardApplied;
-
-		public delegate void PortForwardAppliedEventHandler();
-
-		public UPnP LastMapping;
-
 		private void PortForwarder_Load(object sender, EventArgs e)
 		{
-			if (!available())
+			if (!UPnP.UpnpEnabled)
 			{
 				MetroMessageBox.Show(Application.OpenForms[0],
 					Locale.Tr("Port forwarding isn't available") + Constants.vbCrLf +
@@ -70,7 +59,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Forwarder
 			{
 				BtnAdd.Enabled = false;
 				BtnRefresh.Enabled = false;
-				Thread t = new Thread((() => GetMaps()));
+				Thread t = new Thread((() => UPnP.GetMaps()));
 				t.Start();
 
 				// this.lblStatus.Text = "Loading info. This could take a while...";
@@ -96,7 +85,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Forwarder
 						entry.Protocol.ToString()
 					};
 					ListViewItem lvi = new ListViewItem(content
-						) {Tag = entry.Port};
+						) {Tag = entry};
 					slvPortMappings.Items.Add(lvi);
 				}
 				BtnAdd.Enabled = true;
@@ -111,9 +100,9 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Forwarder
 		{
 			UPnP.Protocol protocol;
 			if (CBProtocol.SelectedIndex == 1)
-				protocol = UPnP.Protocol.UDP;
+				protocol = UPnP.Protocol.Udp;
 			else
-				protocol = UPnP.Protocol.TCP;
+				protocol = UPnP.Protocol.Tcp;
 			if (!Regex.IsMatch(TxtIp.Text, "(\\d{1,3}\\.){3}\\d{1,3}"))
 			{
 				MetroMessageBox.Show(Application.OpenForms[0],
@@ -122,102 +111,14 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Forwarder
 				return;
 			}
 
-			Forward(TxtName.Text, Convert.ToInt16(NumPort.Value), TxtIp.Text, protocol);
+			UPnP.Forward(TxtName.Text, Convert.ToUInt32(NumPort.Value), TxtIp.Text, protocol);
 		}
 
-		private bool available()
+		private void btnRemove_Click(object sender, EventArgs e)
 		{
-			return new UPnP().UPnPEnabled;
-		}
-
-		private bool Forward(string name, int port, string ip, UPnP.Protocol protocol = UPnP.Protocol.TCP, bool @async = true)
-		{
-			try
-			{
-				Cursor = Cursors.WaitCursor;
-				// lblStatus.Text = "adding port forward...";
-				if (LastMapping == null)
-					LastMapping = new UPnP();
-				if (LastMapping.Exists(port, protocol))
-				{
-					MetroMessageBox.Show(Application.OpenForms[0], Locale.Tr("This port is aLocale.Tready forwarded"), Locale.Tr("Port aLocale.Tready in use"),
-						MessageBoxButtons.OK,
-						MessageBoxIcon.Error);
-					return false;
-					//aLocale.Tready in use
-				}
-				if (!@async)
-				{
-					LastMapping.Add(ip, port, protocol, name);
-				}
-				else
-				{
-					Thread t = new Thread((() => ApplyForward(new PortForwardInfo(name, port, ip, protocol))));
-					t.Start();
-				}
-				return true;
-			}
-			catch (Exception ex)
-			{
-				Logger.Log(LogLevel.Warning, "PortForwarder", "Couldn't forward ports", ex.InnerException.Message);
-				MessageBox.Show(
-					Locale.Tr("This port couldn't be forwarded. Something went wrong while communicating with your router"),
-					Locale.Tr("Can't forward"), MessageBoxButtons.OK, MessageBoxIcon.Error);
-				return false;
-			}
-		}
-
-		private bool Forward(string name, int portStart, int portEnd, string ip)
-		{
-			bool success = true;
-			int port = portStart;
-			while (port < portEnd)
-			{
-				success = success & Forward(name, port, ip);
-				port++;
-			}
-			return success;
-		}
-
-		private List<PortMappingEntry> GetMaps()
-		{
-			try
-			{
-				UPnP pnp = new UPnP();
-				LastMapping = pnp;
-
-				List<PortMappingEntry> mapping = pnp.GetMapping();
-				if (MappingUpdateReceived != null)
-				{
-					MappingUpdateReceived(mapping);
-				}
-				return mapping;
-			}
-			catch (Exception ex)
-			{
-				Logger.Log(LogLevel.Warning, "PortForwarder", "Error while loading mapping: " + ex.Message);
-				if (MappingUpdateReceived != null)
-				{
-					MappingUpdateReceived(new List<PortMappingEntry>());
-				}
-				return new List<PortMappingEntry>();
-			}
-		}
-
-		private void ApplyForward(PortForwardInfo fwi)
-		{
-			try
-			{
-				LastMapping.Add(fwi.Ip, fwi.Port, fwi.Protocol, fwi.Name);
-			}
-			catch (Exception ex)
-			{
-				Logger.Log(LogLevel.Warning, "PortForwarder", "Error while loading mapping: " + ex.Message);
-			}
-			if (PortForwardApplied != null)
-			{
-				PortForwardApplied();
-			}
+			if (slvPortMappings.SelectedItems.Count < 1) return;
+			PortMappingEntry entry = (PortMappingEntry) slvPortMappings.SelectedItems[0].Tag;
+			entry.RemoveFromMapping();
 		}
 	}
 }

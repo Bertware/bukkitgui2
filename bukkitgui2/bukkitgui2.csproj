@@ -118,7 +118,7 @@
     <Compile Include="AddOn\Console\EmulatorInput.Designer.cs">
       <DependentUpon>EmulatorInput.cs</DependentUpon>
     </Compile>
-    <Compile Include="AddOn\Forwarder\PortForwardInfo.cs" />
+    <Compile Include="AddOn\Forwarder\PortMappingEntry.cs" />
     <Compile Include="AddOn\Forwarder\Upnp.cs" />
     <Compile Include="AddOn\Issues\Issues.cs" />
     <Compile Include="AddOn\Issues\IssuesTab.cs">
