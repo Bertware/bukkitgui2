@@ -52,13 +52,13 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Forwarder
 			///     Transmission Control Protocol
 			/// </summary>
 			/// <remarks></remarks>
-			Tcp,
+			TCP,
 
 			/// <summary>
 			///     User Datagram Protocol
 			/// </summary>
 			/// <remarks></remarks>
-			Udp
+			UDP
 		}
 
 		/// <summary>
@@ -162,7 +162,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Forwarder
 		/// <remarks></remarks>
 		public void Add(PortMappingEntry entry)
 		{
-			Add(entry.Ip,entry.Port,entry.Protocol,entry.Name);
+			Add(entry.Ip, entry.Port, entry.Protocol, entry.Name);
 		}
 
 		/// <summary>
@@ -178,7 +178,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Forwarder
 		{
 			if (_lastInstance == null) _lastInstance = new UPnP();
 			// Begin utilizing
-			if (!_lastInstance. Exists(port, protocol))
+			if (!_lastInstance.Exists(port, protocol))
 				throw new ArgumentException("This mapping doesn't exist!", "Port;Protocol");
 
 			// Final check!
@@ -187,11 +187,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Forwarder
 
 			// Okay, continue on
 			_lastInstance._staticMapping.Remove(port, protocol.ToString());
-
-			if (MappingUpdateReceived != null)
-			{
-				MappingUpdateReceived(new List<PortMappingEntry>());
-			}
+			GetMaps(); //refresh
 		}
 
 		/// <summary>
@@ -329,7 +325,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Forwarder
 			return l;
 		}
 
-		public static bool Forward(string name, uint port, string ip, Protocol protocol = Protocol.Tcp, bool @async = true)
+		public static bool Forward(string name, uint port, string ip, Protocol protocol = Protocol.TCP, bool @async = true)
 		{
 			try
 			{

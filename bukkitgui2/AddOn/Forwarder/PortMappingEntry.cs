@@ -37,9 +37,9 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Forwarder
 				Ip = ip;
 				Name = name;
 				if (protocol.ToLower().Contains("udp"))
-					Protocol = UPnP.Protocol.Udp;
+					Protocol = UPnP.Protocol.UDP;
 				else
-					Protocol = UPnP.Protocol.Tcp;
+					Protocol = UPnP.Protocol.TCP;
 			}
 			catch (Exception)
 			{

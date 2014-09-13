@@ -100,9 +100,9 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Forwarder
 		{
 			UPnP.Protocol protocol;
 			if (CBProtocol.SelectedIndex == 1)
-				protocol = UPnP.Protocol.Udp;
+				protocol = UPnP.Protocol.UDP;
 			else
-				protocol = UPnP.Protocol.Tcp;
+				protocol = UPnP.Protocol.TCP;
 			if (!Regex.IsMatch(TxtIp.Text, "(\\d{1,3}\\.){3}\\d{1,3}"))
 			{
 				MetroMessageBox.Show(Application.OpenForms[0],
