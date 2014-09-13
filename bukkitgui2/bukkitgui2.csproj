@@ -210,6 +210,7 @@
       <DependentUpon>Credits.cs</DependentUpon>
     </Compile>
     <Compile Include="AddOn\Starter\JavaApi.cs" />
+    <Compile Include="AddOn\Tasker\Action\BackupAction.cs" />
     <Compile Include="AddOn\Tasker\Action\ConsoleCommandAction.cs" />
     <Compile Include="AddOn\Tasker\Action\ConsoleClearAction.cs" />
     <Compile Include="AddOn\Tasker\Action\ExitGuiAction.cs" />
