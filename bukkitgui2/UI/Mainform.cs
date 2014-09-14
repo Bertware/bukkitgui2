@@ -190,8 +190,7 @@ namespace Net.Bertware.Bukkitgui2.UI
 					AddonManager.TabsDictionary.OrderBy(i => GetTabDisplayId(i.Key.Name)))
 			{
 				// Create a new tabpage. We'll dock the control to fill the tabpage
-				TabPage tp = new TabPage(pair.Key.Name);
-
+				TabPage tp = new TabPage(pair.Key.Name) {Name = pair.Key.Name};
 				// Add and dock the control
 				tp.Controls.Add(pair.Value);
 				tp.Controls[0].Dock = DockStyle.Fill;
@@ -272,6 +271,18 @@ namespace Net.Bertware.Bukkitgui2.UI
 			else
 			{
 				Starter.RestartServer(); // Launch with tab settings
+			}
+		}
+
+		/// <summary>
+		///     Go to a certain tabpage
+		/// </summary>
+		/// <param name="name">The name of the tab to go to. Case insensitive.</param>
+		public void GoToTab(string name)
+		{
+			foreach (TabPage tab in TabCtrlAddons.TabPages)
+			{
+				if (tab.Text.ToLower().Equals(name)) TabCtrlAddons.SelectTab(tab);
 			}
 		}
 

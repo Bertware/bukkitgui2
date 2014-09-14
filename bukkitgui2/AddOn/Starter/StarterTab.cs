@@ -22,6 +22,7 @@ using Net.Bertware.Bukkitgui2.Core.Logging;
 using Net.Bertware.Bukkitgui2.Core.Util.Performance;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler;
 using Net.Bertware.Bukkitgui2.MinecraftServers;
+using Net.Bertware.Bukkitgui2.UI;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 {
@@ -546,6 +547,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 		private void BtnLaunch_Click(object sender, EventArgs e)
 		{
 			DoServerLaunch();
+			MainForm.Reference.GoToTab("console");
 		}
 
 		/// <summary>
