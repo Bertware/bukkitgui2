@@ -76,7 +76,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Editor
 			this.tabSettings.Name = "tabSettings";
 			this.tabSettings.Size = new System.Drawing.Size(792, 458);
 			this.tabSettings.TabIndex = 0;
-			this.tabSettings.Text = Locale.Tr("Server Settings");
+			this.tabSettings.Text = "Server Settings";
 			// 
 			// serverSettingsControl
 			// 
@@ -94,7 +94,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Editor
 			this.tabWhitelist.Name = "tabWhitelist";
 			this.tabWhitelist.Size = new System.Drawing.Size(792, 458);
 			this.tabWhitelist.TabIndex = 2;
-			this.tabWhitelist.Text = Locale.Tr("Whitelist");
+			this.tabWhitelist.Text = "Whitelist";
 			// 
 			// whitelistControl
 			// 
@@ -109,11 +109,11 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Editor
 			// tabOplist
 			// 
 			this.tabOplist.Controls.Add(this.opListControl);
-			this.tabOplist.Location = new System.Drawing.Point(4, 35);
+			this.tabOplist.Location = new System.Drawing.Point(4, 38);
 			this.tabOplist.Name = "tabOplist";
-			this.tabOplist.Size = new System.Drawing.Size(792, 461);
+			this.tabOplist.Size = new System.Drawing.Size(792, 458);
 			this.tabOplist.TabIndex = 5;
-			this.tabOplist.Text = Locale.Tr("Operators");
+			this.tabOplist.Text = "Operators";
 			// 
 			// opListControl
 			// 
@@ -122,17 +122,17 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Editor
 			this.opListControl.Location = new System.Drawing.Point(0, 0);
 			this.opListControl.Name = "opListControl";
 			this.opListControl.ParentAddon = null;
-			this.opListControl.Size = new System.Drawing.Size(792, 461);
+			this.opListControl.Size = new System.Drawing.Size(792, 458);
 			this.opListControl.TabIndex = 1;
 			// 
 			// tabBanlist
 			// 
 			this.tabBanlist.Controls.Add(this.banListControl);
-			this.tabBanlist.Location = new System.Drawing.Point(4, 35);
+			this.tabBanlist.Location = new System.Drawing.Point(4, 38);
 			this.tabBanlist.Name = "tabBanlist";
-			this.tabBanlist.Size = new System.Drawing.Size(792, 461);
+			this.tabBanlist.Size = new System.Drawing.Size(792, 458);
 			this.tabBanlist.TabIndex = 3;
-			this.tabBanlist.Text = Locale.Tr("Banlist");
+			this.tabBanlist.Text = "Banned players";
 			// 
 			// banListControl
 			// 
@@ -141,18 +141,18 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Editor
 			this.banListControl.Location = new System.Drawing.Point(0, 0);
 			this.banListControl.Name = "banListControl";
 			this.banListControl.ParentAddon = null;
-			this.banListControl.Size = new System.Drawing.Size(792, 461);
+			this.banListControl.Size = new System.Drawing.Size(792, 458);
 			this.banListControl.TabIndex = 1;
 			this.banListControl.UseSelectable = true;
 			// 
 			// tabIpbanList
 			// 
 			this.tabIpbanList.Controls.Add(this.ipBanListControl);
-			this.tabIpbanList.Location = new System.Drawing.Point(4, 35);
+			this.tabIpbanList.Location = new System.Drawing.Point(4, 38);
 			this.tabIpbanList.Name = "tabIpbanList";
-			this.tabIpbanList.Size = new System.Drawing.Size(792, 461);
+			this.tabIpbanList.Size = new System.Drawing.Size(792, 458);
 			this.tabIpbanList.TabIndex = 4;
-			this.tabIpbanList.Text = Locale.Tr("Ipbanlist");
+			this.tabIpbanList.Text = "Banned Ip\'s";
 			// 
 			// ipBanListControl
 			// 
@@ -161,17 +161,17 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Editor
 			this.ipBanListControl.Location = new System.Drawing.Point(0, 0);
 			this.ipBanListControl.Name = "ipBanListControl";
 			this.ipBanListControl.ParentAddon = null;
-			this.ipBanListControl.Size = new System.Drawing.Size(792, 461);
+			this.ipBanListControl.Size = new System.Drawing.Size(792, 458);
 			this.ipBanListControl.TabIndex = 1;
 			this.ipBanListControl.UseSelectable = true;
 			// 
 			// tabEditor
 			// 
-			this.tabEditor.Location = new System.Drawing.Point(4, 35);
+			this.tabEditor.Location = new System.Drawing.Point(4, 38);
 			this.tabEditor.Name = "tabEditor";
-			this.tabEditor.Size = new System.Drawing.Size(792, 461);
+			this.tabEditor.Size = new System.Drawing.Size(792, 458);
 			this.tabEditor.TabIndex = 1;
-			this.tabEditor.Text = Locale.Tr("Config Editor");
+			this.tabEditor.Text = "Config Editor";
 			// 
 			// EditorTab
 			// 
