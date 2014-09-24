@@ -306,7 +306,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Forwarder
 			List<PortMappingEntry> l = new List<PortMappingEntry>();
 
 			// Loop through all the data after a check
-			if (!_lastInstance._staticEnabled) return l;
+			if (!_lastInstance._staticEnabled || _lastInstance._staticMapping == null) return l;
 
 			foreach (IStaticPortMapping mapping in _lastInstance._staticMapping)
 			{

@@ -84,9 +84,18 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 
 		private void GetDetails(object obj)
 		{
+		    try
+		    {
+		        
+		    
 			GetMinotar();
 			GetLocation();
 			OnDetailsLoaded();
+            }
+            catch (Exception exception)
+            {
+                Logger.Log(LogLevel.Severe, "Player", "Failed to get details for player: " + Name, exception.Message);
+            }
 		}
 
 		/// <summary>

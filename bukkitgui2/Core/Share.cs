@@ -60,6 +60,16 @@ namespace Net.Bertware.Bukkitgui2.Core
 		/// </summary>
 		public static readonly string AssemblyLocation = new FileInfo(AssemblyFullName).DirectoryName + "\\";
 
+
+	    public static bool Is64Bit
+	    {
+	        get
+	        {
+	            return (8 == IntPtr.Size
+	                    || (!String.IsNullOrEmpty(Environment.GetEnvironmentVariable("PROCESSOR_ARCHITEW6432"))));
+
+	        }
+	    }
 		public static void Initialize()
 		{
 			Fl.Initialize();
