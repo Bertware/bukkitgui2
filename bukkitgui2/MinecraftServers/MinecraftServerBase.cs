@@ -84,7 +84,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers
 		/// <summary>
 		///     Stacktrace, like "at net.minecraft.server ...
 		/// </summary>
-		public const string RG_STACKTRACE = "at (\\w+\\.){1,}(\\w|\\d|<){1,}(\\(|:|\\.|<|>)";
+		public const string RG_STACKTRACE = "(at |java\\.)(\\w+\\.){1,}(\\w|\\d|<){1,}(\\(|:|\\.|<|>)";
 
 		/// <summary>
 		///     End of line
