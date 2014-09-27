@@ -51,8 +51,19 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Forwarder
 
 		private void UpdateMappingAsync()
 		{
-			Thread t = new Thread((() => UPnP.GetMapping())) {Name = "UPnP_UpdateMappingAsync"};
-			t.Start();
+			if (InvokeRequired)
+			{
+				Invoke((MethodInvoker) (UpdateMappingAsync));
+			}
+			else
+			{
+				BtnAdd.Enabled = false;
+				BtnRefresh.Enabled = false;
+				Thread t = new Thread((UPnP.GetMapping)) {Name = "UPnP_UpdateMappingAsync"};
+				t.Start();
+
+				// this.lblStatus.Text = "Loading info. This could take a while...";
+			}
 		}
 
 		private void Displaymapping(List<PortMappingEntry> mapping)
