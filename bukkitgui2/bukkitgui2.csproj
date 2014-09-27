@@ -90,7 +90,7 @@
     <Compile Include="AddOn\Backup\BackupDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddOn\Backup\BackupDialog.Designer.cs">
+    <Compile Include="AddOn\Backup\BackupDialog.designer.cs">
       <DependentUpon>BackupDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="AddOn\Backup\BackupTab.cs">

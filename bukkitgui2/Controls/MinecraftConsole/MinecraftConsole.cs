@@ -8,6 +8,7 @@
 // ©Bertware, visit http://bertware.net
 
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler;
@@ -69,6 +70,8 @@ namespace Net.Bertware.Bukkitgui2.Controls.MinecraftConsole
 		/// </summary>
 		public Boolean Autoscroll { get; set; }
 
+		private Dictionary<MessageType, Color> _colorCache; 
+
 		public MinecraftConsole()
 		{
 			MessageColorInfo = Color.Blue;
@@ -77,6 +80,39 @@ namespace Net.Bertware.Bukkitgui2.Controls.MinecraftConsole
 			MessageColorWarning = Color.DarkOrange;
 			CreateContextMenu();
 			Autoscroll = true;
+
+			string[] names = Enum.GetNames(typeof (MessageType));
+			
+			_colorCache = new Dictionary<MessageType, Color>();
+			foreach (string name in names)
+			{
+				MessageType t = (MessageType) Enum.Parse(typeof (MessageType), name);
+				switch (t)
+				{
+					case MessageType.Info:
+						_colorCache.Add(t,MessageColorInfo);
+						break;
+					case MessageType.JavaStatus:
+					case MessageType.Warning:
+						_colorCache.Add(t,MessageColorWarning);
+						break;
+					case MessageType.Severe:
+					case MessageType.JavaStackTrace:
+						_colorCache.Add(t,MessageColorSevere);
+						break;
+					case MessageType.PlayerJoin:
+					case MessageType.PlayerLeave:
+					case MessageType.PlayerKick:
+					case MessageType.PlayerBan:
+					case MessageType.PlayerIpBan:
+						_colorCache.Add(t,MessageColorPlayerAction);
+						break;
+					default:
+						_colorCache.Add(t,MessageColorUnknown);
+						break;
+				}
+			}
+
 		}
 
 		public void ScrollDown()
@@ -99,29 +135,7 @@ namespace Net.Bertware.Bukkitgui2.Controls.MinecraftConsole
 			}
 			else
 			{
-				Color messageColor = MessageColorUnknown;
-				switch (type)
-				{
-					case MessageType.Info:
-						messageColor = MessageColorInfo;
-						break;
-					case MessageType.JavaStatus:
-					case MessageType.Warning:
-						messageColor = MessageColorWarning;
-						break;
-					case MessageType.Severe:
-					case MessageType.JavaStackTrace:
-
-						messageColor = MessageColorSevere;
-						break;
-					case MessageType.PlayerJoin:
-					case MessageType.PlayerLeave:
-					case MessageType.PlayerKick:
-					case MessageType.PlayerBan:
-					case MessageType.PlayerIpBan:
-						messageColor = MessageColorPlayerAction;
-						break;
-				}
+				Color messageColor = _colorCache[type];
 
 				text = AddTimeStamp(text);
 

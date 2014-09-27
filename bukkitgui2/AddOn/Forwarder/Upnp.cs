@@ -26,13 +26,12 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Forwarder
 		// TODO: clean this mess up
 
 		private readonly UPnPNAT _upnpnat;
-		private IStaticPortMappingCollection _staticMapping;
+		private static UPnP _lastInstance;
 
-		private IDynamicPortMappingCollection _dynamicMapping;
+		private IStaticPortMappingCollection _staticMapping;
+		
 		private bool _staticEnabled = true;
 
-		private bool _dynamicEnabled = true;
-		private static UPnP _lastInstance;
 
 		public static event MappingUpdateReceivedEventHandler MappingUpdateReceived;
 
@@ -72,7 +71,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Forwarder
 			get
 			{
 				if (_lastInstance == null) _lastInstance = new UPnP();
-				return _lastInstance._staticEnabled || _lastInstance._dynamicEnabled;
+				return _lastInstance._staticEnabled;
 			}
 		}
 
@@ -88,7 +87,6 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Forwarder
 
 			//generate the static mappings
 			GetStaticMappings();
-			GetDynamicMappings();
 		}
 
 		/// <summary>
@@ -101,27 +99,13 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Forwarder
 			{
 				_staticMapping = _upnpnat.StaticPortMappingCollection;
 			}
-			catch (NotImplementedException)
+			catch (Exception)
 			{
 				_staticEnabled = false;
 			}
 		}
 
-		/// <summary>
-		///     Returns all dynamic port mappings
-		/// </summary>
-		/// <remarks></remarks>
-		private void GetDynamicMappings()
-		{
-			try
-			{
-				_dynamicMapping = _upnpnat.DynamicPortMappingCollection;
-			}
-			catch (NotImplementedException)
-			{
-				_dynamicEnabled = false;
-			}
-		}
+		
 
 		/// <summary>
 		///     Adds a port mapping to the UPnP enabled device.
@@ -177,17 +161,18 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Forwarder
 		public static void Remove(int port, Protocol protocol)
 		{
 			if (_lastInstance == null) _lastInstance = new UPnP();
+		
+	
+			if (!UpnpEnabled)
+				throw new ApplicationException("UPnP is not enabled, or there was an error with UPnP Initialization.");
+
 			// Begin utilizing
 			if (!_lastInstance.Exists(port, protocol))
 				throw new ArgumentException("This mapping doesn't exist!", "Port;Protocol");
 
-			// Final check!
-			if (!_lastInstance._staticEnabled)
-				throw new ApplicationException("UPnP is not enabled, or there was an error with UPnP Initialization.");
-
 			// Okay, continue on
 			_lastInstance._staticMapping.Remove(port, protocol.ToString());
-			GetMaps(); //refresh
+			GetMapping(); //refresh
 		}
 
 		/// <summary>
@@ -279,7 +264,6 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Forwarder
 		protected virtual void Dispose(bool disposing)
 		{
 			Marshal.ReleaseComObject(_staticMapping);
-			Marshal.ReleaseComObject(_dynamicMapping);
 			Marshal.ReleaseComObject(_upnpnat);
 		}
 
@@ -298,7 +282,13 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Forwarder
 		/// </summary>
 		/// <returns></returns>
 		/// <remarks></remarks>
-		public static List<PortMappingEntry> GetMapping()
+		public static void GetMapping()
+		{
+			Thread t = new Thread(GetMappingJob) {Name = "UPnP_GetMappingJob"};
+			t.Start();
+		}
+
+		private static void GetMappingJob()
 		{
 			if (_lastInstance == null) _lastInstance = new UPnP();
 
@@ -306,7 +296,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Forwarder
 			List<PortMappingEntry> l = new List<PortMappingEntry>();
 
 			// Loop through all the data after a check
-			if (!_lastInstance._staticEnabled || _lastInstance._staticMapping == null) return l;
+			if (!UpnpEnabled) return;
 
 			foreach (IStaticPortMapping mapping in _lastInstance._staticMapping)
 			{
@@ -321,8 +311,13 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Forwarder
 				}
 			}
 
-			// Give it back
-			return l;
+			MappingUpdateReceivedEventHandler handler = MappingUpdateReceived;
+			if (handler != null)
+			{
+				handler.Invoke(l);
+			}
+
+			// No return value, use the event to get the list!
 		}
 
 		public static bool Forward(string name, uint port, string ip, Protocol protocol = Protocol.TCP, bool @async = true)
@@ -347,7 +342,10 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Forwarder
 				}
 				else
 				{
-					Thread t = new Thread((() => ApplyForward(new PortMappingEntry(port, ip, name, protocol))));
+					Thread t = new Thread((() => Forward(new PortMappingEntry(port, ip, name, protocol))))
+					{
+						Name = "Foward_" + port
+					};
 					t.Start();
 				}
 				return true;
@@ -362,43 +360,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Forwarder
 			}
 		}
 
-		public static bool Forward(string name, uint portStart, uint portEnd, string ip)
-		{
-			bool success = true;
-			uint port = portStart;
-			while (port < portEnd)
-			{
-				success = success & Forward(name, port, ip);
-				port++;
-			}
-			return success;
-		}
-
-		public static List<PortMappingEntry> GetMaps()
-		{
-			try
-			{
-				if (_lastInstance == null) _lastInstance = new UPnP();
-
-				List<PortMappingEntry> mapping = GetMapping();
-				if (MappingUpdateReceived != null)
-				{
-					MappingUpdateReceived(mapping);
-				}
-				return mapping;
-			}
-			catch (Exception ex)
-			{
-				Logger.Log(LogLevel.Warning, "PortForwarder", "Error while loading mapping: " + ex.Message);
-				if (MappingUpdateReceived != null)
-				{
-					MappingUpdateReceived(new List<PortMappingEntry>());
-				}
-				return new List<PortMappingEntry>();
-			}
-		}
-
-		public static void ApplyForward(PortMappingEntry fwi)
+		public static void Forward(PortMappingEntry fwi)
 		{
 			try
 			{
@@ -413,5 +375,6 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Forwarder
 				PortForwardApplied();
 			}
 		}
+
 	}
 }

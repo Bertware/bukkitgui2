@@ -49,7 +49,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Forwarder
 
 		public void AddToMapping()
 		{
-			UPnP.ApplyForward(this);	
+			UPnP.Forward(this);	
 		}
 
 		public void RemoveFromMapping()

@@ -19,7 +19,7 @@ namespace Net.Bertware.Bukkitgui2
 		/// <summary>
 		///     The main entry point for the application.
 		/// </summary>
-		[STAThread]
+		[MTAThread]
 		private static void Main(string[] argStrings)
 		{
 			// Load embedded DLLs

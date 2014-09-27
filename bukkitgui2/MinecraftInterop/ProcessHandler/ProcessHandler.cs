@@ -278,7 +278,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler
 						RedirectStandardOutput = true,
 						RedirectStandardError = true
 					},
-				EnableRaisingEvents = true
+				EnableRaisingEvents = true,
 			};
 			ServerProcess.Start();
 			ServerProcess.Exited += HandleStop;
@@ -311,12 +311,14 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler
 		/// </summary>
 		private static void StartThreads()
 		{
-			_thdReadStdOut = new Thread(ReadStdOut) {IsBackground = true, Name = "_thdReadStdOut"};
-			_thdReadStdErr = new Thread(ReadStdErr) {IsBackground = true, Name = "_thdReadStdOut"};
+			_thdReadStdOut = new Thread(ReadStdOut) { IsBackground = true, Name = "_thdReadStdOut" };
+			_thdReadStdErr = new Thread(ReadStdErr) { IsBackground = true, Name = "_thdReadStdOut" };
 			_runThreads = true;
 			_thdReadStdOut.Start();
 			_thdReadStdErr.Start();
 		}
+
+	
 
 		/// <summary>
 		///     Stop the output reading threads

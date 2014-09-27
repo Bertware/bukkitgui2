@@ -164,6 +164,8 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers
 
 		public string ParseMessage(string text)
 		{
+			if (string.IsNullOrEmpty(text)) return text;
+
 			Logger.Log(LogLevel.Debug, "MinecraftServerBase", "Parsing message for \"" + text + "\"");
 			text = RemoveTimeStamp(text); // We need to know the type, so we'll continue without the timestamp
 			Logger.Log(LogLevel.Debug, "MinecraftServerBase", "Removed timestamp: \"" + text + "\"");
@@ -174,6 +176,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers
 
 		public virtual MessageType ParseMessageType(string text)
 		{
+			if (string.IsNullOrEmpty(text)) return MessageType.Unknown;
 			MessageType type = MessageType.Unknown;
 
 			//[WARNING]...
@@ -275,6 +278,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers
 
 		public virtual string RemoveTimeStamp(string text)
 		{
+			if (string.IsNullOrEmpty(text)) return text;
 			//2014-01-01 00:00:00,000
 			text = Regex.Replace(text, "\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}(,\\d{3}|)\\s*", "");
 			//[11:36:21]
@@ -287,6 +291,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers
 
 		public virtual string FilterText(string text)
 		{
+			if (string.IsNullOrEmpty(text)) return text;
 			// fix harmless warning, users question this warning.
 			text = Regex.Replace(text,
 				"(.*)Unable to instantiate org\\.fusesource\\.jansi\\.WindowsAnsiOutputStream(.*)", "");
