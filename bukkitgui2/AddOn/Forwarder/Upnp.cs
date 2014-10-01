@@ -289,34 +289,42 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Forwarder
 
         private static void GetMappingJob()
         {
-            if (_lastInstance == null) _lastInstance = new UPnP();
-
-            // Return list
-            List<PortMappingEntry> l = new List<PortMappingEntry>();
-
-            // Loop through all the data after a check
-            if (!UpnpEnabled || !_lastInstance._staticEnabled || _lastInstance._staticMapping == null) return;
-
-            foreach (IStaticPortMapping mapping in _lastInstance._staticMapping)
+            try
             {
-                try
+
+                if (_lastInstance == null) _lastInstance = new UPnP();
+
+                // Return list
+                List<PortMappingEntry> l = new List<PortMappingEntry>();
+
+                // Loop through all the data after a check
+                if (!UpnpEnabled || !_lastInstance._staticEnabled || _lastInstance._staticMapping == null) return;
+
+                foreach (IStaticPortMapping mapping in _lastInstance._staticMapping)
                 {
-                    l.Add(new PortMappingEntry(Convert.ToUInt32(mapping.InternalPort), mapping.InternalClient,
-                        mapping.Description,
-                        mapping.Protocol));
+                    try
+                    {
+                        l.Add(new PortMappingEntry(Convert.ToUInt32(mapping.InternalPort), mapping.InternalClient,
+                            mapping.Description,
+                            mapping.Protocol));
+                    }
+                    catch (Exception ex)
+                    {
+                        Logger.Log(LogLevel.Warning, "uPnP", "Couldn't load mapping: " + ex.Message);
+                    }
                 }
-                catch (Exception ex)
+
+                MappingUpdateReceivedEventHandler handler = MappingUpdateReceived;
+                if (handler != null)
                 {
-                    Logger.Log(LogLevel.Warning, "uPnP", "Couldn't load mapping: " + ex.Message);
+                    handler.Invoke(l);
                 }
             }
-
-            MappingUpdateReceivedEventHandler handler = MappingUpdateReceived;
-            if (handler != null)
+            catch (Exception exception)
             {
-                handler.Invoke(l);
+                Logger.Log(LogLevel.Warning, "UPnP", "Couldn't get upnp mapping! Probably UPnP is disabled" ,exception.Message);
+                if (_lastInstance != null) _lastInstance._staticEnabled = false; // remember that upnp is disabled
             }
-
             // No return value, use the event to get the list!
         }
 
