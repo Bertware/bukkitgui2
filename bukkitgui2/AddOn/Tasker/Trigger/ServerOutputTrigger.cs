@@ -11,69 +11,69 @@ using Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Trigger
 {
-	internal class ServerOutputTrigger : ITrigger
-	{
-		public ServerOutputTrigger()
-		{
-			Name = "Server output";
-			Description = "Execute a task when the server output contains the parameter text";
-			ParameterDescription = "the text which the server output should contain. Case insensitive.";
-		}
+    internal class ServerOutputTrigger : ITrigger
+    {
+        public ServerOutputTrigger()
+        {
+            Name = "Server output";
+            Description = "Execute a task when the server output contains the parameter text";
+            ParameterDescription = "the text which the server output should contain. Case insensitive.";
+        }
 
-		public event TaskerEventArgs TaskerTriggerFired;
+        public event TaskerEventArgs TaskerTriggerFired;
 
-		protected virtual void OnTaskerTriggerFired()
-		{
-			TaskerEventArgs handler = TaskerTriggerFired;
-			if (handler != null) handler();
-		}
+        protected virtual void OnTaskerTriggerFired()
+        {
+            TaskerEventArgs handler = TaskerTriggerFired;
+            if (handler != null) handler();
+        }
 
 
-		public string Name { get; protected set; }
+        public string Name { get; protected set; }
 
-		public string Description { get; protected set; }
+        public string Description { get; protected set; }
 
-		public string ParameterDescription { get; protected set; }
+        public string ParameterDescription { get; protected set; }
 
-		public bool ValidateInput(string inputText)
-		{
-			// any text
-			return true;
-		}
+        public bool ValidateInput(string inputText)
+        {
+            // any text
+            return true;
+        }
 
-		public void Load(string parameters)
-		{
-			if (Enabled)
-			{
-				Disable();
-				Load(parameters);
-				Enable();
-			}
-			else
-			{
-				Parameters = parameters;
-			}
-		}
+        public void Load(string parameters)
+        {
+            if (Enabled)
+            {
+                Disable();
+                Load(parameters);
+                Enable();
+            }
+            else
+            {
+                Parameters = parameters;
+            }
+        }
 
-		public string Parameters { get; set; }
+        public string Parameters { get; set; }
 
-		public bool Enabled { get; protected set; }
+        public bool Enabled { get; protected set; }
 
-		public void Enable()
-		{
-			MinecraftOutputHandler.OutputParsed += OnOutputReceived;
-			Enabled = true;
-		}
+        public void Enable()
+        {
+            MinecraftOutputHandler.OutputParsed += OnOutputReceived;
+            Enabled = true;
+        }
 
-		public void Disable()
-		{
-			MinecraftOutputHandler.OutputParsed -= OnOutputReceived;
-			Enabled = false;
-		}
+        public void Disable()
+        {
+            MinecraftOutputHandler.OutputParsed -= OnOutputReceived;
+            Enabled = false;
+        }
 
-		private void OnOutputReceived(string s, OutputParseResult result)
-		{
-			if (result.Message.ToLower().Contains(result.Message.ToLower())) OnTaskerTriggerFired();
-		}
-	}
+        private void OnOutputReceived(string s, OutputParseResult result)
+        {
+            if (result.Message.ToLower().Contains(result.Message.ToLower())) OnTaskerTriggerFired();
+        }
+    }
 }

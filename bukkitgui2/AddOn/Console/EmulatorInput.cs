@@ -16,25 +16,26 @@ using MetroMessageBox = MetroFramework.MetroMessageBox;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Console
 {
-	public partial class EmulatorInput : MetroForm
-	{
-		public EmulatorInput()
-		{
-			InitializeComponent();
-		}
+    public partial class EmulatorInput : MetroForm
+    {
+        public EmulatorInput()
+        {
+            InitializeComponent();
+        }
 
-		private void btnEmulate_Click(object sender, EventArgs e)
-		{
-			if (!ProcessHandler.IsRunning)
-			{
-				MetroMessageBox.Show(this, "The server has to be running in order to emulate output!", "Server not running",
-					MessageBoxButtons.OK, MessageBoxIcon.Warning);
-				return;
-			}
-			foreach (string line in txtLog.Text.Split(Environment.NewLine.ToCharArray()[0]))
-			{
-				MinecraftOutputHandler.HandleOutput(ProcessHandler.Server, line);
-			}
-		}
-	}
+        private void btnEmulate_Click(object sender, EventArgs e)
+        {
+            if (!ProcessHandler.IsRunning)
+            {
+                MetroMessageBox.Show(this, "The server has to be running in order to emulate output!",
+                    "Server not running",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            foreach (string line in txtLog.Text.Split(Environment.NewLine.ToCharArray()[0]))
+            {
+                MinecraftOutputHandler.HandleOutput(ProcessHandler.Server, line);
+            }
+        }
+    }
 }

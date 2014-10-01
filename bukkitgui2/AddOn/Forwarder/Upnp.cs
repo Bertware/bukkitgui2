@@ -23,7 +23,6 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Forwarder
 {
     public class UPnP : IDisposable
     {
-
         private readonly UPnPNAT _upnpnat;
         private static UPnP _lastInstance;
 

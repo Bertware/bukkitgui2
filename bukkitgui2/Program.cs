@@ -14,60 +14,72 @@ using System.Windows.Forms;
 
 namespace Net.Bertware.Bukkitgui2
 {
-	internal static class Program
-	{
-		/// <summary>
-		///     The main entry point for the application.
-		/// </summary>
-		[MTAThread]
-		private static void Main(string[] argStrings)
-		{
-			// Load embedded DLLs
-			AppDomain.CurrentDomain.AssemblyResolve += LoadDll;
+    internal static class Program
+    {
+        /// <summary>
+        ///     The main entry point for the application.
+        /// </summary>
+        [MTAThread]
+        private static void Main(string[] argStrings)
+        {
+            // Load embedded DLLs
+            AppDomain.CurrentDomain.AssemblyResolve += LoadDll;
 
-			// Load app
-			Application.EnableVisualStyles();
-			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new UiLauncher());
-		}
+            // Load app
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
 
-		public static Assembly LoadDll(object sender, ResolveEventArgs args)
-		{
-			//Load embedded DLLs
+            try
+            {
+                Application.Run(new UiLauncher());
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show("The application encountered an unexpected error!" + Environment.NewLine +
+                                "Please contact the developer with following information:" + Environment.NewLine +
+                                "Exception: " + exception.Message + Environment.NewLine +
+                                "Details:" + exception.StackTrace,
+                    "Unexpected error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
-			String resourceName = "Net.Bertware.Bukkitgui2.Resources.Dll." + new AssemblyName(args.Name).Name + ".dll";
+        public static Assembly LoadDll(object sender, ResolveEventArgs args)
+        {
+            //Load embedded DLLs
 
-			using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName))
-			{
-				if (stream == null || stream.Length < 1)
-				{
-					return null;
-				}
-				Byte[] assemblyData = new Byte[stream.Length];
-				stream.Read(assemblyData, 0, assemblyData.Length);
+            String resourceName = "Net.Bertware.Bukkitgui2.Resources.Dll." + new AssemblyName(args.Name).Name + ".dll";
 
-				return Assembly.Load(assemblyData);
-			}
-		}
+            using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName))
+            {
+                if (stream == null || stream.Length < 1)
+                {
+                    return null;
+                }
+                Byte[] assemblyData = new Byte[stream.Length];
+                stream.Read(assemblyData, 0, assemblyData.Length);
 
-		internal static void ExtractDll(string name)
-		{
-			String resourceName = "Net.Bertware.Bukkitgui2.Resources.Dll." + name + ".dll";
+                return Assembly.Load(assemblyData);
+            }
+        }
 
-			using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName))
-			{
-				if (stream == null || stream.Length < 1)
-				{
-					return;
-				}
-				Byte[] assemblyData = new Byte[stream.Length];
-				stream.Read(assemblyData, 0, assemblyData.Length);
+        internal static void ExtractDll(string name)
+        {
+            String resourceName = "Net.Bertware.Bukkitgui2.Resources.Dll." + name + ".dll";
 
-				using (FileStream fs = File.Create(name + ".dll"))
-				{
-					fs.Write(assemblyData, 0, assemblyData.Length);
-				}
-			}
-		}
-	}
+            using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName))
+            {
+                if (stream == null || stream.Length < 1)
+                {
+                    return;
+                }
+                Byte[] assemblyData = new Byte[stream.Length];
+                stream.Read(assemblyData, 0, assemblyData.Length);
+
+                using (FileStream fs = File.Create(name + ".dll"))
+                {
+                    fs.Write(assemblyData, 0, assemblyData.Length);
+                }
+            }
+        }
+    }
 }

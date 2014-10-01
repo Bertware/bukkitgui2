@@ -13,52 +13,52 @@ using System.Windows.Forms;
 
 namespace Net.Bertware.Bukkitgui2.Controls.ColorPicker
 {
-	public partial class ColorPicker : UserControl
-	{
-		public ColorPicker()
-		{
-			InitializeComponent();
-		}
+    public partial class ColorPicker : UserControl
+    {
+        public ColorPicker()
+        {
+            InitializeComponent();
+        }
 
-		public delegate void ColorChangedEventHandler(Color color);
+        public delegate void ColorChangedEventHandler(Color color);
 
-		/// <summary>
-		///     Raised when the color is changed
-		/// </summary>
-		public event ColorChangedEventHandler ColorChanged;
+        /// <summary>
+        ///     Raised when the color is changed
+        /// </summary>
+        public event ColorChangedEventHandler ColorChanged;
 
-		private void RaiseColorChangedEvent()
-		{
-			ColorChangedEventHandler handler = ColorChanged;
-			if (handler != null) handler.Invoke(Color);
-		}
+        private void RaiseColorChangedEvent()
+        {
+            ColorChangedEventHandler handler = ColorChanged;
+            if (handler != null) handler.Invoke(Color);
+        }
 
-		private Color _color;
+        private Color _color;
 
-		/// <summary>
-		///     The selected color
-		/// </summary>
-		public Color Color
-		{
-			get { return _color; }
-			set
-			{
-				_color = value;
-				BackColor = value;
-			}
-		}
+        /// <summary>
+        ///     The selected color
+        /// </summary>
+        public Color Color
+        {
+            get { return _color; }
+            set
+            {
+                _color = value;
+                BackColor = value;
+            }
+        }
 
-		private void ColorPicker_Click(object sender, EventArgs e)
-		{
-			PickColor();
-		}
+        private void ColorPicker_Click(object sender, EventArgs e)
+        {
+            PickColor();
+        }
 
-		private void PickColor()
-		{
-			ColorDialog cd = new ColorDialog {Color = Color};
-			cd.ShowDialog();
-			Color = cd.Color;
-			RaiseColorChangedEvent();
-		}
-	}
+        private void PickColor()
+        {
+            ColorDialog cd = new ColorDialog {Color = Color};
+            cd.ShowDialog();
+            Color = cd.Color;
+            RaiseColorChangedEvent();
+        }
+    }
 }

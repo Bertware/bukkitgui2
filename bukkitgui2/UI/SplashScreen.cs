@@ -12,26 +12,26 @@ using MetroFramework.Forms;
 
 namespace Net.Bertware.Bukkitgui2.UI
 {
-	public partial class SplashScreen : MetroForm
-	{
-		public static SplashScreen Reference;
+    public partial class SplashScreen : MetroForm
+    {
+        public static SplashScreen Reference;
 
-		public SplashScreen()
-		{
-			Reference = this;
-			InitializeComponent();
-		}
+        public SplashScreen()
+        {
+            Reference = this;
+            InitializeComponent();
+        }
 
-		public void SafeFormClose()
-		{
-			if (InvokeRequired)
-			{
-				Invoke((MethodInvoker) SafeFormClose);
-			}
-			else
-			{
-				Close();
-			}
-		}
-	}
+        public void SafeFormClose()
+        {
+            if (InvokeRequired)
+            {
+                Invoke((MethodInvoker) SafeFormClose);
+            }
+            else
+            {
+                Close();
+            }
+        }
+    }
 }

@@ -164,17 +164,6 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
         }
 
         /// <summary>
-        ///     Get an online player by their name
-        /// </summary>
-        /// <param name="name"></param>
-        /// <returns>Returns the player object if the player is found. Returns null if the player isn't found</returns>
-        public static Player GetOnlinePlayerByName(String name)
-        {
-            if (OnlinePlayers.ContainsKey(name)) return OnlinePlayers[name];
-            return null;
-        }
-
-        /// <summary>
         ///     Check if a player is listed in the dictionarry of online players
         /// </summary>
         /// <param name="name">The name of the player to check</param>
@@ -185,12 +174,25 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
         }
 
         /// <summary>
+        ///     Get an online player by their name
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns>Returns the player object if the player is found. Returns null if the player isn't found</returns>
+        public static Player GetOnlinePlayerByName(String name)
+        {
+            if (IsPlayerListed(name)) return OnlinePlayers[name];
+            return null;
+        }
+
+
+        /// <summary>
         ///     Handle a player disconnect event
         /// </summary>
         private static void HandlePlayerDisconnect(string text, OutputParseResult outputParseResult,
             IPlayerAction playeraction)
         {
-            RemovePlayer(GetOnlinePlayerByName(playeraction.PlayerName));
+            Player player = GetOnlinePlayerByName(playeraction.PlayerName);
+            if (player != null) RemovePlayer(player);
         }
 
         /// <summary>

@@ -11,15 +11,15 @@ using System;
 
 namespace Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler.PlayerActions
 {
-	public class PlayerActionKick : IPlayerAction
-	{
-		public PlayerActionKick()
-		{
-			Time = DateTime.Now;
-		}
+    public class PlayerActionKick : IPlayerAction
+    {
+        public PlayerActionKick()
+        {
+            Time = DateTime.Now;
+        }
 
-		public string PlayerName { get; set; }
-		public string Details { get; set; }
-		public DateTime Time { get; set; }
-	}
+        public string PlayerName { get; set; }
+        public string Details { get; set; }
+        public DateTime Time { get; set; }
+    }
 }

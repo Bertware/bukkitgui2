@@ -9,13 +9,13 @@
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Editor
 {
-	public partial class EditorTab : IAddonTab
-	{
-		public EditorTab()
-		{
-			InitializeComponent();
-		}
+    public partial class EditorTab : IAddonTab
+    {
+        public EditorTab()
+        {
+            InitializeComponent();
+        }
 
-		public IAddon ParentAddon { get; set; }
-	}
+        public IAddon ParentAddon { get; set; }
+    }
 }

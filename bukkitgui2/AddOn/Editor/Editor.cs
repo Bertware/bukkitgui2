@@ -7,62 +7,60 @@
 // 
 // ©Bertware, visit http://bertware.net
 
-using System.Windows.Forms;
 using MetroFramework.Controls;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Editor
 {
-	internal class Editor : IAddon
-	{
+    internal class Editor : IAddon
+    {
+        /// <summary>
+        ///     The addon name, ideally this name is the same as used in the tabpage
+        /// </summary>
+        public string Name
+        {
+            get { return "Editor"; }
+        }
 
-		/// <summary>
-		///     The addon name, ideally this name is the same as used in the tabpage
-		/// </summary>
-		public string Name
-		{
-			get { return "Editor"; }
-		}
+        /// <summary>
+        ///     True if this addon has a tab page
+        /// </summary>
+        public bool HasTab
+        {
+            get { return true; }
+        }
 
-		/// <summary>
-		///     True if this addon has a tab page
-		/// </summary>
-		public bool HasTab
-		{
-			get { return true; }
-		}
+        /// <summary>
+        ///     True if this addon has a config field
+        /// </summary>
+        public bool HasConfig
+        {
+            get { return false; }
+        }
 
-		/// <summary>
-		///     True if this addon has a config field
-		/// </summary>
-		public bool HasConfig
-		{
-			get { return false; }
-		}
+        /// <summary>
+        ///     Initialize all functions and the tabcontrol
+        /// </summary>
+        public void Initialize()
+        {
+            TabPage = new EditorTab {Text = Name, ParentAddon = this};
+        }
 
-		/// <summary>
-		///     Initialize all functions and the tabcontrol
-		/// </summary>
-		public void Initialize()
-		{
-			TabPage = new EditorTab {Text = Name, ParentAddon = this};
-		}
+        public void Dispose()
+        {
+            // nothing to do
+        }
 
-		public void Dispose()
-		{
-			// nothing to do
-		}
+        /// <summary>
+        ///     The tab control for this addon
+        /// </summary>
+        /// <returns>Returns the tabpage</returns>
+        public MetroUserControl TabPage { get; private set; }
 
-		/// <summary>
-		///     The tab control for this addon
-		/// </summary>
-		/// <returns>Returns the tabpage</returns>
-		public MetroUserControl TabPage { get; private set; }
+        public MetroUserControl ConfigPage { get; private set; }
 
-		public MetroUserControl ConfigPage { get; private set; }
-
-		public bool CanDisable
-		{
-			get { return true; }
-		}
-	}
+        public bool CanDisable
+        {
+            get { return true; }
+        }
+    }
 }

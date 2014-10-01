@@ -8,71 +8,70 @@
 // ©Bertware, visit http://bertware.net
 
 using System.Threading;
-using System.Windows.Forms;
 using MetroFramework.Controls;
 using Net.Bertware.Get;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Updater
 {
-	/// <summary>
-	///     Addon to show updater settings and info
-	/// </summary>
-	internal class Updater : IAddon
-	{
-		/// <summary>
-		///     The addon name, ideally this name is the same as used in the tabpage
-		/// </summary>
-		public string Name
-		{
-			get { return "Updater"; }
-		}
+    /// <summary>
+    ///     Addon to show updater settings and info
+    /// </summary>
+    internal class Updater : IAddon
+    {
+        /// <summary>
+        ///     The addon name, ideally this name is the same as used in the tabpage
+        /// </summary>
+        public string Name
+        {
+            get { return "Updater"; }
+        }
 
-		/// <summary>
-		///     True if this addon has a tab page
-		/// </summary>
-		public bool HasTab
-		{
-			get { return false; }
-		}
+        /// <summary>
+        ///     True if this addon has a tab page
+        /// </summary>
+        public bool HasTab
+        {
+            get { return false; }
+        }
 
-		/// <summary>
-		///     True if this addon has a config field
-		/// </summary>
-		public bool HasConfig
-		{
-			get { return true; }
-		}
+        /// <summary>
+        ///     True if this addon has a config field
+        /// </summary>
+        public bool HasConfig
+        {
+            get { return true; }
+        }
 
-		/// <summary>
-		///     Initialize all functions and the tabcontrol
-		/// </summary>
-		public void Initialize()
-		{
-			ConfigPage = new UpdaterSettings();
-			CheckForUpdates();
-		}
+        /// <summary>
+        ///     Initialize all functions and the tabcontrol
+        /// </summary>
+        public void Initialize()
+        {
+            ConfigPage = new UpdaterSettings();
+            CheckForUpdates();
+        }
 
-		public void Dispose()
-		{
-			// nothing to do
-		}
+        public void Dispose()
+        {
+            // nothing to do
+        }
 
-		/// <summary>
-		///     The tab control for this addon
-		/// </summary>
-		/// <returns>Returns the tabpage</returns>
-		public MetroUserControl TabPage { get; private set; }
+        /// <summary>
+        ///     The tab control for this addon
+        /// </summary>
+        /// <returns>Returns the tabpage</returns>
+        public MetroUserControl TabPage { get; private set; }
 
-		public MetroUserControl ConfigPage { get; private set; }
+        public MetroUserControl ConfigPage { get; private set; }
 
-		public bool CanDisable
-		{
-			get { return true; }
-		}
+        public bool CanDisable
+        {
+            get { return true; }
+        }
 
-		public static void CheckForUpdates()
-		{
-			new Thread(() => api.RunUpdateCheck(true)).Start();
-		}
-	}
+        public static void CheckForUpdates()
+        {
+            new Thread(() => api.RunUpdateCheck(true)).Start();
+        }
+    }
 }

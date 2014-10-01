@@ -11,16 +11,16 @@ using System;
 
 namespace Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler.PlayerActions
 {
-	public class PlayerActionJoin : IPlayerAction
-	{
-		public PlayerActionJoin()
-		{
-			Time = DateTime.Now;
-		}
+    public class PlayerActionJoin : IPlayerAction
+    {
+        public PlayerActionJoin()
+        {
+            Time = DateTime.Now;
+        }
 
-		public string PlayerName { get; set; }
-		public string Details { get; set; }
-		public string Ip { get; set; }
-		public DateTime Time { get; set; }
-	}
+        public string PlayerName { get; set; }
+        public string Details { get; set; }
+        public string Ip { get; set; }
+        public DateTime Time { get; set; }
+    }
 }

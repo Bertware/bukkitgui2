@@ -11,11 +11,11 @@ using MetroFramework.Controls;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Settings
 {
-	public partial class Credits : MetroUserControl
-	{
-		public Credits()
-		{
-			InitializeComponent();
-		}
-	}
+    public partial class Credits : MetroUserControl
+    {
+        public Credits()
+        {
+            InitializeComponent();
+        }
+    }
 }

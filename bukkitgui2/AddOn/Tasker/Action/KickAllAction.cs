@@ -11,60 +11,60 @@ using Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Action
 {
-	internal class KickAllAction : IAction
-	{
-		public KickAllAction()
-		{
-			Name = "Kick All";
-			Description = "Kick all online players.";
-			ParameterDescription =
-				"Reason for the kick, shown to kicked players";
-		}
+    internal class KickAllAction : IAction
+    {
+        public KickAllAction()
+        {
+            Name = "Kick All";
+            Description = "Kick all online players.";
+            ParameterDescription =
+                "Reason for the kick, shown to kicked players";
+        }
 
-		public event TaskerEventArgs TaskerActionExecuteStarted;
+        public event TaskerEventArgs TaskerActionExecuteStarted;
 
-		protected virtual void OnTaskerActionExecuteStarted()
-		{
-			TaskerEventArgs handler = TaskerActionExecuteStarted;
-			if (handler != null) handler();
-		}
+        protected virtual void OnTaskerActionExecuteStarted()
+        {
+            TaskerEventArgs handler = TaskerActionExecuteStarted;
+            if (handler != null) handler();
+        }
 
-		public event TaskerEventArgs TaskerActionExecuteFinished;
+        public event TaskerEventArgs TaskerActionExecuteFinished;
 
-		protected virtual void OnTaskerActionExecuteFinished()
-		{
-			TaskerEventArgs handler = TaskerActionExecuteFinished;
-			if (handler != null) handler();
-		}
+        protected virtual void OnTaskerActionExecuteFinished()
+        {
+            TaskerEventArgs handler = TaskerActionExecuteFinished;
+            if (handler != null) handler();
+        }
 
-		public string Name { get; protected set; }
+        public string Name { get; protected set; }
 
-		public string Description { get; protected set; }
+        public string Description { get; protected set; }
 
-		public string ParameterDescription { get; protected set; }
+        public string ParameterDescription { get; protected set; }
 
-		public void Load(string parameters)
-		{
-			Parameters = parameters;
-		}
+        public void Load(string parameters)
+        {
+            Parameters = parameters;
+        }
 
-		public bool ValidateInput(string inputText)
-		{
-			return true;
-		}
+        public bool ValidateInput(string inputText)
+        {
+            return true;
+        }
 
-		public string Parameters { get; set; }
+        public string Parameters { get; set; }
 
-		public void Execute()
-		{
-			OnTaskerActionExecuteStarted();
+        public void Execute()
+        {
+            OnTaskerActionExecuteStarted();
 
-			foreach (Player player in PlayerHandler.GetOnlinePlayers())
-			{
-				player.Kick(Parameters);
-			}
+            foreach (Player player in PlayerHandler.GetOnlinePlayers())
+            {
+                player.Kick(Parameters);
+            }
 
-			OnTaskerActionExecuteFinished();
-		}
-	}
+            OnTaskerActionExecuteFinished();
+        }
+    }
 }

@@ -12,31 +12,30 @@ using System.Collections.Generic;
 
 namespace Net.Bertware.Bukkitgui2.Core.Util
 {
-	internal class StringUtil
-	{
-		public static string ListToCsv(IEnumerable<object> list, char separator = ',')
-		{
-			if (list == null) return "";
-			string result = "";
-			foreach (Object obj in list)
-			{
-				result += obj + separator.ToString() + ' ';
-			}
-			result = result.Substring(0, result.Length - 2); //remove the last ", "
-			return result;
-		}
+    internal class StringUtil
+    {
+        public static string ListToCsv(IEnumerable<object> list, char separator = ',')
+        {
+            if (list == null) return "";
+            string result = "";
+            foreach (Object obj in list)
+            {
+                result += obj + separator.ToString() + ' ';
+            }
+            result = result.Substring(0, result.Length - 2); //remove the last ", "
+            return result;
+        }
 
-		public static string ListToCsv<T>(List<T> list, char separator = ',')
-		{
-			if (list == null || list.Count < 1) return "";
-			string result = "";
-			foreach (Object obj in list)
-			{
-				result += obj + separator.ToString() + ' ';
-			}
-			result = result.Substring(0, result.Length - 2); //remove the last ", "
-			return result;
-		}
-
-	}
+        public static string ListToCsv<T>(List<T> list, char separator = ',')
+        {
+            if (list == null || list.Count < 1) return "";
+            string result = "";
+            foreach (Object obj in list)
+            {
+                result += obj + separator.ToString() + ' ';
+            }
+            result = result.Substring(0, result.Length - 2); //remove the last ", "
+            return result;
+        }
+    }
 }

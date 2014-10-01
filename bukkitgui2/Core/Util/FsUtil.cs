@@ -11,60 +11,60 @@ using System.IO;
 
 namespace Net.Bertware.Bukkitgui2.Core.Util
 {
-	internal static class FsUtil
-	{
-		/// <summary>
-		///     Create a directory, only if it doesn't exist.
-		/// </summary>
-		/// <param name="directory"></param>
-		public static void CreateDirectoryIfNotExists(string directory)
-		{
-			if (Directory.Exists(directory)) return;
+    internal static class FsUtil
+    {
+        /// <summary>
+        ///     Create a directory, only if it doesn't exist.
+        /// </summary>
+        /// <param name="directory"></param>
+        public static void CreateDirectoryIfNotExists(string directory)
+        {
+            if (Directory.Exists(directory)) return;
 
-			Directory.CreateDirectory(directory);
-		}
+            Directory.CreateDirectory(directory);
+        }
 
-		public static string ReadFileInUse(string path)
-		{
-			string result = "";
-			using (FileStream stream = File.Open(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
-			{
-				using (StreamReader reader = new StreamReader(stream))
-				{
-					while (!reader.EndOfStream)
-					{
-						result += reader.ReadToEnd();
-					}
-				}
-			}
-			return result;
-		}
+        public static string ReadFileInUse(string path)
+        {
+            string result = "";
+            using (FileStream stream = File.Open(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+            {
+                using (StreamReader reader = new StreamReader(stream))
+                {
+                    while (!reader.EndOfStream)
+                    {
+                        result += reader.ReadToEnd();
+                    }
+                }
+            }
+            return result;
+        }
 
-		/// <summary>
-		///     Copy a folder, also works between different drives
-		/// </summary>
-		/// <param name="sourceFolder">source dir</param>
-		/// <param name="destFolder">destination dir</param>
-		/// <param name="deleteSource">delete the source? (move)</param>
-		public static void CopyFolder(string sourceFolder, string destFolder, bool deleteSource = false)
-		{
-			if (!Directory.Exists(destFolder))
-				Directory.CreateDirectory(destFolder);
-			string[] files = Directory.GetFiles(sourceFolder);
-			foreach (string file in files)
-			{
-				string name = Path.GetFileName(file);
-				string dest = Path.Combine(destFolder, name);
-				File.Copy(file, dest, true);
-			}
-			string[] folders = Directory.GetDirectories(sourceFolder);
-			foreach (string folder in folders)
-			{
-				string name = Path.GetFileName(folder);
-				string dest = Path.Combine(destFolder, name);
-				CopyFolder(folder, dest);
-			}
-			if (deleteSource) Directory.Delete(sourceFolder, true);
-		}
-	}
+        /// <summary>
+        ///     Copy a folder, also works between different drives
+        /// </summary>
+        /// <param name="sourceFolder">source dir</param>
+        /// <param name="destFolder">destination dir</param>
+        /// <param name="deleteSource">delete the source? (move)</param>
+        public static void CopyFolder(string sourceFolder, string destFolder, bool deleteSource = false)
+        {
+            if (!Directory.Exists(destFolder))
+                Directory.CreateDirectory(destFolder);
+            string[] files = Directory.GetFiles(sourceFolder);
+            foreach (string file in files)
+            {
+                string name = Path.GetFileName(file);
+                string dest = Path.Combine(destFolder, name);
+                File.Copy(file, dest, true);
+            }
+            string[] folders = Directory.GetDirectories(sourceFolder);
+            foreach (string folder in folders)
+            {
+                string name = Path.GetFileName(folder);
+                string dest = Path.Combine(destFolder, name);
+                CopyFolder(folder, dest);
+            }
+            if (deleteSource) Directory.Delete(sourceFolder, true);
+        }
+    }
 }

@@ -15,45 +15,45 @@ using Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler;
 
 namespace Net.Bertware.Bukkitgui2.UI
 {
-	public partial class ServerStopDialog : MetroForm
-	{
-		public ServerStopDialog()
-		{
-			InitializeComponent();
-		}
+    public partial class ServerStopDialog : MetroForm
+    {
+        public ServerStopDialog()
+        {
+            InitializeComponent();
+        }
 
 
-		private void btnCancel_Click(object sender, EventArgs e)
-		{
-			DialogResult = DialogResult.Cancel;
-		}
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+        }
 
-		private void ServerStopDialog_Load(object sender, EventArgs e)
-		{
-			if (ProcessHandler.CurrentState == ServerState.Stopped)
-			{
-				DialogResult = DialogResult.OK;
-				Close();
-			}
-			ProcessHandler.ServerStopped += Return;
-		}
+        private void ServerStopDialog_Load(object sender, EventArgs e)
+        {
+            if (ProcessHandler.CurrentState == ServerState.Stopped)
+            {
+                DialogResult = DialogResult.OK;
+                Close();
+            }
+            ProcessHandler.ServerStopped += Return;
+        }
 
-		private void Return()
-		{
-			if (InvokeRequired)
-			{
-				Invoke(new MethodInvoker(Return));
-			}
-			else
-			{
-				DialogResult = DialogResult.OK;
-				Close();
-			}
-		}
+        private void Return()
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new MethodInvoker(Return));
+            }
+            else
+            {
+                DialogResult = DialogResult.OK;
+                Close();
+            }
+        }
 
-		private void btnKill_Click(object sender, EventArgs e)
-		{
-			Starter.KillServer();
-		}
-	}
+        private void btnKill_Click(object sender, EventArgs e)
+        {
+            Starter.KillServer();
+        }
+    }
 }

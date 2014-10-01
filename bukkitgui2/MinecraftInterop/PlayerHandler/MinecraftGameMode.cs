@@ -9,10 +9,10 @@
 
 namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 {
-	public enum MinecraftGameMode
-	{
-		Survival = 0,
-		Creative = 1,
-		Adventure = 2
-	}
+    public enum MinecraftGameMode
+    {
+        Survival = 0,
+        Creative = 1,
+        Adventure = 2
+    }
 }
