@@ -43,7 +43,7 @@ namespace Net.Bertware.Bukkitgui2.UI
 
             if (showSplash)
             {
-                new Thread(() => new SplashScreen().ShowDialog()).Start();
+                new Thread(() => new SplashScreen().ShowDialog()) {Name = "Splashscreen_show"}.Start();
             }
 
             // ____________ initializations here ____________ //

@@ -57,12 +57,14 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
                 IsBackground = true,
                 Priority = ThreadPriority.BelowNormal
             };
+            t.SetApartmentState(ApartmentState.MTA);
             t.Start();
         }
 
         public static void RefreshAllInstalledPluginsAsync()
         {
             Thread t = new Thread(LoadPlugins) {Name = "InstalledPluginManager_LoadAsync", IsBackground = true};
+            t.SetApartmentState(ApartmentState.MTA);
             t.Start();
         }
 

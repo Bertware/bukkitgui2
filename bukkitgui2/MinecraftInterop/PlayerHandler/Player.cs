@@ -79,7 +79,9 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
             DisplayName = displayName;
             Location = "locating...";
             JoinTime = DateTime.Now;
-            new Thread(GetDetails).Start();
+            Thread t = new Thread(GetDetails) {Name = "player_details_" + name};
+            t.SetApartmentState(ApartmentState.MTA);
+            t.Start();
         }
 
         private void GetDetails(object obj)

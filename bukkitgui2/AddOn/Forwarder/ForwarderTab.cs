@@ -34,13 +34,13 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Forwarder
 
         private void PortForwarder_Load(object sender, EventArgs e)
         {
-            if (!UPnP.UpnpEnabled)
-            {
-                MetroMessageBox.Show(Application.OpenForms[0],
-                    Locale.Tr("Port forwarding isn't available") + Constants.vbCrLf +
-                    Locale.Tr("Your network device (router) doesn't support UPnP"),
-                    Locale.Tr("Port forwarding unavailable"), MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            //if (!UPnP.UpnpEnabled)
+            //{
+            //    MetroMessageBox.Show(Application.OpenForms[0],
+            //        Locale.Tr("Port forwarding isn't available") + Constants.vbCrLf +
+            //        Locale.Tr("Your network device (router) doesn't support UPnP"),
+            //        Locale.Tr("Port forwarding unavailable"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
 
             TxtIp.Text = UPnP.LocalIp();
             CBProtocol.SelectedIndex = 0;
@@ -59,8 +59,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Forwarder
             {
                 BtnAdd.Enabled = false;
                 BtnRefresh.Enabled = false;
-                Thread t = new Thread((UPnP.GetMapping)) {Name = "UPnP_UpdateMappingAsync"};
-                t.Start();
+                UPnP.GetMapping();
 
                 // this.lblStatus.Text = "Loading info. This could take a while...";
             }

@@ -284,6 +284,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Forwarder
         public static void GetMapping()
         {
             Thread t = new Thread(GetMappingJob) {Name = "UPnP_GetMappingJob"};
+            t.SetApartmentState(ApartmentState.MTA);
             t.Start();
         }
 
@@ -355,6 +356,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Forwarder
                     {
                         Name = "Foward_" + port
                     };
+                    t.SetApartmentState(ApartmentState.MTA);
                     t.Start();
                 }
                 return true;

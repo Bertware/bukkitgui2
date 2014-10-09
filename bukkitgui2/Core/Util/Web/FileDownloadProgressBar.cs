@@ -92,7 +92,10 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Web
             _webc.DownloadFileCompleted += Finished;
             Logger.Log(LogLevel.Info, "FileDownloadProgressBar", "Starting download", Url);
 
-            Thread t = new Thread(() => _webc.DownloadFileAsync(new Uri(Url), _tmplocation));
+            Thread t = new Thread(() => _webc.DownloadFileAsync(new Uri(Url), _tmplocation))
+            {
+                Name = "DownloadProgressBar"
+            };
             t.Start();
             Logger.Log(LogLevel.Info, "FileDownloadProgressBar", "Started download", Url);
             _tmrUpdateUi = new Timer {Interval = TmrInterval};

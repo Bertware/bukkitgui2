@@ -320,7 +320,9 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler
         private static void StartThreads()
         {
             _thdReadStdOut = new Thread(ReadStdOut) {IsBackground = true, Name = "_thdReadStdOut"};
+            _thdReadStdOut.SetApartmentState(ApartmentState.MTA);
             _thdReadStdErr = new Thread(ReadStdErr) {IsBackground = true, Name = "_thdReadStdOut"};
+            _thdReadStdErr.SetApartmentState(ApartmentState.MTA);
             _runThreads = true;
             _thdReadStdOut.Start();
             _thdReadStdErr.Start();

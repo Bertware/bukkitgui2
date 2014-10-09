@@ -109,7 +109,8 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
                 ChkForce.Enabled = false;
                 CBBukkitBuild.Enabled = false;
             }
-            Thread t = new Thread(LoadAsync) {IsBackground = true};
+            Thread t = new Thread(LoadAsync) {IsBackground = true,Name="PluginUpdater_LoadAsync"};
+            t.SetApartmentState(ApartmentState.MTA);
             t.Start();
         }
 
