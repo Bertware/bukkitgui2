@@ -93,5 +93,10 @@ namespace Net.Bertware.Bukkitgui2.Controls.QuickButtons
         {
             OnTaskButtonPressed();
         }
+
+		private void btnRestart_Click(object sender, EventArgs e)
+		{
+			Starter.RestartServer();
+		}
     }
 }

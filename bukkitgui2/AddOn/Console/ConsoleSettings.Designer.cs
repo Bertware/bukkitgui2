@@ -42,6 +42,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			this.label2 = new MetroFramework.Controls.MetroLabel();
 			this.cpWarn = new Net.Bertware.Bukkitgui2.Controls.ColorPicker.ColorPicker();
 			this.label1 = new MetroFramework.Controls.MetroLabel();
+			this.chkAutostart = new Net.Bertware.Bukkitgui2.Controls.SettingsCheckbox();
 			this.gbColors.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -88,7 +89,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			this.gbColors.Controls.Add(this.cpWarn);
 			this.gbColors.Controls.Add(this.label1);
 			this.gbColors.Controls.Add(this.CpInfo);
-			this.gbColors.Location = new System.Drawing.Point(3, 49);
+			this.gbColors.Location = new System.Drawing.Point(3, 70);
 			this.gbColors.Name = "gbColors";
 			this.gbColors.Size = new System.Drawing.Size(554, 155);
 			this.gbColors.TabIndex = 4;
@@ -161,11 +162,22 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			this.label1.TabIndex = 4;
 			this.label1.Text = "info messages";
 			// 
+			// chkAutostart
+			// 
+			this.chkAutostart.AutoSize = true;
+			this.chkAutostart.Location = new System.Drawing.Point(3, 47);
+			this.chkAutostart.Name = "chkAutostart";
+			this.chkAutostart.Size = new System.Drawing.Size(206, 15);
+			this.chkAutostart.TabIndex = 5;
+			this.chkAutostart.Text = "Start the server when the GUI starts";
+			this.chkAutostart.UseSelectable = true;
+			// 
 			// ConsoleSettings
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.Transparent;
+			this.Controls.Add(this.chkAutostart);
 			this.Controls.Add(this.gbColors);
 			this.Controls.Add(this.chkDate);
 			this.Controls.Add(this.chkTime);
@@ -191,6 +203,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 		private Controls.ColorPicker.ColorPicker cpPlayer;
 		private MetroLabel label3;
 		private Controls.ColorPicker.ColorPicker cpSevere;
+		private SettingsCheckbox chkAutostart;
 
 	}
 }

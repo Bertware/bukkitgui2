@@ -25,6 +25,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
             cpWarn.Color = Color.FromArgb(Config.ReadInt("console", "color_warning", Color.DarkOrange.ToArgb()));
             chkDate.Link("console", "date", false);
             chkTime.Link("console", "time", true);
+			chkAutostart.Link("console", "autostart", false);
         }
 
         private void CpInfo_ColorChanged(Color color)
@@ -46,5 +47,6 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
         {
             Config.WriteInt("console", "color_playeraction", cpPlayer.Color.ToArgb());
         }
+
     }
 }

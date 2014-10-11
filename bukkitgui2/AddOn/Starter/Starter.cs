@@ -12,6 +12,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
 using MetroFramework.Controls;
+using Net.Bertware.Bukkitgui2.Core.Configuration;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler;
 using Net.Bertware.Bukkitgui2.MinecraftServers;
 
@@ -56,7 +57,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 
         private void OnLoad()
         {
-            if (Environment.GetCommandLineArgs().Contains("-startserver"))
+            if (Environment.GetCommandLineArgs().Contains("-startserver") || Config.ReadBool("console","autostart",false))
             {
                 StartServer();
             }
