@@ -61,7 +61,10 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 
         private void slvTasks_SelectedIndexChanged(object sender, EventArgs e)
         {
-            btnEdit.Enabled = (slvTasks.SelectedItems.Count > 0);
+            bool taskSelected =  (slvTasks.SelectedItems.Count > 0);
+            btnEdit.Enabled = taskSelected;
+            btnDelete.Enabled = taskSelected;
+            btnTest.Enabled = taskSelected;
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
