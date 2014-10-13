@@ -7,6 +7,8 @@
 // 
 // ©Bertware, visit http://bertware.net
 
+using System;
+
 namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Action
 {
     internal class BackupAction : IAction
@@ -16,7 +18,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Action
             Name = "Backup";
             Description = "Create a backup";
             ParameterDescription =
-                "The name of the backup. (Backup has to be set-up in backup manager first)";
+                "The name of the backup." + Environment.NewLine + "(Backup has to be set-up in backup manager first)";
         }
 
         public event TaskerEventArgs TaskerActionExecuteStarted;
@@ -48,6 +50,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Action
 
         public bool ValidateInput(string inputText)
         {
+            if (string.IsNullOrEmpty(inputText)) return false;
             return (Backup.Backup.Reference.GetBackupByName(Parameters) != null);
         }
 

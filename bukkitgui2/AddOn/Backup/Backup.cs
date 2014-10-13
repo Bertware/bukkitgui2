@@ -126,6 +126,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Backup
 
         public void AddBackupToXml(BackupDefenition bs)
         {
+            if (bs == null) return;
             try
             {
                 string content = "<backup name=\"" + bs.Name + "\">" +
@@ -163,6 +164,8 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Backup
 
         public void DeleteBackup(BackupDefenition bs)
         {
+            if (bs == null) return;
+            
             try
             {
                 _backups.Remove(bs.Name);
@@ -183,11 +186,13 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Backup
 
         public void DeleteBackup(string name)
         {
+            if (string.IsNullOrEmpty(name)) return;
             DeleteBackup(GetBackupByName(name));
         }
 
         public BackupDefenition GetBackupByName(string name)
         {
+            if (string.IsNullOrEmpty(name)) return null;
             if (_backups.ContainsKey(name)) return _backups[name];
             return null;
         }
