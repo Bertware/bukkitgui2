@@ -9,7 +9,7 @@
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Action
 {
-    internal class BackupAction
+    internal class BackupAction : IAction
     {
         public BackupAction()
         {

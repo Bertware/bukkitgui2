@@ -17,8 +17,13 @@ using Net.Bertware.Bukkitgui2.AddOn.Tasker.Trigger;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.TaskerUI
 {
+    /// <summary>
+    /// Editor for tasks
+    /// </summary>
     public partial class TaskEditor : MetroForm
     {
+        //TODO: listview for actions with popup to alter action > unlimited actions
+
         private readonly Task _taskToEdit;
 
         private ITrigger _selectedTrigger;

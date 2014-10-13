@@ -87,5 +87,11 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.TaskerUI
             }
             txtActionParameters.Text = action.Parameters;
         }
+
+        private void btnDeleteAction_Click(object sender, EventArgs e)
+        {
+            this.DestroyHandle();
+            this.Dispose();
+        }
     }
 }

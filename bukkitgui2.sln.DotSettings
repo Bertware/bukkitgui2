@@ -6,4 +6,8 @@ This Source Code Form is subject to the terms of the Mozilla Public License, v. 
 If a copy of the MPL was not distributed with this file,&#xD;
 you can obtain one at http://mozilla.org/MPL/2.0/.&#xD;
 &#xD;
-©Bertware, visit http://bertware.net</s:String></wpf:ResourceDictionary>
+©Bertware, visit http://bertware.net</s:String>
+	<s:Boolean x:Key="/Default/Environment/InjectedLayers/FileInjectedLayer/=9C17FF330178184D82B8298F7BA3E257/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/Environment/InjectedLayers/FileInjectedLayer/=9C17FF330178184D82B8298F7BA3E257/AbsolutePath/@EntryValue">C:\Users\Bert\Documents\Visual Studio 2012\Projects\bukkitgui2\bukkitgui2.sln.DotSettings</s:String>
+	<s:Boolean x:Key="/Default/Environment/InjectedLayers/InjectedLayerCustomization/=File9C17FF330178184D82B8298F7BA3E257/@KeyIndexDefined">True</s:Boolean>
+	<s:Double x:Key="/Default/Environment/InjectedLayers/InjectedLayerCustomization/=File9C17FF330178184D82B8298F7BA3E257/RelativePriority/@EntryValue">1</s:Double></wpf:ResourceDictionary>
