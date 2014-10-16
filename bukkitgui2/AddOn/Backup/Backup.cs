@@ -10,7 +10,9 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Windows.Forms;
 using System.Xml;
+using MetroFramework;
 using MetroFramework.Controls;
 using Net.Bertware.Bukkitgui2.Core.FileLocation;
 using Net.Bertware.Bukkitgui2.Core.Logging;
@@ -96,25 +98,40 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Backup
 
         public void LoadAllBackups()
         {
-            _backups = new Dictionary<string, BackupDefenition>();
-            Logger.Log(LogLevel.Info, "Backupmanager", "Loading backups...");
-            XmlElement rootElement = (XmlElement) _backupXml.GetElementsByTagName("backups")[0];
-            XmlNodeList elements = rootElement.GetElementsByTagName("backup");
-            if (elements.Count > 0)
+            try
             {
-                for (int i = 0; i <= elements.Count - 1; i++)
+                _backups = new Dictionary<string, BackupDefenition>();
+                Logger.Log(LogLevel.Info, "Backupmanager", "Loading backups...");
+                XmlElement rootElement = (XmlElement) _backupXml.GetElementsByTagName("backups")[0];
+                XmlNodeList elements = rootElement.GetElementsByTagName("backup");
+                if (elements.Count > 0)
                 {
-                    Logger.Log(LogLevel.Info, "Backupmanager", "Parsing backup " + i + 1 + " out of " + elements.Count);
-                    XmlElement xmle = (XmlElement) elements[i];
-                    BackupDefenition backup = new BackupDefenition();
-                    backup.LoadXml(xmle);
-                    _backups.Add(backup.Name, backup);
+                    for (int i = 0; i <= elements.Count - 1; i++)
+                    {
+                        Logger.Log(LogLevel.Info, "Backupmanager",
+                            "Parsing backup " + i + 1 + " out of " + elements.Count);
+                        XmlElement xmle = (XmlElement) elements[i];
+                        BackupDefenition backup = new BackupDefenition();
+                        backup.LoadXml(xmle);
+                        if (_backups.ContainsKey(backup.Name))
+                        {
+                            _backups.Add(backup.Name, backup);
+                        }
+                        else
+                        {
+                            Logger.Log(LogLevel.Warning, "Backupmanager", "Backup not loaded due to duplicate name!");
+                        }
+                    }
+                }
+                Logger.Log(LogLevel.Info, "Backupmanager", "Loaded backups: " + _backups.Count + " backups loaded");
+                if (BackupsLoaded != null)
+                {
+                    BackupsLoaded();
                 }
             }
-            Logger.Log(LogLevel.Info, "Backupmanager", "Loaded backups: " + _backups.Count + " backups loaded");
-            if (BackupsLoaded != null)
+            catch (Exception exception)
             {
-                BackupsLoaded();
+                Logger.Log(LogLevel.Severe, "Backupmanager", "Failed to load backups!", exception.Message);
             }
         }
 
@@ -124,9 +141,16 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Backup
             LoadAllBackups();
         }
 
-        public void AddBackupToXml(BackupDefenition bs)
+        public bool AddBackupToXml(BackupDefenition bs)
         {
-            if (bs == null) return;
+            if (bs == null) return false;
+            if (_backups.ContainsKey(bs.Name))
+            {
+                MetroMessageBox.Show(Application.OpenForms[0],
+                    "Couldn't save backup! You already defined another backup with this name:" + bs.Name,
+                    "Couldn't save backup", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
             try
             {
                 string content = "<backup name=\"" + bs.Name + "\">" +
@@ -147,7 +171,9 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Backup
             catch (Exception ex)
             {
                 Logger.Log(LogLevel.Severe, "Backupmanager", "Severe error in addBackup! " + ex.Message);
+                return false;
             }
+            return true;
         }
 
         public void SaveBackup(BackupDefenition oldBackup, BackupDefenition newBackup)
@@ -165,10 +191,10 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Backup
         public void DeleteBackup(BackupDefenition bs)
         {
             if (bs == null) return;
-            
+
             try
             {
-                _backups.Remove(bs.Name);
+                if (_backups.ContainsKey(bs.Name)) _backups.Remove(bs.Name);
                 foreach (XmlElement xmlElement in _backupXml.ChildNodes)
                 {
                     if (xmlElement.GetAttribute("name").Equals(bs.Name)) _backupXml.RemoveChild(xmlElement);
@@ -193,8 +219,8 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Backup
         public BackupDefenition GetBackupByName(string name)
         {
             if (string.IsNullOrEmpty(name)) return null;
-            if (_backups.ContainsKey(name)) return _backups[name];
-            return null;
+            if (!_backups.ContainsKey(name)) return null;
+            return _backups[name];
         }
     }
 }

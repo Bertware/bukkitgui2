@@ -90,36 +90,43 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Backup
             settings_validate();
         }
 
-        private void settings_validate()
+        private bool settings_validate()
         {
             BtnOk.Enabled = false;
             if (string.IsNullOrEmpty(TxtName.Text))
             {
                 ErrProv.SetError(TxtName, Locale.Tr("The name must be at least 1 character long"));
-                return;
+                return false; 
+            }
+
+            if (Backup.Reference.GetBackupByName(TxtName.Text) != null)
+            {
+                ErrProv.SetError(TxtName, Locale.Tr("This name is already in use!"));
+                return false;
             }
 
             if (!Regex.IsMatch(TxtName.Text, "(\\d|\\w|-|_)+"))
             {
                 ErrProv.SetError(TxtName, Locale.Tr("You can only use the following characters: a-z ; 1-9 ; _ ; -"));
-                return;
+                return false;
             }
 
             ErrProv.SetError(TxtName, "");
             if (string.IsNullOrEmpty(TxtFolders.Text))
             {
                 ErrProv.SetError(TxtFolders, Locale.Tr("You need to specify at least 1 directory"));
-                return;
+                return false;
             }
             ErrProv.SetError(TxtFolders, "");
             if (string.IsNullOrEmpty(TxtDestination.Text))
             {
                 ErrProv.SetError(TxtDestination, Locale.Tr("You need to specify the destination directory"));
-                return;
+                return false;
             }
             ErrProv.SetError(TxtDestination, "");
 
             BtnOk.Enabled = true;
+            return true;
         }
     }
 }
