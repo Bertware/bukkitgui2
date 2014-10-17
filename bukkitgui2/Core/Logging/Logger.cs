@@ -78,6 +78,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Logging
         /// <param name="savelocation">The location to save the log file. If empty default location will be used</param>
         internal static void SaveFile(string savelocation)
         {
+            IsInitialized = false; // Temporary block new entries while we're writing the log file
             using (StreamWriter sw = File.CreateText(savelocation))
             {
                 foreach (LogEntry entry in _entries)
@@ -85,6 +86,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Logging
                     sw.WriteLine(entry.ToString());
                 }
             }
+            IsInitialized = true; // enable logging again
         }
 
         private static string TimeStamp()
