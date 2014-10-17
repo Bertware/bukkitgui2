@@ -11,48 +11,61 @@ using System;
 using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
+using MetroFramework;
 using MetroFramework.Controls;
 using Net.Bertware.Bukkitgui2.Core.FileLocation;
+using Net.Bertware.Bukkitgui2.Core.Logging;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Settings
 {
-    public partial class VariousSettings : MetroUserControl
-    {
-        public VariousSettings()
-        {
-            InitializeComponent();
-            chkSaveInServerDir.Checked = Fl.GetLocal();
-        }
+	public partial class VariousSettings : MetroUserControl
+	{
+		public VariousSettings()
+		{
+			InitializeComponent();
+			chkSaveInServerDir.Checked = Fl.GetLocal();
+		}
 
-        private void appShortcutToDesktop(string linkName, string args)
-        {
-            string deskDir = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
+		private void appShortcutToDesktop(string linkName, string args)
+		{
+			string deskDir = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
 
-            using (StreamWriter writer = new StreamWriter(deskDir + "\\" + linkName + ".url"))
-            {
-                string app = Assembly.GetExecutingAssembly().Location;
-                writer.WriteLine("[InternetShortcut]");
-                writer.WriteLine("URL=file:///" + app + " " + args);
-                writer.WriteLine("IconIndex=0");
-                string icon = app.Replace('\\', '/');
-                writer.WriteLine("IconFile=" + icon);
-                writer.Flush();
-            }
-        }
+			using (StreamWriter writer = new StreamWriter(deskDir + "\\" + linkName + ".url"))
+			{
+				string app = Assembly.GetExecutingAssembly().Location;
+				writer.WriteLine("[InternetShortcut]");
+				writer.WriteLine("URL=file:///" + app + " " + args);
+				writer.WriteLine("IconIndex=0");
+				string icon = app.Replace('\\', '/');
+				writer.WriteLine("IconFile=" + icon);
+				writer.Flush();
+			}
+		}
 
-        private void btnCustomFolder_Click(object sender, EventArgs e)
-        {
-            FolderBrowserDialog dialog = new FolderBrowserDialog
-            {
-                ShowNewFolderButton = true
-            };
-            dialog.ShowDialog();
-            appShortcutToDesktop("BukkitGui custom dir", " -wd=\"" + dialog.SelectedPath + "\"");
-        }
+		private void btnCustomFolder_Click(object sender, EventArgs e)
+		{
+			try
+			{
+				FolderBrowserDialog dialog = new FolderBrowserDialog
+				{
+					ShowNewFolderButton = true
+				};
+				dialog.ShowDialog();
+				appShortcutToDesktop("BukkitGui custom dir", " -wd=\"" + dialog.SelectedPath + "\"");
+				MetroMessageBox.Show(Application.OpenForms[0], "A special shortcut has been created on your desktop.",
+					"Shortcut created", MessageBoxButtons.OK, MessageBoxIcon.Information);
+			}
+			catch (Exception exception)
+			{
+				MetroMessageBox.Show(Application.OpenForms[0], "Failed to create shortcut! Try running as administrator.",
+					"Failed to create shortcut", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				Logger.Log(LogLevel.Warning, "VariousSettings", "Failed to create custom folder shortcut", exception.Message);
+			}
+		}
 
-        private void chkSaveInServerDir_CheckedChanged(object sender, EventArgs e)
-        {
-            Fl.SetLocal(chkSaveInServerDir.Checked);
-        }
-    }
+		private void chkSaveInServerDir_CheckedChanged(object sender, EventArgs e)
+		{
+			Fl.SetLocal(chkSaveInServerDir.Checked);
+		}
+	}
 }
