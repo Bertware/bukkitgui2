@@ -54,12 +54,26 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Backup
         /// </summary>
         public void Initialize()
         {
-            _backups = new Dictionary<string, BackupDefenition>();
-            if (!File.Exists(_backupXmlPath))
-                File.WriteAllText(_backupXmlPath, "<backups></backups>");
-            _backupXml = new XmlDocument();
-            _backupXml.Load(_backupXmlPath);
-            LoadAllBackups();
+	        try
+	        {
+
+
+		        _backups = new Dictionary<string, BackupDefenition>();
+		        if (!File.Exists(_backupXmlPath))
+			        File.WriteAllText(_backupXmlPath, "<backups></backups>");
+		        _backupXml = new XmlDocument();
+		        _backupXml.Load(_backupXmlPath);
+		        LoadAllBackups();
+	        }
+	        catch (XmlException xmlException)
+	        {
+				// xml file could be faulty
+				Logger.Log(LogLevel.Warning, "Backup", "Failed to load backups from XML file. File might be corrupted", xmlException.Message);
+	        }
+	        catch (Exception exception)
+	        {
+		        Logger.Log(LogLevel.Warning, "Backup","Failed to initialize backup manager",exception.Message);
+	        }
         }
 
         public void Dispose()

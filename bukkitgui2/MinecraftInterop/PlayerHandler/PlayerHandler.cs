@@ -102,9 +102,13 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
         /// </summary>
         public static void Initialize()
         {
+			// initialize only once
             if (IsInitialized) return;
+			// create new dictionary
             OnlinePlayers = new Dictionary<string, Player>();
-            MinecraftOutputHandler.PlayerJoin += HandlePlayerJoin;
+            
+			// subscribe to events
+			MinecraftOutputHandler.PlayerJoin += HandlePlayerJoin;
             MinecraftOutputHandler.PlayerLeave += HandlePlayerDisconnect;
             IsInitialized = true;
         }
