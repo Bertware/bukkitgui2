@@ -116,6 +116,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Backup
             this.ColBackupFolders,
             this.ColBackupDestination,
             this.ColBackupCompression});
+			this.SlvBackups.FullRowSelect = true;
 			this.SlvBackups.Location = new System.Drawing.Point(3, 3);
 			this.SlvBackups.Name = "SlvBackups";
 			this.SlvBackups.Size = new System.Drawing.Size(794, 465);

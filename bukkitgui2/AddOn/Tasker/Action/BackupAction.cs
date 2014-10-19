@@ -8,6 +8,7 @@
 // ©Bertware, visit http://bertware.net
 
 using System;
+using Net.Bertware.Bukkitgui2.AddOn.Backup;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Action
 {
@@ -51,7 +52,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Action
         public bool ValidateInput(string inputText)
         {
             if (string.IsNullOrEmpty(inputText)) return false;
-            return (Backup.Backup.Reference.GetBackupByName(Parameters) != null);
+			return (Backup.Backup.Reference.GetBackupByName(inputText) != null);
         }
 
         public string Parameters { get; set; }
@@ -59,9 +60,10 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Action
         public void Execute()
         {
             OnTaskerActionExecuteStarted();
-
-            if (Backup.Backup.Reference.GetBackupByName(Parameters) != null) return;
-            Backup.Backup.Reference.GetBackupByName(Parameters).Execute();
+	        
+			BackupDefenition bd = Backup.Backup.Reference.GetBackupByName(Parameters);
+            if (bd == null) return;
+			bd.Execute();
 
             OnTaskerActionExecuteFinished();
         }
