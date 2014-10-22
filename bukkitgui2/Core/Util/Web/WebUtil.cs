@@ -48,9 +48,14 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Web
         {
             FileDownloader fileDownloadDialog = new FileDownloader();
             fileDownloadDialog.AddFile(url, targetlocation);
-            if (!sync)
+            if (!showUi)
             {
                 fileDownloadDialog.StartDownload();
+                return;
+            }
+            if (!sync)
+            {
+                fileDownloadDialog.Show();
             }
             else
             {

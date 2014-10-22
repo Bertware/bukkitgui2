@@ -69,6 +69,12 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Web
         /// </summary>
         public void StartDownload()
         {
+            if (_downloadStarted)
+            {
+                Logger.Log(LogLevel.Warning, "FileDownloader", "Prevented double download start!", Environment.StackTrace);
+                return;
+            }     
+
             _downloadStarted = true;
             Logger.Log(LogLevel.Info, "FileDownloader", "Starting " + _downloads.Count + " download(s)");
             foreach (FileDownloadProgressBar control in _downloads.Values)

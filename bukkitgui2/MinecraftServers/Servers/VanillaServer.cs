@@ -29,12 +29,8 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers.Servers
 
         public override bool DownloadRecommendedVersion(string targetfile)
         {
-            FileDownloader fileDownloadDialog = new FileDownloader();
-            fileDownloadDialog.AddFile(
-                "https://s3.amazonaws.com/Minecraft.Download/versions/1.7.5/minecraft_server.1.7.5.jar",
-                targetfile);
-            fileDownloadDialog.Show();
-            fileDownloadDialog.StartDownload();
+              WebUtil.DownloadFile(   "https://s3.amazonaws.com/Minecraft.Download/versions/1.7.5/minecraft_server.1.7.5.jar",targetfile,true, true);
+
             return true;
         }
 
