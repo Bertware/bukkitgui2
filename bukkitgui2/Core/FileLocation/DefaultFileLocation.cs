@@ -52,7 +52,7 @@ namespace Net.Bertware.Bukkitgui2.Core.FileLocation
 				// -portable argument for keeping everything in the working directory
 				if (Environment.GetCommandLineArgs().Contains("-portable") || GetLocal())
 				{
-					_workingdirectory = Environment.CurrentDirectory;
+					_workingdirectory = SafeLocation(RequestFile.Local);
 				}
 
 				// custom working directory
