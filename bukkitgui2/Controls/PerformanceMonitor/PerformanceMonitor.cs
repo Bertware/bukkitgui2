@@ -33,7 +33,7 @@ namespace Net.Bertware.Bukkitgui2.Controls.PerformanceMonitor
             if (DesignMode) return;
 
             _tmrRefresh = new Timer(1000);
-            _tmrRefresh.Elapsed += RefreshData;
+			_tmrRefresh.Elapsed += RefreshData;
         }
 
         private void PerformanceMonitor_VisibleChanged(object sender, EventArgs e)

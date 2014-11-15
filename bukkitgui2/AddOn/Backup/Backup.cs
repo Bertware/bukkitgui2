@@ -56,8 +56,6 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Backup
         {
 	        try
 	        {
-
-
 		        _backups = new Dictionary<string, BackupDefenition>();
 		        if (!File.Exists(_backupXmlPath))
 			        File.WriteAllText(_backupXmlPath, "<backups></backups>");
@@ -120,14 +118,14 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Backup
                 XmlNodeList elements = rootElement.GetElementsByTagName("backup");
                 if (elements.Count > 0)
                 {
-                    for (int i = 0; i <= elements.Count - 1; i++)
+                    for (int i = 0; i < elements.Count; i++)
                     {
                         Logger.Log(LogLevel.Info, "Backupmanager",
                             "Parsing backup " + i + 1 + " out of " + elements.Count);
                         XmlElement xmle = (XmlElement) elements[i];
                         BackupDefenition backup = new BackupDefenition();
                         backup.LoadXml(xmle);
-                        if (_backups.ContainsKey(backup.Name))
+                        if (!_backups.ContainsKey(backup.Name))
                         {
                             _backups.Add(backup.Name, backup);
                         }
