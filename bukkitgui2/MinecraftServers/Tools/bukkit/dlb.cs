@@ -14,7 +14,7 @@ using System.Xml;
 using Net.Bertware.Bukkitgui2.Core.Logging;
 using Net.Bertware.Bukkitgui2.Core.Util.Web;
 
-namespace Net.Bertware.Bukkitgui2.MinecraftServers.Tools.bukkit
+namespace Net.Bertware.Bukkitgui2.MinecraftServers.Tools.Bukkit
 {
     internal static class Dlb
     {

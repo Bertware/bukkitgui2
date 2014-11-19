@@ -15,7 +15,7 @@ using Net.Bertware.Bukkitgui2.AddOn.Starter;
 using Net.Bertware.Bukkitgui2.Core.Logging;
 using Net.Bertware.Bukkitgui2.Core.Util.Web;
 using Net.Bertware.Bukkitgui2.MinecraftServers.Tools;
-using Net.Bertware.Bukkitgui2.MinecraftServers.Tools.bukkit;
+using Net.Bertware.Bukkitgui2.MinecraftServers.Tools.Bukkit;
 using Net.Bertware.Bukkitgui2.Properties;
 
 namespace Net.Bertware.Bukkitgui2.MinecraftServers.Servers

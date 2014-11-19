@@ -8,6 +8,8 @@
 // ©Bertware, visit http://bertware.net
 
 using Net.Bertware.Bukkitgui2.Core.Util.Web;
+using Net.Bertware.Bukkitgui2.MinecraftServers.Tools;
+using Net.Bertware.Bukkitgui2.MinecraftServers.Tools.Vanilla;
 using Net.Bertware.Bukkitgui2.Properties;
 
 namespace Net.Bertware.Bukkitgui2.MinecraftServers.Servers
@@ -24,14 +26,33 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers.Servers
             Logo = Resources.vanilla_logo;
 
             CanDownloadRecommendedVersion = true;
+            CanDownloadDevVersion = true;
+            CanFetchDevVersion = true;
+            CanFetchRecommendedVersion = true;
             //default value for boolean is false, so all other features are disabled by default
         }
 
+        public override string FetchDevVersion
+        {
+            get { return VanillaDownloadProvider.GetLatestVersion(); }
+        }
+
+        public override string FetchRecommendedVersion
+        {
+            get { return VanillaDownloadProvider.GetLatestRecommendedVersion(); }
+        }
+
+
         public override bool DownloadRecommendedVersion(string targetfile)
         {
-			// TODO: retrieve version info from https://s3.amazonaws.com/Minecraft.Download/versions/versions.json
+            WebUtil.DownloadFile(VanillaDownloadProvider.GetLatestRecommendedVersionUrl(), targetfile, true, true);
 
-              WebUtil.DownloadFile(   "https://s3.amazonaws.com/Minecraft.Download/versions/1.7.5/minecraft_server.1.7.5.jar",targetfile,true, true);
+            return true;
+        }
+
+        public override bool DownloadDevVersion(string targetfile)
+        {
+            WebUtil.DownloadFile(VanillaDownloadProvider.GetLatestUrl(), targetfile, true, true);
 
             return true;
         }
