@@ -23,19 +23,23 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Web
 
         public static string RetrieveString(string url)
         {
-            using (WebClient webc = new WebClient())
+            Uri uri = new Uri(url);
+            try
             {
-                try
-                {
-                    Logger.Log(LogLevel.Info, "WebUtil", "Retrieving data from " + url);
-                    webc.Headers.Set(HttpRequestHeader.UserAgent, UserAgent);
-                    return webc.DownloadString(url);
-                }
-                catch (WebException webException)
-                {
-                    Logger.Log(LogLevel.Warning, "WebUtil", "Couldn't retrieve data from " + url, webException.Message);
-                    return "";
-                }
+                WebRequest webc = WebRequest.Create(uri);
+                webc.Timeout = 1000*9;
+                webc.Headers.Set(HttpRequestHeader.UserAgent, UserAgent);
+
+                Logger.Log(LogLevel.Info, "WebUtil", "Retrieving data from " + url);
+                webc.Headers.Set(HttpRequestHeader.UserAgent, UserAgent);
+                string result = webc.GetResponse().ToString();
+                Logger.Log(LogLevel.Info, "WebUtil", "Retrieved data from " + url);
+                return result;
+            }
+            catch (WebException webException)
+            {
+                Logger.Log(LogLevel.Warning, "WebUtil", "Couldn't retrieve data from " + url, webException.Message);
+                return "";
             }
         }
 
@@ -61,6 +65,16 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Web
             {
                 fileDownloadDialog.ShowDialog();
             }
+        }
+    }
+
+    public class EnhancedWebClient : WebClient
+    {
+        protected override WebRequest GetWebRequest(Uri uri)
+        {
+            WebRequest w = base.GetWebRequest(uri);
+            w.Timeout = 10*60*1000;
+            return w;
         }
     }
 }

@@ -116,7 +116,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Forwarder
         /// <exception cref="ObjectDisposedException">This exception is thrown when this class has been disposed.</exception>
         /// <exception cref="ArgumentException">This exception is thrown when any of the supplied arguments are invalid.</exception>
         /// <remarks></remarks>
-        public void Add(string localIp, uint port, Protocol prot, string desc)
+        private void Add(string localIp, uint port, Protocol prot, string desc)
         {
             // Begin utilizing
             if (Exists(port, prot))
@@ -292,7 +292,6 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Forwarder
         {
             try
             {
-
                 if (_lastInstance == null) _lastInstance = new UPnP();
 
                 // Return list
@@ -323,7 +322,8 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Forwarder
             }
             catch (Exception exception)
             {
-                Logger.Log(LogLevel.Warning, "UPnP", "Couldn't get upnp mapping! Probably UPnP is disabled" ,exception.Message);
+                Logger.Log(LogLevel.Warning, "UPnP", "Couldn't get upnp mapping! Probably UPnP is disabled",
+                    exception.Message);
                 if (_lastInstance != null) _lastInstance._staticEnabled = false; // remember that upnp is disabled
             }
             // No return value, use the event to get the list!
