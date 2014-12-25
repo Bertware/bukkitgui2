@@ -117,6 +117,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			// 
 			// ContextPlayers
 			// 
+			this.ContextPlayers.Enabled = false;
 			this.ContextPlayers.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ContextPlayersKick,
             this.ContextPlayersBan,
@@ -124,45 +125,50 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
             this.ContextPlayersOp,
             this.ContextPlayersDeOp});
 			this.ContextPlayers.Name = "ContextPlayers";
-			this.ContextPlayers.Size = new System.Drawing.Size(110, 114);
+			this.ContextPlayers.Size = new System.Drawing.Size(153, 136);
 			// 
 			// ContextPlayersKick
 			// 
+			this.ContextPlayersKick.Enabled = false;
 			this.ContextPlayersKick.Image = global::Net.Bertware.Bukkitgui2.Properties.Resources.icon_minus_64;
 			this.ContextPlayersKick.Name = "ContextPlayersKick";
-			this.ContextPlayersKick.Size = new System.Drawing.Size(109, 22);
+			this.ContextPlayersKick.Size = new System.Drawing.Size(152, 22);
 			this.ContextPlayersKick.Text = "Kick";
 			this.ContextPlayersKick.Click += new System.EventHandler(this.ContextPlayersKick_Click);
 			// 
 			// ContextPlayersBan
 			// 
+			this.ContextPlayersBan.Enabled = false;
 			this.ContextPlayersBan.Image = global::Net.Bertware.Bukkitgui2.Properties.Resources.icon_cancel_64;
 			this.ContextPlayersBan.Name = "ContextPlayersBan";
-			this.ContextPlayersBan.Size = new System.Drawing.Size(109, 22);
+			this.ContextPlayersBan.Size = new System.Drawing.Size(152, 22);
 			this.ContextPlayersBan.Text = "Ban";
 			this.ContextPlayersBan.Click += new System.EventHandler(this.ContextPlayersBan_Click);
 			// 
 			// ContextPlayersBanIp
 			// 
+			this.ContextPlayersBanIp.Enabled = false;
 			this.ContextPlayersBanIp.Image = global::Net.Bertware.Bukkitgui2.Properties.Resources.icon_cancel_64;
 			this.ContextPlayersBanIp.Name = "ContextPlayersBanIp";
-			this.ContextPlayersBanIp.Size = new System.Drawing.Size(109, 22);
+			this.ContextPlayersBanIp.Size = new System.Drawing.Size(152, 22);
 			this.ContextPlayersBanIp.Text = "Ban-ip";
 			this.ContextPlayersBanIp.Click += new System.EventHandler(this.ContextPlayersBanIp_Click);
 			// 
 			// ContextPlayersOp
 			// 
+			this.ContextPlayersOp.Enabled = false;
 			this.ContextPlayersOp.Image = global::Net.Bertware.Bukkitgui2.Properties.Resources.icon_up_circular_64;
 			this.ContextPlayersOp.Name = "ContextPlayersOp";
-			this.ContextPlayersOp.Size = new System.Drawing.Size(109, 22);
+			this.ContextPlayersOp.Size = new System.Drawing.Size(152, 22);
 			this.ContextPlayersOp.Text = "Op";
 			this.ContextPlayersOp.Click += new System.EventHandler(this.ContextPlayersOp_Click);
 			// 
 			// ContextPlayersDeOp
 			// 
+			this.ContextPlayersDeOp.Enabled = false;
 			this.ContextPlayersDeOp.Image = global::Net.Bertware.Bukkitgui2.Properties.Resources.icon_down_circular_64;
 			this.ContextPlayersDeOp.Name = "ContextPlayersDeOp";
-			this.ContextPlayersDeOp.Size = new System.Drawing.Size(109, 22);
+			this.ContextPlayersDeOp.Size = new System.Drawing.Size(152, 22);
 			this.ContextPlayersDeOp.Text = "De-op";
 			this.ContextPlayersDeOp.Click += new System.EventHandler(this.ContextPlayersDeOp_Click);
 			// 
