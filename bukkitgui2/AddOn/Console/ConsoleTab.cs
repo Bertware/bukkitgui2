@@ -10,6 +10,7 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 using MetroFramework.Controls;
 using Net.Bertware.Bukkitgui2.Core.Configuration;
 using Net.Bertware.Bukkitgui2.Core.Logging;
@@ -54,24 +55,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
         }
 
 
-        /// <summary>
-        ///     Remove a player from the listview
-        /// </summary>
-        /// <param name="player"></param>
-        private void HandlePlayerDeletion(Player player)
-        {
-            if (InvokeRequired)
-            {
-                Invoke((MethodInvoker) (() => HandlePlayerDeletion(player)));
-            }
-            else
-            {
-                SlvPlayers.Items.RemoveByKey(player.Name);
-                if (imgListPlayerFaces.Images.ContainsKey(player.Name))
-                    imgListPlayerFaces.Images.RemoveByKey(player.Name);
-            }
-        }
-
+  
         /// <summary>
         ///     Add a player to the listview
         /// </summary>
@@ -85,10 +69,32 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
             else
             {
                 player.DetailsLoaded += player_DetailsLoaded;
-
-                SlvPlayers.Items.Add(player.Name, player.DisplayName, "default");
+				ListViewItem lvi = new ListViewItem(player.DisplayName) {Tag = player, ImageKey = "default"};
+				
+	            SlvPlayers.Items.Add(lvi);
             }
         }
+
+		/// <summary>
+		///     Remove a player from the listview
+		/// </summary>
+		/// <param name="player"></param>
+		private void HandlePlayerDeletion(Player player)
+		{
+			if (InvokeRequired)
+			{
+				Invoke((MethodInvoker)(() => HandlePlayerDeletion(player)));
+			}
+			else
+			{
+				ListViewItem lvi = FindPlayerListViewItem(player);
+			
+				if (lvi != null) SlvPlayers.Items.Remove(lvi);
+				if (imgListPlayerFaces.Images.ContainsKey(player.Name))
+					imgListPlayerFaces.Images.RemoveByKey(player.Name);
+			}
+		}
+
 
         private void player_DetailsLoaded(object sender, EventArgs e)
         {
@@ -100,9 +106,19 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
             {
                 Player p = (Player) sender;
                 imgListPlayerFaces.Images.Add(p.Name, p.Minotar);
-                SlvPlayers.Items[p.Name].ImageKey = p.Name;
+				ListViewItem lvi = FindPlayerListViewItem(p);
+				if (lvi !=null) lvi.ImageKey = p.Name;
             }
         }
+
+		private ListViewItem FindPlayerListViewItem(Player player)
+	    {
+			foreach (ListViewItem item in SlvPlayers.Items)
+			{
+				if (item.Tag == player) return item;
+			}
+			return null;
+	    }
 
         /// <summary>
         ///     Handle starting server, prepare UI and display text
@@ -207,5 +223,10 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
                 Logger.Log(LogLevel.Warning, "ConsoleTab", "Exception thrown while showing emulator", exception.Message);
             }
         }
+
+		private void SlvPlayers_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			ContextPlayers.Enabled = (SlvPlayers.SelectedItems != null && SlvPlayers.SelectedItems.Count > 0);
+		}
     }
 }
