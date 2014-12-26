@@ -55,6 +55,14 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Trigger
 
         public bool Enabled { get; protected set; }
 
+		/// <summary>
+		///     Timer interval in seconds
+		/// </summary>
+		private const int TimerInterval = 5;
+
+		private Timer _timerCheckCurrentTime;
+		private TimeSpan[] _times;
+
         public void Enable()
         {
             Parameters = Parameters.Trim(';');
@@ -68,7 +76,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Trigger
 
             _timerCheckCurrentTime = new Timer(TimerInterval*1000);
             _timerCheckCurrentTime.Elapsed += check_time;
-
+			_timerCheckCurrentTime.Start();
             Enabled = true;
         }
 
@@ -84,13 +92,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Trigger
             Enabled = false;
         }
 
-        /// <summary>
-        ///     Timer interval in seconds
-        /// </summary>
-        private const int TimerInterval = 5;
-
-        private Timer _timerCheckCurrentTime;
-        private TimeSpan[] _times;
+      
 
         /// <summary>
         ///     Check the current time, and see if the trigger should go off.
@@ -99,7 +101,8 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Trigger
         {
             foreach (TimeSpan time in _times)
             {
-                if (Math.Abs(DateTime.Now.TimeOfDay.Subtract(time).Seconds) < TimerInterval)
+	            int dt = Math.Abs(DateTime.Now.TimeOfDay.Subtract(time).Seconds) ;
+				if (dt < TimerInterval)
                     TaskerTriggerFired.Invoke();
             }
         }
