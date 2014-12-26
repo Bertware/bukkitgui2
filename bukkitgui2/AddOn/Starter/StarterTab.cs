@@ -603,14 +603,14 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
             // If trackbar doesn't show the same amount, adjust trackbar
             if (TBMinRam.Value != NumMinRam.Value)
             {
-                TBMinRam.Value = Convert.ToInt16(NumMinRam.Value);
+                TBMinRam.Value = Convert.ToInt32(NumMinRam.Value);
             }
 
             if (!_ready)
             {
                 return; //if not initialized, don't detect changes
             }
-            Config.WriteInt("Starter", "MinRam", Convert.ToInt16(NumMinRam.Value));
+            Config.WriteInt("Starter", "MinRam", Convert.ToInt32(NumMinRam.Value));
 
             // if minram goes higer than maxram, adjust maxram
             if (NumMinRam.Value > NumMaxRam.Value)
@@ -629,14 +629,14 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
         {
             if (TBMaxRam.Value != NumMaxRam.Value)
             {
-                TBMaxRam.Value = Convert.ToInt16(NumMaxRam.Value);
+                TBMaxRam.Value = Convert.ToInt32(NumMaxRam.Value);
             }
 
             if (!_ready)
             {
                 return; //if not initialized, don't detect changes
             }
-            Config.WriteInt("Starter", "MaxRam", Convert.ToInt16(NumMaxRam.Value));
+            Config.WriteInt("Starter", "MaxRam", Convert.ToInt32(NumMaxRam.Value));
 
             if (NumMinRam.Value > NumMaxRam.Value)
             {
