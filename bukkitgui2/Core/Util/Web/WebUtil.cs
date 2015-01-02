@@ -26,12 +26,11 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Web
             Uri uri = new Uri(url);
             try
             {
-                WebRequest webc = WebRequest.Create(uri);
+				HttpWebRequest webc = (HttpWebRequest) WebRequest.Create(uri);
                 webc.Timeout = 1000*9;
-                webc.Headers.Set(HttpRequestHeader.UserAgent, UserAgent);
-
+                webc.UserAgent = UserAgent;
                 Logger.Log(LogLevel.Info, "WebUtil", "Retrieving data from " + url);
-                webc.Headers.Set(HttpRequestHeader.UserAgent, UserAgent);
+                
                 string result = webc.GetResponse().ToString();
                 Logger.Log(LogLevel.Info, "WebUtil", "Retrieved data from " + url);
                 return result;
@@ -65,16 +64,6 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Web
             {
                 fileDownloadDialog.ShowDialog();
             }
-        }
-    }
-
-    public class EnhancedWebClient : WebClient
-    {
-        protected override WebRequest GetWebRequest(Uri uri)
-        {
-            WebRequest w = base.GetWebRequest(uri);
-            w.Timeout = 10*60*1000;
-            return w;
         }
     }
 }
