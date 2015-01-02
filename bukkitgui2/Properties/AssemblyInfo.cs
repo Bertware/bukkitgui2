@@ -19,7 +19,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Bertware.net")]
 [assembly: AssemblyProduct("Bukkitgui2")]
-[assembly: AssemblyCopyright("Copyright ©2011 - 2014")]
+[assembly: AssemblyCopyright("Copyright ©2011 - 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -44,5 +44,5 @@ using System.Runtime.InteropServices;
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
 
-[assembly: AssemblyVersion("0.9.1.199")]
-[assembly: AssemblyFileVersion("0.9.1.199")]
+[assembly: AssemblyVersion("2.0.0.215")]
+[assembly: AssemblyFileVersion("2.0.0.215")]

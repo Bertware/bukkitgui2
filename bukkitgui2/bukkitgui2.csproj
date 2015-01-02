@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Net.Bertware.Bukkitgui2</RootNamespace>
-    <AssemblyName>bukkitgui2</AssemblyName>
+    <AssemblyName>bukkitgui</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile>
@@ -370,6 +370,9 @@
     <Compile Include="Core\Util\Performance\MemoryCounter.cs" />
     <Compile Include="Core\Util\Performance\Wmi.cs" />
     <Compile Include="Core\Util\StringUtil.cs" />
+    <Compile Include="Core\Util\Web\EnhancedWebClient.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Core\Util\Web\FileDownloader.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -385,9 +388,7 @@
     <Compile Include="Core\Util\Web\FileDownloadProgressBar.designer.cs">
       <DependentUpon>FileDownloadProgressBar.cs</DependentUpon>
     </Compile>
-    <Compile Include="Core\Util\Web\WebUtil.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="Core\Util\Web\WebUtil.cs" />
     <Compile Include="MinecraftInterop\OutputHandler\EnumMessageType.cs" />
     <Compile Include="MinecraftInterop\OutputHandler\OutputParseResult.cs" />
     <Compile Include="MinecraftInterop\OutputHandler\MinecraftOutputHandler.cs" />

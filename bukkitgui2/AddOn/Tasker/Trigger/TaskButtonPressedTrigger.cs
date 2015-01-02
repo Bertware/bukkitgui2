@@ -17,7 +17,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Trigger
         public TaskButtonPressedTrigger()
         {
             Name = "Task button pressed";
-            Description = "Execute a task when the task button on the main tab is pressed";
+            Description = "Execute a task when the task button on the main tab is clicked";
             ParameterDescription = "No parameters are required";
         }
 

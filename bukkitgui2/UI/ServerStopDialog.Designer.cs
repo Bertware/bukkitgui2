@@ -40,10 +40,10 @@ namespace Net.Bertware.Bukkitgui2.UI
 			// 
 			this.btnCancel.Location = new System.Drawing.Point(240, 92);
 			this.btnCancel.Name = "btnCancel";
+			this.btnCancel.Size = new System.Drawing.Size(75, 23);
 			this.btnCancel.TabIndex = 1;
-			this.btnCancel.Text = Locale.Tr("&Cancel");
+			this.btnCancel.Text = "&Cancel";
 			this.btnCancel.UseSelectable = true;
-			this.btnCancel.UseVisualStyleBackColor = true;
 			this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
 			// 
 			// progBar
@@ -58,10 +58,10 @@ namespace Net.Bertware.Bukkitgui2.UI
 			// 
 			this.btnKill.Location = new System.Drawing.Point(159, 92);
 			this.btnKill.Name = "btnKill";
+			this.btnKill.Size = new System.Drawing.Size(75, 23);
 			this.btnKill.TabIndex = 3;
-			this.btnKill.Text = Locale.Tr("&Kill");
+			this.btnKill.Text = "&Kill";
 			this.btnKill.UseSelectable = true;
-			this.btnKill.UseVisualStyleBackColor = true;
 			this.btnKill.Click += new System.EventHandler(this.btnKill_Click);
 			// 
 			// ServerStopDialog
@@ -76,9 +76,11 @@ namespace Net.Bertware.Bukkitgui2.UI
 			this.MinimizeBox = false;
 			this.Name = "ServerStopDialog";
 			this.Resizable = false;
+			this.ShowIcon = false;
+			this.ShowInTaskbar = false;
 			this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-			this.Text = Locale.Tr("Stopping Server...");
+			this.Text = "Stopping Server...";
 			this.Load += new System.EventHandler(this.ServerStopDialog_Load);
 			this.ResumeLayout(false);
 
