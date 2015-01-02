@@ -8,7 +8,9 @@
 // ©Bertware, visit http://bertware.net
 
 using System;
+using System.IO;
 using System.Net;
+using System.Text;
 using Net.Bertware.Bukkitgui2.Core.Logging;
 
 namespace Net.Bertware.Bukkitgui2.Core.Util.Web
@@ -30,10 +32,10 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Web
                 webc.Timeout = 1000*9;
                 webc.UserAgent = UserAgent;
                 Logger.Log(LogLevel.Info, "WebUtil", "Retrieving data from " + url);
-                
-                string result = webc.GetResponse().ToString();
+
+				StreamReader readStream = new StreamReader(webc.GetResponse().GetResponseStream(), Encoding.UTF8);
                 Logger.Log(LogLevel.Info, "WebUtil", "Retrieved data from " + url);
-                return result;
+                return readStream.ReadToEnd();
             }
             catch (WebException webException)
             {
