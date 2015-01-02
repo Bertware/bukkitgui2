@@ -15,7 +15,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Trigger
     {
         public PlayerCountTrigger()
         {
-            Name = "Playercount";
+            Name = "Player count";
             Description =
                 "Execute a task when a given amount of players is online (evaluated after every join or leave)";
             ParameterDescription = "The amount of players on which this trigger should run (0 to 9999)";

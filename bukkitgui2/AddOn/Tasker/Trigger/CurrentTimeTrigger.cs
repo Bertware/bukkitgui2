@@ -17,7 +17,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Trigger
     {
         public CurrentTimeTrigger()
         {
-            Name = "CurrentTime";
+            Name = "Current Time";
             Description = "Execute a task at the given time. Precision: +- 2.5 seconds.";
             ParameterDescription =
                 "The time on which this task should execute, in HH:MM:SS format. Multiple times can be entered, separated by ; (e.g.: 01:00:00;13:00:00)";

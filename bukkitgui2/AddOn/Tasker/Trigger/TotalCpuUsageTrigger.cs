@@ -30,7 +30,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Trigger
 
         public TotalCpuUsageTrigger()
         {
-            Name = "Server Cpu Usage";
+            Name = "Total Cpu Usage";
             Description = "Execute a task when the total cpu usage goes above a certain percentage.";
             ParameterDescription =
                 "The percentage [" + Minvalue + "-100] above which value this task will trigger. ";
