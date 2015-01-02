@@ -31,6 +31,7 @@ namespace Net.Bertware.Bukkitgui2.UI
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ServerStopDialog));
 			this.btnCancel = new MetroFramework.Controls.MetroButton();
 			this.progBar = new MetroFramework.Controls.MetroProgressBar();
 			this.btnKill = new MetroFramework.Controls.MetroButton();
@@ -72,6 +73,7 @@ namespace Net.Bertware.Bukkitgui2.UI
 			this.Controls.Add(this.btnKill);
 			this.Controls.Add(this.progBar);
 			this.Controls.Add(this.btnCancel);
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "ServerStopDialog";
