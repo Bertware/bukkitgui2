@@ -68,7 +68,7 @@ namespace Net.Bertware.Bukkitgui2.Controls.QuickButtons
 			this.btnCustom.TabIndex = 2;
 			this.btnCustom.Text = "Run Task";
 			this.metroToolTip.SetToolTip(this.btnCustom, "Run a task.\r\nNote: you should create a task in the task manager first!\r\nUse the \"" +
-        "task button\" trigger so the task gets executed when you press this button\r\n");
+        "task button\" trigger to associate a task with this trigger.\r\n");
 			this.btnCustom.UseSelectable = true;
 			this.btnCustom.Click += new System.EventHandler(this.btnCustom_Click);
 			// 
