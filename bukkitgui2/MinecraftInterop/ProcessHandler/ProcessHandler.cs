@@ -443,7 +443,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler
                     "Server has to be stopped",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No) return false;
 	            ServerStopDialog ssd = new ServerStopDialog();
-				DialogResult result = ssd.ShowDialog();
+				DialogResult result = ssd.ShowDialog(MainForm.Reference);
 	            if (result != DialogResult.OK) return false;
             }
             return true;
