@@ -68,9 +68,17 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
             {
                 while (!sr.EndOfStream)
                 {
-                    Task t = new Task(sr.ReadLine());
-                    Logger.Log(LogLevel.Info, "Tasker", "Parsed task", t.ToString());
-                    Tasks.Add(t.Name, t);
+	                try
+	                {
+		                Task t = new Task(sr.ReadLine());
+		                Logger.Log(LogLevel.Info, "Tasker", "Parsed task", t.ToString());
+		                Tasks.Add(t.Name, t);
+	                }
+	                catch (Exception ex)
+	                {
+						Logger.Log(LogLevel.Warning, "Tasker", "Failed to parse task", ex.Message);
+	                }
+
                 }
             }
             Logger.Log(LogLevel.Info, "Tasker", "Loaded all tasks");

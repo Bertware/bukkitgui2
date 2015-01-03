@@ -76,5 +76,12 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget
             string main = slvPlugins.SelectedItems[0].Tag.ToString();
             api3.Bukget.CurrentlyLoadedPlugins[main].InstallLatestVersion();
         }
+
+		private void slvPlugins_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			bool selected = slvPlugins.SelectedItems.Count > 0;
+			btnInfo.Enabled = selected;
+			btnInstall.Enabled = selected;
+		}
     }
 }

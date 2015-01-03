@@ -46,33 +46,36 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 			// btnUpdate
 			// 
 			this.btnUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.btnUpdate.Enabled = false;
 			this.btnUpdate.Location = new System.Drawing.Point(540, 414);
 			this.btnUpdate.Name = "btnUpdate";
 			this.btnUpdate.Size = new System.Drawing.Size(75, 23);
 			this.btnUpdate.TabIndex = 7;
-			this.btnUpdate.Text = Locale.Tr("Update");
+			this.btnUpdate.Text = "Update";
 			this.btnUpdate.UseSelectable = true;
 			this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
 			// 
 			// btnVersions
 			// 
 			this.btnVersions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.btnVersions.Enabled = false;
 			this.btnVersions.Location = new System.Drawing.Point(621, 414);
 			this.btnVersions.Name = "btnVersions";
 			this.btnVersions.Size = new System.Drawing.Size(75, 23);
 			this.btnVersions.TabIndex = 6;
-			this.btnVersions.Text = Locale.Tr("Versions");
+			this.btnVersions.Text = "Versions";
 			this.btnVersions.UseSelectable = true;
 			this.btnVersions.Click += new System.EventHandler(this.btnVersions_Click);
 			// 
 			// btnRemove
 			// 
 			this.btnRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.btnRemove.Enabled = false;
 			this.btnRemove.Location = new System.Drawing.Point(702, 414);
 			this.btnRemove.Name = "btnRemove";
 			this.btnRemove.Size = new System.Drawing.Size(75, 23);
 			this.btnRemove.TabIndex = 5;
-			this.btnRemove.Text = Locale.Tr("Remove");
+			this.btnRemove.Text = "Remove";
 			this.btnRemove.UseSelectable = true;
 			this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
 			// 
@@ -95,35 +98,36 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 			this.slvPlugins.TabIndex = 4;
 			this.slvPlugins.UseCompatibleStateImageBehavior = false;
 			this.slvPlugins.View = System.Windows.Forms.View.Details;
+			this.slvPlugins.SelectedIndexChanged += new System.EventHandler(this.slvPlugins_SelectedIndexChanged);
 			// 
 			// colName
 			// 
-			this.colName.Text = Locale.Tr("Name");
+			this.colName.Text = "Name";
 			this.colName.Width = 120;
 			// 
 			// colDescription
 			// 
-			this.colDescription.Text = Locale.Tr("Description");
+			this.colDescription.Text = "Description";
 			this.colDescription.Width = 220;
 			// 
 			// ColAuthor
 			// 
-			this.ColAuthor.Text = Locale.Tr("Author(s)");
+			this.ColAuthor.Text = "Author(s)";
 			this.ColAuthor.Width = 100;
 			// 
 			// colVersion
 			// 
-			this.colVersion.Text = Locale.Tr("Version");
+			this.colVersion.Text = "Version";
 			this.colVersion.Width = 90;
 			// 
 			// colLatestVersion
 			// 
-			this.colLatestVersion.Text = Locale.Tr("Latest version");
+			this.colLatestVersion.Text = "Latest version";
 			this.colLatestVersion.Width = 90;
 			// 
 			// colInstalled
 			// 
-			this.colInstalled.Text = Locale.Tr("Installed");
+			this.colInstalled.Text = "Installed";
 			this.colInstalled.Width = 90;
 			// 
 			// InstalledPluginsControl

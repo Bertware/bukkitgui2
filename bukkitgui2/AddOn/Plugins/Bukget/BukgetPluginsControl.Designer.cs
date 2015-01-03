@@ -66,25 +66,26 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget
 			this.slvPlugins.TabIndex = 0;
 			this.slvPlugins.UseCompatibleStateImageBehavior = false;
 			this.slvPlugins.View = System.Windows.Forms.View.Details;
+			this.slvPlugins.SelectedIndexChanged += new System.EventHandler(this.slvPlugins_SelectedIndexChanged);
 			// 
 			// colName
 			// 
-			this.colName.Text = Locale.Tr("Name");
+			this.colName.Text = "Name";
 			this.colName.Width = 120;
 			// 
 			// colDescription
 			// 
-			this.colDescription.Text = Locale.Tr("Description");
+			this.colDescription.Text = "Description";
 			this.colDescription.Width = 360;
 			// 
 			// colVersion
 			// 
-			this.colVersion.Text = Locale.Tr("Version");
+			this.colVersion.Text = "Version";
 			this.colVersion.Width = 120;
 			// 
 			// colGameVersion
 			// 
-			this.colGameVersion.Text = Locale.Tr("Game version");
+			this.colGameVersion.Text = "Game version";
 			this.colGameVersion.Width = 120;
 			// 
 			// btnInstall
@@ -94,7 +95,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget
 			this.btnInstall.Name = "btnInstall";
 			this.btnInstall.Size = new System.Drawing.Size(75, 23);
 			this.btnInstall.TabIndex = 1;
-			this.btnInstall.Text = Locale.Tr("Install");
+			this.btnInstall.Text = "Install";
 			this.btnInstall.UseSelectable = true;
 			this.btnInstall.Click += new System.EventHandler(this.btnInstall_Click);
 			// 
@@ -105,7 +106,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget
 			this.btnInfo.Name = "btnInfo";
 			this.btnInfo.Size = new System.Drawing.Size(75, 23);
 			this.btnInfo.TabIndex = 3;
-			this.btnInfo.Text = Locale.Tr("Info");
+			this.btnInfo.Text = "Info";
 			this.btnInfo.UseSelectable = true;
 			this.btnInfo.Click += new System.EventHandler(this.btnInfo_Click);
 			// 
@@ -116,7 +117,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget
 			this.lblBrowse.Name = "lblBrowse";
 			this.lblBrowse.Size = new System.Drawing.Size(130, 21);
 			this.lblBrowse.TabIndex = 17;
-			this.lblBrowse.Text = Locale.Tr("Browse category:");
+			this.lblBrowse.Text = "Browse category:";
 			// 
 			// cbCategories
 			// 
@@ -137,7 +138,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget
 			this.btnSearch.Name = "btnSearch";
 			this.btnSearch.Size = new System.Drawing.Size(75, 24);
 			this.btnSearch.TabIndex = 15;
-			this.btnSearch.Text = Locale.Tr("Search");
+			this.btnSearch.Text = "Search";
 			this.btnSearch.UseSelectable = true;
 			this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
 			// 
@@ -147,7 +148,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget
 			this.lblSearch.Name = "lblSearch";
 			this.lblSearch.Size = new System.Drawing.Size(120, 21);
 			this.lblSearch.TabIndex = 14;
-			this.lblSearch.Text = Locale.Tr("Search plugins:");
+			this.lblSearch.Text = "Search plugins:";
 			// 
 			// txtSearchText
 			// 

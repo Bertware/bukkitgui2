@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using MetroFramework.Controls;
 using Net.Bertware.Bukkitgui2.AddOn.Tasker.TaskerUI;
+using Net.Bertware.Bukkitgui2.UI;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 {
@@ -39,7 +40,8 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
             slvTasks.Items.Clear();
             foreach (KeyValuePair<string, Task> pair in Tasker.Tasks)
             {
-                string[] content =
+               
+				string[] content =
                 {
                     pair.Key,
                     pair.Value.Trigger.Name,
@@ -56,12 +58,12 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
         private void btnNew_Click(object sender, EventArgs e)
         {
             TaskEditor editor = new TaskEditor();
-            editor.ShowDialog();
+            editor.ShowDialog(MainForm.Reference);
         }
 
         private void slvTasks_SelectedIndexChanged(object sender, EventArgs e)
         {
-            bool taskSelected =  (slvTasks.SelectedItems.Count > 0);
+            bool taskSelected = (slvTasks.SelectedItems.Count > 0);
             btnEdit.Enabled = taskSelected;
             btnDelete.Enabled = taskSelected;
             btnTest.Enabled = taskSelected;

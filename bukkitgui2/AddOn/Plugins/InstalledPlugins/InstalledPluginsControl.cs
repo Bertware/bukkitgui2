@@ -84,5 +84,13 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
                     plugin.Remove();
             }
         }
+
+		private void slvPlugins_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			bool selected = (slvPlugins.SelectedItems.Count > 0);
+			btnRemove.Enabled = selected;
+			btnUpdate.Enabled = selected;
+			btnVersions.Enabled = selected;
+		}
     }
 }
