@@ -83,6 +83,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
                         MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     plugin.Remove();
             }
+			slvPlugins_SelectedIndexChanged(null,null); // force index check to disable buttons if needed
         }
 
 		private void slvPlugins_SelectedIndexChanged(object sender, EventArgs e)
