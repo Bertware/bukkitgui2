@@ -153,6 +153,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.TaskerUI
 			this.txtName.Size = new System.Drawing.Size(321, 20);
 			this.txtName.TabIndex = 2;
 			this.txtName.UseSelectable = true;
+			this.txtName.Click += new System.EventHandler(this.txtName_Click);
 			// 
 			// lblName
 			// 
