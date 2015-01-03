@@ -50,10 +50,12 @@ namespace Net.Bertware.Bukkitgui2.UI
 			// progBar
 			// 
 			this.progBar.Location = new System.Drawing.Point(23, 63);
+			this.progBar.MarqueeAnimationSpeed = 10;
 			this.progBar.Name = "progBar";
+			this.progBar.ProgressBarStyle = System.Windows.Forms.ProgressBarStyle.Marquee;
 			this.progBar.Size = new System.Drawing.Size(292, 23);
-			this.progBar.Style = MetroFramework.MetroColorStyle.White;
 			this.progBar.TabIndex = 2;
+			this.progBar.Value = 5;
 			// 
 			// btnKill
 			// 

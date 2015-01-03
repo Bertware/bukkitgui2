@@ -26,6 +26,7 @@ namespace Net.Bertware.Bukkitgui2.UI
         private void btnCancel_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
+	        Close();
         }
 
         private void ServerStopDialog_Load(object sender, EventArgs e)
@@ -35,6 +36,7 @@ namespace Net.Bertware.Bukkitgui2.UI
                 DialogResult = DialogResult.OK;
                 Close();
             }
+	        ProcessHandler.SendInput("stop"); //send stop command
             ProcessHandler.ServerStopped += Return;
         }
 

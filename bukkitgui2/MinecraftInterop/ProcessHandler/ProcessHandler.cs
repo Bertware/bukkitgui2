@@ -442,7 +442,9 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler
                     "You want to perform an operation, which can't be executed while the server is running. Stop the server now?",
                     "Server has to be stopped",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No) return false;
-                new ServerStopDialog().ShowDialog();
+	            ServerStopDialog ssd = new ServerStopDialog();
+				DialogResult result = ssd.ShowDialog();
+	            if (result != DialogResult.OK) return false;
             }
             return true;
         }
