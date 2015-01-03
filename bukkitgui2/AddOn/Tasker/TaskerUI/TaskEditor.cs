@@ -82,6 +82,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.TaskerUI
 			{
 				lblTriggerDescription.Text = _selectedTrigger.ParameterDescription;
 			}
+			ValidateInput();
 		}
 
 		/// <summary>
@@ -94,11 +95,13 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.TaskerUI
 
 			if (string.IsNullOrEmpty(txtName.Text))
 			{
+				valid = false;
 				errorProvider.SetError(txtName,
 					"Name cannot be empty");
 			}
 			else if (Tasker.Tasks.ContainsKey(txtName.Text))
 			{
+				valid = false;
 				errorProvider.SetError(txtName,
 					"Name is already in use for another task");
 			}
@@ -109,6 +112,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.TaskerUI
 
 			if (_selectedTrigger != null)
 			{
+				errorProvider.SetError(cbTrigger,"");
 				if (_selectedTrigger.ValidateInput(txtTriggerParam.Text))
 
 				{
@@ -120,6 +124,12 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.TaskerUI
 					errorProvider.SetError(txtTriggerParam,
 						"Invalid parameter!" + Environment.NewLine + _selectedTrigger.ParameterDescription);
 				}
+			}
+			else
+			{
+				errorProvider.SetError(cbTrigger,
+					"No trigger selected!");
+				valid = false;
 			}
 
 			btnSave.Enabled = valid;
@@ -133,7 +143,6 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.TaskerUI
 		/// <param name="e"></param>
 		private void txtTriggerParam_TextChanged(object sender, EventArgs e)
 		{
-			if (_selectedTrigger == null) return;
 			ValidateInput();
 		}
 
@@ -163,10 +172,6 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.TaskerUI
 			if (gbAction.Controls.Count > 4) btnNewAction.Enabled = false;
 		}
 
-		private void txtName_Click(object sender, EventArgs e)
-		{
-			ValidateInput();
-		}
 
 		/// <summary>
 		///     Save task
@@ -214,6 +219,11 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.TaskerUI
 				actions.Add(selector.GetAction());
 			}
 			return new Task(txtName.Text, chkEnable.Checked, trigger, actions);
+		}
+
+		private void txtName_TextChanged(object sender, EventArgs e)
+		{
+			ValidateInput();
 		}
 	}
 }
