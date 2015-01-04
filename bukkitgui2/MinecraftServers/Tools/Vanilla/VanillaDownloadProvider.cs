@@ -148,6 +148,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers.Tools.Vanilla
         snapshot,
         release,
         old_alpha,
+        old_beta,
         unknown
     }
 }
