@@ -60,7 +60,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Trigger
         {
             _time = TimeSpan.Parse(Parameters);
 
-            _timerCheckCurrentTime = new Timer(_time.TotalMilliseconds);
+            _timerCheckCurrentTime = new Timer(_time.TotalMilliseconds) {Enabled = false};
             _timerCheckCurrentTime.Elapsed += raise_trigger_fired;
 
             // only start counting when the server is running
@@ -91,7 +91,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Trigger
         /// <param name="e"></param>
         private void raise_trigger_fired(object sender, ElapsedEventArgs e)
         {
-            TaskerTriggerFired.Invoke();
+           if (TaskerTriggerFired != null) TaskerTriggerFired.Invoke();
         }
     }
 }
