@@ -102,7 +102,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Trigger
             foreach (TimeSpan time in _times)
             {
 	            int dt = Math.Abs(DateTime.Now.TimeOfDay.Subtract(time).Seconds) ;
-				if (dt < TimerInterval)
+				if (dt < (TimerInterval/2))
                     TaskerTriggerFired.Invoke();
             }
         }
