@@ -138,7 +138,16 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
                             "Loading plugin data:" + plugin.Name + "(" + i + 1 + "/" + InstalledPlugins.Count + ")");
                         if (_pluginLinkDictionary.ContainsKey(plugin) == false)
                         {
-                            _pluginLinkDictionary.Add(plugin, BukgetPlugin.CreateFromNamespace(plugin.Mainspace));
+							try
+							{
+								_pluginLinkDictionary.Add(plugin, BukgetPlugin.CreateFromNamespace(plugin.Mainspace));
+							}
+							catch (Exception ex)
+							{
+								_pluginLinkDictionary.Add(plugin, null);
+								Logger.Log(LogLevel.Info, "PluginUpdater",
+																"Skipped plugin data:" + plugin.Name + "(" + i + 1 + "/" + InstalledPlugins.Count + ")",ex.Message);
+							}
                             Logger.Log(LogLevel.Info, "PluginUpdater",
                                 "Added plugin data:" + plugin.Name + "(" + i + 1 + "/" + InstalledPlugins.Count + ")");
                         }

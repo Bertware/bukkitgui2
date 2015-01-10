@@ -151,20 +151,29 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
         public BukgetPlugin(string jsonCode)
         {
             InitFields();
-            if (string.IsNullOrEmpty(jsonCode)) return;
+			if (string.IsNullOrEmpty(jsonCode)) throw new FormatException("Invalid JSON supplied: string is empty");
 
+			if (Equals(jsonCode, "[]")) throw new FormatException("Invalid JSON supplied: array is empty");
             // Load the string into a json object
             JsonObject json;
             // In case of an array, load the first entry
-            if (jsonCode.StartsWith("["))
-            {
-                json = (JsonObject) JsonConvert.Import<JsonArray>(jsonCode)[0];
-            }
-            else
-            {
-                json = JsonConvert.Import<JsonObject>(jsonCode);
-            }
+	        try
+	        {
+		        if (jsonCode.StartsWith("["))
+		        {
+			        json = (JsonObject) JsonConvert.Import<JsonArray>(jsonCode)[0];
+		        }
+		        else
+		        {
+			        json = JsonConvert.Import<JsonObject>(jsonCode);
+		        }
 
+	        }
+	        catch (Exception exception)
+	        {
+				throw new FormatException("Invalid JSON supplied: " + exception);
+	        }
+		
             if (json["main"] != null) Main = (string) json["main"];
 
 

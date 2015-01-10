@@ -9,10 +9,12 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Windows.Forms;
 using MetroFramework;
 using MetroFramework.Controls;
 using Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3;
+using Net.Bertware.Bukkitgui2.Core.FileLocation;
 using Net.Bertware.Bukkitgui2.Core.Util;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
@@ -55,7 +57,17 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
             if (slvPlugins.SelectedItems.Count < 0) return;
             string filename = ((InstalledPlugin) (slvPlugins.SelectedItems[0].Tag)).FileName;
             InstalledPlugin plugin = InstalledPluginManager.Plugins[filename];
-            BukgetPlugin.CreateFromNamespace(plugin.Mainspace).ShowVersionDialog(plugin.Path);
+	        try
+	        {
+		        BukgetPlugin.CreateFromNamespace(plugin.Mainspace).ShowVersionDialog(plugin.Path);
+	        }
+	        catch (Exception ex)
+	        {
+		        MetroMessageBox.Show(Application.OpenForms[0],
+			        "Couldn't retrieve plugin data for this plugin. Maybe this plugin or version is not in the database",
+			        "Couldn't retrieve data", MessageBoxButtons.OK, MessageBoxIcon.Error);
+	        }
+			
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -92,6 +104,11 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 			btnRemove.Enabled = selected;
 			btnUpdate.Enabled = selected;
 			btnVersions.Enabled = selected;
+		}
+
+		private void btnOpenFolder_Click(object sender, EventArgs e)
+		{
+			Process.Start(Fl.SafeLocation(RequestFile.Plugindir));
 		}
     }
 }

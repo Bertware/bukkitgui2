@@ -41,6 +41,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 			this.colVersion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.colLatestVersion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.colInstalled = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.btnOpenFolder = new MetroFramework.Controls.MetroButton();
 			this.SuspendLayout();
 			// 
 			// btnUpdate
@@ -130,9 +131,21 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 			this.colInstalled.Text = "Installed";
 			this.colInstalled.Width = 90;
 			// 
+			// btnOpenFolder
+			// 
+			this.btnOpenFolder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.btnOpenFolder.Location = new System.Drawing.Point(459, 414);
+			this.btnOpenFolder.Name = "btnOpenFolder";
+			this.btnOpenFolder.Size = new System.Drawing.Size(75, 23);
+			this.btnOpenFolder.TabIndex = 8;
+			this.btnOpenFolder.Text = "Open folder";
+			this.btnOpenFolder.UseSelectable = true;
+			this.btnOpenFolder.Click += new System.EventHandler(this.btnOpenFolder_Click);
+			// 
 			// InstalledPluginsControl
 			// 
 			this.BackColor = System.Drawing.Color.White;
+			this.Controls.Add(this.btnOpenFolder);
 			this.Controls.Add(this.btnUpdate);
 			this.Controls.Add(this.btnVersions);
 			this.Controls.Add(this.btnRemove);
@@ -155,5 +168,6 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 		private System.Windows.Forms.ColumnHeader colVersion;
 		private System.Windows.Forms.ColumnHeader colLatestVersion;
 		private System.Windows.Forms.ColumnHeader colInstalled;
+		private MetroButton btnOpenFolder;
 	}
 }
