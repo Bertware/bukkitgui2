@@ -170,7 +170,7 @@ namespace Net.Bertware.Bukkitgui2.Controls.MinecraftConsole
         private void CreateContextMenu()
         {
             MenuItem[] menuItem = new MenuItem[1];
-            menuItem[0] = new MenuItem("Autoscroll", ToggleAutoScroll) {Checked = Autoscroll, Enabled = true};
+            menuItem[0] = new MenuItem("Autoscroll", ToggleAutoScroll) {Checked = true, Enabled = true};
             ContextMenu cm = new ContextMenu(menuItem);
             ContextMenu = cm;
         }
