@@ -36,6 +36,8 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Issues
 			this.ColTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.ColMessage = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.lblInfo = new MetroFramework.Controls.MetroLabel();
+			this.btnCopy = new MetroFramework.Controls.MetroButton();
+			this.btnLookup = new MetroFramework.Controls.MetroButton();
 			this.SuspendLayout();
 			// 
 			// slvIssues
@@ -51,10 +53,11 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Issues
 			this.slvIssues.FullRowSelect = true;
 			this.slvIssues.Location = new System.Drawing.Point(3, 22);
 			this.slvIssues.Name = "slvIssues";
-			this.slvIssues.Size = new System.Drawing.Size(794, 475);
+			this.slvIssues.Size = new System.Drawing.Size(794, 446);
 			this.slvIssues.TabIndex = 0;
 			this.slvIssues.UseCompatibleStateImageBehavior = false;
 			this.slvIssues.View = System.Windows.Forms.View.Details;
+			this.slvIssues.SelectedIndexChanged += new System.EventHandler(this.slvIssues_SelectedIndexChanged);
 			// 
 			// ColId
 			// 
@@ -85,9 +88,35 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Issues
 			this.lblInfo.Text = "Below you can find all warning and error messages, created by the server. Auto-fi" +
     "xing is not available right now.";
 			// 
+			// btnCopy
+			// 
+			this.btnCopy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.btnCopy.Enabled = false;
+			this.btnCopy.Location = new System.Drawing.Point(722, 474);
+			this.btnCopy.Name = "btnCopy";
+			this.btnCopy.Size = new System.Drawing.Size(75, 23);
+			this.btnCopy.TabIndex = 2;
+			this.btnCopy.Text = "Copy";
+			this.btnCopy.UseSelectable = true;
+			this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);
+			// 
+			// btnLookup
+			// 
+			this.btnLookup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.btnLookup.Enabled = false;
+			this.btnLookup.Location = new System.Drawing.Point(641, 474);
+			this.btnLookup.Name = "btnLookup";
+			this.btnLookup.Size = new System.Drawing.Size(75, 23);
+			this.btnLookup.TabIndex = 3;
+			this.btnLookup.Text = "Lookup";
+			this.btnLookup.UseSelectable = true;
+			this.btnLookup.Click += new System.EventHandler(this.btnLookup_Click);
+			// 
 			// IssuesTab
 			// 
 			this.BackColor = System.Drawing.Color.White;
+			this.Controls.Add(this.btnLookup);
+			this.Controls.Add(this.btnCopy);
 			this.Controls.Add(this.lblInfo);
 			this.Controls.Add(this.slvIssues);
 			this.Name = "IssuesTab";
@@ -105,6 +134,8 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Issues
 		private System.Windows.Forms.ColumnHeader ColTime;
 		private System.Windows.Forms.ColumnHeader ColMessage;
 		private MetroFramework.Controls.MetroLabel lblInfo;
+		private MetroFramework.Controls.MetroButton btnCopy;
+		private MetroFramework.Controls.MetroButton btnLookup;
 
 	}
 }

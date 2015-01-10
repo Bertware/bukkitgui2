@@ -7,6 +7,8 @@
 // 
 // ©Bertware, visit http://bertware.net
 
+using System.Diagnostics;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using MetroFramework.Controls;
 using Net.Bertware.Bukkitgui2.AddOn.Console;
@@ -51,7 +53,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Issues
                     (slvIssues.Items.Count + 1).ToString(),
                     outputParseResult.Type.ToString(),
                     outputParseResult.Time.ToLongTimeString(),
-                    outputParseResult.Message
+                    Regex.Replace(outputParseResult.Message,"^\\[(warn|warning|severe|error)\\]\\s?","",RegexOptions.IgnoreCase)
                 };
                 ListViewItem lvi = new ListViewItem(content) {Tag = outputParseResult};
                 switch (outputParseResult.Type)
@@ -69,5 +71,24 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Issues
         }
 
         public IAddon ParentAddon { get; set; }
+
+		private void btnCopy_Click(object sender, System.EventArgs e)
+		{
+			if (slvIssues.SelectedItems.Count <1) return;
+			Clipboard.SetText(slvIssues.SelectedItems[0].SubItems[1].Text + ": " + slvIssues.SelectedItems[0].SubItems[3].Text);
+		}
+
+		private void slvIssues_SelectedIndexChanged(object sender, System.EventArgs e)
+		{
+			bool selected = (slvIssues.SelectedItems.Count > 0);
+			btnCopy.Enabled = selected;
+			btnLookup.Enabled = selected;
+		}
+
+		private void btnLookup_Click(object sender, System.EventArgs e)
+		{
+			if (slvIssues.SelectedItems.Count <1) return;
+			Process.Start("https://www.google.com/search?ie=utf-8&oe=utf-8&q=" + slvIssues.SelectedItems[0].SubItems[3].Text);
+		}
     }
 }
