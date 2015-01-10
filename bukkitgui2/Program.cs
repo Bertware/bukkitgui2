@@ -11,11 +11,15 @@ using System;
 using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
+using Net.Bertware.Bukkitgui2.UI;
 
 namespace Net.Bertware.Bukkitgui2
 {
     internal static class Program
     {
+
+
+
         /// <summary>
         ///     The main entry point for the application.
         /// </summary>
@@ -28,10 +32,10 @@ namespace Net.Bertware.Bukkitgui2
             // Load app
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
+			
             try
             {
-                Application.Run(new UiLauncher());
+	            Launcher.Run();
             }
             catch (Exception exception)
             {
