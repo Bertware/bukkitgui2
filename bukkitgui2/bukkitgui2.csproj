@@ -552,6 +552,9 @@
     <EmbeddedResource Include="Controls\ColorPicker\ColorPicker.resx">
       <DependentUpon>ColorPicker.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\MinecraftConsole\MinecraftConsole.resx">
+      <DependentUpon>MinecraftConsole.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\PerformanceMonitor\PerformanceMonitor.resx">
       <DependentUpon>PerformanceMonitor.cs</DependentUpon>
     </EmbeddedResource>
