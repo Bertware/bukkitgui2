@@ -9,6 +9,7 @@ namespace Net.Bertware.Bukkitgui2
 { 
 	public static class Launcher
 	{
+		// run the mainform, we need to proxy it through this class since we need to load embedded dll's first
 		public static void Run()
 		{
 			Application.Run(new MainForm());
