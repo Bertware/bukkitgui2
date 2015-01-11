@@ -221,7 +221,6 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.TaskerUI
 			this.Name = "TaskEditor";
 			this.ShowIcon = false;
 			this.ShowInTaskbar = false;
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Edit Task..";
 			this.TopMost = true;
 			this.gbTrigger.ResumeLayout(false);

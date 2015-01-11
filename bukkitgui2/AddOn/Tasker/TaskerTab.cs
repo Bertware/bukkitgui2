@@ -58,7 +58,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
         private void btnNew_Click(object sender, EventArgs e)
         {
             TaskEditor editor = new TaskEditor();
-            editor.ShowDialog(MainForm.Reference);
+            editor.ShowDialog();
         }
 
         private void slvTasks_SelectedIndexChanged(object sender, EventArgs e)

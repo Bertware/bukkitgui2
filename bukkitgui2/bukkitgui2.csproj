@@ -389,6 +389,7 @@
       <DependentUpon>FileDownloadProgressBar.cs</DependentUpon>
     </Compile>
     <Compile Include="Core\Util\Web\WebUtil.cs" />
+    <Compile Include="Launcher.cs" />
     <Compile Include="MinecraftInterop\OutputHandler\EnumMessageType.cs" />
     <Compile Include="MinecraftInterop\OutputHandler\OutputParseResult.cs" />
     <Compile Include="MinecraftInterop\OutputHandler\MinecraftOutputHandler.cs" />
@@ -608,6 +609,7 @@
   <ItemGroup>
     <Content Include="bukkitgui-icon.ico" />
     <EmbeddedResource Include="Resources\Dll\Interop.NATUPNPLib.dll" />
+    <Content Include="Resources\Dll\Net.Bertware.Get.xml" />
     <Content Include="Resources\Icon\icon_cancel-64.png" />
     <Content Include="Resources\Icon\icon_chat-64.png" />
     <Content Include="Resources\Icon\icon_checkmark-64.png" />

@@ -71,8 +71,8 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Updater
 
         public static void CheckForUpdates()
         {
-            Thread t = new Thread(() => api.RunUpdateCheck(true)) {Name = "RunUpdateCheck"};
-            t.SetApartmentState(ApartmentState.MTA);
+            Thread t = new Thread(() => api.RunUpdateCheck(true,false)) {Name = "RunUpdateCheck"};
+            t.SetApartmentState(ApartmentState.STA);
             
             t.Start();
         }
