@@ -55,7 +55,7 @@ namespace Net.Bertware.Bukkitgui2.UI
 
         private void btnKill_Click(object sender, EventArgs e)
         {
-            Starter.KillServer();
+            ProcessHandler.KillServer();
         }
     }
 }

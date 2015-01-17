@@ -439,12 +439,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="UiLauncher.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UiLauncher.Designer.cs">
-      <DependentUpon>UiLauncher.cs</DependentUpon>
-    </Compile>
     <Compile Include="UI\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -578,9 +572,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UiLauncher.resx">
-      <DependentUpon>UiLauncher.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

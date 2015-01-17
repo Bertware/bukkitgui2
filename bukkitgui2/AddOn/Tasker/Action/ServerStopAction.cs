@@ -58,7 +58,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Action
         public void Execute()
         {
             OnTaskerActionExecuteStarted();
-            if (ProcessHandler.IsRunning) Starter.Starter.StopServer();
+            if (ProcessHandler.IsRunning) ProcessHandler.StopServer();
             OnTaskerActionExecuteFinished();
         }
     }

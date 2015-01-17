@@ -83,7 +83,6 @@ namespace Net.Bertware.Bukkitgui2.UI
 			this.ShowIcon = false;
 			this.ShowInTaskbar = false;
 			this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Stopping Server...";
 			this.Load += new System.EventHandler(this.ServerStopDialog_Load);
 			this.ResumeLayout(false);

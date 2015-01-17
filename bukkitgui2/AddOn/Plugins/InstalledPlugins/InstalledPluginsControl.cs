@@ -15,6 +15,7 @@ using MetroFramework;
 using MetroFramework.Controls;
 using Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3;
 using Net.Bertware.Bukkitgui2.Core.FileLocation;
+using Net.Bertware.Bukkitgui2.Core.Logging;
 using Net.Bertware.Bukkitgui2.Core.Util;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
@@ -63,6 +64,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 	        }
 	        catch (Exception ex)
 	        {
+				Logger.Log(LogLevel.Warning, "InstalledPlugins","Couldn't get versions dialog for plugin",ex.Message);
 		        MetroMessageBox.Show(Application.OpenForms[0],
 			        "Couldn't retrieve plugin data for this plugin. Maybe this plugin or version is not in the database",
 			        "Couldn't retrieve data", MessageBoxButtons.OK, MessageBoxIcon.Error);

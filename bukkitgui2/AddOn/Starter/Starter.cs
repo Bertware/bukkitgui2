@@ -118,7 +118,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
         {
             if (ProcessHandler.IsRunning)
             {
-                StopServer();
+                ProcessHandler.StopServer();
                 ProcessHandler.ServerStopped += StartServerAutomated;
             }
         }
@@ -129,22 +129,6 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
         public static void ReloadServer()
         {
             ProcessHandler.SendInput("reload");
-        }
-
-        /// <summary>
-        ///     Stop the server
-        /// </summary>
-        public static void StopServer()
-        {
-            ProcessHandler.StopServer();
-        }
-
-        /// <summary>
-        ///     kill the server process
-        /// </summary>
-        public static void KillServer()
-        {
-            if (!ProcessHandler.ServerProcess.HasExited) ProcessHandler.ServerProcess.Kill();
         }
 
         /// <summary>

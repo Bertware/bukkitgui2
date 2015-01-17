@@ -297,6 +297,14 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler
             }
         }
 
+		/// <summary>
+		/// Kill the server
+		/// </summary>
+	    public static void KillServer()
+	    {
+			if (ServerProcess!= null && !ServerProcess.HasExited) ServerProcess.Kill();
+	    }
+
         /// <summary>
         ///     Stop the server
         /// </summary>
@@ -443,7 +451,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler
                     "Server has to be stopped",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No) return false;
 	            ServerStopDialog ssd = new ServerStopDialog();
-				DialogResult result = ssd.ShowDialog(MainForm.Reference);
+				DialogResult result = ssd.ShowDialog();
 	            if (result != DialogResult.OK) return false;
             }
             return true;

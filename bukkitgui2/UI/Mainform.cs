@@ -302,7 +302,7 @@ namespace Net.Bertware.Bukkitgui2.UI
                 if (e.CloseReason == CloseReason.TaskManagerClosing || e.CloseReason == CloseReason.WindowsShutDown)
                 {
                     // make sure to stop server to prevent data loss
-                    Starter.StopServer();
+                    ProcessHandler.StopServer();
                     return;
                 }
                 // ask what to do
@@ -316,7 +316,7 @@ namespace Net.Bertware.Bukkitgui2.UI
                 {
                     case DialogResult.Yes:
                         ProcessHandler.ServerStopped += SafeFormClose;
-                        Starter.StopServer();
+                        ProcessHandler.StopServer();
                         e.Cancel = true;
                         break;
                     case DialogResult.No:

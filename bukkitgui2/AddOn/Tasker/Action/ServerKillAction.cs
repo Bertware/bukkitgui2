@@ -7,6 +7,8 @@
 // 
 // ©Bertware, visit http://bertware.net
 
+using Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler;
+
 namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Action
 {
     internal class ServerKillAction : IAction
@@ -57,7 +59,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Action
         public void Execute()
         {
             OnTaskerActionExecuteStarted();
-            Starter.Starter.KillServer();
+            ProcessHandler.KillServer();
             OnTaskerActionExecuteFinished();
         }
     }
