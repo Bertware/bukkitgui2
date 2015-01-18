@@ -185,27 +185,28 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 							}
 							break;
 					}
-					// in case 1 part wasn't loaded, fix (for UI purposes) and deactivate
-					if (this.Trigger == null)
-					{
-						this.Trigger = new CurrentTimeTrigger {Parameters = "00:00:00"};
-						this.Enabled = false;
-					}
-					if (this.Actions == null)
-					{
-						this.Actions = new List<IAction>();
-						this.Enabled = false;
-					}
-					if (string.IsNullOrEmpty(Name))
-					{
-						this.Name = "UNNAMED_" + new Random().Next(1000, 9999);
-						this.Enabled = false;
-					}
+
 				}
 				catch (Exception e)
 				{
 					Logger.Log(LogLevel.Warning, "Task", "Failed to parse task setting: " + dataFragments[0], e.Message);
 				}
+			}
+			// in case 1 part wasn't loaded, fix (for UI purposes) and deactivate
+			if (this.Trigger == null)
+			{
+				this.Trigger = new CurrentTimeTrigger {Parameters = "00:00:00"};
+				this.Enabled = false;
+			}
+			if (this.Actions == null)
+			{
+				this.Actions = new List<IAction>();
+				this.Enabled = false;
+			}
+			if (string.IsNullOrEmpty(Name))
+			{
+				this.Name = "UNNAMED_" + new Random().Next(1000, 9999);
+				this.Enabled = false;
 			}
 			return this;
 		}
