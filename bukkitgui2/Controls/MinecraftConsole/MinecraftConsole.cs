@@ -9,6 +9,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler;
@@ -76,7 +77,7 @@ namespace Net.Bertware.Bukkitgui2.Controls.MinecraftConsole
 		{
 			
 			KeyUp += MinecraftConsole_KeyUp;
-
+            LinkClicked += MinecraftConsole_LinkClicked;
 			MessageColorInfo = Color.Blue;
 			MessageColorPlayerAction = Color.DarkGreen;
 			MessageColorSevere = Color.DarkRed;
@@ -118,6 +119,12 @@ namespace Net.Bertware.Bukkitgui2.Controls.MinecraftConsole
 				}
 			}
 		}
+
+        void MinecraftConsole_LinkClicked(object sender, LinkClickedEventArgs e)
+        {
+            string link = e.LinkText;
+            if (link.StartsWith("http")) Process.Start(e.LinkText);
+        }
 
 		public void ScrollDown()
 		{
