@@ -189,6 +189,7 @@ namespace Net.Bertware.Bukkitgui2.Controls.MinecraftConsole
 
 		private void CopySelectedText(object sender, EventArgs e)
 		{
+		    if (string.IsNullOrEmpty(SelectedText)) return;
 			Clipboard.SetText(SelectedText);
 		}
 
