@@ -20,6 +20,7 @@ using Net.Bertware.Bukkitgui2.Core.Configuration;
 using Net.Bertware.Bukkitgui2.Core.Logging;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler;
+using Net.Bertware.Bukkitgui2.MinecraftInterop.ServerConfig;
 
 namespace Net.Bertware.Bukkitgui2.UI
 {
@@ -28,7 +29,7 @@ namespace Net.Bertware.Bukkitgui2.UI
         public static MainForm Reference;
 
         public readonly string FormTitle = Share.AssemblyName + " (v" + Share.AssemblyVersion + ")";
-
+        private string _ServerName = "";
 
         public MainForm()
         {
@@ -46,17 +47,25 @@ namespace Net.Bertware.Bukkitgui2.UI
                 new Thread(() => new SplashScreen().ShowDialog()) {Name = "Splashscreen_show"}.Start();
             }
 
+
             // ____________ initializations here ____________ //
             // 
-            Initialize();
+            
             Share.Initialize();
+
+            Logger.Log(LogLevel.Info, "mainform", "starting to load mainform UI");
+            // Start loading everything to the UI
+            InitializeComponent();
+            Logger.Log(LogLevel.Info, "mainform", "loaded mainform UI");
+
+            Logger.Log(LogLevel.Info, "mainform", "loading application");
+            Initialize();
 
             // ____________ end  initializations ____________ //
 
-            Logger.Log(LogLevel.Info, "mainform", "starting to load mainform UI");
 
-            // Start loading everything to the UI
-            InitializeComponent();
+
+
 
             // Do this after InitializeComponent() because we need access to the controls
             // TODO: fix plugin manager locking up the UI
@@ -66,8 +75,6 @@ namespace Net.Bertware.Bukkitgui2.UI
             {
                 SplashScreen.Reference.SafeFormClose();
             }
-
-            Text = FormTitle;
 
             if (showUi)
             {
@@ -83,6 +90,7 @@ namespace Net.Bertware.Bukkitgui2.UI
                 Config.WriteBool("notifications", "enabled", false);
                 Config.WriteBool("notifications", "always", false);
             }
+            Logger.Log(LogLevel.Info, "mainform", "Finished loading");
         }
 
 
@@ -102,7 +110,10 @@ namespace Net.Bertware.Bukkitgui2.UI
         {
             MinecraftOutputHandler.OutputParsed += HandleOutput;
             ProcessHandler.ServerStatusChanged += HandleServerStatusChange;
-            Text = FormTitle;
+            if (string.IsNullOrEmpty(_ServerName))
+                _ServerName = ServerProperties.GetServerSetting("motd");
+            if (_ServerName == null) _ServerName = ""; //prevent errors
+            Text = FormTitle + " - " + _ServerName;
         }
 
         private void HandleServerStatusChange(ServerState currentState)
@@ -116,11 +127,12 @@ namespace Net.Bertware.Bukkitgui2.UI
             {
                 switch (currentState)
                 {
+                        // TODO: fix title text not adjusting (Metro UI bug)
                     case ServerState.Starting:
                         LblToolsMainServerState.Text = Locale.Tr("Starting...");
                         ToolStripBtnStartStop.Enabled = false;
                         ToolStripBtnStartStop.Text = Locale.Tr("Starting...");
-                        Text = FormTitle + Locale.Tr("Starting...");
+                        Text = FormTitle + " - " + _ServerName + " - " + Locale.Tr("Starting...");
                         SpinServerState.Spinning = true;
                         SpinServerState.Speed = 7;
                         SpinServerState.Value = 15;
@@ -129,7 +141,7 @@ namespace Net.Bertware.Bukkitgui2.UI
                         LblToolsMainServerState.Text = Locale.Tr("Server running");
                         ToolStripBtnStartStop.Enabled = true;
                         ToolStripBtnStartStop.Text = Locale.Tr("Stop");
-                        Text = FormTitle + " - " + Locale.Tr("Server running");
+                        Text = FormTitle + " - " + _ServerName + " - " + Locale.Tr("Server running");
                         SpinServerState.Spinning = true;
                         SpinServerState.Speed = 1;
                         SpinServerState.Value = 100;
@@ -139,7 +151,7 @@ namespace Net.Bertware.Bukkitgui2.UI
                         LblToolsMainServerState.Text = Locale.Tr("Stopping...");
                         ToolStripBtnStartStop.Enabled = false;
                         ToolStripBtnStartStop.Text = Locale.Tr("Stopping...");
-                        Text = FormTitle + " - " + Locale.Tr("Server stopping");
+                        Text = FormTitle + " - " + _ServerName + " - " + Locale.Tr("Server stopping");
                         SpinServerState.Spinning = true;
                         SpinServerState.Speed = 7;
                         SpinServerState.Value = 15;
@@ -149,7 +161,7 @@ namespace Net.Bertware.Bukkitgui2.UI
 
                         ToolStripBtnStartStop.Enabled = true;
                         ToolStripBtnStartStop.Text = Locale.Tr("Start");
-                        Text = FormTitle + " - " + Locale.Tr("Server stopped");
+                        Text = FormTitle + " - " + _ServerName + " - " + Locale.Tr("Server stopped");
 
                         SpinServerState.Spinning = false;
                         SpinServerState.Speed = 1;
@@ -183,7 +195,7 @@ namespace Net.Bertware.Bukkitgui2.UI
         /// </summary>
         private void LoadTabs()
         {
-            if (! AddonManager.AddonsLoaded) AddonManager.LoadAddons();
+            if (!AddonManager.AddonsLoaded) AddonManager.LoadAddons();
 
             foreach (
                 KeyValuePair<IAddon, UserControl> pair in

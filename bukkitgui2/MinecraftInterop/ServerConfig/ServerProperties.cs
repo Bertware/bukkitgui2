@@ -35,6 +35,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ServerConfig
             }
         }
 
+
         /// <summary>
         ///     Load a server.properties file
         /// </summary>
@@ -89,7 +90,8 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ServerConfig
         public static string GetServerSetting(string setting)
         {
             // if not yet initialized, initialize
-            if (_serverSettings.ContainsKey(setting))
+            if (_serverSettings == null) Initialize();
+            if (_serverSettings != null && _serverSettings.ContainsKey(setting))
                 return _serverSettings[setting];
             return null;
         }
