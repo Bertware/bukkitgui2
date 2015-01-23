@@ -165,6 +165,9 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
         /// </summary>
         private void LoadServer()
         {
+            GBServer.UseWaitCursor = true;
+            GBMaintainance.UseWaitCursor = true;
+
             IMinecraftServer server = GetSelectedServer();
             if (server == null) return;
 
@@ -204,11 +207,15 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 
             Boolean updateDev = notifyDev && server.CanDownloadDevVersion;
 
-
+            LblLatestDevValue.Text = "Not available";
             if (server.CanFetchDevVersion) LblLatestDevValue.Text = server.FetchDevVersionUiString;
             metroToolTip.SetToolTip(LblLatestDevValue, LblLatestDevValue.Text);
+
+            LblLatestBetaValue.Text = "Not available";
             if (server.CanFetchBetaVersion) LblLatestBetaValue.Text = server.FetchBetaVersionUiString;
             metroToolTip.SetToolTip(LblLatestBetaValue, LblLatestBetaValue.Text);
+
+            LblLatestRecommendedValue.Text = "Not available";
             if (server.CanFetchRecommendedVersion)
                 LblLatestRecommendedValue.Text = server.FetchRecommendedVersionUiString;
             metroToolTip.SetToolTip(LblLatestRecommendedValue, LblLatestRecommendedValue.Text);
@@ -274,7 +281,8 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
                 GBCustomSettings.Controls.Clear();
             }
 
-
+            GBServer.UseWaitCursor = false;
+            GBMaintainance.UseWaitCursor = false;
             Logger.Log(LogLevel.Info, "StarterTab", "Loaded server: " + server.Name);
         }
 
@@ -503,7 +511,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
             {
                 if (NumMaxRam.Value > 1024)
                 {
-                    NumMaxRam.Value = 1025;
+                    NumMaxRam.Value = 1024;
                     errorProvider.SetError(NumMaxRam,
                         "You are using a 32bit version of java. In this case, RAM is limited to 1024mb due to java limitations.");
                 }
@@ -513,7 +521,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
                 }
                 if (NumMinRam.Value > 1024)
                 {
-                    NumMinRam.Value = 1025;
+                    NumMinRam.Value = 1024;
                     errorProvider.SetError(NumMinRam,
                         "You are using a 32bit version of java. In this case, RAM is limited to 1024mb due to java limitations.");
                 }
