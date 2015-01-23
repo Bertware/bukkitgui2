@@ -31,14 +31,14 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers.Servers
 
             CanDownloadRecommendedVersion = true;
 
-            CanGetCurrentVersion = false;
-
+            CanGetCurrentVersion = true;
+            
             SupportsPlugins = true;
         }
 
         public override string GetLaunchFlags(string defaultFlags = "")
         {
-            return defaultFlags;
+            return defaultFlags + "--jline false";
         }
 
         public override string RemoveTimeStamp(string text)
@@ -52,12 +52,12 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers.Servers
         public override bool DownloadRecommendedVersion(string targetfile)
         {
             const string source =
-                "http://ci.chrisgward.com/job/Glowstone/lastStableBuild/artifact/build/distributions/glowstone-0.0.1-SNAPSHOT.jar";
+                "http://ci.chrisgward.com/job/Glowstone/lastStableBuild/artifact/build/libs/glowstone.jar";
             WebUtil.DownloadFile(source, targetfile, true, true);
             return true;
         }
 
-        public MinecraftServerVersion GetCurrentVersionObject(string file)
+        public override MinecraftServerVersion GetCurrentVersionObject(string file)
         {
             string versionString;
             string java = Starter.GetSelectedJavaPath();

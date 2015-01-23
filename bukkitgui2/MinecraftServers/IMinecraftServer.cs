@@ -12,6 +12,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler.PlayerActions;
+using Net.Bertware.Bukkitgui2.MinecraftServers.Tools;
 
 namespace Net.Bertware.Bukkitgui2.MinecraftServers
 {
@@ -266,6 +267,14 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers
         /// <param name="targetfile">Location where the file should be saved</param>
         /// <returns>True if successful</returns>
         Boolean DownloadDevVersion(string targetfile);
+
+        /// <summary>
+        /// Get the MinecraftServerObject for this file
+        /// </summary>
+        /// <param name="file">The file to load</param>
+        /// <returns>MinecraftServerVersion object or null</returns>
+        /// <remarks>This method should be used to get the version and UI version</remarks>
+        MinecraftServerVersion GetCurrentVersionObject(string file);
 
         /// <summary>
         ///     Get the version of this server file

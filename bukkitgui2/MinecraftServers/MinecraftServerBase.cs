@@ -8,11 +8,15 @@
 // ©Bertware, visit http://bertware.net
 
 using System.Drawing;
+using System.Globalization;
+using System.IO;
+using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Net.Bertware.Bukkitgui2.Core.Logging;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler.PlayerActions;
+using Net.Bertware.Bukkitgui2.MinecraftServers.Tools;
 using Net.Bertware.Bukkitgui2.Properties;
 
 namespace Net.Bertware.Bukkitgui2.MinecraftServers
@@ -416,14 +420,24 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers
             return false;
         }
 
+
+        public virtual MinecraftServerVersion GetCurrentVersionObject(string file)
+        {
+            return null;
+        }
+
         public virtual string GetCurrentVersion(string file)
         {
-            return "unknown";
+            MinecraftServerVersion version = GetCurrentVersionObject(file);
+            if (version == null) return "Unknown";
+            return version.Build.ToString(CultureInfo.InvariantCulture);
         }
 
         public virtual string GetCurrentVersionUiString(string file)
         {
-            return GetCurrentVersion(file);
+            MinecraftServerVersion version = GetCurrentVersionObject(file);
+            if (version == null) return "Unknown";
+            return "#" + version.Build + " (" + version.ServerVersion + ")";
         }
     }
 }

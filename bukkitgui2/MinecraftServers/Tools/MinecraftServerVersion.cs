@@ -33,7 +33,8 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers.Tools
         /// <remarks></remarks>
         private static int ParseVersionString(string text)
         {
-            const string pattern = "(#\\d\\d\\d\\d|#\\d\\d\\d|b\\d\\d\\d\\djnks|b\\d\\d\\djnks)";
+            // -b120, #1200, b548jnks, ...
+            const string pattern = "((#|b|b-)\\d{3,5}(jnks)?)";
             Match match = Regex.Match(text, pattern);
             char[] chars =
             {
@@ -42,7 +43,8 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers.Tools
                 'j',
                 'n',
                 'k',
-                's'
+                's',
+                '-'
             };
 
             if (string.IsNullOrEmpty(match.Value))
@@ -73,8 +75,8 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers.Tools
         /// <remarks></remarks>
         private static string ParseVersionStringMinecraftVersion(string text)
         {
-            const string pattern = "MC: (\\d.\\d.\\d|\\d.\\d)";
-            Match match = Regex.Match(text, pattern);
+            const string pattern = "(MC|Minecraft Version): ((\\d.){1,2}\\d)";
+            Match match = Regex.Match(text, pattern,RegexOptions.IgnoreCase);
             if (string.IsNullOrEmpty(match.Value))
                 return "unknown";
 

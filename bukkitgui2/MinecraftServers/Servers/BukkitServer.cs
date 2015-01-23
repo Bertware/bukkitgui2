@@ -124,19 +124,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers.Servers
             }
         }
 
-        public override string GetCurrentVersion(string file)
-        {
-            MinecraftServerVersion version = GetCurrentVersionObject(file);
-            return version.Build.ToString(CultureInfo.InvariantCulture);
-        }
-
-        public override string GetCurrentVersionUiString(string file)
-        {
-            MinecraftServerVersion version = GetCurrentVersionObject(file);
-            return "#" + version.Build + " (" + version.ServerVersion + ")";
-        }
-
-        public MinecraftServerVersion GetCurrentVersionObject(string file)
+        public override MinecraftServerVersion GetCurrentVersionObject(string file)
         {
             string versionString;
             string java = Starter.GetSelectedJavaPath();
