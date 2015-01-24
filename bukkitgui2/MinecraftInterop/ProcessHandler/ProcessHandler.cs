@@ -281,6 +281,8 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler
                         },
                     EnableRaisingEvents = true,
                 };
+                // log from startinfo to ensure correct results (in case .NET would alter something)
+                Logger.Log(LogLevel.Info, "ProcessHandler", "Starting new process: " + ServerProcess.StartInfo.FileName + " " + ServerProcess.StartInfo.Arguments);
                 ServerProcess.Start();
                 ServerProcess.Exited += HandleStop;
 
