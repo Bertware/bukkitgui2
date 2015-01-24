@@ -49,8 +49,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers.Servers
             JsonApiCredentialsSettingsControl cred = (JsonApiCredentialsSettingsControl) control;
 
             return "-u=" + cred.Username + " -p=" + cred.Password + " -s=" + cred.Salt + " -host=" + cred.Host +
-                   " -port=" +
-                   cred.Port + " -api=1";
+                   " -port=" + cred.Port + " -api=1 -filter";
         }
     }
 }

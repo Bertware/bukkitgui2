@@ -630,6 +630,7 @@
     <Content Include="Resources\Img\glowstone-logo.png" />
     <Content Include="Resources\Img\jsonapi_logo.png" />
     <Content Include="Resources\Img\mcpc_cauldron_logo.png" />
+    <None Include="Resources\JsonApiConnector.pdb" />
     <Content Include="Resources\Sound\sound_connect.wav" />
     <Content Include="Resources\Sound\sound_disconnect.wav" />
     <Content Include="Resources\Sound\sound_severe.wav" />
