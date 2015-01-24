@@ -14,6 +14,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 
 namespace JsonApiConnector
@@ -25,20 +26,25 @@ namespace JsonApiConnector
 		private readonly String _salt;
 		private readonly String _host;
 		private readonly UInt16 _port;
+	    private readonly bool _filter;
 		private bool _listening;
-		private const string ErrPrefix = "!!! ERROR: ";
+        private const string ErrPrefix = "[CRITICAL][JSONAPI CONNECTOR]";
+        private const string LogPrefix = "[INFO][JSONAPI CONNECTOR]";
 
-		public JsonApiV1(string username, string password, string salt, string host, ushort port)
+
+        public JsonApiV1(string username, string password, string salt, string host, ushort port, bool filter = false)
 		{
 			_username = username;
 			_password = password;
 			_salt = salt;
 			_host = host;
 			_port = port;
+            _filter = filter;
 		}
 
 		public void ReadConsoleStream()
 		{
+            JsonApiConnector.HandleOutput(LogPrefix + "Connecting to the external server...");
 			Socket sock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 			try
 			{
@@ -57,7 +63,7 @@ namespace JsonApiConnector
 				sw.WriteLine("/api/subscribe?source=console&key=" + key);
 				sw.Flush();
 				StreamReader sr = new StreamReader(stream);
-
+                JsonApiConnector.HandleOutput(LogPrefix + "Connected!");
 
 				while (_listening && sock.Connected && stream.CanRead)
 				{
@@ -80,7 +86,8 @@ namespace JsonApiConnector
 					if (!string.IsNullOrEmpty(l) && l.Contains("{") & l.Contains(":") & l.Contains("}"))
 					{
 						l = new JsonApiStreamResult(l).Line;
-						if (!l.Contains("[API Call]")) JsonApiConnector.HandleOutput(l.TrimEnd(Environment.NewLine.ToCharArray()));
+                        if (!_filter || !Regex.IsMatch(l, "^[^\\]]*\\](:|\\s){0,2}\\[JSONAPI\\]\\s?\\[(api|stream) (call|request)\\]", RegexOptions.IgnoreCase))
+                            JsonApiConnector.HandleOutput(l.TrimEnd(Environment.NewLine.ToCharArray()));
 					}
 
 					Thread.Sleep(10);

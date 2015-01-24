@@ -76,7 +76,7 @@ namespace JsonApiConnector
 		{
 			//Load embedded DLLs
 
-			String resourceName = "Net.Bertware.Bukkitgui2." + new AssemblyName(args.Name).Name + ".dll";
+            String resourceName = "Net.Bertware.JsonApiConnector." + new AssemblyName(args.Name).Name + ".dll";
 			using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName))
 			{
 				if (stream == null || stream.Length < 1)
