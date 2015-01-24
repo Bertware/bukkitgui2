@@ -10,7 +10,7 @@
 using Jayrock.Json;
 using Jayrock.Json.Conversion;
 
-namespace JsonApiConnector
+namespace Net.Bertware.JsonApiConnector
 {
 	public class JsonApiStreamResult
 	{

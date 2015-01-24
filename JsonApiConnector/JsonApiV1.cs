@@ -16,8 +16,9 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
+using JsonApiConnector;
 
-namespace JsonApiConnector
+namespace Net.Bertware.JsonApiConnector
 {
 	internal class JsonApiV1 : IJsonApi
 	{
@@ -44,7 +45,7 @@ namespace JsonApiConnector
 
 		public void ReadConsoleStream()
 		{
-            JsonApiConnector.HandleOutput(LogPrefix + "Connecting to the external server...");
+            global::Net.Bertware.JsonApiConnector.JsonApiConnector.HandleOutput(LogPrefix + "Connecting to the external server...");
 			Socket sock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 			try
 			{
@@ -52,7 +53,7 @@ namespace JsonApiConnector
 			}
 			catch (Exception connectException)
 			{
-				JsonApiConnector.HandleOutput(ErrPrefix + "Couldn't connect to JsonApi stream:" + connectException.Message);
+				global::Net.Bertware.JsonApiConnector.JsonApiConnector.HandleOutput(ErrPrefix + "Couldn't connect to JsonApi stream:" + connectException.Message);
 			}
 
 			if (sock.Connected)
@@ -63,7 +64,7 @@ namespace JsonApiConnector
 				sw.WriteLine("/api/subscribe?source=console&key=" + key);
 				sw.Flush();
 				StreamReader sr = new StreamReader(stream);
-                JsonApiConnector.HandleOutput(LogPrefix + "Connected!");
+                global::Net.Bertware.JsonApiConnector.JsonApiConnector.HandleOutput(LogPrefix + "Connected!");
 
 				while (_listening && sock.Connected && stream.CanRead)
 				{
@@ -87,13 +88,13 @@ namespace JsonApiConnector
 					{
 						l = new JsonApiStreamResult(l).Line;
                         if (!_filter || !Regex.IsMatch(l, "^[^\\]]*\\](:|\\s){0,2}\\[JSONAPI\\]\\s?\\[(api|stream) (call|request)\\]", RegexOptions.IgnoreCase))
-                            JsonApiConnector.HandleOutput(l.TrimEnd(Environment.NewLine.ToCharArray()));
+                            global::Net.Bertware.JsonApiConnector.JsonApiConnector.HandleOutput(l.TrimEnd(Environment.NewLine.ToCharArray()));
 					}
 
 					Thread.Sleep(10);
 				}
 			}
-			JsonApiConnector.HandleOutput(ErrPrefix + "Disconnected");
+			global::Net.Bertware.JsonApiConnector.JsonApiConnector.HandleOutput(ErrPrefix + "Disconnected");
 			if (sock.Connected) sock.Close();
 			_listening = false;
 		}

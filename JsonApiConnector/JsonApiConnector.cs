@@ -10,8 +10,9 @@
 using System;
 using System.Linq;
 using System.Reflection;
+using JsonApiConnector;
 
-namespace JsonApiConnector
+namespace Net.Bertware.JsonApiConnector
 {
     internal class JsonApiConnector
     {
@@ -73,7 +74,7 @@ namespace JsonApiConnector
             {
                 try
                 {
-                    String key = "";
+                    String key;
                     String value = "";
                     if (args[i].Contains(Splitter))
                     {
@@ -119,16 +120,16 @@ namespace JsonApiConnector
                 {
                     PrintUsage();
                 }
+            }
 
-                switch (apiversion)
-                {
-                    case 1:
-                        Api = new JsonApiV1(_username, _password, _salt, _host, _port, _filter);
-                        break;
-                    default:
-                        Api = new JsonApiV2(_username, _password, _host, _port, _filter);
-                        break;
-                }
+            switch (apiversion)
+            {
+                case 1:
+                    Api = new JsonApiV1(_username, _password, _salt, _host, _port, _filter);
+                    break;
+                default:
+                    Api = new JsonApiV2(_username, _password, _host, _port, _filter);
+                    break;
             }
         }
 
