@@ -36,7 +36,16 @@ namespace Net.Bertware.Bukkitgui2.UI
                 DialogResult = DialogResult.OK;
                 Close();
             }
-	        ProcessHandler.SendInput("stop"); //send stop command
+
+            if (ProcessHandler.Server.IsLocal)
+            {
+                ProcessHandler.StopServer();
+            }
+            else
+            {
+                ProcessHandler.StopServerProcess();
+            }
+            
             ProcessHandler.ServerStopped += Return;
         }
 

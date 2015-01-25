@@ -47,9 +47,21 @@ namespace Net.Bertware.Bukkitgui2.Controls.QuickButtons
                         btnStartStop.Enabled = false;
                         btnRestart.Enabled = false;
                         btnStartStop.Text = Locale.Tr("Starting...");
-                        metroToolTip.SetToolTip(btnStartStop, "Stop the server");
+
                         break;
                     case ServerState.Running:
+                       
+                        if (ProcessHandler.Server.IsLocal)
+                        {
+                            btnStartStop.Text = Locale.Tr("Stop");
+                            metroToolTip.SetToolTip(btnStartStop, "Stop the server");
+                        }
+                        else
+                        {
+                            metroToolTip.SetToolTip(btnStartStop, "Disconnect from the server");
+                            btnStartStop.Text = Locale.Tr("Disconnect");
+                        }
+         
                         btnStartStop.Enabled = true;
                         btnRestart.Enabled = true;
                         btnStartStop.Text = Locale.Tr("Stop");
@@ -58,12 +70,21 @@ namespace Net.Bertware.Bukkitgui2.Controls.QuickButtons
                         btnStartStop.Enabled = false;
                         btnRestart.Enabled = false;
                         btnStartStop.Text = Locale.Tr("Stopping...");
-                        metroToolTip.SetToolTip(btnStartStop, "Start the server");
+
                         break;
                     case ServerState.Stopped:
                         btnStartStop.Enabled = true;
                         btnRestart.Enabled = false;
-                        btnStartStop.Text = Locale.Tr("Start");
+                        if (ProcessHandler.Server.IsLocal)
+                        {
+                            btnStartStop.Text = Locale.Tr("Start");
+                            metroToolTip.SetToolTip(btnStartStop, "Start the server");
+                        }
+                        else
+                        {
+                            btnStartStop.Text = Locale.Tr("Connect");
+                            metroToolTip.SetToolTip(btnStartStop, "Connect to the server");
+                        }
                         break;
                 }
             }
@@ -80,7 +101,15 @@ namespace Net.Bertware.Bukkitgui2.Controls.QuickButtons
             {
                 if (ProcessHandler.IsRunning)
                 {
-                    ProcessHandler.StopServer(); // stop running server
+                    if (ProcessHandler.Server.IsLocal)
+                    {
+                        ProcessHandler.StopServer(); // stop running server
+                    }
+                    else
+                    {
+                        ProcessHandler.StopServerProcess(); // stop the running process without stopping the server
+                    }
+                   
                 }
                 else
                 {
@@ -96,7 +125,7 @@ namespace Net.Bertware.Bukkitgui2.Controls.QuickButtons
 
 		private void btnRestart_Click(object sender, EventArgs e)
 		{
-			Starter.RestartServer();
+			Starter.RestartServer(); //TODO: Fix restart for jsonapi
 		}
     }
 }

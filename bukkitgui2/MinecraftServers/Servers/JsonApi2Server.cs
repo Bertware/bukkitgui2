@@ -29,6 +29,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers.Servers
             SupportsPlugins = false; //disable plugin manager on this one
             HasCustomSettingsControl = true;
             CustomSettingsControl = new JsonApi2CredentialsSettingsControl();
+            IsLocal = false;
         }
 
         public override void PrepareLaunch()

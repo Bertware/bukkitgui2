@@ -308,12 +308,21 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler
 	    }
 
         /// <summary>
-        ///     Stop the server
+        ///     Stop the server, by sending a stop command
         /// </summary>
         public static void StopServer()
         {
             RaiseServerStopping();
             SendInput("stop");
+        }
+
+        /// <summary>
+        /// Stop the server process, by sending a stop signal to the process
+        /// </summary>
+        public static void StopServerProcess()
+        {
+            RaiseServerStopping();
+            ServerProcess.Kill();
         }
 
         private static void HandleStop(object sender, EventArgs e)
