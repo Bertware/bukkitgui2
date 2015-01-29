@@ -241,6 +241,7 @@
     <Compile Include="AddOn\Tasker\TaskerUI\TaskEditor.designer.cs">
       <DependentUpon>TaskEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddOn\Tasker\Trigger\TaskExecutedTrigger.cs" />
     <Compile Include="AddOn\Tasker\Trigger\ServerOutputRegexTrigger.cs" />
     <Compile Include="AddOn\Tasker\Trigger\ServerOutputTrigger.cs" />
     <Compile Include="AddOn\Tasker\Trigger\PlayerCountTrigger.cs" />

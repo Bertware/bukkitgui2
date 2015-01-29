@@ -340,7 +340,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler
         {
             _thdReadStdOut = new Thread(ReadStdOut) {IsBackground = true, Name = "_thdReadStdOut"};
             _thdReadStdOut.SetApartmentState(ApartmentState.MTA);
-            _thdReadStdErr = new Thread(ReadStdErr) {IsBackground = true, Name = "_thdReadStdOut"};
+            _thdReadStdErr = new Thread(ReadStdErr) {IsBackground = true, Name = "_thdReadStdErr"};
             _thdReadStdErr.SetApartmentState(ApartmentState.MTA);
             _runThreads = true;
             _thdReadStdOut.Start();
@@ -439,6 +439,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler
         {
             try
             {
+                
                 ServerProcess.StandardInput.WriteLine(text.TrimStart('/'));
                 return true;
             }

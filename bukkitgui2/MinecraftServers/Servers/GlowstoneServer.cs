@@ -38,7 +38,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers.Servers
 
         public override string GetLaunchFlags(string defaultFlags = "")
         {
-            return defaultFlags + "--jline false";
+            return defaultFlags + "--jline 0";
         }
 
         public override string RemoveTimeStamp(string text)
