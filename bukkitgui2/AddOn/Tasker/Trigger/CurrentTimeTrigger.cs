@@ -102,7 +102,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Trigger
             {
                 double dt = Math.Abs(DateTime.Now.TimeOfDay.Subtract(time).TotalSeconds);
                 if (!(dt < (TimerInterval/2))) continue;
-                if (TaskerTriggerFired != null) TaskerTriggerFired.Invoke();
+                OnTaskerTriggerFired();
             }
         }
 
@@ -114,6 +114,14 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Trigger
         private void check_time(object sender, ElapsedEventArgs e)
         {
             check_time();
+        }
+
+        protected virtual void OnTaskerTriggerFired()
+        {
+            if (!Enabled) return;
+            
+            var handler = TaskerTriggerFired;
+            if (handler != null) handler();
         }
     }
 }
