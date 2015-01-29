@@ -81,15 +81,16 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
 
             Logger.Log(LogLevel.Info, "BukGetAPI", "Installing plugin:" + version.Filename + ", packed as jar file");
 
+            // It's nicer to have a plugin name instead of a file name with a random version. versions are retrieved from yml files, so we're using pretty names
             if (string.IsNullOrEmpty(targetlocation))
-                targetlocation = Fl.Location(RequestFile.Plugindir) + "/" + version.Filename;
+                targetlocation = Fl.Location(RequestFile.Plugindir) + "/" + version.PluginName.ToLower();
 
             FileDownloader fdd = new FileDownloader();
-
             fdd.AddFile(version.DownloadLink, targetlocation);
             fdd.ShowDialog();
 
             InstalledPluginManager.ReloadInstalledPluginFile(targetlocation);
+
             if (showUi)
             {
                 MetroMessageBox.Show(Application.OpenForms[0],
