@@ -237,20 +237,31 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Forwarder
         /// <remarks></remarks>
         private static bool IsPrivateIp(string checkIp)
         {
-            int quad1 = Convert.ToInt32(checkIp.Substring(0, checkIp.IndexOf('.')));
-            int quad2 = Convert.ToInt32(checkIp.Substring(checkIp.IndexOf('.') + 1).Substring(0, checkIp.IndexOf('.')));
-            switch (quad1)
+            try
             {
-                case 10:
-                    return true;
-                case 172:
-                    if (quad2 >= 16 & quad2 <= 31)
+
+
+                int quad1 = Convert.ToInt32(checkIp.Substring(0, checkIp.IndexOf('.')));
+                int quad2 =
+                    Convert.ToInt32(checkIp.Substring(checkIp.IndexOf('.') + 1).Substring(0, checkIp.IndexOf('.')));
+                switch (quad1)
+                {
+                    case 10:
                         return true;
-                    break;
-                case 192:
-                    if (quad2 == 168)
-                        return true;
-                    break;
+                    case 172:
+                        if (quad2 >= 16 & quad2 <= 31)
+                            return true;
+                        break;
+                    case 192:
+                        if (quad2 == 168)
+                            return true;
+                        break;
+                }
+            }
+            catch (Exception exception)
+            {
+                // if something goes wrong, log, and return false
+                Logger.Log(LogLevel.Warning, "Upnp","Could not evaluate IP address",exception.Message);
             }
             return false;
         }
