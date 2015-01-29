@@ -13,6 +13,7 @@ using System.Globalization;
 using System.IO;
 using System.Windows.Forms;
 using System.Xml;
+using MetroFramework;
 using Net.Bertware.Bukkitgui2.Core.FileLocation;
 using Net.Bertware.Bukkitgui2.Core.Logging;
 using Net.Bertware.Bukkitgui2.Core.Util;
@@ -75,25 +76,49 @@ namespace Net.Bertware.Bukkitgui2.Core.Configuration
 
             if (!File.Exists(_filepath))
             {
-                Logger.Log(LogLevel.Info, "Config", "Creating config file");
-                DirectoryInfo dirInfo = new FileInfo(_filepath).Directory;
-                if (dirInfo != null)
-                {
-                    string parent = dirInfo.ToString();
-                    FsUtil.CreateDirectoryIfNotExists(parent);
-                }
-
-                FileStream fs = File.Create(_filepath);
-                StreamWriter sw = new StreamWriter(fs);
-                sw.WriteLine("<xml></xml>");
-                sw.Close();
-                fs.Close();
+                CreateEmptyConfig(_filepath);
             }
 
-            _xmldoc = new XmlDocument();
-            _xmldoc.Load(_filepath);
+            try
+            {
+                _xmldoc = new XmlDocument();
+                _xmldoc.Load(_filepath);
 
-            LoadCache(); //everything's cached, we're ready to go
+                LoadCache(); //everything's cached, we're ready to go
+            }
+            catch (Exception exception)
+            {
+                Logger.Log(LogLevel.Severe, "config", "config file could not be loaded", exception.Message);
+                if (
+                    MetroMessageBox.Show(null,
+                        "The GUI config file could not be loaded, and as a result, the GUI could not be started.\n" + 
+                        "The file is probably corrupt. You either need to fix it manually, or reset the file. Do you want to reset it?",
+                        "Config file corrupt", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.Yes)
+                {
+                    CreateEmptyConfig(_filepath);
+                    Application.Restart();
+                }
+            }
+        }
+
+        /// <summary>
+        ///     Create a new (empty) config file.
+        /// </summary>
+        private static void CreateEmptyConfig(string filepath)
+        {
+            Logger.Log(LogLevel.Info, "Config", "Creating config file");
+            DirectoryInfo dirInfo = new FileInfo(filepath).Directory;
+            if (dirInfo != null)
+            {
+                string parent = dirInfo.ToString();
+                FsUtil.CreateDirectoryIfNotExists(parent);
+            }
+
+            FileStream fs = File.Create(filepath);
+            StreamWriter sw = new StreamWriter(fs);
+            sw.WriteLine("<xml></xml>");
+            sw.Close();
+            fs.Close();
         }
 
         /// <summary>
