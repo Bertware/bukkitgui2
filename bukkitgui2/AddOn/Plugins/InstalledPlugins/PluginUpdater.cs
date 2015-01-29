@@ -109,7 +109,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
                 ChkForce.Enabled = false;
                 CBBukkitBuild.Enabled = false;
             }
-            Thread t = new Thread(LoadAsync) {IsBackground = true,Name="PluginUpdater_LoadAsync"};
+            Thread t = new Thread(LoadAsync) {IsBackground = true, Name = "PluginUpdater_LoadAsync"};
             t.SetApartmentState(ApartmentState.MTA);
             t.Start();
         }
@@ -138,16 +138,17 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
                             "Loading plugin data:" + plugin.Name + "(" + i + 1 + "/" + InstalledPlugins.Count + ")");
                         if (_pluginLinkDictionary.ContainsKey(plugin) == false)
                         {
-							try
-							{
-								_pluginLinkDictionary.Add(plugin, BukgetPlugin.CreateFromNamespace(plugin.Mainspace));
-							}
-							catch (Exception ex)
-							{
-								_pluginLinkDictionary.Add(plugin, null);
-								Logger.Log(LogLevel.Info, "PluginUpdater",
-																"Skipped plugin data:" + plugin.Name + "(" + i + 1 + "/" + InstalledPlugins.Count + ")",ex.Message);
-							}
+                            try
+                            {
+                                _pluginLinkDictionary.Add(plugin, BukgetPlugin.CreateFromNamespace(plugin.Mainspace));
+                            }
+                            catch (Exception ex)
+                            {
+                                _pluginLinkDictionary.Add(plugin, null);
+                                Logger.Log(LogLevel.Info, "PluginUpdater",
+                                    "Skipped plugin data:" + plugin.Name + "(" + i + 1 + "/" + InstalledPlugins.Count +
+                                    ")", ex.Message);
+                            }
                             Logger.Log(LogLevel.Info, "PluginUpdater",
                                 "Added plugin data:" + plugin.Name + "(" + i + 1 + "/" + InstalledPlugins.Count + ")");
                         }
@@ -196,7 +197,8 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
                         try
                         {
                             ListViewItem lvi;
-                            if (entry.Value == null)
+                            if (entry.Value == null || entry.Value.VersionsList == null ||
+                                entry.Value.VersionsList.Count < 1)
                             {
                                 string[] content =
                                 {
@@ -205,39 +207,25 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
                                     T.Tr("No data available"),
                                     T.Tr("No data available")
                                 };
-                                lvi = new ListViewItem(content) {BackColor = Color.LightGray, Tag = "FALSE"};
+                                lvi = new ListViewItem(content) {BackColor = Color.LightGray, Tag = null};
                             }
                             else
                             {
-                                if (entry.Value.VersionsList == null || entry.Value.VersionsList.Count < 1)
+                                string[] content =
                                 {
-                                    string[] content =
-                                    {
-                                        entry.Key.Name,
-                                        entry.Key.Version,
-                                        T.Tr("No downloads available"),
-                                        T.Tr("No downloads available")
-                                    };
-                                    lvi = new ListViewItem(content) {BackColor = Color.LightGray, Tag = "FALSE"};
+                                    entry.Key.Name,
+                                    entry.Key.Version,
+                                    entry.Value.VersionsList[0].VersionNumber,
+                                    StringUtil.ListToCsv(entry.Value.VersionsList[0].CompatibleBuilds)
+                                };
+                                lvi = new ListViewItem(content) {Tag = entry.Key};
+                                if (CheckVersion(entry.Key.Version, entry.Value.VersionsList[0].VersionNumber) == 1)
+                                {
+                                    lvi.Checked = true;
                                 }
                                 else
                                 {
-                                    string[] content =
-                                    {
-                                        entry.Key.Name,
-                                        entry.Key.Version,
-                                        entry.Value.VersionsList[0].VersionNumber,
-                                        StringUtil.ListToCsv(entry.Value.VersionsList[0].CompatibleBuilds)
-                                    };
-                                    lvi = new ListViewItem(content) {Tag = "TRUE"};
-                                    if (CheckVersion(entry.Key.Version, entry.Value.VersionsList[0].VersionNumber) == 1)
-                                    {
-                                        lvi.Checked = true;
-                                    }
-                                    else
-                                    {
-                                        lvi.Checked = false;
-                                    }
+                                    lvi.Checked = false;
                                 }
                             }
                             SlvPlugins.Items.Add(lvi);
@@ -258,7 +246,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
                     SetStatus(T.Tr("Idle"));
                 }
                 if (UpdateOnLoad)
-                    Plugins_Update();
+                    Plugins_Update(null, null);
             }
             catch (Exception ex)
             {
@@ -274,7 +262,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
         {
             if (InvokeRequired)
             {
-                Invoke((MethodInvoker) CloseThisForm);
+                Invoke((MethodInvoker) (() => CloseThisForm(sender, e)));
             }
             else
             {
@@ -284,6 +272,8 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 
         private void SetStatus(string text)
         {
+            if (Disposing || IsDisposed || lblStatus.IsDisposed || lblStatus.Disposing) return;
+
             if (InvokeRequired)
             {
                 Invoke((MethodInvoker) (() => SetStatus(text)));
@@ -316,7 +306,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
             {
                 if (InvokeRequired)
                 {
-                    Invoke((MethodInvoker) (Plugins_Update));
+                    Invoke((MethodInvoker) (() => Plugins_Update(sender, e)));
                 }
                 else
                 {
@@ -326,43 +316,28 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
                     UInt16 i = 1;
                     foreach (ListViewItem item in SlvPlugins.CheckedItems)
                     {
-                        if (item.Tag != null && Equals(item.Tag.ToString(), "TRUE"))
+                        if (item.Tag != null)
                         {
-                            foreach (KeyValuePair<InstalledPlugin, BukgetPlugin> pair in _pluginLinkDictionary)
-                            {
-                                try
-                                {
-                                    if (pair.Key.Name == item.SubItems[0].Text)
-                                    {
-                                        if (pair.Value == null || pair.Value.VersionsList == null ||
-                                            pair.Value.VersionsList[0] == null)
-                                            continue;
-                                        if (this != null && !(Disposing | IsDisposed) &&
-                                            !(lblStatus.IsDisposed | lblStatus.Disposing))
-                                            SetStatus(T.Tr("Updating plugin") + " " + pair.Key.Name + " " +
-                                                      T.Tr("to version") + " " +
-                                                      pair.Value.VersionsList[0].VersionNumber + " (" + i + "/" +
-                                                      SlvPlugins.CheckedItems.Count + ")")
-                                                ;
-                                        Logger.Log(LogLevel.Info, "PluginUpdater", "Updating plugin:" + pair.Key.Name);
-                                        BukgetPluginInstaller.Install(pair.Value.VersionsList[0], pair.Key.Path, false,
-                                            false);
-                                    }
-                                }
-                                catch (Exception ex)
-                                {
-                                    Logger.Log(LogLevel.Warning, "PluginUpdater",
-                                        "Exception in Update routine for " + pair.Key.Name, ex.Message);
-                                }
-                            }
+                            InstalledPlugin plugin = (InstalledPlugin) item.Tag;
+                            BukgetPluginVersion version = _pluginLinkDictionary[plugin].LastVersion;
+
+                            if (version == null) continue;
+
+
+                            SetStatus(T.Tr("Updating plugin") + " " + plugin.Name + " " +
+                                      T.Tr("to version") + " " + version.VersionNumber +
+                                      " (" + i + "/" + SlvPlugins.CheckedItems.Count + ")");
+
+                            Logger.Log(LogLevel.Info, "PluginUpdater", "Updating plugin:" + plugin.Name);
+                            BukgetPluginInstaller.Install(version, plugin.Path, false,
+                                false);
                         }
+
                         else
                         {
-                            if (this != null && !(Disposing | IsDisposed) &&
-                                !(lblStatus.IsDisposed | lblStatus.Disposing))
-                                SetStatus(T.Tr("Skipping plugin") + " " + item.SubItems[0].Text + " - " +
-                                          T.Tr("cannot update") + "(" + i +
-                                          1 + " / " + _pluginLinkDictionary.Count + ")");
+                            SetStatus(T.Tr("Skipping plugin") + " " + item.SubItems[0].Text + " - " +
+                                      T.Tr("cannot update") + "(" + i +
+                                      1 + " / " + _pluginLinkDictionary.Count + ")");
                             Logger.Log(LogLevel.Info, "PluginUpdater", "Skipping plugin:" + item.SubItems[0].Text);
                         }
                         double tmpp = Math.Round((double) ((100*(i + 1))/_pluginLinkDictionary.Count));
@@ -372,17 +347,15 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
                         i++;
                     }
 
-                    if (this != null && !(Disposing | IsDisposed) && !(lblStatus.IsDisposed | lblStatus.Disposing))
-                        SetStatus(T.Tr("Idle"));
 
-                    if (this != null && BtnClose != null && !(Disposing | IsDisposed) &&
-                        !(BtnClose.Disposing | BtnClose.IsDisposed))
+                    SetStatus(T.Tr("Idle"));
+
+                    if (BtnClose != null && !(Disposing || IsDisposed) && !(BtnClose.Disposing || BtnClose.IsDisposed))
                         BtnClose.Enabled = true;
 
                     InstalledPluginManager.RefreshAllInstalledPluginsAsync();
 
-                    if (this != null && !(Disposing | IsDisposed))
-                        Close();
+                    Close();
                 }
             }
             catch (Exception ex)
@@ -425,8 +398,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
             {
                 Logger.Log(LogLevel.Info, "Common", "Comparing versions: " + oldversion + " - " + newversion);
 
-                if (oldversion == null || string.IsNullOrEmpty(oldversion) || newversion == null ||
-                    string.IsNullOrEmpty(newversion))
+                if (string.IsNullOrEmpty(oldversion) || string.IsNullOrEmpty(newversion))
                 {
                     Logger.Log(LogLevel.Warning, "Common", "Invalid version supplied!");
                     return 0;
@@ -495,14 +467,6 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
                 Logger.Log(LogLevel.Warning, "Common", "Couldn't compare versions!", ex.Message);
                 return 0;
             }
-        }
-
-        private void CloseThisForm()
-        {
-        }
-
-        private void Plugins_Update()
-        {
         }
     }
 }
