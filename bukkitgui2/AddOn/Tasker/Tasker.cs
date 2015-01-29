@@ -21,6 +21,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
     public class Tasker : IAddon
     {
         public event EventHandler TaskListAltered;
+        public event EventHandler TaskExecuted;
         public static Tasker Reference { get; private set; }
         public static Dictionary<string, Task> Tasks;
         private static readonly string _Configfile = Fl.SafeLocation(RequestFile.Config) + "tasklist";
@@ -103,10 +104,12 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
         public void AddTask(Task task)
         {
             task.Enable();
+            task.TaskExecuted += OnTaskExecuted;
             if (Tasks != null && !Tasks.ContainsKey(task.Name)) Tasks.Add(task.Name, task);
-            TaskListAltered.Invoke(Reference, EventArgs.Empty); // list changed, invoke event
+            OnTaskListAltered();
             SaveConfig();
         }
+
 
         /// <summary>
         ///     Delete a task
@@ -115,8 +118,9 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
         public void DeleteTask(Task task)
         {
             task.Disable();
+            task.TaskExecuted -= OnTaskExecuted;
             if (Tasks != null && Tasks.ContainsKey(task.Name)) Tasks.Remove(task.Name);
-            TaskListAltered.Invoke(Reference, EventArgs.Empty); // list changed, invoke event
+            OnTaskListAltered();// list changed, invoke event
             SaveConfig();
         }
 
@@ -155,6 +159,18 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
         public bool CanDisable
         {
             get { return true; }
+        }
+
+        protected virtual void OnTaskExecuted(object sender, EventArgs e)
+        {
+            var handler = TaskExecuted;
+            if (handler != null) handler(sender, e);
+        }
+
+        protected virtual void OnTaskListAltered()
+        {
+            var handler = TaskListAltered;
+            if (handler != null) handler(this, EventArgs.Empty);
         }
     }
 }
