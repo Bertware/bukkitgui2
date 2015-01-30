@@ -84,10 +84,10 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Trigger
         private Timer _timerCheckCurrentTime;
         private TimeSpan _time;
 
- 
-        protected virtual void OnTaskerTriggerFired(object sender = null, ElapsedEventArgs e =null)
+
+        protected virtual void OnTaskerTriggerFired(object sender = null, ElapsedEventArgs e = null)
         {
-            if (!Enabled) return;
+            if (!Enabled || !ProcessHandler.IsRunning) return;
 
             var handler = TaskerTriggerFired;
             if (handler != null) handler();
