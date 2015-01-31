@@ -8,6 +8,7 @@
 // ©Bertware, visit http://bertware.net
 
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -30,6 +31,8 @@ namespace Net.Bertware.Bukkitgui2.Controls.ConsoleInput
 		/// </summary>
 		public event CommandSentEventHandler CommandSent;
 
+		private readonly Dictionary<int, string> _commandHistory = new Dictionary<int, string>();
+		private int _commandHistoryBrowseId;
 
 		protected virtual void OnCommandSent(string s)
 		{
@@ -70,12 +73,51 @@ namespace Net.Bertware.Bukkitgui2.Controls.ConsoleInput
 		/// <returns></returns>
 		protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
 		{
-			if (keyData == Keys.Tab) // early tab key detection, since otherwise the control will lose focus
+			switch (keyData) // early tab key detection, since otherwise the control will lose focus
 			{
-				AutoComplete();
-				return true;
+				case Keys.Tab:
+					AutoComplete();
+					return true;
+				case Keys.Up:
+					HistoryGoUp();
+					return true;
+				case Keys.Down:
+					HistoryGoDown();
+					return true;
 			}
 			return base.ProcessCmdKey(ref msg, keyData);
+		}
+
+		private void HistoryGoDown()
+		{
+			if (!_commandHistory.ContainsKey(_commandHistoryBrowseId + 1))
+			{
+				if (_commandHistory.ContainsKey(_commandHistoryBrowseId))
+				{
+					Text = "";
+					_commandHistoryBrowseId++; // move to unexistent empty space
+				}
+				return;
+			}
+			_commandHistoryBrowseId++;
+			Text = _commandHistory[_commandHistoryBrowseId];
+			Select(Text.Length, 0);
+		}
+
+		private void HistoryGoUp()
+		{
+			if (!_commandHistory.ContainsKey(_commandHistoryBrowseId - 1))
+			{
+				if (_commandHistory.ContainsKey(_commandHistoryBrowseId))
+				{
+					Text = "";
+					_commandHistoryBrowseId--; // move to unexistent empty space
+				}
+				return;
+			}
+			_commandHistoryBrowseId--;
+			Text = _commandHistory[_commandHistoryBrowseId];
+			Select(Text.Length, 0);
 		}
 
 		/// <summary>
@@ -102,6 +144,10 @@ namespace Net.Bertware.Bukkitgui2.Controls.ConsoleInput
 			if (string.IsNullOrEmpty(Text)) return;
 			var handler = CommandSent;
 			if (handler != null) handler(Text);
+			// add to history
+			_commandHistoryBrowseId = _commandHistory.Count - 1;
+			_commandHistory.Add(_commandHistoryBrowseId, Text);
+			_commandHistoryBrowseId++;
 			Text = "";
 		}
 
@@ -112,7 +158,8 @@ namespace Net.Bertware.Bukkitgui2.Controls.ConsoleInput
 		{
 			"version", "plugins", "reload", "timings", "tell <player> <message>",
 			"kill", "me", "help", "say", "ban", "banlist", "pardon", "pardon-ip", "ban-ip", "op", "de-op", "kick", "tp", "give",
-			"stop", "save-all", "save-on", "save-off", "list", "whitelist", "whitelist list", "whitelist reload", "time", "gamemode", "xp", "toggledownfall",
+			"stop", "save-all", "save-on", "save-off", "list", "whitelist", "whitelist list", "whitelist reload", "time",
+			"gamemode", "xp", "toggledownfall",
 			"defaultgamemode", "enchant", "seed", "weather", "clear", "difficulty", "spawnpoint", "gamerule", "effect",
 			"setidletimeout", "setworldspawn", "achievement give"
 		};
@@ -141,7 +188,7 @@ namespace Net.Bertware.Bukkitgui2.Controls.ConsoleInput
 				{
 					options = new ContextMenu();
 					options.MenuItems.Add(result, AutoCompleteFromContextMenu);
-					options.MenuItems.Add(p.Name +" ", AutoCompleteFromContextMenu);
+					options.MenuItems.Add(p.Name + " ", AutoCompleteFromContextMenu);
 				}
 				else // nothing found yet
 				{
