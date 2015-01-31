@@ -182,7 +182,6 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			// 
 			this.CIConsoleInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.CIConsoleInput.AutoCompletion = true;
 			this.CIConsoleInput.Lines = new string[0];
 			this.CIConsoleInput.Location = new System.Drawing.Point(0, 332);
 			this.CIConsoleInput.MaxLength = 32767;

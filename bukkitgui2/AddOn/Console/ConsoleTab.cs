@@ -38,8 +38,6 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
             PlayerHandler.PlayerListAddition += HandlePlayerAddition;
             PlayerHandler.PlayerListDeletion += HandlePlayerDeletion;
 
-
-            CIConsoleInput.AutoCompletion = Config.ReadBool("console", "autocompletion", true);
             MCCOut.MessageColorInfo = Color.FromArgb(Config.ReadInt("console", "color_info", Color.Blue.ToArgb()));
             MCCOut.MessageColorPlayerAction =
                 Color.FromArgb(Config.ReadInt("console", "color_playeraction", Color.DarkGreen.ToArgb()));
@@ -127,7 +125,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
         {
             // clearing console is already performed by the starter routine, so the starter routine can display its own information too.
             SlvPlayers.Items.Clear();
-            CIConsoleInput.ClearAutoCompletionHistory();
+      
             WriteOut("Starting server...");
         }
 
@@ -143,7 +141,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
             else
             {
                 SlvPlayers.Items.Clear();
-                CIConsoleInput.ClearAutoCompletionHistory();
+
                 WriteOut("The server has stopped");
             }
         }
@@ -226,7 +224,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 
 		private void SlvPlayers_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			ContextPlayers.Enabled = (SlvPlayers.SelectedItems != null && SlvPlayers.SelectedItems.Count > 0);
+			ContextPlayers.Enabled = (SlvPlayers.SelectedItems.Count > 0);
 		}
     }
 }

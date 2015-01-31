@@ -8,6 +8,7 @@
 // ©Bertware, visit http://bertware.net
 
 using System;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using MetroFramework.Controls;
@@ -18,11 +19,6 @@ namespace Net.Bertware.Bukkitgui2.Controls.ConsoleInput
 {
 	internal class ConsoleInput : MetroTextBox
 	{
-		/// <summary>
-		///     If autocompletion should be enabled or not
-		/// </summary>
-		public Boolean AutoCompletion { get; set; }
-
 		/// <summary>
 		///     Eventhandler for CommandSent
 		/// </summary>
@@ -41,24 +37,19 @@ namespace Net.Bertware.Bukkitgui2.Controls.ConsoleInput
 			if (handler != null) handler(s);
 		}
 
-		protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
-		{
-			if (keyData == Keys.Tab)
-			{
-				AutoCompleteName();
-				return true;
-			}
-			return base.ProcessCmdKey(ref msg, keyData);
-		}
 
+		/// <summary>
+		///     Add event handlers on creation
+		/// </summary>
 		public ConsoleInput()
 		{
-			
 			KeyPress += HandleKeyPress;
-			CreateContextMenu();
 			ProcessHandler.ServerStarted += ProcessHandler_ServerStarted;
 		}
 
+		/// <summary>
+		///     Gain focus on server start
+		/// </summary>
 		private void ProcessHandler_ServerStarted()
 		{
 			if (InvokeRequired)
@@ -72,26 +63,40 @@ namespace Net.Bertware.Bukkitgui2.Controls.ConsoleInput
 		}
 
 		/// <summary>
+		///     Override default key handling to catch tab keys, and run autocompletion upon tab press.
+		/// </summary>
+		/// <param name="msg"></param>
+		/// <param name="keyData"></param>
+		/// <returns></returns>
+		protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+		{
+			if (keyData == Keys.Tab) // early tab key detection, since otherwise the control will lose focus
+			{
+				AutoComplete();
+				return true;
+			}
+			return base.ProcessCmdKey(ref msg, keyData);
+		}
+
+		/// <summary>
 		///     Handle a keypress
 		/// </summary>
 		/// <param name="sender">event sender</param>
 		/// <param name="e">event parameters</param>
 		private void HandleKeyPress(object sender, KeyPressEventArgs e)
 		{
-			
 			switch (e.KeyChar)
 			{
 				case '\r':
 					e.Handled = true;
 					SubmitCommand();
 					break;
-				case '\t':
-					e.Handled = true;
-					AutoCompleteName();
-					break;
 			}
 		}
 
+		/// <summary>
+		///     Raise the commandsent event and reset the text
+		/// </summary>
 		private void SubmitCommand()
 		{
 			if (string.IsNullOrEmpty(Text)) return;
@@ -100,58 +105,116 @@ namespace Net.Bertware.Bukkitgui2.Controls.ConsoleInput
 			Text = "";
 		}
 
-		private void AutoCompleteName()
+		/// <summary>
+		///     Known commands for auto completion
+		/// </summary>
+		private static readonly string[] _Commands =
 		{
-			if (string.IsNullOrEmpty(this.Text)) return;
-
-			string text = (this.Text.Contains(' ')) ? Text.Split(' ').Last() : this.Text;
-
-			string result = "";
-	
-			foreach (Player p in PlayerHandler.GetOnlinePlayers())
-			{
-				if (p.Name.ToLower().StartsWith(text))
-				{
-					if (!string.IsNullOrEmpty(result)) return; // multiple options, auto complete only works if we're sure
-					result = p.Name;
-					
-				}
-			}
-			
-			if (Text.Contains(' '))
-			{
-				Text = Text.Substring(0, Text.Length - text.Length) + result;
-			}
-			else
-			{
-				Text = result;
-			}
-		}
-
+			"version", "plugins", "reload", "timings", "tell <player> <message>",
+			"kill", "me", "help", "say", "ban", "banlist", "pardon", "pardon-ip", "ban-ip", "op", "de-op", "kick", "tp", "give",
+			"stop", "save-all", "save-on", "save-off", "list", "whitelist", "whitelist list", "whitelist reload", "time", "gamemode", "xp", "toggledownfall",
+			"defaultgamemode", "enchant", "seed", "weather", "clear", "difficulty", "spawnpoint", "gamerule", "effect",
+			"setidletimeout", "setworldspawn", "achievement give"
+		};
 
 		/// <summary>
-		///     Clear the autocompletion history
+		///     Auto complete a player name or command (if there's 1 option) or show a list of possibilities
 		/// </summary>
-		public void ClearAutoCompletionHistory()
+		private void AutoComplete()
 		{
-		}
+			if (string.IsNullOrEmpty(Text)) return;
 
-		private void ToggleAutoCompletion(object sender, EventArgs e)
-		{
-			AutoCompletion = !AutoCompletion;
-			ContextMenu.MenuItems[0].Checked = AutoCompletion;
-		}
+			string text = (Text.Contains(' ')) ? Text.Split(' ').Last() : Text;
 
-		private void CreateContextMenu()
-		{
-			MenuItem[] menuItem = new MenuItem[1];
-			menuItem[0] = new MenuItem("Autocompletion", ToggleAutoCompletion)
+			string result = "";
+			ContextMenu options = null;
+
+			foreach (Player p in PlayerHandler.GetOnlinePlayers())
 			{
-				Checked = AutoCompletion,
-				Enabled = true
-			};
-			ContextMenu cm = new ContextMenu(menuItem);
-			ContextMenu = cm;
+				if (!p.Name.ToLower().StartsWith(text)) continue;
+
+				if (options != null) // third or later hit, append list
+				{
+					options.MenuItems.Add(p.Name + " ", AutoCompleteFromContextMenu);
+				}
+				else if (!string.IsNullOrEmpty(result)) // this is our second hit, create a list
+				{
+					options = new ContextMenu();
+					options.MenuItems.Add(result, AutoCompleteFromContextMenu);
+					options.MenuItems.Add(p.Name +" ", AutoCompleteFromContextMenu);
+				}
+				else // nothing found yet
+				{
+					result = p.Name + " ";
+				}
+			}
+
+			foreach (string command in _Commands)
+			{
+				if (!command.StartsWith(text)) continue;
+
+				if (options != null) // third or later hit, append list
+				{
+					options.MenuItems.Add(command, AutoCompleteFromContextMenu);
+				}
+				else if (!string.IsNullOrEmpty(result)) // this is our second hit, create a list
+				{
+					options = new ContextMenu();
+					options.MenuItems.Add(result, AutoCompleteFromContextMenu);
+					options.MenuItems.Add(command, AutoCompleteFromContextMenu);
+					result = null; // for detection later
+				}
+				else // nothing found yet
+				{
+					result = command;
+				}
+			}
+
+			if (!string.IsNullOrEmpty(result))
+			{
+				Text = Text.Substring(0, Text.Length - text.Length) + result;
+				Select(Text.Length, 0);
+				return; // we're done, auto complete name
+			}
+
+			if (options != null)
+			{
+				ContextMenu = options;
+				ContextMenu.Show(this, new Point(0, Height));
+				ContextMenu.Collapse += ((sender, args) => ResetContextMenu());
+			}
+		}
+
+		/// <summary>
+		///     Auto complete a command or name from the context menu
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void AutoCompleteFromContextMenu(object sender, EventArgs e)
+		{
+			if (!(sender is MenuItem)) return;
+			MenuItem item = (MenuItem) sender;
+
+			if (string.IsNullOrEmpty(Text))
+			{
+				Text = item.Text;
+				Select(Text.Length, 0);
+				return;
+			}
+
+			string text = (Text.Contains(' ')) ? Text.Split(' ').Last() : Text;
+			Text = Text.Substring(0, Text.Length - text.Length) + item.Text;
+			Select(Text.Length, 0);
+			ResetContextMenu();
+		}
+
+		/// <summary>
+		///     Reset the context menu
+		/// </summary>
+		private void ResetContextMenu()
+		{
+			if (ContextMenu != null) ContextMenu.Dispose();
+			ContextMenu = null;
 		}
 	}
 }
