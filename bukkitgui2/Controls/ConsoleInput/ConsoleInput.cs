@@ -8,102 +8,150 @@
 // ©Bertware, visit http://bertware.net
 
 using System;
+using System.Linq;
 using System.Windows.Forms;
 using MetroFramework.Controls;
+using Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler;
 
 namespace Net.Bertware.Bukkitgui2.Controls.ConsoleInput
 {
-    internal class ConsoleInput : MetroTextBox
-    {
-        /// <summary>
-        ///     If autocompletion should be enabled or not
-        /// </summary>
-        public Boolean AutoCompletion { get; set; }
+	internal class ConsoleInput : MetroTextBox
+	{
+		/// <summary>
+		///     If autocompletion should be enabled or not
+		/// </summary>
+		public Boolean AutoCompletion { get; set; }
 
-        /// <summary>
-        ///     Eventhandler for CommandSent
-        /// </summary>
-        /// <param name="text"></param>
-        public delegate void CommandSentEventHandler(string text);
+		/// <summary>
+		///     Eventhandler for CommandSent
+		/// </summary>
+		/// <param name="text"></param>
+		public delegate void CommandSentEventHandler(string text);
 
-        /// <summary>
-        ///     Ran when a command is sent
-        /// </summary>
-        public event CommandSentEventHandler CommandSent;
+		/// <summary>
+		///     Ran when a command is sent
+		/// </summary>
+		public event CommandSentEventHandler CommandSent;
 
-        public ConsoleInput()
-        {
-            KeyPress += HandleKeyPress;
-            CreateContextMenu();
-            ProcessHandler.ServerStarted += ProcessHandler_ServerStarted;
-        }
 
-        private void ProcessHandler_ServerStarted()
-        {
-            if (InvokeRequired)
-            {
-                Invoke((MethodInvoker) ProcessHandler_ServerStarted);
-            }
-            else
-            {
-                Focus();
-            }
-        }
+		protected virtual void OnCommandSent(string s)
+		{
+			var handler = CommandSent;
+			if (handler != null) handler(s);
+		}
 
-        /// <summary>
-        ///     Handle a keypress
-        /// </summary>
-        /// <param name="sender">event sender</param>
-        /// <param name="e">event parameters</param>
-        private void HandleKeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == '\r')
-            {
-                CommandSentEventHandler handler = CommandSent;
-                if (handler != null)
-                {
-                    handler(Text);
-                    if (AutoCompletion)
-                    {
-                        //if (AutoCompleteCustomSource != null)
-                        //{
-                        //	AutoCompleteCustomSource.Add(Text);
-                        //}
-                    }
-                }
-                Text = "";
-                e.Handled = true;
-            }
-        }
+		protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+		{
+			if (keyData == Keys.Tab)
+			{
+				AutoCompleteName();
+				return true;
+			}
+			return base.ProcessCmdKey(ref msg, keyData);
+		}
 
-        /// <summary>
-        ///     Clear the autocompletion history
-        /// </summary>
-        public void ClearAutoCompletionHistory()
-        {
-            //if (AutoCompleteCustomSource != null)
-            //{
-            //	AutoCompleteCustomSource.Clear();
-            //}
-        }
+		public ConsoleInput()
+		{
+			
+			KeyPress += HandleKeyPress;
+			CreateContextMenu();
+			ProcessHandler.ServerStarted += ProcessHandler_ServerStarted;
+		}
 
-        private void CreateContextMenu()
-        {
-            MenuItem[] menuItem = new MenuItem[1];
-            menuItem[0] = new MenuItem("Autocompletion", ToggleAutoCompletion)
-            {
-                Checked = AutoCompletion,
-                Enabled = true
-            };
-            ContextMenu cm = new ContextMenu(menuItem);
-            ContextMenu = cm;
-        }
+		private void ProcessHandler_ServerStarted()
+		{
+			if (InvokeRequired)
+			{
+				Invoke((MethodInvoker) ProcessHandler_ServerStarted);
+			}
+			else
+			{
+				Focus();
+			}
+		}
 
-        private void ToggleAutoCompletion(object sender, EventArgs e)
-        {
-            AutoCompletion = !AutoCompletion;
-            ContextMenu.MenuItems[0].Checked = AutoCompletion;
-        }
-    }
+		/// <summary>
+		///     Handle a keypress
+		/// </summary>
+		/// <param name="sender">event sender</param>
+		/// <param name="e">event parameters</param>
+		private void HandleKeyPress(object sender, KeyPressEventArgs e)
+		{
+			
+			switch (e.KeyChar)
+			{
+				case '\r':
+					e.Handled = true;
+					SubmitCommand();
+					break;
+				case '\t':
+					e.Handled = true;
+					AutoCompleteName();
+					break;
+			}
+		}
+
+		private void SubmitCommand()
+		{
+			if (string.IsNullOrEmpty(Text)) return;
+			var handler = CommandSent;
+			if (handler != null) handler(Text);
+			Text = "";
+		}
+
+		private void AutoCompleteName()
+		{
+			if (string.IsNullOrEmpty(this.Text)) return;
+
+			string text = (this.Text.Contains(' ')) ? Text.Split(' ').Last() : this.Text;
+
+			string result = "";
+	
+			foreach (Player p in PlayerHandler.GetOnlinePlayers())
+			{
+				if (p.Name.ToLower().StartsWith(text))
+				{
+					if (!string.IsNullOrEmpty(result)) return; // multiple options, auto complete only works if we're sure
+					result = p.Name;
+					
+				}
+			}
+			
+			if (Text.Contains(' '))
+			{
+				Text = Text.Substring(0, Text.Length - text.Length) + result;
+			}
+			else
+			{
+				Text = result;
+			}
+		}
+
+
+		/// <summary>
+		///     Clear the autocompletion history
+		/// </summary>
+		public void ClearAutoCompletionHistory()
+		{
+		}
+
+		private void ToggleAutoCompletion(object sender, EventArgs e)
+		{
+			AutoCompletion = !AutoCompletion;
+			ContextMenu.MenuItems[0].Checked = AutoCompletion;
+		}
+
+		private void CreateContextMenu()
+		{
+			MenuItem[] menuItem = new MenuItem[1];
+			menuItem[0] = new MenuItem("Autocompletion", ToggleAutoCompletion)
+			{
+				Checked = AutoCompletion,
+				Enabled = true
+			};
+			ContextMenu cm = new ContextMenu(menuItem);
+			ContextMenu = cm;
+		}
+	}
 }
