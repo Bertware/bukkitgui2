@@ -10,7 +10,6 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
 using MetroFramework.Controls;
 using Net.Bertware.Bukkitgui2.Core.Configuration;
 using Net.Bertware.Bukkitgui2.Core.Logging;
@@ -21,57 +20,58 @@ using Net.Bertware.Bukkitgui2.Properties;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Console
 {
-    public partial class ConsoleTab : MetroUserControl, IAddonTab
-    {
-        public IAddon ParentAddon { get; set; }
-        public static ConsoleTab Reference;
+	public partial class ConsoleTab : MetroUserControl, IAddonTab
+	{
+		public IAddon ParentAddon { get; set; }
+		public static ConsoleTab Reference;
 
-        public ConsoleTab()
-        {
-            Reference = this;
-            InitializeComponent();
+		public ConsoleTab()
+		{
+			Reference = this;
+			InitializeComponent();
 
-            MinecraftOutputHandler.OutputParsed += PrintOutput;
-            ProcessHandler.ServerStarting += HandleServerStart;
-            ProcessHandler.ServerStopped += HandleServerStop;
-            CIConsoleInput.CommandSent += HandleCommandSent;
-            PlayerHandler.PlayerListAddition += HandlePlayerAddition;
-            PlayerHandler.PlayerListDeletion += HandlePlayerDeletion;
+			MinecraftOutputHandler.OutputParsed += PrintOutput;
+			ProcessHandler.ServerStarting += HandleServerStart;
+			ProcessHandler.ServerStopped += HandleServerStop;
+			CIConsoleInput.CommandSent += HandleCommandSent;
+			PlayerHandler.PlayerListAddition += HandlePlayerAddition;
+			PlayerHandler.PlayerListDeletion += HandlePlayerDeletion;
 
-            MCCOut.MessageColorInfo = Color.FromArgb(Config.ReadInt("console", "color_info", Color.Blue.ToArgb()));
-            MCCOut.MessageColorPlayerAction =
-                Color.FromArgb(Config.ReadInt("console", "color_playeraction", Color.DarkGreen.ToArgb()));
-            MCCOut.MessageColorSevere = Color.FromArgb(Config.ReadInt("console", "color_severe", Color.DarkRed.ToArgb()));
-            MCCOut.MessageColorWarning =
-                Color.FromArgb(Config.ReadInt("console", "color_warning", Color.DarkOrange.ToArgb()));
+			MCCOut.MessageColorInfo = Color.FromArgb(Config.ReadInt("console", "color_info", Color.Blue.ToArgb()));
+			MCCOut.MessageColorPlayerAction =
+				Color.FromArgb(Config.ReadInt("console", "color_playeraction", Color.DarkGreen.ToArgb()));
+			MCCOut.MessageColorSevere = Color.FromArgb(Config.ReadInt("console", "color_severe", Color.DarkRed.ToArgb()));
+			MCCOut.MessageColorWarning =
+				Color.FromArgb(Config.ReadInt("console", "color_warning", Color.DarkOrange.ToArgb()));
 
-            MCCOut.ShowDate = Config.ReadBool("console", "date", false);
-            MCCOut.ShowTime = Config.ReadBool("console", "time", true);
+			MCCOut.ShowDate = Config.ReadBool("console", "date", false);
+			MCCOut.ShowTime = Config.ReadBool("console", "time", true);
 
-            imgListPlayerFaces.Images.Clear();
-            imgListPlayerFaces.Images.Add("default", Resources.player_face);
-        }
+			imgListPlayerFaces.Images.Clear();
+			imgListPlayerFaces.Images.Add("default", Resources.player_face);
+
+			MCCOut.Autoscroll = Config.ReadBool("console", "autoscroll", true);
+		}
 
 
-  
-        /// <summary>
-        ///     Add a player to the listview
-        /// </summary>
-        /// <param name="player"></param>
-        private void HandlePlayerAddition(Player player)
-        {
-            if (InvokeRequired)
-            {
-                Invoke((MethodInvoker) (() => HandlePlayerAddition(player)));
-            }
-            else
-            {
-                player.DetailsLoaded += player_DetailsLoaded;
+		/// <summary>
+		///     Add a player to the listview
+		/// </summary>
+		/// <param name="player"></param>
+		private void HandlePlayerAddition(Player player)
+		{
+			if (InvokeRequired)
+			{
+				Invoke((MethodInvoker) (() => HandlePlayerAddition(player)));
+			}
+			else
+			{
+				player.DetailsLoaded += player_DetailsLoaded;
 				ListViewItem lvi = new ListViewItem(player.DisplayName) {Tag = player, ImageKey = "default"};
-				
-	            SlvPlayers.Items.Add(lvi);
-            }
-        }
+
+				SlvPlayers.Items.Add(lvi);
+			}
+		}
 
 		/// <summary>
 		///     Remove a player from the listview
@@ -81,12 +81,12 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 		{
 			if (InvokeRequired)
 			{
-				Invoke((MethodInvoker)(() => HandlePlayerDeletion(player)));
+				Invoke((MethodInvoker) (() => HandlePlayerDeletion(player)));
 			}
 			else
 			{
 				ListViewItem lvi = FindPlayerListViewItem(player);
-			
+
 				if (lvi != null) SlvPlayers.Items.Remove(lvi);
 				if (imgListPlayerFaces.Images.ContainsKey(player.Name))
 					imgListPlayerFaces.Images.RemoveByKey(player.Name);
@@ -94,137 +94,137 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 		}
 
 
-        private void player_DetailsLoaded(object sender, EventArgs e)
-        {
-            if (InvokeRequired)
-            {
-                Invoke((MethodInvoker) (() => player_DetailsLoaded(sender, e)));
-            }
-            else
-            {
-                Player p = (Player) sender;
-                imgListPlayerFaces.Images.Add(p.Name, p.Minotar);
+		private void player_DetailsLoaded(object sender, EventArgs e)
+		{
+			if (InvokeRequired)
+			{
+				Invoke((MethodInvoker) (() => player_DetailsLoaded(sender, e)));
+			}
+			else
+			{
+				Player p = (Player) sender;
+				imgListPlayerFaces.Images.Add(p.Name, p.Minotar);
 				ListViewItem lvi = FindPlayerListViewItem(p);
-				if (lvi !=null) lvi.ImageKey = p.Name;
-            }
-        }
+				if (lvi != null) lvi.ImageKey = p.Name;
+			}
+		}
 
 		private ListViewItem FindPlayerListViewItem(Player player)
-	    {
+		{
 			foreach (ListViewItem item in SlvPlayers.Items)
 			{
 				if (item.Tag == player) return item;
 			}
 			return null;
-	    }
+		}
 
-        /// <summary>
-        ///     Handle starting server, prepare UI and display text
-        /// </summary>
-        private void HandleServerStart()
-        {
-            // clearing console is already performed by the starter routine, so the starter routine can display its own information too.
-            SlvPlayers.Items.Clear();
-      
-            WriteOut("Starting server...");
-        }
+		/// <summary>
+		///     Handle starting server, prepare UI and display text
+		/// </summary>
+		private void HandleServerStart()
+		{
+			// clearing console is already performed by the starter routine, so the starter routine can display its own information too.
+			SlvPlayers.Items.Clear();
 
-        /// <summary>
-        ///     Handle stopped server, clear UI.
-        /// </summary>
-        private void HandleServerStop()
-        {
-            if (InvokeRequired)
-            {
-                Invoke((MethodInvoker) HandleServerStop);
-            }
-            else
-            {
-                SlvPlayers.Items.Clear();
+			WriteOut("Starting server...");
+		}
 
-                WriteOut("The server has stopped");
-            }
-        }
+		/// <summary>
+		///     Handle stopped server, clear UI.
+		/// </summary>
+		private void HandleServerStop()
+		{
+			if (InvokeRequired)
+			{
+				Invoke((MethodInvoker) HandleServerStop);
+			}
+			else
+			{
+				SlvPlayers.Items.Clear();
 
-        /// <summary>
-        ///     Print output to the console
-        /// </summary>
-        /// <param name="text"></param>
-        /// <param name="outputParseResult"></param>
-        private void PrintOutput(string text, OutputParseResult outputParseResult)
-        {
-            MCCOut.WriteOutput(outputParseResult.Type, outputParseResult.Message);
-        }
+				WriteOut("The server has stopped");
+			}
+		}
 
-        /// <summary>
-        ///     Handle a commandsent event from the textbox and redirect it to the server
-        /// </summary>
-        /// <param name="text"></param>
-        private static void HandleCommandSent(string text)
-        {
-            if (ProcessHandler.IsRunning)
-            {
-                ProcessHandler.SendInput(text);
-            }
-        }
+		/// <summary>
+		///     Print output to the console
+		/// </summary>
+		/// <param name="text"></param>
+		/// <param name="outputParseResult"></param>
+		private void PrintOutput(string text, OutputParseResult outputParseResult)
+		{
+			MCCOut.WriteOutput(outputParseResult.Type, outputParseResult.Message);
+		}
 
-        /// <summary>
-        ///     Write output to the console. Will be prefixed with [GUI]
-        /// </summary>
-        /// <param name="text"></param>
-        public static void WriteOut(string text)
-        {
-            Reference.MCCOut.WriteOutput(MessageType.Info, "[GUI] " + text);
-        }
+		/// <summary>
+		///     Handle a commandsent event from the textbox and redirect it to the server
+		/// </summary>
+		/// <param name="text"></param>
+		private static void HandleCommandSent(string text)
+		{
+			if (ProcessHandler.IsRunning)
+			{
+				ProcessHandler.SendInput(text);
+			}
+		}
 
-        private void ContextPlayersKick_Click(object sender, EventArgs e)
-        {
-            if (SlvPlayers.SelectedItems.Count < 1) return;
-            ((Player) (SlvPlayers.SelectedItems[0].Tag)).Kick();
-        }
+		/// <summary>
+		///     Write output to the console. Will be prefixed with [GUI]
+		/// </summary>
+		/// <param name="text"></param>
+		public static void WriteOut(string text)
+		{
+			Reference.MCCOut.WriteOutput(MessageType.Info, "[GUI] " + text);
+		}
 
-        private void ContextPlayersBan_Click(object sender, EventArgs e)
-        {
-            if (SlvPlayers.SelectedItems.Count < 1) return;
-            ((Player) (SlvPlayers.SelectedItems[0].Tag)).Ban();
-        }
+		private void ContextPlayersKick_Click(object sender, EventArgs e)
+		{
+			if (SlvPlayers.SelectedItems.Count < 1) return;
+			((Player) (SlvPlayers.SelectedItems[0].Tag)).Kick();
+		}
 
-        private void ContextPlayersBanIp_Click(object sender, EventArgs e)
-        {
-            if (SlvPlayers.SelectedItems.Count < 1) return;
-            ((Player) (SlvPlayers.SelectedItems[0].Tag)).BanIp();
-        }
+		private void ContextPlayersBan_Click(object sender, EventArgs e)
+		{
+			if (SlvPlayers.SelectedItems.Count < 1) return;
+			((Player) (SlvPlayers.SelectedItems[0].Tag)).Ban();
+		}
 
-        private void ContextPlayersOp_Click(object sender, EventArgs e)
-        {
-            if (SlvPlayers.SelectedItems.Count < 1) return;
-            ((Player) (SlvPlayers.SelectedItems[0].Tag)).SetOp(true);
-        }
+		private void ContextPlayersBanIp_Click(object sender, EventArgs e)
+		{
+			if (SlvPlayers.SelectedItems.Count < 1) return;
+			((Player) (SlvPlayers.SelectedItems[0].Tag)).BanIp();
+		}
 
-        private void ContextPlayersDeOp_Click(object sender, EventArgs e)
-        {
-            if (SlvPlayers.SelectedItems.Count < 1) return;
-            ((Player) (SlvPlayers.SelectedItems[0].Tag)).SetOp(false);
-        }
+		private void ContextPlayersOp_Click(object sender, EventArgs e)
+		{
+			if (SlvPlayers.SelectedItems.Count < 1) return;
+			((Player) (SlvPlayers.SelectedItems[0].Tag)).SetOp(true);
+		}
 
-        private void ConsoleTab_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyData == Keys.F11)
-                    new EmulatorInput().Show();
-                e.Handled = true;
-                e.SuppressKeyPress = true;
-            }
-            catch (Exception exception)
-            {
-                Logger.Log(LogLevel.Warning, "ConsoleTab", "Exception thrown while showing emulator", exception.Message);
-            }
-        }
+		private void ContextPlayersDeOp_Click(object sender, EventArgs e)
+		{
+			if (SlvPlayers.SelectedItems.Count < 1) return;
+			((Player) (SlvPlayers.SelectedItems[0].Tag)).SetOp(false);
+		}
+
+		private void ConsoleTab_KeyDown(object sender, KeyEventArgs e)
+		{
+			try
+			{
+				if (e.KeyData == Keys.F11)
+					new EmulatorInput().Show();
+				e.Handled = true;
+				e.SuppressKeyPress = true;
+			}
+			catch (Exception exception)
+			{
+				Logger.Log(LogLevel.Warning, "ConsoleTab", "Exception thrown while showing emulator", exception.Message);
+			}
+		}
 
 		private void SlvPlayers_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			ContextPlayers.Enabled = (SlvPlayers.SelectedItems.Count > 0);
 		}
-    }
+	}
 }

@@ -43,6 +43,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			this.cpWarn = new Net.Bertware.Bukkitgui2.Controls.ColorPicker.ColorPicker();
 			this.label1 = new MetroFramework.Controls.MetroLabel();
 			this.chkAutostart = new Net.Bertware.Bukkitgui2.Controls.SettingsCheckbox();
+			this.chkAutoscroll = new Net.Bertware.Bukkitgui2.Controls.SettingsCheckbox();
 			this.gbColors.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -172,11 +173,24 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			this.chkAutostart.Text = "Start the server when the GUI starts";
 			this.chkAutostart.UseSelectable = true;
 			// 
+			// chkAutoscroll
+			// 
+			this.chkAutoscroll.AutoSize = true;
+			this.chkAutoscroll.Checked = true;
+			this.chkAutoscroll.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.chkAutoscroll.Location = new System.Drawing.Point(3, 231);
+			this.chkAutoscroll.Name = "chkAutoscroll";
+			this.chkAutoscroll.Size = new System.Drawing.Size(171, 15);
+			this.chkAutoscroll.TabIndex = 6;
+			this.chkAutoscroll.Text = "Enable &Autoscroll by default";
+			this.chkAutoscroll.UseSelectable = true;
+			// 
 			// ConsoleSettings
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.Transparent;
+			this.Controls.Add(this.chkAutoscroll);
 			this.Controls.Add(this.chkAutostart);
 			this.Controls.Add(this.gbColors);
 			this.Controls.Add(this.chkDate);
@@ -204,6 +218,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 		private MetroLabel label3;
 		private Controls.ColorPicker.ColorPicker cpSevere;
 		private SettingsCheckbox chkAutostart;
+		private SettingsCheckbox chkAutoscroll;
 
 	}
 }

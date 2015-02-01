@@ -26,6 +26,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
             chkDate.Link("console", "date", false);
             chkTime.Link("console", "time", true);
 			chkAutostart.Link("console", "autostart", false);
+			chkAutoscroll.Link("console","autoscroll",true);
         }
 
         private void CpInfo_ColorChanged(Color color)
