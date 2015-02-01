@@ -92,7 +92,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			this.gbColors.Controls.Add(this.CpInfo);
 			this.gbColors.Location = new System.Drawing.Point(3, 70);
 			this.gbColors.Name = "gbColors";
-			this.gbColors.Size = new System.Drawing.Size(554, 155);
+			this.gbColors.Size = new System.Drawing.Size(554, 126);
 			this.gbColors.TabIndex = 4;
 			this.gbColors.TabStop = false;
 			this.gbColors.Text = "Colors";
@@ -178,7 +178,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			this.chkAutoscroll.AutoSize = true;
 			this.chkAutoscroll.Checked = true;
 			this.chkAutoscroll.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.chkAutoscroll.Location = new System.Drawing.Point(3, 231);
+			this.chkAutoscroll.Location = new System.Drawing.Point(3, 202);
 			this.chkAutoscroll.Name = "chkAutoscroll";
 			this.chkAutoscroll.Size = new System.Drawing.Size(171, 15);
 			this.chkAutoscroll.TabIndex = 6;
