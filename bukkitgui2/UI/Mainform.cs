@@ -21,6 +21,7 @@ using Net.Bertware.Bukkitgui2.Core.Logging;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.ServerConfig;
+using MetroMessageBox = MetroFramework.MetroMessageBox;
 
 namespace Net.Bertware.Bukkitgui2.UI
 {
@@ -176,7 +177,6 @@ namespace Net.Bertware.Bukkitgui2.UI
 			}
 			else
 			{
-
 				_ServerName = ServerProperties.GetServerSetting("motd");
 				if (_ServerName == null) _ServerName = ""; //prevent errors
 
@@ -347,7 +347,7 @@ namespace Net.Bertware.Bukkitgui2.UI
 					return;
 				}
 				// ask what to do
-				DialogResult result = MessageBox.Show(
+				DialogResult result = MetroMessageBox.Show(this,
 					Locale.Tr(
 						"The server is still running. Closing it without a proper stop might result in data loss. Send stop command first?"),
 					Locale.Tr("Server still running"), MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
