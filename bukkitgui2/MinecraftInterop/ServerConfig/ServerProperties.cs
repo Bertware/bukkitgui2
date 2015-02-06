@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.IO;
 using Net.Bertware.Bukkitgui2.Core.FileLocation;
 using Net.Bertware.Bukkitgui2.Core.Logging;
+using Net.Bertware.Bukkitgui2.UI;
 
 namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ServerConfig
 {
@@ -78,6 +79,9 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ServerConfig
             {
                 _serverSettings.Add(setting, value);
             }
+
+			if (setting.ToLower().Equals("motd")) MainForm.Reference.UpdateTitle();
+
             Logger.Log(LogLevel.Info, "ServerProperties", "Updated setting", setting + " : " + value);
             SaveSettings();
         }
