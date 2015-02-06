@@ -44,9 +44,18 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
                     string[] text =
                     {
                         pair.Value.Name, pair.Value.Description, StringUtil.ListToCsv(pair.Value.Authors),
-                        pair.Value.Version, "",
+                        pair.Value.Version,"",
                         pair.Value.FileCreationDate.ToShortDateString()
                     };
+	                try
+	                {
+		                if (!string.IsNullOrEmpty(pair.Value.Mainspace))
+			                text[4] = pair.Value.BukgetEquivalentPlugin.LastVersionNumber;
+	                }
+	                catch (Exception e)
+	                {
+		                Logger.Log(LogLevel.Warning, "InstalledPlugins","Couldn't get latest version for plugin",pair.Value.Mainspace);
+	                }
                     ListViewItem lvi = new ListViewItem(text) {Tag = pair.Value};
                     slvPlugins.Items.Add(lvi);
                 }

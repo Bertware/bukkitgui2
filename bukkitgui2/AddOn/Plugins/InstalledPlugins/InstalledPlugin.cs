@@ -88,6 +88,8 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 		/// <remarks>optional</remarks>
 		public string[] Softdepend;
 
+		private BukgetPlugin _bukgetPlugin;
+
 		/// <summary>
 		///     Get the online equivalent for this locally installed plugin
 		/// </summary>
@@ -95,8 +97,8 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 		{
 			get
 			{
-				if (BukgetPlugin.LastParsedPlugin.Main.Equals(Mainspace)) return BukgetPlugin.LastParsedPlugin;
-				return BukgetPlugin.CreateFromNamespace(Mainspace);
+				if (_bukgetPlugin == null) _bukgetPlugin = BukgetPlugin.CreateFromNamespace(Mainspace);
+				return _bukgetPlugin;
 			}
 		}
 
