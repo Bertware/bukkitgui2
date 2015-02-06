@@ -164,6 +164,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget
 			this.txtSearchText.Size = new System.Drawing.Size(172, 20);
 			this.txtSearchText.TabIndex = 13;
 			this.txtSearchText.UseSelectable = true;
+			this.txtSearchText.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSearchText_KeyDown);
 			// 
 			// BukgetPluginsControl
 			// 

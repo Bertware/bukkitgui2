@@ -83,5 +83,13 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget
 			btnInfo.Enabled = selected;
 			btnInstall.Enabled = selected;
 		}
+
+		private void txtSearchText_KeyDown(object sender, KeyEventArgs e)
+		{
+			// TODO: prevent beep noise on enter
+			if (e.KeyCode != Keys.Enter) return;
+			e.Handled = true;
+			btnSearch_Click(sender, e);
+		}
     }
 }
