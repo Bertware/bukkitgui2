@@ -54,7 +54,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 	                }
 	                catch (Exception e)
 	                {
-		                Logger.Log(LogLevel.Warning, "InstalledPlugins","Couldn't get latest version for plugin",pair.Value.Mainspace);
+		                Logger.Log(LogLevel.Warning, "InstalledPlugins","Couldn't get latest version for plugin " + pair.Value.Mainspace,e.Message);
 	                }
                     ListViewItem lvi = new ListViewItem(text) {Tag = pair.Value};
                     slvPlugins.Items.Add(lvi);
