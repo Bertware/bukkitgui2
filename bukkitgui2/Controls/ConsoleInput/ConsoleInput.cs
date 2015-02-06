@@ -85,6 +85,7 @@ namespace Net.Bertware.Bukkitgui2.Controls.ConsoleInput
 					HistoryGoDown();
 					return true;
 			}
+			if (ContextMenu != null) ResetContextMenu();
 			return base.ProcessCmdKey(ref msg, keyData);
 		}
 
