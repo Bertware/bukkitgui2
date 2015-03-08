@@ -120,7 +120,8 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
             task.Disable();
             task.TaskExecuted -= OnTaskExecuted;
             if (Tasks != null && Tasks.ContainsKey(task.Name)) Tasks.Remove(task.Name);
-            OnTaskListAltered();// list changed, invoke event
+            task.Dispose(); // make sure it's removed
+			OnTaskListAltered();// list changed, invoke event
             SaveConfig();
         }
 

@@ -96,6 +96,8 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 
 		public void Dispose()
 		{
+			TaskExecuting = null;
+			TaskExecuted = null;
 			Trigger.TaskerTriggerFired -= ExecuteActions;
 			Trigger = null;
 			Actions = null;

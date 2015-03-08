@@ -38,7 +38,7 @@
     <StartupObject>Net.Bertware.Bukkitgui2.Program</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>bukkitgui-icon.ico</ApplicationIcon>
+    <ApplicationIcon>bukkitgui-icon32.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ICSharpCode.SharpZipLib">
@@ -601,6 +601,7 @@
   <ItemGroup>
     <Content Include="bukkitgui-icon.ico" />
     <EmbeddedResource Include="Resources\Dll\Interop.NATUPNPLib.dll" />
+    <Content Include="bukkitgui-icon32.ico" />
     <Content Include="Resources\Dll\Net.Bertware.Get.xml" />
     <Content Include="Resources\Icon\icon_cancel-64.png" />
     <Content Include="Resources\Icon\icon_chat-64.png" />
