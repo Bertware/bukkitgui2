@@ -50,7 +50,7 @@
 			this.metroLabel1.Name = "metroLabel1";
 			this.metroLabel1.Size = new System.Drawing.Size(201, 38);
 			this.metroLabel1.TabIndex = 2;
-			this.metroLabel1.Text = "Bukkitgui v2\r\nCopyright ©Bertware 2011-2014";
+			this.metroLabel1.Text = "Bukkitgui v2\r\nCopyright ©Bertware 2011-2015";
 			this.metroLabel1.UseWaitCursor = true;
 			// 
 			// Spinner
