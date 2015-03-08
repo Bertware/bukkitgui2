@@ -54,7 +54,7 @@ namespace Net.Bertware.Bukkitgui2.UI
 			this.TabCtrlAddons.Location = new System.Drawing.Point(0, 63);
 			this.TabCtrlAddons.Margin = new System.Windows.Forms.Padding(0);
 			this.TabCtrlAddons.Name = "TabCtrlAddons";
-			this.TabCtrlAddons.Size = new System.Drawing.Size(886, 474);
+			this.TabCtrlAddons.Size = new System.Drawing.Size(882, 472);
 			this.TabCtrlAddons.TabIndex = 0;
 			this.TabCtrlAddons.UseSelectable = true;
 			// 
@@ -62,11 +62,11 @@ namespace Net.Bertware.Bukkitgui2.UI
 			// 
 			this.LblToolsMainServerState.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.LblToolsMainServerState.ContextMenuStrip = this.ToolStripBtn;
-			this.LblToolsMainServerState.Location = new System.Drawing.Point(0, 540);
+			this.LblToolsMainServerState.Location = new System.Drawing.Point(0, 538);
 			this.LblToolsMainServerState.Name = "LblToolsMainServerState";
 			this.LblToolsMainServerState.Size = new System.Drawing.Size(144, 20);
 			this.LblToolsMainServerState.TabIndex = 1;
-			this.LblToolsMainServerState.Text = Locale.Tr("Server stopped");
+			this.LblToolsMainServerState.Text = "Server stopped";
 			// 
 			// ToolStripBtn
 			// 
@@ -82,30 +82,30 @@ namespace Net.Bertware.Bukkitgui2.UI
 			// 
 			this.ToolStripBtnStartStop.Name = "ToolStripBtnStartStop";
 			this.ToolStripBtnStartStop.Size = new System.Drawing.Size(110, 22);
-			this.ToolStripBtnStartStop.Text = Locale.Tr("Start");
+			this.ToolStripBtnStartStop.Text = "Start";
 			this.ToolStripBtnStartStop.Click += new System.EventHandler(this.ToolStripBtnStartStop_Click);
 			// 
 			// ToolStripBtnRestart
 			// 
 			this.ToolStripBtnRestart.Name = "ToolStripBtnRestart";
 			this.ToolStripBtnRestart.Size = new System.Drawing.Size(110, 22);
-			this.ToolStripBtnRestart.Text = Locale.Tr("Restart");
+			this.ToolStripBtnRestart.Text = "Restart";
 			this.ToolStripBtnRestart.Click += new System.EventHandler(this.ToolStripBtnRestart_Click);
 			// 
 			// LblToolsMainServerOutput
 			// 
 			this.LblToolsMainServerOutput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.LblToolsMainServerOutput.Location = new System.Drawing.Point(172, 540);
+			this.LblToolsMainServerOutput.Location = new System.Drawing.Point(172, 538);
 			this.LblToolsMainServerOutput.Name = "LblToolsMainServerOutput";
-			this.LblToolsMainServerOutput.Size = new System.Drawing.Size(507, 20);
+			this.LblToolsMainServerOutput.Size = new System.Drawing.Size(503, 20);
 			this.LblToolsMainServerOutput.TabIndex = 2;
-			this.LblToolsMainServerOutput.Text = Locale.Tr("No output to show");
+			this.LblToolsMainServerOutput.Text = "No output to show";
 			// 
 			// SpinServerState
 			// 
 			this.SpinServerState.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.SpinServerState.Location = new System.Drawing.Point(150, 543);
+			this.SpinServerState.Location = new System.Drawing.Point(150, 541);
 			this.SpinServerState.Maximum = 100;
 			this.SpinServerState.Name = "SpinServerState";
 			this.SpinServerState.Size = new System.Drawing.Size(16, 16);
@@ -124,14 +124,15 @@ namespace Net.Bertware.Bukkitgui2.UI
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(884, 562);
+			this.ClientSize = new System.Drawing.Size(880, 560);
 			this.Controls.Add(this.SpinServerState);
 			this.Controls.Add(this.LblToolsMainServerOutput);
 			this.Controls.Add(this.LblToolsMainServerState);
 			this.Controls.Add(this.TabCtrlAddons);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+			this.MinimumSize = new System.Drawing.Size(880, 560);
 			this.Name = "MainForm";
-			this.Text = Locale.Tr("BukkitGui");
+			this.Text = "BukkitGui";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
 			this.ToolStripBtn.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.metroStyleManager)).EndInit();
