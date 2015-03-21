@@ -46,9 +46,10 @@ namespace Net.Bertware.Bukkitgui2.Controls.ConsoleInput
 		/// </summary>
 		public ConsoleInput()
 		{
-			KeyPress += HandleKeyPress;
+			KeyUp += HandleKeyUp;
 			ProcessHandler.ServerStarted += ProcessHandler_ServerStarted;
 		}
+
 
 		/// <summary>
 		///     Gain focus on server start
@@ -126,13 +127,23 @@ namespace Net.Bertware.Bukkitgui2.Controls.ConsoleInput
 		/// </summary>
 		/// <param name="sender">event sender</param>
 		/// <param name="e">event parameters</param>
-		private void HandleKeyPress(object sender, KeyPressEventArgs e)
+		private void HandleKeyUp(object sender, KeyEventArgs e)
 		{
-			switch (e.KeyChar)
+			switch (e.KeyCode)
 			{
-				case '\r':
+				case Keys.S:
+					if (e.Control)
+					{
+						Text = "say " + Text;
+						SubmitCommand();
+					}
+					e.SuppressKeyPress = true;
 					e.Handled = true;
+					break;
+				case Keys.Return:
 					SubmitCommand();
+					e.SuppressKeyPress = true;
+					e.Handled = true;
 					break;
 			}
 		}
