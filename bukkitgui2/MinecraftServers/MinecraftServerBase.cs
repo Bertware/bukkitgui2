@@ -284,9 +284,9 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers
 			//2014-01-01 00:00:00,000
 			text = Regex.Replace(text, "\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}(,\\d{3}|)\\s*", "");
 			//[11:36:21]
-			text = Regex.Replace(text, "\\[\\d\\d:\\d\\d:\\d\\d\\]", "");
+			text = Regex.Replace(text, "\\[\\d+:\\d+:\\d+\\]", "");
 			//[11:36:21 INFO]
-			text = Regex.Replace(text, "\\[\\d\\d:\\d\\d:\\d\\d ", "[");
+			text = Regex.Replace(text, "\\[\\d+:\\d+:\\d+ ", "[");
 			text = text.Trim();
 			return text;
 		}
@@ -306,7 +306,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers
 			// [User Authenticator #1/INFO] to [INFO]
 			text = Regex.Replace(text, "User Authenticator #\\d/", "");
 			// [Server thread/INFO] to [INFO]
-			text = Regex.Replace(text, "Server (shutdown |)thread/", "");
+			text = Regex.Replace(text, "Server (shutdown)?thread/", "");
 			text = Regex.Replace(text, "\\]:", "]");
 			text = text.Trim();
 			return text;
