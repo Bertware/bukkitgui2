@@ -33,6 +33,10 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Trigger
 
         public string ParameterDescription { get; protected set; }
 
+		public string Parameters { get; set; }
+
+		public bool Enabled { get; protected set; }
+
         public bool ValidateInput(string inputText)
         {
             return Regex.IsMatch(inputText, "^(\\d{2}:\\d{2}:\\d{2})$");
@@ -52,12 +56,10 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Trigger
             }
         }
 
-        public string Parameters { get; set; }
-
-        public bool Enabled { get; protected set; }
-
         public void Enable()
         {
+	        Enabled = true;
+
             _time = TimeSpan.Parse(Parameters);
 
             _timerCheckCurrentTime = new Timer(_time.TotalMilliseconds) {Enabled = false};
