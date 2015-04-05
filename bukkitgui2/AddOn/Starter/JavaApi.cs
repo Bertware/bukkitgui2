@@ -8,7 +8,9 @@
 // ©Bertware, visit http://bertware.net
 
 using System;
+using System.Configuration;
 using System.IO;
+using System.Windows.Forms;
 using Net.Bertware.Bukkitgui2.Core;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Starter
@@ -89,6 +91,8 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 					return !string.IsNullOrEmpty(_jre8X32);
 				case JavaVersion.Jre8X64:
 					return !string.IsNullOrEmpty(_jre8X64);
+				case JavaVersion.Custom:
+					return true;
 				default:
 					return false;
 			}
@@ -119,6 +123,20 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 					return _jre8X32;
 				case JavaVersion.Jre8X64:
 					return _jre8X64;
+				case JavaVersion.Custom:
+					string path = Bukkitgui2.Core.Configuration.Config.ReadString("starter", "java_custom", "");
+					if (string.IsNullOrEmpty(path))
+					{
+						OpenFileDialog ofd = new OpenFileDialog
+						{
+							Title = "Select java.exe",
+							Filter = "Java executables (*.exe) |*.exe|All Files (*.*)|*.*"
+						};
+						ofd.ShowDialog();
+						path = ofd.FileName;
+						Core.Configuration.Config.WriteString("starter", "java_custom", path);
+					}
+					return path;
 				default:
 					return null;
 			}
@@ -165,6 +183,8 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 
 		Jre8X32,
 
-		Jre8X64
+		Jre8X64,
+
+		Custom
 	}
 }
