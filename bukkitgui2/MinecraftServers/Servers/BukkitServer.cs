@@ -28,12 +28,12 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers.Servers
             Site = "http://bukkit.org";
             Logo = Resources.bukkit_logo;
 
-            CanFetchBetaVersion = true;
-            CanFetchDevVersion = true;
-            CanFetchRecommendedVersion = true;
-            CanDownloadBetaVersion = true;
-            CanDownloadDevVersion = true;
-            CanDownloadRecommendedVersion = true;
+            CanFetchBetaVersion = false;
+			CanFetchDevVersion = false;
+			CanFetchRecommendedVersion = false;
+			CanDownloadBetaVersion = false;
+			CanDownloadDevVersion = false;
+			CanDownloadRecommendedVersion = false;
 
             CanGetCurrentVersion = true;
 
