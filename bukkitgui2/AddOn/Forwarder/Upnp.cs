@@ -18,6 +18,7 @@ using MetroFramework;
 using NATUPNPLib;
 using Net.Bertware.Bukkitgui2.Core;
 using Net.Bertware.Bukkitgui2.Core.Logging;
+// ReSharper disable InconsistentNaming
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Forwarder
 {
@@ -110,17 +111,17 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Forwarder
         /// </summary>
         /// <param name="localIp">The local IP address to map to.</param>
         /// <param name="port">The port to forward.</param>
-        /// <param name="prot">The protocol of the port [TCP/UDP]</param>
+		/// <param name="protocol">The protocol of the port [TCP/UDP]</param>
         /// <param name="desc">A small description of the port.</param>
         /// <exception cref="ApplicationException">This exception is thrown when UPnP is disabled.</exception>
         /// <exception cref="ObjectDisposedException">This exception is thrown when this class has been disposed.</exception>
         /// <exception cref="ArgumentException">This exception is thrown when any of the supplied arguments are invalid.</exception>
         /// <remarks></remarks>
-        private void Add(string localIp, uint port, Protocol prot, string desc)
+		private void Add(string localIp, uint port, Protocol protocol, string desc)
         {
             // Begin utilizing
-            if (Exists(port, prot))
-                throw new ArgumentException("This mapping aLocale.Tready exists!", "Port;Protocol");
+            if (Exists(port, protocol))
+				throw new ArgumentException("This mapping aLocale.Tready exists!", port + " : " + protocol);
 
             // Check
             if (!IsPrivateIp(localIp))
@@ -131,7 +132,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Forwarder
                 throw new ApplicationException("UPnP is not enabled, or there was an error with UPnP Initialization.");
 
             // Okay, continue on
-            _staticMapping.Add(Convert.ToInt32(port), prot.ToString(), Convert.ToInt32(port), localIp, true, desc);
+			_staticMapping.Add(Convert.ToInt32(port), protocol.ToString(), Convert.ToInt32(port), localIp, true, desc);
         }
 
         /// <summary>
@@ -166,7 +167,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Forwarder
 
             // Begin utilizing
             if (!_lastInstance.Exists(port, protocol))
-                throw new ArgumentException("This mapping doesn't exist!", "Port;Protocol");
+                throw new ArgumentException("This mapping doesn't exist!", port + " : " + protocol);
 
             // Okay, continue on
             _lastInstance._staticMapping.Remove(port, protocol.ToString());

@@ -23,187 +23,187 @@ using Net.Bertware.Bukkitgui2.UI;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Notifications
 {
-    internal class Notifications : IAddon
-    {
-        public const string CfgIdent = "notifications";
-        private NotifyIcon _icon;
-        private Boolean _alwaysShowBalloons;
+	internal class Notifications : IAddon
+	{
+		public const string CfgIdent = "notifications";
+		private NotifyIcon _icon;
+		private Boolean _alwaysShowBalloons;
 
-        public string Name
-        {
-            get { return "Notifications"; }
-        }
+		public string Name
+		{
+			get { return "Notifications"; }
+		}
 
-        public bool HasTab
-        {
-            get { return false; }
-        }
+		public bool HasTab
+		{
+			get { return false; }
+		}
 
-        public bool HasConfig
-        {
-            get { return true; }
-        }
+		public bool HasConfig
+		{
+			get { return true; }
+		}
 
-        public int BalloonDuration { get; set; }
+		public int BalloonDuration { get; set; }
 
-        public void Initialize()
-        {
-            ConfigPage = new NotificationSettings();
+		public void Initialize()
+		{
+			ConfigPage = new NotificationSettings();
 
-            if (!Config.ReadBool(CfgIdent, "enabled", false)) return;
-
-
-            _icon = new NotifyIcon {Icon = Resources.bukkitgui_icon, Visible = true};
-
-            _icon.DoubleClick += ShowMainForm;
-
-            BalloonDuration = Config.ReadInt(CfgIdent, "duration", 500);
+			if (!Config.ReadBool(CfgIdent, "enabled", false)) return;
 
 
-            _alwaysShowBalloons = Config.ReadBool(CfgIdent, "always", false);
+			_icon = new NotifyIcon {Icon = Resources.bukkitgui_icon, Visible = true};
 
-            if (Config.ReadBool(CfgIdent, "status", false)) ProcessHandler.ServerStatusChanged += ShowStatusTray;
-            if (Config.ReadBool(CfgIdent, "join", false)) MinecraftOutputHandler.PlayerJoin += ShowJoinTray;
-            if (Config.ReadBool(CfgIdent, "leave", false)) MinecraftOutputHandler.PlayerLeave += ShowLeaveTray;
-            if (Config.ReadBool(CfgIdent, "kick", false)) MinecraftOutputHandler.PlayerKick += ShowKickTray;
-            if (Config.ReadBool(CfgIdent, "ban", false)) MinecraftOutputHandler.PlayerBan += ShowBanTray;
+			_icon.DoubleClick += ShowMainForm;
 
-            if (Config.ReadBool(CfgIdent, "sound_error", false))
-                MinecraftOutputHandler.SevereMessageReceived += SoundSevereMessage;
-            if (Config.ReadBool(CfgIdent, "sound_warn", false))
-                MinecraftOutputHandler.WarningMessageReceived += SoundWarningMessage;
-            if (Config.ReadBool(CfgIdent, "sound_join", false)) MinecraftOutputHandler.PlayerJoin += SoundPlayerJoin;
-            if (Config.ReadBool(CfgIdent, "sound_leave", false)) MinecraftOutputHandler.PlayerLeave += SoundPlayerLeave;
-        }
-
-        /// <summary>
-        ///     Play the severe message sound
-        /// </summary>
-        private void SoundSevereMessage(string text, OutputParseResult outputParseResult)
-        {
-            new Audio().Play(Resources.sound_severe, AudioPlayMode.Background);
-        }
-
-        /// <summary>
-        ///     Play the warning message sound
-        /// </summary>
-        private void SoundWarningMessage(string text, OutputParseResult outputParseResult)
-        {
-            new Audio().Play(Resources.sound_warning, AudioPlayMode.Background);
-        }
-
-        /// <summary>
-        ///     Play the player left sound
-        /// </summary>
-        private void SoundPlayerLeave(string text, OutputParseResult outputParseResult, IPlayerAction playerAction)
-        {
-            new Audio().Play(Resources.sound_disconnect, AudioPlayMode.Background);
-        }
-
-        /// <summary>
-        ///     Play the player joined sound
-        /// </summary>
-        /// <param name="text"></param>
-        /// <param name="outputParseResult"></param>
-        /// <param name="playerAction"></param>
-        private void SoundPlayerJoin(string text, OutputParseResult outputParseResult, IPlayerAction playerAction)
-        {
-            new Audio().Play(Resources.sound_connect, AudioPlayMode.Background);
-        }
-
-        public void Dispose()
-        {
-            try
-            {
-                if (_icon != null)
-                {
-                    _icon.Visible = false;
-                    _icon.Dispose();
-                }
-
-                ProcessHandler.ServerStatusChanged -= ShowStatusTray;
-                MinecraftOutputHandler.PlayerJoin -= ShowJoinTray;
-                MinecraftOutputHandler.PlayerLeave -= ShowLeaveTray;
-                MinecraftOutputHandler.PlayerKick -= ShowKickTray;
-                MinecraftOutputHandler.PlayerBan -= ShowBanTray;
-
-                MinecraftOutputHandler.SevereMessageReceived -= SoundSevereMessage;
-                MinecraftOutputHandler.WarningMessageReceived -= SoundWarningMessage;
-                MinecraftOutputHandler.PlayerJoin -= SoundPlayerJoin;
-                MinecraftOutputHandler.PlayerLeave -= SoundPlayerLeave;
-            }
-            catch (Exception exception)
-            {
-                Logger.Log(LogLevel.Warning, "notifications", "Failed to dispose addon", exception.Message);
-            }
-        }
-
-        private void ShowMainForm(object sender, EventArgs e)
-        {
-            MainForm.Reference.ShowForm();
-        }
-
-        private void ShowStatusTray(ServerState state)
-        {
-            if (!_alwaysShowBalloons && MainForm.Reference.Visible)
-                return; // if visible and balloons shouldn't be shown always, don't show.
-
-            _icon.ShowBalloonTip(BalloonDuration, Locale.Tr("Server") + " " + state,
-                Locale.Tr("The server is") + " " + state.ToString().ToLower(),
-                ToolTipIcon.Info);
-        }
+			BalloonDuration = Config.ReadInt(CfgIdent, "duration", 500);
 
 
-        private void ShowJoinTray(string text, OutputParseResult outputParseResult,
-            IPlayerAction playerAction)
-        {
-            if (!_alwaysShowBalloons && MainForm.Reference.Visible)
-                return; // if visible and balloons shouldn't be shown always, don't show.
+			_alwaysShowBalloons = Config.ReadBool(CfgIdent, "always", false);
 
-            _icon.ShowBalloonTip(BalloonDuration, playerAction.PlayerName + " " + Locale.Tr("joined the server"),
-                outputParseResult.Message,
-                ToolTipIcon.Info);
-        }
+			if (Config.ReadBool(CfgIdent, "status", false)) ProcessHandler.ServerStatusChanged += ShowStatusTray;
+			if (Config.ReadBool(CfgIdent, "join", false)) MinecraftOutputHandler.PlayerJoin += ShowJoinTray;
+			if (Config.ReadBool(CfgIdent, "leave", false)) MinecraftOutputHandler.PlayerLeave += ShowLeaveTray;
+			if (Config.ReadBool(CfgIdent, "kick", false)) MinecraftOutputHandler.PlayerKick += ShowKickTray;
+			if (Config.ReadBool(CfgIdent, "ban", false)) MinecraftOutputHandler.PlayerBan += ShowBanTray;
 
-        private void ShowLeaveTray(string text, OutputParseResult outputParseResult,
-            IPlayerAction playerAction)
-        {
-            if (!_alwaysShowBalloons && MainForm.Reference.Visible)
-                return; // if visible and balloons shouldn't be shown always, don't show.
+			if (Config.ReadBool(CfgIdent, "sound_error", false))
+				MinecraftOutputHandler.SevereMessageReceived += SoundSevereMessage;
+			if (Config.ReadBool(CfgIdent, "sound_warn", false))
+				MinecraftOutputHandler.WarningMessageReceived += SoundWarningMessage;
+			if (Config.ReadBool(CfgIdent, "sound_join", false)) MinecraftOutputHandler.PlayerJoin += SoundPlayerJoin;
+			if (Config.ReadBool(CfgIdent, "sound_leave", false)) MinecraftOutputHandler.PlayerLeave += SoundPlayerLeave;
+		}
 
-            _icon.ShowBalloonTip(BalloonDuration, playerAction.PlayerName + " " + Locale.Tr("left the server"),
-                outputParseResult.Message,
-                ToolTipIcon.Info);
-        }
+		/// <summary>
+		///     Play the severe message sound
+		/// </summary>
+		private void SoundSevereMessage(string text, OutputParseResult outputParseResult)
+		{
+			new Audio().Play(Resources.sound_severe, AudioPlayMode.Background);
+		}
 
-        private void ShowKickTray(string text, OutputParseResult outputParseResult,
-            IPlayerAction playerAction)
-        {
-            if (!_alwaysShowBalloons && MainForm.Reference.Visible)
-                return; // if visible and balloons shouldn't be shown always, don't show.
+		/// <summary>
+		///     Play the warning message sound
+		/// </summary>
+		private void SoundWarningMessage(string text, OutputParseResult outputParseResult)
+		{
+			new Audio().Play(Resources.sound_warning, AudioPlayMode.Background);
+		}
 
-            _icon.ShowBalloonTip(BalloonDuration,
-                playerAction.PlayerName + " " + Locale.Tr("was kicked from the server"),
-                outputParseResult.Message, ToolTipIcon.Warning);
-        }
+		/// <summary>
+		///     Play the player left sound
+		/// </summary>
+		private void SoundPlayerLeave(string text, OutputParseResult outputParseResult, IPlayerAction playerAction)
+		{
+			new Audio().Play(Resources.sound_disconnect, AudioPlayMode.Background);
+		}
 
-        private void ShowBanTray(string text, OutputParseResult outputParseResult,
-            IPlayerAction playerAction)
-        {
-            if (!_alwaysShowBalloons && MainForm.Reference.Visible)
-                return; // if visible and balloons shouldn't be shown always, don't show.
+		/// <summary>
+		///     Play the player joined sound
+		/// </summary>
+		/// <param name="text"></param>
+		/// <param name="outputParseResult"></param>
+		/// <param name="playerAction"></param>
+		private void SoundPlayerJoin(string text, OutputParseResult outputParseResult, IPlayerAction playerAction)
+		{
+			new Audio().Play(Resources.sound_connect, AudioPlayMode.Background);
+		}
 
-            _icon.ShowBalloonTip(BalloonDuration,
-                playerAction.PlayerName + " " + Locale.Tr("was banned from the server"),
-                outputParseResult.Message, ToolTipIcon.Warning);
-        }
+		public void Dispose()
+		{
+			try
+			{
+				if (_icon != null)
+				{
+					_icon.Visible = false;
+					_icon.Dispose();
+				}
+
+				ProcessHandler.ServerStatusChanged -= ShowStatusTray;
+				MinecraftOutputHandler.PlayerJoin -= ShowJoinTray;
+				MinecraftOutputHandler.PlayerLeave -= ShowLeaveTray;
+				MinecraftOutputHandler.PlayerKick -= ShowKickTray;
+				MinecraftOutputHandler.PlayerBan -= ShowBanTray;
+
+				MinecraftOutputHandler.SevereMessageReceived -= SoundSevereMessage;
+				MinecraftOutputHandler.WarningMessageReceived -= SoundWarningMessage;
+				MinecraftOutputHandler.PlayerJoin -= SoundPlayerJoin;
+				MinecraftOutputHandler.PlayerLeave -= SoundPlayerLeave;
+			}
+			catch (Exception exception)
+			{
+				Logger.Log(LogLevel.Warning, "notifications", "Failed to dispose addon", exception.Message);
+			}
+		}
+
+		private void ShowMainForm(object sender, EventArgs e)
+		{
+			MainForm.Reference.ShowForm();
+		}
+
+		private void ShowStatusTray(ServerState state)
+		{
+			if (!_alwaysShowBalloons && MainForm.Reference.Visible)
+				return; // if visible and balloons shouldn't be shown always, don't show.
+
+			_icon.ShowBalloonTip(BalloonDuration, Locale.Tr("Server") + " " + state,
+				Locale.Tr("The server is") + " " + state.ToString().ToLower(),
+				ToolTipIcon.Info);
+		}
 
 
-        public MetroUserControl TabPage
-        {
-            get { return null; }
-        }
+		private void ShowJoinTray(string text, OutputParseResult outputParseResult,
+			IPlayerAction playerAction)
+		{
+			if (!_alwaysShowBalloons && MainForm.Reference.Visible)
+				return; // if visible and balloons shouldn't be shown always, don't show.
 
-        public MetroUserControl ConfigPage { get; private set; }
-    }
+			_icon.ShowBalloonTip(BalloonDuration, playerAction.PlayerName + " " + Locale.Tr("joined the server"),
+				outputParseResult.Message,
+				ToolTipIcon.Info);
+		}
+
+		private void ShowLeaveTray(string text, OutputParseResult outputParseResult,
+			IPlayerAction playerAction)
+		{
+			if (!_alwaysShowBalloons && MainForm.Reference.Visible)
+				return; // if visible and balloons shouldn't be shown always, don't show.
+
+			_icon.ShowBalloonTip(BalloonDuration, playerAction.PlayerName + " " + Locale.Tr("left the server"),
+				outputParseResult.Message,
+				ToolTipIcon.Info);
+		}
+
+		private void ShowKickTray(string text, OutputParseResult outputParseResult,
+			IPlayerAction playerAction)
+		{
+			if (!_alwaysShowBalloons && MainForm.Reference.Visible)
+				return; // if visible and balloons shouldn't be shown always, don't show.
+
+			_icon.ShowBalloonTip(BalloonDuration,
+				playerAction.PlayerName + " " + Locale.Tr("was kicked from the server"),
+				outputParseResult.Message, ToolTipIcon.Warning);
+		}
+
+		private void ShowBanTray(string text, OutputParseResult outputParseResult,
+			IPlayerAction playerAction)
+		{
+			if (!_alwaysShowBalloons && MainForm.Reference.Visible)
+				return; // if visible and balloons shouldn't be shown always, don't show.
+
+			_icon.ShowBalloonTip(BalloonDuration,
+				playerAction.PlayerName + " " + Locale.Tr("was banned from the server"),
+				outputParseResult.Message, ToolTipIcon.Warning);
+		}
+
+
+		public MetroUserControl TabPage
+		{
+			get { return null; }
+		}
+
+		public MetroUserControl ConfigPage { get; private set; }
+	}
 }

@@ -17,40 +17,40 @@ using Net.Bertware.Bukkitgui2.Properties;
 
 namespace Net.Bertware.Bukkitgui2.MinecraftServers.Servers
 {
-    internal class JsonApi2Server : MinecraftServerBase
-    {
-        public JsonApi2Server()
-        {
-            Name = "JsonApi API v2";
-            Logo = Resources.jsonapi_logo;
-            Site = "http://mcjsonapi.com/";
-            HasCustomAssembly = true;
-            CustomAssembly = ""; // will be set in preparelaunch
-            SupportsPlugins = false; //disable plugin manager on this one
-            HasCustomSettingsControl = true;
-            CustomSettingsControl = new JsonApi2CredentialsSettingsControl();
-            IsLocal = false;
-        }
+	internal class JsonApi2Server : MinecraftServerBase
+	{
+		public JsonApi2Server()
+		{
+			Name = "JsonApi API v2";
+			Logo = Resources.jsonapi_logo;
+			Site = "http://mcjsonapi.com/";
+			HasCustomAssembly = true;
+			CustomAssembly = ""; // will be set in preparelaunch
+			SupportsPlugins = false; //disable plugin manager on this one
+			HasCustomSettingsControl = true;
+			CustomSettingsControl = new JsonApi2CredentialsSettingsControl();
+			IsLocal = false;
+		}
 
-        public override void PrepareLaunch()
-        {
-            // Extract the assembly
-            CustomAssembly = Fl.SafeLocation(RequestFile.Temp) + "connector.exe";
-            using (FileStream fs = File.Create(CustomAssembly))
-            {
-                fs.Write(Resources.JsonApiConnector, 0, Resources.JsonApiConnector.Length);
-            }
-        }
+		public override void PrepareLaunch()
+		{
+			// Extract the assembly
+			CustomAssembly = Fl.SafeLocation(RequestFile.Temp) + "connector.exe";
+			using (FileStream fs = File.Create(CustomAssembly))
+			{
+				fs.Write(Resources.JsonApiConnector, 0, Resources.JsonApiConnector.Length);
+			}
+		}
 
-        public override string GetLaunchParameters(string defaultParameters = "")
-        {
-            Control control = Starter.GetCustomSettingsControl();
-            if (! (control is JsonApi2CredentialsSettingsControl)) throw new Exception("Couldn't retrieve parameters");
+		public override string GetLaunchParameters(string defaultParameters = "")
+		{
+			Control control = Starter.GetCustomSettingsControl();
+			if (!(control is JsonApi2CredentialsSettingsControl)) throw new Exception("Couldn't retrieve parameters");
 
-            JsonApi2CredentialsSettingsControl cred = (JsonApi2CredentialsSettingsControl) control;
+			JsonApi2CredentialsSettingsControl cred = (JsonApi2CredentialsSettingsControl) control;
 
-            return "-u=" + cred.Username + " -p=" + cred.Password + " -host=" + cred.Host +
-                   " -port=" +cred.Port + " -filter";
-        }
-    }
+			return "-u=" + cred.Username + " -p=" + cred.Password + " -host=" + cred.Host +
+			       " -port=" + cred.Port + " -filter";
+		}
+	}
 }

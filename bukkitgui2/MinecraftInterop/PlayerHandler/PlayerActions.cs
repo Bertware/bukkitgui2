@@ -18,7 +18,8 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
         /// <summary>
         ///     Kick a player
         /// </summary>
-        /// <param name="name"></param>
+        /// <param name="name">Name of the player to kick</param>
+        /// <param name="reason">Reason for the kick</param>
         public static void KickPlayer(string name, string reason = "")
         {
             if (ProcessHandler.ProcessHandler.IsRunning)
@@ -36,7 +37,8 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
         /// <summary>
         ///     Ban a player
         /// </summary>
-        /// <param name="name">the player to ban</param>
+		/// <param name="name">Name of the player to ban</param>
+		/// <param name="reason">Reason for the ban</param>
         public static void BanPlayer(string name, string reason = "")
         {
             if (ProcessHandler.ProcessHandler.IsRunning)

@@ -43,6 +43,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Editor
         public void Initialize()
         {
             TabPage = new EditorTab {Text = Name, ParentAddon = this};
+	        ConfigPage = null;
         }
 
         public void Dispose()

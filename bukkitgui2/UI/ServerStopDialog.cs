@@ -10,61 +10,60 @@
 using System;
 using System.Windows.Forms;
 using MetroFramework.Forms;
-using Net.Bertware.Bukkitgui2.AddOn.Starter;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler;
 
 namespace Net.Bertware.Bukkitgui2.UI
 {
-    public partial class ServerStopDialog : MetroForm
-    {
-        public ServerStopDialog()
-        {
-            InitializeComponent();
-        }
+	public partial class ServerStopDialog : MetroForm
+	{
+		public ServerStopDialog()
+		{
+			InitializeComponent();
+		}
 
 
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            DialogResult = DialogResult.Cancel;
-	        Close();
-        }
+		private void btnCancel_Click(object sender, EventArgs e)
+		{
+			DialogResult = DialogResult.Cancel;
+			Close();
+		}
 
-        private void ServerStopDialog_Load(object sender, EventArgs e)
-        {
-            if (ProcessHandler.CurrentState == ServerState.Stopped)
-            {
-                DialogResult = DialogResult.OK;
-                Close();
-            }
+		private void ServerStopDialog_Load(object sender, EventArgs e)
+		{
+			if (ProcessHandler.CurrentState == ServerState.Stopped)
+			{
+				DialogResult = DialogResult.OK;
+				Close();
+			}
 
-            if (ProcessHandler.Server.IsLocal)
-            {
-                ProcessHandler.StopServer();
-            }
-            else
-            {
-                ProcessHandler.StopServerProcess();
-            }
-            
-            ProcessHandler.ServerStopped += Return;
-        }
+			if (ProcessHandler.Server.IsLocal)
+			{
+				ProcessHandler.StopServer();
+			}
+			else
+			{
+				ProcessHandler.StopServerProcess();
+			}
 
-        private void Return()
-        {
-            if (InvokeRequired)
-            {
-                Invoke(new MethodInvoker(Return));
-            }
-            else
-            {
-                DialogResult = DialogResult.OK;
-                Close();
-            }
-        }
+			ProcessHandler.ServerStopped += Return;
+		}
 
-        private void btnKill_Click(object sender, EventArgs e)
-        {
-            ProcessHandler.KillServer();
-        }
-    }
+		private void Return()
+		{
+			if (InvokeRequired)
+			{
+				Invoke(new MethodInvoker(Return));
+			}
+			else
+			{
+				DialogResult = DialogResult.OK;
+				Close();
+			}
+		}
+
+		private void btnKill_Click(object sender, EventArgs e)
+		{
+			ProcessHandler.KillServer();
+		}
+	}
 }

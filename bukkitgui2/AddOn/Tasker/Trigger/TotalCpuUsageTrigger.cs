@@ -26,7 +26,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Trigger
 
         private Timer _timerCheckCurrentTime;
 
-        private int triggervalue = 100;
+        private int _triggervalue = 100;
 
         public TotalCpuUsageTrigger()
         {
@@ -81,7 +81,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Trigger
         {
             _timerCheckCurrentTime = new Timer(TimerInterval);
             _timerCheckCurrentTime.Elapsed += timer_elapsed;
-            triggervalue = int.Parse(Parameters);
+            _triggervalue = int.Parse(Parameters);
             Enabled = true;
         }
 
@@ -103,7 +103,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Trigger
         /// </summary>
         private void check_usage()
         {
-            if (PerformanceMonitorDataSource.TotalCpuCounter.CpuUsage >= triggervalue) OnTaskerTriggerFired();
+            if (PerformanceMonitorDataSource.TotalCpuCounter.CpuUsage >= _triggervalue) OnTaskerTriggerFired();
         }
 
         /// <summary>

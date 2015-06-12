@@ -16,7 +16,7 @@ namespace Net.Bertware.Bukkitgui2.Controls.SortableListView
     public class ListViewNumericSort : IComparer
     {
         private readonly int _sortColumn;
-        private SortOrder _sortOrder;
+        private readonly SortOrder _sortOrder;
 
         public ListViewNumericSort(int sortColumn, SortOrder sortOrder)
         {
@@ -26,7 +26,7 @@ namespace Net.Bertware.Bukkitgui2.Controls.SortableListView
 
         public int Compare(object x, object y)
         {
-            int result = 0;
+            int result;
             ListViewItem itemX = (ListViewItem) x;
             ListViewItem itemY = (ListViewItem) y;
 

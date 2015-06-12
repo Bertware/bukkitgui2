@@ -15,105 +15,105 @@ using Net.Bertware.Bukkitgui2.Core.Logging;
 
 namespace Net.Bertware.Bukkitgui2.Core.Util.Performance
 {
-    /// <summary>
-    ///     Provide information over total, used, available memory
-    /// </summary>
-    public class MemoryCounter
-    {
-        private const int Interval = 500;
-        public int Pid { get; private set; }
-        private Int32 _value;
-        private readonly Int32 _totalMemoryMb = TotalMemoryMb();
-        private Timer _updateTimer;
+	/// <summary>
+	///     Provide information over total, used, available memory
+	/// </summary>
+	public class MemoryCounter
+	{
+		private const int Interval = 500;
+		public int Pid { get; private set; }
+		private Int32 _value;
+		private readonly Int32 _totalMemoryMb = TotalMemoryMb();
+		private Timer _updateTimer;
 
-        public MemoryCounter()
-        {
-            Initialize();
-        }
+		public MemoryCounter()
+		{
+			Initialize();
+		}
 
-        public MemoryCounter(int pid)
-        {
-            Pid = pid;
-            Initialize();
-        }
+		public MemoryCounter(int pid)
+		{
+			Pid = pid;
+			Initialize();
+		}
 
-        private void Initialize()
-        {
-            _updateTimer = new Timer(Interval) {AutoReset = true};
-            _updateTimer.Elapsed += OnTimerElapsed;
-            _updateTimer.Start();
-        }
+		private void Initialize()
+		{
+			_updateTimer = new Timer(Interval) {AutoReset = true};
+			_updateTimer.Elapsed += OnTimerElapsed;
+			_updateTimer.Start();
+		}
 
-        private void OnTimerElapsed(object sender, ElapsedEventArgs e)
-        {
-            UpdateStats();
-        }
+		private void OnTimerElapsed(object sender, ElapsedEventArgs e)
+		{
+			UpdateStats();
+		}
 
-        public void UpdateStats()
-        {
-            try
-            {
-                if (Pid == 0)
-                {
-                    _value = _totalMemoryMb - ToMb(new Computer().Info.AvailablePhysicalMemory);
-                }
-                else
-                {
-                    _value = ToMb(Process.GetProcessById(Pid).WorkingSet64);
-                }
-            }
-            catch (Exception exception)
-            {
-                Logger.Log(LogLevel.Warning, "MemoryCounter", "Error while measuring RAM usage", exception.Message);
-            }
-        }
+		public void UpdateStats()
+		{
+			try
+			{
+				if (Pid == 0)
+				{
+					_value = _totalMemoryMb - ToMb(new Computer().Info.AvailablePhysicalMemory);
+				}
+				else
+				{
+					_value = ToMb(Process.GetProcessById(Pid).WorkingSet64);
+				}
+			}
+			catch (Exception exception)
+			{
+				Logger.Log(LogLevel.Warning, "MemoryCounter", "Error while measuring RAM usage", exception.Message);
+			}
+		}
 
-        public Int64 MemoryUsageMb
-        {
-            get { return _value; }
-        }
+		public Int64 MemoryUsageMb
+		{
+			get { return _value; }
+		}
 
-        public int MemoryUsagePct
-        {
-            get { return (100*_value/_totalMemoryMb); }
-        }
+		public int MemoryUsagePct
+		{
+			get { return (100*_value/_totalMemoryMb); }
+		}
 
-        public void Enable()
-        {
-            if (_updateTimer != null) _updateTimer.Enabled = true;
-        }
+		public void Enable()
+		{
+			if (_updateTimer != null) _updateTimer.Enabled = true;
+		}
 
-        public void Disable()
-        {
-            _value = 0;
-            if (_updateTimer != null) _updateTimer.Enabled = false;
-        }
+		public void Disable()
+		{
+			_value = 0;
+			if (_updateTimer != null) _updateTimer.Enabled = false;
+		}
 
-        public static Int64 TotalMemory()
-        {
-            return Convert.ToInt64(new Computer().Info.TotalPhysicalMemory);
-        }
+		public static Int64 TotalMemory()
+		{
+			return Convert.ToInt64(new Computer().Info.TotalPhysicalMemory);
+		}
 
-        public static Int32 TotalMemoryMb()
-        {
-            return Convert.ToInt32(TotalMemory()/1048576);
-        }
+		public static Int32 TotalMemoryMb()
+		{
+			return Convert.ToInt32(TotalMemory()/1048576);
+		}
 
-        public static Int32 ToMb(string bytesStr)
-        {
-            Int64 bytes;
-            Int64.TryParse(bytesStr, out bytes);
-            return ToMb(bytes);
-        }
+		public static Int32 ToMb(string bytesStr)
+		{
+			Int64 bytes;
+			Int64.TryParse(bytesStr, out bytes);
+			return ToMb(bytes);
+		}
 
-        public static Int32 ToMb(Int64 bytes)
-        {
-            return Convert.ToInt32(bytes/1048576);
-        }
+		public static Int32 ToMb(Int64 bytes)
+		{
+			return Convert.ToInt32(bytes/1048576);
+		}
 
-        public static Int32 ToMb(UInt64 bytes)
-        {
-            return Convert.ToInt32(bytes/1048576);
-        }
-    }
+		public static Int32 ToMb(UInt64 bytes)
+		{
+			return Convert.ToInt32(bytes/1048576);
+		}
+	}
 }

@@ -340,7 +340,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
                                       1 + " / " + _pluginLinkDictionary.Count + ")");
                             Logger.Log(LogLevel.Info, "PluginUpdater", "Skipping plugin:" + item.SubItems[0].Text);
                         }
-                        double tmpp = Math.Round((double) ((100*(i + 1))/_pluginLinkDictionary.Count));
+                        double tmpp = Math.Round(100* ((i + 1)/ (double) _pluginLinkDictionary.Count));
                         if (tmpp > 100)
                             tmpp = 100;
                         SetProgress(Convert.ToByte(tmpp));

@@ -16,6 +16,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Settings
         public Settings()
         {
             TabPage = null;
+	        ConfigPage = null;
         }
 
         /// <summary>

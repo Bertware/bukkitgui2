@@ -92,7 +92,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Backup
 					Core.Util.Compression.Compress(target,
 						savedir + ".zip");
 			}
-			catch (PathTooLongException e)
+			catch (PathTooLongException)
 			{
 				MetroMessageBox.Show(Application.OpenForms[0],
 			Locale.Tr(
@@ -102,7 +102,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Backup
 			MessageBoxButtons.OK,
 			MessageBoxIcon.Error);
 			}
-			catch (Exception e)
+			catch (Exception)
 			{
 				MetroMessageBox.Show(Application.OpenForms[0],
 					Locale.Tr(

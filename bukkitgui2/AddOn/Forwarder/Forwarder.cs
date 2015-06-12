@@ -18,6 +18,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Forwarder
             Name = "Forwarder (experimental)";
             HasTab = true;
             HasConfig = false;
+	        ConfigPage = null;
         }
 
         /// <summary>

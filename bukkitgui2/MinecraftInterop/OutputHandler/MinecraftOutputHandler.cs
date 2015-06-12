@@ -234,7 +234,21 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler
 			string text, OutputParseResult outputParseResult, Dictionary<string, string> playersDictionary);
 
 		public static event PlayerListReceivedEventHandler PlayerListReceived;
-
+		/// <summary>
+		///     Raise an event notifying the system about a received /list command
+		/// </summary>
+		/// <param name="text">The text that was received</param>
+		/// <param name="outputParseResult">The parse result</param>
+		/// <param name="players">Dictionary containing the player names as key, the names with their prefixes as value</param>
+		private static void RaisePlayerListReceivedEvent(string text, OutputParseResult outputParseResult,
+		Dictionary<String,String> players)
+		{
+			PlayerListReceivedEventHandler handler = PlayerListReceived;
+			if (handler != null)
+			{
+				handler(text, outputParseResult, players);
+			}
+		}
 		/// <summary>
 		///     Handle server output, raise all events that should be raised
 		/// </summary>
@@ -296,7 +310,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler
 					RaisePlayerIpBanEvent(text, result, result.Action);
 					break;
 				case MessageType.PlayerList:
-					PlayerListReceived(text, result, new Dictionary<string, string>());
+					RaisePlayerListReceivedEvent(text, result, new Dictionary<string, string>());
 					break;
 				default:
 					RaiseUnknownMessageReceivedEvent(text, result);
