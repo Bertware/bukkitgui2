@@ -163,6 +163,13 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Backup
                     "Couldn't save backup", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
+			if (string.IsNullOrEmpty(bs.Name))
+			{
+				MetroMessageBox.Show(Application.OpenForms[0],
+					"Couldn't save backup! You didn't enter a name for this backup!",
+					"Couldn't save backup", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				return false;
+			}
             try
             {
                 string content = "<backup name=\"" + bs.Name + "\">" +
