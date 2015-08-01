@@ -101,7 +101,9 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Backup
 
 			try
 			{
+				// if we need to compress, move to intermediary folder
 				if (Compression) target = Fl.SafeLocation(RequestFile.Temp) + backupfolder;
+
 				foreach (string folder in _folders)
 				{
 					DirectoryInfo di = new DirectoryInfo(folder);
@@ -113,8 +115,14 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Backup
 					FsUtil.CopyFolder(fi.FullName, target);
 				}
 				if (Compression)
+				{
+					// compress target to savedir.zip
 					Core.Util.Compression.Compress(target,
 						savedir + ".zip");
+					// delete temporary folder
+					Directory.Delete(target,true);
+				}
+					
 			}
 			catch (PathTooLongException)
 			{
