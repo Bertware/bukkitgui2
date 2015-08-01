@@ -1,6 +1,6 @@
 ﻿// BackupDefenition.cs in bukkitgui2/bukkitgui2
 // Created 2014/09/07
-// Last edited at 2015/08/01 12:48
+// Last edited at 2015/08/01 12:55
 // ©Bertware, visit http://bertware.net
 
 using System;
@@ -20,9 +20,9 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Backup
 	{
 		private readonly List<string> _files = new List<string>();
 		private readonly List<string> _folders = new List<string>();
-		public bool Compression { get; private set; }
-		public string TargetDirectory { get; private set; }
-		public string Name { get; private set; }
+		public bool Compression { get; set; }
+		public string TargetDirectory { get; set; }
+		public string Name { get; set; }
 
 		public List<string> Files
 		{
@@ -34,12 +34,12 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Backup
 			get { return _folders; }
 		}
 
-		private void AddFile(string file)
+		public void AddFile(string file)
 		{
 			Files.Add(file);
 		}
 
-		private void AddFolder(string folder)
+		public void AddFolder(string folder)
 		{
 			Files.Add(folder);
 		}
@@ -120,9 +120,8 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Backup
 					Core.Util.Compression.Compress(target,
 						savedir + ".zip");
 					// delete temporary folder
-					Directory.Delete(target,true);
+					Directory.Delete(target, true);
 				}
-					
 			}
 			catch (PathTooLongException)
 			{

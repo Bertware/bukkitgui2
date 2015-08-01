@@ -56,10 +56,10 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Backup
 
 		private void BtnOk_Click(Object sender, EventArgs e)
 		{
-			Defenition = new BackupDefenition {Name = TxtName.Text, Folders = new List<string>()};
+			Defenition = new BackupDefenition {Name = TxtName.Text};
 			foreach (string dir in TxtFolders.Text.Split(';'))
 			{
-				Defenition.Folders.Add(dir);
+				Defenition.AddFolder(dir);
 			}
 			Defenition.TargetDirectory = TxtDestination.Text;
 			Defenition.Compression = ChkCompression.Checked;
