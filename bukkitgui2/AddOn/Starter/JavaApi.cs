@@ -172,6 +172,25 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 		}
 
 		/// <summary>
+		/// Get the latest available java version on this system, for running small tools (retrieving versions etc)
+		/// </summary>
+		/// <returns>A full path to java.exe</returns>
+		public static string GetIdealJavaPath()
+		{
+			int versionnum = 0;
+			string path = null;
+			foreach (KeyValuePair<JavaVersion, string> pair in _javaPaths)
+			{
+				if ((int) pair.Key > versionnum)
+				{
+					path = pair.Value;
+					versionnum = (int) pair.Key;
+				}
+			}
+			return path;
+		}
+
+		/// <summary>
 		///     Check if a java version is 32 bit
 		/// </summary>
 		/// <param name="version">the version to check</param>

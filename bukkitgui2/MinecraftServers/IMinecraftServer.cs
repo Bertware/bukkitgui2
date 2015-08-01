@@ -7,7 +7,6 @@
 // 
 // ©Bertware, visit http://bertware.net
 
-using System;
 using System.Drawing;
 using System.Windows.Forms;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler;
@@ -40,12 +39,12 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers
 		/// <summary>
 		///     True if this server supports plugins
 		/// </summary>
-		Boolean SupportsPlugins { get; }
+		bool SupportsPlugins { get; }
 
 		/// <summary>
 		///     True if this server is ran locally (vs. on a remote host)
 		/// </summary>
-		Boolean IsLocal { get; }
+		bool IsLocal { get; }
 
 
 		// ========================================== //
@@ -61,7 +60,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers
 		/// <summary>
 		///     Returns true if this server needs a custom assembly (No java)
 		/// </summary>
-		Boolean HasCustomAssembly { get; }
+		bool HasCustomAssembly { get; }
 
 		/// <summary>
 		///     The custom assembly to be used. Can be set in PrepareLaunch()
@@ -184,37 +183,37 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers
 		/// <summary>
 		///     True if the latest available stable version number can be retrieved from the internet
 		/// </summary>
-		Boolean CanFetchRecommendedVersion { get; }
+		bool CanFetchRecommendedVersion { get; }
 
 		/// <summary>
 		///     True if the latest available beta version number can be retrieved from the internet
 		/// </summary>
-		Boolean CanFetchBetaVersion { get; }
+		bool CanFetchBetaVersion { get; }
 
 		/// <summary>
 		///     True if the latest available development version number can be retrieved from the internet
 		/// </summary>
-		Boolean CanFetchDevVersion { get; }
+		bool CanFetchDevVersion { get; }
 
 		/// <summary>
 		///     True if the latest available stable version can be downloaded from the internet
 		/// </summary>
-		Boolean CanDownloadRecommendedVersion { get; }
+		bool CanDownloadRecommendedVersion { get; }
 
 		/// <summary>
 		///     True if the latest available beta version can be downloaded from the internet
 		/// </summary>
-		Boolean CanDownloadBetaVersion { get; }
+		bool CanDownloadBetaVersion { get; }
 
 		/// <summary>
 		///     True if the latest available development version can be downloaded from the internet
 		/// </summary>
-		Boolean CanDownloadDevVersion { get; }
+		bool CanDownloadDevVersion { get; }
 
 		/// <summary>
 		///     True if the current version can be retrieved
 		/// </summary>
-		Boolean CanGetCurrentVersion { get; }
+		bool CanGetCurrentVersion { get; }
 
 		/// <summary>
 		///     Get the latest stable version number, either build number or version. Used for auto-update
@@ -252,21 +251,21 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers
 		/// </summary>
 		/// <param name="targetfile">Location where the file should be saved</param>
 		/// <returns>True if successful</returns>
-		Boolean DownloadRecommendedVersion(string targetfile);
+		bool DownloadRecommendedVersion(string targetfile);
 
 		/// <summary>
 		///     Download the latest beta version
 		/// </summary>
 		/// <param name="targetfile">Location where the file should be saved</param>
 		/// <returns>True if successful</returns>
-		Boolean DownloadBetaVersion(string targetfile);
+		bool DownloadBetaVersion(string targetfile);
 
 		/// <summary>
 		///     Download the latest development version
 		/// </summary>
 		/// <param name="targetfile">Location where the file should be saved</param>
 		/// <returns>True if successful</returns>
-		Boolean DownloadDevVersion(string targetfile);
+		bool DownloadDevVersion(string targetfile);
 
 		/// <summary>
 		///     Get the MinecraftServerObject for this file
