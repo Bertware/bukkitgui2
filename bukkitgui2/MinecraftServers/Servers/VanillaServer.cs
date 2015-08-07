@@ -8,58 +8,57 @@
 // ©Bertware, visit http://bertware.net
 
 using Net.Bertware.Bukkitgui2.Core.Util.Web;
-using Net.Bertware.Bukkitgui2.MinecraftServers.Tools;
 using Net.Bertware.Bukkitgui2.MinecraftServers.Tools.Vanilla;
 using Net.Bertware.Bukkitgui2.Properties;
 
 namespace Net.Bertware.Bukkitgui2.MinecraftServers.Servers
 {
-    /// <summary>
-    ///     Default vanilla server. All parsing code is already in the server base
-    /// </summary>
-    internal class VanillaServer : MinecraftServerBase
-    {
-        public VanillaServer()
-        {
-            Name = "Vanilla";
-            Site = "http://minecraft.net";
-            Logo = Resources.vanilla_logo;
+	/// <summary>
+	///     Default vanilla server. All parsing code is already in the server base
+	/// </summary>
+	internal class VanillaServer : MinecraftServerBase
+	{
+		public VanillaServer()
+		{
+			Name = "Vanilla";
+			Site = "http://minecraft.net";
+			Logo = Resources.vanilla_logo;
 
-            CanDownloadRecommendedVersion = true;
-            CanDownloadDevVersion = true;
-            CanFetchDevVersion = true;
-            CanFetchRecommendedVersion = true;
-            //default value for boolean is false, so all other features are disabled by default
-        }
+			CanDownloadRecommendedVersion = true;
+			CanDownloadDevVersion = true;
+			CanFetchDevVersion = true;
+			CanFetchRecommendedVersion = true;
+			//default value for boolean is false, so all other features are disabled by default
+		}
 
-        public override string FetchDevVersion
-        {
-            get { return VanillaDownloadProvider.GetLatestVersion(); }
-        }
+		public override string FetchDevVersion
+		{
+			get { return VanillaDownloadProvider.GetLatestVersion(); }
+		}
 
-        public override string FetchRecommendedVersion
-        {
-            get { return VanillaDownloadProvider.GetLatestRecommendedVersion(); }
-        }
+		public override string FetchRecommendedVersion
+		{
+			get { return VanillaDownloadProvider.GetLatestRecommendedVersion(); }
+		}
 
 
-        public override bool DownloadRecommendedVersion(string targetfile)
-        {
-            WebUtil.DownloadFile(VanillaDownloadProvider.GetLatestRecommendedVersionUrl(), targetfile, true, true);
+		public override bool DownloadRecommendedVersion(string targetfile)
+		{
+			WebUtil.DownloadFile(VanillaDownloadProvider.GetLatestRecommendedVersionUrl(), targetfile, true, true);
 
-            return true;
-        }
+			return true;
+		}
 
-        public override bool DownloadDevVersion(string targetfile)
-        {
-            WebUtil.DownloadFile(VanillaDownloadProvider.GetLatestUrl(), targetfile, true, true);
+		public override bool DownloadDevVersion(string targetfile)
+		{
+			WebUtil.DownloadFile(VanillaDownloadProvider.GetLatestUrl(), targetfile, true, true);
 
-            return true;
-        }
+			return true;
+		}
 
-        public override string GetLaunchFlags(string defaultFlags = "")
-        {
-            return " nogui " + defaultFlags;
-        }
-    }
+		public override string GetLaunchFlags(string defaultFlags = "")
+		{
+			return " nogui " + defaultFlags;
+		}
+	}
 }

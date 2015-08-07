@@ -20,94 +20,94 @@ using Net.Bertware.Bukkitgui2.Core.Util;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 {
-    public partial class InstalledPluginsControl : MetroUserControl
-    {
-        public InstalledPluginsControl()
-        {
-            InitializeComponent();
-            InstalledPluginManager.InstalledPluginListLoadedSimpleList += UpdateListView;
-            InstalledPluginManager.InstalledPluginListLoadedFullList += UpdateListView;
-        }
+	public partial class InstalledPluginsControl : MetroUserControl
+	{
+		public InstalledPluginsControl()
+		{
+			InitializeComponent();
+			InstalledPluginManager.InstalledPluginListLoadedSimpleList += UpdateListView;
+			InstalledPluginManager.InstalledPluginListLoadedFullList += UpdateListView;
+		}
 
-        private void UpdateListView()
-        {
-            if (InvokeRequired)
-            {
-                Invoke((MethodInvoker) UpdateListView);
-            }
-            else
-            {
-                slvPlugins.Items.Clear();
-                foreach (KeyValuePair<string, InstalledPlugin> pair in InstalledPluginManager.Plugins)
-                {
-                    // TODO: correct text
-                    string[] text =
-                    {
-                        pair.Value.Name, pair.Value.Description, StringUtil.ListToCsv(pair.Value.Authors),
-                        pair.Value.Version,"",
-                        pair.Value.FileCreationDate.ToShortDateString()
-                    };
-	                try
-	                {
-		                if (!string.IsNullOrEmpty(pair.Value.Mainspace))
-			                text[4] = pair.Value.BukgetEquivalentPlugin.LastVersionNumber;
-	                }
-	                catch (Exception e)
-	                {
-		                Logger.Log(LogLevel.Warning, "InstalledPlugins","Couldn't get latest version for plugin " + pair.Value.Mainspace,e.Message);
-	                }
-                    ListViewItem lvi = new ListViewItem(text) {Tag = pair.Value};
-                    slvPlugins.Items.Add(lvi);
-                }
-            }
-        }
+		private void UpdateListView()
+		{
+			if (InvokeRequired)
+			{
+				Invoke((MethodInvoker) UpdateListView);
+			}
+			else
+			{
+				slvPlugins.Items.Clear();
+				foreach (KeyValuePair<string, InstalledPlugin> pair in InstalledPluginManager.Plugins)
+				{
+					// TODO: correct text
+					string[] text =
+					{
+						pair.Value.Name, pair.Value.Description, StringUtil.ListToCsv(pair.Value.Authors),
+						pair.Value.Version, "",
+						pair.Value.FileCreationDate.ToShortDateString()
+					};
+					try
+					{
+						if (!string.IsNullOrEmpty(pair.Value.Mainspace))
+							text[4] = pair.Value.BukgetEquivalentPlugin.LastVersionNumber;
+					}
+					catch (Exception e)
+					{
+						Logger.Log(LogLevel.Warning, "InstalledPlugins", "Couldn't get latest version for plugin " + pair.Value.Mainspace,
+							e.Message);
+					}
+					ListViewItem lvi = new ListViewItem(text) {Tag = pair.Value};
+					slvPlugins.Items.Add(lvi);
+				}
+			}
+		}
 
-        private void btnVersions_Click(object sender, EventArgs e)
-        {
-            if (slvPlugins.SelectedItems.Count < 0) return;
-            string filename = ((InstalledPlugin) (slvPlugins.SelectedItems[0].Tag)).FileName;
-            InstalledPlugin plugin = InstalledPluginManager.Plugins[filename];
-	        try
-	        {
-		        BukgetPlugin.CreateFromNamespace(plugin.Mainspace).ShowVersionDialog(plugin.Path);
-	        }
-	        catch (Exception ex)
-	        {
-				Logger.Log(LogLevel.Warning, "InstalledPlugins","Couldn't get versions dialog for plugin",ex.Message);
-		        MetroMessageBox.Show(Application.OpenForms[0],
-			        "Couldn't retrieve plugin data for this plugin. Maybe this plugin or version is not in the database",
-			        "Couldn't retrieve data", MessageBoxButtons.OK, MessageBoxIcon.Error);
-	        }
-			
-        }
+		private void btnVersions_Click(object sender, EventArgs e)
+		{
+			if (slvPlugins.SelectedItems.Count < 0) return;
+			string filename = ((InstalledPlugin) (slvPlugins.SelectedItems[0].Tag)).FileName;
+			InstalledPlugin plugin = InstalledPluginManager.Plugins[filename];
+			try
+			{
+				BukgetPlugin.CreateFromNamespace(plugin.Mainspace).ShowVersionDialog(plugin.Path);
+			}
+			catch (Exception ex)
+			{
+				Logger.Log(LogLevel.Warning, "InstalledPlugins", "Couldn't get versions dialog for plugin", ex.Message);
+				MetroMessageBox.Show(Application.OpenForms[0],
+					"Couldn't retrieve plugin data for this plugin. Maybe this plugin or version is not in the database",
+					"Couldn't retrieve data", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+		}
 
-        private void btnUpdate_Click(object sender, EventArgs e)
-        {
-            if (slvPlugins.SelectedItems.Count < 0) return;
-            List<InstalledPlugin> plugins = new List<InstalledPlugin>();
-            foreach (ListViewItem item in slvPlugins.SelectedItems)
-            {
-                plugins.Add((InstalledPlugin) item.Tag);
-            }
-            PluginUpdater updater = new PluginUpdater(plugins);
-            updater.Show();
-        }
+		private void btnUpdate_Click(object sender, EventArgs e)
+		{
+			if (slvPlugins.SelectedItems.Count < 0) return;
+			List<InstalledPlugin> plugins = new List<InstalledPlugin>();
+			foreach (ListViewItem item in slvPlugins.SelectedItems)
+			{
+				plugins.Add((InstalledPlugin) item.Tag);
+			}
+			PluginUpdater updater = new PluginUpdater(plugins);
+			updater.Show();
+		}
 
-        private void btnRemove_Click(object sender, EventArgs e)
-        {
-            if (slvPlugins.SelectedItems.Count < 0) return;
-            foreach (ListViewItem item in slvPlugins.SelectedItems)
-            {
-                InstalledPlugin plugin = (InstalledPlugin) item.Tag;
-                if (
-                    MetroMessageBox.Show(Application.OpenForms[0],
-                        "Are you sure you want to delete this plugin?" + Environment.NewLine + plugin.Name,
-                        "Delete this plugin?",
-                        MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                    plugin.Remove();
-            }
-			slvPlugins_SelectedIndexChanged(null,null); // force index check to disable buttons if needed
-        }
+		private void btnRemove_Click(object sender, EventArgs e)
+		{
+			if (slvPlugins.SelectedItems.Count < 0) return;
+			foreach (ListViewItem item in slvPlugins.SelectedItems)
+			{
+				InstalledPlugin plugin = (InstalledPlugin) item.Tag;
+				if (
+					MetroMessageBox.Show(Application.OpenForms[0],
+						"Are you sure you want to delete this plugin?" + Environment.NewLine + plugin.Name,
+						"Delete this plugin?",
+						MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+					plugin.Remove();
+			}
+			slvPlugins_SelectedIndexChanged(null, null); // force index check to disable buttons if needed
+		}
 
 		private void slvPlugins_SelectedIndexChanged(object sender, EventArgs e)
 		{
@@ -121,5 +121,5 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 		{
 			Process.Start(Fl.SafeLocation(RequestFile.Plugindir));
 		}
-    }
+	}
 }

@@ -149,12 +149,12 @@ namespace Net.Bertware.Bukkitgui2.Core.FileLocation
 		public static bool GetLocal()
 		{
 			RegistryKey key = Registry.CurrentUser.CreateSubKey("software\\bertware\\bukkitgui2");
-		    if (key == null) return false;
+			if (key == null) return false;
 
-		    object v = key.GetValue("local");
-		    bool b;
-		    if (v != null && bool.TryParse(v.ToString(), out b)) return b;
-		    return false;
+			object v = key.GetValue("local");
+			bool b;
+			if (v != null && bool.TryParse(v.ToString(), out b)) return b;
+			return false;
 		}
 	}
 

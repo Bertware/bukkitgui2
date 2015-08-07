@@ -1,43 +1,49 @@
 ﻿<?xml version="1.0"?>
+
 <doc>
-<assembly>
-<name>
-Net.Bertware.Get
-</name>
-</assembly>
-<members>
-<member name="F:Net.Bertware.Get.api.UA">
-	<summary>
-     User agent:
-     Bertware x.y/application_name application_version [DEBUG]/hash/mail
-     Hash is set to 0 for debug, and is used to detect fake distributions (evt. banning them from the server)
- </summary>
-	<remarks></remarks>
-</member><member name="M:Net.Bertware.Get.api.CheckVersion(System.String,System.String)">
-	<summary>
-     Check which from 2 versions is newer. returns -1 if old version is newer, 0 if equal, 1 if new version is newer
- </summary>
-	<param name="oldversion">the old version, x.x, x.x.x or x.x.x.x format</param>
-	<param name="newversion">the new version, x.x, x.x.x or x.x.x.x format</param>
-	<returns>-1 if old version is newer, 0 if equal, 1 if new version is newer</returns>
-	<remarks>This function can handle version numbers with parts up to 65535</remarks>
-</member><member name="P:Net.Bertware.Get.My.Resources.Resources.ResourceManager">
-	<summary>
-  Returns the cached ResourceManager instance used by this class.
-</summary>
-</member><member name="P:Net.Bertware.Get.My.Resources.Resources.Culture">
-	<summary>
-  Overrides the current thread's CurrentUICulture property for all
-  resource lookups using this strongly typed resource class.
-</summary>
-</member><member name="P:Net.Bertware.Get.My.Resources.Resources.Updater">
-	<summary>
-  Looks up a localized resource of type System.Byte[].
-</summary>
-</member><member name="T:Net.Bertware.Get.My.Resources.Resources">
-	<summary>
-  A strongly-typed resource class, for looking up localized strings, etc.
-</summary>
-</member>
-</members>
+  <assembly>
+    <name>
+      Net.Bertware.Get
+    </name>
+  </assembly>
+  <members>
+    <member name="F:Net.Bertware.Get.api.UA">
+      <summary>
+        User agent:
+        Bertware x.y/application_name application_version [DEBUG]/hash/mail
+        Hash is set to 0 for debug, and is used to detect fake distributions (evt. banning them from the server)
+      </summary>
+      <remarks></remarks>
+    </member>
+    <member name="M:Net.Bertware.Get.api.CheckVersion(System.String,System.String)">
+      <summary>
+        Check which from 2 versions is newer. returns -1 if old version is newer, 0 if equal, 1 if new version is newer
+      </summary>
+      <param name="oldversion">the old version, x.x, x.x.x or x.x.x.x format</param>
+      <param name="newversion">the new version, x.x, x.x.x or x.x.x.x format</param>
+      <returns>-1 if old version is newer, 0 if equal, 1 if new version is newer</returns>
+      <remarks>This function can handle version numbers with parts up to 65535</remarks>
+    </member>
+    <member name="P:Net.Bertware.Get.My.Resources.Resources.ResourceManager">
+      <summary>
+        Returns the cached ResourceManager instance used by this class.
+      </summary>
+    </member>
+    <member name="P:Net.Bertware.Get.My.Resources.Resources.Culture">
+      <summary>
+        Overrides the current thread's CurrentUICulture property for all
+        resource lookups using this strongly typed resource class.
+      </summary>
+    </member>
+    <member name="P:Net.Bertware.Get.My.Resources.Resources.Updater">
+      <summary>
+        Looks up a localized resource of type System.Byte[].
+      </summary>
+    </member>
+    <member name="T:Net.Bertware.Get.My.Resources.Resources">
+      <summary>
+        A strongly-typed resource class, for looking up localized strings, etc.
+      </summary>
+    </member>
+  </members>
 </doc>

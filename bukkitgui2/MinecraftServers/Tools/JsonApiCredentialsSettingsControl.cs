@@ -12,36 +12,36 @@ using System.Windows.Forms;
 
 namespace Net.Bertware.Bukkitgui2.MinecraftServers.Tools
 {
-    public partial class JsonApiCredentialsSettingsControl : UserControl
-    {
-        public JsonApiCredentialsSettingsControl()
-        {
-            InitializeComponent();
-        }
+	public partial class JsonApiCredentialsSettingsControl : UserControl
+	{
+		public JsonApiCredentialsSettingsControl()
+		{
+			InitializeComponent();
+		}
 
-        public string Username
-        {
-            get { return TxtRemoteUsername.Text; }
-        }
+		public string Username
+		{
+			get { return TxtRemoteUsername.Text; }
+		}
 
-        public string Password
-        {
-            get { return MTxtRemotePassword.Text; }
-        }
+		public string Password
+		{
+			get { return MTxtRemotePassword.Text; }
+		}
 
-        public string Salt
-        {
-            get { return MTxtRemoteSalt.Text; }
-        }
+		public string Salt
+		{
+			get { return MTxtRemoteSalt.Text; }
+		}
 
-        public string Host
-        {
-            get { return TxtRemoteHost.Text; }
-        }
+		public string Host
+		{
+			get { return TxtRemoteHost.Text; }
+		}
 
-        public int Port
-        {
-            get { return Convert.ToInt16(NumRemotePort.Value); }
-        }
-    }
+		public int Port
+		{
+			get { return Convert.ToInt16(NumRemotePort.Value); }
+		}
+	}
 }

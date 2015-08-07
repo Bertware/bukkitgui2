@@ -15,7 +15,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Logging
         private readonly LogLevel _level;
         private readonly string _origin;
         private readonly string _message;
-        private readonly string _details = "";
+        private readonly string _details;
 
         public LogEntry(LogLevel level, string origin, string message, string details, string timestamp)
         {

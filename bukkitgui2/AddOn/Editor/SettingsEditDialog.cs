@@ -18,8 +18,8 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Editor
         public SettingsEditDialog()
         {
             InitializeComponent();
-            Text = "Add Setting";
-            txtSetting.ReadOnly = false;
+			txtSetting.ReadOnly = false;
+			Text = "Add Setting";
         }
 
         public SettingsEditDialog(string setting, string value)

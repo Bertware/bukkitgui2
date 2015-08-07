@@ -190,7 +190,9 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 			if (string.IsNullOrEmpty(filename)) return;
 			if (!ProcessHandler.RequestServerStop())
 			{
-				MetroMessageBox.Show(Application.OpenForms[0], "The server needs to be stopped to perform the operation. The server was not stopped succesfully.", "Plugin removal cancelled",
+				MetroMessageBox.Show(Application.OpenForms[0],
+					"The server needs to be stopped to perform the operation. The server was not stopped succesfully.",
+					"Plugin removal cancelled",
 					MessageBoxButtons.OK, MessageBoxIcon.Warning);
 				return;
 			}
@@ -214,7 +216,8 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 					return;
 				}
 			}
-			MetroMessageBox.Show(Application.OpenForms[0], filename + " was removed succesfully", "Plugin removed",MessageBoxButtons.OK, MessageBoxIcon.Information);
+			MetroMessageBox.Show(Application.OpenForms[0], filename + " was removed succesfully", "Plugin removed",
+				MessageBoxButtons.OK, MessageBoxIcon.Information);
 			RefreshAllInstalledPluginsAsync();
 		}
 	}

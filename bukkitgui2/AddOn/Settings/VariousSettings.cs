@@ -26,7 +26,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Settings
 			chkSaveInServerDir.Checked = Fl.GetLocal();
 		}
 
-		private void appShortcutToDesktop(string linkName, string args)
+		private static void CreateAppShortcutToDesktop(string linkName, string args)
 		{
 			string deskDir = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
 
@@ -51,7 +51,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Settings
 					ShowNewFolderButton = true
 				};
 				dialog.ShowDialog();
-				appShortcutToDesktop("BukkitGui custom dir", " -wd=\"" + dialog.SelectedPath + "\"");
+				CreateAppShortcutToDesktop("BukkitGui custom dir", " -wd=\"" + dialog.SelectedPath + "\"");
 				MetroMessageBox.Show(Application.OpenForms[0], "A special shortcut has been created on your desktop.",
 					"Shortcut created", MessageBoxButtons.OK, MessageBoxIcon.Information);
 			}

@@ -124,6 +124,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Web
 		/// <param name="e"></param>
 		private void Finished(object sender, AsyncCompletedEventArgs e)
 		{
+
 			try
 			{
 				Logger.Log(LogLevel.Info, "FileDownloadProgressBar", "Download finished!", Url);
@@ -141,6 +142,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Web
 				// TODO: figure out what locks these files
 				Logger.Log(LogLevel.Severe, "FileDownloadProgressBar", "Could not replace file " + Targetlocation, ex.Message);
 			}
+
 
 			AsyncCompletedEventHandler handler = DownloadCompleted;
 			if (handler != null)

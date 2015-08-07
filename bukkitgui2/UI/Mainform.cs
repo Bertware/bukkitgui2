@@ -30,7 +30,7 @@ namespace Net.Bertware.Bukkitgui2.UI
 		public static MainForm Reference;
 
 		public readonly string FormTitle = Share.AssemblyName + " (v" + Share.AssemblyVersion + ")";
-		private string _ServerName = "";
+		private string _serverName = "";
 
 		public MainForm()
 		{
@@ -108,10 +108,10 @@ namespace Net.Bertware.Bukkitgui2.UI
 		{
 			MinecraftOutputHandler.OutputParsed += HandleOutput;
 			ProcessHandler.ServerStatusChanged += HandleServerStatusChange;
-			if (string.IsNullOrEmpty(_ServerName))
-				_ServerName = ServerProperties.GetServerSetting("motd");
-			if (_ServerName == null) _ServerName = ""; //prevent errors
-			Text = FormTitle + " - " + _ServerName;
+			if (string.IsNullOrEmpty(_serverName))
+				_serverName = ServerProperties.GetServerSetting("motd");
+			if (_serverName == null) _serverName = ""; //prevent errors
+			Text = FormTitle + " - " + _serverName;
 		}
 
 		private void HandleServerStatusChange(ServerState currentState)
@@ -177,24 +177,24 @@ namespace Net.Bertware.Bukkitgui2.UI
 			}
 			else
 			{
-				_ServerName = ServerProperties.GetServerSetting("motd");
-				if (_ServerName == null) _ServerName = ""; //prevent errors
+				_serverName = ServerProperties.GetServerSetting("motd");
+				if (_serverName == null) _serverName = ""; //prevent errors
 
 				switch (ProcessHandler.CurrentState)
 				{
 					// TODO: fix title text not adjusting (Metro UI bug)
 					case ServerState.Starting:
-						Text = FormTitle + " - " + _ServerName + " - " + Locale.Tr("Starting...");
+						Text = FormTitle + " - " + _serverName + " - " + Locale.Tr("Starting...");
 						SpinServerState.Spinning = true;
 						break;
 					case ServerState.Running:
-						Text = FormTitle + " - " + _ServerName + " - " + Locale.Tr("Server running");
+						Text = FormTitle + " - " + _serverName + " - " + Locale.Tr("Server running");
 						break;
 					case ServerState.Stopping:
-						Text = FormTitle + " - " + _ServerName + " - " + Locale.Tr("Server stopping");
+						Text = FormTitle + " - " + _serverName + " - " + Locale.Tr("Server stopping");
 						break;
 					case ServerState.Stopped:
-						Text = FormTitle + " - " + _ServerName + " - " + Locale.Tr("Server stopped");
+						Text = FormTitle + " - " + _serverName + " - " + Locale.Tr("Server stopped");
 						break;
 				}
 			}

@@ -19,77 +19,77 @@ using Net.Bertware.Bukkitgui2.Properties;
 
 namespace Net.Bertware.Bukkitgui2.MinecraftServers.Servers
 {
-    public class GlowstoneServer : MinecraftServerBase
-    {
-        // TODO: Fix issue with jline (glowstone doesn't support -nojline)
+	public class GlowstoneServer : MinecraftServerBase
+	{
+		// TODO: Fix issue with jline (glowstone doesn't support -nojline)
 
-        public GlowstoneServer()
-        {
-            Name = "Glowstone";
-            Site = "http://www.glowstone.net/";
-            Logo = Resources.glowstone_logo;
+		public GlowstoneServer()
+		{
+			Name = "Glowstone";
+			Site = "http://www.glowstone.net/";
+			Logo = Resources.glowstone_logo;
 
-            CanDownloadRecommendedVersion = true;
+			CanDownloadRecommendedVersion = true;
 
-            CanGetCurrentVersion = true;
-            
-            SupportsPlugins = true;
-        }
+			CanGetCurrentVersion = true;
 
-        public override string GetLaunchFlags(string defaultFlags = "")
-        {
-            return defaultFlags + "--jline 0";
-        }
+			SupportsPlugins = true;
+		}
 
-        public override string RemoveTimeStamp(string text)
-        {
-            //2014-01-01 00:00:00,000
-            text = Regex.Replace(text, "^\\d{2}:\\d{2}:\\d{2}(,\\d{3}|)\\s*", "");
-            text = text.Trim();
-            return text;
-        }
+		public override string GetLaunchFlags(string defaultFlags = "")
+		{
+			return defaultFlags + "--jline 0";
+		}
 
-        public override bool DownloadRecommendedVersion(string targetfile)
-        {
-            const string source =
-                "http://ci.chrisgward.com/job/Glowstone/lastStableBuild/artifact/build/libs/glowstone.jar";
-            WebUtil.DownloadFile(source, targetfile, true, true);
-            return true;
-        }
+		public override string RemoveTimeStamp(string text)
+		{
+			//2014-01-01 00:00:00,000
+			text = Regex.Replace(text, "^\\d{2}:\\d{2}:\\d{2}(,\\d{3}|)\\s*", "");
+			text = text.Trim();
+			return text;
+		}
 
-        public override MinecraftServerVersion GetCurrentVersionObject(string file)
-        {
-            string versionString;
-            string java = Starter.GetSelectedJavaPath();
-            Process p = new Process
-            {
-                StartInfo = new ProcessStartInfo(java)
-                {
-                    RedirectStandardOutput = true,
-                    Arguments = " -Xmx32M -jar \"" + file + "\" -v",
-                    CreateNoWindow = true,
-                    UseShellExecute = false
-                }
-            };
+		public override bool DownloadRecommendedVersion(string targetfile)
+		{
+			const string source =
+				"http://ci.chrisgward.com/job/Glowstone/lastStableBuild/artifact/build/libs/glowstone.jar";
+			WebUtil.DownloadFile(source, targetfile, true, true);
+			return true;
+		}
 
-            Logger.Log(LogLevel.Info, "GlowstoneServer", "Starting process for version check",
-                "\"" + p.StartInfo.FileName + "\"" + p.StartInfo.Arguments);
+		public override MinecraftServerVersion GetCurrentVersionObject(string file)
+		{
+			string versionString;
+			string java = Starter.GetSelectedJavaPath();
+			Process p = new Process
+			{
+				StartInfo = new ProcessStartInfo(java)
+				{
+					RedirectStandardOutput = true,
+					Arguments = " -Xmx32M -jar \"" + file + "\" -v",
+					CreateNoWindow = true,
+					UseShellExecute = false
+				}
+			};
 
-            p.Start();
+			Logger.Log(LogLevel.Info, "GlowstoneServer", "Starting process for version check",
+				"\"" + p.StartInfo.FileName + "\"" + p.StartInfo.Arguments);
 
-            using (StreamReader sr = new StreamReader(p.StandardOutput.BaseStream))
-            {
-                for (int i = 0; i < 8; i++)
-                {
-                    int peek = sr.Peek();
-                    if (peek > 0) continue;
-                    Thread.Sleep(250);
-                }
+			p.Start();
 
-                versionString = sr.ReadToEnd();
-            }
+			using (StreamReader sr = new StreamReader(p.StandardOutput.BaseStream))
+			{
+				for (int i = 0; i < 8; i++)
+				{
+					int peek = sr.Peek();
+					if (peek > 0) continue;
+					Thread.Sleep(250);
+				}
 
-            return new MinecraftServerVersion(versionString);
-        }
-    }
+				versionString = sr.ReadToEnd();
+			}
+
+			return new MinecraftServerVersion(versionString);
+		}
+	}
 }

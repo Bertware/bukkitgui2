@@ -8,10 +8,14 @@
 // ©Bertware, visit http://bertware.net
 
 using System;
-using System.Configuration;
+using System.Collections.Generic;
 using System.IO;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using Microsoft.Win32;
 using Net.Bertware.Bukkitgui2.Core;
+using Net.Bertware.Bukkitgui2.Core.Configuration;
+using Net.Bertware.Bukkitgui2.Core.Logging;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 {
@@ -19,35 +23,77 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 	{
 		private static Boolean _initialized;
 
-		private static string _jre6X32 = "";
-
-		private static string _jre6X64 = "";
-
-		private static string _jre7X32 = "";
-
-		private static string _jre7X64 = "";
-
-		private static string _jre8X32 = "";
-
-		private static string _jre8X64 = "";
+		private static Dictionary<JavaVersion, String> _javaPaths;
 
 		/// <summary>
 		///     Initialize the class, check available versions and paths
 		/// </summary>
 		public static void Initialize()
 		{
-			// TODO: BETTER API, REGISTRY SEARCH
+			_javaPaths = new Dictionary<JavaVersion, string>();
+			try
+			{
+				RegistryKey javaroot = Registry.LocalMachine.OpenSubKey("SOFTWARE\\JavaSoft");
+				if (Share.Is64Bit)
+				{
+					RegistryKey javaroot32 = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Wow6432Node\\JavaSoft");
+					DetectJavaFromRegistry(javaroot, true);
+					DetectJavaFromRegistry(javaroot32);
+				}
+				else
+				{
+					DetectJavaFromRegistry(javaroot);
+				}
+			}
+			catch (Exception)
+			{
+				Logger.Log(LogLevel.Warning, "JavaApi", "Failed to detect java from registry, falling back to filesystem");
+				DetectJavaByFilestructure();
+			}
 
+			_initialized = true;
+		}
+
+		private static void DetectJavaFromRegistry(RegistryKey rootkey, bool is64Bit = false)
+		{
+			RegistryKey javaJre = rootkey.OpenSubKey("Java Runtime Environment");
+			RegistryKey javaJdk = rootkey.OpenSubKey("Java Development Kit");
+
+			foreach (RegistryKey versionRoot in new[] {javaJre, javaJdk})
+			{
+				if (versionRoot == null || versionRoot.GetSubKeyNames().Length < 1) continue; // no keys in here
+
+				foreach (string subkey in versionRoot.GetSubKeyNames())
+				{
+					Match r = Regex.Match(subkey, @"^\d.(\d)$");
+					if (r.Success)
+					{
+						int runtimeversion = Convert.ToInt32(r.Groups[1].Value);
+						RegistryKey subKeyInstance = versionRoot.OpenSubKey(subkey);
+						if (subKeyInstance != null)
+						{
+							if (string.IsNullOrEmpty(subKeyInstance.GetValue("JavaHome").ToString())) continue;
+							string path = subKeyInstance.GetValue("JavaHome") + "\\bin\\java.exe";
+							SetJavaPath(runtimeversion, is64Bit, path);
+						}
+					}
+				}
+			}
+		}
+
+
+		private static void DetectJavaByFilestructure()
+		{
 			if (Directory.Exists(ProgramFilesx86() + "\\Java\\"))
 			{
 				foreach (string dir in Directory.GetDirectories(ProgramFilesx86() + "\\Java\\"))
 				{
 					if ((dir.Contains("jre6") || dir.Contains("jre1.6")) && File.Exists(dir + "\\bin\\java.exe"))
-						_jre6X32 = dir + "\\bin\\java.exe";
+						SetJavaPath(6, false, dir + "\\bin\\java.exe");
 					if ((dir.Contains("jre7") || dir.Contains("jre1.7")) && File.Exists(dir + "\\bin\\java.exe"))
-						_jre7X32 = dir + "\\bin\\java.exe";
+						SetJavaPath(7, false, dir + "\\bin\\java.exe");
 					if ((dir.Contains("jre8") || dir.Contains("jre1.8")) && File.Exists(dir + "\\bin\\java.exe"))
-						_jre8X32 = dir + "\\bin\\java.exe";
+						SetJavaPath(8, false, dir + "\\bin\\java.exe");
 				}
 			}
 
@@ -56,14 +102,26 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 				foreach (string dir in Directory.GetDirectories(ProgramFiles() + "\\Java\\"))
 				{
 					if ((dir.Contains("jre6") || dir.Contains("jre1.6")) && File.Exists(dir + "\\bin\\java.exe"))
-						_jre6X64 = dir + "\\bin\\java.exe";
+						SetJavaPath(6, true, dir + "\\bin\\java.exe");
 					if ((dir.Contains("jre7") || dir.Contains("jre1.7")) && File.Exists(dir + "\\bin\\java.exe"))
-						_jre7X64 = dir + "\\bin\\java.exe";
+						SetJavaPath(7, true, dir + "\\bin\\java.exe");
 					if ((dir.Contains("jre8") || dir.Contains("jre1.8")) && File.Exists(dir + "\\bin\\java.exe"))
-						_jre8X64 = dir + "\\bin\\java.exe";
+						SetJavaPath(8, true, dir + "\\bin\\java.exe");
 				}
 			}
-			_initialized = true;
+		}
+
+		/// <summary>
+		///     Set the java path for a given version
+		/// </summary>
+		/// <param name="version">the runtime version, between 6 and 9</param>
+		/// <param name="is64Bitversion">wether or not this is a 64bit java executable</param>
+		/// <param name="path">The path to java.exe. If this file does not exist, the path will not be set</param>
+		private static void SetJavaPath(int version, bool is64Bitversion, string path)
+		{
+			if (!File.Exists(path)) return;
+			int id = version*100 + ((is64Bitversion) ? 64 : 32);
+			_javaPaths[(JavaVersion) id] = path;
 		}
 
 		/// <summary>
@@ -77,25 +135,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			{
 				Initialize();
 			}
-			switch (jreVersion)
-			{
-				case JavaVersion.Jre6X32:
-					return !string.IsNullOrEmpty(_jre6X32);
-				case JavaVersion.Jre6X64:
-					return !string.IsNullOrEmpty(_jre6X64);
-				case JavaVersion.Jre7X32:
-					return !string.IsNullOrEmpty(_jre7X32);
-				case JavaVersion.Jre7X64:
-					return !string.IsNullOrEmpty(_jre7X64);
-				case JavaVersion.Jre8X32:
-					return !string.IsNullOrEmpty(_jre8X32);
-				case JavaVersion.Jre8X64:
-					return !string.IsNullOrEmpty(_jre8X64);
-				case JavaVersion.Custom:
-					return true;
-				default:
-					return false;
-			}
+			return _javaPaths.ContainsKey(jreVersion);
 		}
 
 		/// <summary>
@@ -109,37 +149,45 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			{
 				Initialize();
 			}
-			switch (jreVersion)
+
+			if (jreVersion == JavaVersion.Custom)
 			{
-				case JavaVersion.Jre6X32:
-					return _jre6X32;
-				case JavaVersion.Jre6X64:
-					return _jre6X64;
-				case JavaVersion.Jre7X32:
-					return _jre7X32;
-				case JavaVersion.Jre7X64:
-					return _jre7X64;
-				case JavaVersion.Jre8X32:
-					return _jre8X32;
-				case JavaVersion.Jre8X64:
-					return _jre8X64;
-				case JavaVersion.Custom:
-					string path = Bukkitgui2.Core.Configuration.Config.ReadString("starter", "java_custom", "");
-					if (string.IsNullOrEmpty(path))
+				string path = Config.ReadString("starter", "java_custom", "");
+				if (string.IsNullOrEmpty(path))
+				{
+					OpenFileDialog ofd = new OpenFileDialog
 					{
-						OpenFileDialog ofd = new OpenFileDialog
-						{
-							Title = "Select java.exe",
-							Filter = "Java executables (*.exe) |*.exe|All Files (*.*)|*.*"
-						};
-						ofd.ShowDialog();
-						path = ofd.FileName;
-						Core.Configuration.Config.WriteString("starter", "java_custom", path);
-					}
-					return path;
-				default:
-					return null;
+						Title = "Select java.exe",
+						Filter = "Java executables (*.exe) |*.exe|All Files (*.*)|*.*"
+					};
+					ofd.ShowDialog();
+					path = ofd.FileName;
+					Config.WriteString("starter", "java_custom", path);
+				}
+				return path;
 			}
+
+			if (_javaPaths.ContainsKey(jreVersion)) return _javaPaths[jreVersion];
+			return null;
+		}
+
+		/// <summary>
+		/// Get the latest available java version on this system, for running small tools (retrieving versions etc)
+		/// </summary>
+		/// <returns>A full path to java.exe</returns>
+		public static string GetIdealJavaPath()
+		{
+			int versionnum = 0;
+			string path = null;
+			foreach (KeyValuePair<JavaVersion, string> pair in _javaPaths)
+			{
+				if ((int) pair.Key > versionnum)
+				{
+					path = pair.Value;
+					versionnum = (int) pair.Key;
+				}
+			}
+			return path;
 		}
 
 		/// <summary>
@@ -173,17 +221,21 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 
 	public enum JavaVersion
 	{
-		Jre6X32,
+		Jre6X32 = 632,
 
-		Jre6X64,
+		Jre6X64 = 664,
 
-		Jre7X32,
+		Jre7X32 = 732,
 
-		Jre7X64,
+		Jre7X64 = 764,
 
-		Jre8X32,
+		Jre8X32 = 832,
 
-		Jre8X64,
+		Jre8X64 = 864,
+
+		Jre9X32 = 932,
+
+		Jre9X64 = 964,
 
 		Custom
 	}

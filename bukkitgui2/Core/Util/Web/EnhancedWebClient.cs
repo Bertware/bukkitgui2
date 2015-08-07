@@ -8,8 +8,12 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Web
 		protected override WebRequest GetWebRequest(Uri uri)
 		{
 			WebRequest w = base.GetWebRequest(uri);
-			w.Timeout = 10*60*1000;
-			return w;
+			if (w != null)
+			{
+				w.Timeout = 10*60*1000;
+				return w;
+			}
+			return null;
 		}
 	}
 }

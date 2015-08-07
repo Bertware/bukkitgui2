@@ -20,7 +20,7 @@ namespace Net.Bertware.Bukkitgui2
 		///     The main entry point for the application.
 		/// </summary>
 		[STAThread]
-		private static void Main(string[] argStrings)
+		private static void Main()
 		{
 			// Load embedded DLLs
 			AppDomain.CurrentDomain.AssemblyResolve += LoadDll;

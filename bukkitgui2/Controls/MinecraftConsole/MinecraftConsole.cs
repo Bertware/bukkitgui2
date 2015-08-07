@@ -71,7 +71,7 @@ namespace Net.Bertware.Bukkitgui2.Controls.MinecraftConsole
 		/// </summary>
 		public Boolean Autoscroll { get; set; }
 
-		private Dictionary<MessageType, Color> _colorCache;
+		private readonly Dictionary<MessageType, Color> _colorCache;
 
 		public MinecraftConsole()
 		{

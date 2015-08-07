@@ -13,6 +13,7 @@ using System.Linq;
 using System.Management;
 using System.Net;
 using Net.Bertware.Bukkitgui2.Core.Logging;
+// ReSharper disable InconsistentNaming
 
 namespace Net.Bertware.Bukkitgui2.Core.Util.Performance
 {

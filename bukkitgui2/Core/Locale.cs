@@ -14,157 +14,179 @@ using System.Windows.Forms;
 using System.Xml;
 using Net.Bertware.Bukkitgui2.Core.Configuration;
 using Net.Bertware.Bukkitgui2.Core.FileLocation;
+using Net.Bertware.Bukkitgui2.Core.Logging;
 using Net.Bertware.Bukkitgui2.Core.Util;
 
 namespace Net.Bertware.Bukkitgui2.Core
 {
-    internal static class Locale
-    {
-        private const string XmlHead = "<xml type=\"locale\" lang=\"en-US\">";
-        private const string XmlTail = "</xml>";
+	internal static class Locale
+	{
+		private const string XmlHead = "<xml type=\"locale\" lang=\"en-US\">";
+		private const string XmlTail = "</xml>";
 
-        private static string _filepath;
-        private static XmlDocument _xmldoc;
-        private static Dictionary<string, string> _cache;
+		private static string _filepath;
+		private static XmlDocument _xmldoc;
+		private static Dictionary<string, string> _cache;
 
-        /// <summary>
-        ///     Returns the current language of the translator
-        /// </summary>
-        public static string CurrentLanguage
-        {
-            get { return "en-US"; }
-        }
+		/// <summary>
+		///     Returns the current language of the translator
+		/// </summary>
+		public static string CurrentLanguage
+		{
+			get { return "en-US"; }
+		}
 
-        /// <summary>
-        ///     Indicates wether this component is initialized and can be used
-        /// </summary>
-        public static bool IsInitialized { get; private set; }
+		/// <summary>
+		///     Indicates wether this component is initialized and can be used
+		/// </summary>
+		public static bool IsInitialized { get; private set; }
 
-        /// <summary>
-        ///     Initialize everything, create cache
-        /// </summary>
-        public static void Initialize()
-        {
-            string location = Config.ReadString("Locale", "File",
-                Fl.Location(RequestFile.Config) + "\\default.xml");
-            LoadFile(location);
-            LoadCache(); //everything's cached, we're ready to go
-            Application.ApplicationExit += ((sender, e) => Dispose());
-            IsInitialized = true;
-        }
-
-        /// <summary>
-        ///     Dispose resources and cache
-        /// </summary>
-        public static void Dispose()
-        {
-            SaveCache();
-        }
-
-        /// <summary>
-        ///     Translate a string
-        /// </summary>
-        /// <param name="original">The original text</param>
-        /// <returns></returns>
-        public static string Tr(string original)
-        {
-            if (!IsInitialized) return original;
-            if (_cache == null) return original;
-
-            if (_cache.ContainsKey(original))
-            {
-                return _cache[original];
-            }
-
-            _cache.Add(original, original);
-            return original;
-        }
-
-        /// <summary>
-        ///     Translate a string
-        /// </summary>
-        /// <param name="original">The original text</param>
-        /// <param name="p1">replacement value of parameter %1</param>
-        /// <param name="p2">replacement value of parameter %2</param>
-        /// <param name="p3">replacement value of parameter %3</param>
-        /// <param name="p4">replacement value of parameter %4</param>
-        /// <returns></returns>
-        public static string Tr(string original, string p1, string p2 = "", string p3 = "", string p4 = "")
-        {
-            if (!IsInitialized) return SetParam(original, p1, p2, p3, p4);
-            if (_cache == null) return SetParam(original, p1, p2, p3, p4);
-
-            if (_cache.ContainsKey(original))
-            {
-                return SetParam(_cache[original], p1, p2, p3, p4);
-            }
-
-            _cache.Add(original, original);
-            return SetParam(original, p1, p2, p3, p4);
-        }
-
-        private static string SetParam(string original, string p1, string p2 = "", string p3 = "", string p4 = "")
-        {
-            return original.Replace("%1", p1).Replace("%2", p2).Replace("%3", p3).Replace("%4", p4);
-        }
-
-        private static void LoadFile(string file)
-        {
-            _filepath = file;
-            if (!File.Exists(file))
-            {
-                DirectoryInfo dirInfo = new FileInfo(file).Directory;
-                if (dirInfo != null)
-                {
-                    string parent = dirInfo.ToString();
-                    FsUtil.CreateDirectoryIfNotExists(parent);
-                }
-
-                FileStream fs = File.Create(file);
-                StreamWriter sw = new StreamWriter(fs);
-                sw.WriteLine(XmlHead + XmlTail);
-                sw.Close();
-                fs.Close();
-            }
-
-            _xmldoc = new XmlDocument();
-            _xmldoc.Load(file);
-        }
-
-        /// <summary>
-        ///     Load the XMLDocument to the cache dictionary
-        /// </summary>
-        private static void LoadCache()
-        {
-            if (_xmldoc == null) return;
-
-            Dictionary<string, string> newcache = new Dictionary<string, string>();
+		/// <summary>
+		///     Initialize everything, create cache
+		/// </summary>
+		public static void Initialize()
+		{
+			string location = null;
+			try
+			{
+				location = Config.ReadString("Locale", "File",
+					Fl.Location(RequestFile.Config) + "\\default.xml");
+				if (string.IsNullOrEmpty(location))
+				{
+					location = Fl.Location(RequestFile.Config) + "\\default.xml";
+					Config.WriteString("Locale", "File", location);
+				}
 
 
-            foreach (XmlElement entry in _xmldoc.ChildNodes) //for each element, 
-            {
-                if (entry.Name == "text")
-                    newcache.Add(entry.GetAttribute("original").Replace("&amp;", "&"), entry.Value.Replace("&amp;", "&"));
-            }
+				LoadFile(location);
+				LoadCache(); //everything's cached, we're ready to go
+				Application.ApplicationExit += ((sender, e) => Dispose());
+				IsInitialized = true;
+			}
+			catch (Exception e)
+			{
+				Logger.Log(LogLevel.Severe, "Locale","Couldn't initialize locale", e.Message);
+				if (!String.IsNullOrEmpty(location) && File.Exists(location))
+				{
+					Logger.Log(LogLevel.Severe, "Locale", "Resetting locale file to regenerate", e.Message);
+					File.Delete(location); // in case of problems, delete, so it'll be regenerated next time
+					Application.Restart(); // force restart
+				}
+			}
+		}
 
-            _cache = newcache;
-        }
+		/// <summary>
+		///     Dispose resources and cache
+		/// </summary>
+		public static void Dispose()
+		{
+			SaveCache();
+		}
 
-        private static void SaveCache()
-        {
-            if (_cache == null) return;
+		/// <summary>
+		///     Translate a string
+		/// </summary>
+		/// <param name="original">The original text</param>
+		/// <returns></returns>
+		public static string Tr(string original)
+		{
+			if (!IsInitialized) return original;
+			if (_cache == null) return original;
 
-            string newxml = XmlHead + Environment.NewLine;
+			if (_cache.ContainsKey(original))
+			{
+				return _cache[original];
+			}
 
-            foreach (KeyValuePair<string, string> entry in _cache) //for each element, 
-            {
-                newxml += "<text original=\"" + entry.Key.Replace("&", "&amp;") + "\">" +
-                          entry.Value.Replace("&", "&amp;") +
-                          "</text>" + Environment.NewLine;
-            }
-            newxml += XmlTail;
-            _xmldoc.LoadXml(newxml);
-            _xmldoc.Save(_filepath);
-        }
-    }
+			_cache.Add(original, original);
+			return original;
+		}
+
+		/// <summary>
+		///     Translate a string
+		/// </summary>
+		/// <param name="original">The original text</param>
+		/// <param name="p1">replacement value of parameter %1</param>
+		/// <param name="p2">replacement value of parameter %2</param>
+		/// <param name="p3">replacement value of parameter %3</param>
+		/// <param name="p4">replacement value of parameter %4</param>
+		/// <returns></returns>
+		public static string Tr(string original, string p1, string p2 = "", string p3 = "", string p4 = "")
+		{
+			if (!IsInitialized) return SetParam(original, p1, p2, p3, p4);
+			if (_cache == null) return SetParam(original, p1, p2, p3, p4);
+
+			if (_cache.ContainsKey(original))
+			{
+				return SetParam(_cache[original], p1, p2, p3, p4);
+			}
+
+			_cache.Add(original, original);
+			return SetParam(original, p1, p2, p3, p4);
+		}
+
+		private static string SetParam(string original, string p1, string p2 = "", string p3 = "", string p4 = "")
+		{
+			return original.Replace("%1", p1).Replace("%2", p2).Replace("%3", p3).Replace("%4", p4);
+		}
+
+		private static void LoadFile(string file)
+		{
+			_filepath = file;
+			if (!File.Exists(file))
+			{
+				DirectoryInfo dirInfo = new FileInfo(file).Directory;
+				if (dirInfo != null)
+				{
+					string parent = dirInfo.ToString();
+					FsUtil.CreateDirectoryIfNotExists(parent);
+				}
+
+				FileStream fs = File.Create(file);
+				StreamWriter sw = new StreamWriter(fs);
+				sw.WriteLine(XmlHead + XmlTail);
+				sw.Close();
+				fs.Close();
+			}
+
+			_xmldoc = new XmlDocument();
+			_xmldoc.Load(file);
+		}
+
+		/// <summary>
+		///     Load the XMLDocument to the cache dictionary
+		/// </summary>
+		private static void LoadCache()
+		{
+			if (_xmldoc == null) return;
+
+			Dictionary<string, string> newcache = new Dictionary<string, string>();
+
+
+			foreach (XmlElement entry in _xmldoc.ChildNodes) //for each element, 
+			{
+				if (entry.Name == "text")
+					newcache.Add(entry.GetAttribute("original").Replace("&amp;", "&"), entry.Value.Replace("&amp;", "&"));
+			}
+
+			_cache = newcache;
+		}
+
+		private static void SaveCache()
+		{
+			if (_cache == null) return;
+
+			string newxml = XmlHead + Environment.NewLine;
+
+			foreach (KeyValuePair<string, string> entry in _cache) //for each element, 
+			{
+				newxml += "<text original=\"" + entry.Key.Replace("&", "&amp;") + "\">" +
+				          entry.Value.Replace("&", "&amp;") +
+				          "</text>" + Environment.NewLine;
+			}
+			newxml += XmlTail;
+			_xmldoc.LoadXml(newxml);
+			_xmldoc.Save(_filepath);
+		}
+	}
 }

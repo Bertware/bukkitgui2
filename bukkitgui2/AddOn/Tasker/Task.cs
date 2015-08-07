@@ -195,20 +195,20 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 				}
 			}
 			// in case 1 part wasn't loaded, fix (for UI purposes) and deactivate
-			if (this.Trigger == null)
+			if (Trigger == null)
 			{
-				this.Trigger = new CurrentTimeTrigger {Parameters = "00:00:00"};
-				this.Enabled = false;
+				Trigger = new CurrentTimeTrigger {Parameters = "00:00:00"};
+				Enabled = false;
 			}
-			if (this.Actions == null)
+			if (Actions == null)
 			{
-				this.Actions = new List<IAction>();
-				this.Enabled = false;
+				Actions = new List<IAction>();
+				Enabled = false;
 			}
 			if (string.IsNullOrEmpty(Name))
 			{
-				this.Name = "UNNAMED_" + new Random().Next(1000, 9999);
-				this.Enabled = false;
+				Name = "UNNAMED_" + new Random().Next(1000, 9999);
+				Enabled = false;
 			}
 			return this;
 		}

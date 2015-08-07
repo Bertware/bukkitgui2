@@ -18,7 +18,12 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Updater
     /// </summary>
     internal class Updater : IAddon
     {
-        /// <summary>
+	    public Updater()
+	    {
+		    TabPage = null;
+	    }
+
+	    /// <summary>
         ///     The addon name, ideally this name is the same as used in the tabpage
         /// </summary>
         public string Name
