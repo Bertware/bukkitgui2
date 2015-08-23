@@ -20,6 +20,9 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Issues
 {
 	public partial class IssuesTab : MetroUserControl, IAddonTab
 	{
+
+		private ulong _issueCount = 0;
+
 		public IssuesTab()
 		{
 			InitializeComponent();
@@ -38,6 +41,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Issues
 			else
 			{
 				slvIssues.Items.Clear();
+				_issueCount = 0;
 			}
 		}
 
@@ -51,7 +55,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Issues
 			{
 				string[] content =
 				{
-					(slvIssues.Items.Count + 1).ToString(),
+					(++_issueCount).ToString(),
 					outputParseResult.Type.ToString(),
 					outputParseResult.Time.ToLongTimeString(),
 					Regex.Replace(outputParseResult.Message, "^\\[(warn|warning|severe|error)\\]\\s?", "", RegexOptions.IgnoreCase)
@@ -68,7 +72,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Issues
 				}
 
 				slvIssues.Items.Add(lvi);
-				if (slvIssues.Items.Count > 2047)
+				if (slvIssues.Items.Count > 1535)
 				{
 					// when too much entries, clear 512 entries
 					for (int i = 0; i < 512; i++)
