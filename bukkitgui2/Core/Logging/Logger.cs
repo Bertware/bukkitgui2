@@ -83,15 +83,15 @@ namespace Net.Bertware.Bukkitgui2.Core.Logging
 				StreamWriter sw;
 				if (_hasAlreadySaved)
 				{
-					// There is already a file of this session
-					if (new FileInfo(savelocation).Length > 32*1024*1024)
+					// There is already a file of this session. Check if the maximum size is exceeded
+					if (new FileInfo(savelocation).Length > 16*1024*1024) // max 16mb
 					{
-						// replace files over 32MB
+						// replace files over max size
 						sw = File.CreateText(savelocation);
 					}
 					else
 					{
-						// append files smaller than 32MB
+						// append files smaller than max size
 						sw = File.AppendText(savelocation);
 					}
 				}
