@@ -1,10 +1,6 @@
 ﻿// Logger.cs in bukkitgui2/bukkitgui2
 // Created 2014/01/17
-// 
-// This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
-// If a copy of the MPL was not distributed with this file,
-// you can obtain one at http://mozilla.org/MPL/2.0/.
-// 
+// Last edited at 2015/08/23 23:25
 // ©Bertware, visit http://bertware.net
 
 using System;
@@ -61,6 +57,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Logging
 			if (IsInitialized)
 			{
 				_entries.Add(entry);
+				if (_entries.Count > 512) SaveFile();
 			}
 		}
 
@@ -72,19 +69,52 @@ namespace Net.Bertware.Bukkitgui2.Core.Logging
 			SaveFile(Fl.SafeLocation(RequestFile.Log) + "bukkitgui.log");
 		}
 
+		private static bool _hasAlreadySaved;
+
 		/// <summary>
 		///     Save the log file to a given location
 		/// </summary>
 		/// <param name="savelocation">The location to save the log file. If empty default location will be used</param>
 		internal static void SaveFile(string savelocation)
 		{
-			IsInitialized = false; // Temporary block new entries while we're writing the log file
-			using (StreamWriter sw = File.CreateText(savelocation))
+			try
 			{
+				IsInitialized = false; // Temporary block new entries while we're writing the log file
+				StreamWriter sw;
+				if (_hasAlreadySaved)
+				{
+					// There is already a file of this session
+					if (new FileInfo(savelocation).Length > 32*1024*1024)
+					{
+						// replace files over 32MB
+						sw = File.CreateText(savelocation);
+					}
+					else
+					{
+						// append files smaller than 32MB
+						sw = File.AppendText(savelocation);
+					}
+				}
+				else
+				{
+					// Create new file
+					sw = File.CreateText(savelocation);
+				}
+
 				foreach (LogEntry entry in _entries)
 				{
 					sw.WriteLine(entry.ToString());
 				}
+
+				sw.Close();
+				_hasAlreadySaved = true;
+				_entries = new List<LogEntry>();
+				
+			}
+			catch (Exception e)
+			{
+				IsInitialized = true; // enable logging again
+				Logger.Log(LogLevel.Severe, "Logger","Failed to save file!", e.Message);
 			}
 			IsInitialized = true; // enable logging again
 		}
@@ -120,6 +150,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Logging
 				Trace.WriteLine("exception:" + ex.Message);
 				Trace.WriteLine("unhandled error:" + e.ExceptionObject);
 			}
+			SaveFile();
 		}
 	}
 
