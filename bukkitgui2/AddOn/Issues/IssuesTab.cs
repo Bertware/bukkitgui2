@@ -68,6 +68,14 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Issues
 				}
 
 				slvIssues.Items.Add(lvi);
+				if (slvIssues.Items.Count > 2047)
+				{
+					// when too much entries, clear 512 entries
+					for (int i = 0; i < 512; i++)
+					{
+						slvIssues.Items.RemoveAt(i);
+					}
+				}
 			}
 		}
 
