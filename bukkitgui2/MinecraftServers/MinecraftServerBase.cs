@@ -24,27 +24,22 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers
 	/// </summary>
 	public class MinecraftServerBase : IMinecraftServer
 	{
-		//new prefixes in output tags since 1.7.2
-		/// <summary>
-		///     Prefix since minecraft 1.7.2 inside the message tag
-		/// </summary>
-		public const string RG_PRE172 = "((.*)thread(.*)/)?";
 
 		// message tags
 		/// <summary>
 		///     Info message tag at line start
 		/// </summary>
-		public const string RG_INFO = "^\\[" + RG_PRE172 + "info\\]";
+		public const string RG_INFO = "^\\[INFO\\]";
 
 		/// <summary>
 		///     Warning message tag at line start
 		/// </summary>
-		public const string RG_WARN = "^\\[" + RG_PRE172 + "(warning|warn)\\]";
+		public const string RG_WARN = "^\\[WARN(ING)?\\]";
 
 		/// <summary>
 		///     Severe/Error message tag at line start
 		/// </summary>
-		public const string RG_SEV = "^\\[" + RG_PRE172 + "(severe|error)\\]";
+		public const string RG_SEV = "^\\[(SEVERE|ERROR)\\]";
 
 		// ip's and player names
 		/// <summary>
@@ -55,7 +50,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers
 		/// <summary>
 		///     Ipv4 Ip address, with optional port. this is the typical ip for a minecraft login
 		/// </summary>
-		public const string RG_IP = RG_IP_NOPORT + "(:\\d{2,5}|)";
+		public const string RG_IP = RG_IP_NOPORT + "(:\\d{2,5})?";
 
 		/// <summary>
 		///     Ipv4 Ip with optional port, between right brackets
@@ -79,19 +74,9 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers
 		public const string RG_FSPACE = "\\s+";
 
 		/// <summary>
-		///     Anything
-		/// </summary>
-		public const string RG_WILDCARD = "(.*)";
-
-		/// <summary>
 		///     Stacktrace, like "at net.minecraft.server ...
 		/// </summary>
 		public const string RG_STACKTRACE = "(at |java\\.)(\\w+\\.){1,}(\\w|\\d|<){1,}(\\(|:|\\.|<|>)";
-
-		/// <summary>
-		///     End of line
-		/// </summary>
-		public const string RG_EOL = "$";
 
 		public MinecraftServerBase()
 		{
@@ -179,17 +164,16 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers
 		public virtual MessageType ParseMessageType(string text)
 		{
 			if (string.IsNullOrEmpty(text)) return MessageType.Unknown;
-			MessageType type = MessageType.Unknown;
 
 			//[WARNING]...
-			if (Regex.IsMatch(text, RG_WARN, RegexOptions.IgnoreCase))
+			if (Regex.IsMatch(text, RG_WARN))
 			{
-				type = MessageType.Warning;
+				return MessageType.Warning;
 			}
 			//[SEVERE] ...
-			else if (Regex.IsMatch(text, RG_SEV, RegexOptions.IgnoreCase))
+			if (Regex.IsMatch(text, RG_SEV))
 			{
-				type = MessageType.Severe;
+				return MessageType.Severe;
 			}
 
 
@@ -199,14 +183,32 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers
 			//[INFO]  UUID of player Bertware is f0b27a3369394b25ab897aa4e4db83c1
 			//[INFO]  Bertware[/127.0.0.1:51815] logged in with entity id 184 at ([world] 98.5, 64.0, 230.5)
 
-			else if (Regex.IsMatch(
+			if (Regex.IsMatch(
 				text,
 				RG_INFO + RG_SPACE + RG_PLAYER + RG_IP_BRACKET + " logged in with entity id",
 				RegexOptions.IgnoreCase))
 			{
-				type = MessageType.PlayerJoin;
+				return MessageType.PlayerJoin;
 			}
 
+			// Disconnect / leave
+			//[INFO]  Bertware lost connection: Disconnected
+			//[INFO]  Bertware left the game.
+			if (Regex.IsMatch(
+				text,
+				RG_INFO + RG_SPACE + RG_PLAYER + " lost connection:",
+				RegexOptions.IgnoreCase))
+			{
+				return MessageType.PlayerLeave;
+			}
+			// catch player left the game message
+			if (Regex.IsMatch(
+				text,
+				RG_INFO + RG_SPACE + RG_PLAYER + " left the game",
+				RegexOptions.IgnoreCase))
+			{
+				return MessageType.PlayerLeave;
+			}
 
 			// Disconnect / kick
 			//[INFO]  Bertware lost connection: test
@@ -215,67 +217,43 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers
 			//test
 			//
 			// [command sender]: Kicked player [player]. With reason: [newline] [Reason]
-			else if (Regex.IsMatch(
+			if (Regex.IsMatch(
 				text,
 				RG_INFO + RG_SPACE + RG_PLAYER + " lost connection: Kicked by",
 				RegexOptions.IgnoreCase))
 			{
-				type = MessageType.PlayerKick;
+				return MessageType.PlayerKick;
 			}
 			//disconnect / ban
 			//[INFO]  Bertware lost connection: Banned by admin.
 			//[INFO]  Bertware left the game.
 			//[INFO]  CONSOLE: Banned player bertware
-			else if (Regex.IsMatch(
+			if (Regex.IsMatch(
 				text,
 				RG_INFO + RG_SPACE + RG_PLAYER + " lost connection: Banned by",
 				RegexOptions.IgnoreCase))
 			{
-				type = MessageType.PlayerBan;
+				return MessageType.PlayerBan;
 			}
-			// Disconnect / leave
-			//[INFO]  Bertware lost connection: Disconnected
-			//[INFO]  Bertware left the game.
-			else if (Regex.IsMatch(
-				text,
-				RG_INFO + RG_SPACE + RG_PLAYER + " lost connection:",
+			
+			if (Regex.IsMatch(text, RG_INFO + RG_SPACE + "There are " + "\\d+" + "/" + "\\d+" + " players online:",
 				RegexOptions.IgnoreCase))
 			{
-				type = MessageType.PlayerLeave;
-			}
-			// catch player left the game message
-			else if (Regex.IsMatch(
-				text,
-				RG_INFO + RG_SPACE + RG_PLAYER + " left the game",
-				RegexOptions.IgnoreCase))
-			{
-				type = MessageType.PlayerLeave;
-			}
-
-			else if (Regex.IsMatch(text, RG_INFO + RG_SPACE + "There are " + "\\d+" + "/" + "\\d+" + " players online:",
-				RegexOptions.IgnoreCase))
-			{
-				type = MessageType.PlayerList;
+				return MessageType.PlayerList;
 			}
 
 			// stacktraces
-			else if (Regex.IsMatch(
+			if (Regex.IsMatch(
 				text,
 				"^" + RG_SPACE + RG_STACKTRACE,
 				RegexOptions.IgnoreCase))
 			{
-				type = MessageType.JavaStackTrace;
+				return MessageType.JavaStackTrace;
 			}
 
 			//TODO: Stacktraces (other formats) and java errors
-
 			// all other text is info text
-			else if (Regex.IsMatch(text, RG_INFO + ".*", RegexOptions.IgnoreCase))
-			{
-				type = MessageType.Info;
-			}
-
-			return type;
+			return MessageType.Info;
 		}
 
 		public virtual string RemoveTimeStamp(string text)
@@ -299,13 +277,16 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers
 	
 			if (text.Equals(">")) return "";
 
+			// filter color codes
+			text = Regex.Replace(text,"\uFFFD[0-9a-f]?", "");
+
 			// remove [minecraft] or [minecraft-server] tags, for better parsing
 			text = Regex.Replace(text, "\\[minecraft(-server)?\\]", "", RegexOptions.IgnoreCase);
 
 			// [User Authenticator #1/INFO] to [INFO]
 			text = Regex.Replace(text, "User Authenticator #\\d/", "");
 			// [Server thread/INFO] to [INFO]
-			text = Regex.Replace(text, "Server (shutdown)?thread/", "");
+			text = Regex.Replace(text, "Server (Shutdown )?thread/", "", RegexOptions.IgnoreCase);
 			text = text.Replace("]:", "]");
 			text = text.Trim();
 			return text;
@@ -319,7 +300,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers
 			//[INFO]  Bertware[/127.0.0.1:51815] logged in with entity id 184 at ([world] 98.5, 64.0, 230.5)
 			PlayerActionJoin join = new PlayerActionJoin();
 			text = Regex.Replace(text, RG_INFO, "", RegexOptions.IgnoreCase);
-			join.PlayerName = Regex.Match(text, RG_PLAYER).Value.Trim();
+			join.PlayerName = Regex.Match(text, "^\\s?(" + RG_PLAYER +")").Groups[1].Value;
 			join.Ip = Regex.Match(text, RG_IP_NOPORT).Value;
 
 			return join;
@@ -332,7 +313,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers
 			PlayerActionLeave leave = new PlayerActionLeave
 			{
 				PlayerName = Regex.Match(text, RG_FSPACE + RG_PLAYER).Value.Trim(),
-				Details = Regex.Match(text, ":" + RG_WILDCARD + RG_EOL).Value.TrimStart(':').Trim()
+				Details = Regex.Match(text, ":(.*)$").Groups[1].Value
 			};
 			return leave;
 		}
@@ -346,7 +327,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers
 			PlayerActionKick leave = new PlayerActionKick
 			{
 				PlayerName = Regex.Match(text, RG_FSPACE + RG_PLAYER).Value.Trim(),
-				Details = Regex.Match(text, ":" + RG_WILDCARD + RG_EOL).Value.TrimStart(':').Trim()
+				Details = Regex.Match(text, ":(.*)$").Groups[1].Value
 			};
 			return leave;
 		}
@@ -359,7 +340,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers
 			PlayerActionBan leave = new PlayerActionBan
 			{
 				PlayerName = Regex.Match(text, RG_FSPACE + RG_PLAYER).Value.Trim(),
-				Details = Regex.Match(text, ":" + RG_WILDCARD + RG_EOL).Value.TrimStart(':').Trim()
+				Details = Regex.Match(text, ":(.*)$").Groups[1].Value
 			};
 			return leave;
 		}
