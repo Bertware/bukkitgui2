@@ -70,14 +70,17 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Issues
 						lvi.ForeColor = ConsoleTab.Reference.MCCOut.MessageColorSevere;
 						break;
 				}
-
+				
 				slvIssues.Items.Add(lvi);
-				if (slvIssues.Items.Count > 1535)
+				if (slvIssues.Items.Count > 1023)
 				{
-					// when too much entries, clear 512 entries
-					for (int i = 0; i < 512; i++)
+					// when too much entries, leave only 512 entries
+					foreach (ListViewItem item in slvIssues.Items)
 					{
-						slvIssues.Items.RemoveAt(i);
+						if (ulong.Parse(item.SubItems[0].Text) < _issueCount-512 )
+						{
+							item.Remove();
+						}
 					}
 				}
 			}
