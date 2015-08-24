@@ -5,6 +5,7 @@ Public Class UpdateInfo
     Public Pid As UInt16
     Public Version As String
     Public Channel As releasechannel
+    Public Forced As Boolean = 0
     Public URL_1 As String
     Public URL_2 As String
 
@@ -22,6 +23,7 @@ Public Class UpdateInfo
             Pid = xmldoc.Item("pid").InnerText
             Version = xmldoc.GetElementsByTagName("update")(0).Attributes("version").Value
             Channel = [Enum].Parse(GetType(releasechannel), xmldoc.Item("channel").InnerText)
+            Forced = (xmldoc.Item("forced")(0).Value = "1")
             URL_1 = xmldoc.Item("url_1").InnerText
             URL_2 = xmldoc.Item("url_2").InnerText
 
@@ -37,19 +39,22 @@ Public Class UpdateInfo
 
     Public Sub LoadXML(xmlelement As XmlElement)
         Try
-            Integer.TryParse(xmlelement.Item("id").InnerText, Id)
-            Integer.TryParse(xmlelement.Item("id").InnerText, Pid)
+
+            Id = xmlelement.Attributes("id").InnerText
+            Pid = xmlelement.Item("pid").InnerText
             Version = xmlelement.Attributes("version").InnerText
             Channel = [Enum].Parse(GetType(releasechannel), xmlelement.Item("channel").InnerText)
+            Forced = (xmlelement.Item("forced").InnerText = "1")
             URL_1 = xmlelement.Item("url_1").InnerText
             URL_2 = xmlelement.Item("url_2").InnerText
+
             ReleaseDate = xmlelement.Item("releasedate").InnerText
-            Integer.TryParse(xmlelement.Item("size").InnerText, Size)
+            Size = xmlelement.Item("size").InnerText
             FileName = xmlelement.Item("filename").InnerText
             Sha256 = xmlelement.Item("sha256").InnerText
             VTPermaLink = xmlelement.Item("vtlink").InnerText
         Catch ex As Exception
-            Trace.WriteLine("Failed to load XML for updateinfo!(element) : " + ex.Message + " - " + xmlelement.InnerText)
+            Trace.WriteLine("Failed to load XML for updateinfo!(element) : " + ex.Message)
         End Try
     End Sub
 End Class

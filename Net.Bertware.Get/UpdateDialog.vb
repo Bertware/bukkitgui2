@@ -1,17 +1,15 @@
 ﻿Imports System.Windows.Forms
 
 Public Class UpdateDialog
-    Private _update As UpdateInfo
-    Private _changelog As ChangelogInfo
-    Private _limitedUpdate As Boolean = False
-    Public onlyGetUrl As Boolean = False
-    Private _tmr_topmost As Timer
+    Private ReadOnly _update As UpdateInfo
+    Private ReadOnly _changelog As ChangelogInfo
 
-    Public Sub New(update As UpdateInfo, changelog As ChangelogInfo, Optional ByVal limitedUpdate As Boolean = False)
+    Public onlyGetUrl As Boolean = False
+
+    Public Sub New(update As UpdateInfo, changelog As ChangelogInfo)
         InitializeComponent()
         _update = update
         _changelog = changelog
-        _limitedUpdate = limitedUpdate
     End Sub
 
     Private Sub UpdateDialog_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -33,15 +31,13 @@ Public Class UpdateDialog
                     LboxChangelog.Items.Add(entry.ToString)
                 Next
             End If
-
-            _tmr_topmost = New Timer()
-            _tmr_topmost.Interval = 1000
-            _tmr_topmost.Enabled = True
-            AddHandler _tmr_topmost.Tick, AddressOf Me.BringToFront
-
         Catch ex As Exception
             Trace.WriteLine("Failed to load updatedialog! : " + ex.Message)
         End Try
+        Me.Focus()
+        Me.BringToFront()
+        Me.TopLevel = True
+        Me.TopMost = True
     End Sub
 
     Private Sub LLblGetBertware_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) _
@@ -57,7 +53,7 @@ Public Class UpdateDialog
             Exit Sub
         End If
 
-        Updater.Update(_update, _limitedUpdate)
+        Updater.Update(_update)
         Me.DialogResult = DialogResult.OK
         Me.Close()
     End Sub
