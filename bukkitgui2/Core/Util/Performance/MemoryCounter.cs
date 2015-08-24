@@ -59,7 +59,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Performance
 				}
 				else
 				{
-					_value = ToMb(Process.GetProcessById(Pid).WorkingSet64);
+					_value = ToMb(Process.GetProcessById(Pid).PagedMemorySize64);
 				}
 			}
 			catch (Exception exception)

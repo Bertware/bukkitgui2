@@ -40,6 +40,12 @@
   <PropertyGroup>
     <ApplicationIcon>bukkitgui-icon32.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>BertWare.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="ICSharpCode.SharpZipLib">
       <HintPath>Resources\Dll\ICSharpCode.SharpZipLib.dll</HintPath>
@@ -585,6 +591,7 @@
     </EmbeddedResource>
     <None Include="app.config" />
     <Compile Include="MinecraftServers\Tools\Bukkit\dlb.cs" />
+    <None Include="BertWare.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
