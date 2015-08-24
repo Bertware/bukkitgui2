@@ -170,7 +170,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers
 
 			Logger.Log(LogLevel.Debug, "MinecraftServerBase", "Parsing message for \"" + text + "\"");
 			text = RemoveTimeStamp(text); // We need to know the type, so we'll continue without the timestamp
-			Logger.Log(LogLevel.Debug, "MinecraftServerBase", "Removed timestamp: \"" + text + "\"");
+			//Logger.Log(LogLevel.Debug, "MinecraftServerBase", "Removed timestamp: \"" + text + "\"");
 			text = FilterText(text);
 			Logger.Log(LogLevel.Debug, "MinecraftServerBase", "Filtered text: \"" + text + "\"");
 			return text;
@@ -182,12 +182,12 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers
 			MessageType type = MessageType.Unknown;
 
 			//[WARNING]...
-			if (Regex.IsMatch(text, RG_WARN + RG_WILDCARD, RegexOptions.IgnoreCase))
+			if (Regex.IsMatch(text, RG_WARN, RegexOptions.IgnoreCase))
 			{
 				type = MessageType.Warning;
 			}
 			//[SEVERE] ...
-			else if (Regex.IsMatch(text, RG_SEV + RG_WILDCARD, RegexOptions.IgnoreCase))
+			else if (Regex.IsMatch(text, RG_SEV, RegexOptions.IgnoreCase))
 			{
 				type = MessageType.Severe;
 			}
@@ -287,7 +287,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers
 			text = Regex.Replace(text, "\\[\\d+:\\d+:\\d+\\]", "");
 			//[11:36:21 INFO]
 			text = Regex.Replace(text, "\\[\\d+:\\d+:\\d+ ", "[");
-			text = text.Trim();
+			text = text.TrimStart();
 			return text;
 		}
 
@@ -295,19 +295,18 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers
 		{
 			if (string.IsNullOrEmpty(text)) return text;
 			// fix harmless warning, users question this warning.
-			text = Regex.Replace(text,
-				"(.*)Unable to instantiate org\\.fusesource\\.jansi\\.WindowsAnsiOutputStream(.*)", "");
-
-			if (text.Equals(">")) text = "";
+			if (text.Contains("org.fusesource.jansi.WindowsAnsiOutputStream")) return "";
+	
+			if (text.Equals(">")) return "";
 
 			// remove [minecraft] or [minecraft-server] tags, for better parsing
-			text = Regex.Replace(text, "\\[minecraft(-server|)\\]", "", RegexOptions.IgnoreCase);
+			text = Regex.Replace(text, "\\[minecraft(-server)?\\]", "", RegexOptions.IgnoreCase);
 
 			// [User Authenticator #1/INFO] to [INFO]
 			text = Regex.Replace(text, "User Authenticator #\\d/", "");
 			// [Server thread/INFO] to [INFO]
 			text = Regex.Replace(text, "Server (shutdown)?thread/", "");
-			text = Regex.Replace(text, "\\]:", "]");
+			text = text.Replace("]:", "]");
 			text = text.Trim();
 			return text;
 		}
