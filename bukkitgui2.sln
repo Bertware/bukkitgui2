@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bukkitgui2", "bukkitgui2\bukkitgui2.csproj", "{0AEF421A-A71F-4642-9C9B-621F58FD7735}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bukkitgui2host", "bukkitgui2host\bukkitgui2host.csproj", "{B464502F-0BD4-414A-B487-E154B592EE38}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonApiConnector", "JsonApiConnector\JsonApiConnector.csproj", "{975CEB77-4212-4532-B834-E19A9B824856}"
 EndProject
@@ -19,10 +19,6 @@ Global
 		{0AEF421A-A71F-4642-9C9B-621F58FD7735}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0AEF421A-A71F-4642-9C9B-621F58FD7735}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0AEF421A-A71F-4642-9C9B-621F58FD7735}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B464502F-0BD4-414A-B487-E154B592EE38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B464502F-0BD4-414A-B487-E154B592EE38}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B464502F-0BD4-414A-B487-E154B592EE38}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B464502F-0BD4-414A-B487-E154B592EE38}.Release|Any CPU.Build.0 = Release|Any CPU
 		{975CEB77-4212-4532-B834-E19A9B824856}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{975CEB77-4212-4532-B834-E19A9B824856}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{975CEB77-4212-4532-B834-E19A9B824856}.Release|Any CPU.ActiveCfg = Release|Any CPU

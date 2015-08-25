@@ -227,6 +227,7 @@
     <Compile Include="AddOn\Tasker\Action\ServerStopAction.cs" />
     <Compile Include="AddOn\Tasker\Action\ServerRestartAction.cs" />
     <Compile Include="AddOn\Tasker\Action\IAction.cs" />
+    <Compile Include="AddOn\Tasker\Action\RunAction.cs" />
     <Compile Include="AddOn\Tasker\Action\ShellCommandAction.cs" />
     <Compile Include="AddOn\Tasker\Task.cs" />
     <Compile Include="AddOn\Tasker\TaskerUI\ActionSelector.cs">
