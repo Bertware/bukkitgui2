@@ -209,6 +209,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Backup
 				{
 					if (xmlElement.GetAttribute("name").Equals(bs.Name)) _backupXml.RemoveChild(xmlElement);
 				}
+				_backupXml.Save(_backupXmlPath);
 			}
 			catch (Exception ex)
 			{
