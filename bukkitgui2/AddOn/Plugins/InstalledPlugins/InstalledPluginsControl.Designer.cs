@@ -35,14 +35,6 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 			this.btnUpdate = new MetroFramework.Controls.MetroButton();
 			this.btnVersions = new MetroFramework.Controls.MetroButton();
 			this.btnRemove = new MetroFramework.Controls.MetroButton();
-			this.slvPlugins = new Net.Bertware.Bukkitgui2.Controls.SortableListView.SortableListView();
-			this.colName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.colDescription = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.ColAuthor = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.colVersion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.colLatestVersion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.colInstalled = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.btnOpenFolder = new MetroFramework.Controls.MetroButton();
 			this.CtxMenu = new MetroFramework.Controls.MetroContextMenu(this.components);
 			this.CBtnUpdate = new System.Windows.Forms.ToolStripMenuItem();
 			this.CBtnShowVersions = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,6 +42,14 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 			this.CBtnUninstall = new System.Windows.Forms.ToolStripMenuItem();
 			this.CBtnRefreshList = new System.Windows.Forms.ToolStripMenuItem();
 			this.CBtnOpenFolder = new System.Windows.Forms.ToolStripMenuItem();
+			this.btnOpenFolder = new MetroFramework.Controls.MetroButton();
+			this.slvPlugins = new Net.Bertware.Bukkitgui2.Controls.SortableListView.SortableListView();
+			this.colName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.colDescription = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.ColAuthor = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.colVersion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.colLatestVersion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.colInstalled = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.CtxMenu.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -88,6 +88,72 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 			this.btnRemove.Text = "Remove";
 			this.btnRemove.UseSelectable = true;
 			this.btnRemove.Click += new System.EventHandler(this.UninstallSelectedPlugins);
+			// 
+			// CtxMenu
+			// 
+			this.CtxMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.CBtnUpdate,
+            this.CBtnShowVersions,
+            this.CBtnViewWebsite,
+            this.CBtnUninstall,
+            this.CBtnRefreshList,
+            this.CBtnOpenFolder});
+			this.CtxMenu.Name = "CtxMenu";
+			this.CtxMenu.Size = new System.Drawing.Size(153, 158);
+			this.CtxMenu.Opening += new System.ComponentModel.CancelEventHandler(this.CtxMenu_Opening);
+			// 
+			// CBtnUpdate
+			// 
+			this.CBtnUpdate.Name = "CBtnUpdate";
+			this.CBtnUpdate.Size = new System.Drawing.Size(152, 22);
+			this.CBtnUpdate.Text = "Update";
+			this.CBtnUpdate.Click += new System.EventHandler(this.UpdateSelectedPlugins);
+			// 
+			// CBtnShowVersions
+			// 
+			this.CBtnShowVersions.Name = "CBtnShowVersions";
+			this.CBtnShowVersions.Size = new System.Drawing.Size(152, 22);
+			this.CBtnShowVersions.Text = "Show versions";
+			this.CBtnShowVersions.Click += new System.EventHandler(this.ShowVersions);
+			// 
+			// CBtnViewWebsite
+			// 
+			this.CBtnViewWebsite.Name = "CBtnViewWebsite";
+			this.CBtnViewWebsite.Size = new System.Drawing.Size(152, 22);
+			this.CBtnViewWebsite.Text = "View online";
+			this.CBtnViewWebsite.Click += new System.EventHandler(this.ShowSelectedPluginsWebpage);
+			// 
+			// CBtnUninstall
+			// 
+			this.CBtnUninstall.Name = "CBtnUninstall";
+			this.CBtnUninstall.Size = new System.Drawing.Size(152, 22);
+			this.CBtnUninstall.Text = "Uninstall";
+			this.CBtnUninstall.Click += new System.EventHandler(this.UninstallSelectedPlugins);
+			// 
+			// CBtnRefreshList
+			// 
+			this.CBtnRefreshList.Name = "CBtnRefreshList";
+			this.CBtnRefreshList.Size = new System.Drawing.Size(152, 22);
+			this.CBtnRefreshList.Text = "Refresh list";
+			this.CBtnRefreshList.Click += new System.EventHandler(this.ReloadInstalledPlugins);
+			// 
+			// CBtnOpenFolder
+			// 
+			this.CBtnOpenFolder.Name = "CBtnOpenFolder";
+			this.CBtnOpenFolder.Size = new System.Drawing.Size(152, 22);
+			this.CBtnOpenFolder.Text = "Open folder";
+			this.CBtnOpenFolder.Click += new System.EventHandler(this.OpenPluginFolder);
+			// 
+			// btnOpenFolder
+			// 
+			this.btnOpenFolder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.btnOpenFolder.Location = new System.Drawing.Point(459, 414);
+			this.btnOpenFolder.Name = "btnOpenFolder";
+			this.btnOpenFolder.Size = new System.Drawing.Size(75, 23);
+			this.btnOpenFolder.TabIndex = 8;
+			this.btnOpenFolder.Text = "Open folder";
+			this.btnOpenFolder.UseSelectable = true;
+			this.btnOpenFolder.Click += new System.EventHandler(this.OpenPluginFolder);
 			// 
 			// slvPlugins
 			// 
@@ -140,71 +206,6 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 			// 
 			this.colInstalled.Text = "Installed";
 			this.colInstalled.Width = 90;
-			// 
-			// btnOpenFolder
-			// 
-			this.btnOpenFolder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnOpenFolder.Location = new System.Drawing.Point(459, 414);
-			this.btnOpenFolder.Name = "btnOpenFolder";
-			this.btnOpenFolder.Size = new System.Drawing.Size(75, 23);
-			this.btnOpenFolder.TabIndex = 8;
-			this.btnOpenFolder.Text = "Open folder";
-			this.btnOpenFolder.UseSelectable = true;
-			this.btnOpenFolder.Click += new System.EventHandler(this.OpenPluginFolder);
-			// 
-			// CtxMenu
-			// 
-			this.CtxMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.CBtnUpdate,
-            this.CBtnShowVersions,
-            this.CBtnViewWebsite,
-            this.CBtnUninstall,
-            this.CBtnRefreshList,
-            this.CBtnOpenFolder});
-			this.CtxMenu.Name = "CtxMenu";
-			this.CtxMenu.Size = new System.Drawing.Size(150, 136);
-			// 
-			// CBtnUpdate
-			// 
-			this.CBtnUpdate.Name = "CBtnUpdate";
-			this.CBtnUpdate.Size = new System.Drawing.Size(149, 22);
-			this.CBtnUpdate.Text = "Update";
-			this.CBtnUpdate.Click += new System.EventHandler(this.UpdateSelectedPlugins);
-			// 
-			// CBtnShowVersions
-			// 
-			this.CBtnShowVersions.Name = "CBtnShowVersions";
-			this.CBtnShowVersions.Size = new System.Drawing.Size(149, 22);
-			this.CBtnShowVersions.Text = "Show versions";
-			this.CBtnShowVersions.Click += new System.EventHandler(this.ShowVersions);
-			// 
-			// CBtnViewWebsite
-			// 
-			this.CBtnViewWebsite.Name = "CBtnViewWebsite";
-			this.CBtnViewWebsite.Size = new System.Drawing.Size(149, 22);
-			this.CBtnViewWebsite.Text = "View online";
-			this.CBtnViewWebsite.Click += new System.EventHandler(this.ShowSelectedPluginsWebpage);
-			// 
-			// CBtnUninstall
-			// 
-			this.CBtnUninstall.Name = "CBtnUninstall";
-			this.CBtnUninstall.Size = new System.Drawing.Size(149, 22);
-			this.CBtnUninstall.Text = "Uninstall";
-			this.CBtnUninstall.Click += new System.EventHandler(this.UninstallSelectedPlugins);
-			// 
-			// CBtnRefreshList
-			// 
-			this.CBtnRefreshList.Name = "CBtnRefreshList";
-			this.CBtnRefreshList.Size = new System.Drawing.Size(149, 22);
-			this.CBtnRefreshList.Text = "Refresh list";
-			this.CBtnRefreshList.Click += new System.EventHandler(this.ReloadInstalledPlugins);
-			// 
-			// CBtnOpenFolder
-			// 
-			this.CBtnOpenFolder.Name = "CBtnOpenFolder";
-			this.CBtnOpenFolder.Size = new System.Drawing.Size(149, 22);
-			this.CBtnOpenFolder.Text = "Open folder";
-			this.CBtnOpenFolder.Click += new System.EventHandler(this.OpenPluginFolder);
 			// 
 			// InstalledPluginsControl
 			// 

@@ -120,10 +120,6 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 			btnRemove.Enabled = selected;
 			btnUpdate.Enabled = selected;
 			btnVersions.Enabled = selected;
-			CBtnShowVersions.Enabled = selected;
-			CBtnUninstall.Enabled = selected;
-			CBtnUpdate.Enabled = selected;
-			CBtnViewWebsite.Enabled = selected;
 		}
 
 		private void OpenPluginFolder(object sender, EventArgs e)
@@ -156,6 +152,15 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 		private void ReloadInstalledPlugins(object sender, EventArgs e)
 		{
 			InstalledPluginManager.RefreshAllInstalledPluginsAsync();
+		}
+
+		private void CtxMenu_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+		{
+			bool selected = (slvPlugins.SelectedItems.Count > 0);
+			CBtnShowVersions.Enabled = selected;
+			CBtnUninstall.Enabled = selected;
+			CBtnUpdate.Enabled = selected;
+			CBtnViewWebsite.Enabled = selected;
 		}
 
 	}

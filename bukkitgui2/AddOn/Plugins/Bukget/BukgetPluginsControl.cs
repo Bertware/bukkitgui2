@@ -89,11 +89,6 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget
 			bool selected = slvPlugins.SelectedItems.Count > 0;
 			btnInfo.Enabled = selected;
 			btnInstall.Enabled = selected;
-
-			CBtnInstallLatest.Enabled = selected;
-			CBtnMoreInfo.Enabled = selected;
-			CBtnRefresh.Enabled = selected;
-			CBtnViewOnline.Enabled = selected;
 		}
 
 		private void txtSearchText_KeyDown(object sender, KeyEventArgs e)
@@ -119,6 +114,11 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget
 				string main = item.Tag.ToString();
 				api3.Bukget.CurrentlyLoadedPlugins[main].OpenBukkitdevPage();
 			}
+		}
+
+		private void CtxPlugins_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+		{
+			CtxPlugins.Enabled = (slvPlugins.SelectedItems.Count > 0);
 		}
 	}
 }

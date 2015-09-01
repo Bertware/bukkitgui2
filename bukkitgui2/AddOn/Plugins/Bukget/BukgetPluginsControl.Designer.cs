@@ -97,6 +97,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget
 			// btnInstall
 			// 
 			this.btnInstall.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.btnInstall.Enabled = false;
 			this.btnInstall.Location = new System.Drawing.Point(702, 414);
 			this.btnInstall.Name = "btnInstall";
 			this.btnInstall.Size = new System.Drawing.Size(75, 23);
@@ -108,6 +109,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget
 			// btnInfo
 			// 
 			this.btnInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.btnInfo.Enabled = false;
 			this.btnInfo.Location = new System.Drawing.Point(621, 414);
 			this.btnInfo.Name = "btnInfo";
 			this.btnInfo.Size = new System.Drawing.Size(75, 23);
@@ -180,7 +182,8 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget
             this.CBtnViewOnline,
             this.CBtnRefresh});
 			this.CtxPlugins.Name = "CtxPlugins";
-			this.CtxPlugins.Size = new System.Drawing.Size(178, 114);
+			this.CtxPlugins.Size = new System.Drawing.Size(178, 92);
+			this.CtxPlugins.Opening += new System.ComponentModel.CancelEventHandler(this.CtxPlugins_Opening);
 			// 
 			// CBtnMoreInfo
 			// 
