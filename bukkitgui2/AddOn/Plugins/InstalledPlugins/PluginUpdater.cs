@@ -17,6 +17,7 @@ using MetroFramework.Forms;
 using Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3;
 using Net.Bertware.Bukkitgui2.Core.Logging;
 using Net.Bertware.Bukkitgui2.Core.Util;
+using Net.Bertware.Bukkitgui2.UI;
 using T = Net.Bertware.Bukkitgui2.Core.Locale;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
@@ -267,6 +268,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
             else
             {
                 Close();
+				MainForm.Reference.BringToFront();
             }
         }
 
@@ -355,7 +357,6 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 
                     InstalledPluginManager.RefreshAllInstalledPluginsAsync();
 
-                    Close();
                 }
             }
             catch (Exception ex)
@@ -364,6 +365,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
                     T.Tr("Something went wrong"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Logger.Log(LogLevel.Warning, "PluginUpdater", "Severe exception in Update routine!", ex.Message);
             }
+	        CloseThisForm(null,null);
         }
 
         private void ChkCheckAll_CheckedChanged(Object sender, EventArgs e)
