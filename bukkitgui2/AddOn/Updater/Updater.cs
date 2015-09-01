@@ -88,7 +88,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Updater
 		    try{
 			    api.RunUpdateCheck(false,true);
 		    }
-		    catch (Exception e)
+		    catch (Exception)
 		    {
 			    // ignored
 		    }
