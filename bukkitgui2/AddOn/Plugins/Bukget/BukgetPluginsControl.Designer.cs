@@ -46,6 +46,12 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget
 			this.lblSearch = new MetroFramework.Controls.MetroLabel();
 			this.txtSearchText = new MetroFramework.Controls.MetroTextBox();
 			this.metroStyleExtender = new MetroFramework.Components.MetroStyleExtender(this.components);
+			this.CtxPlugins = new MetroFramework.Controls.MetroContextMenu(this.components);
+			this.CBtnMoreInfo = new System.Windows.Forms.ToolStripMenuItem();
+			this.CBtnInstallLatest = new System.Windows.Forms.ToolStripMenuItem();
+			this.CBtnViewOnline = new System.Windows.Forms.ToolStripMenuItem();
+			this.CBtnRefresh = new System.Windows.Forms.ToolStripMenuItem();
+			this.CtxPlugins.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// slvPlugins
@@ -97,7 +103,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget
 			this.btnInstall.TabIndex = 1;
 			this.btnInstall.Text = "Install";
 			this.btnInstall.UseSelectable = true;
-			this.btnInstall.Click += new System.EventHandler(this.btnInstall_Click);
+			this.btnInstall.Click += new System.EventHandler(this.InstallSelectedPlugins);
 			// 
 			// btnInfo
 			// 
@@ -108,7 +114,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget
 			this.btnInfo.TabIndex = 3;
 			this.btnInfo.Text = "Info";
 			this.btnInfo.UseSelectable = true;
-			this.btnInfo.Click += new System.EventHandler(this.btnInfo_Click);
+			this.btnInfo.Click += new System.EventHandler(this.ShowPluginInfo);
 			// 
 			// lblBrowse
 			// 
@@ -166,9 +172,48 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget
 			this.txtSearchText.UseSelectable = true;
 			this.txtSearchText.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSearchText_KeyDown);
 			// 
+			// CtxPlugins
+			// 
+			this.CtxPlugins.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.CBtnMoreInfo,
+            this.CBtnInstallLatest,
+            this.CBtnViewOnline,
+            this.CBtnRefresh});
+			this.CtxPlugins.Name = "CtxPlugins";
+			this.CtxPlugins.Size = new System.Drawing.Size(178, 114);
+			// 
+			// CBtnMoreInfo
+			// 
+			this.CBtnMoreInfo.Name = "CBtnMoreInfo";
+			this.CBtnMoreInfo.Size = new System.Drawing.Size(177, 22);
+			this.CBtnMoreInfo.Text = "More info";
+			this.CBtnMoreInfo.Click += new System.EventHandler(this.ShowPluginInfo);
+			// 
+			// CBtnInstallLatest
+			// 
+			this.CBtnInstallLatest.Name = "CBtnInstallLatest";
+			this.CBtnInstallLatest.Size = new System.Drawing.Size(177, 22);
+			this.CBtnInstallLatest.Text = "Install latest version";
+			this.CBtnInstallLatest.Click += new System.EventHandler(this.InstallSelectedPlugins);
+			// 
+			// CBtnViewOnline
+			// 
+			this.CBtnViewOnline.Name = "CBtnViewOnline";
+			this.CBtnViewOnline.Size = new System.Drawing.Size(177, 22);
+			this.CBtnViewOnline.Text = "View online";
+			this.CBtnViewOnline.Click += new System.EventHandler(this.CBtnViewOnline_Click);
+			// 
+			// CBtnRefresh
+			// 
+			this.CBtnRefresh.Name = "CBtnRefresh";
+			this.CBtnRefresh.Size = new System.Drawing.Size(177, 22);
+			this.CBtnRefresh.Text = "Refresh";
+			this.CBtnRefresh.Click += new System.EventHandler(this.CBtnRefresh_Click);
+			// 
 			// BukgetPluginsControl
 			// 
 			this.BackColor = System.Drawing.Color.White;
+			this.ContextMenuStrip = this.CtxPlugins;
 			this.Controls.Add(this.lblBrowse);
 			this.Controls.Add(this.cbCategories);
 			this.Controls.Add(this.btnSearch);
@@ -180,6 +225,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget
 			this.Name = "BukgetPluginsControl";
 			this.Size = new System.Drawing.Size(780, 440);
 			this.VisibleChanged += new System.EventHandler(this.BukgetPluginsControl_VisibleChanged);
+			this.CtxPlugins.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -199,5 +245,10 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget
 		private MetroLabel lblSearch;
 		private MetroTextBox txtSearchText;
 		private MetroFramework.Components.MetroStyleExtender metroStyleExtender;
+		private MetroContextMenu CtxPlugins;
+		private ToolStripMenuItem CBtnMoreInfo;
+		private ToolStripMenuItem CBtnInstallLatest;
+		private ToolStripMenuItem CBtnViewOnline;
+		private ToolStripMenuItem CBtnRefresh;
 	}
 }

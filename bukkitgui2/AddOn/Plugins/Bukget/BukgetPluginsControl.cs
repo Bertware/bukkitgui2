@@ -1,10 +1,6 @@
 ﻿// BukgetPluginsControl.cs in bukkitgui2/bukkitgui2
-// Created 2014/01/17
-// 
-// This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
-// If a copy of the MPL was not distributed with this file,
-// you can obtain one at http://mozilla.org/MPL/2.0/.
-// 
+// Created 2014/06/18
+// Last edited at 2015/09/01 10:16
 // ©Bertware, visit http://bertware.net
 
 using System;
@@ -55,7 +51,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget
 
 		private void cbCategories_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			api3.Bukget.GetPluginsByCategory(cbCategories.SelectedItem.ToString(), 50000);
+			api3.Bukget.GetPluginsByCategory(cbCategories.SelectedItem.ToString());
 		}
 
 		private void btnSearch_Click(object sender, EventArgs e)
@@ -63,18 +59,29 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget
 			api3.Bukget.SearchPlugins(txtSearchText.Text, 50);
 		}
 
-		private void btnInfo_Click(object sender, EventArgs e)
+		private void ShowPluginInfo(object sender, EventArgs e)
 		{
 			if (slvPlugins.SelectedItems.Count < 0) return;
-			string main = slvPlugins.SelectedItems[0].Tag.ToString();
-			api3.Bukget.CurrentlyLoadedPlugins[main].ShowVersionDialog();
+			foreach (ListViewItem item in slvPlugins.SelectedItems)
+			{
+				string main = item.Tag.ToString();
+				api3.Bukget.CurrentlyLoadedPlugins[main].ShowVersionDialog();
+			}
 		}
 
-		private void btnInstall_Click(object sender, EventArgs e)
+		/// <summary>
+		///     Install the selected plugins on button press
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="eventArgs"></param>
+		private void InstallSelectedPlugins(object sender, EventArgs eventArgs)
 		{
 			if (slvPlugins.SelectedItems.Count < 0) return;
-			string main = slvPlugins.SelectedItems[0].Tag.ToString();
-			api3.Bukget.CurrentlyLoadedPlugins[main].InstallLatestVersion();
+			foreach (ListViewItem item in slvPlugins.SelectedItems)
+			{
+				string main = item.Tag.ToString();
+				api3.Bukget.CurrentlyLoadedPlugins[main].InstallLatestVersion();
+			}
 		}
 
 		private void slvPlugins_SelectedIndexChanged(object sender, EventArgs e)
@@ -82,6 +89,11 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget
 			bool selected = slvPlugins.SelectedItems.Count > 0;
 			btnInfo.Enabled = selected;
 			btnInstall.Enabled = selected;
+
+			CBtnInstallLatest.Enabled = selected;
+			CBtnMoreInfo.Enabled = selected;
+			CBtnRefresh.Enabled = selected;
+			CBtnViewOnline.Enabled = selected;
 		}
 
 		private void txtSearchText_KeyDown(object sender, KeyEventArgs e)
@@ -90,6 +102,23 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget
 			if (e.KeyCode != Keys.Enter) return;
 			e.Handled = true;
 			btnSearch_Click(sender, e);
+		}
+
+		private void CBtnRefresh_Click(object sender, EventArgs e)
+		{
+			// Event handlers will do the rest
+			// Just load most popular, there's search etc for other stuff
+			api3.Bukget.GetMostPopularPlugins(30);
+		}
+
+		private void CBtnViewOnline_Click(object sender, EventArgs e)
+		{
+			if (slvPlugins.SelectedItems.Count < 0) return;
+			foreach (ListViewItem item in slvPlugins.SelectedItems)
+			{
+				string main = item.Tag.ToString();
+				api3.Bukget.CurrentlyLoadedPlugins[main].OpenBukkitdevPage();
+			}
 		}
 	}
 }

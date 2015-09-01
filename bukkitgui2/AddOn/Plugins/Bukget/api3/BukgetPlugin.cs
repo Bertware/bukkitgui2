@@ -9,6 +9,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Jayrock.Json;
 using Jayrock.Json.Conversion;
 using Net.Bertware.Bukkitgui2.Core.Logging;
@@ -134,6 +135,14 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
 		public void InstallLatestVersion(string targetlocation = "")
 		{
 			LastVersion.Install(targetlocation);
+		}
+
+		/// <summary>
+		/// Open the Bukkitdev page in the default browser
+		/// </summary>
+		public void OpenBukkitdevPage()
+		{
+			Process.Start(this.BukkitDevLink);
 		}
 
 		public BukgetPlugin(string main, string name)

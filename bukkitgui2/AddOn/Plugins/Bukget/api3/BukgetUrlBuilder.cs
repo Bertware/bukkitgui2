@@ -26,7 +26,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
 		public static readonly PluginInfoField[] FieldsSimple =
 		{
 			PluginInfoField.Slug, PluginInfoField.Plugin_Name, PluginInfoField.Description, PluginInfoField.Main,
-			PluginInfoField.Authors,
+			PluginInfoField.Authors, PluginInfoField.Dbo_Page,PluginInfoField.Website,
 			PluginInfoField.Vf_Version, PluginInfoField.Vf_Filename, PluginInfoField.Vf_Game_Versions,
 			PluginInfoField.Vf_Download, PluginInfoField.Vf_Date, PluginInfoField.Vf_Link
 		};
