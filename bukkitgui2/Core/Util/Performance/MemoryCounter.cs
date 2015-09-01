@@ -20,7 +20,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Performance
 	/// </summary>
 	public class MemoryCounter
 	{
-		private const int Interval = 500;
+		private const int Interval = 800;
 		public int Pid { get; private set; }
 		private Int32 _value;
 		private readonly Int32 _totalMemoryMb = TotalMemoryMb();
@@ -59,7 +59,12 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Performance
 				}
 				else
 				{
-					_value = ToMb(Process.GetProcessById(Pid).WorkingSet64);
+					using (Process p =Process.GetProcessById(Pid))
+					{
+						p.Refresh();
+						_value = ToMb(p.WorkingSet64);
+					}
+					
 				}
 			}
 			catch (Exception exception)

@@ -85,8 +85,7 @@ namespace Net.Bertware.Bukkitgui2.UI
 			else
 			{
 				// If we're starting minimized, we have to make sure the tray is enabled
-				Config.WriteBool("notifications", "enabled", false);
-				Config.WriteBool("notifications", "always", false);
+				Config.WriteBool("notifications", "enabled", true);
 			}
 			Logger.Log(LogLevel.Info, "mainform", "Finished loading");
 		}

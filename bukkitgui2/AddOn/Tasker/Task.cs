@@ -90,7 +90,6 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 			if (Trigger == null) return;
 			if (Actions == null) return;
 
-			Trigger.TaskerTriggerFired += ExecuteActions;
 			if (Enabled) Enable();
 		}
 
@@ -106,12 +105,14 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 		public void Enable()
 		{
 			Trigger.Enable();
+			Trigger.TaskerTriggerFired += ExecuteActions;
 			Enabled = true;
 		}
 
 		public void Disable()
 		{
 			Trigger.Disable();
+			Trigger.TaskerTriggerFired -= ExecuteActions;
 			Enabled = false;
 		}
 

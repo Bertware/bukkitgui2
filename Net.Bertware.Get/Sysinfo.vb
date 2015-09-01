@@ -1,6 +1,4 @@
-﻿Imports System.Xml
-
-Public Class Sysinfo
+﻿Public Class Sysinfo
     Public Version = ""
     Public Status = ""
     Public UpdateToolVersion = ""
@@ -8,12 +6,12 @@ Public Class Sysinfo
     Public UpdateToolSha256 = ""
 
     Public Sub New()
-        LoadXML(GetAPIResponse(APIAction.sysinfo))
+        LoadXML(api.GetAPIResponse(APIAction.sysinfo))
     End Sub
 
     Public Sub LoadXML(xml As String)
         Try
-            Dim xmldoc As New XmlDocument()
+            Dim xmldoc As New Xml.XmlDocument()
             xmldoc.LoadXml(xml)
             Version = xmldoc.DocumentElement.Item("version").InnerText
             Status = xmldoc.DocumentElement.Item("status").InnerText

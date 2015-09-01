@@ -147,16 +147,6 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 		}
 
 		/// <summary>
-		///     Print output to the console
-		/// </summary>
-		/// <param name="text"></param>
-		/// <param name="outputParseResult"></param>
-		private void PrintOutput(string text, OutputParseResult outputParseResult)
-		{
-			MCCOut.WriteOutput(outputParseResult.Type, outputParseResult.Message);
-		}
-
-		/// <summary>
 		///     Handle a commandsent event from the textbox and redirect it to the server
 		/// </summary>
 		/// <param name="text"></param>
@@ -175,6 +165,16 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 		public static void WriteOut(string text)
 		{
 			Reference.MCCOut.WriteOutput(MessageType.Info, "[GUI] " + text);
+		}
+
+		/// <summary>
+		///     Print output to the console
+		/// </summary>
+		/// <param name="text"></param>
+		/// <param name="outputParseResult"></param>
+		private void PrintOutput(string text, OutputParseResult outputParseResult)
+		{
+			MCCOut.WriteOutput(outputParseResult.Type, outputParseResult.Message);
 		}
 
 		private void ContextPlayersKick_Click(object sender, EventArgs e)

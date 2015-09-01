@@ -32,7 +32,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Updater
 
 		private void BtnInfoAppUpdater_Click(object sender, EventArgs e)
 		{
-			api.ShowUpdater();
+			api.ShowUpdater(api.LatestVersion);
 		}
 	}
 }

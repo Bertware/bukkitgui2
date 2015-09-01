@@ -306,27 +306,27 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			if (CBJavaVersion.SelectedIndex < 0) return 0;
 
 			string selectedText = CBJavaVersion.SelectedItem.ToString();
-			if (Regex.IsMatch(selectedText, "(.*)6(.*)32"))
+			if (Regex.IsMatch(selectedText, "(.*?)6(.*?)32"))
 			{
 				return JavaVersion.Jre6X32;
 			}
-			if (Regex.IsMatch(selectedText, "(.*)6(.*)64"))
+			if (Regex.IsMatch(selectedText, "(.*?)6(.*?)64"))
 			{
 				return JavaVersion.Jre6X64;
 			}
-			if (Regex.IsMatch(selectedText, "(.*)7(.*)32"))
+			if (Regex.IsMatch(selectedText, "(.*?)7(.*?)32"))
 			{
 				return JavaVersion.Jre7X32;
 			}
-			if (Regex.IsMatch(selectedText, "(.*)7(.*)64"))
+			if (Regex.IsMatch(selectedText, "(.*?)7(.*?)64"))
 			{
 				return JavaVersion.Jre7X64;
 			}
-			if (Regex.IsMatch(selectedText, "(.*)8(.*)32"))
+			if (Regex.IsMatch(selectedText, "(.*?)8(.*?)32"))
 			{
 				return JavaVersion.Jre8X32;
 			}
-			if (Regex.IsMatch(selectedText, "(.*)8(.*)64"))
+			if (Regex.IsMatch(selectedText, "(.*?)8(.*?)64"))
 			{
 				return JavaVersion.Jre8X64;
 			}

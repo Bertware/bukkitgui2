@@ -23,7 +23,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Performance
 		private readonly int _pid;
 		private Int32 _value;
 
-		private static readonly int _Cores =
+		private static readonly int Cores =
 			Convert.ToInt16(Wmi.GetprocessorInfo(Wmi.ProcessorProp.NumberOfLogicalProcessors));
 
 		private Timer _updateTimer;
@@ -82,7 +82,7 @@ namespace Net.Bertware.Bukkitgui2.Core.Util.Performance
 					return;
 				}
 				_value = Convert.ToInt16(_counter.NextValue());
-				if (_pid != 0) _value = _value/_Cores;
+				if (_pid != 0) _value = _value/Cores;
 			}
 			catch (Exception exception)
 			{

@@ -7,6 +7,7 @@
 // 
 // ©Bertware, visit http://bertware.net
 
+using System;
 using System.Threading;
 using MetroFramework.Controls;
 using Net.Bertware.Get;
@@ -74,12 +75,23 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Updater
             get { return true; }
         }
 
-        public static void CheckForUpdates()
-        {
-            Thread t = new Thread(() => api.RunUpdateCheck(true,false)) {Name = "RunUpdateCheck"};
-            t.SetApartmentState(ApartmentState.STA);
-            
-            t.Start();
-        }
+	    public static void CheckForUpdates()
+	    {
+		    Thread t = new Thread(() => RunUpdateCheck()) {Name = "RunUpdateCheck"};
+		    t.SetApartmentState(ApartmentState.STA);
+
+		    t.Start();
+	    }
+
+	    private static void RunUpdateCheck()
+	    {
+		    try{
+			    api.RunUpdateCheck(false,true);
+		    }
+		    catch (Exception e)
+		    {
+			    // ignored
+		    }
+	    }
     }
 }

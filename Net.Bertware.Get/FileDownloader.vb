@@ -1,9 +1,6 @@
-﻿
-
+﻿Imports System.Threading
 Imports System.Net
 Imports System.Windows.Forms
-Imports System.Threading
-Imports Microsoft.VisualBasic.FileIO
 
 Public Class FileDownloader
     Public URL As String, target As String, message As String
@@ -30,6 +27,7 @@ Public Class FileDownloader
     End Sub
 
 
+
     Public Sub New(URL As String, target As String)
         ' This call is required by the designer.
         InitializeComponent()
@@ -50,7 +48,7 @@ Public Class FileDownloader
         Me.message = message
     End Sub
 
-    Private Sub FileDownloader_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub FileDownloader_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
         Try
             LblAction.Text = message
             LblStatus.Text = "Contacting server..."
@@ -63,7 +61,7 @@ Public Class FileDownloader
             tmptarget = Environment.GetFolderPath(Environment.SpecialFolder.InternetCache) & "/download.tmp"
 
             webc = New WebClient
-            webc.Headers = RequestHeader
+            webc.Headers = api.RequestHeader
 
             AddHandler webc.DownloadProgressChanged, AddressOf DownloadProgressChange
             AddHandler webc.DownloadFileCompleted, AddressOf DownloadCompleted
@@ -75,10 +73,9 @@ Public Class FileDownloader
             webc.DownloadFileAsync(New Uri(URL), tmptarget)
             tmrspeed.Start()
         Catch ex As Exception
-            MessageBox.Show("File download failed!" & vbCrLf & ex.Message, "Download failed!", MessageBoxButtons.OK,
-                            MessageBoxIcon.Error)
+            MessageBox.Show("File download failed!" & vbCrLf & ex.Message, "Download failed!", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Trace.WriteLine("File download failed!", ex.Message)
-            DialogResult = DialogResult.Cancel
+            DialogResult = Windows.Forms.DialogResult.Cancel
         End Try
     End Sub
 
@@ -95,15 +92,13 @@ Public Class FileDownloader
         Else
             Try
                 tmrspeed.Enabled = False
-                If FileSystem.FileExists(tmptarget) Then FileSystem.MoveFile(tmptarget, target, True)
-                DialogResult = DialogResult.OK
+                If FileIO.FileSystem.FileExists(tmptarget) Then FileIO.FileSystem.MoveFile(tmptarget, target, True)
+                DialogResult = Windows.Forms.DialogResult.OK
                 Me.Close()
             Catch ex As Exception
                 Trace.WriteLine("The downloaded file could not be saved: " + ex.Message)
-                MessageBox.Show(
-                    "The downloaded file could not be saved. Are you allowed to write to this location? Try running as administrator",
-                    "Couldn't save file", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                DialogResult = DialogResult.Cancel
+                MessageBox.Show("The downloaded file could not be saved. Are you allowed to write to this location? Try running as administrator", "Couldn't save file", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                DialogResult = Windows.Forms.DialogResult.Cancel
             End Try
         End If
     End Sub
@@ -113,9 +108,7 @@ Public Class FileDownloader
             Dim d As New ContextCallback(AddressOf setprogress)
             Me.Invoke(d, New Object() {e})
         Else
-            LblStatus.Text = "Downloading:" & " " & e.ProgressPercentage & "% [" & Math.Round(e.BytesReceived/1024) &
-                             "Kb/" & Math.Round(e.TotalBytesToReceive/1024) & "Kb] @ " & speed & " Kb/s  -  ETA:" &
-                             ETA_str  'only translate static part, users will understand numeric values"
+            LblStatus.Text = "Downloading:" & " " & e.ProgressPercentage & "% [" & Math.Round(e.BytesReceived / 1024) & "Kb/" & Math.Round(e.TotalBytesToReceive / 1024) & "Kb] @ " & speed & " Kb/s  -  ETA:" & ETA_str  'only translate static part, users will understand numeric values"
             PBProgress.Value = e.ProgressPercentage
         End If
     End Sub
@@ -124,31 +117,27 @@ Public Class FileDownloader
 
     Private Sub UpdateSpeed()
         old_speed = speed
-        speed =
-            Math.Round(
-                (((received - old_size)/1024*2) + ((old_size - old_size_2)/1024*2) + ((old_size_2 - old_size_3)/1024*2))/
-                2)
+        speed = Math.Round((((received - old_size) / 1024 * 2) + ((old_size - old_size_2) / 1024 * 2) + ((old_size_2 - old_size_3) / 1024 * 2)) / 2)
         old_size_3 = old_size_2
         old_size_2 = old_size
         old_size = received
         If speed > 0 Then
-            ETA_s = New TimeSpan(0, 0, Math.Round((ToReceive/1024)/((speed + old_speed)/2)))
+            ETA_s = New TimeSpan(0, 0, Math.Round((ToReceive / 1024) / ((speed + old_speed) / 2)))
             ETA_str = ETA_s.Minutes.ToString.PadLeft(2, "0") & ":" & ETA_s.Seconds.ToString.PadLeft(2, "0")
         End If
     End Sub
 
-    Private Sub BtnCancel_Click(sender As Object, e As EventArgs) Handles BtnCancel.Click
+    Private Sub BtnCancel_Click(sender As System.Object, e As System.EventArgs) Handles BtnCancel.Click
         Try
             webc.CancelAsync()
             webc.Dispose()
-            If FileSystem.FileExists(tmptarget) Then _
-                FileSystem.DeleteFile(tmptarget, UIOption.OnlyErrorDialogs, RecycleOption.DeletePermanently,
-                                      UICancelOption.DoNothing)
+            If FileIO.FileSystem.FileExists(tmptarget) Then FileIO.FileSystem.DeleteFile(tmptarget, FileIO.UIOption.OnlyErrorDialogs, FileIO.RecycleOption.DeletePermanently, FileIO.UICancelOption.DoNothing)
         Catch ex As Exception
             Trace.WriteLine("Something went wrong while cancelling a download: " + ex.Message)
         Finally
-            DialogResult = DialogResult.Cancel
+            DialogResult = Windows.Forms.DialogResult.Cancel
             Me.Close()
         End Try
     End Sub
+
 End Class

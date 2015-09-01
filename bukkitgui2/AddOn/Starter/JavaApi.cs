@@ -36,12 +36,14 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 				RegistryKey javaroot = Registry.LocalMachine.OpenSubKey("SOFTWARE\\JavaSoft");
 				if (Share.Is64Bit)
 				{
+					Logger.Log(LogLevel.Info, "JavaApi", "Getting Java location for 64bit machine");
 					RegistryKey javaroot32 = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Wow6432Node\\JavaSoft");
 					DetectJavaFromRegistry(javaroot, true);
 					DetectJavaFromRegistry(javaroot32);
 				}
 				else
 				{
+					Logger.Log(LogLevel.Info, "JavaApi", "Getting Java location for 32bit machine");
 					DetectJavaFromRegistry(javaroot);
 				}
 			}
@@ -119,9 +121,15 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 		/// <param name="path">The path to java.exe. If this file does not exist, the path will not be set</param>
 		private static void SetJavaPath(int version, bool is64Bitversion, string path)
 		{
-			if (!File.Exists(path)) return;
+			Logger.Log(LogLevel.Info, "JavaApi", "Registering java " + version + " at " + path);
+			if (!File.Exists(path))
+			{
+				Logger.Log(LogLevel.Warning, "JavaApi", "Failed to register java " + version + " at " + path,"File not found");
+				return;
+			}
 			int id = version*100 + ((is64Bitversion) ? 64 : 32);
 			_javaPaths[(JavaVersion) id] = path;
+			Logger.Log(LogLevel.Info, "JavaApi", "Registered java " + ((JavaVersion)id) + " at " + path);
 		}
 
 		/// <summary>
@@ -149,10 +157,11 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 			{
 				Initialize();
 			}
-
+			Logger.Log(LogLevel.Info, "JavaApi","Getting Java Path for version " + jreVersion);
+			string path;
 			if (jreVersion == JavaVersion.Custom)
 			{
-				string path = Config.ReadString("starter", "java_custom", "");
+				path = Config.ReadString("starter", "java_custom", "");
 				if (string.IsNullOrEmpty(path))
 				{
 					OpenFileDialog ofd = new OpenFileDialog
@@ -163,11 +172,19 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 					ofd.ShowDialog();
 					path = ofd.FileName;
 					Config.WriteString("starter", "java_custom", path);
+
 				}
+				Logger.Log(LogLevel.Info, "JavaApi", "Using custom java path: " + path);
 				return path;
 			}
 
-			if (_javaPaths.ContainsKey(jreVersion)) return _javaPaths[jreVersion];
+			if (_javaPaths.ContainsKey(jreVersion))
+			{
+				path = _javaPaths[jreVersion];
+				Logger.Log(LogLevel.Info, "JavaApi", "Using java " + jreVersion + ", path: " + path);
+				return path;
+			}
+			Logger.Log(LogLevel.Warning, "JavaApi", "Java " + jreVersion + " requested but not found!");
 			return null;
 		}
 

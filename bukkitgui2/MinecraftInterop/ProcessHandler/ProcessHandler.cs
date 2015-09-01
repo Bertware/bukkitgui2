@@ -54,7 +54,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler
 		{
 			get
 			{
-				if (ServerProcess == null) return new TimeSpan(0);
+				if (ServerProcess == null || CurrentState == ServerState.Stopped) return new TimeSpan(0);
 				return (DateTime.Now.Subtract(ServerProcess.StartTime));
 			}
 		}
@@ -214,6 +214,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler
 		{
 			SpecificServerStatusEvent handler = UnexpectedServerStop;
 			CurrentState = ServerState.Stopped;
+			Logger.Log(LogLevel.Info, "ProcessHandler","The server stopped unexpectedly!");
 			RaiseServerStatusChanged();
 			if (handler != null)
 			{
@@ -330,7 +331,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler
 		{
 			if (CurrentState != ServerState.Stopping) RaiseUnexpectedServerStop();
 			ServerProcess.Exited -= HandleStop;
-			StopThreads();
+			StopOutputReading();
 			RaiseServerStopped();
 		}
 
@@ -346,15 +347,6 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler
 			_runThreads = true;
 			_thdReadStdOut.Start();
 			_thdReadStdErr.Start();
-		}
-
-
-		/// <summary>
-		///     Stop the output reading threads
-		/// </summary>
-		private static void StopThreads()
-		{
-			_runThreads = false;
 		}
 
 		/// <summary>
