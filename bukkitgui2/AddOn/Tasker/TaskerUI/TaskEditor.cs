@@ -132,6 +132,18 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.TaskerUI
 				valid = false;
 			}
 
+			// there's always at least the button
+			if (gbAction.Controls.Count < 2)
+			{
+				errorProvider.SetError(btnNewAction,
+				"No action selected!");
+				valid = false;
+			}
+			else
+			{
+				errorProvider.SetError(btnNewAction,"");
+			}
+
 			btnSave.Enabled = valid;
 			return valid;
 		}
@@ -170,6 +182,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.TaskerUI
 			};
 			gbAction.Controls.Add(selector);
 			if (gbAction.Controls.Count > 4) btnNewAction.Enabled = false;
+			ValidateInput();
 		}
 
 
