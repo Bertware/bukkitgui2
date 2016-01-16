@@ -18,7 +18,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker.Trigger
     {
         public ServerUptimeTrigger()
         {
-            Name = "Server uptime";
+            Name = "Elapese server uptime";
             Description = "Execute a task after the given uptime. Precision: +- 2.5 seconds.";
             ParameterDescription =
                 "The time after which this task should execute, in HH:MM:SS format.";

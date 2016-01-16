@@ -156,6 +156,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 			foreach (string s in partedData)
 			{
 				string[] dataFragments = s.Split(new[] {"::"}, StringSplitOptions.None);
+				dataFragments[1] = dataFragments[1].Replace("Server uptime", "Elapsed server uptime");
 
 				try
 				{
@@ -175,6 +176,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 								Trigger = trigger;
 								break; // we're done, we got the trigger. There can only be one trigger!
 							}
+							
 							break;
 						case "ACT":
 							foreach (IAction a in AllActions)
