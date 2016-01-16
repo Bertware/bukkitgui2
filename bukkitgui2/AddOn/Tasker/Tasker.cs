@@ -10,6 +10,8 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Windows.Forms;
+using MetroFramework;
 using MetroFramework.Controls;
 using Net.Bertware.Bukkitgui2.Core.FileLocation;
 using Net.Bertware.Bukkitgui2.Core.Logging;
@@ -94,7 +96,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
         {
             DeleteTask(oldTask);
             AddTask(newTask);
-            // events aLocale.Tready fired by delete & add operations
+            // events are fired by delete & add operations
         }
 
         /// <summary>
@@ -117,9 +119,13 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
         /// <param name="task">the task to delete</param>
         public void DeleteTask(Task task)
         {
+	        if (task == null) return;
+
             task.Disable();
             task.TaskExecuted -= OnTaskExecuted;
+
             if (Tasks != null && Tasks.ContainsKey(task.Name)) Tasks.Remove(task.Name);
+
             task.Dispose(); // make sure it's removed
 			OnTaskListAltered();// list changed, invoke event
             SaveConfig();
@@ -130,18 +136,32 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
         /// </summary>
         private static void SaveConfig()
         {
-            Logger.Log(LogLevel.Info, "Tasker", "Saving tasks...", _Configfile);
+	        try
+	        {
 
-            if (!File.Exists(_Configfile)) File.Create(_Configfile).Close();
-            using (StreamWriter sw = File.CreateText(_Configfile))
-            {
-                foreach (KeyValuePair<string, Task> pair in Tasks)
-                {
-                    sw.WriteLine(pair.Value.Serialize());
-                    Logger.Log(LogLevel.Info, "Tasker", "Saved task", pair.Value.ToString());
-                }
-            }
-            Logger.Log(LogLevel.Info, "Tasker", "Saved all tasks");
+
+		        Logger.Log(LogLevel.Info, "Tasker", "Saving tasks...", _Configfile);
+
+		        if (!File.Exists(_Configfile)) File.Create(_Configfile).Close();
+
+		        using (StreamWriter sw = File.CreateText(_Configfile))
+		        {
+			        foreach (KeyValuePair<string, Task> pair in Tasks)
+			        {
+				        sw.WriteLine(pair.Value.Serialize());
+				        Logger.Log(LogLevel.Info, "Tasker", "Saved task", pair.Value.ToString());
+			        }
+		        }
+		        Logger.Log(LogLevel.Info, "Tasker", "Saved all tasks");
+	        }
+	        catch (Exception e)
+	        {
+				Logger.Log(LogLevel.Severe, "Tasker", "Failed to save tasks", e.Message);
+		        MetroMessageBox.Show(Form.ActiveForm,
+			        "The task settings could not be saved for an unknown reason", "Tasks not saved", MessageBoxButtons.OK,
+			        MessageBoxIcon.Error);
+
+	        }
         }
 
         public void Dispose()
