@@ -41,6 +41,8 @@ namespace Net.Bertware.Bukkitgui2.UI
 			// Should the splash screen be shown?
 			bool showSplash = !Environment.GetCommandLineArgs().Contains("-nosplash");
 			bool showUi = !Environment.GetCommandLineArgs().Contains("-minimized");
+			bool start = Environment.GetCommandLineArgs().Contains("-start");
+
 			if (!showUi) showSplash = false;
 
 			if (showSplash)
@@ -88,6 +90,9 @@ namespace Net.Bertware.Bukkitgui2.UI
 				Config.WriteBool("notifications", "enabled", true);
 			}
 			Logger.Log(LogLevel.Info, "mainform", "Finished loading");
+
+			// ! only for advanced users
+			if (start) Starter.StartServerAutomated();
 		}
 
 
