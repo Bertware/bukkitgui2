@@ -113,6 +113,8 @@ namespace Net.Bertware.Bukkitgui2.UI
 			MinecraftOutputHandler.OutputParsed += HandleOutput;
 			ProcessHandler.ServerStatusChanged += HandleServerStatusChange;
 			if (string.IsNullOrEmpty(_serverName))
+				_serverName = ServerProperties.GetServerSetting("server-name");
+			if (string.IsNullOrEmpty(_serverName))
 				_serverName = ServerProperties.GetServerSetting("motd");
 			if (_serverName == null) _serverName = ""; //prevent errors
 			Text = FormTitle + " - " + _serverName;
