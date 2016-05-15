@@ -106,6 +106,9 @@
     <Compile Include="AddOn\Backup\BackupTab.Designer.cs">
       <DependentUpon>BackupTab.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ConsoleInput\AutoCompletionMenu.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="AddOn\Console\Console.cs" />
     <Compile Include="AddOn\Console\ConsoleSettings.cs">
       <SubType>UserControl</SubType>

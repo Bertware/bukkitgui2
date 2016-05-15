@@ -14,6 +14,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using MetroFramework.Controls;
+using Net.Bertware.Bukkitgui2.AddOn.Console;
 using Net.Bertware.Bukkitgui2.AddOn.PlayerList;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler;
@@ -197,39 +198,44 @@ namespace Net.Bertware.Bukkitgui2.Controls.ConsoleInput
 			string text = (Text.Contains(' ')) ? Text.Split(' ').Last() : Text;
 
 			string result = "";
-			ContextMenu options = null;
+			AutoCompletionMenu contextMenu = null;
+
+			int matches = 0;
 
 			foreach (string command in getAutoCompleteContent())
 			{
-				if (!command.StartsWith(text)) continue;
+				// evaluate the lowercase, but don't alter the case for completion
+				if (!command.ToLower().StartsWith(text.ToLower())) continue;
 
-				if (options != null) // third or later hit, append list
-				{
-					options.MenuItems.Add(command, AutoCompleteFromContextMenu);
-				}
-				else if (!string.IsNullOrEmpty(result)) // this is our second hit, create a list
-				{
-					options = new ContextMenu();
-					options.MenuItems.Add(result, AutoCompleteFromContextMenu);
-					options.MenuItems.Add(command, AutoCompleteFromContextMenu);
-					result = null; // for detection later
-				}
-				else // nothing found yet
+				if (matches == 0) // nothing found yet (first found item)
 				{
 					result = command;
+				} 
+				else if (matches == 1) // this is our second hit, create a list
+				{
+					contextMenu = new AutoCompletionMenu();
+					contextMenu.MenuItems.Add(result, AutoCompleteFromContextMenu);
+					contextMenu.MenuItems.Add(command, AutoCompleteFromContextMenu);
 				}
+				else  // third or later hit, append existing list
+				{
+					contextMenu.MenuItems.Add(command, AutoCompleteFromContextMenu);
+				}
+				matches++;
 			}
 
-			if (!string.IsNullOrEmpty(result))
+			// exactly one match. Change the text.
+			if (matches == 1)
 			{
 				Text = Text.Substring(0, Text.Length - text.Length) + result;
 				Select(Text.Length, 0);
 				return; // we're done, auto complete name
 			}
 
-			if (options != null)
+			// show a contextmenu
+			if (matches > 1)
 			{
-				ContextMenu = options;
+				ContextMenu = contextMenu;
 				ContextMenu.Show(this, new Point(0, Height));
 				ContextMenu.Collapse += ((sender, args) => ResetContextMenu());
 			}

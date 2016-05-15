@@ -159,6 +159,21 @@ namespace Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler
 		}
 
 		/// <summary>
+		///     Get the online players
+		/// </summary>
+		/// <returns></returns>
+		public static IEnumerable<String> GetOnlinePlayerNames()
+		{
+			String[] result = new String[OnlinePlayers.Count];
+			int i = 0;
+			foreach (Player player in OnlinePlayers.Values)
+			{
+				result[i++] = player.Name;
+			}
+			return result;
+		}
+
+		/// <summary>
 		///     Get the amount of online players
 		/// </summary>
 		/// <returns></returns>
