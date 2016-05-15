@@ -52,10 +52,10 @@ namespace Net.Bertware.Bukkitgui2.Controls.PerformanceMonitor
 			this.label13 = new MetroFramework.Controls.MetroLabel();
 			this.label14 = new MetroFramework.Controls.MetroLabel();
 			this.ProgBarServerCpu = new MetroFramework.Controls.MetroProgressBar();
-			this.panel1 = new MetroPanel();
+			this.panel1 = new MetroFramework.Controls.MetroPanel();
 			this.LblUptimeValue = new MetroFramework.Controls.MetroLabel();
 			this.LblUptimeText = new MetroFramework.Controls.MetroLabel();
-			this.panel2 = new MetroPanel();
+			this.panel2 = new MetroFramework.Controls.MetroPanel();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
@@ -76,7 +76,7 @@ namespace Net.Bertware.Bukkitgui2.Controls.PerformanceMonitor
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(300, 19);
 			this.label1.TabIndex = 2;
-			this.label1.Text = Locale.Tr("RAM usage");
+			this.label1.Text = "RAM usage";
 			this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// label2
@@ -85,7 +85,7 @@ namespace Net.Bertware.Bukkitgui2.Controls.PerformanceMonitor
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(75, 19);
 			this.label2.TabIndex = 3;
-			this.label2.Text = Locale.Tr("Server:");
+			this.label2.Text = "Server:";
 			this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// label3
@@ -94,7 +94,7 @@ namespace Net.Bertware.Bukkitgui2.Controls.PerformanceMonitor
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(75, 19);
 			this.label3.TabIndex = 4;
-			this.label3.Text = Locale.Tr("Total:");
+			this.label3.Text = "Total:";
 			this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// label4
@@ -103,7 +103,7 @@ namespace Net.Bertware.Bukkitgui2.Controls.PerformanceMonitor
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(75, 19);
 			this.label4.TabIndex = 5;
-			this.label4.Text = Locale.Tr("GUI:");
+			this.label4.Text = "GUI:";
 			this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// LblServerRamUsageValue
@@ -112,7 +112,7 @@ namespace Net.Bertware.Bukkitgui2.Controls.PerformanceMonitor
 			this.LblServerRamUsageValue.Name = "LblServerRamUsageValue";
 			this.LblServerRamUsageValue.Size = new System.Drawing.Size(113, 19);
 			this.LblServerRamUsageValue.TabIndex = 6;
-			this.LblServerRamUsageValue.Text = Locale.Tr("16000 (100%)");
+			this.LblServerRamUsageValue.Text = "16000 (100%)";
 			this.LblServerRamUsageValue.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// LblGuiRamUsageValue
@@ -121,7 +121,7 @@ namespace Net.Bertware.Bukkitgui2.Controls.PerformanceMonitor
 			this.LblGuiRamUsageValue.Name = "LblGuiRamUsageValue";
 			this.LblGuiRamUsageValue.Size = new System.Drawing.Size(113, 19);
 			this.LblGuiRamUsageValue.TabIndex = 8;
-			this.LblGuiRamUsageValue.Text = Locale.Tr("16000 (100%)");
+			this.LblGuiRamUsageValue.Text = "16000 (100%)";
 			this.LblGuiRamUsageValue.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// ProgBarGuiRam
@@ -140,7 +140,7 @@ namespace Net.Bertware.Bukkitgui2.Controls.PerformanceMonitor
 			this.LblTotalRamUsageValue.Name = "LblTotalRamUsageValue";
 			this.LblTotalRamUsageValue.Size = new System.Drawing.Size(113, 19);
 			this.LblTotalRamUsageValue.TabIndex = 10;
-			this.LblTotalRamUsageValue.Text = Locale.Tr("16000 (100%)");
+			this.LblTotalRamUsageValue.Text = "16000 (100%)";
 			this.LblTotalRamUsageValue.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// ProgBarTotalRam
@@ -159,7 +159,7 @@ namespace Net.Bertware.Bukkitgui2.Controls.PerformanceMonitor
 			this.lblTotalCpuUsageValue.Name = "lblTotalCpuUsageValue";
 			this.lblTotalCpuUsageValue.Size = new System.Drawing.Size(52, 15);
 			this.lblTotalCpuUsageValue.TabIndex = 20;
-			this.lblTotalCpuUsageValue.Text = Locale.Tr("100%");
+			this.lblTotalCpuUsageValue.Text = "100%";
 			this.lblTotalCpuUsageValue.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// ProgBarTotalCpu
@@ -178,7 +178,7 @@ namespace Net.Bertware.Bukkitgui2.Controls.PerformanceMonitor
 			this.lblGuiCpuUsageValue.Name = "lblGuiCpuUsageValue";
 			this.lblGuiCpuUsageValue.Size = new System.Drawing.Size(52, 15);
 			this.lblGuiCpuUsageValue.TabIndex = 18;
-			this.lblGuiCpuUsageValue.Text = Locale.Tr("100%");
+			this.lblGuiCpuUsageValue.Text = "100%";
 			this.lblGuiCpuUsageValue.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// ProgBarGuiCpu
@@ -197,7 +197,7 @@ namespace Net.Bertware.Bukkitgui2.Controls.PerformanceMonitor
 			this.lblServerCpuUsageValue.Name = "lblServerCpuUsageValue";
 			this.lblServerCpuUsageValue.Size = new System.Drawing.Size(52, 18);
 			this.lblServerCpuUsageValue.TabIndex = 16;
-			this.lblServerCpuUsageValue.Text = Locale.Tr("100%");
+			this.lblServerCpuUsageValue.Text = "100%";
 			this.lblServerCpuUsageValue.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// label11
@@ -206,7 +206,7 @@ namespace Net.Bertware.Bukkitgui2.Controls.PerformanceMonitor
 			this.label11.Name = "label11";
 			this.label11.Size = new System.Drawing.Size(75, 15);
 			this.label11.TabIndex = 15;
-			this.label11.Text = Locale.Tr("GUI:");
+			this.label11.Text = "GUI:";
 			this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// label12
@@ -215,7 +215,7 @@ namespace Net.Bertware.Bukkitgui2.Controls.PerformanceMonitor
 			this.label12.Name = "label12";
 			this.label12.Size = new System.Drawing.Size(75, 15);
 			this.label12.TabIndex = 14;
-			this.label12.Text = Locale.Tr("Total:");
+			this.label12.Text = "Total:";
 			this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// label13
@@ -224,7 +224,7 @@ namespace Net.Bertware.Bukkitgui2.Controls.PerformanceMonitor
 			this.label13.Name = "label13";
 			this.label13.Size = new System.Drawing.Size(75, 18);
 			this.label13.TabIndex = 13;
-			this.label13.Text = Locale.Tr("Server:");
+			this.label13.Text = "Server:";
 			this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// label14
@@ -233,7 +233,7 @@ namespace Net.Bertware.Bukkitgui2.Controls.PerformanceMonitor
 			this.label14.Name = "label14";
 			this.label14.Size = new System.Drawing.Size(237, 19);
 			this.label14.TabIndex = 12;
-			this.label14.Text = Locale.Tr("CPU Usage");
+			this.label14.Text = "CPU usage";
 			this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// ProgBarServerCpu
@@ -260,10 +260,16 @@ namespace Net.Bertware.Bukkitgui2.Controls.PerformanceMonitor
 			this.panel1.Controls.Add(this.LblGuiRamUsageValue);
 			this.panel1.Controls.Add(this.ProgBarTotalRam);
 			this.panel1.Controls.Add(this.LblTotalRamUsageValue);
+			this.panel1.HorizontalScrollbarBarColor = true;
+			this.panel1.HorizontalScrollbarHighlightOnWheel = false;
+			this.panel1.HorizontalScrollbarSize = 10;
 			this.panel1.Location = new System.Drawing.Point(0, 0);
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(306, 100);
 			this.panel1.TabIndex = 21;
+			this.panel1.VerticalScrollbarBarColor = true;
+			this.panel1.VerticalScrollbarHighlightOnWheel = false;
+			this.panel1.VerticalScrollbarSize = 10;
 			// 
 			// LblUptimeValue
 			// 
@@ -271,7 +277,7 @@ namespace Net.Bertware.Bukkitgui2.Controls.PerformanceMonitor
 			this.LblUptimeValue.Name = "LblUptimeValue";
 			this.LblUptimeValue.Size = new System.Drawing.Size(113, 19);
 			this.LblUptimeValue.TabIndex = 12;
-			this.LblUptimeValue.Text = Locale.Tr("00:00:00");
+			this.LblUptimeValue.Text = "00:00:00";
 			this.LblUptimeValue.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// LblUptimeText
@@ -280,7 +286,7 @@ namespace Net.Bertware.Bukkitgui2.Controls.PerformanceMonitor
 			this.LblUptimeText.Name = "LblUptimeText";
 			this.LblUptimeText.Size = new System.Drawing.Size(75, 19);
 			this.LblUptimeText.TabIndex = 11;
-			this.LblUptimeText.Text = Locale.Tr("Uptime:");
+			this.LblUptimeText.Text = "Uptime:";
 			this.LblUptimeText.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// panel2
@@ -295,10 +301,16 @@ namespace Net.Bertware.Bukkitgui2.Controls.PerformanceMonitor
 			this.panel2.Controls.Add(this.ProgBarGuiCpu);
 			this.panel2.Controls.Add(this.label11);
 			this.panel2.Controls.Add(this.lblServerCpuUsageValue);
+			this.panel2.HorizontalScrollbarBarColor = true;
+			this.panel2.HorizontalScrollbarHighlightOnWheel = false;
+			this.panel2.HorizontalScrollbarSize = 10;
 			this.panel2.Location = new System.Drawing.Point(312, 0);
 			this.panel2.Name = "panel2";
 			this.panel2.Size = new System.Drawing.Size(248, 100);
 			this.panel2.TabIndex = 22;
+			this.panel2.VerticalScrollbarBarColor = true;
+			this.panel2.VerticalScrollbarHighlightOnWheel = false;
+			this.panel2.VerticalScrollbarSize = 10;
 			// 
 			// PerformanceMonitor
 			// 

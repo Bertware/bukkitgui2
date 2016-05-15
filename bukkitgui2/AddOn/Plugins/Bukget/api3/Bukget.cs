@@ -19,6 +19,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
 		public delegate void PluginsLoadedEventArgs(Dictionary<String, BukgetPlugin> currentlyLoadedPlugins);
 
 		public static event PluginsLoadedEventArgs NewPluginsLoaded;
+		private const int DEFAULT_COUNT = 64000;
 
 		private static void RaiseNewPluginsLoaded()
 		{
@@ -46,20 +47,20 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
 			private set { _currentlyLoadedPlugins = value; }
 		}
 
-		public static Dictionary<String, BukgetPlugin> GetMostPopularPlugins(int amount)
+		public static Dictionary<String, BukgetPlugin> GetMostPopularPlugins(int amount = DEFAULT_COUNT)
 		{
 			string url = BukgetUrlBuilder.ConstructUrl(BukgetUrlBuilder.FieldsSimple, PluginInfoField.Pop_Daily, true,
 				amount);
 			return RetrieveParseStore(url);
 		}
 
-		public static Dictionary<String, BukgetPlugin> GetPluginsByCategory(PluginCategory category, int amount)
+		public static Dictionary<String, BukgetPlugin> GetPluginsByCategory(PluginCategory category, int amount = DEFAULT_COUNT)
 		{
 			string url = BukgetUrlBuilder.ConstructUrl(category, BukgetUrlBuilder.FieldsSimple, amount);
 			return RetrieveParseStore(url);
 		}
 
-		public static Dictionary<String, BukgetPlugin> SearchPlugins(string searchtext, int amount)
+		public static Dictionary<String, BukgetPlugin> SearchPlugins(string searchtext,  int amount = DEFAULT_COUNT)
 		{
 			string url = BukgetUrlBuilder.ConstructUrl(PluginInfoField.Plugin_Name, SearchAction.Like, searchtext,
 				amount);
@@ -67,7 +68,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
 		}
 
 
-		public static Dictionary<String, BukgetPlugin> GetPluginsByCategory(string category, int amount)
+		public static Dictionary<String, BukgetPlugin> GetPluginsByCategory(string category, int amount = DEFAULT_COUNT )
 		{
 			PluginCategory cat =
 				(PluginCategory) Enum.Parse(typeof (PluginCategory), category.Replace(" ", "_").Replace("-", "__"));

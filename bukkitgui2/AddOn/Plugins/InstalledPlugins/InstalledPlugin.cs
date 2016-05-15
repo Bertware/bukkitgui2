@@ -105,7 +105,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 		/// <summary>
 		///     Remove (Delete) this plugin
 		/// </summary>
-		public void Remove()
+		public void Remove(bool forceRefresh = true)
 		{
 			if (!ProcessHandler.RequestServerStop()) return;
 
@@ -128,7 +128,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 			}
 			File.Delete(Path);
 
-			InstalledPluginManager.RefreshAllInstalledPluginsAsync();
+			if (forceRefresh) InstalledPluginManager.RefreshAllInstalledPluginsAsync();
 		}
 
 		/// <summary>

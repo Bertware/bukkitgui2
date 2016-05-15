@@ -1,10 +1,6 @@
 ﻿// BukgetPluginInstaller.cs in bukkitgui2/bukkitgui2
-// Created 2014/07/13
-// 
-// This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
-// If a copy of the MPL was not distributed with this file,
-// you can obtain one at http://mozilla.org/MPL/2.0/.
-// 
+// Created 2014/07/09
+// Last edited at 2015/09/01 10:57
 // ©Bertware, visit http://bertware.net
 
 using System;
@@ -44,11 +40,11 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
 
 			if (version.Filename.EndsWith(".jar"))
 			{
-				return InstallJar(version, targetlocation, updatelist, showUi);
+				return InstallJar(version, targetlocation, showUi);
 			}
 			if (version.Filename.EndsWith(".zip"))
 			{
-				return InstallZip(version, updatelist, showUi);
+				return InstallZip(version, showUi);
 			}
 			MetroMessageBox.Show(Application.OpenForms[0],
 				Locale.Tr("The file you chose to download is not supported yet.") + Constants.vbCrLf +
@@ -62,12 +58,9 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
 		/// </summary>
 		/// <param name="version">Version to install</param>
 		/// <param name="targetlocation">Target location, plugins/name by default</param>
-		/// <param name="updatelist">Update the list of installed plugins</param>
 		/// <param name="showUi">Allow pop-up dialogs</param>
 		/// <remarks></remarks>
-		private static Boolean InstallJar(BukgetPluginVersion version, string targetlocation = "",
-			bool updatelist = true,
-			bool showUi = true)
+		private static Boolean InstallJar(BukgetPluginVersion version, string targetlocation = "", bool showUi = true)
 		{
 			if (showUi)
 			{
@@ -93,17 +86,8 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
 
 			if (showUi)
 			{
-				MetroMessageBox.Show(Application.OpenForms[0],
-					version.Filename.Replace(".jar", "") + " (" + version.VersionNumber + ") " +
-					Locale.Tr("was installed succesfully"), Locale.Tr("Plugin Installed"), MessageBoxButtons.OK,
-					MessageBoxIcon.Information);
+				ShowInstallationComplete(version.Filename.Replace(".jar", ""), version.VersionNumber);
 			}
-			if (updatelist)
-				InstalledPluginManager.RefreshAllInstalledPluginsAsync();
-			//refresh installed list
-
-			ShowInstallationComplete();
-
 			return true;
 		}
 
@@ -111,12 +95,9 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
 		///     Install plguins from a zip file
 		/// </summary>
 		/// <param name="version">Version to install</param>
-		/// <param name="updatelist">Update the list of installed plugins</param>
 		/// <param name="showUi">Allow pop-up dialogs</param>
 		/// <remarks></remarks>
-		private static Boolean InstallZip(BukgetPluginVersion version,
-			bool updatelist = true,
-			bool showUi = true)
+		private static Boolean InstallZip(BukgetPluginVersion version, bool showUi = true)
 		{
 			if (showUi)
 			{
@@ -251,21 +232,18 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.Bukget.api3
 				"Finished plugin installation: Success?" + (hasFileBeenMoved || hasFolderBeenMoved));
 
 			//refresh installed list
-			if (updatelist)
-				InstalledPluginManager.RefreshAllInstalledPluginsAsync();
-			//refresh installed list
-
-			ShowInstallationComplete();
+			if (showUi) ShowInstallationComplete(version.PluginName, version.VersionNumber);
 
 			return (hasFileBeenMoved || hasFolderBeenMoved);
 		}
 
 
-		private static void ShowInstallationComplete()
+		private static void ShowInstallationComplete(string name, string version)
 		{
 			MetroMessageBox.Show(Application.OpenForms[0],
-				Locale.Tr("The plugin has been installed. Restart your server to enable it."),
-				Locale.Tr("Plugin installed"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+				name + " (" + version + ") " +
+				Locale.Tr("was installed succesfully"), Locale.Tr("Plugin Installed"), MessageBoxButtons.OK,
+				MessageBoxIcon.Information);
 		}
 	}
 }

@@ -63,25 +63,29 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 			}
 		}
 
-		private void btnVersions_Click(object sender, EventArgs e)
+		private void ShowVersions(object sender, EventArgs e)
 		{
 			if (slvPlugins.SelectedItems.Count < 0) return;
-			string filename = ((InstalledPlugin) (slvPlugins.SelectedItems[0].Tag)).FileName;
+			foreach (ListViewItem item in slvPlugins.SelectedItems)
+			{
+				string filename = ((InstalledPlugin)(item.Tag)).FileName;
 			InstalledPlugin plugin = InstalledPluginManager.Plugins[filename];
 			try
 			{
 				BukgetPlugin.CreateFromNamespace(plugin.Mainspace).ShowVersionDialog(plugin.Path);
 			}
+
 			catch (Exception ex)
 			{
 				Logger.Log(LogLevel.Warning, "InstalledPlugins", "Couldn't get versions dialog for plugin", ex.Message);
 				MetroMessageBox.Show(Application.OpenForms[0],
-					"Couldn't retrieve plugin data for this plugin. Maybe this plugin or version is not in the database",
+					"Couldn't retrieve plugin data for " + filename + ". Maybe this plugin or version is not in the database",
 					"Couldn't retrieve data", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
 			}
 		}
 
-		private void btnUpdate_Click(object sender, EventArgs e)
+		private void UpdateSelectedPlugins(object sender, EventArgs e)
 		{
 			if (slvPlugins.SelectedItems.Count < 0) return;
 			List<InstalledPlugin> plugins = new List<InstalledPlugin>();
@@ -93,7 +97,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 			updater.Show();
 		}
 
-		private void btnRemove_Click(object sender, EventArgs e)
+		private void UninstallSelectedPlugins(object sender, EventArgs e)
 		{
 			if (slvPlugins.SelectedItems.Count < 0) return;
 			foreach (ListViewItem item in slvPlugins.SelectedItems)
@@ -104,8 +108,9 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 						"Are you sure you want to delete this plugin?" + Environment.NewLine + plugin.Name,
 						"Delete this plugin?",
 						MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-					plugin.Remove();
+					plugin.Remove(false);
 			}
+			InstalledPluginManager.RefreshAllInstalledPluginsAsync();
 			slvPlugins_SelectedIndexChanged(null, null); // force index check to disable buttons if needed
 		}
 
@@ -117,9 +122,46 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 			btnVersions.Enabled = selected;
 		}
 
-		private void btnOpenFolder_Click(object sender, EventArgs e)
+		private void OpenPluginFolder(object sender, EventArgs e)
 		{
 			Process.Start(Fl.SafeLocation(RequestFile.Plugindir));
 		}
+
+		private void ShowSelectedPluginsWebpage(object sender, EventArgs e)
+		{
+			if (slvPlugins.SelectedItems.Count < 0) return;
+			foreach (ListViewItem item in slvPlugins.SelectedItems)
+			{
+				string filename = ((InstalledPlugin)(item.Tag)).FileName;
+				InstalledPlugin plugin = InstalledPluginManager.Plugins[filename];
+				try
+				{
+					BukgetPlugin.CreateFromNamespace(plugin.Mainspace).OpenBukkitdevPage();
+				}
+
+				catch (Exception ex)
+				{
+					Logger.Log(LogLevel.Warning, "InstalledPlugins", "Couldn't get website for plugin", ex.Message);
+					MetroMessageBox.Show(Application.OpenForms[0],
+						"Couldn't retrieve plugin information for " + filename + ". Maybe this plugin or version is not in the database.",
+						"Couldn't retrieve data", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				}
+			}
+		}
+
+		private void ReloadInstalledPlugins(object sender, EventArgs e)
+		{
+			InstalledPluginManager.RefreshAllInstalledPluginsAsync();
+		}
+
+		private void CtxMenu_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+		{
+			bool selected = (slvPlugins.SelectedItems.Count > 0);
+			CBtnShowVersions.Enabled = selected;
+			CBtnUninstall.Enabled = selected;
+			CBtnUpdate.Enabled = selected;
+			CBtnViewWebsite.Enabled = selected;
+		}
+
 	}
 }

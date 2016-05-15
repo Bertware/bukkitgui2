@@ -56,7 +56,15 @@ namespace Net.Bertware.Bukkitgui2.Core.Logging
 			//if initialized, also log to file
 			if (IsInitialized)
 			{
-				_entries.Add(entry);
+				try
+				{
+					_entries.Add(entry);
+				}
+				catch (Exception ignored)
+				{
+					// ignored
+				}
+
 				if (_entries.Count > 512) SaveFile();
 			}
 		}

@@ -136,31 +136,51 @@ namespace Net.Bertware.Bukkitgui2.AddOn.PlayerList
 		private void ContextPlayersKick_Click(object sender, EventArgs e)
 		{
 			if (SlvPlayers.SelectedItems.Count < 1) return;
-			((Player) (SlvPlayers.SelectedItems[0].Tag)).Kick();
+			foreach (ListViewItem item in SlvPlayers.SelectedItems)
+			{
+				((Player)item.Tag).Kick();
+			}
 		}
 
 		private void ContextPlayersBan_Click(object sender, EventArgs e)
 		{
 			if (SlvPlayers.SelectedItems.Count < 1) return;
-			((Player) (SlvPlayers.SelectedItems[0].Tag)).Ban();
+			foreach (ListViewItem item in SlvPlayers.SelectedItems)
+			{
+				((Player)item.Tag).Ban();
+			}
 		}
 
 		private void ContextPlayersBanIp_Click(object sender, EventArgs e)
 		{
 			if (SlvPlayers.SelectedItems.Count < 1) return;
-			((Player) (SlvPlayers.SelectedItems[0].Tag)).BanIp();
+			foreach (ListViewItem item in SlvPlayers.SelectedItems)
+			{
+				((Player)item.Tag).BanIp();
+			}
 		}
 
 		private void ContextPlayersOp_Click(object sender, EventArgs e)
 		{
 			if (SlvPlayers.SelectedItems.Count < 1) return;
-			((Player) (SlvPlayers.SelectedItems[0].Tag)).SetOp(true);
+			foreach (ListViewItem item in SlvPlayers.SelectedItems)
+			{
+				((Player)item.Tag).SetOp(true);
+			}
 		}
 
 		private void ContextPlayersDeOp_Click(object sender, EventArgs e)
 		{
 			if (SlvPlayers.SelectedItems.Count < 1) return;
-			((Player) (SlvPlayers.SelectedItems[0].Tag)).SetOp(false);
+			foreach (ListViewItem item in SlvPlayers.SelectedItems)
+			{
+				((Player)item.Tag).SetOp(false);
+			}
+		}
+
+		private void ContextPlayers_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+		{
+			ContextPlayers.Enabled = (SlvPlayers.SelectedItems.Count > 0);
 		}
 	}
 }

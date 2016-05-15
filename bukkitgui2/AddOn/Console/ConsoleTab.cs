@@ -278,7 +278,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			}
 		}
 
-		private void SlvPlayers_SelectedIndexChanged(object sender, EventArgs e)
+		private void ContextPlayers_Opening(object sender, System.ComponentModel.CancelEventArgs e)
 		{
 			ContextPlayers.Enabled = (SlvPlayers.SelectedItems.Count > 0);
 		}

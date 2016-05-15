@@ -63,7 +63,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 
 		public static void RefreshAllInstalledPluginsAsync()
 		{
-			Thread t = new Thread(LoadPlugins) {Name = "InstalledPluginManager_LoadAsync", IsBackground = true};
+			Thread t = new Thread(LoadPlugins) {Name = "InstalledPluginManager_RefreshAsync", IsBackground = true};
 			t.SetApartmentState(ApartmentState.MTA);
 			t.Start();
 		}
@@ -92,6 +92,8 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 			if (pluginfiles.Length < 1)
 			{
 				Logger.Log(LogLevel.Warning, "pluginmanager", "Cancelled simple list creation: no Plugins");
+				// still raise event to update UI, maybe the last plugin was removed
+				RaiseInstalledPluginListLoadedSimpleList();
 				//no Plugins, nothing to do here
 				return;
 			}
@@ -130,7 +132,10 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins.InstalledPlugins
 			Logger.Log(LogLevel.Info, "InstalledPlugins", "Loading full list",
 				"Pluginmanager.InstalledPluginmanager.CreateDetailledList()");
 			if (Plugins == null || Plugins.Count == 0)
+			{
+				RaiseInstalledPluginListLoadedFullList();
 				return;
+			}
 			try
 			{
 				int i = 0;
