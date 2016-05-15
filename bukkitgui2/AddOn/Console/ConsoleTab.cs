@@ -51,6 +51,62 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			imgListPlayerFaces.Images.Add("default", Resources.player_face);
 
 			MCCOut.Autoscroll = Config.ReadBool("console", "autoscroll", true);
+
+			CIConsoleInput.AddAutocompleteSource(PlayerHandler.GetOnlinePlayerNames);
+			CIConsoleInput.AddAutocompleteSource(GetKnownCommands);
+		}
+
+
+		/// <summary>
+		///     Known commands for auto completion
+		/// </summary>
+		private static string[] GetKnownCommands()
+		{
+			return new[]{
+				"version",
+				"plugins",
+				"reload",
+				"timings",
+				"tell <player> <message>",
+				"kill",
+				"me",
+				"help",
+				"say",
+				"ban",
+				"banlist",
+				"pardon",
+				"pardon-ip",
+				"ban-ip",
+				"op",
+				"de-op",
+				"kick",
+				"tp",
+				"give",
+				"stop",
+				"save-all",
+				"save-on",
+				"save-off",
+				"list",
+				"whitelist",
+				"whitelist list",
+				"whitelist reload",
+				"time",
+				"gamemode",
+				"xp",
+				"toggledownfall",
+				"defaultgamemode",
+				"enchant",
+				"seed",
+				"weather",
+				"clear",
+				"difficulty",
+				"spawnpoint",
+				"gamerule",
+				"effect",
+				"setidletimeout",
+				"setworldspawn",
+				"achievement give"
+			};
 		}
 
 

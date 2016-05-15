@@ -11,8 +11,11 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using MetroFramework.Controls;
+using Net.Bertware.Bukkitgui2.AddOn.PlayerList;
+using Net.Bertware.Bukkitgui2.MinecraftInterop.OutputHandler;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.PlayerHandler;
 using Net.Bertware.Bukkitgui2.MinecraftInterop.ProcessHandler;
 
@@ -162,19 +165,27 @@ namespace Net.Bertware.Bukkitgui2.Controls.ConsoleInput
 			_commandHistoryBrowseId++;
 			Text = "";
 		}
-
-		/// <summary>
-		///     Known commands for auto completion
-		/// </summary>
-		private static readonly string[] _Commands =
+		
+		public delegate IEnumerable<String> AutoCompleteSourceDelegate();
+		private readonly List<AutoCompleteSourceDelegate> _sources = new List<AutoCompleteSourceDelegate>(); 
+		public void AddAutocompleteSource(AutoCompleteSourceDelegate d)
 		{
-			"version", "plugins", "reload", "timings", "tell <player> <message>",
-			"kill", "me", "help", "say", "ban", "banlist", "pardon", "pardon-ip", "ban-ip", "op", "de-op", "kick", "tp", "give",
-			"stop", "save-all", "save-on", "save-off", "list", "whitelist", "whitelist list", "whitelist reload", "time",
-			"gamemode", "xp", "toggledownfall",
-			"defaultgamemode", "enchant", "seed", "weather", "clear", "difficulty", "spawnpoint", "gamerule", "effect",
-			"setidletimeout", "setworldspawn", "achievement give"
-		};
+			_sources.Add(d);	
+		}
+
+		private List<string> getAutoCompleteContent()
+		{
+			List<String> content = new List<string>();
+			foreach (AutoCompleteSourceDelegate source in _sources)
+			{
+				foreach (string s in source())
+				{
+					content.Add(s);
+				}
+			}
+			content.Sort();
+			return content;
+		} 
 
 		/// <summary>
 		///     Auto complete a player name or command (if there's 1 option) or show a list of possibilities
@@ -188,27 +199,7 @@ namespace Net.Bertware.Bukkitgui2.Controls.ConsoleInput
 			string result = "";
 			ContextMenu options = null;
 
-			foreach (Player p in PlayerHandler.GetOnlinePlayers())
-			{
-				if (!p.Name.ToLower().StartsWith(text)) continue;
-
-				if (options != null) // third or later hit, append list
-				{
-					options.MenuItems.Add(p.Name + " ", AutoCompleteFromContextMenu);
-				}
-				else if (!string.IsNullOrEmpty(result)) // this is our second hit, create a list
-				{
-					options = new ContextMenu();
-					options.MenuItems.Add(result, AutoCompleteFromContextMenu);
-					options.MenuItems.Add(p.Name + " ", AutoCompleteFromContextMenu);
-				}
-				else // nothing found yet
-				{
-					result = p.Name + " ";
-				}
-			}
-
-			foreach (string command in _Commands)
+			foreach (string command in getAutoCompleteContent())
 			{
 				if (!command.StartsWith(text)) continue;
 
