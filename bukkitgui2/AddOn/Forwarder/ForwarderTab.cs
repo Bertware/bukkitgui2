@@ -1,10 +1,6 @@
 ﻿// ForwarderTab.cs in bukkitgui2/bukkitgui2
 // Created 2014/01/17
-// 
-// This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
-// If a copy of the MPL was not distributed with this file,
-// you can obtain one at http://mozilla.org/MPL/2.0/.
-// 
+// Last edited at 2016/05/15 21:26
 // ©Bertware, visit http://bertware.net
 
 using System;
@@ -116,7 +112,15 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Forwarder
 		{
 			if (slvPortMappings.SelectedItems.Count < 1) return;
 			PortMappingEntry entry = (PortMappingEntry) slvPortMappings.SelectedItems[0].Tag;
-			entry.RemoveFromMapping();
+			try
+			{
+				entry.RemoveFromMapping();
+			}
+			catch
+			{
+				MetroMessageBox.Show(this, "Error during rule removal",
+					"This rule couldn't be removed. Try removing it from the router's webinterface.");
+			}
 		}
 	}
 }
