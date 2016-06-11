@@ -116,8 +116,16 @@ namespace Net.Bertware.Bukkitgui2.UI
 				_serverName = ServerProperties.GetServerSetting("server-name");
 			if (string.IsNullOrEmpty(_serverName))
 				_serverName = ServerProperties.GetServerSetting("motd");
-			if (_serverName == null) _serverName = ""; //prevent errors
-			Text = FormTitle + " - " + _serverName;
+
+			if (!string.IsNullOrEmpty(_serverName))
+			{
+				Text = _serverName + " - " + FormTitle;
+			}
+			else
+			{
+				Text =  FormTitle;
+			}
+			
 		}
 
 		private void HandleServerStatusChange(ServerState currentState)
