@@ -34,6 +34,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
 		{
             this.components = new System.ComponentModel.Container();
             this.GBServer = new System.Windows.Forms.GroupBox();
+            this.btnOpenDirectory = new MetroFramework.Controls.MetroButton();
             this.BtnBrowseJarFile = new MetroFramework.Controls.MetroButton();
             this.BtnLaunch = new MetroFramework.Controls.MetroButton();
             this.label7 = new MetroFramework.Controls.MetroLabel();
@@ -74,7 +75,6 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.metroStyleExtender = new MetroFramework.Components.MetroStyleExtender(this.components);
             this.metroToolTip = new MetroFramework.Components.MetroToolTip();
-            this.btnOpenDirectory = new MetroFramework.Controls.MetroButton();
             this.GBServer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NumMaxRam)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NumMinRam)).BeginInit();
@@ -114,6 +114,19 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
             this.GBServer.TabIndex = 0;
             this.GBServer.TabStop = false;
             this.GBServer.Text = "Server";
+            // 
+            // btnOpenDirectory
+            // 
+            this.btnOpenDirectory.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.errorProvider.SetIconAlignment(this.btnOpenDirectory, System.Windows.Forms.ErrorIconAlignment.MiddleLeft);
+            this.btnOpenDirectory.Location = new System.Drawing.Point(152, 116);
+            this.btnOpenDirectory.Name = "btnOpenDirectory";
+            this.btnOpenDirectory.Size = new System.Drawing.Size(326, 23);
+            this.btnOpenDirectory.TabIndex = 18;
+            this.btnOpenDirectory.Text = "Open containing directory";
+            this.btnOpenDirectory.UseSelectable = true;
+            this.btnOpenDirectory.Click += new System.EventHandler(this.btnOpenDirectory_Click);
             // 
             // BtnBrowseJarFile
             // 
@@ -407,6 +420,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
             // 
             // LblLatestDevValue
             // 
+            this.LblLatestDevValue.FontWeight = MetroFramework.MetroLabelWeight.Bold;
             this.LblLatestDevValue.Location = new System.Drawing.Point(139, 126);
             this.LblLatestDevValue.Margin = new System.Windows.Forms.Padding(2);
             this.LblLatestDevValue.Name = "LblLatestDevValue";
@@ -416,6 +430,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
             // 
             // LblLatestBetaValue
             // 
+            this.LblLatestBetaValue.FontWeight = MetroFramework.MetroLabelWeight.Bold;
             this.LblLatestBetaValue.Location = new System.Drawing.Point(139, 82);
             this.LblLatestBetaValue.Margin = new System.Windows.Forms.Padding(2);
             this.LblLatestBetaValue.Name = "LblLatestBetaValue";
@@ -425,6 +440,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
             // 
             // LblLatestRecommendedValue
             // 
+            this.LblLatestRecommendedValue.FontWeight = MetroFramework.MetroLabelWeight.Bold;
             this.LblLatestRecommendedValue.Location = new System.Drawing.Point(139, 38);
             this.LblLatestRecommendedValue.Margin = new System.Windows.Forms.Padding(2);
             this.LblLatestRecommendedValue.Name = "LblLatestRecommendedValue";
@@ -562,19 +578,6 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Starter
             this.metroToolTip.Style = MetroFramework.MetroColorStyle.Blue;
             this.metroToolTip.StyleManager = null;
             this.metroToolTip.Theme = MetroFramework.MetroThemeStyle.Light;
-            // 
-            // btnOpenDirectory
-            // 
-            this.btnOpenDirectory.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.errorProvider.SetIconAlignment(this.btnOpenDirectory, System.Windows.Forms.ErrorIconAlignment.MiddleLeft);
-            this.btnOpenDirectory.Location = new System.Drawing.Point(152, 116);
-            this.btnOpenDirectory.Name = "btnOpenDirectory";
-            this.btnOpenDirectory.Size = new System.Drawing.Size(326, 23);
-            this.btnOpenDirectory.TabIndex = 18;
-            this.btnOpenDirectory.Text = "Open containing directory";
-            this.btnOpenDirectory.UseSelectable = true;
-            this.btnOpenDirectory.Click += new System.EventHandler(this.btnOpenDirectory_Click);
             // 
             // StarterTab
             // 
