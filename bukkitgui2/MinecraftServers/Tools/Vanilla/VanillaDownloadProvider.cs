@@ -71,7 +71,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers.Tools.Vanilla
 			{
 				if (_cache != null) return _cache;
 				string json =
-					WebUtil.RetrieveString("https://s3.amazonaws.com/Minecraft.Download/versions/versions.json");
+					WebUtil.RetrieveString("https://launchermeta.mojang.com/mc/game/version_manifest.json");
 				if (string.IsNullOrEmpty(json)) return null;
 				_cache = new VanillaDownloadInfo(json);
 				return _cache;
