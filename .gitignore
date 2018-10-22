@@ -154,3 +154,6 @@ $RECYCLE.BIN/
 
 # Mac desktop service store files
 .DS_Store
+/.vs/bukkitgui2/v15/Server/sqlite3/db.lock
+/.vs/bukkitgui2/v15/Server/sqlite3/storage.ide
+/.vs/bukkitgui2/v15/Server/sqlite3

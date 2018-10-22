@@ -35,8 +35,6 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers.Servers
 			CanDownloadDevVersion = false;
 			CanDownloadRecommendedVersion = false;
 
-			CanGetCurrentVersion = true;
-
 			SupportsPlugins = true;
 		}
 
