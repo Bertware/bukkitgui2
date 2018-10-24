@@ -21,22 +21,132 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers.Tools.Vanilla
 	{
 		public static string GetLatestUrl()
 		{
-			string id = GetLatestVersion();
-			return "https://s3.amazonaws.com/Minecraft.Download/versions/" + id + "/minecraft_server." + id + ".jar";
+            try
+            {
+                VanillaDownload download = GetDownloadFromId(
+                    GetLatestVersion(),
+                    VanillaDownloadType.snapshot);
+                return GetVanillaDownloadURL(download);
+            }
+            catch (Exception e)
+            {
+                Logger.Log(LogLevel.Warning, "VanillaDownloadProvider",
+                    "Failed to retrieve latest vanilla version URL", e.Message);
+
+                // Why isn't this string null or empty?
+                // If address has invalid format, WebUtil crashes BukkitGui
+                // This is a little workarround
+                // https://0.0.0.0 leads to "void", but it doesn't crash BG
+                return "https://0.0.0.0";
+            }
 		}
 
 		public static string GetLatestRecommendedVersionUrl()
 		{
-			string id = GetLatestRecommendedVersion();
-			return "https://s3.amazonaws.com/Minecraft.Download/versions/" + id + "/minecraft_server." + id + ".jar";
-		}
+            try
+            {
+                VanillaDownload download = GetDownloadFromId(
+                    GetLatestVersion(),
+                    VanillaDownloadType.release);
+                return GetVanillaDownloadURL(download);
+            }
+            catch (Exception e)
+            {
+                Logger.Log(LogLevel.Warning, "VanillaDownloadProvider",
+                    "Failed to retrieve latest recommended vanilla version URL", e.Message);
+
+                // Why isn't this string null or empty?
+                // If address has invalid format, WebUtil crashes BukkitGui
+                // This is a little workarround
+                // https://0.0.0.0 leads to "void", but it doesn't crash BG
+                return "https://0.0.0.0";
+            }
+        }
+
+        private static VanillaDownload GetDownloadFromId(string id, VanillaDownloadType type)
+        {
+            try
+            {
+                VanillaDownload result = null;
+
+                string latestId = GetLatestVersionId(type);
+
+                foreach (VanillaDownload download in GetVersionInfo().Versions)
+                {
+                    if (download.Id == latestId)
+                    {
+                        result = download;
+                        break;
+                    }
+                }
+
+                return result;
+            }
+            catch (Exception e)
+            {
+                Logger.Log(LogLevel.Warning, "VanillaDownloadProvider", "Failed to retrieve download from ID",
+                    e.Message);
+                return null;
+            }
+        }
+
+        private static string GetVanillaDownloadURL(VanillaDownload download)
+        {
+            string json = WebUtil.RetrieveString(download.URL);
+
+            if (string.IsNullOrEmpty(json)) return null;
+
+            //{
+            //  "downloads": {
+            //    "client": {
+            //      "sha1": "3ad1375091d9de67beb3197dcd173d05ff27dd0b",
+            //      "size": 16089525,
+            //      "url": "https:\/\/launcher.mojang.com\/v1\/objects\/3ad1375091d9de67beb3197dcd173d05ff27dd0b\/client.jar"
+            //    },
+            //    "server": {
+            //      "sha1": "2f39df32f20196b5a6acad117f7d6b404b069c58",
+            //      "size": 33834968,
+            //      "url": "https:\/\/launcher.mojang.com\/v1\/objects\/2f39df32f20196b5a6acad117f7d6b404b069c58\/server.jar"
+            //    }
+            //  }
+            //}
+
+            // Root level
+            JsonObject obj = JsonConvert.Import<JsonObject>(json);
+            string temp = obj["downloads"].ToString();
+            // 'downloads' level
+            obj = JsonConvert.Import<JsonObject>(temp);
+            temp = obj["server"].ToString();
+            // 'server' level
+            obj = JsonConvert.Import<JsonObject>(temp);
+            return obj["url"].ToString();
+        }
+
+        private static string GetLatestVersionId(VanillaDownloadType type)
+        {
+            try
+            {
+                JsonObject latestList = JsonConvert.Import<JsonObject>(GetVersionInfo().Latest);
+
+                if (type == VanillaDownloadType.unknown)
+                    return null;
+
+                return latestList[type.ToString()].ToString();
+            }
+            catch (Exception e)
+            {
+                Logger.Log(LogLevel.Warning, "VanillaDownloadProvider",
+                    "Failed to retrieve latest vanilla version ID", e.Message);
+                return "";
+            }
+        }
 
 		public static string GetLatestVersion()
 		{
 			try
 			{
-				return GetVersionInfo().Latest.Id;
-			}
+                return GetLatestVersionId(VanillaDownloadType.snapshot);
+            }
 			catch (Exception e)
 			{
 				Logger.Log(LogLevel.Warning, "VanillaDownloadProvider", "Failed to retrieve latest  vanilla version",
@@ -63,7 +173,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers.Tools.Vanilla
 			}
 		}
 
-		private static VanillaDownloadInfo _cache;
+        private static VanillaDownloadInfo _cache;
 
 		private static VanillaDownloadInfo GetVersionInfo()
 		{
@@ -71,7 +181,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers.Tools.Vanilla
 			{
 				if (_cache != null) return _cache;
 				string json =
-					WebUtil.RetrieveString("https://s3.amazonaws.com/Minecraft.Download/versions/versions.json");
+					WebUtil.RetrieveString("https://launchermeta.mojang.com/mc/game/version_manifest.json");
 				if (string.IsNullOrEmpty(json)) return null;
 				_cache = new VanillaDownloadInfo(json);
 				return _cache;
@@ -88,7 +198,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers.Tools.Vanilla
 	internal class VanillaDownloadInfo
 	{
 		public List<VanillaDownload> Versions { get; private set; }
-		public VanillaDownload Latest { get; private set; }
+		public string Latest { get; private set; }
 
 		public VanillaDownloadInfo(string json)
 		{
@@ -98,7 +208,7 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers.Tools.Vanilla
 			try
 			{
 				Versions = new List<VanillaDownload>();
-				Latest = new VanillaDownload(obj["latest"].ToString());
+				Latest = obj["latest"].ToString();
 
 				foreach (JsonObject entry in (JsonArray) obj["versions"])
 				{
@@ -113,19 +223,22 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers.Tools.Vanilla
 	}
 
 	internal class VanillaDownload
-	{
-		//{
-		//  "id": "1.8.1-pre4",
-		//  "time": "2014-11-06T14:10:50+00:00",
-		//  "releaseTime": "2014-11-06T14:10:50+00:00",
-		//  "type": "snapshot"
-		//},
+    {
+        //{
+        //  "id": "1.13.2-pre2",
+        //  "type": "snapshot",
+        //  "url": "https:\/\/launchermeta.mojang.com\/v1\/packages\/d62148cdd47d2e7e524ea027bf01d5f74f26a020\/1.13.2-pre2.json",
+        //  "time": "2018-10-18T14:48:25+00:00",
+        //  "releaseTime": "2018-10-18T14:46:12+00:00"
+        //},
 		public String Id { get; private set; }
 		public DateTime Time { get; private set; }
 
 		public DateTime ReleaseTime { get; private set; }
 
 		public VanillaDownloadType Type { get; private set; }
+
+        public string URL;
 
 		public VanillaDownload(string json)
 		{
@@ -145,7 +258,9 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers.Tools.Vanilla
 				if (obj.Contains("releasetime")) ReleaseTime = DateTime.Parse(obj["releasetime"].ToString());
 				if (obj.Contains("type"))
 					Type = (VanillaDownloadType) Enum.Parse(typeof (VanillaDownloadType), obj["type"].ToString());
-			}
+                if (obj.Contains("url"))
+                    URL = obj["url"].ToString();
+            }
 			catch (Exception e)
 			{
 				Logger.Log(LogLevel.Warning, "VanillaDownloadProvider", "Failed to parse download", e.Message);
@@ -158,8 +273,6 @@ namespace Net.Bertware.Bukkitgui2.MinecraftServers.Tools.Vanilla
 		// these names HAVE to be exact!
 		snapshot,
 		release,
-		old_alpha,
-		old_beta,
 		unknown
 	}
 }
