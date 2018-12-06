@@ -33,6 +33,14 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Updater
         }
 
         /// <summary>
+        ///     The addon priority. Default: 0
+        /// </summary>
+        public int Priority
+        {
+            get { return 0; }
+        }
+
+        /// <summary>
         ///     True if this addon has a tab page
         /// </summary>
         public bool HasTab

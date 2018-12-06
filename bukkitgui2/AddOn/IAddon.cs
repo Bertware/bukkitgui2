@@ -19,6 +19,11 @@ namespace Net.Bertware.Bukkitgui2.AddOn
 		/// </summary>
 		string Name { get; }
 
+        /// <summary>
+        ///     The addon priority. Default: 0
+        /// </summary>
+        int Priority { get; }
+
 		/// <summary>
 		///     True if this addon has a tabpage
 		/// </summary>

@@ -24,6 +24,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Backup
 		{
 			Reference = this;
 			Name = "Backup";
+            Priority = 0;
 			HasTab = true;
 			TabPage = new BackupTab();
 			HasConfig = false;
@@ -35,10 +36,15 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Backup
 		/// </summary>
 		public string Name { get; private set; }
 
-		/// <summary>
-		///     True if this addon has a tab page
-		/// </summary>
-		public bool HasTab { get; private set; }
+        /// <summary>
+        ///     The addon priority. Default: 0
+        /// </summary>
+        public int Priority { get; private set; }
+
+        /// <summary>
+        ///     True if this addon has a tab page
+        /// </summary>
+        public bool HasTab { get; private set; }
 
 		/// <summary>
 		///     True if this addon has a config field
@@ -99,8 +105,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Backup
 			get { return Backups != null; }
 		}
 
-
-		public void LoadAllBackups()
+        public void LoadAllBackups()
 		{
 			try
 			{

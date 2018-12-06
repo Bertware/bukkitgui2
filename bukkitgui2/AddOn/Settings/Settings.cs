@@ -57,6 +57,14 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Settings
         }
 
         /// <summary>
+        ///     The addon priority. Default: 0
+        /// </summary>
+        public int Priority
+        {
+            get { return 10; }
+        }
+
+        /// <summary>
         ///     Initialize all functions and the tabcontrol
         /// </summary>
         public void Initialize()

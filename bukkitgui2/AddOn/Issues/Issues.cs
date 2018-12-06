@@ -16,6 +16,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Issues
 		public Issues()
 		{
 			Name = "Issues";
+            Priority = 0;
 			HasTab = true;
 			TabPage = new IssuesTab();
 			HasConfig = false;
@@ -27,10 +28,15 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Issues
 		/// </summary>
 		public string Name { get; private set; }
 
-		/// <summary>
-		///     True if this addon has a tab page
-		/// </summary>
-		public bool HasTab { get; private set; }
+        /// <summary>
+        ///     The addon priority. Default: 0
+        /// </summary>
+        public int Priority { get; private set; }
+
+        /// <summary>
+        ///     True if this addon has a tab page
+        /// </summary>
+        public bool HasTab { get; private set; }
 
 		/// <summary>
 		///     True if this addon has a config field

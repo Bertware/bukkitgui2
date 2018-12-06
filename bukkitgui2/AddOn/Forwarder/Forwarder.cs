@@ -16,6 +16,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Forwarder
         public Forwarder()
         {
             Name = "Forwarder (experimental)";
+            Priority = 0;
             HasTab = true;
             HasConfig = false;
 	        ConfigPage = null;
@@ -25,6 +26,11 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Forwarder
         ///     The addon name, ideally this name is the same as used in the tabpage
         /// </summary>
         public string Name { get; private set; }
+
+        /// <summary>
+        ///     The addon priority. Default: 0
+        /// </summary>
+        public int Priority { get; private set; }
 
         /// <summary>
         ///     True if this addon has a tab page

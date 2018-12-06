@@ -34,7 +34,12 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Notifications
 			get { return "Notifications"; }
 		}
 
-		public bool HasTab
+        public int Priority
+        {
+            get { return 0; }
+        }
+
+        public bool HasTab
 		{
 			get { return false; }
 		}

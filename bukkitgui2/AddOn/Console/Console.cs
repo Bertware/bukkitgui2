@@ -21,10 +21,18 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Console
 			get { return "Console"; }
 		}
 
-		/// <summary>
-		///     True if this addon has a tab page
-		/// </summary>
-		public bool HasTab
+        /// <summary>
+        ///     The addon priority. Default: 0
+        /// </summary>
+        public int Priority
+        {
+            get { return 0; }
+        }
+
+        /// <summary>
+        ///     True if this addon has a tab page
+        /// </summary>
+        public bool HasTab
 		{
 			get { return true; }
 		}
