@@ -233,13 +233,28 @@ namespace Net.Bertware.Bukkitgui2.AddOn
 		/// <returns></returns>
 		private static Dictionary<string, Type> GetAvailableAddons()
 		{
+            List<Type> unsortedAddons = new List<Type>();
 			Dictionary<string, Type> addons = new Dictionary<string, Type>();
+            // Get unsorted list of all addons
 			foreach (
 				Type addon in DynamicModuleLoader.ListClassesRecursiveOfType<IAddon>("Net.Bertware.Bukkitgui2.AddOn"))
 			{
-				if (!addons.ContainsKey(addon.Name)) addons.Add(addon.Name, addon);
+                unsortedAddons.Add(addon);
 			}
-			Logger.Log(LogLevel.Info, "AddonManager", "Found " + addons.Count + " available addons");
+
+            unsortedAddons.Sort((t1, t2) =>
+            {
+                IAddon a1 = (IAddon)Activator.CreateInstance(t1);
+                IAddon a2 = (IAddon)Activator.CreateInstance(t2);
+                return a2.Priority.CompareTo(a1.Priority);
+            });
+
+            foreach (Type addon in unsortedAddons)
+            {
+                if (!addons.ContainsKey(addon.Name)) addons.Add(addon.Name, addon);
+            }
+            
+            Logger.Log(LogLevel.Info, "AddonManager", "Found " + addons.Count + " available addons");
 			return addons;
 		}
 	}
