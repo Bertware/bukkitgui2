@@ -1,4 +1,4 @@
-﻿// PlayerList.cs in bukkitgui2/bukkitgui2
+// PlayerList.cs in bukkitgui2/bukkitgui2
 // Created 2014/01/17
 // 
 // This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
@@ -32,18 +32,18 @@ namespace Net.Bertware.Bukkitgui2.AddOn.PlayerList
 			get { return "Players"; }
 		}
 
-        /// <summary>
-        ///     The addon priority. Default: 0
-        /// </summary>
-        public int Priority
-        {
-            get { return 0; }
-        }
+		/// <summary>
+		///     The addon priority. Default: 0
+		/// </summary>
+		public int Priority
+		{
+			get { return 0; }
+		}
 
-        /// <summary>
-        ///     True if this addon has a tab page
-        /// </summary>
-        public bool HasTab
+		/// <summary>
+		///     True if this addon has a tab page
+		/// </summary>
+		public bool HasTab
 		{
 			get { return true; }
 		}

@@ -1,4 +1,4 @@
-﻿// Updater.cs in bukkitgui2/bukkitgui2
+// Updater.cs in bukkitgui2/bukkitgui2
 // Created 2014/08/08
 // 
 // This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
@@ -14,74 +14,74 @@ using Net.Bertware.Get;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Updater
 {
-    /// <summary>
-    ///     Addon to show updater settings and info
-    /// </summary>
-    internal class Updater : IAddon
-    {
+	/// <summary>
+	///     Addon to show updater settings and info
+	/// </summary>
+	internal class Updater : IAddon
+	{
 	    public Updater()
 	    {
 		    TabPage = null;
 	    }
 
 	    /// <summary>
-        ///     The addon name, ideally this name is the same as used in the tabpage
-        /// </summary>
-        public string Name
-        {
-            get { return "Updater"; }
-        }
+		///     The addon name, ideally this name is the same as used in the tabpage
+		/// </summary>
+		public string Name
+		{
+			get { return "Updater"; }
+		}
 
-        /// <summary>
-        ///     The addon priority. Default: 0
-        /// </summary>
-        public int Priority
-        {
-            get { return 0; }
-        }
+		/// <summary>
+		///     The addon priority. Default: 0
+		/// </summary>
+		public int Priority
+		{
+			get { return 0; }
+		}
 
-        /// <summary>
-        ///     True if this addon has a tab page
-        /// </summary>
-        public bool HasTab
-        {
-            get { return false; }
-        }
+		/// <summary>
+		///     True if this addon has a tab page
+		/// </summary>
+		public bool HasTab
+		{
+			get { return false; }
+		}
 
-        /// <summary>
-        ///     True if this addon has a config field
-        /// </summary>
-        public bool HasConfig
-        {
-            get { return true; }
-        }
+		/// <summary>
+		///     True if this addon has a config field
+		/// </summary>
+		public bool HasConfig
+		{
+			get { return true; }
+		}
 
-        /// <summary>
-        ///     Initialize all functions and the tabcontrol
-        /// </summary>
-        public void Initialize()
-        {
-            ConfigPage = new UpdaterSettings();
-            CheckForUpdates();
-        }
+		/// <summary>
+		///     Initialize all functions and the tabcontrol
+		/// </summary>
+		public void Initialize()
+		{
+			ConfigPage = new UpdaterSettings();
+			CheckForUpdates();
+		}
 
-        public void Dispose()
-        {
-            // nothing to do
-        }
+		public void Dispose()
+		{
+			// nothing to do
+		}
 
-        /// <summary>
-        ///     The tab control for this addon
-        /// </summary>
-        /// <returns>Returns the tabpage</returns>
-        public MetroUserControl TabPage { get; private set; }
+		/// <summary>
+		///     The tab control for this addon
+		/// </summary>
+		/// <returns>Returns the tabpage</returns>
+		public MetroUserControl TabPage { get; private set; }
 
-        public MetroUserControl ConfigPage { get; private set; }
+		public MetroUserControl ConfigPage { get; private set; }
 
-        public bool CanDisable
-        {
-            get { return true; }
-        }
+		public bool CanDisable
+		{
+			get { return true; }
+		}
 
 	    public static void CheckForUpdates()
 	    {
@@ -101,5 +101,5 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Updater
 			    // ignored
 		    }
 	    }
-    }
+	}
 }
