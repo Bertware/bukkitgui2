@@ -1,4 +1,4 @@
-﻿// Plugins.cs in bukkitgui2/bukkitgui2
+// Plugins.cs in bukkitgui2/bukkitgui2
 // Created 2014/01/17
 // 
 // This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
@@ -20,6 +20,14 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Plugins
 		public string Name
 		{
 			get { return "Plugins"; }
+		}
+
+		/// <summary>
+		///     The addon priority. Default: 0
+		/// </summary>
+		public int Priority
+		{
+			get { return 0; }
 		}
 
 		/// <summary>

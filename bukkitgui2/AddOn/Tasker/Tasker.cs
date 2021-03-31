@@ -1,4 +1,4 @@
-﻿// Tasker.cs in bukkitgui2/bukkitgui2
+// Tasker.cs in bukkitgui2/bukkitgui2
 // Created 2014/01/17
 // 
 // This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
@@ -18,59 +18,64 @@ using Net.Bertware.Bukkitgui2.Core.Logging;
 
 namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 {
-    public delegate void TaskerEventArgs();
+	public delegate void TaskerEventArgs();
 
-    public class Tasker : IAddon
-    {
-        public event EventHandler TaskListAltered;
-        public event EventHandler TaskExecuted;
-        public static Tasker Reference { get; private set; }
-        public static Dictionary<string, Task> Tasks;
-        private static readonly string _Configfile = Fl.SafeLocation(RequestFile.Config) + "tasklist";
+	public class Tasker : IAddon
+	{
+		public event EventHandler TaskListAltered;
+		public event EventHandler TaskExecuted;
+		public static Tasker Reference { get; private set; }
+		public static Dictionary<string, Task> Tasks;
+		private static readonly string _Configfile = Fl.SafeLocation(RequestFile.Config) + "tasklist";
 
-        public Tasker()
-        {
-            Reference = this;
-            Name = "Tasker";
-            HasTab = true;
-            HasConfig = false;
-        }
+		public Tasker()
+		{
+			Reference = this;
+			Name = "Tasker";
+			HasTab = true;
+			HasConfig = false;
+		}
 
-        /// <summary>
-        ///     The addon name, ideally this name is the same as used in the tabpage
-        /// </summary>
-        public string Name { get; private set; }
+		/// <summary>
+		///     The addon name, ideally this name is the same as used in the tabpage
+		/// </summary>
+		public string Name { get; private set; }
 
-        /// <summary>
-        ///     True if this addon has a tab page
-        /// </summary>
-        public bool HasTab { get; private set; }
+		/// <summary>
+		///     The addon priority. Default: 0
+		/// </summary>
+		public int Priority { get; private set; }
 
-        /// <summary>
-        ///     True if this addon has a config field
-        /// </summary>
-        public bool HasConfig { get; private set; }
+		/// <summary>
+		///     True if this addon has a tab page
+		/// </summary>
+		public bool HasTab { get; private set; }
 
-        /// <summary>
-        ///     Initialize all functions and the tabcontrol
-        /// </summary>
-        public void Initialize()
-        {
-            LoadTasks();
-            TabPage = new TaskerTab {Text = Name, ParentAddon = this};
-            ConfigPage = null;
-        }
+		/// <summary>
+		///     True if this addon has a config field
+		/// </summary>
+		public bool HasConfig { get; private set; }
 
-        private void LoadTasks()
-        {
-            Logger.Log(LogLevel.Info, "Tasker", "Loading tasks...", _Configfile);
+		/// <summary>
+		///     Initialize all functions and the tabcontrol
+		/// </summary>
+		public void Initialize()
+		{
+			LoadTasks();
+			TabPage = new TaskerTab {Text = Name, ParentAddon = this};
+			ConfigPage = null;
+		}
 
-            Tasks = new Dictionary<string, Task>();
-            if (!File.Exists(_Configfile)) File.Create(_Configfile).Close();
-            using (StreamReader sr = File.OpenText(_Configfile))
-            {
-                while (!sr.EndOfStream)
-                {
+		private void LoadTasks()
+		{
+			Logger.Log(LogLevel.Info, "Tasker", "Loading tasks...", _Configfile);
+
+			Tasks = new Dictionary<string, Task>();
+			if (!File.Exists(_Configfile)) File.Create(_Configfile).Close();
+			using (StreamReader sr = File.OpenText(_Configfile))
+			{
+				while (!sr.EndOfStream)
+				{
 	                try
 	                {
 		                Task t = new Task(sr.ReadLine());
@@ -82,60 +87,60 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 						Logger.Log(LogLevel.Warning, "Tasker", "Failed to parse task", ex.Message);
 	                }
 
-                }
-            }
-            Logger.Log(LogLevel.Info, "Tasker", "Loaded all tasks");
-        }
+				}
+			}
+			Logger.Log(LogLevel.Info, "Tasker", "Loaded all tasks");
+		}
 
-        /// <summary>
-        ///     Save (update) a task
-        /// </summary>
-        /// <param name="oldTask"></param>
-        /// <param name="newTask"></param>
-        public void SaveTask(Task oldTask, Task newTask)
-        {
-            DeleteTask(oldTask);
-            AddTask(newTask);
-            // events are fired by delete & add operations
-        }
+		/// <summary>
+		///     Save (update) a task
+		/// </summary>
+		/// <param name="oldTask"></param>
+		/// <param name="newTask"></param>
+		public void SaveTask(Task oldTask, Task newTask)
+		{
+			DeleteTask(oldTask);
+			AddTask(newTask);
+			// events are fired by delete & add operations
+		}
 
-        /// <summary>
-        ///     Add a new task
-        /// </summary>
-        /// <param name="task">the task to add</param>
-        public void AddTask(Task task)
-        {
-            task.Enable();
-            task.TaskExecuted += OnTaskExecuted;
-            if (Tasks != null && !Tasks.ContainsKey(task.Name)) Tasks.Add(task.Name, task);
-            OnTaskListAltered();
-            SaveConfig();
-        }
+		/// <summary>
+		///     Add a new task
+		/// </summary>
+		/// <param name="task">the task to add</param>
+		public void AddTask(Task task)
+		{
+			task.Enable();
+			task.TaskExecuted += OnTaskExecuted;
+			if (Tasks != null && !Tasks.ContainsKey(task.Name)) Tasks.Add(task.Name, task);
+			OnTaskListAltered();
+			SaveConfig();
+		}
 
 
-        /// <summary>
-        ///     Delete a task
-        /// </summary>
-        /// <param name="task">the task to delete</param>
-        public void DeleteTask(Task task)
-        {
+		/// <summary>
+		///     Delete a task
+		/// </summary>
+		/// <param name="task">the task to delete</param>
+		public void DeleteTask(Task task)
+		{
 	        if (task == null) return;
 
-            task.Disable();
-            task.TaskExecuted -= OnTaskExecuted;
+			task.Disable();
+			task.TaskExecuted -= OnTaskExecuted;
 
-            if (Tasks != null && Tasks.ContainsKey(task.Name)) Tasks.Remove(task.Name);
+			if (Tasks != null && Tasks.ContainsKey(task.Name)) Tasks.Remove(task.Name);
 
-            task.Dispose(); // make sure it's removed
+			task.Dispose(); // make sure it's removed
 			OnTaskListAltered();// list changed, invoke event
-            SaveConfig();
-        }
+			SaveConfig();
+		}
 
-        /// <summary>
-        ///     Save all tasks to config file.
-        /// </summary>
-        private static void SaveConfig()
-        {
+		/// <summary>
+		///     Save all tasks to config file.
+		/// </summary>
+		private static void SaveConfig()
+		{
 	        try
 	        {
 
@@ -162,36 +167,36 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Tasker
 			        MessageBoxIcon.Error);
 
 	        }
-        }
+		}
 
-        public void Dispose()
-        {
-            SaveConfig();
-        }
+		public void Dispose()
+		{
+			SaveConfig();
+		}
 
-        /// <summary>
-        ///     The tab control for this addon
-        /// </summary>
-        /// <returns>Returns the tabpage</returns>
-        public MetroUserControl TabPage { get; private set; }
+		/// <summary>
+		///     The tab control for this addon
+		/// </summary>
+		/// <returns>Returns the tabpage</returns>
+		public MetroUserControl TabPage { get; private set; }
 
-        public MetroUserControl ConfigPage { get; private set; }
+		public MetroUserControl ConfigPage { get; private set; }
 
-        public bool CanDisable
-        {
-            get { return true; }
-        }
+		public bool CanDisable
+		{
+			get { return true; }
+		}
 
-        protected virtual void OnTaskExecuted(object sender, EventArgs e)
-        {
-            var handler = TaskExecuted;
-            if (handler != null) handler(sender, e);
-        }
+		protected virtual void OnTaskExecuted(object sender, EventArgs e)
+		{
+			var handler = TaskExecuted;
+			if (handler != null) handler(sender, e);
+		}
 
-        protected virtual void OnTaskListAltered()
-        {
-            var handler = TaskListAltered;
-            if (handler != null) handler(this, EventArgs.Empty);
-        }
-    }
+		protected virtual void OnTaskListAltered()
+		{
+			var handler = TaskListAltered;
+			if (handler != null) handler(this, EventArgs.Empty);
+		}
+	}
 }

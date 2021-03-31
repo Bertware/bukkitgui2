@@ -1,4 +1,4 @@
-﻿// Issues.cs in bukkitgui2/bukkitgui2
+// Issues.cs in bukkitgui2/bukkitgui2
 // Created 2014/08/31
 // 
 // This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
@@ -16,6 +16,7 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Issues
 		public Issues()
 		{
 			Name = "Issues";
+			Priority = 0;
 			HasTab = true;
 			TabPage = new IssuesTab();
 			HasConfig = false;
@@ -26,6 +27,11 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Issues
 		///     The addon name, ideally this name is the same as used in the tabpage
 		/// </summary>
 		public string Name { get; private set; }
+
+		/// <summary>
+		///     The addon priority. Default: 0
+		/// </summary>
+		public int Priority { get; private set; }
 
 		/// <summary>
 		///     True if this addon has a tab page

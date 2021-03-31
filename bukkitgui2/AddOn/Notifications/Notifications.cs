@@ -1,4 +1,4 @@
-﻿// Notifications.cs in bukkitgui2/bukkitgui2
+// Notifications.cs in bukkitgui2/bukkitgui2
 // Created 2014/06/21
 // 
 // This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
@@ -32,6 +32,11 @@ namespace Net.Bertware.Bukkitgui2.AddOn.Notifications
 		public string Name
 		{
 			get { return "Notifications"; }
+		}
+
+		public int Priority
+		{
+			get { return 0; }
 		}
 
 		public bool HasTab
